@@ -1,0 +1,324 @@
+hvac_run_stop:
+  alias: hvac_run_stop
+  sequence:
+  - service: climate.set_operation_mode
+    data_template:
+      operation_mode: >
+          {% if is_state('binary_sensor.house_sts_hvac_run', 'off') %}
+            off
+          {%-elif is_state('binary_sensor.house_sts_hvac_cool_req', 'on') %}
+            cool
+          {% else %}
+            heat
+          {% endif %}
+  - service: script.turn_on
+    data_template:
+      entity_id: >
+          {% if is_state('binary_sensor.house_sts_hvac_run', 'off') %}
+            none
+          {% else %}
+            script.hvac_run_setpoint
+          {% endif %}
+hvac_ac_temp:
+  alias: hvac_ac_temp
+  sequence:
+  - service: climate.set_temperature
+    data_template:
+      temperature: >
+          {% if is_state('binary_sensor.house_sts_vacation', 'on') %}
+            84
+          {%-elif is_state('binary_sensor.house_sts_dte_cheap', 'on') %}
+            65
+          {%-elif is_state('binary_sensor.house_sts_occupants', 'on') %}
+            74
+          {%-elif is_state('binary_sensor.house_sts_incoming', 'on') %}
+            74
+          {%-elif is_state('binary_sensor.house_sts_guest', 'on') %}
+            74
+          {% else %}
+            78
+          {% endif %}
+hvac_heat_temp:
+  alias: hvac_heat_temp
+  sequence:
+  - service: climate.set_temperature
+    data_template:
+      temperature: >
+          {% if is_state('binary_sensor.house_sts_vacation', 'on') %}
+            60
+          {%-elif is_state('sensor.timeday', 'night') %}
+            65
+          {%-elif is_state('binary_sensor.house_sts_occupants', 'on') %}
+            74
+          {%-elif is_state('binary_sensor.house_sts_incoming', 'on') %}
+            74
+          {%-elif is_state('binary_sensor.house_sts_guest', 'on') %}
+            74
+          {% else %}
+            68
+          {% endif %}
+hvac_run_setpoint:
+  alias: hvac_run_setpoint
+  sequence:
+  - service: script.turn_on
+    data_template:
+      entity_id: >
+          {% if is_state('binary_sensor.house_sts_hvac_run', 'off') %}
+            none
+          {%-elif is_state('binary_sensor.house_sts_hvac_cool_req', 'on') %}
+            script.hvac_ac_temp
+          {% else %}
+            script.hvac_heat_temp
+          {% endif %}
+house_garage_door_occ:
+  alias: hvac_garage_door_occ
+  sequence:
+  - service: cover.open_cover
+    data_template:
+      entity_id: >
+          {% if is_state('binary_sensor.house_sts_occupants', 'on') and is_state('cover.garage_door', 'closed') and states('sensor.uptime') | float > 5 %}
+            cover.garage_door
+          {% else %}
+            none
+          {% endif %}
+house_garage_door_tmcls:
+  alias: house_garage_door_tmcls
+  sequence:
+    - delay:
+        minutes: 15
+    - service: cover.close_cover
+      data_template:
+        entity_id: >
+          {% if is_state('cover.garage_door', 'open') %}
+            cover.garage_door
+          {% else %}
+            none
+          {% endif %}
+house_empty_routine:
+  alias: house_empty_routine
+  sequence:
+  - service: light.turn_off
+    data_template:
+      entity_id: >
+          {% if is_state('binary_sensor.house_sts_occupants', 'off') and is_state('binary_sensor.house_sts_guest', 'off') %}
+            group.all_lights
+          {% else %}
+            none
+          {% endif %}
+  - service: fan.turn_off
+    data_template:
+      entity_id: >
+          {% if is_state('binary_sensor.house_sts_occupants', 'off') and is_state('binary_sensor.house_sts_guest', 'off') %}
+            group.all_fans
+          {% else %}
+            none
+          {% endif %}
+          
+house_night_mode:
+  alias: house_night_mode
+  sequence:
+  - service: light.turn_off
+    data_template:
+      entity_id: >
+          {% if is_state('sensor.timeday', 'night') %}
+            group.all_lights
+          {% else %}
+            none
+          {% endif %}
+  - service: fan.turn_off
+    data_template:
+      entity_id: >
+          {% if is_state('sensor.timeday', 'night') %}
+            fan.fan
+          {% else %}
+            none
+          {% endif %}
+  - service: script.turn_on
+    data:
+      entity_id: script.hvac_run_setpoint
+      
+house_occupied_routine:
+  alias: house_occupied_routine
+  sequence:
+  - service: scene.turn_on
+    data_template:
+      entity_id: >
+          {% if is_state('binary_sensor.house_sts_occupants', 'on') %}
+            scene.house_lights_on
+          {% else %}
+            none
+          {% endif %}
+          
+house_morning_mode:
+  alias: house_morning_mode
+  sequence:
+  - service: scene.turn_on
+    data_template:
+      entity_id: >
+          {% if is_state('sensor.timeday', 'morning') %}
+            scene.house_lights_on
+          {% else %}
+            none
+          {% endif %}
+  - service: fan.turn_on
+    data_template:
+      entity_id: >
+          {% if is_state('sensor.timeday', 'morning') %}
+            fan.fan
+          {% else %}
+            none
+          {% endif %}
+  - service: script.turn_on
+    data:
+      entity_id: script.hvac_run_setpoint
+  - service: switch.turn_on
+    data_template:
+      entity_id: >
+          {% if is_state('sensor.timeday', 'morning') %}
+            switch.livingroom_subwoofer
+          {% else %}
+            none
+          {% endif %}
+
+house_evening_mode:
+  alias: house_evening_mode
+  sequence:
+  - service: switch.turn_off
+    data_template:
+      entity_id: >
+          {% if is_state('sensor.timeday', 'evening') %}
+            switch.livingroom_subwoofer
+          {% else %}
+            none
+          {% endif %}
+  - service: scene.turn_on
+    data_template:
+      entity_id: >
+          {% if is_state('sensor.timeday', 'morning') 
+             and is_state('binary_sensor.house_sts_vacation', 'on') %}
+            scene.house_lights_on
+          {% else %}
+            none
+          {% endif %}
+
+wink_timer:
+  alias: wink_timer
+  sequence:
+  - delay: '00:00:30'
+  - service: script.turn_on
+    data:
+      entity_id: script.wink_refresh
+wink_refresh:
+  alias: wink_refresh
+  sequence:
+  - service: wink.refresh_state_from_wink
+  - service: script.turn_on
+    data:
+      entity_id: script.wink_timer
+
+office_occupancy:
+  alias: office_occupancy
+  sequence:
+  - service: script.turn_on
+    data_template:
+      entity_id: >
+          {% if is_state('binary_sensor.off_sts_motion', 'on') %}
+            script.office_occupancy_on
+          {% else %}
+            script.office_occupancy_off
+          {% endif %}
+
+office_occupancy_on:
+  alias: office_occupancy_on
+  sequence:
+  - service: switch.turn_on
+    data:
+      entity_id: switch.off_computron3000
+  - service: switch.turn_on
+    data:
+      entity_id: switch.off_4k_mon
+  - service: switch.turn_on
+    data_template:
+      entity_id: >
+        {% if states('sensor.office_temperature')|float < 65 %}
+          switch.office_heater
+        {% else %}
+          none
+        {% endif %}
+        
+office_occupancy_off:
+  alias: office_occupancy_off
+  sequence:
+  - service: switch.turn_off
+    data:
+      entity_id: switch.office_heater
+    
+hall_light_script:
+  alias: hall_light_script
+  sequence:
+  - service: script.turn_on
+    data_template:
+      entity_id: >
+          {% if is_state('binary_sensor.hallway_motion_combine', 'on') %}
+            script.hall_light_on
+          {% else %}
+            script.hall_light_off
+          {% endif %}
+          
+
+hall_light_on:
+  alias: hall_light_on
+  sequence:
+  - service: light.turn_on
+    data_template:
+      entity_id: >
+          {% if not is_state('sensor.timeday', 'evening') %}
+            light.hallway
+          {% else %}
+            light.hallway
+          {% endif %}
+      brightness_pct: >
+          {% if not is_state('sensor.timeday', 'evening') %}
+            20
+          {% else %}
+            0
+          {% endif %}
+hall_light_off:
+  alias: hall_light_off
+  sequence:
+  - service: light.turn_off
+    data:
+      entity_id: light.hallway
+      transition: 30
+
+humidifier:
+  alias: humidifier
+  sequence:
+  - service: switch.turn_on
+    data_template:
+      entity_id: >
+          {% if is_state('binary_sensor.house_sts_hum_passive_run', 'on') %}
+            switch.humidifier
+          {% else %}
+            none
+          {% endif %}
+  - service: switch.turn_off
+    data_template:
+      entity_id: >
+          {% if is_state('binary_sensor.house_sts_hum_passive_run', 'off') %}
+            switch.humidifier
+          {% else %}
+            none
+          {% endif %}
+
+hvac_fan:
+  alias: hvac_fan
+  sequence:
+  - service: climate.set_fan_mode
+    data_template:
+      fan_mode: >
+          {% if is_state('binary_sensor.house_sts_hum_active_req', 'on') %}
+            on
+          {% else %}
+            auto
+          {% endif %}

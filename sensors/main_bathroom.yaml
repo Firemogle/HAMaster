@@ -1,0 +1,23 @@
+- platform: mqtt
+  name: "Bathroom Vent Temperature"
+  state_topic: "/Attic_Sensor/Vent/Temperature"
+  unit_of_measurement: "°C"
+  retain: true
+
+- platform: mqtt
+  name: "Bathroom Vent Pressure"
+  state_topic: "/Attic_Sensor/Vent/Pressure"
+  unit_of_measurement: "P"
+  retain: true
+
+- platform: mqtt
+  name: "Bathroom Vent Humidity"
+  state_topic: "/Attic_Sensor/Vent/Humidity"
+  unit_of_measurement: "%"
+  retain: true
+
+- platform: mqtt
+  name: "Bathroom Vent VOC"
+  state_topic: "/Attic_Sensor/Vent/Gas"
+  unit_of_measurement: "Ω"
+  retain: true

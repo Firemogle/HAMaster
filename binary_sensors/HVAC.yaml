@@ -1,0 +1,58 @@
+- platform: template
+  sensors:
+    house_sts_hvac_shut:
+      value_template: >-
+        {{ is_state('binary_sensor.hall_window_opened', 'off')
+           and is_state('binary_sensor.sliding_glass_door_opened', 'off')
+           and is_state('binary_sensor.livingroom_door_opened', 'off') }}
+      delay_off:
+        minutes: 5
+- platform: template
+  sensors:
+    house_sts_hvac_cool_req:
+      value_template: >-
+        {{ states('sensor.dark_sky_daytime_high_temperature')|float > 75 }}
+      delay_off:
+        minutes: 30
+      delay_on:
+        minutes: 5
+- platform: template
+  sensors:
+    house_sts_hvac_heat_req:
+      value_template: >-
+        {{ states('sensor.dark_sky_daytime_high_temperature')|float < 60 }}
+      delay_off:
+        minutes: 30
+      delay_on:
+        minutes: 5
+- platform: template
+  sensors:
+    house_sts_hvac_req:
+      value_template: >-
+        {{ is_state('binary_sensor.house_sts_hvac_cool_req', 'on')
+           or is_state('binary_sensor.house_sts_hvac_heat_req', 'on') }}
+- platform: template
+  sensors:
+    house_sts_hvac_run:
+      value_template: >-
+        {{ is_state('binary_sensor.house_sts_hvac_req', 'on')
+           and is_state('binary_sensor.house_sts_hvac_shut', 'on') }}
+
+- platform: template
+  sensors:
+    house_sts_hum_passive_req:
+      value_template: >-
+        {{ states('sensor.hvac_current_humidity')|float < states('sensor.hvac_target_humidity')|float }}
+        
+- platform: template
+  sensors:
+    house_sts_hum_active_req:
+      value_template: >-
+        {{ states('sensor.hvac_current_humidity')|float < states('sensor.hvac_target_humidity')|float-5 }}
+        
+- platform: template
+  sensors:
+    house_sts_hum_passive_run:
+      value_template: >-
+        {{ is_state('binary_sensor.house_sts_hum_passive_req', 'on')
+           and is_state('sensor.hvac_fan_state', 'on') }}

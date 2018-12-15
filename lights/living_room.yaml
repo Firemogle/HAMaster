@@ -1,0 +1,7 @@
+- platform : mqtt
+  name: "Jayhawk Candle"
+  state_topic: "/Jayhawk_Candle/relay/switch"
+  command_topic: "/Jayhawk_Candle/gpio/12"
+  payload_on: "1"
+  payload_off: "0"
+  retain: true

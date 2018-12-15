@@ -1,0 +1,7 @@
+- platform : mqtt
+  name: "Cabinet_LED"
+  state_topic: "/Cabinet_LED/relay/switch"
+  command_topic: "/Cabinet_LED/gpio/12"
+  payload_on: "1"
+  payload_off: "0"
+  retain: true

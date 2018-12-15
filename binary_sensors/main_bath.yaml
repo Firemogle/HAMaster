@@ -1,0 +1,9 @@
+- platform: template
+  sensors:
+    main_bath_vent_needed:
+      value_template: >-
+        {{ states('sensor.bathroom_vent_humidity')|float > 50
+           or is_state('light.main_bath_vanity','on') 
+           or is_state('light.main_bath_vent_light','on') }}
+      delay_off:
+        minutes: 5

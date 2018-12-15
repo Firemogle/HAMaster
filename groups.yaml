@@ -1,0 +1,27 @@
+  security:
+    name: security
+    view: no
+    entities:
+      - binary_sensor.kidde_smoke_detector_co_detected
+      - binary_sensor.kidde_smoke_detector_smoke_detected
+      - binary_sensor.sliding_glass_door_opened
+      - binary_sensor.garage_door_bin
+      - binary_sensor.livingroom_door_opened
+      - binary_sensor.garage_door_back
+  brett:
+    name: brett
+    view: no
+    entities:
+      - device_tracker.google_maps_116842525089175776476
+      - device_tracker.brettphone
+  liz:
+    name: liz
+    view: no
+    entities:
+      - device_tracker.google_maps_108379141181739394475
+  occupants:
+    name: occupants
+    view: no
+    entities:
+      - group.brett
+      - group.liz

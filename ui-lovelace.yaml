@@ -1,0 +1,185 @@
+title: Team Carriger
+# Include external resources
+resources:
+  - url: /local/my-custom-card.js
+    type: js
+  - url: /local/my-webfont.css
+    type: css
+
+background: center / cover no-repeat url("/background.png") fixed
+# Exclude entities from "Unused entities" view
+#excluded_entities:
+#  - weblink.router
+views:
+    # System Overview tab
+  - title: Overview
+    id: overview
+    cards:
+        # Card for status bits.
+      - type: entities
+        title: Home Status
+        entities:
+          - group.occupants
+          - group.security
+        # Garage Door Card
+      - type: entities
+        title: Garage Door
+        entities:
+          - cover.garage_door
+        #HVAC control
+      - type: thermostat
+        entity: climate.hvac
+        
+    # Main Level 
+  - title: Main Level
+    id: house_main
+    cards:
+      - type: entities
+        title: Living room
+        entities:
+          - light.main_livingroom
+          - light.jayhawk_candle
+          - light.livingroom_entry
+          - sensor.hvac_humidity
+          - sensor.hvac_temperature
+          - binary_sensor.livingroom_door_opened
+          - switch.livingroom_subwoofer
+      - type: entities
+        title: Kitchen
+        entities:
+          - fan.fan
+          - light.cabinet_led
+          - light.kitchen_sink
+          - light.light_bulb
+          - sensor.kitchen_leak
+          - sensor.kitchen_humidity
+          - sensor.kitchen_pressure
+          - sensor.kitchen_temp
+          - sensor.sliding_glass_door_temperature
+          - sensor.garage_entry_temperature
+          - binary_sensor.garage_entry_opened
+          - binary_sensor.sliding_glass_door_opened
+
+  - title: Upstairs
+    id: house_upstairs
+    cards:
+      - type: entities
+        title: Master Bed
+        entities:
+          - fan.fan_2
+          - light.light_bulb_2
+          - switch.master_tv
+      - type: picture-glance
+        title: Emi Room
+        entities:
+          - fan.fan3
+          - light.light_bulb_3
+          - switch.emi_star_lamp
+          - media_player.emilias_speaker
+          - sensor.emi_humidity
+          - sensor.emi_motion
+          - sensor.emi_temp
+        camera_image: camera.amcrest_camera
+      - type: entities
+        title: Main Bath
+        entities:
+          - light.main_bath_vanity
+          - light.main_bath_vent_light
+          - switch.main_bath_fan
+          - sensor.bathroom_vent_humidity
+          - sensor.bathroom_vent_pressure
+          - sensor.bathroom_vent_temperature
+          - sensor.bathroom_vent_voc
+          - binary_sensor.main_bath_vent_needed
+      - type: entities
+        title: Hallway
+        entities:
+          - light.hallway
+          - binary_sensor.hallway_motion_combine
+          - sensor.hallway_motion_temp
+          - binary_sensor.hall_window_opened
+          - sensor.hall_window_temperature
+          
+    # Basement view
+  - title: Basement
+    id: house_basement
+    cards:
+        # Entities card will take a list of entities and show their state.
+      - type: entities
+        # Title of the entities card
+        title: Office
+        entities:
+          - switch.off_4k_mon
+          - switch.off_computron3000
+          - switch.office_heater
+          - binary_sensor.off_sts_motion
+          - sensor.office_humidity
+          - sensor.office_pressure
+          - sensor.office_temperature
+      - type: entities
+        # Title of the entities card
+        title: Laundry Room
+        entities:
+          - switch.litter_box
+          - binary_sensor.laundry_motion_1
+          - binary_sensor.laundry_motion_2
+          - binary_sensor.laundry_motion_3
+          - binary_sensor.laundry_room_cat_detection
+          - sensor.laundry_temp
+          - sensor.laundry_humidity
+          - sensor.laundry_pressure
+  - title: Other
+    id: house_other
+    cards:
+        # Entities card will take a list of entities and show their state.
+      - type: entities
+        # Title of the entities card
+        title: Attic
+        # The entities here will be shown in the same order as specified.
+        # Each entry is an entity ID or a map with extra options.
+        entities:
+          - sensor.attic_humidity
+          - sensor.attic_pressure
+          - sensor.attic_temp
+      - type: picture-glance
+        title: Garage
+        entities:
+          - binary_sensor.garage_door_bin
+          - binary_sensor.garage_camera_motion_detected
+          - binary_sensor.garage_door_back
+          - sensor.garage_energy
+          - sensor.garage_pressure
+          - sensor.garage_temperature
+        camera_image: camera.garage
+  - title: System
+    id: house_system
+    cards:
+        # Entities card will take a list of entities and show their state.
+      - type: entities
+        # Title of the entities card
+        title: Network
+        # The entities here will be shown in the same order as specified.
+        # Each entry is an entity ID or a map with extra options.
+        entities:
+          - sensor.speedtest_download
+          - sensor.speedtest_upload
+          - sensor.speedtest_ping
+          - sensor.radarr_movies
+          - sensor.sonarr_series
+          - sensor.sonarr_upcoming
+          - sensor.sonarr_wanted
+          - sensor.deluge_down_speed
+          - sensor.deluge_up_speed
+      - type: entities
+        # Title of the entities card
+        title: HVAC Status
+        # The entities here will be shown in the same order as specified.
+        # Each entry is an entity ID or a map with extra options.
+        entities:
+          - binary_sensor.house_sts_hvac_run
+          - binary_sensor.house_sts_hum_passive_req
+          - binary_sensor.house_sts_hum_passive_run
+          - binary_sensor.house_sts_hum_active_req
+          - sensor.hvac_humidity
+          - sensor.hvac_target_humidity
+          - switch.humidifier

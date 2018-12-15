@@ -1,0 +1,99 @@
+'1533948195338':
+  alias: hvac_run_stop
+  sequence:
+  - service: climate.set_operation_mode
+    data_template:
+      operation_mode: >
+          {% if is_state('binary_sensor.house_sts_hvac_run', 'off') %}
+            off
+          {%-elif is_state('binary_sensor.house_sts_hvac_cool_req', 'on') %}
+            cool
+          {% else %}
+            heat
+          {% endif %}
+  - service: script.turn_on
+    data_template:
+      entity_id: >
+          {% if is_state('binary_sensor.house_sts_hvac_run', 'off') %}
+            none
+          {% else %}
+            script.hvac_run_setpoint
+          {% endif %}
+
+hvac_ac_temp:
+  alias: hvac_ac_temp
+  sequence:
+  - service: climate.set_temperature
+    data_template:
+      temperature: >
+          {% if is_state('binary_sensor.house_sts_vacation', 'on') %}
+            84
+          {%-elif is_state('binary_sensor.house_sts_dte_cheap', 'on') %}
+            65
+          {%-elif is_state('binary_sensor.house_sts_occupants', 'on') %}
+            74
+          {%-elif is_state('binary_sensor.house_sts_incoming', 'on') %}
+            74
+          {%-elif is_state('binary_sensor.house_sts_guest', 'on') %}
+            74
+          {% else %}
+            78
+          {% endif %}
+
+hvac_heat_temp:
+  alias: hvac_heat_temp
+  sequence:
+  - service: climate.set_temperature
+    data_template:
+      temperature: >
+          {% if is_state('binary_sensor.house_sts_vacation', 'on') %}
+            60
+          {%-elif is_state('binary_sensor.house_sts_dte_cheap', 'on') %}
+            65
+          {%-elif is_state('binary_sensor.house_sts_occupants', 'on') %}
+            74
+          {%-elif is_state('binary_sensor.house_sts_incoming', 'on') %}
+            74
+          {%-elif is_state('binary_sensor.house_sts_guest', 'on') %}
+            74
+          {% else %}
+            68
+          {% endif %}
+
+hvac_run_setpoint:
+  alias: hvac_run_setpoint
+  sequence:
+  - service: script.turn_on
+    data_template:
+      entity_id: >
+          {% if is_state('binary_sensor.house_sts_hvac_run', 'off') %}
+            none
+          {%-elif is_state('binary_sensor.house_sts_hvac_cool_req', 'on') %}
+            script.hvac_ac_temp
+          {% else %}
+            script.hvac_heat_temp
+          {% endif %}
+house_garage_door_occ:
+  alias: hvac_garage_door_occ
+  sequence:
+  - service: cover.open_cover
+    data_template:
+      entity_id: >
+          {% if is_state('binary_sensor.house_sts_occupants', 'on') and is_state('cover.garage_door', 'closed') and states('sensor.uptime') | float > 5 %}
+            cover.garage_door
+          {% else %}
+            none
+          {% endif %}
+house_garage_door_tmcls:
+  alias: house_garage_door_tmcls
+  sequence:
+    - delay:
+        minutes: 15
+    - service: cover.close_cover
+      data_template:
+        entity_id: >
+          {% if is_state('cover.garage_door', 'open') %}
+            cover.garage_door
+          {% else %}
+            none
+          {% endif %}

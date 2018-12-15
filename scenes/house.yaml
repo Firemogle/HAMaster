@@ -1,0 +1,9 @@
+- name: house_lights_on
+  entities:
+    light.kitchen_sink:
+      state: on
+      brightness: 100
+    light.cabinet_led: on
+    light.main_livingroom:
+      state: on
+      brightness: 100

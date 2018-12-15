@@ -1,0 +1,198 @@
+
+homeassistant:
+  name: Home
+  latitude: 42.422097
+  longitude: -83.772937
+  elevation: 283
+  unit_system: imperial
+  time_zone: America/New_York
+  customize: !include customize.yaml
+
+http:
+  server_port: 8123 # Hard set port
+  trusted_networks: # Trust self and local IPs
+    - 127.0.0.1
+    - 192.168.1.0/24
+  api_password: !secret HTTPPW
+  ssl_certificate: /config/fullchain.pem
+  ssl_key: /config/privkey.pem
+  base_url: !secret DYNSITE
+  ip_ban_enabled: true # Allow bans
+  login_attempts_threshold: 3 # Ban after 3 failed attempts
+
+recorder:
+  db_url: !secret DB # Location of offloaded DB
+  purge_keep_days: 3 # Test purge days with offloaded DB
+  purge_interval: 1
+  exclude: # Configure recorder to not record extrainious data
+    domains:
+      - media_player
+      - calendar
+      - automation
+      - script
+      - camera
+    entities:
+      - binary_sensor.garage_camera_online
+      - binary_sensor.garage_camera_person_detected
+      - binary_sensor.garage_door_bin
+      - binary_sensor.home_away
+      - hangouts.conversations
+      - sensor.amcrest_camera_motion_detected
+      - sensor.dark_sky_icon
+      - sensor.dark_sky_summary
+      - sensor.garage_door_bin_to_pct
+      - sensor.house_rand_0_100
+      - sensor.stats_garage_pct_mean
+      - sensor.virtualserver_generic_hard_disk_load_used_space
+      - sensor.virtualserver_generic_memory_data_available_memory
+      - sensor.virtualserver_generic_memory_data_used_memory
+      - sensor.virtualserver_generic_memory_load_memory
+      - sensor.virtualserver_intel_core_i72600_clocks_bus_speed
+      - sensor.virtualserver_intel_core_i72600_clocks_cpu_core_1
+      - sensor.virtualserver_intel_core_i72600_clocks_cpu_core_2
+      - sensor.virtualserver_intel_core_i72600_clocks_cpu_core_3
+      - sensor.virtualserver_intel_core_i72600_clocks_cpu_core_4
+      - sensor.virtualserver_intel_core_i72600_load_cpu_core_1
+      - sensor.virtualserver_intel_core_i72600_load_cpu_core_2
+      - sensor.virtualserver_intel_core_i72600_load_cpu_core_3
+      - sensor.virtualserver_intel_core_i72600_load_cpu_core_4
+      - sensor.virtualserver_intel_core_i72600_load_cpu_total
+      - sensor.virtualserver_intel_core_i72600_powers_cpu_cores
+      - sensor.virtualserver_intel_core_i72600_powers_cpu_graphics
+      - sensor.virtualserver_intel_core_i72600_powers_cpu_package
+      - sensor.virtualserver_st1000dm0102ep102_load_used_space
+      - sensor.virtualserver_wdc_wd10ezex08wn4a0_load_used_space
+      - sensor.virtualserver_wdc_wd5000aakx753ca1_load_used_space
+      - weather.hvac
+
+device_tracker:
+  - platform: google_maps
+    username: !secret DEVICE_USER
+    password: !secret DEVICE_PW
+    max_gps_accuracy: 100
+  - platform: ping
+    hosts:
+      brettphone: 192.168.1.224
+      
+google:
+    client_id: !secret GOOGLE_ID
+    client_secret: !secret GOOGLE_SECRET
+    
+notify:
+  - name: GChat
+    platform: hangouts
+    default_conversations:
+      - id: !secret GOOGLE_CONV
+
+# Enables the frontend
+frontend:
+  themes: !include themes.yaml
+# Enables configuration UI
+config:
+
+# Enable wink for zwave and zigbee
+wink:
+#  local_control: true
+
+#Track the sun
+sun:
+
+updater:
+  include_used_components: true
+
+# Discover some devices automatically
+discovery:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time
+history:
+
+# View all events in a logbook
+logbook:
+
+logger:
+  default: warning
+    
+# Enables a map showing the location of tracked devices
+map:
+
+# Text to speech
+#tts:
+#  - platform: google
+
+# Enable connection to MQTT server
+mqtt:
+  broker: 192.168.1.243
+  protocol: 3.1
+  tls_version: '1.2'
+  discovery: true
+
+amcrest:
+  - host: 192.168.1.244
+    username: !secret AMCREST_USER
+    password: !secret AMCREST_PW
+    scan_interval: 1
+    sensors:
+      - motion_detector
+    stream_source: mjpeg
+
+nest:
+  client_id: !secret NEST_ID
+  client_secret: !secret NEST_SECRET
+
+camera:
+  - platform: amcrest
+
+cover:
+  - platform: template
+    covers:
+      garage_door:
+        friendly_name: "Garage Door"
+        value_template: "{{ is_state('binary_sensor.garage_door_bin', 'on') }}"
+        open_cover:
+          service: mqtt.publish
+          data:
+            {
+              "topic": "/garage/gpio/16",
+              "payload": "1"
+            }
+        close_cover:
+          service: mqtt.publish
+          data:
+            {
+              "topic": "/garage/gpio/16",
+              "payload": "1"
+            }
+
+media_player:
+  - platform: kodi
+    name: Livingroom_kodi
+    host: 192.168.1.241
+    username: !secret KODI_USR
+    password: !secret KODI_PW
+
+ecobee:
+  api_key: !secret ECOBEE_KEY
+  hold_temp: true
+  
+mqtt_eventstream:
+  publish_topic: master/topic
+  subscribe_topic: slaves/#
+  ignore_event:
+    - state_changed
+    - component_loaded
+    - platform_discovered
+    - service_executed
+    - service_registered
+    - time_changed
+    
+sensor: !include_dir_merge_list sensors/
+binary_sensor: !include_dir_merge_list binary_sensors/
+light: !include_dir_merge_list lights/
+switch: !include_dir_merge_list switch_dir/
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include_dir_merge_named script_file_dir/
+scene: !include_dir_merge_list scenes/

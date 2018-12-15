@@ -1,0 +1,208 @@
+- id: '1533587304851'
+  alias: off_occ_on
+  initial_state: 'off'
+  trigger:
+  - entity_id: binary_sensor.off_sts_motion
+    platform: state
+  condition: []
+  action:
+  - alias: ''
+    data:
+      entity_id: script.office_occupancy
+    service: script.turn_on
+    
+- id: '1533993295587'
+  alias: house_hvac_ena
+  initial_state: 'off'
+  trigger:
+  - entity_id: binary_sensor.house_sts_hvac_run
+    platform: state
+  condition: []
+  action:
+  - data:
+      entity_id: script.hvac_run_stop
+    service: script.turn_on
+    
+- id: '1534007786835'
+  alias: house_hvac_set
+  initial_state: 'off'
+  trigger:
+  - entity_id: binary_sensor.house_sts_dte_cheap
+    platform: state
+  - entity_id: binary_sensor.house_sts_guest
+    platform: state
+  - entity_id: binary_sensor.house_sts_vacation
+    platform: state
+  - entity_id: binary_sensor.house_sts_incoming
+    platform: state
+  condition: []
+  action:
+  - data:
+      entity_id: script.hvac_run_setpoint
+    service: script.turn_on
+    
+- id: '1534697063606'
+  alias: house_sts_occupants
+  initial_state: 'off'
+  trigger:
+  - entity_id: binary_sensor.house_sts_occupants
+    platform: state
+  condition: []
+  action:
+  - data:
+      entity_id: script.hvac_run_setpoint
+    service: script.turn_on
+  - data:
+      entity_id: script.house_garage_door_occ
+    service: script.turn_on
+  - data:
+      entity_id: script.house_empty_routine
+    service: script.turn_on
+  - data_template:
+      message: >
+        Occupancy mode changed to {{ states('binary_sensor.house_sts_occupants') }} , status :
+        {%- for entity_id in states.group.security.attributes.entity_id  -%}
+          {% set parts = entity_id.split('.') -%}
+          {%- if loop.first %} 
+          {% elif loop.last %}
+          {% else %}
+          {% endif -%}{{ states[parts[0]][parts[1]].name }} : {{ states[parts[0]][parts[1]].state }}
+        {%- endfor %}
+    service: notify.gchat
+  - data:
+      entity_id: script.house_occupied_routine
+    service: script.turn_on
+    
+    
+- id: '1536712624500'
+  alias: house_time_mode
+  initial_state: 'off'
+  trigger:
+  - entity_id: sensor.timeday
+    platform: state
+  condition: []
+  action:
+  - data:
+      entity_id: script.house_night_mode
+    service: script.turn_on
+  - data:
+      entity_id: script.house_morning_mode
+    service: script.turn_on
+  - data:
+      entity_id: script.house_evening_mode
+    service: script.turn_on
+    
+- id: '1538853890887'
+  alias: ha_start
+  trigger:
+  - event: start
+    platform: homeassistant
+  condition: []
+  action:
+  - data:
+      entity_id: script.wink_timer
+    service: script.turn_on
+  - data:
+      name: darkred
+    service: frontend.set_theme
+
+- id: 'mbr_tv_off'
+  alias: mbr_tv_off
+  initial_state: 'off'
+  trigger:
+  - platform: time
+    at: '1:30:00'
+  condition: []
+  action:
+  - data:
+      entity_id: switch.master_tv
+    service: switch.turn_off
+
+- id: house_sts_jayhawks_on
+  alias: house_sts_jayhawks_on
+  initial_state: 'off'
+  trigger:
+  - entity_id: binary_sensor.house_sts_jayhawks
+    platform: state
+  condition: []
+  action:
+  - data:
+      entity_id: light.jayhawk_candle
+    service: light.toggle
+
+- id: hall_light_handler
+  alias: hall_light_handler
+  initial_state: 'off'
+  trigger:
+  - entity_id: binary_sensor.hallway_motion_combine
+    platform: state
+  condition: []
+  action:
+  - data:
+      entity_id: script.hall_light_script
+    service: script.turn_on
+
+- id: emi_light_off
+  alias: emi_light_off
+  initial_state: 'off'
+  trigger:
+  - entity_id: binary_sensor.emi_room_motion
+    platform: state
+    to: 'off'
+  condition: []
+  action:
+  - data:
+      entity_id: switch.light.light_bulb_3
+    service: switch.turn_off
+
+- id: humidifier_passive
+  alias: humidifier_passive
+  initial_state: 'off'
+  trigger:
+  - entity_id: binary_sensor.house_sts_hum_passive_run
+    platform: state
+  condition: []
+  action:
+  - data:
+      entity_id: script.humidifier
+    service: script.turn_on
+
+- id: house_automation_ena
+  alias: house_automation_ena
+  trigger:
+  - entity_id: binary_sensor.house_boot_complete
+    platform: state
+  condition: []
+  action:
+  - data:
+      entity_id: group.all_automations
+    service: homeassistant.turn_on
+
+- id: humidifier_active
+  alias: humidifier_active
+  initial_state: 'off'
+  trigger:
+  - entity_id: binary_sensor.house_sts_hum_active_req
+    platform: state
+  condition: []
+  action:
+  - data:
+      entity_id: script.hvac_fan
+    service: script.turn_on
+
+- id: main_bath_vent_control
+  alias: main_bath_vent_control
+  initial_state: 'off'
+  trigger:
+  - entity_id: binary_sensor.main_bath_vent_needed
+    platform: state
+  condition: []
+  action:
+  - data:
+      entity_id: switch.main_bath_fan
+    service_template: >
+      {% if is_state('binary_sensor.main_bath_vent_needed','on') %}
+        switch.turn_on
+      {% else %}
+        switch.turn_off
+      {% endif %}

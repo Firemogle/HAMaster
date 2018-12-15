@@ -1,0 +1,117 @@
+- platform: dte_energy_bridge
+  ip: 192.168.1.233
+  version: 2
+
+- platform: darksky
+  api_key: eccf5f65e6dce657df3792d7e362f0db
+  monitored_conditions:
+    - summary
+    - icon
+    - nearest_storm_distance
+    - temperature
+    - apparent_temperature
+    - humidity
+    - temperature_high
+    - temperature_low
+
+- platform: command_line
+  name: TimeDay
+  command: "python3 /config/daystate.py"
+
+- platform: openhardwaremonitor
+  host: 192.168.1.229
+
+- platform: speedtest
+  monitored_conditions:
+    - ping
+    - download
+    - upload
+
+- platform: uptime
+  unit_of_measurement: minutes
+
+- platform: mqtt
+  name: "Attic Temp"
+  state_topic: "/Attic_Sensor/Attic/Temperature"
+  unit_of_measurement: "°C"
+  retain: true
+
+- platform: mqtt
+  name: "Attic Pressure"
+  state_topic: "/Attic_Sensor/Attic/Pressure"
+  unit_of_measurement: "P"
+  retain: true
+
+- platform: mqtt
+  name: "Attic Humidity"
+  state_topic: "/Attic_Sensor/Attic/Humidity"
+  unit_of_measurement: "%"
+  retain: true
+
+- platform: ups
+  username: brett.carriger@gmail.com
+  password: Xeon40!!
+
+#- platform: file
+#  name: new_commits
+#  file_path: /config/home-assistant/update.dat
+  
+- platform: random
+  name: house_rand_0_100
+  minimum: 0
+  maximum: 100
+
+- platform: moon
+
+- platform: radarr
+  api_key: e9550bffc3584c27a8fadfea761e7167
+  host: 192.168.1.3
+  monitored:
+   - movies
+   - upcomming
+   - status
+  days: 7
+  
+  
+- platform: sonarr
+  api_key: f5daad9766934d8394b07efe7f501c52
+  host: 192.168.1.3
+  monitored_conditions:
+    - upcoming
+    - series
+    - wanted
+  days: 7
+
+- platform: template
+  sensors:
+    hvac_target_humidity:
+      value_template: >-
+        {% if ((0.0049*states('sensor.dark_sky_overnight_low_temperature')|float+0.2668)*100) > 45 %}
+          45
+        {% else %} 
+          {{ (0.0049*states('sensor.dark_sky_overnight_low_temperature')|float+0.2668)*100 }}
+        {% endif %}
+      unit_of_measurement: "%"
+
+- platform: template
+  sensors:
+    hvac_fan_state:
+      value_template: >-
+        {{ states.climate.hvac.attributes.fan }}
+
+- platform: template
+  sensors:
+    hvac_current_humidity:
+      value_template: >-
+        {{ states.climate.hvac.attributes.actual_humidity }}
+  unit_of_measurement: "%"
+  
+  
+- platform: deluge
+  host: 192.168.1.3
+  username: Fire
+  password: Poop
+  monitored_variables:
+    - 'current_status'
+    - 'download_speed'
+    - 'upload_speed'
