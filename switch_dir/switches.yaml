@@ -48,3 +48,14 @@
   payload_on: "0"
   payload_off: "1"
   retain: true
+
+- platform : mqtt
+  name: "xmas lights"
+  state_topic: "/HAwirelesslink/switch/xmaslights/state"
+  command_topic: "/HAwirelesslink/return/switch/xmaslights/state"
+  state_on: "on"
+  state_off: "off"
+  payload_on: "on"
+  payload_off: "off"
+  retain: true
+
