@@ -130,17 +130,17 @@
       entity_id: light.jayhawk_candle
     service: light.toggle
 
-- id: hall_light_handler
-  alias: hall_light_handler
-  initial_state: 'off'
-  trigger:
-  - entity_id: binary_sensor.hallway_motion_combine
-    platform: state
-  condition: []
-  action:
-  - data:
-      entity_id: script.hall_light_script
-    service: script.turn_on
+#- id: hall_light_handler
+#  alias: hall_light_handler
+#  initial_state: 'off'
+#  trigger:
+#  - entity_id: binary_sensor.hallway_motion_combine
+#    platform: state
+#  condition: []
+#  action:
+#  - data:
+#      entity_id: script.hall_light_script
+#    service: script.turn_on
 
 - id: emi_light_off
   alias: emi_light_off
