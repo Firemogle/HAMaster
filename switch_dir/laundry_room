@@ -6,7 +6,7 @@
   payload_off: "0"
   retain: true
   
-  - platform : mqtt
+- platform : mqtt
   name: "litter_box"
   state_topic: "/laundry_room/litter_box/Switch"
   command_topic: "/Office_Heater/mcpgpio/9"
