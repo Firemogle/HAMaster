@@ -176,17 +176,6 @@ media_player:
 ecobee:
   api_key: !secret ECOBEE_KEY
   hold_temp: true
-  
-mqtt_eventstream:
-  publish_topic: master/topic
-  subscribe_topic: slaves/#
-  ignore_event:
-    - state_changed
-    - component_loaded
-    - platform_discovered
-    - service_executed
-    - service_registered
-    - time_changed
     
 sensor: !include_dir_merge_list sensors/
 binary_sensor: !include_dir_merge_list binary_sensors/
