@@ -51,7 +51,7 @@
 
 - platform : mqtt
   name: "xmas lights"
-  state_topic: "/HAwirelesslink/switch/xmaslights/state"
+  state_topic: "hawirelesslink/switch/xmaslights/state"
   command_topic: "/HAwirelesslink/return/switch/xmaslights/state"
   state_on: "on"
   state_off: "off"
