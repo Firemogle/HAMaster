@@ -53,9 +53,6 @@
       entity_id: script.hvac_run_setpoint
     service: script.turn_on
   - data:
-      entity_id: script.house_garage_door_occ
-    service: script.turn_on
-  - data:
       entity_id: script.house_empty_routine
     service: script.turn_on
   - data_template:
