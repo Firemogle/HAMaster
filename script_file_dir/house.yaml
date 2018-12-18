@@ -151,7 +151,7 @@ house_occupied_routine:
   - service: fan.turn_on
     data_template:
       entity_id: >
-          {% if if is_state('binary_sensor.house_sts_occupants', 'on') %}
+          {% if is_state('binary_sensor.house_sts_occupants', 'on') %}
             fan.fan
           {% else %}
             none
