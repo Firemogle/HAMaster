@@ -17,18 +17,6 @@
   payload_off: "0"
   retain: true
 
-- platform: template
-  switches:
-    all_automations:
-      friendly_name: Disable automation
-      value_template: "{{ is_state('group.all_automations', 'off') }}"
-      turn_on:
-        entity_id: group.all_automations
-        service: homeassistant.turn_on
-      turn_off:
-        entity_id: group.all_automations
-        service: homeassistant.turn_off
-
 - platform : mqtt
   name: "Humidifier"
   state_topic: "/laundry_room/humidifier/Switch"
@@ -40,7 +28,7 @@
   retain: true
   
 - platform : mqtt
-  name: "Litter Box"
+  name: "laundry_room_litter_box"
   state_topic: "/laundry_room/litter_box/Switch"
   command_topic: "/laundry_room/mcpgpio/2"
   state_on: "1"
