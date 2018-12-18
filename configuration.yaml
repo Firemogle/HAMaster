@@ -186,3 +186,4 @@ group: !include groups.yaml
 automation: !include automations.yaml
 script: !include_dir_merge_named script_file_dir/
 scene: !include_dir_merge_list scenes/
+input_number: !include_dir_merge_list input/
