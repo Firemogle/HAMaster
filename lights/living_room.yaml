@@ -5,3 +5,13 @@
   payload_on: "1"
   payload_off: "0"
   retain: true
+
+- platform : mqtt
+  name: "LR_dimmer"
+  state_topic: "hawirelesslink/light/linear_pd300z2_plugin_dimmer_module_level/state"
+  command_topic: "/HAwirelesslink/return/light/linear_pd300z2_plugin_dimmer_module_level/state"
+  brightness_state_topic: "hawirelesslink/light/linear_pd300z2_plugin_dimmer_module_level/brightness"
+  brightness_command_topic: "/HAwirelesslink/return/light/linear_pd300z2_plugin_dimmer_module_level/brightness"
+  payload_on: "on"
+  payload_off: "off"
+  retain: true
