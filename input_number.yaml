@@ -1,0 +1,71 @@
+  hvac_home_ac_temp:
+    name: Slider
+    initial: 74
+    min: 60
+    max: 85
+    step: 1
+    unit_of_measurement: "F"
+  
+  hvac_home_heat_temp:
+    name: Slider
+    initial: 74
+    min: 60
+    max: 85
+    step: 1
+    unit_of_measurement: "F"
+  
+  hvac_away_ac_temp:
+    name: Slider
+    initial: 78
+    min: 60
+    max: 85
+    step: 1
+    unit_of_measurement: "F"
+  
+  hvac_away_heat_temp:
+    name: Slider
+    initial: 65
+    min: 60
+    max: 85
+    step: 1
+    unit_of_measurement: "F"
+  
+  hvac_overnight_ac_temp:
+    name: Slider
+    initial: 60
+    min: 60
+    max: 85
+    step: 1
+    unit_of_measurement: "F"
+  
+  hvac_overnight_heat_temp:
+    name: Slider
+    initial: 65
+    min: 60
+    max: 85
+    step: 1
+    unit_of_measurement: "F"
+  
+  hvac_vacation_ac_temp:
+    name: Slider
+    initial: 85
+    min: 60
+    max: 85
+    step: 1
+    unit_of_measurement: "F"
+  
+  hvac_vacation_heat_temp:
+    name: Slider
+    initial: 60
+    min: 60
+    max: 85
+    step: 1
+    unit_of_measurement: "F"
+  
+  hvac_humidity_max:
+    name: Slider
+    initial: 45
+    min: 30
+    max: 55
+    step: 1
+    unit_of_measurement: "%"
