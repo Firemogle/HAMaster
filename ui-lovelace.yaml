@@ -120,7 +120,7 @@ views:
         # Title of the entities card
         title: Laundry Room
         entities:
-          - switch.litter_box
+          - switch.laundry_room_litter_box
           - binary_sensor.laundry_motion_1
           - binary_sensor.laundry_motion_2
           - binary_sensor.laundry_motion_3
@@ -183,3 +183,23 @@ views:
           - sensor.hvac_humidity
           - sensor.hvac_target_humidity
           - switch.humidifier
+
+  - title: Calibration
+    id: house_calibration
+    cards:
+        # Entities card will take a list of entities and show their state.
+      - type: entities
+        # Title of the entities card
+        title: HVAC
+        # The entities here will be shown in the same order as specified.
+        # Each entry is an entity ID or a map with extra options.
+        entities:
+          - input_number.hvac_away_ac_temp
+          - input_number.hvac_away_heat_temp
+          - input_number.hvac_home_ac_temp
+          - input_number.hvac_home_heat_temp
+          - input_number.hvac_humidity_max
+          - input_number.hvac_overnight_ac_temp
+          - input_number.hvac_overnight_heat_temp
+          - input_number.hvac_vacation_ac_temp
+          - input_number.hvac_vacation_heat_temp
