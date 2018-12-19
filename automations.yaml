@@ -71,7 +71,25 @@
     service: script.turn_on
     
     
-- id: '1536712624500'
+#- id: '1536712624500'
+#  alias: house_time_mode
+#  initial_state: 'off'
+#  trigger:
+#  - entity_id: sensor.timeday
+#    platform: state
+#  condition: []
+#  action:
+#  - data:
+#      entity_id: script.house_night_mode
+#    service: script.turn_on
+#  - data:
+#      entity_id: script.house_morning_mode
+#    service: script.turn_on
+#  - data:
+#      entity_id: script.house_evening_mode
+#    service: script.turn_on
+
+- id: 'house_time_mode'
   alias: house_time_mode
   initial_state: 'off'
   trigger:
@@ -79,16 +97,18 @@
     platform: state
   condition: []
   action:
-  - data:
-      entity_id: script.house_night_mode
+  - data_template:
+      entity_id: >
+          {% if is_state('sensor.timeday', 'night') %}
+            script.house_night_mode
+          {%-elif is_state('sensor.timeday', 'morning') %}
+            script.house_morning_mode
+          {%-elif is_state('sensor.timeday', 'evening') %}
+            script.house_evening_mode
+          {% endif %}
     service: script.turn_on
-  - data:
-      entity_id: script.house_morning_mode
-    service: script.turn_on
-  - data:
-      entity_id: script.house_evening_mode
-    service: script.turn_on
-    
+
+
 - id: '1538853890887'
   alias: ha_start
   trigger:
