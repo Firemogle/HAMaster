@@ -53,6 +53,20 @@
     max: 85
     step: 1
     unit_of_measurement: "F"
+    
+  hvac_AC_enable_temp:
+    name: Slider
+    min: 60
+    max: 85
+    step: 1
+    unit_of_measurement: "F"
+  
+  hvac_heat_enable_temp:
+    name: Slider
+    min: 60
+    max: 85
+    step: 1
+    unit_of_measurement: "F"
   
   hvac_humidity_max:
     name: Slider
