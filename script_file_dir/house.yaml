@@ -248,7 +248,7 @@ office_occupancy_on:
   - service: switch.turn_on
     data_template:
       entity_id: >
-        {% if states('sensor.office_temperature')|float < 65 %}
+        {% if states('sensor.office_temperature')|float < input_number.office_heater_thresh %}
           switch.office_heater
         {% else %}
           none
