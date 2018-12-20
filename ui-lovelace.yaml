@@ -194,15 +194,23 @@ views:
         # The entities here will be shown in the same order as specified.
         # Each entry is an entity ID or a map with extra options.
         entities:
-          - input_number.hvac_home_ac_temp
+          - entity: input_number.hvac_home_ac_temp
+            name: "Home AC Temp"
           - entity: input_number.hvac_away_ac_temp
             name: "Away AC temp"
-          - input_number.hvac_overnight_ac_temp
-          - input_number.hvac_vacation_ac_temp
+          - entity: input_number.hvac_overnight_ac_temp
+            name: "Overnight AC Temp"
+          - entity: input_number.hvac_vacation_ac_temp
+            name: "Vacation AC Temp"
           - type: divider
-          - input_number.hvac_home_heat_temp
-          - input_number.hvac_away_heat_temp
-          - input_number.hvac_overnight_heat_temp
-          - input_number.hvac_vacation_heat_temp
+          - entity: input_number.hvac_home_heat_temp
+            name: "Home heat temp"
+          - entity: input_number.hvac_away_heat_temp
+            name: "Away heat temp"
+          - entity: input_number.hvac_overnight_heat_temp
+            name: "Overnight heat temp"
+          - entity: input_number.hvac_vacation_heat_temp
+            name: "Vacation heat temp"
           - type: divider
-          - input_number.hvac_humidity_max
+          - entity: input_number.hvac_humidity_max
+            name: "Max humidity"
