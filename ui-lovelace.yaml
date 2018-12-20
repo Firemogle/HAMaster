@@ -214,3 +214,11 @@ views:
           - type: divider
           - entity: input_number.hvac_humidity_max
             name: "Max humidity"
+      - type: entities
+        # Title of the entities card
+        title: Office
+        # The entities here will be shown in the same order as specified.
+        # Each entry is an entity ID or a map with extra options.
+        entities:
+          - entity: input_number.office_heater_thresh
+            name: "Office heater threshold"
