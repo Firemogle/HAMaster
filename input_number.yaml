@@ -60,3 +60,10 @@
     max: 55
     step: 1
     unit_of_measurement: "%"
+
+  office_heater_thresh:
+    name: Slider
+    min: 55
+    max: 70
+    step: 1
+    unit_of_measurement: "F"
