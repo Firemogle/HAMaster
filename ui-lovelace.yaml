@@ -214,6 +214,11 @@ views:
           - type: divider
           - entity: input_number.hvac_humidity_max
             name: "Max humidity"
+          - type: divider
+          - entity: input_number.hvac_AC_enable_temp
+            name: "AC enable temp"
+          - entity: input_number.hvac_heat_enable_temp
+            name: "Heat enable temp"  
       - type: entities
         # Title of the entities card
         title: Office
