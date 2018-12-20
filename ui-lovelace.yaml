@@ -194,9 +194,9 @@ views:
         # The entities here will be shown in the same order as specified.
         # Each entry is an entity ID or a map with extra options.
         entities:
-          - input_number.hvac_away_ac_temp
-            name: "Away AC temp"
           - input_number.hvac_home_ac_temp
+          - entity: input_number.hvac_away_ac_temp
+            name: "Away AC temp"
           - input_number.hvac_overnight_ac_temp
           - input_number.hvac_vacation_ac_temp
           - type: divider
