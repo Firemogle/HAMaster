@@ -115,3 +115,15 @@
     - 'current_status'
     - 'download_speed'
     - 'upload_speed'
+    
+- platform: mqtt
+  name: "VPN down"
+  state_topic: "hawirelesslink/sensor/speedtest_download/state"
+  unit_of_measurement: "Mbit/s"
+  retain: true
+  
+- platform: mqtt
+  name: "VPN up"
+  state_topic: "hawirelesslink/sensor/speedtest_upload/state"
+  unit_of_measurement: "Mbit/s"
+  retain: true
