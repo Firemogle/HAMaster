@@ -86,7 +86,7 @@
   sensors:
     hvac_target_humidity:
       value_template: >-
-        {% if ((0.0049*states('sensor.dark_sky_overnight_low_temperature')|float+0.2668)*100) > input_number.hvac_humidity_max %}
+        {% if ((0.0049*states('sensor.dark_sky_overnight_low_temperature')|float+0.2668)*100) > states('input_number.hvac_humidity_max')|float %}
           input_number.hvac_humidity_max
         {% else %} 
           {{ (0.0049*states('sensor.dark_sky_overnight_low_temperature')|float+0.2668)*100 }}
