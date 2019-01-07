@@ -20,7 +20,7 @@
   sensors:
     house_sts_hvac_heat_req:
       value_template: >-
-        {{ states('sensor.dark_sky_daytime_high_temperature')|float < 60 }}
+        {{ states('sensor.dark_sky_daytime_high_temperature')|float < states('input_number.hvac_heat_enable_temp')|float }}
       delay_off:
         minutes: 30
       delay_on:
