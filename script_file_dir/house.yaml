@@ -26,17 +26,17 @@ hvac_ac_temp:
     data_template:
       temperature: >
           {% if is_state('binary_sensor.house_sts_vacation', 'on') %}
-            84
+            states('input_number.hvac_vacation_ac_temp')|float
           {%-elif is_state('binary_sensor.house_sts_dte_cheap', 'on') %}
-            65
+            states('input_number.hvac_overnight_ac_temp')|float
           {%-elif is_state('binary_sensor.house_sts_occupants', 'on') %}
-            74
+            states('input_number.hvac_home_ac_temp')|float
           {%-elif is_state('binary_sensor.house_sts_incoming', 'on') %}
-            74
+            states('input_number.hvac_home_ac_temp')|float
           {%-elif is_state('binary_sensor.house_sts_guest', 'on') %}
-            74
+            states('input_number.hvac_home_ac_temp')|float
           {% else %}
-            78
+            states('input_number.hvac_away_ac_temp')|float
           {% endif %}
 hvac_heat_temp:
   alias: hvac_heat_temp
@@ -45,17 +45,17 @@ hvac_heat_temp:
     data_template:
       temperature: >
           {% if is_state('binary_sensor.house_sts_vacation', 'on') %}
-            60
+            states('input_number.hvac_vacation_heat_temp')|float
           {%-elif is_state('sensor.timeday', 'night') %}
-            65
+            states('input_number.hvac_overnight_heat_temp')|float
           {%-elif is_state('binary_sensor.house_sts_occupants', 'on') %}
-            74
+            states('input_number.hvac_home_heat_temp')|float
           {%-elif is_state('binary_sensor.house_sts_incoming', 'on') %}
-            74
+            states('input_number.hvac_home_heat_temp')|float
           {%-elif is_state('binary_sensor.house_sts_guest', 'on') %}
-            74
+            states('input_number.hvac_home_heat_temp')|float
           {% else %}
-            68
+            states('input_number.hvac_away_heat_temp')|float
           {% endif %}
 hvac_run_setpoint:
   alias: hvac_run_setpoint
