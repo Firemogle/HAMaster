@@ -74,6 +74,13 @@
     max: 55
     step: 1
     unit_of_measurement: "%"
+    
+  main_bath_humidity_thresh:
+    name: Slider
+    min: 45
+    max: 75
+    step: 1
+    unit_of_measurement: "%"
 
   office_heater_thresh:
     name: Slider
