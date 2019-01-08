@@ -232,3 +232,11 @@ views:
         entities:
           - entity: input_number.office_heater_thresh
             name: "Office heater threshold"
+      - type: entities
+        # Title of the entities card
+        title: "Main Bath"
+        # The entities here will be shown in the same order as specified.
+        # Each entry is an entity ID or a map with extra options.
+        entities:
+          - entity: input_number.main_bath_humidity_thresh
+            name: "Vent humidity threshold"
