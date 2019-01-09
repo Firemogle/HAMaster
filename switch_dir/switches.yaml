@@ -20,7 +20,7 @@
 - platform : mqtt
   name: "Humidifier"
   state_topic: "/laundry_room/humidifier/Switch"
-  command_topic: "/laundry_room/mcpgpio/1"
+  command_topic: "/laundry_room/mcpgpio/3"
   state_on: "1"
   state_off: "0"
   payload_on: "0"
