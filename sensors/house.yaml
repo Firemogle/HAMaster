@@ -1,6 +1,6 @@
-- platform: dte_energy_bridge
-  ip: 192.168.1.233
-  version: 2
+#- platform: dte_energy_bridge
+#  ip: 192.168.1.233
+#  version: 2
 
 - platform: darksky
   api_key: eccf5f65e6dce657df3792d7e362f0db
