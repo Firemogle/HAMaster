@@ -129,6 +129,6 @@
   retain: true
   
 - platform: zestimate
-  api_key: X1-ZWz185xnia3j0r_1wtus
+  api_key: 
   zpid:
     - 24680932
