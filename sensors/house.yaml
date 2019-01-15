@@ -127,3 +127,8 @@
   state_topic: "hawirelesslink/sensor/speedtest_upload/state"
   unit_of_measurement: "Mbit/s"
   retain: true
+  
+- platform: zestimate
+  api_key: X1-ZWz185xnia3j0r_1wtus
+  zpid:
+    - 24680932
