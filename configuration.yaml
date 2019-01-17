@@ -79,7 +79,11 @@ google:
     client_secret: !secret GOOGLE_SECRET
     
 google_assistant:
-    
+  project_id: !secret GOOGLE_ID_GA
+  exposed_domains:
+    - switch
+    - light
+  
 notify:
   - name: GChat
     platform: hangouts
