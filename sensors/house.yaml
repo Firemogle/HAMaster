@@ -130,5 +130,5 @@
   
 - platform: zestimate
   api_key: 
-  zpid:
+  zpid: !secret ZILLOW
     - 24680932
