@@ -129,6 +129,6 @@
   retain: true
   
 - platform: zestimate
-  api_key: 
-  zpid: !secret ZILLOW
+  api_key: !secret ZILLOW
+  zpid: 
     - 24680932
