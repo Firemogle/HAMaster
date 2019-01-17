@@ -80,6 +80,8 @@ google:
     
 google_assistant:
   project_id: !secret GOOGLE_ID_GA
+  expose_by_default: false
+  allow_unlock: false
   exposed_domains:
     - switch
     - light
