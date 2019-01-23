@@ -81,19 +81,6 @@ house_garage_door_occ:
           {% else %}
             none
           {% endif %}
-house_garage_door_tmcls:
-  alias: house_garage_door_tmcls
-  sequence:
-    - delay:
-        minutes: 15
-    - service: cover.close_cover
-      data_template:
-        entity_id: >
-          {% if is_state('cover.garage_door', 'open') %}
-            cover.garage_door
-          {% else %}
-            none
-          {% endif %}
 house_empty_routine:
   alias: house_empty_routine
   sequence:
