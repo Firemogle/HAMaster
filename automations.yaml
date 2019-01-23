@@ -224,9 +224,9 @@
       entity_id: switch.main_bath_fan
     service_template: >
       {% if is_state('binary_sensor.main_bath_vent_needed','on') %}
-        light.turn_on
+        switch.turn_on
       {% else %}
-        light.turn_off
+        switch.turn_off
       {% endif %}
 
 - id: house_exterior_light_control_on
