@@ -70,25 +70,6 @@
       entity_id: script.house_occupied_routine
     service: script.turn_on
     
-    
-#- id: '1536712624500'
-#  alias: house_time_mode
-#  initial_state: 'off'
-#  trigger:
-#  - entity_id: sensor.timeday
-#    platform: state
-#  condition: []
-#  action:
-#  - data:
-#      entity_id: script.house_night_mode
-#    service: script.turn_on
-#  - data:
-#      entity_id: script.house_morning_mode
-#    service: script.turn_on
-#  - data:
-#      entity_id: script.house_evening_mode
-#    service: script.turn_on
-
 - id: 'house_time_mode'
   alias: house_time_mode
   initial_state: 'off'
@@ -151,18 +132,6 @@
       {% else %}
         light.turn_off
       {% endif %}
-
-#- id: hall_light_handler
-#  alias: hall_light_handler
-#  initial_state: 'off'
-#  trigger:
-#  - entity_id: binary_sensor.hallway_motion_combine
-#    platform: state
-#  condition: []
-#  action:
-#  - data:
-#      entity_id: script.hall_light_script
-#    service: script.turn_on
 
 - id: emi_light_off
   alias: emi_light_off
