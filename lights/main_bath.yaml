@@ -1,1 +1,9 @@
-
+- platform : mqtt
+  name: main_bath_vent_light
+  state_topic: "hawirelesslink/light/main_bath_vent_light/state"
+  command_topic: "/HAwirelesslink/return/light/main_bath_vent_light/state"
+  brightness_state_topic: "hawirelesslink/light/main_bath_vent_light/brightness"
+  brightness_command_topic: "/HAwirelesslink/return/light/main_bath_vent_light/brightness"
+  payload_on: "on"
+  payload_off: "off"
+  retain: true
