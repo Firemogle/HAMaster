@@ -18,10 +18,10 @@
 
 - platform : mqtt
   name: livingroom_entry
-  state_topic: "hawirelesslink/light/leviton_dz6hd1bz_decora_600w_smart_dimmer_level/state"
-  command_topic: "/HAwirelesslink/return/light/leviton_dz6hd1bz_decora_600w_smart_dimmer_level/state"
-  brightness_state_topic: "hawirelesslink/light/leviton_dz6hd1bz_decora_600w_smart_dimmer_level/brightness"
-  brightness_command_topic: "/HAwirelesslink/return/light/leviton_dz6hd1bz_decora_600w_smart_dimmer_level/brightness"
+  state_topic: "hawirelesslink/light/livingroom_entry/state"
+  command_topic: "/HAwirelesslink/return/light/livingroom_entry/state"
+  brightness_state_topic: "hawirelesslink/light/livingroom_entry/brightness"
+  brightness_command_topic: "/HAwirelesslink/return/light/livingroom_entry/brightness"
   payload_on: "on"
   payload_off: "off"
   retain: true
