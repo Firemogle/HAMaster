@@ -55,7 +55,7 @@
 - platform : mqtt
   name: "main_bath_fan"
   state_topic: "hawirelesslink/switch/main_bath_fan/state"
-  command_topic: "/HAwirelesslink/return/main_bath_fan/xmaslights/state"
+  command_topic: "/HAwirelesslink/return/switch/main_bath_fan/state"
   state_on: "on"
   state_off: "off"
   payload_on: "on"
