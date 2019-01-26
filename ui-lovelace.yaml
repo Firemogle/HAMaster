@@ -40,7 +40,6 @@ views:
           - light.main_livingroom
           - light.jayhawk_candle
           - light.livingroom_entry
-            name: "Livingroom Entry"
           - sensor.hvac_humidity
           - sensor.hvac_temperature
           - binary_sensor.livingroom_door_opened
