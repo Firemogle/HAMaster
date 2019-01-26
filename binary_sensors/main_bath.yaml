@@ -7,3 +7,9 @@
            or is_state('light.main_bath_vent_light','on') }}
       delay_off:
         minutes: 5
+
+- platform: mqtt
+  state_topic: "hawirelesslink/sensor/main_bath_motion/state"
+  name: "main_bath_motion"
+  payload_on: "8"
+  payload_off: "0"
