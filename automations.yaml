@@ -52,9 +52,6 @@
   - data:
       entity_id: script.hvac_run_setpoint
     service: script.turn_on
-  - data:
-      entity_id: script.house_empty_routine
-    service: script.turn_on
   - data_template:
       message: >
         Occupancy mode changed to {{ states('binary_sensor.house_sts_occupants') }} , status :
@@ -66,9 +63,14 @@
           {% endif -%}{{ states[parts[0]][parts[1]].name }} : {{ states[parts[0]][parts[1]].state }}
         {%- endfor %}
     service: notify.gchat
-  - data:
-      entity_id: script.house_occupied_routine
-    service: script.turn_on
+  - data_template:
+      entity_id: >
+           {% if is_state('binary_sensor.house_sts_occupants', 'off') and is_state('binary_sensor.house_sts_guest', 'off') %}
+             scene.house_away
+           {% else %}
+             scene.house_home
+           {% endif %} 
+    service: scene.turn_on
     
 - id: 'house_time_mode'
   alias: house_time_mode
