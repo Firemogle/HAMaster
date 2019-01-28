@@ -1,4 +1,4 @@
-- name: house_lights_on
+- name: house_home
   entities:
     light.kitchen_sink:
       state: on
@@ -7,3 +7,12 @@
     light.main_livingroom:
       state: on
       brightness: 100
+    fan.fan
+      state: on
+
+- name: house_away
+  entities:
+    group.light
+      state: off
+    group.fan
+      state: off
