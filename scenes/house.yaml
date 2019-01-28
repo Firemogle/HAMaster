@@ -11,7 +11,10 @@
       state: on
 - name: house_away
   entities:
-    light.all:
+    light.kitchen_sink:
       state: off
-    fan.all:
+    light.cabinet_led: off
+    light.main_livingroom:
+      state: off
+    fan.fan:
       state: off
