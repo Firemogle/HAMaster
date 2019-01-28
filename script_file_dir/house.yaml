@@ -71,17 +71,7 @@ hvac_run_setpoint:
           {% else %}
             script.hvac_heat_temp
           {% endif %}
-house_garage_door_occ:
-  alias: hvac_garage_door_occ
-  sequence:
-  - service: cover.open_cover
-    data_template:
-      entity_id: >
-          {% if is_state('binary_sensor.house_sts_occupants', 'on') and is_state('binary_sensor.house_sts_vacation', 'off') and is_state('cover.garage_door', 'closed') and states('sensor.uptime') | float > 5 %}
-            cover.garage_door
-          {% else %}
-            script.wink_refresh
-          {% endif %}
+
 house_empty_routine:
   alias: house_empty_routine
   sequence:
@@ -89,7 +79,7 @@ house_empty_routine:
     data_template:
       entity_id: >
           {% if is_state('binary_sensor.house_sts_occupants', 'off') and is_state('binary_sensor.house_sts_guest', 'off') %}
-            group.all_lights
+            all
           {% else %}
             light.driveway_1
           {% endif %}
@@ -97,7 +87,7 @@ house_empty_routine:
     data_template:
       entity_id: >
           {% if is_state('binary_sensor.house_sts_occupants', 'off') and is_state('binary_sensor.house_sts_guest', 'off') %}
-            group.all_fans
+            all
           {% else %}
             fan.fan_2
           {% endif %}
