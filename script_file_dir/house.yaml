@@ -91,7 +91,7 @@ house_empty_routine:
           {% if is_state('binary_sensor.house_sts_occupants', 'off') and is_state('binary_sensor.house_sts_guest', 'off') %}
             group.all_lights
           {% else %}
-            script.wink_refresh
+            light.driveway_1
           {% endif %}
   - service: fan.turn_off
     data_template:
@@ -99,7 +99,7 @@ house_empty_routine:
           {% if is_state('binary_sensor.house_sts_occupants', 'off') and is_state('binary_sensor.house_sts_guest', 'off') %}
             group.all_fans
           {% else %}
-            script.wink_refresh
+            fan.fan_2
           {% endif %}
           
 house_night_mode:
