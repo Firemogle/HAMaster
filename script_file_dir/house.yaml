@@ -132,7 +132,7 @@ house_occupied_routine:
     data_template:
       entity_id: >
           {% if is_state('binary_sensor.house_sts_occupants', 'on') %}
-            scene.house_lights_on
+            scene.house_home
           {% else %}
             none
           {% endif %}
@@ -152,7 +152,7 @@ house_morning_mode:
     data_template:
       entity_id: >
           {% if is_state('sensor.timeday', 'morning') %}
-            scene.house_lights_on
+            scene.house_home
           {% else %}
             none
           {% endif %}
@@ -192,7 +192,7 @@ house_evening_mode:
       entity_id: >
           {% if is_state('sensor.timeday', 'evening') 
              and is_state('binary_sensor.house_sts_vacation', 'on') %}
-            scene.house_lights_on
+            scene.house_home
           {% else %}
             none
           {% endif %}
