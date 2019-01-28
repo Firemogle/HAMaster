@@ -15,10 +15,11 @@ hvac_run_stop:
     data_template:
       entity_id: >
           {% if is_state('binary_sensor.house_sts_hvac_run', 'off') %}
-            none
+            script.wink_refresh
           {% else %}
             script.hvac_run_setpoint
           {% endif %}
+          
 hvac_ac_temp:
   alias: hvac_ac_temp
   sequence:
@@ -64,7 +65,7 @@ hvac_run_setpoint:
     data_template:
       entity_id: >
           {% if is_state('binary_sensor.house_sts_hvac_run', 'off') %}
-            none
+            script.wink_refresh
           {%-elif is_state('binary_sensor.house_sts_hvac_cool_req', 'on') %}
             script.hvac_ac_temp
           {% else %}
@@ -79,7 +80,7 @@ house_garage_door_occ:
           {% if is_state('binary_sensor.house_sts_occupants', 'on') and is_state('binary_sensor.house_sts_vacation', 'off') and is_state('cover.garage_door', 'closed') and states('sensor.uptime') | float > 5 %}
             cover.garage_door
           {% else %}
-            none
+            script.wink_refresh
           {% endif %}
 house_empty_routine:
   alias: house_empty_routine
@@ -90,7 +91,7 @@ house_empty_routine:
           {% if is_state('binary_sensor.house_sts_occupants', 'off') and is_state('binary_sensor.house_sts_guest', 'off') %}
             group.all_lights
           {% else %}
-            none
+            script.wink_refresh
           {% endif %}
   - service: fan.turn_off
     data_template:
@@ -98,7 +99,7 @@ house_empty_routine:
           {% if is_state('binary_sensor.house_sts_occupants', 'off') and is_state('binary_sensor.house_sts_guest', 'off') %}
             group.all_fans
           {% else %}
-            none
+            script.wink_refresh
           {% endif %}
           
 house_night_mode:
