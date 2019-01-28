@@ -11,7 +11,7 @@
       state: on
 - name: house_away
   entities:
-    group.all_light:
+    light.all:
       state: off
-    group.all_fan:
+    fan.all:
       state: off
