@@ -155,8 +155,13 @@
   condition: []
   action:
   - data:
-      entity_id: script.humidifier
-    service: script.turn_on
+      entity_id: switch.humidifier
+    service_template: >
+      {% if is_state('binary_sensor.house_sts_hum_passive_run','on') %}
+        switch.turn_on
+      {% else %}
+        switch.turn_off
+      {% endif %}
 
 - id: house_automation_ena
   alias: house_automation_ena
