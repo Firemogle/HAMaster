@@ -111,7 +111,7 @@ house_night_mode:
           {% if is_state('sensor.timeday', 'night') %}
             group.all_lights
           {% else %}
-            none
+            light.driveway_1
           {% endif %}
   - service: fan.turn_off
     data_template:
@@ -119,7 +119,7 @@ house_night_mode:
           {% if is_state('sensor.timeday', 'night') %}
             fan.fan
           {% else %}
-            none
+            fan.fan_3
           {% endif %}
   - service: script.turn_on
     data:
@@ -135,14 +135,6 @@ house_occupied_routine:
             scene.house_home
           {% else %}
             scene.house_away
-          {% endif %}
-  - service: fan.turn_on
-    data_template:
-      entity_id: >
-          {% if is_state('binary_sensor.house_sts_occupants', 'on') %}
-            fan.fan
-          {% else %}
-            none
           {% endif %}
           
 house_morning_mode:
@@ -280,26 +272,6 @@ hall_light_off:
     data:
       entity_id: light.hallway
       transition: 30
-
-#humidifier:
-#  alias: humidifier
-#  sequence:
-#  - service: switch.turn_on
-#    data_template:
-#      entity_id: >
-#          {% if is_state('binary_sensor.house_sts_hum_passive_run', 'on') %}
-#            switch.humidifier
-#          {% else %}
-#            none
-#          {% endif %}
-#  - service: switch.turn_off
-#    data_template:
-#      entity_id: >
-#          {% if is_state('binary_sensor.house_sts_hum_passive_run', 'off') %}
-#            switch.humidifier
-#          {% else %}
-#            none
-#          {% endif %}
 
 hvac_fan:
   alias: hvac_fan
