@@ -53,17 +53,6 @@
       entity_id: script.hvac_run_setpoint
     service: script.turn_on
   - data_template:
-      message: >
-        Occupancy mode changed to {{ states('binary_sensor.house_sts_occupants') }} , status :
-        {%- for entity_id in states.group.security.attributes.entity_id  -%}
-          {% set parts = entity_id.split('.') -%}
-          {%- if loop.first %} 
-          {% elif loop.last %}
-          {% else %}
-          {% endif -%}{{ states[parts[0]][parts[1]].name }} : {{ states[parts[0]][parts[1]].state }}
-        {%- endfor %}
-    service: notify.gchat
-  - data_template:
       entity_id: >
            {% if is_state('binary_sensor.house_sts_occupants', 'off') and is_state('binary_sensor.house_sts_guest', 'off') %}
              scene.house_away
@@ -71,6 +60,17 @@
              scene.house_home
            {% endif %} 
     service: scene.turn_on
+#  - data_template:
+#      message: >
+#        Occupancy mode changed to {{ states('binary_sensor.house_sts_occupants') }} , status :
+#        {%- for entity_id in states.group.security.attributes.entity_id  -%}
+#          {% set parts = entity_id.split('.') -%}
+#          {%- if loop.first %} 
+#          {% elif loop.last %}
+#          {% else %}
+#          {% endif -%}{{ states[parts[0]][parts[1]].name }} : {{ states[parts[0]][parts[1]].state }}
+#        {%- endfor %}
+#    service: notify.gchat
     
 - id: 'house_time_mode'
   alias: house_time_mode
