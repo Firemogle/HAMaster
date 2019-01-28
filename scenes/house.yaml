@@ -7,12 +7,11 @@
     light.main_livingroom:
       state: on
       brightness: 100
-    fan.fan
+    fan.fan:
       state: on
-
 - name: house_away
   entities:
-    group.light
+    group.light:
       state: off
-    group.fan
+    group.fan:
       state: off
