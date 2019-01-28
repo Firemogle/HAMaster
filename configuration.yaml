@@ -14,8 +14,8 @@ http:
     - 127.0.0.1
     - 192.168.1.0/24
   api_password: !secret HTTPPW
-  ssl_certificate: /config/fullchain.pem
-  ssl_key: /config/privkey.pem
+  ssl_certificate: /ssl/fullchain.pem
+  ssl_key: /ssl/privkey.pem
   base_url: !secret DYNSITE
   ip_ban_enabled: true # Allow bans
   login_attempts_threshold: 3 # Ban after 3 failed attempts
@@ -130,8 +130,8 @@ map:
 # Enable connection to MQTT server
 mqtt:
   broker: 192.168.1.243
-  protocol: 3.1
-  tls_version: '1.2'
+#  protocol: 3.1
+#  tls_version: '1.2'
 
 amcrest:
   - host: 192.168.1.244
