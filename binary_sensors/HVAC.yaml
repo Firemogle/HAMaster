@@ -2,11 +2,19 @@
   sensors:
     house_sts_hvac_shut:
       value_template: >-
-        {{ is_state('binary_sensor.hall_window_opened', 'off')
-           and is_state('binary_sensor.sliding_glass_door_opened', 'off')
-           and is_state('binary_sensor.livingroom_door_opened', 'off') }}
+        {{ is_state('binary_sensor.hall_window_opened', 'off') }}
       delay_off:
         minutes: 5
+#- platform: template
+#  sensors:
+#    house_sts_hvac_shut:
+#      value_template: >-
+#        {{ is_state('binary_sensor.hall_window_opened', 'off')
+#           and is_state('binary_sensor.sliding_glass_door_opened', 'off')
+#           and is_state('binary_sensor.livingroom_door_opened', 'off') }}
+#      delay_off:
+#        minutes: 5        
+        
 - platform: template
   sensors:
     house_sts_hvac_cool_req:
