@@ -96,6 +96,9 @@ notify:
 # Enables the frontend
 frontend:
   themes: !include themes.yaml
+# Use lovelace config file  
+lovelace:
+  mode: yaml
   
 # Enables configuration UI
 config:
