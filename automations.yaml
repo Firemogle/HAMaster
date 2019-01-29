@@ -56,15 +56,16 @@
   action:
   - data:
       entity_id: script.hvac_run_setpoint
-    service: scene.turn_on
+    service: script.turn_on
   - data_template:
       entity_id: >
            {% if is_state('binary_sensor.house_sts_occupants', 'off') and is_state('binary_sensor.house_sts_guest', 'off') %}
-             scene.house_away
+             script.house_empty_routine
            {% else %}
-             scene.house_home
+             script.house_occupied_routine
            {% endif %} 
-    service: scene.turn_on
+    service: script.turn_on
+    
 #  - data_template:
 #      message: >
 #        Occupancy mode changed to {{ states('binary_sensor.house_sts_occupants') }} , status :
