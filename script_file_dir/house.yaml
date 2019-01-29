@@ -79,7 +79,7 @@ house_empty_routine:
     data_template:
       entity_id: >
           {% if is_state('binary_sensor.house_sts_occupants', 'off') and is_state('binary_sensor.house_sts_guest', 'off') %}
-            all
+            "all"
           {% else %}
             light.driveway_1
           {% endif %}
@@ -87,7 +87,7 @@ house_empty_routine:
     data_template:
       entity_id: >
           {% if is_state('binary_sensor.house_sts_occupants', 'off') and is_state('binary_sensor.house_sts_guest', 'off') %}
-            all
+            "all"
           {% else %}
             fan.fan_2
           {% endif %}
@@ -96,21 +96,11 @@ house_night_mode:
   alias: house_night_mode
   sequence:
   - service: light.turn_off
-    data_template:
-      entity_id: >
-          {% if is_state('sensor.timeday', 'night') %}
-            group.all_lights
-          {% else %}
-            light.driveway_1
-          {% endif %}
+    data:
+      entity_id: "all"
   - service: fan.turn_off
-    data_template:
-      entity_id: >
-          {% if is_state('sensor.timeday', 'night') %}
-            fan.fan
-          {% else %}
-            fan.fan_3
-          {% endif %}
+    data:
+      entity_id: fan.fan
   - service: script.turn_on
     data:
       entity_id: script.hvac_run_setpoint
@@ -119,50 +109,28 @@ house_occupied_routine:
   alias: house_occupied_routine
   sequence:
   - service: scene.turn_on
-    data_template:
-      entity_id: >
-          {% if is_state('binary_sensor.house_sts_occupants', 'on') %}
-            scene.house_home
-          {% else %}
-            scene.house_away
-          {% endif %}
+    data:
+      entity_id: scene.house_home
           
 house_morning_mode:
   alias: house_morning_mode
   sequence:
   - service: scene.turn_on
-    data_template:
-      entity_id: >
-          {% if is_state('sensor.timeday', 'morning') %}
-            scene.house_home
-          {% else %}
-            scene.house_away
-          {% endif %}
+    data:
+      entity_id: scene.house_home
   - service: script.turn_on
     data:
       entity_id: script.hvac_run_setpoint
-  - service_template: >
-      {% if is_state('sensor.timeday', 'evening') %}
-        switch.turn_off
-      {% else %}
-        switch.turn_on
-      {% endif %}
+  - service: switch.turn_on
     data:
-      entity_id: >
-          switch.livingroom_subwoofer
+      entity_id: switch.livingroom_subwoofer
 
 house_evening_mode:
   alias: house_evening_mode
   sequence:
-  - service_template: >
-      {% if is_state('sensor.timeday', 'evening') %}
-        switch.turn_off
-      {% else %}
-        switch.turn_on
-      {% endif %}
+  - service: switch.turn_off
     data:
-      entity_id: >
-          switch.livingroom_subwoofer
+      entity_id: switch.livingroom_subwoofer
   - service: scene.turn_on
     data_template:
       entity_id: >
@@ -170,9 +138,9 @@ house_evening_mode:
              and is_state('binary_sensor.house_sts_vacation', 'on') %}
             scene.house_home
           {% else %}
-            scene.house_away
+            scene.house_evening
           {% endif %}
-
+          
 wink_timer:
   alias: wink_timer
   sequence:
