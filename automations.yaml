@@ -7,7 +7,7 @@
   condition: []
   action:
   - alias: ''
-   data_template:
+  - data_template:
       entity_id: >
           {% if is_state('binary_sensor.off_sts_motion', 'on') %}
             script.office_occupancy_on
