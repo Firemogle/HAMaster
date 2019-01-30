@@ -29,7 +29,10 @@ views:
         #HVAC control
       - type: thermostat
         entity: climate.hvac
-        
+      - type: entities
+        title: House information
+        entities:
+          - sensor.zestimate
     # Main Level 
   - title: Main Level
     id: house_main
@@ -170,6 +173,34 @@ views:
           - sensor.radarr_movies
           - type: divider
           - sensor.sonarr_series
+          - sensor.sonarr_upcoming
+          - sensor.sonarr_wanted
+          - type: divider
+          - sensor.deluge_down_speed
+          - sensor.deluge_up_speed
+      - type: entities
+        # Title of the entities card
+        title: Virtual Server
+        # The entities here will be shown in the same order as specified.
+        # Each entry is an entity ID or a map with extra options.
+        entities:
+          - sensor.virtualserver_generic_memory_data_available_memory
+          - sensor.virtualserver_generic_memory_data_used_memory
+          - sensor.virtualserver_intel_core_i7_2600_clocks_cpu_core_1
+          - sensor.virtualserver_intel_core_i7_2600_clocks_cpu_core_2
+          - sensor.virtualserver_intel_core_i7_2600_clocks_cpu_core_3
+          - sensor.virtualserver_intel_core_i7_2600_clocks_cpu_core_4
+          - type: divider
+          - sensor.virtualserver_intel_core_i7_2600_temperatures_cpu_core_1
+          - sensor.virtualserver_intel_core_i7_2600_temperatures_cpu_core_2
+          - sensor.virtualserver_intel_core_i7_2600_temperatures_cpu_core_3
+          - sensor.virtualserver_intel_core_i7_2600_temperatures_cpu_core_4
+          - sensor.virtualserver_intel_core_i7_2600_temperatures_cpu_package
+          - sensor.virtualserver_wdc_wd10ezex_08wn4a0_temperatures_temperature
+          - sensor.virtualserver_wdc_wd5000aakx_753ca1_temperatures_temperature
+          - sensor.virtualserver_st1000dm010_2ep102_temperatures_temperature
+          - type: divider
+          - sensor.virtualserver_st1000dm010_2ep102_load_used_space
           - sensor.sonarr_upcoming
           - sensor.sonarr_wanted
           - type: divider
