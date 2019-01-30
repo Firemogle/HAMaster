@@ -203,6 +203,30 @@ views:
           - sensor.virtualserver_st1000dm010_2ep102_load_used_space
       - type: entities
         # Title of the entities card
+        title: Virtual Server
+        # The entities here will be shown in the same order as specified.
+        # Each entry is an entity ID or a map with extra options.
+        entities:
+          - sensor.frankenserver_generic_memory_data_available_memory
+          - sensor.frankenserver_generic_memory_data_used_memory
+          - sensor.frankenserver_intel_core_i3_6100_clocks_cpu_core_1
+          - sensor.frankenserver_intel_core_i3_6100_clocks_cpu_core_2
+          - type: divider
+          - sensor.frankenserver_intel_core_i3_6100_temperatures_cpu_core_1
+          - sensor.frankenserver_intel_core_i3_6100_temperatures_cpu_core_2
+          - sensor.frankenserver_intel_core_i3_6100_temperatures_cpu_package
+          - ssensor.frankenserver_wdc_wd20ears_00s8b1_temperatures_temperature
+          - sensor.frankenserver_wdc_wd20ears_00s8b1_temperatures_temperature_2
+          - sensor.frankenserver_wdc_wd20earx_00pasb0_temperatures_temperature
+          - sensor.frankenserver_wdc_wd20earx_00pasb0_temperatures_temperature_2
+          - sensor.frankenserver_wdc_wd20ezrx_00d8pb0_temperatures_temperature
+          - type: divider
+          - sensor.frankenserver_generic_hard_disk_load_used_space
+          - sensor.frankenserver_generic_hard_disk_load_used_space_2
+          - type: divider
+          - switch.off_frankenserver
+      - type: entities
+        # Title of the entities card
         title: HVAC Status
         # The entities here will be shown in the same order as specified.
         # Each entry is an entity ID or a map with extra options.
