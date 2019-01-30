@@ -215,7 +215,7 @@ views:
           - sensor.frankenserver_intel_core_i3_6100_temperatures_cpu_core_1
           - sensor.frankenserver_intel_core_i3_6100_temperatures_cpu_core_2
           - sensor.frankenserver_intel_core_i3_6100_temperatures_cpu_package
-          - ssensor.frankenserver_wdc_wd20ears_00s8b1_temperatures_temperature
+          - sensor.frankenserver_wdc_wd20ears_00s8b1_temperatures_temperature
           - sensor.frankenserver_wdc_wd20ears_00s8b1_temperatures_temperature_2
           - sensor.frankenserver_wdc_wd20earx_00pasb0_temperatures_temperature
           - sensor.frankenserver_wdc_wd20earx_00pasb0_temperatures_temperature_2
