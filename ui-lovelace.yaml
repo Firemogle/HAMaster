@@ -144,6 +144,13 @@ views:
           - sensor.attic_humidity
           - sensor.attic_pressure
           - sensor.attic_temp
+      - type: entities
+        # Title of the entities card
+        title: Front Porch
+        # The entities here will be shown in the same order as specified.
+        # Each entry is an entity ID or a map with extra options.
+        entities:
+          - light.porch_light
       - type: picture-glance
         title: Garage
         entities:
