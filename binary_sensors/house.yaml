@@ -30,9 +30,9 @@
   sensors:
     house_sts_jayhawks:
       value_template: >-
-        {{ states.calendar.football__kuathleticscom.state == 'on'
-           or states.calendar.mens_basketball__kuathleticscom.state == 'on'
-           or states.calendar.volleyball__kuathleticscom.state == 'on' }}
+        {{ states.calendar.football_kuathleticscom.state == 'on'
+           or states.calendar.mens_basketball_kuathleticscom.state == 'on'
+           or states.calendar.volleyball_kuathleticscom.state == 'on' }}
 
 - platform: template
   sensors:
