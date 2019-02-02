@@ -15,17 +15,17 @@
       state: off
     light.cabinet_led: 
       state: off
-    light.hallway
+    light.hallway:
       state: off
     light.main_livingroom:
       state: off
-    light.livingroom_entry
+    light.livingroom_entry:
       state: off
-    light.light_bulb
+    light.light_bulb:
       state: off
-    light.light_bulb2
+    light.light_bulb2:
       state: off
-    light.light_bulb3
+    light.light_bulb3:
       state: off
     fan.fan:
       state: off
