@@ -1,6 +1,7 @@
 
-- platform: mqtt_json
-  name: 'AiLight Office'
+- platform: mqtt
+  schema: json
+  name: 'Porch Light'
   state_topic: "porch_light" 
   command_topic: "porch_light/set"
   color_temp: true
