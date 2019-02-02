@@ -1,8 +1,8 @@
-light:
-  platform: mqtt_json
+
+- platform: mqtt_json
   name: 'AiLight Office'
-  state_topic: '<YOUR_MQTT_STATE_TOPIC>' (e.g. 'AiLight-CC8410')
-  command_topic: '<YOUR_MQTT_COMMAND_TOPIC>' (e.g. 'AiLight-CC8410/set')
+  state_topic: "porch_light" 
+  command_topic: "porch_light/set"
   color_temp: true
   brightness: true
   rgb: true
