@@ -59,11 +59,11 @@
   - data_template:
       entity_id: >
            {% if is_state('binary_sensor.house_sts_occupants', 'off') and is_state('binary_sensor.house_sts_guest', 'off') %}
-             script.house_empty_routine
+             scene.house_away
            {% else %}
-             script.house_occupied_routine
+             scene.house_away
            {% endif %} 
-    service: script.turn_on
+    service: scene.turn_on
     
 #  - data_template:
 #      message: >
