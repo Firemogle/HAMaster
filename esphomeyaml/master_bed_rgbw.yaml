@@ -23,15 +23,14 @@ ota:
   password: !secret OTA_PW
 
 output:
-  pin:
-    number: D1
-    inverted: True
-    mode: OUTPUT
+  - platform: float
+    id: BHRED
+    pin: D1
 
 light:
   - platform: rgbw
     name: "Brett Headboard"
-    red: D1
+    red: BHRED
     green: D2
     blue: D3
     white: D4
