@@ -23,7 +23,7 @@ ota:
   password: !secret OTA_PW
 
 output:
-  - platform: ...
+  - platform:
     id: D1
 
 light:
