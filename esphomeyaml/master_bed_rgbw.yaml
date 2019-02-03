@@ -22,12 +22,11 @@ api:
 ota:
   password: !secret OTA_PW
 
-lights:
-  # Advanced:
+output:
   pin:
     number: D1
     inverted: True
-    mode: INPUT_PULLUP
+    mode: OUTPUT
 
 light:
   - platform: rgbw
