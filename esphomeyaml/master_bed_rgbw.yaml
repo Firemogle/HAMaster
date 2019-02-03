@@ -26,17 +26,37 @@ output:
   - platform: esp8266_pwm
     id: BHRED
     pin: D1
-
+  - platform: esp8266_pwm
+    id: BHGRN
+    pin: D2
+  - platform: esp8266_pwm
+    id: BHBLU
+    pin: D3
+  - platform: esp8266_pwm
+    id: BHWHT
+    pin: D4
+  - platform: esp8266_pwm
+    id: LHRED
+    pin: D5
+  - platform: esp8266_pwm
+    id: LHGRN
+    pin: D6
+  - platform: esp8266_pwm
+    id: LHBLU
+    pin: D7
+  - platform: esp8266_pwm
+    id: LHWHT
+    pin: D8
 light:
   - platform: rgbw
     name: "Brett Headboard"
     red: BHRED
-    green: D2
-    blue: D3
-    white: D4
+    green: BHGRN
+    blue: BHBLU
+    white: BHWHT
   - platform: rgbw
     name: "Liz Headboard"
-    red: D5
-    green: D6
-    blue: D7
-    white: D8
+    red: LHRED
+    green: LHGRN
+    blue: LHBLU
+    white: LHWHT
