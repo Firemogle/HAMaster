@@ -61,7 +61,7 @@
            {% if is_state('binary_sensor.house_sts_occupants', 'off') and is_state('binary_sensor.house_sts_guest', 'off') %}
              scene.house_away
            {% else %}
-             scene.house_away
+             scene.house_home
            {% endif %} 
     service: scene.turn_on
     
