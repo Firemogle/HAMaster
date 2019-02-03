@@ -7,6 +7,11 @@ wifi:
   ssid: !secret AP
   password: !secret APPW
 
+mqtt:
+  broker: 192.168.1.243
+  username: MQTT_UN
+  password: MQTT_PW
+
 # Enable logging
 logger:
 
@@ -16,3 +21,17 @@ api:
 
 ota:
   password: !secret OTA_PW
+
+light:
+  - platform: rgbw
+    name: "Brett Headboard"
+    red: D1
+    green: D2
+    blue: D3
+    white: D4
+  - platform: rgbw
+    name: "Liz Headboard"
+    red: D5
+    green: D6
+    blue: D7
+    white: D8
