@@ -22,10 +22,12 @@ api:
 ota:
   password: !secret OTA_PW
 
-output:
-  - platform: gpio
-    id: D1
-    pin: 5
+lights:
+  # Advanced:
+  pin:
+    number: D1
+    inverted: True
+    mode: INPUT_PULLUP
 
 light:
   - platform: rgbw
