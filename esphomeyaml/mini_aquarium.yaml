@@ -61,22 +61,22 @@ output:
     id: 'R'
     channel: 0
   - platform: pca9685
-    pca9685_id: 'G'
+    id: 'G'
     channel: 1
   - platform: pca9685
-    pca9685_id: 'B'
+    id: 'B'
     channel: 2
   - platform: pca9685
-    pca9685_id: 'W'
+    id: 'W'
     channel: 3
   - platform: pca9685
-    pca9685_id: 'Pump'
+    id: 'Pump'
     channel: 4
   - platform: pca9685
-    pca9685_id: 'Heater'
+    id: 'Heater'
     channel: 5
   - platform: pca9685
-    pca9685_id: 'Air'
+    id: 'Air'
     channel: 6
     
 light:
