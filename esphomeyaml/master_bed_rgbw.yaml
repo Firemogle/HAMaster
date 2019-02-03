@@ -23,7 +23,7 @@ ota:
   password: !secret OTA_PW
 
 output:
-  - platform: gpio
+  - platform: esp8266_pwm
     id: BHRED
     pin: D1
 
