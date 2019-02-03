@@ -4,15 +4,15 @@ esphomeyaml:
   board: nodemcuv2
 
 wifi:
-  ssid: 'TeamCarriger'
-  password: '7853935599'
+  ssid: !secret AP
+  password: !secret APPW
 
 # Enable logging
 logger:
 
 # Enable Home Assistant API
 api:
-  password: 'HowNow40!!'
+  password: !secret AP_PW
 
 ota:
-  password: 'HowNow40!!'
+  password: !secret OTA_PW
