@@ -135,8 +135,8 @@ mqtt:
   broker: 192.168.1.243
   username: firemogle
   password: !secret MQTTPW
-#  protocol: 3.1
-#  tls_version: '1.2'
+  discovery: true
+  discovery_prefix: homeassistant
 
 amcrest:
   - host: 192.168.1.244
