@@ -22,6 +22,10 @@ api:
 ota:
   password: !secret OTA_PW
 
+output:
+  - platform: ...
+    id: D1
+
 light:
   - platform: rgbw
     name: "Brett Headboard"
