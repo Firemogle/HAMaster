@@ -58,7 +58,7 @@ sensor:
 # Individual outputs
 output:
   - platform: pca9685
-    pca9685_id: 'R'
+    id: 'R'
     channel: 0
   - platform: pca9685
     pca9685_id: 'G'
