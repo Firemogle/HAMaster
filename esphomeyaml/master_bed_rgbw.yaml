@@ -1,0 +1,18 @@
+esphomeyaml:
+  name: master_bed_rgbw
+  platform: ESP8266
+  board: nodemcuv2
+
+wifi:
+  ssid: 'TeamCarriger'
+  password: '7853935599'
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  password: 'HowNow40!!'
+
+ota:
+  password: 'HowNow40!!'

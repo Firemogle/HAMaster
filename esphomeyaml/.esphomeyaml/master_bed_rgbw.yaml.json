@@ -1,0 +1,14 @@
+{
+  "use_legacy_ota": false, 
+  "arduino_version": null, 
+  "esphomelib_version": null, 
+  "esphomeyaml_version": "1.10.1", 
+  "address": "master_bed_rgbw.local", 
+  "storage_version": 1, 
+  "build_path": null, 
+  "name": "master_bed_rgbw", 
+  "firmware_bin_path": null, 
+  "board": "nodemcuv2", 
+  "esp_platform": "ESP8266", 
+  "src_version": 1
+}
