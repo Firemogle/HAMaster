@@ -41,7 +41,7 @@ sensor:
     gain: 6.144
     name: "bed_prob_v"
     unit_of_measurement: "V"
-- platform: bme280
+  - platform: bme280
     temperature:
       name: "BME280 Temperature"
       oversampling: 16x
