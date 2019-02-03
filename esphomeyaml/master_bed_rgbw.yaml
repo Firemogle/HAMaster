@@ -25,6 +25,7 @@ ota:
 output:
   - platform: gpio
     id: D1
+    pin: 5
 
 light:
   - platform: rgbw
