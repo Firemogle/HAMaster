@@ -16,3 +16,84 @@ api:
 
 ota:
   password: '!secret OTA_PW'
+
+i2c:
+  sda: D2
+  scl: D1
+  scan: False
+
+# Set pca9685 frequency
+pca9685:
+  frequency: 1000
+  
+ads1115:
+  - address: 0x48
+  
+  
+sensor:
+  - platform: ads1115
+    multiplexer: 'A0_GND'
+    gain: 6.144
+    name: "water_prob_v"
+    unit_of_measurement: "V"
+  - platform: ads1115
+    multiplexer: 'A1_GND'
+    gain: 6.144
+    name: "bed_prob_v"
+    unit_of_measurement: "V"
+- platform: bme280
+    temperature:
+      name: "BME280 Temperature"
+      oversampling: 16x
+      unit_of_measurement: "°C"
+    pressure:
+      name: "BME280 Pressure"
+      unit_of_measurement: "P"
+    humidity:
+      name: "BME280 Humidity"
+      unit_of_measurement: "%"
+    address: 0x77
+    update_interval: 60s
+    
+# Individual outputs
+output:
+  - platform: pca9685
+    pca9685_id: 'R'
+    channel: 0
+- platform: pca9685
+    pca9685_id: 'G'
+    channel: 1
+- platform: pca9685
+    pca9685_id: 'B'
+    channel: 2
+- platform: pca9685
+    pca9685_id: 'W'
+    channel: 3
+- platform: pca9685
+    pca9685_id: 'Pump'
+    channel: 4
+- platform: pca9685
+    pca9685_id: 'Heater'
+    channel: 5
+- platform: pca9685
+    pca9685_id: 'Air'
+    channel: 6
+    
+light:
+  - platform: rgbw
+    name: "Tank Light"
+    red: R
+    green: G
+    blue: B
+    white: W
+    
+stepper:
+  - platform: a4988
+    id: my_stepper
+    step_pin: D5
+    dir_pin: D6
+    max_speed: 250 steps/s
+    # Optional:
+    sleep_pin: D7
+    acceleration: inf
+    deceleration: inf
