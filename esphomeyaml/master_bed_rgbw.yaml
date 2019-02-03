@@ -23,7 +23,7 @@ ota:
   password: !secret OTA_PW
 
 output:
-  - platform: float
+  - platform: gpio
     id: BHRED
     pin: D1
 
