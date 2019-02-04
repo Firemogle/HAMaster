@@ -17,6 +17,11 @@ api:
 ota:
   password: '!secret OTA_PW'
 
+mqtt:
+  broker: 192.168.1.243
+  username: MQTT_UN
+  password: MQTT_PW
+
 i2c:
   sda: D2
   scl: D1
