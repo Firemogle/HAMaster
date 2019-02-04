@@ -72,6 +72,8 @@ views:
           - fan.fan_2
           - light.light_bulb_2
           - switch.master_tv
+          - light.liz_headboard
+          - light.brett_headboard
       - type: picture-glance
         title: Emi Room
         entities:
