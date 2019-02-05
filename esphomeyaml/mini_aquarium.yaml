@@ -4,18 +4,23 @@ esphomeyaml:
   board: nodemcuv2
 
 wifi:
-  ssid: '!secret AP'
-  password: '!secret APPW'
+  ssid: !secret AP
+  password: !secret APPW
 
 # Enable logging
 logger:
 
+mqtt:
+  broker: 192.168.1.243
+  username: !secret MQTT_UN
+  password: !secret MQTT_PW
+
 # Enable Home Assistant API
 api:
-  password: '!secret OTA_PW'
+  password: !secret OTA_PW
 
 ota:
-  password: '!secret OTA_PW'
+  password: secret OTA_PW
 
 mqtt:
   broker: 192.168.1.243
