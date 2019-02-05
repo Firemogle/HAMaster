@@ -1,0 +1,18 @@
+- platform: mqtt
+  name: Brett Headboard
+  state_topic: master_bed_rgbw/light/brett_headboard/state
+  command_topic: master_bed_rgbw/light/brett_headboard/command
+  availability_topic: master_bed_rgbw/status
+  schema: json
+  brightness: true
+  rgb: true
+  white_value: true
+- platform: mqtt
+  name: Liz Headboard
+  state_topic: master_bed_rgbw/light/liz_headboard/state
+  command_topic: master_bed_rgbw/light/liz_headboard/command
+  availability_topic: master_bed_rgbw/status
+  schema: json
+  brightness: true
+  rgb: true
+  white_value: true
