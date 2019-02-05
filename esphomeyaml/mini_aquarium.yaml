@@ -20,7 +20,7 @@ api:
   password: !secret OTA_PW
 
 ota:
-  password: secret OTA_PW
+  password: !secret OTA_PW
 
 i2c:
   sda: D2
