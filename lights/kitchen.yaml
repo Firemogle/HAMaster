@@ -5,3 +5,20 @@
   payload_on: "1"
   payload_off: "0"
   retain: true
+
+- platform: mqtt
+  name: Tank Light
+  state_topic: mini_aquarium/light/tank_light/state
+  command_topic: mini_aquarium/light/tank_light/command
+  availability_topic: mini_aquarium/status
+  schema: json
+  brightness: true
+  rgb: true
+  white_value: true
+- platform: mqtt
+  name: Bed Pump
+  state_topic: mini_aquarium/light/bed_pump/state
+  command_topic: mini_aquarium/light/bed_pump/command
+  availability_topic: mini_aquarium/status
+  schema: json
+  brightness: true
