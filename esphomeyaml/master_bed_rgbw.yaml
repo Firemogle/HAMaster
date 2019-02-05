@@ -9,8 +9,8 @@ wifi:
 
 mqtt:
   broker: 192.168.1.243
-  username: MQTT_UN
-  password: MQTT_PW
+  username: !secret MQTT_UN
+  password: !secret MQTT_PW
 
 # Enable logging
 logger:
