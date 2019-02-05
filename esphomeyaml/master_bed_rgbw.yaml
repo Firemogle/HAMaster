@@ -7,10 +7,11 @@ wifi:
   ssid: !secret AP
   password: !secret APPW
 
-mqtt:
-  broker: 192.168.1.243
-  username: !secret MQTT_UN
-  password: !secret MQTT_PW
+#mqtt:
+#  broker: 192.168.1.243
+#  username: !secret MQTT_UN
+#  password: !secret MQTT_PW
+#  keepalive: 60
 
 # Enable logging
 logger:
