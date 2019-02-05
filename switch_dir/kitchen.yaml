@@ -1,0 +1,10 @@
+- platform: mqtt
+  name: Heater
+  state_topic: mini_aquarium/switch/heater/state
+  command_topic: mini_aquarium/switch/heater/command
+  availability_topic: mini_aquarium/status
+- platform: mqtt
+  name: Air Pump
+  state_topic: mini_aquarium/switch/air_pump/state
+  command_topic: mini_aquarium/switch/air_pump/command
+  availability_topic: mini_aquarium/status
