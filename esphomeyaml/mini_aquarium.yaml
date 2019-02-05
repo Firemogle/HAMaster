@@ -14,6 +14,7 @@ mqtt:
   broker: 192.168.1.243
   username: !secret MQTT_UN
   password: !secret MQTT_PW
+  keepalive: 60
 
 # Enable Home Assistant API
 api:
