@@ -20,29 +20,3 @@
   state_topic: "/Kitchen_Leak/under_cabinet/Pressure"
   unit_of_measurement: "P"
   retain: true
-
-- platform: mqtt
-  name: water_prob_v
-  state_topic: mini_aquarium/sensor/water_prob_v/state
-  availability_topic: mini_aquarium/status
-  unit_of_measurement: V
-- platform: mqtt
-  name: bed_prob_v
-  state_topic: mini_aquarium/sensor/bed_prob_v/state
-  availability_topic: mini_aquarium/status
-  unit_of_measurement: V
-- platform: mqtt
-  name: BME280 Temperature
-  state_topic: mini_aquarium/sensor/bme280_temperature/state
-  availability_topic: mini_aquarium/status
-  unit_of_measurement: °C
-- platform: mqtt
-  name: BME280 Pressure
-  state_topic: mini_aquarium/sensor/bme280_pressure/state
-  availability_topic: mini_aquarium/status
-  unit_of_measurement: P
-- platform: mqtt
-  name: BME280 Humidity
-  state_topic: mini_aquarium/sensor/bme280_humidity/state
-  availability_topic: mini_aquarium/status
-  unit_of_measurement: '%'
