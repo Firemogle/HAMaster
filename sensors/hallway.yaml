@@ -7,9 +7,3 @@
   name: "Hallway Motion Temp 2"
   state_topic: "smartthings/hall_motion_2/temperature"
   unit_of_measurement: "°F"
-
-- platform: mqtt
-  name: "Hallway Window"
-  state_topic: "smartthings/Hall Window/contact"
-  payload_on: "open"
-  payload_off: "closed"
