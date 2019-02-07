@@ -37,27 +37,20 @@
   name: "Attic Temp"
   state_topic: "/Attic_Sensor/Attic/Temperature"
   unit_of_measurement: "°C"
-  retain: true
 
 - platform: mqtt
   name: "Attic Pressure"
   state_topic: "/Attic_Sensor/Attic/Pressure"
   unit_of_measurement: "P"
-  retain: true
 
 - platform: mqtt
   name: "Attic Humidity"
   state_topic: "/Attic_Sensor/Attic/Humidity"
   unit_of_measurement: "%"
-  retain: true
 
 - platform: ups
   username: brett.carriger@gmail.com
   password: Xeon40!!
-
-#- platform: file
-#  name: new_commits
-#  file_path: /config/home-assistant/update.dat
   
 - platform: random
   name: house_rand_0_100
@@ -123,13 +116,11 @@
   name: "VPN down"
   state_topic: "hawirelesslink/sensor/speedtest_download/state"
   unit_of_measurement: "Mbit/s"
-  retain: true
   
 - platform: mqtt
   name: "VPN up"
   state_topic: "hawirelesslink/sensor/speedtest_upload/state"
   unit_of_measurement: "Mbit/s"
-  retain: true
   
 - platform: zestimate
   api_key: !secret ZILLOW
