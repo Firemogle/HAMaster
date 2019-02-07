@@ -3,16 +3,13 @@
   state_topic: "smartthings/Emi Monitor/motion"
   payload_active: "active"
   payload_inactive: "inactive"
-  retain: true
 
 - platform: mqtt
   name: "Emi Temp"
   state_topic: "smartthings/Emi Monitor/temperature"
   unit_of_measurement: "°F"
-  retain: true
 
 - platform: mqtt
   name: "Emi Humidity"
   state_topic: "smartthings/Emi Monitor/humidity"
   unit_of_measurement: "%"
-  retain: true
