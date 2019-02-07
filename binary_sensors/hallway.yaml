@@ -12,11 +12,9 @@
   state_topic: "smartthings/hall_motion/motion"
   payload_on: "active"
   payload_off: "inactive"
-  retain: true
 
 - platform: mqtt
   name: "hallway_motion_2"
   state_topic: "smartthings/hall_motion_2/motion"
   payload_on: "active"
   payload_off: "inactive"
-  retain: true
