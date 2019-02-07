@@ -1,22 +1,18 @@
 - platform: mqtt
   name: "kitchen_leak"
   state_topic: "/Kitchen_Leak/moisture_sensor/Analog"
-  retain: true
 
 - platform: mqtt
   name: "kitchen_temp"
   state_topic: "/Kitchen_Leak/under_cabinet/Temperature"
   unit_of_measurement: "°C"
-  retain: true
   
 - platform: mqtt
   name: "kitchen_humidity"
   state_topic: "/Kitchen_Leak/under_cabinet/Humidity"
   unit_of_measurement: "%"
-  retain: true
   
 - platform: mqtt
   name: "kitchen_pressure"
   state_topic: "/Kitchen_Leak/under_cabinet/Pressure"
   unit_of_measurement: "P"
-  retain: true
