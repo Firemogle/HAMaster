@@ -1,10 +1,4 @@
 - platform: mqtt
-  name: "Emi Motion"
-  state_topic: "smartthings/Emi Monitor/motion"
-  payload_active: "active"
-  payload_inactive: "inactive"
-
-- platform: mqtt
   name: "Emi Temp"
   state_topic: "smartthings/Emi Monitor/temperature"
   unit_of_measurement: "°F"
