@@ -1,22 +1,18 @@
 - platform: mqtt
   name: "laundry_leak"
   state_topic: "/laundry_room/moisture_sensor/Analog"
-  retain: true
   
 - platform: mqtt
   name: "laundry_temp"
   state_topic: "/laundry_room/enviroment/Temperature"
   unit_of_measurement: "°C"
-  retain: true
   
 - platform: mqtt
   name: "laundry_humidity"
   state_topic: "/laundry_room/enviroment/Humidity"
   unit_of_measurement: "%"
-  retain: true
   
 - platform: mqtt
   name: "laundry_pressure"
   state_topic: "/laundry_room/enviroment/Pressure"
   unit_of_measurement: "P"
-  retain: true
