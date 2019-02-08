@@ -95,12 +95,9 @@ house_empty_routine:
 house_night_mode:
   alias: house_night_mode
   sequence:
-  - service: light.turn_off
+  - service: scene.turn_on
     data:
-      entity_id: "all"
-  - service: fan.turn_off
-    data:
-      entity_id: fan.fan
+      entity_id: scene.house_night
   - service: script.turn_on
     data:
       entity_id: script.hvac_run_setpoint
