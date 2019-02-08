@@ -29,8 +29,6 @@
       state: off
     light.main_bath_vent_light:
       state: off
-    light.hallway:
-      state: off
     fan.fan:
       state: off
     fan.fan_2:
@@ -56,8 +54,6 @@
     light.light_bulb_3:
       state: off
     light.light.porch_light:
-      state: off
-    light.hallway:
       state: off
     fan.fan:
       state: off
