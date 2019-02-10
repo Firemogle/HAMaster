@@ -9,11 +9,6 @@
   unit_of_measurement: "P"
 
 - platform: mqtt
-  name: "Garage Energy"
-  state_topic: "smartthings/Garage Switch/power"
-  unit_of_measurement: "W"
-
-- platform: mqtt
   name: "Network Power useage"
   state_topic: "hawirelesslink/switch/aeotec_zw096_smart_switch_6_switch/power_consumption"
   unit_of_measurement: "W"
