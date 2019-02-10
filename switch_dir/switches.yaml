@@ -61,3 +61,13 @@
   payload_on: "on"
   payload_off: "off"
   retain: true
+
+- platform : mqtt
+  name: "Garage outlet"
+  state_topic: "hawirelesslink/switch/enerwave_zw15rm_plus_15a_tr_smart_meter_duplex_receptacle_switch/state"
+  command_topic: "/HAwirelesslink/return/switch/enerwave_zw15rm_plus_15a_tr_smart_meter_duplex_receptacle_switch/state"
+  state_on: "on"
+  state_off: "off"
+  payload_on: "on"
+  payload_off: "off"
+  retain: true
