@@ -73,9 +73,6 @@ device_tracker:
   - platform: ping
     hosts:
       brettphone: 192.168.1.224
-  - platform: googlehome
-    host: 192.168.1.212
-    track_new_devices: false
       
 google:
     client_id: !secret GOOGLE_ID
