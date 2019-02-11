@@ -53,7 +53,7 @@
       state: off
     light.light_bulb_3:
       state: off
-    light.light.porch_light:
+    light.porch_light:
       state: off
     fan.fan:
       state: off
