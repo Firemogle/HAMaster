@@ -166,6 +166,13 @@ views:
   - title: System
     id: house_system
     cards:
+      - type: history-graph
+        title: 'Network Speeds'
+        entities:
+          - sensor.speedtest_download
+          - sensor.speedtest_upload
+          - sensor.vpn_down
+          - sensor.vpn_up
         # Entities card will take a list of entities and show their state.
       - type: entities
         # Title of the entities card
