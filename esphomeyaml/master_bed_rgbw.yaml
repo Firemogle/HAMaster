@@ -7,12 +7,6 @@ wifi:
   ssid: !secret AP
   password: !secret APPW
 
-#mqtt:
-#  broker: 192.168.1.243
-#  username: !secret MQTT_UN
-#  password: !secret MQTT_PW
-#  keepalive: 60
-
 # Enable logging
 logger:
 
@@ -37,16 +31,16 @@ output:
     id: BHRED
     pin: D4
   - platform: esp8266_pwm
-    id: LHRED
+    id: LHWHT
     pin: D5
   - platform: esp8266_pwm
-    id: LHGRN
+    id: LHBLU
     pin: D6
   - platform: esp8266_pwm
-    id: LHBLU
+    id: LHGRN
     pin: D7
   - platform: esp8266_pwm
-    id: LHWHT
+    id: LHRED
     pin: D8
 light:
   - platform: rgbw
