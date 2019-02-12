@@ -1,9 +1,14 @@
-- name: School
-  latitude: 32.8773367
-  longitude: -117.2494053
+- name: Liz Work
+  latitude: 42.286664
+  longitude: -83.715675
   radius: 250
-  icon: mdi:school
 
-- name: Work
-  latitude: 32.8753367
-  longitude: -117.2474053
+- name: Brett Work
+  latitude: 42.274868
+  longitude: -84.053887
+  radius: 1000
+  
+- name: Emi Daycare
+  latitude: 42.380136
+  longitude: -83.796028
+  radius: 250
