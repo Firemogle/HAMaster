@@ -192,5 +192,5 @@ group: !include groups.yaml
 automation: !include automations.yaml
 script: !include_dir_merge_named script_file_dir/
 scene: !include_dir_merge_list scenes/
-scene: !include_dir_merge_list zones/
+zone: !include_dir_merge_list zones/
 input_number: !include input_number.yaml
