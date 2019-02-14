@@ -184,6 +184,8 @@ ecobee:
   api_key: !secret ECOBEE_KEY
   hold_temp: true
     
+system_health:
+    
 sensor: !include_dir_merge_list sensors/
 binary_sensor: !include_dir_merge_list binary_sensors/
 light: !include_dir_merge_list lights/
