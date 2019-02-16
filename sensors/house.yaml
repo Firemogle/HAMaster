@@ -22,7 +22,7 @@
   host: 192.168.1.229
   
 - platform: openhardwaremonitor
-  host: 192.168.1.108  
+  host: 192.168.1.186
 
 - platform: speedtest
   monitored_conditions:
