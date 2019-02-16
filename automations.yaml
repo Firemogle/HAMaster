@@ -261,3 +261,14 @@
       {% else %}
         switch.turn_off
       {% endif %}
+
+
+- id: letsencrypt-renewal
+  alias: "Let's Encrypt Renewal"
+  trigger:
+  - platform: time
+    at: '03:00:00'
+  action:
+  - service: hassio.addon_restart
+    data:
+      addon: core_letsencrypt
