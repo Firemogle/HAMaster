@@ -63,19 +63,18 @@
            {% else %}
              scene.house_home
            {% endif %} 
-    service: scene.turn_on
-    
-#  - data_template:
-#      message: >
-#        Occupancy mode changed to {{ states('binary_sensor.house_sts_occupants') }} , status :
-#        {%- for entity_id in states.group.security.attributes.entity_id  -%}
-#          {% set parts = entity_id.split('.') -%}
-#          {%- if loop.first %} 
-#          {% elif loop.last %}
-#          {% else %}
-#          {% endif -%}{{ states[parts[0]][parts[1]].name }} : {{ states[parts[0]][parts[1]].state }}
-#        {%- endfor %}
-#    service: notify.gchat
+    service: scene.turn_on  
+  - data_template:
+      message: >
+        Occupancy mode changed to {{ states('binary_sensor.house_sts_occupants') }} , status :
+        {%- for entity_id in states.group.security.attributes.entity_id  -%}
+          {% set parts = entity_id.split('.') -%}
+          {%- if loop.first %} 
+          {% elif loop.last %}
+          {% else %}
+          {% endif -%}{{ states[parts[0]][parts[1]].name }} : {{ states[parts[0]][parts[1]].state }}
+        {%- endfor %}
+    service: notify.gmail_notify
     
 - id: 'house_time_mode'
   alias: house_time_mode
