@@ -24,12 +24,6 @@
 - platform: openhardwaremonitor
   host: 192.168.1.186
 
-- platform: speedtestdotnet
-  monitored_conditions:
-    - ping
-    - download
-    - upload
-
 - platform: uptime
   unit_of_measurement: minutes
 
