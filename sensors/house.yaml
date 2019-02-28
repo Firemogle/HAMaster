@@ -81,7 +81,7 @@
         {% else %} 
           {{ (0.0049*states('sensor.dark_sky_overnight_low_temperature')|float+0.2668)*100 }}
         {% endif %}
-      unit_of_measurement: "%"
+  unit_of_measurement: "%"
 
 - platform: template
   sensors:
@@ -94,7 +94,7 @@
     hvac_current_humidity:
       value_template: >-
         {{ states.climate.hvac.attributes.actual_humidity }}
-    unit_of_measurement: "%"
+  unit_of_measurement: "%"
   
   
 - platform: deluge
