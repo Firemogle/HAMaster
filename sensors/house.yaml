@@ -56,7 +56,7 @@
 - platform: radarr
   api_key: e9550bffc3584c27a8fadfea761e7167
   host: 192.168.1.3
-  monitored:
+  monitored_conditions:
    - movies
    - upcomming
    - status
@@ -94,7 +94,7 @@
     hvac_current_humidity:
       value_template: >-
         {{ states.climate.hvac.attributes.actual_humidity }}
-  unit_of_measurement: "%"
+    unit_of_measurement: "%"
   
   
 - platform: deluge
