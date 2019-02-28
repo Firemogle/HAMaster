@@ -75,14 +75,14 @@
 - platform: template
   sensors:
     hvac_target_humidity:
+      unit_of_measurement: "%"
       value_template: >-
         {% if ((0.0049*states('sensor.dark_sky_overnight_low_temperature')|float+0.2668)*100) > states('input_number.hvac_humidity_max')|float %}
           {{ states('input_number.hvac_humidity_max')|float }}
         {% else %} 
           {{ (0.0049*states('sensor.dark_sky_overnight_low_temperature')|float+0.2668)*100 }}
         {% endif %}
-  unit_of_measurement: "%"
-
+  
 - platform: template
   sensors:
     hvac_fan_state:
@@ -92,10 +92,9 @@
 - platform: template
   sensors:
     hvac_current_humidity:
+      unit_of_measurement: "%"
       value_template: >-
-        {{ states.climate.hvac.attributes.actual_humidity }}
-  unit_of_measurement: "%"
-  
+        {{ states.climate.hvac.attributes.actual_humidity }}  
   
 - platform: deluge
   host: 192.168.1.3
