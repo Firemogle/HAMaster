@@ -11,8 +11,8 @@
 
 - platform: wake_on_lan
   name: off_frankenserver
-  mac_address: "30:5a:3a:7b:8d:eb"
-  host: 192.168.1.108
+  mac_address: "68:1c:a2:13:24:37"
+  host: 192.168.1.186
 
 - platform : mqtt
   name: "Office Heater"
