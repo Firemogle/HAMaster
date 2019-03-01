@@ -58,3 +58,15 @@
     fan.fan:
       state: off
       
+- name: weekday_wakeup
+  entities:
+    light.brett_headboard:
+      state: on
+      brightness: 100
+      transition: 1800
+      rgb_color: [255,255,255]
+      white_value: 255
+    light.light_bulb_2:
+      state: on
+      transition: 1800
+      brightness: 100
