@@ -79,7 +79,7 @@ views:
         entities:
           - fan.fan3
           - light.light_bulb_3
-          - switch.emi_star_lamp
+          - light.emi_star_lamp
           - media_player.emilias_speaker
           - sensor.emi_humidity
           - sensor.emi_motion
