@@ -1,0 +1,9 @@
+house_night_mode:
+  alias: house_night_mode
+  sequence:
+  - service: scene.turn_on
+    data:
+      entity_id: scene.house_night
+  - service: script.turn_on
+    data:
+      entity_id: script.hvac_run_setpoint
