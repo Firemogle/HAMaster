@@ -1,0 +1,15 @@
+house_evening_mode:
+  alias: house_evening_mode
+  sequence:
+  - service: switch.turn_off
+    data:
+      entity_id: switch.livingroom_subwoofer
+  - service: scene.turn_on
+    data_template:
+      entity_id: >
+          {% if is_state('sensor.timeday', 'evening') 
+             and is_state('binary_sensor.house_sts_vacation', 'on') %}
+            scene.house_home
+          {% else %}
+            scene.house_evening
+          {% endif %}
