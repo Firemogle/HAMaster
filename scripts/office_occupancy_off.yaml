@@ -1,0 +1,6 @@
+office_occupancy_off:
+  alias: office_occupancy_off
+  sequence:
+  - service: switch.turn_off
+    data:
+      entity_id: switch.office_heater
