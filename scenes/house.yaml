@@ -11,6 +11,8 @@
       state: on
 - name: house_away
   entities:
+    light.emi_star_lamp
+      state: off
     light.kitchen_sink:
       state: off
     light.cabinet_led: 
