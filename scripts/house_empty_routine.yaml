@@ -1,0 +1,19 @@
+house_empty_routine:
+  alias: house_empty_routine
+  sequence:
+  - service: light.turn_off
+    data_template:
+      entity_id: >
+          {% if is_state('binary_sensor.house_sts_occupants', 'off') and is_state('binary_sensor.house_sts_guest', 'off') %}
+            "all"
+          {% else %}
+            light.driveway_1
+          {% endif %}
+  - service: fan.turn_off
+    data_template:
+      entity_id: >
+          {% if is_state('binary_sensor.house_sts_occupants', 'off') and is_state('binary_sensor.house_sts_guest', 'off') %}
+            "all"
+          {% else %}
+            fan.fan_2
+          {% endif %}
