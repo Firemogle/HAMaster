@@ -118,6 +118,7 @@ views:
           - switch.off_computron3000
           - switch.office_heater
           - binary_sensor.off_sts_motion
+          - sensor.office_computer_power
           - sensor.office_humidity
           - sensor.office_pressure
           - sensor.office_temperature
