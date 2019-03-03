@@ -1,0 +1,21 @@
+hvac_run_stop:
+  alias: hvac_run_stop
+  sequence:
+  - service: climate.set_operation_mode
+    data_template:
+      operation_mode: >
+          {% if is_state('binary_sensor.house_sts_hvac_run', 'off') %}
+            off
+          {%-elif is_state('binary_sensor.house_sts_hvac_cool_req', 'on') %}
+            cool
+          {% else %}
+            heat
+          {% endif %}
+  - service: script.turn_on
+    data_template:
+      entity_id: >
+          {% if is_state('binary_sensor.house_sts_hvac_run', 'off') %}
+            script.wink_refresh
+          {% else %}
+            script.hvac_run_setpoint
+          {% endif %}
