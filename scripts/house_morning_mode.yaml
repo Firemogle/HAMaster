@@ -1,0 +1,12 @@
+house_morning_mode:
+  alias: house_morning_mode
+  sequence:
+  - service: scene.turn_on
+    data:
+      entity_id: scene.house_home
+  - service: script.turn_on
+    data:
+      entity_id: script.hvac_run_setpoint
+  - service: switch.turn_on
+    data:
+      entity_id: switch.livingroom_subwoofer
