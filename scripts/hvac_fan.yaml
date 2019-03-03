@@ -1,0 +1,11 @@
+hvac_fan:
+  alias: hvac_fan
+  sequence:
+  - service: climate.set_fan_mode
+    data_template:
+      fan_mode: >
+          {% if is_state('binary_sensor.house_sts_hum_active_req', 'on') %}
+            on
+          {% else %}
+            auto
+          {% endif %}
