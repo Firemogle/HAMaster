@@ -12,3 +12,9 @@
   name: "Office Humidity"
   state_topic: "/Office/enviroment/Humidity"
   unit_of_measurement: "%"
+  
+- platform: mqtt
+  name: "Office Computer Power"
+  state_topic: "hawirelesslink/sensor/enerwave_zw15rm_plus_15a_tr_smart_meter_duplex_receptacle_power_2/power_consumption"
+  unit_of_measurement: "W"
+
