@@ -1,0 +1,19 @@
+hvac_ac_temp:
+  alias: hvac_ac_temp
+  sequence:
+  - service: climate.set_temperature
+    data_template:
+      temperature: >
+          {% if is_state('binary_sensor.house_sts_vacation', 'on') %}
+            {{ states('input_number.hvac_vacation_ac_temp')|float }}
+          {%-elif is_state('binary_sensor.house_sts_dte_cheap', 'on') %}
+            {{ states('input_number.hvac_overnight_ac_temp')|float }}
+          {%-elif is_state('binary_sensor.house_sts_occupants', 'on') %}
+            {{ states('input_number.hvac_home_ac_temp')|float }}
+          {%-elif is_state('binary_sensor.house_sts_incoming', 'on') %}
+            {{ states('input_number.hvac_home_ac_temp')|float }}
+          {%-elif is_state('binary_sensor.house_sts_guest', 'on') %}
+            {{ states('input_number.hvac_home_ac_temp')|float }}
+          {% else %}
+            {{ states('input_number.hvac_away_ac_temp')|float }}
+          {% endif %}
