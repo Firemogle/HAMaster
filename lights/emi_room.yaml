@@ -1,0 +1,3 @@
+- platform: switch
+  name: emi_star_lamp
+  entity_id: switch.emi_star_lamp
