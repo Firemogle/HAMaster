@@ -19,8 +19,10 @@ views:
       - type: entities
         title: Home Status
         entities:
-          - group.occupants
+          - person.brett
+          - person.liz
           - group.security
+          - sensor.house_status
         # Garage Door Card
       - type: entities
         title: Garage Door
