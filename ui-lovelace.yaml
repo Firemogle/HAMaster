@@ -190,6 +190,7 @@ views:
           - sensor.vpn_up
           - type: divider
           - sensor.radarr_movies
+          - sensor.radarr_upcoming
           - type: divider
           - sensor.sonarr_series
           - sensor.sonarr_upcoming
