@@ -126,9 +126,9 @@
       value_template: >-
         {% if is_state('binary_sensor.house_sts_occupants', 'on') %}
           {{ "Occupied" }}
-        {% elif and is_state('binary_sensor.house_sts_guest', 'on') %} 
+        {% elif is_state('binary_sensor.house_sts_guest', 'on') %} 
           {{ "Guest mode" }}
-        {% elif and is_state('binary_sensor.house_sts_vacation', 'on') %}
+        {% elif is_state('binary_sensor.house_sts_vacation', 'on') %}
           {{ "Vacation" }}
         {% else %}
           {{ "Away" }}
