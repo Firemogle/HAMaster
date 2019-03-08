@@ -240,7 +240,7 @@
     platform: state
     entity_id: updater.updater
   action:
-    service: notify.notify
+    service: notify.gmail_notify
     data:
       message: 'Update for Home Assistant is available.'
 
