@@ -75,8 +75,8 @@ device_tracker:
       brettphone: 192.168.1.224
 
 usps:
-    username: secret! USPSUN
-    password: secret! USPSPW
+    username: !secret USPSUN
+    password: !secret USPSPW
     driver: chrome
 
 speedtestdotnet:
