@@ -28,7 +28,7 @@
   before_offset: '-01:40'
 
 - platform: workday
-  name: workday
+  name: workday_raw
   country: US
   province: MI
   workdays: [mon, tue, wed, thu, fri]
