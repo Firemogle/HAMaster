@@ -32,13 +32,6 @@
     name: emilia.carriger@gmail.com
     track: true
 
-- cal_id: liz.mercer33@gmail.com
-  entities:
-  - device_id: liz.mercer33gmailcom
-    ignore_availability: true
-    name: liz.mercer33@gmail.com
-    track: true
-
 - cal_id: brett.carriger@gmail.com
   entities:
   - device_id: brettcarrigergmailcom
