@@ -16,7 +16,7 @@
 
 - platform: template
   sensors:
-    TimeDay:
+    timeday:
       value_template: >-
         {% if is_state('binary_sensor.early_morning', 'on') or is_state('binary_sensor.morning', 'on') %}
           {{ "morning" }}
