@@ -84,6 +84,6 @@
       brightness: 100
     fan.fan:
       state: on
-    switch.switch.livingroom_subwoofer
+    switch.switch.livingroom_subwoofer:
       state: on
 
