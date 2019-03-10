@@ -18,15 +18,17 @@
   sensors:
     TimeDay:
       value_template: >-
-        {% is_state('binary_sensor.early_morning', 'on') 
+        {% if is_state('binary_sensor.early_morning', 'on') 
            or is_state('binary_sensor.morning', 'on')  %}
           {{ "morning" }}
-        {%-elif is_state('binary_sensor.afternoon', 'on') %} 
+        {% elif is_state('binary_sensor.afternoon', 'on') %} 
           {{ "afternoon" }}
-        {%-elif is_state('binary_sensor.evening', 'on') %} 
+        {% elif is_state('binary_sensor.evening', 'on') %} 
           {{ "evening" }}
-        {%-elif is_state('binary_sensor.night', 'on') %} 
+        {% elif is_state('binary_sensor.night', 'on') %} 
           {{ "night" }}
+        {% else %}
+          {{ "Indeterminant" }}
         {% endif %}
 
 - platform: openhardwaremonitor
