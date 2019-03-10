@@ -225,7 +225,7 @@ light: !include_dir_merge_list lights/
 switch: !include_dir_merge_list switch_dir/
 group: !include groups.yaml
 automation: !include automations.yaml
-script: !include_dir_merge_named script_file_dir/
+script: !include_dir_merge_named scripts/
 scene: !include_dir_merge_list scenes/
 zone: !include_dir_merge_list zones/
 input_number: !include input_number.yaml
