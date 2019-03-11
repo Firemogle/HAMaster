@@ -1,7 +1,7 @@
 - platform: tod
   name: early_morning
   after: sunrise
-  after_offset: '-01:40'
+  after_offset: '-02:40'
   before: '08:00'
 
 - platform: tod
@@ -19,13 +19,12 @@
   name: evening
   after: sunset
   after_offset: '-01:00'
-  before: '00:00'
+  before: '23:59'
 
 - platform: tod
   name: night
-  after: '00:00'
-  before: sunrise
-  before_offset: '-01:40'
+  after: '00:01'
+  before: '05:30'
 
 - platform: workday
   name: workday_raw
