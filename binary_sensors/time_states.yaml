@@ -33,16 +33,23 @@
 
 - platform: template
   sensors:
+    house_time_liz_work_exception:
+      value_template: >-
+        {{ as_timestamp(states.calendar.liz_work_exception.attributes.start_time) -as_timestamp(now()) < 7200 }}
+
+- platform: template
+  sensors:
     house_time_workday_combine:
       value_template: >-
-        {{ is_state('binary_sensor.workday_raw', 'on') }}  
+        {{ is_state('binary_sensor.workday_raw', 'on') 
+           or is_state('binary_sensor.house_time_liz_work_exception', 'on')}}  
 
 - platform: template
   sensors:
     work_wakeup_time:
       value_template: >-
         {{ is_state('binary_sensor.early_morning', 'on') 
-           or is_state('binary_sensor.early_morning', 'on')  }}  
+           or is_state('binary_sensor.house_time_liz_work_exception', 'on')  }}  
 
 - platform: template
   sensors:
