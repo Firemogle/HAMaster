@@ -18,7 +18,7 @@
   name: evening
   after: sunset
   after_offset: '-01:00'
-  before: '23:59'
+  before: '23:45'
 
 - platform: tod
   name: night
