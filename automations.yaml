@@ -97,7 +97,7 @@
   alias: house_wakeup_work
   initial_state: 'off'
   trigger:
-  - entity_id:  binary_sensor.house_wake_for_work
+  - entity_id: binary_sensor.house_wake_for_work
     platform: state
     to: 'on'
   condition: []
