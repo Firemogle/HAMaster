@@ -59,7 +59,19 @@
       state: off
     fan.fan:
       state: off
-      
+- name: house_wakeup
+  entities:
+    light.kitchen_sink:
+      state: on
+      brightness: 100
+    light.cabinet_led: on
+    light.main_livingroom:
+      state: on
+      brightness: 100
+    fan.fan:
+      state: on
+    switch.livingroom_subwoofer:
+      state: on
 - name: weekday_wakeup
   entities:
     light.brett_headboard:
@@ -72,18 +84,3 @@
       state: on
       transition: 1800
       brightness: 100
-
-- name: house_wakeup
-  entities:
-    light.kitchen_sink:
-      state: on
-      brightness: 100
-    light.cabinet_led: on
-    light.main_livingroom:
-      state: on
-      brightness: 100
-    fan.fan:
-      state: on
-    switch.switch.livingroom_subwoofer:
-      state: on
-
