@@ -22,7 +22,7 @@
 
 - platform: tod
   name: night
-  after: '00:01'
+  after: '23:59'
   before: '05:30'
 
 - platform: workday
