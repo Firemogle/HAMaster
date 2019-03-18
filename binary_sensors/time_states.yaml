@@ -35,7 +35,7 @@
   sensors:
     house_time_liz_work_exception:
       value_template: >-
-        {{ (as_timestamp(states.calendar.liz_work_exception.attributes.start_time) - 7200) < as_timestamp(now()) }}
+        {{ (as_timestamp(states.calendar.liz_work_exception.attributes.start_time) - 7200) < as_timestamp(now()) + (states('sensor.house_rand_0_100')|float)/100 }}
 
 - platform: template
   sensors:
