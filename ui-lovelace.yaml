@@ -149,13 +149,20 @@ views:
           - sensor.attic_humidity
           - sensor.attic_pressure
           - sensor.attic_temp
-      - type: entities
+      - type: picture-glance
         # Title of the entities card
         title: Front Porch
         # The entities here will be shown in the same order as specified.
         # Each entry is an entity ID or a map with extra options.
         entities:
           - light.porch_light
+        camera_image: camera.front_porch
+        - type: picture-glance
+        # Title of the entities card
+        title: Backyard
+        # The entities here will be shown in the same order as specified.
+        # Each entry is an entity ID or a map with extra options.
+        camera_image: camera.backyard
       - type: picture-glance
         title: Garage
         entities:
