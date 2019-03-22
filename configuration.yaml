@@ -193,8 +193,7 @@ camera:
     name: "Backyard"
     ip: 192.168.1.159
     username: !secret fcUN
-    password: !secret fcPW 
-  	
+    password: !secret fcPW
 
 cover:
   - platform: template
