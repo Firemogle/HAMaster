@@ -184,6 +184,15 @@ nest:
 
 camera:
   - platform: amcrest
+  - platform: foscam
+    ip: 192.168.1.188
+    username: !secret fcUN
+    password: !secret fcPW
+  - platform: foscam
+    ip: 192.168.1.159
+    username: !secret fcUN
+    password: !secret fcPW 
+  	
 
 cover:
   - platform: template
