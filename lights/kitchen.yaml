@@ -9,7 +9,7 @@
 - platform: mqtt
   name: "kitchen_sink"
   state_topic: "zigbee2mqtt/0xb0ce1814031e3554"
-  availability_topic: "zigbee2mqtt/bridge/state
+  availability_topic: "zigbee2mqtt/bridge/state"
   brightness: true
   color_temp: true
   schema: "json"
