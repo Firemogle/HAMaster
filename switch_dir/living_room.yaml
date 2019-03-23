@@ -1,0 +1,8 @@
+- platform: "mqtt"
+  name: "livingroom_subwoofer"
+  state_topic: "zigbee2mqtt/0xf0d1b80000073b5c"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  payload_off: "OFF"
+  payload_on: "ON"
+  value_template: "{{ value_json.state }}"
+  command_topic: "zigbee2mqtt/0xf0d1b80000073b5c/set"
