@@ -1,0 +1,11 @@
+- id: 'mbr_tv_off'
+  alias: mbr_tv_off
+  initial_state: 'off'
+  trigger:
+  - platform: time
+    at: '1:30:00'
+  condition: []
+  action:
+  - data:
+      entity_id: switch.master_tv
+    service: switch.turn_off
