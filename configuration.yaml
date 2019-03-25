@@ -86,28 +86,10 @@ speedtestdotnet:
     - ping
     - download
     - upload
-    
-person:
-  - name: Brett
-    id: brett
-    device_trackers:
-      - device_tracker.brettphone
-      - device_tracker.google_maps_116842525089175776476
-  - name: Liz
-    id: liz
-    device_trackers:
-      - device_tracker.google_maps_108379141181739394475
-    
+
 google:
     client_id: !secret GOOGLE_ID
     client_secret: !secret GOOGLE_SECRET
-    
-google_assistant:
-  project_id: !secret GOOGLE_ID_GA
-  expose_by_default: false
-  exposed_domains:
-    - switch
-    - light
   
 notify:
   - name: gmail_notify
@@ -127,6 +109,7 @@ notify:
 # Enables the frontend
 frontend:
   themes: !include themes.yaml
+  
 # Use lovelace config file  
 lovelace:
   mode: yaml
@@ -146,9 +129,6 @@ updater:
 # Discover some devices automatically
 discovery:
 
-# Allows you to issue voice commands from the frontend in enabled browsers
-#conversation:
-
 # Enables support for tracking state changes over time
 history:
 
@@ -166,8 +146,6 @@ mqtt:
   broker: 192.168.1.243
   username: firemogle
   password: !secret MQTTPW
-#  discovery: true
-#  discovery_prefix: homeassistant
 
 amcrest:
   - host: 192.168.1.244
@@ -182,40 +160,6 @@ nest:
   client_id: !secret NEST_ID
   client_secret: !secret NEST_SECRET
 
-camera:
-  - platform: amcrest
-  - platform: foscam
-    name: "Front Porch"
-    ip: 192.168.1.188
-    username: !secret fcUN
-    password: !secret fcPW
-  - platform: foscam
-    name: "Backyard"
-    ip: 192.168.1.159
-    username: !secret fcUN
-    password: !secret fcPW
-
-cover:
-  - platform: template
-    covers:
-      garage_door:
-        friendly_name: "Garage Door"
-        value_template: "{{ is_state('binary_sensor.garage_door_bin', 'on') }}"
-        open_cover:
-          service: mqtt.publish
-          data:
-            {
-              "topic": "/garage/gpio/16",
-              "payload": "1"
-            }
-        close_cover:
-          service: mqtt.publish
-          data:
-            {
-              "topic": "/garage/gpio/16",
-              "payload": "1"
-            }
-
 media_player:
   - platform: kodi
     name: Livingroom_kodi
@@ -228,7 +172,11 @@ ecobee:
   hold_temp: true
     
 system_health:
-    
+
+# Items loaded elsewhere
+person: !include_dir_merge_list people/
+camera: !include_dir_merge_list cameras/
+cover: !include_dir_merge_list covers/
 sensor: !include_dir_merge_list sensors/
 binary_sensor: !include_dir_merge_list binary_sensors/
 light: !include_dir_merge_list lights/
