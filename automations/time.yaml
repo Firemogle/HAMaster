@@ -30,3 +30,24 @@
   - data:
       entity_id: script.hvac_run_setpoint
     service: script.turn_on
+
+- id: 'house_evening_mode'
+  alias: house_evening_mode
+  initial_state: 'off'
+  trigger:
+  - entity_id: binary_sensor.evening
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data_template:
+      entity_id: >
+          {% if is_state('binary_sensor.house_sts_vacation', 'on') %}
+            scene.house_evening_vacation
+          {% else %}
+            scene.house_evening
+          {% endif %}
+    service: scene.turn_on
+  - data:
+      entity_id: script.hvac_run_setpoint
+    service: script.turn_on
