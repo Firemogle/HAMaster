@@ -1,0 +1,32 @@
+- id: 'house_time_mode'
+  alias: house_time_mode
+  initial_state: 'off'
+  trigger:
+  - entity_id: sensor.timeday
+    platform: state
+  condition: []
+  action:
+  - data_template:
+      entity_id: >
+          {% if is_state('sensor.timeday', 'night') %}
+            script.house_night_mode
+          {%-elif is_state('sensor.timeday', 'evening') %}
+            script.house_evening_mode
+          {% endif %}
+    service: script.turn_on
+    
+- id: 'house_wakeup_work'
+  alias: house_wakeup_work
+  initial_state: 'off'
+  trigger:
+  - entity_id: binary_sensor.house_wake_for_work
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      entity_id: scene.house_wakeup
+    service: scene.turn_on
+  - data:
+      entity_id: script.hvac_run_setpoint
+    service: script.turn_on
