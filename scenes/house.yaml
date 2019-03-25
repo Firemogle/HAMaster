@@ -72,15 +72,18 @@
       state: on
     switch.livingroom_subwoofer:
       state: on
-- name: weekday_wakeup
+- name: house_evening_vacation
   entities:
-    light.brett_headboard:
+    light.porch_light:
+      state: on
+    light.kitchen_sink:
       state: on
       brightness: 100
-      transition: 1800
-      rgb_color: [255,255,255]
-      white_value: 255
-    light.light_bulb_2:
+    light.cabinet_led: on
+    light.main_livingroom:
       state: on
-      transition: 1800
       brightness: 100
+- name: house_evening
+  entities:
+    light.porch_light:
+      state: on
