@@ -1,0 +1,77 @@
+- id: system_update_available
+  alias: system_update_available
+  initial_state: 'off'
+  trigger:
+    platform: state
+    entity_id: updater.updater
+  action:
+    service: notify.gmail_notify
+    data:
+      message: 'Update for Home Assistant is available.'
+      
+- id: letsencrypt-renewal
+  alias: "letsencrypt-renewal"
+  initial_state: 'off'
+  trigger:
+  - platform: time
+    at: '03:00:00'
+  action:
+  - service: hassio.addon_restart
+    data:
+      addon: core_letsencrypt
+      
+- id: house_automation_ena
+  alias: house_automation_ena
+  trigger:
+  - entity_id: binary_sensor.house_boot_complete
+    platform: state
+  condition: []
+  action:
+  - data:
+      entity_id: "all"
+    service: automation.turn_on
+    
+- id: 'ha_start'
+  alias: ha_start
+  trigger:
+  - event: start
+    platform: homeassistant
+  condition: []
+  action:
+  - data:
+      entity_id: script.wink_timer
+    service: script.turn_on
+  - data:
+      name: darkred
+    service: frontend.set_theme
+    
+- id: 'house_sts_occupants'
+  alias: house_sts_occupants
+  initial_state: 'off'
+  trigger:
+  - entity_id: binary_sensor.house_sts_occupants
+    platform: state
+  condition: []
+  action:
+  - data:
+      entity_id: script.hvac_run_setpoint
+    service: script.turn_on
+  - data_template:
+      entity_id: >
+           {% if is_state('binary_sensor.house_sts_occupants', 'off') and is_state('binary_sensor.house_sts_guest', 'off') %}
+             scene.house_away
+           {% else %}
+             scene.house_home
+           {% endif %} 
+    service: scene.turn_on  
+  - data_template:
+      message: >
+        Occupancy mode changed to {{ states('binary_sensor.house_sts_occupants') }} , status :
+        {%- for entity_id in states.group.security.attributes.entity_id  -%}
+          {% set parts = entity_id.split('.') -%}
+          {%- if loop.first %} 
+          {% elif loop.last %}
+          {% else %}
+          {% endif -%}{{ states[parts[0]][parts[1]].name }} : {{ states[parts[0]][parts[1]].state }}
+        {%- endfor %}
+    service: notify.gmail_notify
