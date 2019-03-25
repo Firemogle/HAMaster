@@ -1,0 +1,16 @@
+- id: main_bath_vent_control
+  alias: main_bath_vent_control
+  initial_state: 'off'
+  trigger:
+  - entity_id: binary_sensor.main_bath_vent_needed
+    platform: state
+  condition: []
+  action:
+  - data:
+      entity_id: switch.main_bath_fan
+    service_template: >
+      {% if is_state('binary_sensor.main_bath_vent_needed','on') %}
+        switch.turn_on
+      {% else %}
+        switch.turn_off
+      {% endif %}
