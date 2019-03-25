@@ -44,3 +44,15 @@
       {% else %}
         switch.turn_off
       {% endif %}
+
+- id: humidifier_active
+  alias: humidifier_active
+  initial_state: 'off'
+  trigger:
+  - entity_id: binary_sensor.house_sts_hum_active_req
+    platform: state
+  condition: []
+  action:
+  - data:
+      entity_id: script.hvac_fan
+    service: script.turn_on
