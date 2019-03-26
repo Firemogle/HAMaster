@@ -1,4 +1,4 @@
-  - id: 'house_wakeup_work'
+- id: 'house_wakeup_work'
   alias: house_wakeup_work
   initial_state: 'off'
   trigger:
