@@ -1,4 +1,4 @@
-- id: '1533587304851'
+- id: 'off_occ_on'
   alias: off_occ_on
   initial_state: 'off'
   trigger:
