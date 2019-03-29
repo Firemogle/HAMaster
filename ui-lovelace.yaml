@@ -158,6 +158,8 @@ views:
       - type: picture-glance
         # Title of the entities card
         title: Backyard
+        entities:
+          - light.porch_light
         camera_image: camera.backyard
       - type: picture-glance
         title: Garage
