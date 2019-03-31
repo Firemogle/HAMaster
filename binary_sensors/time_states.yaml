@@ -56,4 +56,18 @@
     house_wake_for_work:
       value_template: >-
         {{ is_state('binary_sensor.house_time_workday_combine', 'on') 
-           and is_state('binary_sensor.work_wakeup_time', 'on')  }}   
+           and is_state('binary_sensor.work_wakeup_time', 'on')  }}  
+           
+- platform: template
+  sensors:
+    house_weekend_wakeup:
+      value_template: >-
+        {{ is_state('binary_sensor.workday_raw', 'off') 
+           and is_state('binary_sensor.morning', 'on')  }} 
+
+- platform: template
+  sensors:
+    house_wakeup:
+      value_template: >-
+        {{ is_state('binary_sensor.house_wake_for_work', 'on') 
+           or is_state('binary_sensor.dayoff_wakeup_time', 'on')  }} 
