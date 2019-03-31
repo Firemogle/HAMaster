@@ -1,8 +1,8 @@
-- id: 'house_wakeup_work'
-  alias: house_wakeup_work
+- id: 'house_wakeup'
+  alias: house_wakeup
   initial_state: 'off'
   trigger:
-  - entity_id: binary_sensor.house_wake_for_work
+  - entity_id: binary_sensor.house_wakeup
     platform: state
     to: 'on'
   condition: []
