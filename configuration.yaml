@@ -8,16 +8,25 @@ homeassistant:
   customize: !include customize.yaml
   
 proximity:
-  home:
+  brett_home:
     ignored_zones:
       - Liz Work
       - Brett Work
       - Emi Daycare
     devices:
       - device_tracker.google_maps_116842525089175776476
+    tolerance: 50
+    unit_of_measurement: mi
+    liz_home:
+    ignored_zones:
+      - Liz Work
+      - Brett Work
+      - Emi Daycare
+    devices:
       - device_tracker.google_maps_108379141181739394475
     tolerance: 50
     unit_of_measurement: mi
+
 
 http:
   server_port: 8123 # Hard set port
