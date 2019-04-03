@@ -40,50 +40,50 @@ http:
   ip_ban_enabled: true # Allow bans
   login_attempts_threshold: 3 # Ban after 3 failed attempts
 
-recorder:
-  db_url: !secret DB # Location of offloaded DB
-  purge_keep_days: 3 # Test purge days with offloaded DB
-  purge_interval: 1
-  exclude: # Configure recorder to not record extrainious data
-    domains:
-      - media_player
-      - calendar
-      - automation
-      - script
-      - camera
-    entities:
-      - binary_sensor.garage_camera_online
-      - binary_sensor.garage_camera_person_detected
-      - binary_sensor.garage_door_bin
-      - binary_sensor.home_away
-      - hangouts.conversations
-      - sensor.amcrest_camera_motion_detected
-      - sensor.dark_sky_icon
-      - sensor.dark_sky_summary
-      - sensor.garage_door_bin_to_pct
-      - sensor.house_rand_0_100
-      - sensor.stats_garage_pct_mean
-      - sensor.virtualserver_generic_hard_disk_load_used_space
-      - sensor.virtualserver_generic_memory_data_available_memory
-      - sensor.virtualserver_generic_memory_data_used_memory
-      - sensor.virtualserver_generic_memory_load_memory
-      - sensor.virtualserver_intel_core_i72600_clocks_bus_speed
-      - sensor.virtualserver_intel_core_i72600_clocks_cpu_core_1
-      - sensor.virtualserver_intel_core_i72600_clocks_cpu_core_2
-      - sensor.virtualserver_intel_core_i72600_clocks_cpu_core_3
-      - sensor.virtualserver_intel_core_i72600_clocks_cpu_core_4
-      - sensor.virtualserver_intel_core_i72600_load_cpu_core_1
-      - sensor.virtualserver_intel_core_i72600_load_cpu_core_2
-      - sensor.virtualserver_intel_core_i72600_load_cpu_core_3
-      - sensor.virtualserver_intel_core_i72600_load_cpu_core_4
-      - sensor.virtualserver_intel_core_i72600_load_cpu_total
-      - sensor.virtualserver_intel_core_i72600_powers_cpu_cores
-      - sensor.virtualserver_intel_core_i72600_powers_cpu_graphics
-      - sensor.virtualserver_intel_core_i72600_powers_cpu_package
-      - sensor.virtualserver_st1000dm0102ep102_load_used_space
-      - sensor.virtualserver_wdc_wd10ezex08wn4a0_load_used_space
-      - sensor.virtualserver_wdc_wd5000aakx753ca1_load_used_space
-      - weather.hvac
+recorder: !include recorder.yaml
+#  db_url: !secret DB # Location of offloaded DB
+#  purge_keep_days: 3 # Test purge days with offloaded DB
+#  purge_interval: 1
+#  exclude: # Configure recorder to not record extrainious data
+#    domains:
+#      - media_player
+#      - calendar
+#      - automation
+#      - script
+#      - camera
+#    entities:
+#      - binary_sensor.garage_camera_online
+#      - binary_sensor.garage_camera_person_detected
+#      - binary_sensor.garage_door_bin
+#      - binary_sensor.home_away
+#      - hangouts.conversations
+#      - sensor.amcrest_camera_motion_detected
+#      - sensor.dark_sky_icon
+#      - sensor.dark_sky_summary
+#      - sensor.garage_door_bin_to_pct
+#      - sensor.house_rand_0_100
+#      - sensor.stats_garage_pct_mean
+#      - sensor.virtualserver_generic_hard_disk_load_used_space
+#      - sensor.virtualserver_generic_memory_data_available_memory
+#      - sensor.virtualserver_generic_memory_data_used_memory
+#      - sensor.virtualserver_generic_memory_load_memory
+#      - sensor.virtualserver_intel_core_i72600_clocks_bus_speed
+#      - sensor.virtualserver_intel_core_i72600_clocks_cpu_core_1
+#      - sensor.virtualserver_intel_core_i72600_clocks_cpu_core_2
+#      - sensor.virtualserver_intel_core_i72600_clocks_cpu_core_3
+#      - sensor.virtualserver_intel_core_i72600_clocks_cpu_core_4
+#      - sensor.virtualserver_intel_core_i72600_load_cpu_core_1
+#      - sensor.virtualserver_intel_core_i72600_load_cpu_core_2
+#      - sensor.virtualserver_intel_core_i72600_load_cpu_core_3
+#      - sensor.virtualserver_intel_core_i72600_load_cpu_core_4
+#      - sensor.virtualserver_intel_core_i72600_load_cpu_total
+#      - sensor.virtualserver_intel_core_i72600_powers_cpu_cores
+#      - sensor.virtualserver_intel_core_i72600_powers_cpu_graphics
+#      - sensor.virtualserver_intel_core_i72600_powers_cpu_package
+#      - sensor.virtualserver_st1000dm0102ep102_load_used_space
+#      - sensor.virtualserver_wdc_wd10ezex08wn4a0_load_used_space
+#      - sensor.virtualserver_wdc_wd5000aakx753ca1_load_used_space
+#      - weather.hvac
 
 device_tracker:
   - platform: google_maps
@@ -126,6 +126,8 @@ notify:
       - !secret GMAILBRETT
       - !secret GMAILLIZ
     sender_name: Home Assistant
+  - name: ecobee_notify
+    platform: ecobee
 
 # Enables the frontend
 frontend:
