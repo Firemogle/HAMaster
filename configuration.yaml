@@ -17,7 +17,7 @@ proximity:
       - device_tracker.google_maps_116842525089175776476
     tolerance: 50
     unit_of_measurement: mi
-    liz_home:
+  liz_home:
     ignored_zones:
       - Liz Work
       - Brett Work
