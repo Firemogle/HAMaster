@@ -1,17 +1,17 @@
-- platform: mqtt
+- platform: mqtt # Garage back door sensor
   state_topic: "/garage/garage_door_back/garage_door_back"
   name: "Garage Door Back"
   payload_on: "1"
   payload_off: "0"
 
-- platform: mqtt
+- platform: mqtt # Garage door sensor
   state_topic: "/garage/garage_door_feedback/garage_door_feedback"
   name: "garage_door_bin_raw"
   payload_on: "1"
   payload_off: "0"
   force_update: true
   
-- platform: template
+- platform: template # Garage door sensor filtered
   sensors:
     garage_door_bin:
       value_template: >-
