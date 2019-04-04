@@ -10,10 +10,6 @@
     - temperature_high
     - temperature_low
 
-#- platform: command_line
-#  name: TimeDay
-#  command: "python3 /config/daystate.py"
-
 - platform: template
   sensors:
     timeday:
