@@ -1,11 +1,11 @@
-- platform: template
+- platform: template # Determine if the house is opened up or not
   sensors:
     house_sts_hvac_shut:
       value_template: >-
         {{ is_state('binary_sensor.hall_window_opened', 'off') }}
       delay_off:
         minutes: 5
-#- platform: template
+#- platform: template # Determine if the house is opened up or not
 #  sensors:
 #    house_sts_hvac_shut:
 #      value_template: >-
@@ -15,7 +15,7 @@
 #      delay_off:
 #        minutes: 5        
         
-- platform: template
+- platform: template # Determine if AC is needed
   sensors:
     house_sts_hvac_cool_req:
       value_template: >-
@@ -24,7 +24,8 @@
         minutes: 30
       delay_on:
         minutes: 5
-- platform: template
+        
+- platform: template # Determine if heat is needed
   sensors:
     house_sts_hvac_heat_req:
       value_template: >-
@@ -33,32 +34,34 @@
         minutes: 30
       delay_on:
         minutes: 5
-- platform: template
+        
+- platform: template # Combine ac/heat to check if HVAC is needed
   sensors:
     house_sts_hvac_req:
       value_template: >-
         {{ is_state('binary_sensor.house_sts_hvac_cool_req', 'on')
            or is_state('binary_sensor.house_sts_hvac_heat_req', 'on') }}
-- platform: template
+           
+- platform: template # Determine if house is shut and HVAC needed, run HVAC
   sensors:
     house_sts_hvac_run:
       value_template: >-
         {{ is_state('binary_sensor.house_sts_hvac_req', 'on')
            and is_state('binary_sensor.house_sts_hvac_shut', 'on') }}
 
-- platform: template
+- platform: template # Determine if the humidifier needs to run while the heat is on
   sensors:
     house_sts_hum_passive_req:
       value_template: >-
         {{ states('sensor.hvac_current_humidity')|float < states('sensor.hvac_target_humidity')|float }}
         
-- platform: template
+- platform: template # Determine if the humidifier needs to run by forcing HVAC fan on
   sensors:
     house_sts_hum_active_req:
       value_template: >-
         {{ states('sensor.hvac_current_humidity')|float < states('sensor.hvac_target_humidity')|float-5 }}
         
-- platform: template
+- platform: template # Run the humidifier passively
   sensors:
     house_sts_hum_passive_run:
       value_template: >-
