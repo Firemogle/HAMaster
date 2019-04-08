@@ -82,10 +82,6 @@ views:
           - fan.fan3
           - light.light_bulb_3
           - light.emi_star_lamp
-          - media_player.emilias_speaker
-          - sensor.emi_humidity
-          - sensor.emi_motion
-          - sensor.emi_temp
         camera_image: camera.amcrest_camera
       - type: entities
         title: Main Bath
