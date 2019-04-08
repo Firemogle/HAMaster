@@ -145,6 +145,10 @@ views:
         # Add front porch
       - type: picture-glance
         title: "Front Porch"
+        tap_action:
+          action: toggle
+        hold_action:
+          action: more-info
         entities:
           - light.porch_light
         camera_image: camera.front_porch
