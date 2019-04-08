@@ -154,8 +154,7 @@ views:
       - type: picture-glance
         # Title of the entities card
         title: Backyard
-        entities:
-          - light.porch_light
+        entities: []
         camera_image: camera.backyard
       - type: picture-glance
         title: Garage
@@ -166,6 +165,10 @@ views:
           - sensor.garage_energy
           - sensor.garage_pressure
           - sensor.garage_temperature
+        tap_action:
+          action: toggle
+        hold_action:
+          action: more-info
         camera_image: camera.garage
   - title: System
     id: house_system
