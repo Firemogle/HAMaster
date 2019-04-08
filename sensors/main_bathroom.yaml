@@ -23,7 +23,7 @@
     main_bath_target_humidity:
       value_template: >-
         {% if (states('sensor.hvac_humidity')|float+states('input_number.main_bath_humidity_thresh')|float) > (states('input_number.hvac_humidity_max'))|float %}
-          {{ (states('input_number.hvac_humidity_max'))|float }}
+          {{ (states('input_number.hvac_humidity_max'))|float+states('input_number.main_bath_humidity_thresh')|float) }}
         {% else %}
           {{ (states('sensor.hvac_target_humidity')|float+states('input_number.main_bath_humidity_thresh')|float) }}
         {% endif %}
