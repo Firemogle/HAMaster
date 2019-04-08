@@ -172,6 +172,8 @@ views:
     cards:
       - type: history-graph
         title: 'Network Speeds'
+        hours_to_show: 48
+        refresh_interval: 360
         entities:
           - sensor.speedtest_download
           - sensor.speedtest_upload
