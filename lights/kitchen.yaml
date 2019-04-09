@@ -11,6 +11,13 @@
   state_topic: "zigbee2mqtt/0xb0ce1814031e3554"
   availability_topic: "zigbee2mqtt/bridge/state"
   brightness: true
-  color_temp: true
   schema: "json"
   command_topic: "zigbee2mqtt/0xb0ce1814031e3554/set"
+
+- platform: mqtt
+  name: "kitchen_fan"
+  state_topic: "zigbee2mqtt/0x0022a3000016d039"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  brightness: true
+  schema: "json"
+  command_topic: "zigbee2mqtt/0x0022a3000016d039/set"
