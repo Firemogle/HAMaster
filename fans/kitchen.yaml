@@ -6,7 +6,7 @@
   payload_on: 'low'
   payload_off: 'off'
   speed_state_topic: "zigbee2mqtt/0x0022a3000016d039/set"
-  speed_command_topic:"zigbee2mqtt/0x0022a3000016d039"
+  speed_command_topic: "zigbee2mqtt/0x0022a3000016d039"
   speeds:
     - low
     - medium
