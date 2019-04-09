@@ -1,1 +1,13 @@
-
+- platform: mqtt
+  name kitchen_fan
+  command_topic: "zigbee2mqtt/0x0022a3000016d039/set"
+  state_topic: "zigbee2mqtt/0x0022a3000016d039"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  payload_on: 'low'
+  payload_off: 'off'
+  speed_state_topic: "zigbee2mqtt/0x0022a3000016d039/set"
+  speed_command_topic:"zigbee2mqtt/0x0022a3000016d039"
+  speeds:
+    - low
+    - medium
+    - high
