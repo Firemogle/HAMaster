@@ -5,8 +5,8 @@ garage_door_open:
       entity_id: cover.garage_door
       state: 'close'
     - service: mqtt.publish
-        data:
-          {
-            "topic": "/garage/gpio/16",
-            "payload": "1"
-          }
+      data:
+        {
+          "topic": "/garage/gpio/16",
+          "payload": "1"
+        }
