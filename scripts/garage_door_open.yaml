@@ -3,7 +3,7 @@ garage_door_open:
   sequence:
     - condition: state
       entity_id: cover.garage_door
-      state: 'open'
+      state: 'close'
     - service: mqtt.publish
         data:
           {
