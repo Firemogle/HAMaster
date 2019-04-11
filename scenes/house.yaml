@@ -59,7 +59,7 @@
       state: off
     fan.fan:
       state: off
-    cover.garage_door
+    cover.garage_door:
       state: closed
 - name: house_wakeup
   entities:
