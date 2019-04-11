@@ -59,6 +59,8 @@
       state: off
     fan.fan:
       state: off
+    cover.garage_door
+      state: closed
 - name: house_wakeup
   entities:
     light.kitchen_sink:
