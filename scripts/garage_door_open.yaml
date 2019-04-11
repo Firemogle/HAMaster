@@ -1,10 +1,9 @@
 garage_door_open:
   alias: garage_door_open
   sequence:
-    - condition:
-       condition: state
-       entity_id: cover.garage_door
-       state: 'closed'
+    - condition: state
+      entity_id: cover.garage_door
+      state: 'closed'
     - service: mqtt.publish
       data:
         {
