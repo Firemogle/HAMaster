@@ -50,6 +50,3 @@
   - data:
       entity_id: script.hvac_run_setpoint
     service: script.turn_on
-  - data:
-      entity_id: script.lockup
-    service: script.turn_on
