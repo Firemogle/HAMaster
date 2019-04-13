@@ -64,7 +64,10 @@ speedtestdotnet:
     - download
     - upload
 
+api:
 alexa:
+  smart_home:
+
 google:
     client_id: !secret GOOGLE_ID
     client_secret: !secret GOOGLE_SECRET
