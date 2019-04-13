@@ -67,6 +67,11 @@ speedtestdotnet:
 api:
 alexa:
   smart_home:
+    endpoint: https://api.amazonalexa.com/v3/events
+    filter:
+      include_domains:
+        - light
+        - switch
 
 google:
     client_id: !secret GOOGLE_ID
