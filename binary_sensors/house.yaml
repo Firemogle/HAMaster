@@ -14,12 +14,23 @@
     house_sts_vacation:
       value_template: >-
         {{ states.calendar.vacation_mode.state == 'on' }}
+        
+- platform: template
+  sensors:
+    house_sts_away_vacation:
+      value_template: >-
+        {{ ((states.proximity.brett_home.state)|float > 120 and 
+           (states.proximity.liz_home.state)|float) > 120 and 
+            is_state('binary_sensor.house_sts_vacation', 'on') }}
+
+
 - platform: template
   sensors:
     house_sts_incoming:
       value_template: >-
         {{ is_state('device_tracker.google_maps_116842525089175776476', 'homecoming')
            or is_state('device_tracker.google_maps_108379141181739394475', 'homecoming') }}
+           
 - platform: template
   sensors:
     house_sts_dte_cheap:
