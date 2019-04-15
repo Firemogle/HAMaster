@@ -1,0 +1,5 @@
+- platform: kodi
+  name: Livingroom_kodi
+  host: 192.168.1.241
+  username: !secret KODI_USR
+  password: !secret KODI_PW
