@@ -148,12 +148,7 @@ nest:
   client_id: !secret NEST_ID
   client_secret: !secret NEST_SECRET
 
-media_player:
-  - platform: kodi
-    name: Livingroom_kodi
-    host: 192.168.1.241
-    username: !secret KODI_USR
-    password: !secret KODI_PW
+
 
 ecobee:
   api_key: !secret ECOBEE_KEY
@@ -164,6 +159,7 @@ stream: # Load streaming for videos
 
 # Items loaded elsewhere
 recorder: !include recorder.yaml
+media_player: !include_dir_merge_list media_players/
 person: !include_dir_merge_list people/
 camera: !include_dir_merge_list cameras/
 cover: !include_dir_merge_list covers/
