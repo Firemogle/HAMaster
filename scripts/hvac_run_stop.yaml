@@ -11,11 +11,8 @@ hvac_run_stop:
           {% else %}
             heat
           {% endif %}
+  - condition: state
+      entity_id: binary_sensor.house_sts_hvac_run
+      state: 'off'
   - service: script.turn_on
-    data_template:
-      entity_id: >
-          {% if is_state('binary_sensor.house_sts_hvac_run', 'off') %}
-            script.wink_refresh
-          {% else %}
-            script.hvac_run_setpoint
-          {% endif %}
+    data: script.hvac_run_setpoint
