@@ -13,6 +13,6 @@ hvac_run_stop:
           {% endif %}
   - condition: state
       entity_id: binary_sensor.house_sts_hvac_run
-      state: 'off'
+      state: 'on'
   - service: script.turn_on
     data: script.hvac_run_setpoint
