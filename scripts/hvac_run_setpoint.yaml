@@ -2,8 +2,8 @@ hvac_run_setpoint:
   alias: hvac_run_setpoint
   sequence:
   - condition: state
-      entity_id: binary_sensor.house_sts_hvac_run
-      state: 'on'
+    entity_id: binary_sensor.house_sts_hvac_run
+    state: 'on'
   - service: script.turn_on
     data_template:
       entity_id: >
