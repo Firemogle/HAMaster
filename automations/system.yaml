@@ -19,17 +19,6 @@
   - service: hassio.addon_restart
     data:
       addon: core_letsencrypt
-      
-#- id: house_automation_ena
-#  alias: house_automation_ena
-#  trigger:
-#  - entity_id: binary_sensor.house_boot_complete
-#    platform: state
-#  condition: []
-#  action:
-#  - data:
-#      entity_id: "all"
-#    service: automation.turn_on
     
 - id: 'ha_start'
   alias: ha_start
@@ -41,9 +30,6 @@
   - data:
       entity_id: script.initialization
     service: script.turn_on
-#  - data:
-#      name: darkred
-#    service: frontend.set_theme
     
 - id: 'house_sts_occupants'
   alias: house_sts_occupants
