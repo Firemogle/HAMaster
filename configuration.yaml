@@ -72,6 +72,7 @@ alexa:
       include_domains:
         - light
         - switch
+        - fan
 
 google:
     client_id: !secret GOOGLE_ID
