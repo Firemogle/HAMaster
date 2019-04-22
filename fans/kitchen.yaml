@@ -2,12 +2,19 @@
   name: kitchen_fan
   command_topic: "zigbee2mqtt/0x0022a3000016d039/set"
   state_topic: "zigbee2mqtt/0x0022a3000016d039"
+  state_value_template: '{{value_json.fan_mode}}'
   availability_topic: "zigbee2mqtt/bridge/state"
-  payload_on: 'low'
-  payload_off: 'off'
-  speed_state_topic: "zigbee2mqtt/0x0022a3000016d039/set"
-  speed_command_topic: "zigbee2mqtt/0x0022a3000016d039"
+  payload_on: {"fan_mode": "low"}
+  payload_off: {"fan_mode": "off"}
+  speed_state_topic: "zigbee2mqtt/0x0022a3000016d039"
+  speed_command_topic: "zigbee2mqtt/0x0022a3000016d039/set"
+  speed_value_template: '{{value_json.fan_mode}}'
   speeds:
     - low
     - medium
     - high
+  payload_low_speed: {"fan_mode": "low"}
+  payload_medium_speed: {"fan_mode": "medium"}
+  payload_high_speed: {"fan_mode": "high"}
+
+
