@@ -73,4 +73,4 @@
     house_wakeup:
       value_template: >-
         {{ is_state('binary_sensor.house_wake_for_work', 'on') 
-           or is_state('binary_sensor.dayoff_wakeup_time', 'on')  }} 
+           or is_state('binary_sensor. house_weekend_wakeup', 'on')  }} 
