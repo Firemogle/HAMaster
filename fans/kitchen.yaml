@@ -28,21 +28,21 @@
         data:
           {
             "topic": "zigbee2mqtt/0x0022a3000016d039/set",
-            "payload": "fan_mode": "low"
+            "payload": "fan_mode: low"
           }
       turn_off:
         service:  mqtt.publish
         data:
           {
             "topic": "zigbee2mqtt/0x0022a3000016d039/set",
-            "payload": "fan_mode": "off"
+            "payload": "fan_mode: off"
           }
       set_speed:
         service: mqtt.publish
         data_template:
           {
             "topic": "zigbee2mqtt/0x0022a3000016d039/set",
-            "payload": "fan_mode": "{{ speed }}"
+            "payload": "fan_mode: {{ speed }}"
           }
       speeds:
         - 'low'
