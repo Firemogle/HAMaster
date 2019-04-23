@@ -18,12 +18,16 @@
   unit_of_measurement: "P"
   
 - platform: mqtt
-  name: "kitchen_fan_state"
-  state_topic: "zigbee2mqtt/0x0022a3000016d039"
-  value_template: "{{ value_json.fan_mode }}"
-  
-- platform: mqtt
   name: "kitchen_fan_speed"
   state_topic: "zigbee2mqtt/0x0022a3000016d039"
   value_template: "{{ value_json.fan_mode }}"
   
+- platform: template
+  sensors:
+    kitchen_fan_state:
+      value_template: >-
+        {% if (states('kitchen_fan_speed')= "off" %}
+          {{ "Off" }}
+        {% else %}
+          {{ "On }}
+        {% endif %}
