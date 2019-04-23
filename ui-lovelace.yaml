@@ -52,7 +52,7 @@ views:
           - fan.kitchen_fan
           - light.cabinet_led
           - light.kitchen_sink
-          - light.light_bulb
+          - light.kitchen_fan
           - sensor.kitchen_leak
           - sensor.kitchen_humidity
           - sensor.kitchen_pressure
@@ -104,9 +104,7 @@ views:
   - title: Basement
     id: house_basement
     cards:
-        # Entities card will take a list of entities and show their state.
       - type: entities
-        # Title of the entities card
         title: Office
         entities:
           - switch.off_4k_mon
@@ -132,12 +130,8 @@ views:
   - title: Other
     id: house_other
     cards:
-        # Entities card will take a list of entities and show their state.
       - type: entities
-        # Title of the entities card
         title: Attic
-        # The entities here will be shown in the same order as specified.
-        # Each entry is an entity ID or a map with extra options.
         entities:
           - sensor.attic_humidity
           - sensor.attic_pressure
@@ -153,7 +147,6 @@ views:
           - light.porch_light
         camera_image: camera.front_porch
       - type: picture-glance
-        # Title of the entities card
         title: Backyard
         entities: []
         camera_image: camera.backyard
@@ -183,12 +176,8 @@ views:
           - sensor.speedtest_upload
           - sensor.vpn_down
           - sensor.vpn_up
-        # Entities card will take a list of entities and show their state.
       - type: entities
-        # Title of the entities card
         title: Network
-        # The entities here will be shown in the same order as specified.
-        # Each entry is an entity ID or a map with extra options.
         entities:
           - sensor.speedtest_download
           - sensor.speedtest_upload
@@ -206,10 +195,9 @@ views:
           - sensor.deluge_down_speed
           - sensor.deluge_up_speed
       - type: entities
-        # Title of the entities card
+
         title: Virtual Server
-        # The entities here will be shown in the same order as specified.
-        # Each entry is an entity ID or a map with extra options.
+
         entities:
           - sensor.virtualserver_generic_memory_data_available_memory
           - sensor.virtualserver_generic_memory_data_used_memory
@@ -229,10 +217,9 @@ views:
           - type: divider
           - sensor.virtualserver_st1000dm010_2ep102_load_used_space
       - type: entities
-        # Title of the entities card
+
         title: Virtual Server
-        # The entities here will be shown in the same order as specified.
-        # Each entry is an entity ID or a map with extra options.
+
         entities:
           - sensor.frankenserver_generic_memory_data_available_memory
           - sensor.frankenserver_generic_memory_data_used_memory
@@ -253,10 +240,9 @@ views:
           - type: divider
           - switch.off_frankenserver
       - type: entities
-        # Title of the entities card
+
         title: HVAC Status
-        # The entities here will be shown in the same order as specified.
-        # Each entry is an entity ID or a map with extra options.
+
         entities:
           - binary_sensor.house_sts_hvac_run
           - binary_sensor.house_sts_hum_passive_req
@@ -269,12 +255,11 @@ views:
   - title: Calibration
     id: house_calibration
     cards:
-        # Entities card will take a list of entities and show their state.
+
       - type: entities
-        # Title of the entities card
+
         title: HVAC
-        # The entities here will be shown in the same order as specified.
-        # Each entry is an entity ID or a map with extra options.
+
         entities:
           - entity: input_number.hvac_home_ac_temp
             name: "Home AC Temp"
