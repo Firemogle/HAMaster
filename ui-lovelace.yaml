@@ -49,7 +49,7 @@ views:
       - type: entities
         title: Kitchen
         entities:
-          - fan.fan
+          - fan.kitchen_fan
           - light.cabinet_led
           - light.kitchen_sink
           - light.light_bulb
