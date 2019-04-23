@@ -1,0 +1,6 @@
+- platform: template
+  sensors:
+    kitchen_fan_state:
+      value_template: >-
+        {{ not is_state('sensor.kitchen_fan_speed', 'off') }}
+        
