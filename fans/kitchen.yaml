@@ -21,7 +21,7 @@
   fans:
     kitchen_fan:
       friendly_name: "Kitchen fan"
-      value_template: "{{ states('sensor.kitchen_fan_state') }}"
+      value_template: "{{ states('binary_sensor.kitchen_fan_state') }}"
       speed_template: "{{ states('sensor.kitchen_fan_speed') }}"
       turn_on:
         service:  mqtt.publish
