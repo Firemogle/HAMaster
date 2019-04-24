@@ -73,4 +73,19 @@
     house_wakeup:
       value_template: >-
         {{ is_state('binary_sensor.house_wake_for_work', 'on') 
-           or is_state('binary_sensor. house_weekend_wakeup', 'on')  }} 
+           or is_state('binary_sensor.house_weekend_wakeup', 'on')  }} 
+           
+           
+- platform: template # Vacation morning
+  sensors:
+    house_wakeup_vacation_morning:
+      value_template: >-
+        {{ is_state('binary_sensor.early_morning', 'on') 
+           and is_state('binary_sensor.house_sts_vacation', 'on')  }}
+           
+- platform: template # Vacation evening
+  sensors:
+    house_wakeup_vacation_evening:
+      value_template: >-
+        {{ is_state('binary_sensor.evening', 'on') 
+           and is_state('binary_sensor.house_sts_vacation', 'on')  }}
