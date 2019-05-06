@@ -9,7 +9,7 @@
   - data:
       entity_id: switch.office_heater
     service_template: >
-      {% if is_state('binary_sensor.off_sts_motion','on') %}
+      {% if is_state('binary_sensor.off_htr_needed','on') %}
         switch.turn_on
       {% else %}
         switch.turn_off
