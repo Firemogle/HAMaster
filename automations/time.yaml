@@ -70,4 +70,4 @@
     service: script.turn_on
   - data:
       entity_id: cover.garage_door
-    service: cover.close
+    service: cover.close_cover
