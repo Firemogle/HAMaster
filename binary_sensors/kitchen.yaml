@@ -9,3 +9,9 @@
   name: sliding_glass_door_opened
   payload_on: "on"
   payload_off: "off"
+
+- platform: mqtt # Garage Door Entry
+  state_topic: "hawirelesslink/binary_sensor/centralite_3320l_0e259d4b_1_1280/state"
+  name: garage_entry_opened
+  payload_on: "on"
+  payload_off: "off"
