@@ -1,0 +1,5 @@
+- platform: mqtt # Living Room Door Entry
+  state_topic: "hawirelesslink/binary_sensor/centralite_3320l_0e4978e2_1_1280/state"
+  name: livingroom_door_opened
+  payload_on: "on"
+  payload_off: "off"
