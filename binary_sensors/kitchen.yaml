@@ -4,3 +4,8 @@
       value_template: >-
         {{ not is_state('sensor.kitchen_fan_speed', 'off') }}
         
+- platform: mqtt # Sliding Glass Door
+  state_topic: "hawirelesslink/binary_sensor/centralite_3315_s_0e4974b8_1_1280/state"
+  name: sliding_glass_door_opened
+  payload_on: "on"
+  payload_off: "off"
