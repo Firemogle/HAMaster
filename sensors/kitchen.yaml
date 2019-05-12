@@ -19,6 +19,5 @@
   
 - platform: mqtt
   name: "kitchen_fan_speed"
-  state_topic: "zigbee2mqtt/0x0022a3000016d039"
-  value_template: "{{ value_json.fan_mode }}"
+  state_topic: "hawirelesslink/fan/king_of_fans_inc_hdc52eastwindfan_0016d039_1_514/speed"
   
