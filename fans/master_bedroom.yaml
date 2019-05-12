@@ -1,0 +1,28 @@
+- platform: template
+  fans:
+    master_fan:
+      friendly_name: "Master fan"
+      value_template: "{{ states('binary_sensor.master_fan_state') }}"
+      speed_template: "{{ states('sensor.master_fan_speed')|replace('\"','') }}"
+      turn_on:
+        service:  mqtt.publish
+        data_template:
+            topic: "/HAwirelesslink/return/fan/king_of_fans_inc_hdc52eastwindfan_0020d39d_1_514/state"
+            payload: 'on'
+      turn_off:
+        service:  mqtt.publish
+        data_template:
+            topic: "/HAwirelesslink/return/fan/king_of_fans_inc_hdc52eastwindfan_0020d39d_1_514/state"
+            payload: 'off'
+      set_speed:
+        service: mqtt.publish
+        data_template:
+            topic: "/HAwirelesslink/return/fan/king_of_fans_inc_hdc52eastwindfan_0020d39d_1_514/speed"
+            payload: '{{ speed }}'
+      speeds:
+        - 'low'
+        - 'medium'
+        - 'high'
+        - 'on'
+        - 'auto'
+        - 'smart'
