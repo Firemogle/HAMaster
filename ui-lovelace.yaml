@@ -68,8 +68,8 @@ views:
       - type: entities
         title: Master Bed
         entities:
-          - fan.fan_2
-          - light.light_bulb_2
+          - fan.master_fan
+          - light.master_fan_light
           - switch.master_tv
           - light.liz_headboard
           - light.brett_headboard
