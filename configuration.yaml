@@ -118,6 +118,8 @@ updater:
 
 # Discover some devices automatically
 discovery:
+  ignore:
+    - wink
 
 # Enables support for tracking state changes over time
 history:
