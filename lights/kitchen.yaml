@@ -6,15 +6,6 @@
   payload_off: "0"
   retain: true
 
-- platform: mqtt
-  name: "kitchen_fan"
-  state_topic: "zigbee2mqtt/0x0022a3000016d039"
-  availability_topic: "zigbee2mqtt/bridge/state"
-  brightness: true
-  schema: "json"
-  command_topic: "zigbee2mqtt/0x0022a3000016d039/set"
-
-
 - platform : mqtt
   name: "kitchen_sink"
   state_topic: "hawirelesslink/light/sengled_e11_g13_031e3554_1/state"
@@ -26,7 +17,7 @@
   retain: true
   
 - platform : mqtt
-  name: "kitchen_sink"
+  name: "kitchen_fan"
   state_topic: "hawirelesslink/light/king_of_fans_inc_hdc52eastwindfan_0016d039_1/state"
   command_topic: "/HAwirelesslink/return/light/king_of_fans_inc_hdc52eastwindfan_0016d039_1/state"
   brightness_state_topic: "hawirelesslink/light/king_of_fans_inc_hdc52eastwindfan_0016d039_1/brightness"
