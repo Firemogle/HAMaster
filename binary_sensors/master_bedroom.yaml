@@ -1,0 +1,5 @@
+- platform: mqtt # Kitchen fan state
+  state_topic: "hawirelesslink/fan/king_of_fans_inc_hdc52eastwindfan_0020d39d_1_514/state"
+  name: kitchen_fan_state
+  payload_on: "on"
+  payload_off: "off"
