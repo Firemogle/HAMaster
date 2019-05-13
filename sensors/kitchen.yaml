@@ -23,10 +23,10 @@
   
 - platform: mqtt
   name: sliding_glass_door_temperature
-  state_topic: "hawirelesslink/sensor/centralite_3315_s_0e4974b8_1_1280/state"
+  state_topic: "hawirelesslink/sensor/centralite_3315_s_0e4974b8_1_1026/state"
   unit_of_measurement: "°F"
   
 - platform: mqtt
   name: garage_entry_temperature
-  state_topic: "hawirelesslink/sensor/centralite_3320l_0e259d4b_1_1280/state"
+  state_topic: "hawirelesslink/sensor/centralite_3320l_0e259d4b_1_1026/state"
   unit_of_measurement: "°F"
