@@ -1,1 +1,4 @@
-
+- platform: mqtt
+  name: front_door_temperature
+  state_topic: "hawirelesslink/sensor/centralite_3320l_0e4978e2_1_1280/state"
+  unit_of_measurement: "°F"
