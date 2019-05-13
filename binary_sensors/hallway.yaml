@@ -9,6 +9,6 @@
 
 - platform: mqtt # Hall window
   state_topic: "hawirelesslink/binary_sensor/centralite_3315_s_0e263b91_1_1280/state"
-  name: sliding_glass_door_opened
+  name: hall_window_opened
   payload_on: "on"
   payload_off: "off"
