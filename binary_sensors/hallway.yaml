@@ -6,3 +6,9 @@
            or is_state('binary_sensor.hallway_motion_2', 'on') }}
       delay_off:
         minutes: 5
+
+- platform: mqtt # Hall window
+  state_topic: "hawirelesslink/binary_sensor/centralite_3315_s_0e263b91_1_1280/state"
+  name: sliding_glass_door_opened
+  payload_on: "on"
+  payload_off: "off"
