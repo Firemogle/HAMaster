@@ -1,4 +1,4 @@
 - platform: mqtt
   name: hall_window_temperature
-  state_topic: "hawirelesslink/sensor/centralite_3315_s_0e263b91_1_1280/state"
+  state_topic: "hawirelesslink/sensor/centralite_3315_s_0e263b91_1_1026/state"
   unit_of_measurement: "°F"
