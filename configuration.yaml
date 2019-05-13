@@ -107,7 +107,7 @@ lovelace:
 config:
 
 # Enable wink for zwave and zigbee
-wink:
+#wink:
 #  local_control: true
 
 #Track the sun
