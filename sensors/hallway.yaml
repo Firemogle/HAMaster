@@ -1,9 +1,4 @@
 - platform: mqtt
-  name: "Hallway Motion Temp"
-  state_topic: "smartthings/hall_motion/temperature"
-  unit_of_measurement: "°F"
-
-- platform: mqtt
-  name: "Hallway Motion Temp 2"
-  state_topic: "smartthings/hall_motion_2/temperature"
+  name: "Hallway Window Temp"
+  state_topic: "hawirelesslink/sensor/centralite_3315_s_0e263b91_1_1280/state"
   unit_of_measurement: "°F"
