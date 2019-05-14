@@ -10,8 +10,8 @@
   name: "kitchen_sink"
   state_topic: "hawirelesslink/light/sengled_e11_g13_031e3554_1/state"
   command_topic: "/HAwirelesslink/return/light/sengled_e11_g13_031e3554_1/state"
-  brightness_state_topic: "hawirelesslink/light/main_bath_vent_light/brightness"
-  brightness_command_topic: "/HAwirelesslink/return/light/main_bath_vent_light/brightness"
+  brightness_state_topic: "hawirelesslink/light/sengled_e11_g13_031e3554_1/brightness"
+  brightness_command_topic: "/HAwirelesslink/return/light/sengled_e11_g13_031e3554_1/brightness"
   payload_on: "on"
   payload_off: "off"
   retain: true
