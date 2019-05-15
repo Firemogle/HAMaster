@@ -1,3 +1,12 @@
 - platform: switch
   name: emi_star_lamp
   entity_id: switch.emi_star_lamp
+
+- platform : mqtt
+  name: emi_star_lamp
+  state_topic: "hawirelesslink/switch/ledvance_plug_00073b5c_1/state"
+  command_topic: "/HAwirelesslink/return/light/ledvance_plug_00073b5c_1/state"
+  payload_on: "on"
+  payload_off: "off"
+  retain: true
+
