@@ -1,0 +1,27 @@
+esphomeyaml:
+  name: garage
+  platform: ESP8266
+  board: nodemcuv2
+
+wifi:
+  ssid: !secret AP
+  password: !secret APPW
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  password: !secret OTA_PW
+
+ota:
+  password: !secret OTA_PW
+
+i2c:
+  sda: D2
+  scl: D1
+  scan: False
+  
+mcp23017:
+  - id: 'mcp23017_hub'
+    address: 0x20
