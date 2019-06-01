@@ -1,15 +1,5 @@
-- platform: template
-  sensors:
-    emi_room_motion:
-      value_template: >-
-        {{ is_state('sensor.emi_motion', 'on') }}
-      delay_on:
-        seconds: 1
-      delay_off:
-        minutes: 30
-
-- platform: mqtt # Kitchen fan state
+- platform: mqtt # Emi fan state
   state_topic: "hawirelesslink/fan/king_of_fans_inc_hbuniversalcfremote_0020d37b_1_514/state"
-  name: master_fan_state
+  name: emi_fan_state
   payload_on: "on"
   payload_off: "off"
