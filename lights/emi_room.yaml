@@ -1,6 +1,4 @@
-- platform: switch
-  name: emi_star_lamp
-  entity_id: switch.emi_star_lamp
+
 
 - platform : mqtt
   name: emi_star_lamp
@@ -10,3 +8,10 @@
   payload_off: "off"
   retain: true
 
+- platform : mqtt
+  name: emi_fan_light
+  state_topic: "hawirelesslink/switch/king_of_fans_inc_hbuniversalcfremote_0020d37b_1_6/state"
+  command_topic: "/HAwirelesslink/return/light/king_of_fans_inc_hbuniversalcfremote_0020d37b_1_6/state"
+  payload_on: "on"
+  payload_off: "off"
+  retain: true
