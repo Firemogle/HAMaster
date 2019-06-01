@@ -1,7 +1,7 @@
 - platform: template
   fans:
     emi_fan:
-      friendly_name: Emi fan"
+      friendly_name: "Emi fan"
       value_template: "{{ states('binary_sensor.emi_fan_state') }}"
       speed_template: "{{ states('sensor.emi_fan_speed')|replace('\"','') }}"
       turn_on:
