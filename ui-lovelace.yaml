@@ -73,11 +73,11 @@ views:
           - switch.master_tv
           - light.liz_headboard
           - light.brett_headboard
-      - type: picture-glance
+      - type: entities
         title: Emi Room
         entities:
-          - fan.fan3
-          - light.light_bulb_3
+          - fan.emi_fan
+          - light.emi_fan_light
           - light.emi_star_lamp
         camera_image: camera.amcrest_camera
       - type: entities
@@ -130,6 +130,10 @@ views:
   - title: Other
     id: house_other
     cards:
+      - type: picture-glance
+        title: Emi Room
+        entities: []
+        camera_image: camera.amcrest_camera
       - type: entities
         title: Attic
         entities:
