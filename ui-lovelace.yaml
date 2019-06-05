@@ -134,7 +134,6 @@ views:
         title: Emi Room
         entities: []
         camera_image: camera.amcrest_camera
-        camera_view: live
       - type: entities
         title: Attic
         entities:
