@@ -160,6 +160,7 @@ ecobee:
     
 system_health: # load system health
 stream: # Load streaming for videos
+ffmpeg:
 
 # Items loaded elsewhere
 recorder: !include recorder.yaml
