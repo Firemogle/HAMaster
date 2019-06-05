@@ -157,6 +157,16 @@ nest:
 ecobee:
   api_key: !secret ECOBEE_KEY
   hold_temp: true
+  
+ring:
+  username: !secret ring_UN
+  password: !secret ring_PW
+  
+abode:
+  username: !secret abode_username
+  password: !secret abode_password
+  name: Abode Alarm System
+  polling: false
     
 system_health: # load system health
 stream: # Load streaming for videos
