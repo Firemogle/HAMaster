@@ -134,6 +134,7 @@ views:
         title: Emi Room
         entities: []
         camera_image: camera.amcrest_camera
+        camera_view: live
       - type: entities
         title: Attic
         entities:
@@ -150,10 +151,12 @@ views:
         entities:
           - light.porch_light
         camera_image: camera.front_porch
+        camera_view: live
       - type: picture-glance
         title: Backyard
         entities: []
         camera_image: camera.backyard
+        camera_view: live
       - type: picture-glance
         title: Garage
         entities:
@@ -168,6 +171,7 @@ views:
         hold_action:
           action: more-info
         camera_image: camera.garage
+        camera_view: live
   - title: System
     id: house_system
     cards:
