@@ -1,7 +1,0 @@
-- platform: ups
-  username: !secret UPSUN
-  password: !secret UPSPW
-  
-- platform: fedex
-  username: !secret FEDEXUN
-  password: !secret FEDEXPW
