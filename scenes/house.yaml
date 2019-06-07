@@ -33,7 +33,7 @@
       state: off
     light.main_bath_vent_light:
       state: off
-    light.main_bath_vanity
+    light.main_bath_vanity:
       state: off
     fan.kitchen_fan:
       state: off
