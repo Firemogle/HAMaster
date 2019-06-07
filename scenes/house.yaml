@@ -7,8 +7,8 @@
     light.main_livingroom:
       state: on
       brightness: 100
-    fan.fan:
-      state: on
+    fan.kitchen_fan:
+      state: low
     switch.livingroom_subwoofer:
       state: on
 - name: house_away
@@ -27,17 +27,19 @@
       state: off
     light.kitchen_fan:
       state: off
-    light.light_bulb_2:
+    light.master_fan_light:
       state: off
-    light.light_bulb_3:
+    light.emi_fan_light:
       state: off
     light.main_bath_vent_light:
       state: off
+    light.main_bath_vanity
+      state: off
     fan.kitchen_fan:
       state: off
-    fan.fan_2:
+    fan.master_fan:
       state: off
-    fan.fan_3:
+    fan.emi_fan:
       state: off
     switch.livingroom_subwoofer:
       state: off
