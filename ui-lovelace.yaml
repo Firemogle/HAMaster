@@ -22,9 +22,10 @@ views:
           - sensor.house_status
         # Garage Door Card
       - type: entities
-        title: Garage Door
+        title: Doors
         entities:
           - cover.garage_door
+          - lock.front_door
         #HVAC control
       - type: thermostat
         entity: climate.hvac
