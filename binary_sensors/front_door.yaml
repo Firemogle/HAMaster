@@ -1,1 +1,5 @@
 - platform: ring
+
+- platform: mqtt
+    name: front_door_lock_stat
+    state_topic: "hawirelesslink/lock/schlage_allegion_be469_touchscreen_deadbolt_locked_4/state"
