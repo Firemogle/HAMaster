@@ -1,8 +1,15 @@
-- platform: mqtt # Sliding Glass Door
-  state_topic: "hawirelesslink/binary_sensor/centralite_3315_s_0e4974b8_1_1280/state"
-  name: sliding_glass_door_opened
-  payload_on: "on"
-  payload_off: "off"
+#- platform: mqtt # Sliding Glass Door
+#  state_topic: "hawirelesslink/binary_sensor/centralite_3315_s_0e4974b8_1_1280/state"
+#  name: sliding_glass_door_opened
+#  payload_on: "on"
+#  payload_off: "off"
+  
+- platform: template
+    sensors:
+      sliding_glass_door_opened:
+        friendly_name: "Sliding Glass Door"
+        value_template: >-
+          {{ is_state('binary_sensor.sliding_glass_door', 'on') }}
 
 - platform: mqtt # Garage Door Entry
   state_topic: "hawirelesslink/binary_sensor/centralite_3320l_0e259d4b_1_1280/state"
