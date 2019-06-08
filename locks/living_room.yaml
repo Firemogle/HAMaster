@@ -4,3 +4,4 @@
   command_topic: "/HAwirelesslink/return/hawirelesslink/lock/schlage_allegion_be469_touchscreen_deadbolt_locked_4/state"
   payload_lock: "LOCK"
   payload_unlock: "UNLOCK"
+  value_template: '{{ value.x }}'
