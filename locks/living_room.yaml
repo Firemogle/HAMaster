@@ -8,7 +8,7 @@
   
   
 - platform: template
-  name: Garage door
+  name: front_door
   value_template: "{{ states('binary_sensor.front_door_lock_stat') }}"
   lock:
     service: lock.lock
