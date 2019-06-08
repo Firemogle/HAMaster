@@ -1,5 +1,5 @@
 - platform: mqtt
-  name: Frontdoor
+  name: front_door
   state_topic: "hawirelesslink/lock/schlage_allegion_be469_touchscreen_deadbolt_locked_4/state"
   command_topic: "/HAwirelesslink/return/hawirelesslink/lock/schlage_allegion_be469_touchscreen_deadbolt_locked_4/state"
   payload_lock: "LOCK"
