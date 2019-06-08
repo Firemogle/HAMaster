@@ -29,10 +29,6 @@ views:
         #HVAC control
       - type: thermostat
         entity: climate.hvac
-      - type: entities
-        title: House information
-        entities:
-          - sensor.zestimate
     # Main Level 
   - title: Main Level
     id: house_main
