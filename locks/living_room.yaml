@@ -1,7 +1,20 @@
 - platform: mqtt
-  name: front_door
+  name: front_door_dummy
   state_topic: "hawirelesslink/lock/schlage_allegion_be469_touchscreen_deadbolt_locked_4/state"
   command_topic: "/HAwirelesslink/return/hawirelesslink/lock/schlage_allegion_be469_touchscreen_deadbolt_locked_4/state"
   payload_lock: "LOCK"
   payload_unlock: "UNLOCK"
   value_template: "{{ value | replace('ed','') }}"
+  
+  
+- platform: template
+  name: Garage door
+  value_template: "{{ states('binary_sensor.front_door_lock_stat') }}"
+  lock:
+    service: lock.lock
+    data:
+      entity_id: lock.front_door_dummy
+  unlock:
+    service: lock.unlock
+    data:
+      entity_id: lock.front_door_dummy
