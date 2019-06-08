@@ -42,6 +42,7 @@ views:
           - sensor.hvac_humidity
           - sensor.hvac_temperature
           - binary_sensor.livingroom_door_opened
+          - binary_sensor.living_room_window
           - switch.livingroom_subwoofer
       - type: entities
         title: Kitchen
