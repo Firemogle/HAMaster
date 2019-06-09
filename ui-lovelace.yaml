@@ -20,6 +20,9 @@ views:
           - person.liz
           - group.security
           - sensor.house_status
+      - type: alarm-panel
+        name: House Alarm
+        entity: alarm_control_panel.alarm_panel
         # Garage Door Card
       - type: entities
         title: Doors
