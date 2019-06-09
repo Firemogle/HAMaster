@@ -42,7 +42,7 @@ http:
 
 alarm_control_panel:
   - platform: manual
-  - alarm_panel
+  - name: alarm_panel
   - code !secrect alarmcode
 
 device_tracker:
