@@ -60,6 +60,7 @@ views:
           - sensor.garage_entry_temperature
           - binary_sensor.garage_entry_opened
           - binary_sensor.sliding_glass_door_opened
+          - binary_sensor.kitchen_motion
 
   - title: Upstairs
     id: house_upstairs
