@@ -42,8 +42,8 @@ http:
 
 alarm_control_panel:
   - platform: manual
-  - name: alarm_panel
-  - code !secrect alarmcode
+    name: alarm_panel
+    code !secrect alarmcode
 
 device_tracker:
   - platform: google_maps
