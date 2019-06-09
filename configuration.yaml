@@ -40,7 +40,10 @@ http:
   ip_ban_enabled: true # Allow bans
   login_attempts_threshold: 3 # Ban after 3 failed attempts
 
-
+alarm_control_panel:
+  - platform: manual
+  - alarm_panel
+  - code !secrect alarmcode
 
 device_tracker:
   - platform: google_maps
