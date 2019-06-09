@@ -25,3 +25,11 @@
   payload_on: "on"
   payload_off: "off"
   retain: true
+
+- platform : mqtt
+  name: "kitchen_lamp"
+  state_topic: "hawirelesslink/switch/jasco_products_26931_smart_motion_switch_switch/state"
+  command_topic: "/HAwirelesslink/return/light/jasco_products_26931_smart_motion_switch_switch/state"
+  payload_on: "on"
+  payload_off: "off"
+  retain: true
