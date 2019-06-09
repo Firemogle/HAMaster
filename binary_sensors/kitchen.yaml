@@ -22,3 +22,9 @@
   name: kitchen_fan_state
   payload_on: "on"
   payload_off: "off"
+
+- platform: mqtt # Kitchen motion
+  state_topic: "hawirelesslink/sensor/jasco_products_26931_smart_motion_switch_burglar/state"
+  name: kitchen_motion
+  payload_on: "8"
+  payload_off: "0"
