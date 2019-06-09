@@ -43,7 +43,7 @@ http:
 alarm_control_panel:
   - platform: manual
     name: alarm_panel
-    code !secrect alarmcode
+    code !secret alarmcode
 
 device_tracker:
   - platform: google_maps
