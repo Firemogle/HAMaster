@@ -7,6 +7,6 @@ front_door_unlock:
     - service: mqtt.publish
       data:
         {
-          "topic": "/garage/gpio/16",
-          "payload": "1"
+          "topic": "/HAwirelesslink/return/hawirelesslink/lock/schlage_allegion_be469_touchscreen_deadbolt_locked_4/state",
+          "payload": "UNLOCK"
         }
