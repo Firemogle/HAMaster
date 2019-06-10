@@ -1,0 +1,18 @@
+    
+front_door_unlock:
+  alias: front_door_unlock
+  sequence:
+    - condition: state
+      entity_id: alarm_control_panel.alarm_panel
+      state: 'disarmed'
+    - condition: state
+      entity_id: binary_sensor.livingroom_door_opened
+      state: 'off'
+    - service: mqtt.publish
+      data:
+        {
+          "topic": "/HAwirelesslink/return/hawirelesslink/lock/schlage_allegion_be469_touchscreen_deadbolt_locked_4/state",
+          "payload": "UNLOCK"
+        }
+        
+        
