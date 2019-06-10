@@ -24,7 +24,7 @@
       value_template: >-
         {% if is_state('house_sts_hvac_shut', 'off') %}
           {{ (states('sensor.hvac_humidity')|float+states('input_number.main_bath_humidity_thresh')|float) }}
-        {% if (states('sensor.hvac_humidity')|float+states('input_number.main_bath_humidity_thresh')|float) > (states('input_number.hvac_humidity_max'))|float %}
+        {% elif (states('sensor.hvac_humidity')|float+states('input_number.main_bath_humidity_thresh')|float) > (states('input_number.hvac_humidity_max'))|float %}
           {{ (states('input_number.hvac_humidity_max')|float+states('input_number.main_bath_humidity_thresh')|float) }}
         {% else %}
           {{ (states('sensor.hvac_target_humidity')|float+states('input_number.main_bath_humidity_thresh')|float) }}
