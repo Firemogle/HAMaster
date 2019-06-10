@@ -11,10 +11,6 @@
   name: front_door
   value_template: "{{ states('binary_sensor.front_door_lock_stat') }}"
   lock:
-    service: lock.lock
-    data:
-      entity_id: lock.front_door_dummy
+    service: script.front_door_lock
   unlock:
-    service: lock.unlock
-    data:
-      entity_id: lock.front_door_dummy
+    service: script.front_door_unlock
