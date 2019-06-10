@@ -4,6 +4,9 @@ garage_door_open:
     - condition: state
       entity_id: cover.garage_door
       state: 'closed'
+    - condition: state
+      entity_id: alarm_control_panel.alarm_panel
+      state: 'disarmed'
     - service: mqtt.publish
       data:
         {
