@@ -1,0 +1,12 @@
+front_door_unlock:
+  alias: front_door_unlock
+  sequence:
+    - condition: state
+      entity_id: alarm_control_panel.alarm_panel
+      state: 'disarmed'
+    - service: mqtt.publish
+      data:
+        {
+          "topic": "/garage/gpio/16",
+          "payload": "1"
+        }
