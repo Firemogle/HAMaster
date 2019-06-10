@@ -43,6 +43,8 @@ http:
 alarm_control_panel:
   - platform: manual
     name: alarm_panel
+    pending_time: 5
+    
     code: !secret alarmcode
 
 device_tracker:
