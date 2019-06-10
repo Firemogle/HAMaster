@@ -1,10 +1,7 @@
     
-front_door_unlock:
-  alias: front_door_unlock
+front_door_lock:
+  alias: front_door_lock
   sequence:
-    - condition: state
-      entity_id: alarm_control_panel.alarm_panel
-      state: 'disarmed'
     - condition: state
       entity_id: binary_sensor.livingroom_door_opened
       state: 'off'
@@ -12,7 +9,7 @@ front_door_unlock:
       data:
         {
           "topic": "/HAwirelesslink/return/hawirelesslink/lock/schlage_allegion_be469_touchscreen_deadbolt_locked_4/state",
-          "payload": "UNLOCK"
+          "payload": "LOCK"
         }
         
         
