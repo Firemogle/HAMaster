@@ -61,3 +61,12 @@
           {% endif -%}{{ states[parts[0]][parts[1]].name }} : {{ states[parts[0]][parts[1]].state }}
         {%- endfor %}
     service: notify.gmail_notify
+  - data:
+      entity_id: alarm_control_panel.alarm_panel
+      code: !secret alarmcode
+    service_template: >
+      {% if is_state('house_status', 'Away') %}
+        alarm_control_panel.alarm_arm_away
+      {% else %}
+        alarm_control_panel.alarm_disarm
+      {% endif %}
