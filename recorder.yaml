@@ -13,6 +13,12 @@ exclude: # Configure recorder to not record extrainious data
     - binary_sensor.garage_camera_person_detected
     - binary_sensor.garage_door_bin
     - binary_sensor.home_away
+    - binary_sensor.front_door_lock_stat
+    - binary_sensor.laundry_motion_1
+    - binary_sensor.laundry_motion_2
+    - binary_sensor.laundry_motion_3
+    - binary_sensor.laundry_motion_4
+    - binary_sensor.laundry_motion_5
     - hangouts.conversations
     - sensor.amcrest_camera_motion_detected
     - sensor.dark_sky_icon
