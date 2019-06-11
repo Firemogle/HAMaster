@@ -43,6 +43,8 @@
       state: off
     switch.livingroom_subwoofer:
       state: off
+    lock.front_door:
+      state: locked
 - name: house_night
   entities:
     light.kitchen_sink:
@@ -59,6 +61,8 @@
       state: off
     fan.kitchen_fan:
       state: off
+    lock.front_door:
+      state: locked
 - name: house_wakeup
   entities:
     light.kitchen_sink:
