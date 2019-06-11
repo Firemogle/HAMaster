@@ -47,6 +47,10 @@ views:
           - binary_sensor.livingroom_door_opened
           - binary_sensor.living_room_window
           - switch.livingroom_subwoofer
+      - type: media-control
+        entity: media_player.living_room_un55ju6400
+      - type: media-control
+        entity: media_player.livingroom_kodi
       - type: entities
         title: Kitchen
         entities:
@@ -76,6 +80,8 @@ views:
           - switch.master_tv
           - light.liz_headboard
           - light.brett_headboard
+      - type: media-control
+        entity: media_player.master_tv
       - type: entities
         title: Emi Room
         entities:
@@ -89,6 +95,7 @@ views:
           - light.main_bath_vanity
           - light.main_bath_vent_light
           - switch.main_bath_fan
+          - binary_sensor.main_bath_motion
           - sensor.bathroom_vent_humidity
           - sensor.bathroom_vent_pressure
           - sensor.bathroom_vent_temperature
