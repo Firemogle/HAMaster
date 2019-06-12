@@ -90,6 +90,17 @@ notify:
     recipient:
       - !secret GMAILBRETT
       - !secret GMAILLIZ
+  - name: brett_notify
+    platform: smtp
+    server: smtp.gmail.com
+    port: 587
+    timeout: 15
+    sender: !secret GMAILUN
+    encryption: starttls
+    username: !secret GMAILUN
+    password: !secret GMAILPW
+    recipient:
+      - !secret GMAILBRETT
     sender_name: Home Assistant
   - name: ecobee_notify
     platform: ecobee
