@@ -125,9 +125,6 @@ amcrest:
   - host: 192.168.1.244
     username: !secret AMCREST_USER
     password: !secret AMCREST_PW
-    scan_interval: 1
-    sensors:
-      - motion_detector
     stream_source: mjpeg
 
 nest:
