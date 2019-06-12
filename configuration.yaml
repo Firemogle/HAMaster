@@ -76,34 +76,6 @@ alexa:
 google:
     client_id: !secret GOOGLE_ID
     client_secret: !secret GOOGLE_SECRET
-  
-notify:
-  - name: gmail_notify
-    platform: smtp
-    server: smtp.gmail.com
-    port: 587
-    timeout: 15
-    sender: !secret GMAILUN
-    encryption: starttls
-    username: !secret GMAILUN
-    password: !secret GMAILPW
-    recipient:
-      - !secret GMAILBRETT
-      - !secret GMAILLIZ
-  - name: brett_notify
-    platform: smtp
-    server: smtp.gmail.com
-    port: 587
-    timeout: 15
-    sender: !secret GMAILUN
-    encryption: starttls
-    username: !secret GMAILUN
-    password: !secret GMAILPW
-    recipient:
-      - !secret GMAILBRETT
-    sender_name: Home Assistant
-  - name: ecobee_notify
-    platform: ecobee
 
 # Enables the frontend
 frontend:
@@ -162,8 +134,6 @@ nest:
   client_id: !secret NEST_ID
   client_secret: !secret NEST_SECRET
 
-
-
 ecobee:
   api_key: !secret ECOBEE_KEY
   hold_temp: true
@@ -200,3 +170,4 @@ scene: !include_dir_merge_list scenes/
 zone: !include_dir_merge_list zones/
 input_number: !include input_number.yaml
 fan: !include_dir_merge_list fans/
+notify: !include notify.yaml
