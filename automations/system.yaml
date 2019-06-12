@@ -5,7 +5,7 @@
     platform: state
     entity_id: updater.updater
   action:
-    service: notify.gmail_notify
+    service: notify.brett_notify
     data:
       message: 'Update for Home Assistant is available.'
       
@@ -52,14 +52,7 @@
     service: scene.turn_on  
   - data_template:
       message: >
-        Occupancy mode changed to {{ states('binary_sensor.house_sts_occupants') }} , status :
-        {%- for entity_id in states.group.security.attributes.entity_id  -%}
-          {% set parts = entity_id.split('.') -%}
-          {%- if loop.first %} 
-          {% elif loop.last %}
-          {% else %}
-          {% endif -%}{{ states[parts[0]][parts[1]].name }} : {{ states[parts[0]][parts[1]].state }}
-        {%- endfor %}
+        Occupancy mode changed to {{ states('binary_sensor.house_sts_occupants') }}
     service: notify.gmail_notify
   - data:
       entity_id: alarm_control_panel.alarm_panel
