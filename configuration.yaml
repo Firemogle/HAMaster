@@ -125,7 +125,7 @@ amcrest:
   - host: 192.168.1.244
     username: !secret AMCREST_USER
     password: !secret AMCREST_PW
-    stream_source: mjpeg
+    stream_source: rtsp
 
 nest:
   client_id: !secret NEST_ID
