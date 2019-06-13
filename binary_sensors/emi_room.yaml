@@ -3,3 +3,9 @@
   name: emi_fan_state
   payload_on: "on"
   payload_off: "off"
+
+- platform: mqtt # Garage Door Entry
+  state_topic: "hawirelesslink/binary_sensor/imagic_by_greatstar_1117_s_fe53fcd3_1_1280/state"
+  name: emi_motion
+  payload_on: "on"
+  payload_off: "off"
