@@ -90,6 +90,8 @@ views:
           - fan.emi_fan
           - light.emi_fan_light
           - light.emi_star_lamp
+          - binary_sensor.emi_motion
+          - sensor.emi_temp
         camera_image: camera.amcrest_camera
       - type: entities
         title: Main Bath
