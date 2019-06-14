@@ -4,5 +4,5 @@
 
 - platform: mqtt
   name: emi_temp
-  state_topic: "hawirelesslink/sensor/imagic_by_greatstar_1117_s_fe53fcd3_1_1280/state"
+  state_topic: "hawirelesslink/sensor/imagic_by_greatstar_1117_s_fe53fcd3_1_1026/state"
   unit_of_measurement: "°F"
