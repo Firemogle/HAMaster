@@ -18,7 +18,6 @@ views:
         entities:
           - person.brett
           - person.liz
-          - group.security
           - sensor.house_status
       - type: alarm-panel
         name: House Alarm
