@@ -39,6 +39,8 @@ http:
   base_url: !secret DYNSITE
   ip_ban_enabled: true # Allow bans
   login_attempts_threshold: 3 # Ban after 3 failed attempts
+  
+websocket_api:
 
 alarm_control_panel:
   - platform: manual
