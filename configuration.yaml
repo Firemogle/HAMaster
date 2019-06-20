@@ -90,10 +90,6 @@ lovelace:
 # Enables configuration UI
 config:
 
-# Enable wink for zwave and zigbee
-#wink:
-#  local_control: true
-
 #Track the sun
 sun:
 
@@ -106,10 +102,10 @@ discovery:
     - wink
 
 # Enables support for tracking state changes over time
-history:
+#history:
 
 # View all events in a logbook
-logbook:
+#logbook:
 
 logger:
   default: warning
