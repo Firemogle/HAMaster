@@ -5,9 +5,6 @@ initialization:
     data:
       name: darkred
   - delay: '00:05:00'
-  - service: script.turn_on
-    data:
-      entity_id: script.wink_refresh
   - service: automation.turn_on
     data:
       entity_id: "all"
