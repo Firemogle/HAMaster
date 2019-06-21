@@ -15,16 +15,19 @@ views:
         # Card for status bits.
       - type: entities
         title: Home Status
+        show_header_toggle: false
         entities:
           - person.brett
           - person.liz
           - sensor.house_status
       - type: alarm-panel
         name: House Alarm
+        show_header_toggle: false
         entity: alarm_control_panel.alarm_panel
         # Garage Door Card
       - type: entities
         title: Doors
+        show_header_toggle: false
         entities:
           - cover.garage_door
           - lock.front_door
@@ -37,6 +40,7 @@ views:
     cards:
       - type: entities
         title: Living room
+        show_header_toggle: false
         entities:
           - light.main_livingroom
           - light.jayhawk_candle
@@ -50,6 +54,7 @@ views:
         entity: media_player.livingroom_media
       - type: entities
         title: Kitchen
+        show_header_toggle: false
         entities:
           - fan.kitchen_fan
           - light.cabinet_led
@@ -71,6 +76,7 @@ views:
     cards:
       - type: entities
         title: Master Bed
+        show_header_toggle: false
         entities:
           - fan.master_fan
           - light.master_fan_light
@@ -81,6 +87,7 @@ views:
         entity: media_player.master_tv
       - type: entities
         title: Emi Room
+        show_header_toggle: false
         entities:
           - fan.emi_fan
           - light.emi_fan_light
@@ -90,6 +97,7 @@ views:
         camera_image: camera.amcrest_camera
       - type: entities
         title: Main Bath
+        show_header_toggle: false
         entities:
           - light.main_bath_vanity
           - light.main_bath_vent_light
@@ -102,6 +110,7 @@ views:
           - binary_sensor.main_bath_vent_needed
       - type: entities
         title: Hallway
+        show_header_toggle: false
         entities:
           - light.hallway
           - binary_sensor.hallway_motion_combine
@@ -115,6 +124,7 @@ views:
     cards:
       - type: entities
         title: Office
+        show_header_toggle: false
         entities:
           - switch.off_4k_mon
           - switch.off_computron3000
@@ -127,6 +137,7 @@ views:
       - type: entities
         # Title of the entities card
         title: Laundry Room
+        show_header_toggle: false
         entities:
           - switch.laundry_room_litter_box
           - binary_sensor.laundry_motion_1
@@ -142,6 +153,7 @@ views:
     cards:
       - type: entities
         title: Attic
+        show_header_toggle: false
         entities:
           - sensor.attic_humidity
           - sensor.attic_pressure
@@ -149,10 +161,12 @@ views:
         # Add front porch
       - type: entities
         title: "Front Porch"
+        show_header_toggle: false
         entities:
           - light.porch_light
       - type: entities
         title: Garage
+        show_header_toggle: false
         entities:
           - binary_sensor.garage_door_bin
           - binary_sensor.garage_camera_motion_detected
@@ -197,6 +211,7 @@ views:
           - sensor.vpn_up
       - type: entities
         title: Network
+        show_header_toggle: false
         entities:
           - sensor.speedtest_download
           - sensor.speedtest_upload
@@ -214,9 +229,8 @@ views:
           - sensor.deluge_down_speed
           - sensor.deluge_up_speed
       - type: entities
-
         title: Virtual Server
-
+        show_header_toggle: false
         entities:
           - sensor.virtualserver_generic_memory_data_available_memory
           - sensor.virtualserver_generic_memory_data_used_memory
@@ -236,9 +250,8 @@ views:
           - type: divider
           - sensor.virtualserver_st1000dm010_2ep102_load_used_space
       - type: entities
-
         title: Virtual Server
-
+        show_header_toggle: false
         entities:
           - sensor.frankenserver_generic_memory_data_available_memory
           - sensor.frankenserver_generic_memory_data_used_memory
@@ -259,9 +272,8 @@ views:
           - type: divider
           - switch.off_frankenserver
       - type: entities
-
         title: HVAC Status
-
+        show_header_toggle: false
         entities:
           - binary_sensor.house_sts_hvac_run
           - binary_sensor.house_sts_hum_passive_req
@@ -274,11 +286,9 @@ views:
   - title: Calibration
     id: house_calibration
     cards:
-
       - type: entities
-
         title: HVAC
-
+        show_header_toggle: false
         entities:
           - entity: input_number.hvac_home_ac_temp
             name: "Home AC Temp"
@@ -306,18 +316,14 @@ views:
           - entity: input_number.hvac_heat_enable_temp
             name: "Heat enable temp"  
       - type: entities
-        # Title of the entities card
         title: Office
-        # The entities here will be shown in the same order as specified.
-        # Each entry is an entity ID or a map with extra options.
+        show_header_toggle: false
         entities:
           - entity: input_number.office_heater_thresh
             name: "Office heater threshold"
       - type: entities
-        # Title of the entities card
         title: "Main Bath"
-        # The entities here will be shown in the same order as specified.
-        # Each entry is an entity ID or a map with extra options.
+        show_header_toggle: false
         entities:
           - entity: input_number.main_bath_humidity_thresh
             name: "Vent humidity threshold"
