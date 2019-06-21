@@ -140,13 +140,10 @@ views:
           - sensor.laundry_temp
           - sensor.laundry_humidity
           - sensor.laundry_pressure
+          
   - title: Other
     id: house_other
     cards:
-      - type: picture-glance
-        title: Emi Room
-        entities: []
-        camera_image: camera.amcrest_camera
       - type: entities
         title: Attic
         entities:
@@ -154,14 +151,36 @@ views:
           - sensor.attic_pressure
           - sensor.attic_temp
         # Add front porch
-      - type: picture-glance
+      - type: entities
         title: "Front Porch"
-        tap_action:
-          action: toggle
-        hold_action:
-          action: more-info
         entities:
           - light.porch_light
+      - type: entities
+        title: Backyard
+        entities: []
+      - type: entities
+        title: Garage
+        entities:
+          - binary_sensor.garage_door_bin
+          - binary_sensor.garage_camera_motion_detected
+          - binary_sensor.garage_door_back
+          - sensor.garage_energy
+          - sensor.garage_pressure
+          - sensor.garage_temperature
+  - title: Cameras
+    id: house_camera
+    cards:
+      - type: picture-glance
+        title: Emi Room
+        entities: []
+        camera_image: camera.amcrest_camera
+      - type: entities
+        title: Attic
+        entities: []
+        # Add front porch
+      - type: picture-glance
+        title: "Front Porch"
+        entities: []
         camera_image: camera.front_porch
         camera_view: live
       - type: picture-glance
@@ -171,17 +190,7 @@ views:
         camera_view: live
       - type: picture-glance
         title: Garage
-        entities:
-          - binary_sensor.garage_door_bin
-          - binary_sensor.garage_camera_motion_detected
-          - binary_sensor.garage_door_back
-          - sensor.garage_energy
-          - sensor.garage_pressure
-          - sensor.garage_temperature
-        tap_action:
-          action: toggle
-        hold_action:
-          action: more-info
+        entities: []
         camera_image: camera.garage
         camera_view: live
   - title: System
