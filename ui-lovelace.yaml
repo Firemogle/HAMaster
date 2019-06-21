@@ -156,9 +156,6 @@ views:
         entities:
           - light.porch_light
       - type: entities
-        title: Backyard
-        entities: []
-      - type: entities
         title: Garage
         entities:
           - binary_sensor.garage_door_bin
@@ -174,9 +171,6 @@ views:
         title: Emi Room
         entities: []
         camera_image: camera.amcrest_camera
-      - type: entities
-        title: Attic
-        entities: []
         # Add front porch
       - type: picture-glance
         title: "Front Porch"
