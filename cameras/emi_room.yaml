@@ -1,0 +1,4 @@
+- platform: generic
+  name: emi_camera
+  still_image_url: "http://firemogle:Xeon40!!@192.168.1.244/cgi-bin/snapshot.cgi"
+  stream_source: "rtsp://firemogle:Xeon40!!@192.168.1.244:554/cam/realmonitor?channel=1&subtype=1"
