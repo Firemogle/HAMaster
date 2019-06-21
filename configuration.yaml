@@ -38,7 +38,7 @@ http:
   ssl_key: /ssl/privkey.pem
   base_url: !secret DYNSITE
   ip_ban_enabled: true # Allow bans
-  login_attempts_threshold: 3 # Ban after 3 failed attempts
+  login_attempts_threshold: 10 # Ban after 10 failed attempts
   
 websocket_api:
 
