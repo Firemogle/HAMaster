@@ -9,3 +9,11 @@
   host: 192.168.1.241
   adb_server_ip: 127.0.0.1
   adb_server_port: 5037
+
+- platform: universal
+  name: livingroom_media
+  children:
+    - media_player.Livingroom_kodi
+    - media_player.livingroom_shield
+    - media_player.living_room_un55ju6400
+    - media_player.living_room_tv
