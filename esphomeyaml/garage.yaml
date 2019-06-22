@@ -25,3 +25,23 @@ i2c:
 mcp23017:
   - id: 'mcp23017_hub'
     address: 0x20
+    
+ads1115:
+  - address: 0x48
+  - id: ads1115_1
+  
+ads1115:
+  - address: 0x49
+  - id: ads1115_2
+  
+sensor:
+  - platform: bme280
+    temperature:
+      name: "Garage Temperature"
+      oversampling: 16x
+    pressure:
+      name: "Garage Pressure"
+    humidity:
+      name: "Garage Humidity"
+    address: 0x77
+    update_interval: 60s
