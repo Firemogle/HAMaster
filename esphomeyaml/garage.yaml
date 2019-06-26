@@ -181,3 +181,10 @@ binary_sensor:
     mode: INPUT_PULLUP
     name: "Garage Motion"
     device_class: moving
+
+display:
+  - platform: ssd1306_i2c
+    model: "SSD1306 128x64"
+    address: 0x3C
+    lambda: |-
+      it.print(0, 0, id(font), "Hello World!");
