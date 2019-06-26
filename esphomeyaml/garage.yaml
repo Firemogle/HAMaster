@@ -174,3 +174,10 @@ esp32_camera:
   power_down_pin: GPIO26
   name: garage_camera
   jpeg_quality: 10
+
+binary_sensor:
+  - platform: gpio
+    pin: D33
+    mode: INPUT_PULLUP
+    name: "Garage Motion"
+    device_class: moving
