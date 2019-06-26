@@ -18,8 +18,8 @@ ota:
   password: !secret OTA_PW
 
 i2c:
-  sda: D2
-  scl: D1
+  sda: D21
+  scl: D22
   scan: False
   
 mcp23017:
@@ -161,17 +161,16 @@ cover:
     assumed_state: true
     
 esp32_camera:
-  name: garage_camera
   external_clock:
-    pin: GPIO27
+    pin: GPIO32
     frequency: 20MHz
   i2c_pins:
-    sda: GPIO25
-    scl: GPIO23
-  data_pins: [GPIO17, GPIO35, GPIO34, GPIO5, GPIO39, GPIO18, GPIO36, GPIO19]
-  vsync_pin: GPIO22
-  href_pin: GPIO26
-  pixel_clock_pin: GPIO21
-  reset_pin: GPIO15
-  resolution: 640x480
+    sda: GPIO13
+    scl: GPIO12
+  data_pins: [GPIO5, GPIO14, GPIO4, GPIO15, GPIO18, GPIO23, GPIO36, GPIO39]
+  vsync_pin: GPIO27
+  href_pin: GPIO25
+  pixel_clock_pin: GPIO19
+  power_down_pin: GPIO26
+  name: garage_camera
   jpeg_quality: 10
