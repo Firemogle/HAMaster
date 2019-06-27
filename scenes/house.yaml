@@ -8,7 +8,7 @@
       state: on
       brightness: 100
     fan.kitchen_fan:
-      state: low
+      speed: low
     switch.livingroom_subwoofer:
       state: on
 - name: house_away
