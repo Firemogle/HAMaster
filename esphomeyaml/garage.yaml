@@ -1,7 +1,7 @@
 esphomeyaml:
   name: garage
-  platform: ESP8266
-  board: nodemcuv2
+  platform: ESP32
+  board: esp-wrover-kit
 
 wifi:
   ssid: !secret AP
@@ -18,8 +18,8 @@ ota:
   password: !secret OTA_PW
 
 i2c:
-  sda: D21
-  scl: D22
+  sda: 21
+  scl: 22
   scan: False
   
 mcp23017:
@@ -163,19 +163,19 @@ esp32_camera:
     pin: GPIO32
     frequency: 20MHz
   i2c_pins:
-    sda: GPIO13
-    scl: GPIO12
-  data_pins: [GPIO5, GPIO14, GPIO4, GPIO15, GPIO18, GPIO23, GPIO36, GPIO39]
-  vsync_pin: GPIO27
-  href_pin: GPIO25
-  pixel_clock_pin: GPIO19
-  power_down_pin: GPIO26
+    sda: 13
+    scl: 12
+  data_pins: [5, 14, 4, 15, 18, 23, 36, 39]
+  vsync_pin: 27
+  href_pin: 25
+  pixel_clock_pin: 9
+  power_down_pin: 26
   name: garage_camera
   jpeg_quality: 10
 
 binary_sensor:
   - platform: gpio
-    pin: D33
+    pin: 33
     mode: INPUT_PULLUP
     name: "Garage Motion"
     device_class: moving
