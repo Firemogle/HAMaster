@@ -28,7 +28,7 @@ mcp23017:
     
 ads1115:
   - address: 0x48
-#  - id: ads1115_1
+  - id: a2d1
 #  - address: 0x49
 #  - id: ads1115_2
   
@@ -84,9 +84,7 @@ sensor:
     gain: 6.144
     name: "Soil Moisture 8"
   - platform: pulse_counter
-    pin: 
-      mcp23017: mcp23017_hub
-      number: 8
+    pin: 34
     name: "water_flow_pulse"
     
 switch:
