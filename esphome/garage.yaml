@@ -177,10 +177,15 @@ binary_sensor:
     pin: 33
     name: "Garage Motion"
     device_class: moving
+    
+font:
+  - file: "Comic Sans MS.ttf"
+    id: my_font
+    size: 20
 
 display:
   - platform: ssd1306_i2c
     model: "SSD1306 128x64"
     address: 0x3C
     lambda: |-
-      it.print(0, 0, id(font), "Hello World!");
+      it.print(0, 0, my_font, "Hello World!");
