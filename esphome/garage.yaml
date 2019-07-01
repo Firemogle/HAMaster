@@ -29,8 +29,8 @@ mcp23017:
 ads1115:
   - address: 0x48
   - id: ads1115_1
-  - address: 0x49
-  - id: ads1115_2
+#  - address: 0x49
+#  - id: ads1115_2
   
 sensor:
   - platform: bme280
@@ -176,7 +176,6 @@ esp32_camera:
 binary_sensor:
   - platform: gpio
     pin: 33
-    mode: INPUT_PULLUP
     name: "Garage Motion"
     device_class: moving
 
