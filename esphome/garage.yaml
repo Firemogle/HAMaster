@@ -28,7 +28,7 @@ mcp23017:
     
 ads1115:
   - address: 0x48
-  - id: ads1115_1
+#  - id: ads1115_1
 #  - address: 0x49
 #  - id: ads1115_2
   
