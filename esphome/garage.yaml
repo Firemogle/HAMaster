@@ -179,7 +179,7 @@ binary_sensor:
     device_class: moving
     
 font:
-  - file: "Comic Sans MS.ttf"
+  - file: "FFF_Tusj.ttf"
     id: my_font
     size: 20
 
