@@ -90,6 +90,7 @@ sensor:
 switch:
   - platform: gpio
     name: garage_door_act
+    id: garage_door_act
     pin:
       mcp23017: mcp23017_hub
       number: 0
