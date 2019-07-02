@@ -202,7 +202,13 @@ views:
         entities: []
         camera_image: camera.ttgocam01
         camera_view: live
-        
+  - title: Plants
+    id: plants
+    cards:
+      - type: plant-status
+        entity: plant.cedars
+      - type: plant-status
+        entity: plant.trees
   - title: System
     id: house_system
     cards:
