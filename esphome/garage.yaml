@@ -83,9 +83,9 @@ sensor:
     ads1115_id: ads1115_2
     gain: 6.144
     name: "Soil Moisture 8"
-#  - platform: pulse_counter
-#    pin: 34
-#    name: "water_flow_pulse"
+  - platform: pulse_counter
+    pin: 34
+    name: "water_flow_pulse"
     
 switch:
   - platform: gpio
