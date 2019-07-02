@@ -148,6 +148,7 @@ stream: # Load streaming for videos
 ffmpeg:
 
 # Items loaded elsewhere
+plant: !include_dir_merge_list plants/
 lock: !include_dir_merge_list locks/
 recorder: !include recorder.yaml
 media_player: !include_dir_merge_list media_players/
