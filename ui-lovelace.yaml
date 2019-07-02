@@ -197,6 +197,12 @@ views:
         entities: []
         camera_image: camera.garage
         camera_view: live
+      - type: picture-glance
+        title: Garage Board
+        entities: []
+        camera_image: camera.ttgocam01
+        camera_view: live
+        
   - title: System
     id: house_system
     cards:
