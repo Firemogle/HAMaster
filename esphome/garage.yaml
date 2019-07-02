@@ -160,15 +160,16 @@ cover:
 esp32_camera:
   name: 'ttgocam01'
   external_clock:
-    pin: 4
+    pin: GPIO32
     frequency: 20MHz
   i2c_pins:
-    sda: 18
-    scl: 23
-  data_pins: [34, 13, 14, 35, 39, 12, 15, 36]
-  vsync_pin: 5
-  href_pin: 27
-  pixel_clock_pin: 25
+    sda: GPIO13
+    scl: GPIO12
+  data_pins: [GPIO5, GPIO14, GPIO4, GPIO15, GPIO18, GPIO23, GPIO36, GPIO39]
+  vsync_pin: GPIO27
+  href_pin: GPIO25
+  pixel_clock_pin: GPIO19
+  power_down_pin: GPIO26
 
 binary_sensor:
   - platform: gpio
