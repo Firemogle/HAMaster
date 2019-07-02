@@ -12,7 +12,7 @@
   sensors:
     house_sts_hvac_cool_req:
       value_template: >-
-        {{ states('sensor.dark_sky_daytime_high_temperature')|float > 75 }}
+        {{ states('sensor.dark_sky_daytime_high_temperature_0d')|float > 75 }}
       delay_off:
         minutes: 30
       delay_on:
@@ -22,7 +22,7 @@
   sensors:
     house_sts_hvac_heat_req:
       value_template: >-
-        {{ states('sensor.dark_sky_daytime_high_temperature')|float < states('input_number.hvac_heat_enable_temp')|float }}
+        {{ states('sensor.dark_sky_daytime_high_temperature_0d')|float < states('input_number.hvac_heat_enable_temp')|float }}
       delay_off:
         minutes: 30
       delay_on:
