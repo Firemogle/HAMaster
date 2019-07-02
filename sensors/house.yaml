@@ -1,5 +1,7 @@
 - platform: darksky
   api_key: eccf5f65e6dce657df3792d7e362f0db
+  forecast:
+    - 0
   monitored_conditions:
     - summary
     - icon
