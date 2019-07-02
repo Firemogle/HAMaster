@@ -85,7 +85,10 @@ sensor:
     name: "Soil Moisture 8"
   - platform: pulse_counter
     pin: 34
-    name: "water_flow_pulse"
+    name: "water_flow"
+    unit_of_measurement: 'l/m'
+    filters:
+      - multiply: 0.0222
     
 switch:
   - platform: gpio
