@@ -22,22 +22,153 @@ i2c:
   scl: 22
   scan: False
   
-
+mcp23017:
+  - id: 'mcp23017_hub'
+    address: 0x20
+    
+ads1115:
+  - id: ads1115_1
+    address: 0x48
+  - id: ads1115_2
+    address: 0x49  
+  
+sensor:
+  - platform: bme280
+    temperature:
+      name: "Garage Temperature"
+      oversampling: 16x
+    pressure:
+      name: "Garage Pressure"
+    humidity:
+      name: "Garage Humidity"
+    address: 0x77
+    update_interval: 60s
+  - platform: ads1115
+    multiplexer: 'A0_GND'
+    ads1115_id: ads1115_1
+    gain: 6.144
+    name: "Soil Moisture 1"
+  - platform: ads1115
+    multiplexer: 'A1_GND'
+    ads1115_id: ads1115_1
+    gain: 6.144
+    name: "Soil Moisture 2"
+  - platform: ads1115
+    multiplexer: 'A2_GND'
+    ads1115_id: ads1115_1
+    gain: 6.144
+    name: "Soil Moisture 3"
+  - platform: ads1115
+    multiplexer: 'A3_GND'
+    ads1115_id: ads1115_1
+    gain: 6.144
+    name: "Soil Moisture 4"
+  - platform: ads1115
+    multiplexer: 'A0_GND'
+    ads1115_id: ads1115_2
+    gain: 6.144
+    name: "Soil Moisture 5"
+  - platform: ads1115
+    multiplexer: 'A1_GND'
+    ads1115_id: ads1115_2
+    gain: 6.144
+    name: "Soil Moisture 6"
+  - platform: ads1115
+    multiplexer: 'A2_GND'
+    ads1115_id: ads1115_2
+    gain: 6.144
+    name: "Soil Moisture 7"
+  - platform: ads1115
+    multiplexer: 'A3_GND'
+    ads1115_id: ads1115_2
+    gain: 6.144
+    name: "Soil Moisture 8"
+  - platform: pulse_counter
+    pin: 34
+    name: "water_flow_pulse"
+    
+switch:
+  - platform: gpio
+    name: garage_door_act
+    id: garage_door_act
+    pin:
+      mcp23017: mcp23017_hub
+      number: 0
+      mode: OUTPUT
+      inverted: False
+  - platform: gpio
+    name: irr_master
+    pin:
+      mcp23017: mcp23017_hub
+      number: 1
+      mode: OUTPUT
+      inverted: False
+  - platform: gpio
+    name: irr_no_fert
+    pin:
+      mcp23017: mcp23017_hub
+      number: 2
+      mode: OUTPUT
+      inverted: False
+  - platform: gpio
+    name: irr_fert
+    pin:
+      mcp23017: mcp23017_hub
+      number: 3
+      mode: OUTPUT
+      inverted: False
+  - platform: gpio
+    name: irr_zone1
+    pin:
+      mcp23017: mcp23017_hub
+      number: 4
+      mode: OUTPUT
+      inverted: False
+  - platform: gpio
+    name: irr_zone2
+    pin:
+      mcp23017: mcp23017_hub
+      number: 5
+      mode: OUTPUT
+      inverted: False
+  - platform: gpio
+    name: irr_zone3
+    pin:
+      mcp23017: mcp23017_hub
+      number: 6
+      mode: OUTPUT
+      inverted: False
+      
+cover:
+  - platform: template
+    name: "Garage Door"
+    open_action:
+      # Cancel any previous action
+      - switch.turn_off: garage_door_act
+      # Turn the OPEN switch on briefly
+      - switch.turn_on: garage_door_act
+      - delay: 0.1s
+      - switch.turn_off: garage_door_act
+    close_action:
+      - switch.turn_off: garage_door_act
+      - switch.turn_on: garage_door_act
+      - delay: 0.1s
+      - switch.turn_off: garage_door_act
+    optimistic: true
+    assumed_state: true
     
 esp32_camera:
+  name: 'ttgocam01'
   external_clock:
-    pin: GPIO32
+    pin: 4
     frequency: 20MHz
   i2c_pins:
-    sda: 13
-    scl: 12
-  data_pins: [5, 14, 4, 15, 18, 23, 36, 39]
-  vsync_pin: 27
-  href_pin: 25
-  pixel_clock_pin: 9
-  power_down_pin: 26
-  name: garage_camera
-  jpeg_quality: 10
+    sda: 18
+    scl: 23
+  data_pins: [34, 13, 14, 35, 39, 12, 15, 36]
+  vsync_pin: 5
+  href_pin: 27
+  pixel_clock_pin: 25
 
 binary_sensor:
   - platform: gpio
