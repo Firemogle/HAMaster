@@ -169,7 +169,7 @@ esp32_camera:
   vsync_pin: GPIO27
   href_pin: GPIO25
   pixel_clock_pin: GPIO19
-  resolution: 320x240
+  resolution: 800x600
 
 binary_sensor:
   - platform: gpio
