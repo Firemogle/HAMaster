@@ -1,5 +1,3 @@
-
-
 - platform : mqtt
   name: emi_star_lamp
   state_topic: "hawirelesslink/switch/ledvance_plug_00054677_1/state"
