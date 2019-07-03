@@ -6,6 +6,11 @@ homeassistant:
   unit_system: imperial
   time_zone: America/New_York
   customize: !include customize.yaml
+  auth_mfa_modules:  # Setup two factor auth
+    - type: totp
+      name: Authenticator app
+    - type: notify
+      message: 'Two Factor Code {}'
   
 proximity:
   brett_home:
@@ -98,8 +103,6 @@ updater:
 
 # Discover some devices automatically
 discovery:
-  ignore:
-    - wink
 
 # Enables support for tracking state changes over time
 history:
