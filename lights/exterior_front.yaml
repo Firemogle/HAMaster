@@ -1,4 +1,3 @@
-
 - platform: mqtt
   schema: json
   name: 'Porch Light'
