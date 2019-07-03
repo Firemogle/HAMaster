@@ -1,0 +1,5 @@
+trees:
+  sensors:
+    moisture: sensor.tree_moisture_combine
+    temperature: sensor.sensor.dark_sky_temperature
+  min_moisture: 20
