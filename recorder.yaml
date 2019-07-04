@@ -1,5 +1,5 @@
 db_url: !secret DB # Location of offloaded DB
-purge_keep_days: 3 # Test purge days with offloaded DB
+purge_keep_days: 1 # Test purge days with offloaded DB
 purge_interval: 1
 exclude: # Configure recorder to not record extrainious data
   domains:
