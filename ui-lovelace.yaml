@@ -213,8 +213,7 @@ views:
     id: house_system
     cards:
       - type: iframe
-      - url: <iframe src="https://192.168.1.243:3000/d-solo/cYqIkiIZk/internet-speed?orgId=1&from=1562183975799&to=1562270375799&theme=dark&panelId=2" width="450" height="200" frameborder="0"></iframe>
-      
+        url: <iframe src="https://192.168.1.243:3000/d-solo/cYqIkiIZk/internet-speed?orgId=1&from=1562183975799&to=1562270375799&theme=dark&panelId=2" width="450" height="200" frameborder="0"></iframe>
       - type: entities
         title: Network
         show_header_toggle: false
