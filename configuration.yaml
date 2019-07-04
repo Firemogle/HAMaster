@@ -39,9 +39,9 @@ http:
     - 127.0.0.1
     - 192.168.1.0/24
   api_password: !secret HTTPPW
-  ssl_certificate: /ssl/fullchain.pem
-  ssl_key: /ssl/privkey.pem
-  base_url: !secret DYNSITE
+#  ssl_certificate: /ssl/fullchain.pem
+#  ssl_key: /ssl/privkey.pem
+#  base_url: !secret DYNSITE
   ip_ban_enabled: true # Allow bans
   login_attempts_threshold: 10 # Ban after 10 failed attempts
   
