@@ -73,7 +73,9 @@
     light.main_livingroom:
       state: on
       brightness: 100
-    fan.kitchen_fan: low
+    fan.kitchen_fan:
+      speed: low
+      state: on
     switch.livingroom_subwoofer:
       state: on
 - name: house_evening_vacation
