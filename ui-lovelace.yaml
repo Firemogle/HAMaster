@@ -212,15 +212,9 @@ views:
   - title: System
     id: house_system
     cards:
-      - type: history-graph
-        title: 'Network Speeds'
-        hours_to_show: 48
-        refresh_interval: 360
-        entities:
-          - sensor.speedtest_download
-          - sensor.speedtest_upload
-          - sensor.vpn_down
-          - sensor.vpn_up
+      - type: iframe
+      - url: <iframe src="https://192.168.1.243:3000/d-solo/cYqIkiIZk/internet-speed?orgId=1&from=1562183975799&to=1562270375799&theme=dark&panelId=2" width="450" height="200" frameborder="0"></iframe>
+      
       - type: entities
         title: Network
         show_header_toggle: false
