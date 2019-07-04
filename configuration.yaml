@@ -1,7 +1,7 @@
 homeassistant:
   name: Home
-  latitude: 42.422097
-  longitude: -83.772937
+  latitude: !secret lat
+  longitude: !secret long
   elevation: 283
   unit_system: imperial
   time_zone: America/New_York
@@ -149,6 +149,20 @@ abode:
 system_health: # load system health
 stream: # Load streaming for videos
 ffmpeg:
+
+influxdb:
+  host: a0d7b954-influxdb
+  port: 8086
+  database: homeassistant
+  username: !secret influxUN
+  password: !secret influxPW
+  max_retries: 3
+  default_measurement: state
+  include:
+    - sensor
+    - binary_sensor
+    - lock
+    - cover
 
 # Items loaded elsewhere
 plant: !include_dir_merge_named plants/
