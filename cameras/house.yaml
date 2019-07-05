@@ -1,10 +1,7 @@
 - platform: amcrest
 
-camera:
-  - platform: generic
-    name: speedtest
-    still_image_url: 'https://192.168.1.243:3000/d/cYqIkiIZk/internet-speed?orgId=1&from=now-48h&to=now'
-    username: !secret grafana_user
-    password: !secret grafana_pass
-
-
+- platform: generic
+  name: speedtest
+  still_image_url: 'https://192.168.1.243:3000/d/cYqIkiIZk/internet-speed?orgId=1&from=now-48h&to=now'
+  username: !secret grafana_user
+  password: !secret grafana_pass
