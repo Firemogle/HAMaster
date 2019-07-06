@@ -20,6 +20,10 @@ views:
           - person.brett
           - person.liz
           - sensor.house_status
+      - type: weblink
+        name: Radarr
+        url: https://radarr.teamcarriger.club
+        icon: mdi:television-box
       - type: alarm-panel
         name: House Alarm
         show_header_toggle: false
