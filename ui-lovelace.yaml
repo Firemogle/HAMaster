@@ -25,9 +25,13 @@ views:
         show_header_toggle: false
         entities:
           - type: weblink
+            name: Sonarr
+            url: https://sonarr.teamcarriger.club
+            icon: mdi:television-box
+          - type: weblink
             name: Radarr
             url: https://radarr.teamcarriger.club
-            icon: mdi:television-box
+            icon: mdi:library-movie
       - type: alarm-panel
         name: House Alarm
         show_header_toggle: false
