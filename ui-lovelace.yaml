@@ -20,18 +20,6 @@ views:
           - person.brett
           - person.liz
           - sensor.house_status
-      - type: entities
-        title: Media Control
-        show_header_toggle: false
-        entities:
-          - type: weblink
-            name: Sonarr
-            url: https://sonarr.teamcarriger.club
-            icon: mdi:television-box
-          - type: weblink
-            name: Radarr
-            url: https://radarr.teamcarriger.club
-            icon: mdi:library-movie
       - type: alarm-panel
         name: House Alarm
         show_header_toggle: false
@@ -46,6 +34,18 @@ views:
         #HVAC control
       - type: thermostat
         entity: climate.hvac
+      - type: entities
+        title: Media Control
+        show_header_toggle: false
+        entities:
+          - type: weblink
+            name: Sonarr
+            url: https://sonarr.teamcarriger.club
+            icon: mdi:television-box
+          - type: weblink
+            name: Radarr
+            url: https://radarr.teamcarriger.club
+            icon: mdi:library-movie
     # Main Level 
   - title: Main Level
     id: house_main
