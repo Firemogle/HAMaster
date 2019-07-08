@@ -37,6 +37,7 @@ sensor:
     temperature:
       name: "Garage Temperature"
       oversampling: 16x
+      id: temp
     pressure:
       name: "Garage Pressure"
     humidity:
@@ -145,6 +146,12 @@ switch:
 cover:
   - platform: template
     name: "Garage Door"
+    lambda: |-
+      if (id(gd_state).state) {
+        return COVER_OPEN;
+      } else {
+        return COVER_CLOSED;
+      }
     open_action:
       # Cancel any previous action
       - switch.turn_off: garage_door_act
@@ -172,22 +179,32 @@ esp32_camera:
   vsync_pin: GPIO27
   href_pin: GPIO25
   pixel_clock_pin: GPIO19
-  resolution: 800x600
+  resolution: 640x480
 
 binary_sensor:
   - platform: gpio
     pin: 33
     name: "Garage Motion"
     device_class: moving
+  - platform: gpio
+    pin:
+      mcp23017: mcp23017_hub
+      number: 7
+      mode: OUTPUT
+      inverted: False
+    name: "Garage Door"
+    id: gd_state
+    device_class: garage_door
+    internal: true
     
 font:
   - file: "FFF_Tusj.ttf"
     id: my_font
-    size: 20
+    size: 15
 
 display:
   - platform: ssd1306_i2c
     model: "SSD1306 128x64"
     address: 0x3C
     lambda: |-
-      it.print(0, 0, my_font, "Hello World!");
+      it.print(0, 0, my_font, "Temp: %.1f", id(temp).state);
