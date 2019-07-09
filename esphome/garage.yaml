@@ -207,4 +207,4 @@ display:
     model: "SSD1306 128x64"
     address: 0x3C
     lambda: |-
-      it.print(0, 0, my_font, id(temp).state);
+      it.print(0, 0, my_font, "test");
