@@ -12,6 +12,8 @@
       state: on
     switch.livingroom_subwoofer:
       state: on
+    lock.front_door:
+      state: unlocked
 - name: house_away
   entities:
     light.emi_star_lamp:
