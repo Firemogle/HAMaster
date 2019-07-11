@@ -5,11 +5,12 @@
   - entity_id: sensor.emi_temp
     platform: state
   condition:
-    - condition: state
-      entity_id: 'fan.emi_fan'
-      state: 'on'
+    conditions:
+      - condition: state
+        entity_id: 'fan.emi_fan'
+        state: 'on'
   action:
-  - data:
+  - data_template:
       entity_id: fan.emi_fan
       speed: >
         {% if (states.sensor.emi_temp.state > 80 ) %}
