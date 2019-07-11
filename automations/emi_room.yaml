@@ -9,7 +9,8 @@
       entity_id: 'fan.emi_fan'
       state: 'on'
   action:
-  - data_template:
+  - service: fan.set_speed
+    data_template:
       entity_id: fan.emi_fan
       speed: >
         {% if (states.sensor.emi_temp.state > 80 ) %}
