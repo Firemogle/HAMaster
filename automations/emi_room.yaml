@@ -14,13 +14,13 @@
       entity_id: fan.emi_fan
       speed: >
         {% if (states.sensor.emi_temp.state|float > 80 ) %}
-          "on"
+          'on'
         {% elif (states.sensor.emi_temp.state|float <= 80 ) and (states.sensor.emi_temp.state|float > 76 ) %} 
-          "high"  
+          'high'
         {% elif (states.sensor.emi_temp.state|float <= 76 ) and (states.sensor.emi_temp.state|float > 74 ) %} 
-          "medium"
+          'medium'
         {% elif (states.sensor.emi_temp.state|float <= 74 ) %} 
-          "low"
+          'low'
         {% endif %}
 
 
