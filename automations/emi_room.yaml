@@ -5,10 +5,9 @@
   - entity_id: sensor.emi_temp
     platform: state
   condition:
-    conditions:
-      - condition: state
-        entity_id: 'fan.emi_fan'
-        state: 'on'
+    - condition: state
+      entity_id: 'fan.emi_fan'
+      state: 'on'
   action:
   - data_template:
       entity_id: fan.emi_fan
