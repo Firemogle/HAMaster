@@ -156,6 +156,7 @@ influxdb:
   default_measurement: state
 
 # Items loaded elsewhere
+octoprint !include_dir_merge_named printer/
 plant: !include_dir_merge_named plants/
 lock: !include_dir_merge_list locks/
 recorder: !include recorder.yaml
