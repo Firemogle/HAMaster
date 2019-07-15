@@ -1,0 +1,2 @@
+host: YOUR_OCTOPRINT_HOST
+api_key: !secret octo_key
