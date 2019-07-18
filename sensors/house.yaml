@@ -43,7 +43,7 @@
 - platform: mqtt
   name: "Attic Pressure"
   state_topic: "/Attic_Sensor/Attic/Pressure"
-  unit_of_measurement: "P"
+  unit_of_measurement: "hPa"
 
 - platform: mqtt
   name: "Attic Humidity"
