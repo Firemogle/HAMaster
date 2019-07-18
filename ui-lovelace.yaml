@@ -192,10 +192,9 @@ views:
         title: Garage
         show_header_toggle: false
         entities:
-          - binary_sensor.garage_door_bin
           - binary_sensor.garage_camera_motion_detected
           - binary_sensor.garage_door_back
-          - sensor.garage_energy
+          - sensor.network_power_useage
           - sensor.garage_pressure
           - sensor.garage_temperature
   - title: Cameras
@@ -225,6 +224,11 @@ views:
         title: Garage Board
         entities: []
         camera_image: camera.ttgocam01
+        camera_view: live
+      - type: picture-glance
+        title: OctoPrint
+        entities: []
+        camera_image: camera.OctoPrint
         camera_view: live
   - title: Plants
     id: plants
