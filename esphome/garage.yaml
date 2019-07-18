@@ -42,7 +42,7 @@ sensor:
       name: "Garage Pressure"
     humidity:
       name: "Garage Humidity"
-    address: 0x77
+    address: 0x76
     update_interval: 60s
   - platform: ads1115
     multiplexer: 'A0_GND'
