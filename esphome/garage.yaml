@@ -90,6 +90,7 @@ sensor:
     unit_of_measurement: 'l/m'
     filters:
       - multiply: 0.0222
+
     
 switch:
   - platform: gpio
@@ -186,16 +187,10 @@ binary_sensor:
     pin: 33
     name: "Garage Motion"
     device_class: moving
-  - platform: gpio
-    pin:
-      mcp23017: mcp23017_hub
-      number: 7
-      mode: OUTPUT
-      inverted: False
-    name: "Garage Door"
+  - platform: homeassistant
+    name: "garage_door"
     id: gd_state
-    device_class: garage_door
-    internal: true
+    entity_id: binary_sensor.garage_door
     
 font:
   - file: "FFF_Tusj.ttf"
