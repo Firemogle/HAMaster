@@ -147,6 +147,18 @@ views:
           - sensor.office_pressure
           - sensor.office_temperature
       - type: entities
+        title: Printer
+        show_header_toggle: false
+        entities:
+          - binary_sensor.octoprint_printing
+          - binary_sensor.octoprint_printing_error
+          - sensor.octoprint_actual_bed_temp
+          - sensor.octoprint_target_bed_temp
+          - sensor.octoprint_actual_tool0_temp
+          - sensor.octoprint_target_tool0_temp
+          - sensor.octoprint_current_state
+          - sensor.octoprint_job_percentage
+      - type: entities
         # Title of the entities card
         title: Laundry Room
         show_header_toggle: false
