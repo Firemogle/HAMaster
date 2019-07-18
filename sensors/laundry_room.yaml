@@ -15,4 +15,4 @@
 - platform: mqtt
   name: "laundry_pressure"
   state_topic: "/laundry_room/enviroment/Pressure"
-  unit_of_measurement: "P"
+  unit_of_measurement: "hPa"
