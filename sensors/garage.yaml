@@ -5,5 +5,5 @@
 
 - platform: mqtt
   name: "Garage outlet Power useage"
-  state_topic: "hawirelesslink/sensor/enerwave_zw15rm_plus_15a_tr_smart_meter_duplex_receptacle_energy/power_consumption"
+  state_topic: "hawirelesslink/sensor/aeotec_zw096_smart_switch_6_power/power_consumption"
   unit_of_measurement: "W"
