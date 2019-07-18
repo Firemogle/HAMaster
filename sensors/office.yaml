@@ -6,7 +6,7 @@
 - platform: mqtt
   name: "Office Pressure"
   state_topic: "/office/enviroment/Pressure"
-  unit_of_measurement: "P"
+  unit_of_measurement: "hPa"
 
 - platform: mqtt
   name: "Office Humidity"
