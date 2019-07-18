@@ -6,7 +6,7 @@
 - platform: mqtt
   name: "Bathroom Vent Pressure"
   state_topic: "/Attic_Sensor/Vent/Pressure"
-  unit_of_measurement: "P"
+  unit_of_measurement: "hPa"
 
 - platform: mqtt
   name: "Bathroom Vent Humidity"
