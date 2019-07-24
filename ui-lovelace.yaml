@@ -192,11 +192,12 @@ views:
         title: Garage
         show_header_toggle: false
         entities:
-          - binary_sensor.garage_camera_motion_detected
+          - binary_sensor.garage_motion_board
           - binary_sensor.garage_door_back
           - sensor.network_power_useage
           - sensor.garage_pressure
           - sensor.garage_temperature
+          - sensor.garage_humidity
   - title: Cameras
     id: house_camera
     cards:
