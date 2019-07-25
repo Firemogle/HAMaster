@@ -154,12 +154,17 @@ cover:
         return COVER_CLOSED;
       }
     open_action:
-      # Cancel any previous action
-      - switch.turn_off: garage_door_act
-      # Turn the OPEN switch on briefly
-      - switch.turn_on: garage_door_act
-      - delay: 0.1s
-      - switch.turn_off: garage_door_act
+      if (id(house_armed_state).state) {
+        # Cancel any previous action
+        - switch.turn_off: garage_door_act
+        # Turn the OPEN switch on briefly
+        - switch.turn_on: garage_door_act
+        - delay: 0.1s
+        - switch.turn_off: garage_door_act
+      } else {
+        
+      }
+
     close_action:
       - switch.turn_off: garage_door_act
       - switch.turn_on: garage_door_act
@@ -191,6 +196,11 @@ binary_sensor:
     name: "garage_door"
     id: gd_state
     entity_id: binary_sensor.garage_door
+  - platform: homeassistant
+    name: "house_armed"
+    id: house_armed_state
+    entity_id: binary_sensor.house_armed
+
     
 font:
   - file: "FFF_Tusj.ttf"
