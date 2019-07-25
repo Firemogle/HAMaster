@@ -42,6 +42,7 @@ sensor:
       name: "Garage Pressure"
     humidity:
       name: "Garage Humidity"
+      id: hum
     address: 0x76
     update_interval: 60s
   - platform: ads1115
@@ -154,17 +155,15 @@ cover:
         return COVER_CLOSED;
       }
     open_action:
-      if (id(house_armed_state).state) {
-        # Cancel any previous action
-        - switch.turn_off: garage_door_act
-        # Turn the OPEN switch on briefly
-        - switch.turn_on: garage_door_act
-        - delay: 0.1s
-        - switch.turn_off: garage_door_act
-      } else {
-        
-      }
-
+      lambda: |-
+        if (id(house_armed_state).state) {
+          # Cancel any previous action
+          - switch.turn_off: garage_door_act
+          # Turn the OPEN switch on briefly
+          - switch.turn_on: garage_door_act
+          - delay: 0.1s
+          - switch.turn_off: garage_door_act
+        }
     close_action:
       - switch.turn_off: garage_door_act
       - switch.turn_on: garage_door_act
@@ -212,4 +211,4 @@ display:
     model: "SSD1306 128x64"
     address: 0x3C
     lambda: |-
-      it.print(0, 0, my_font, "test");
+      it.print(0, 0, my_font, "Temperature: %.1f°C, Humidity: %.1f%%", id(temp).state, id(hum).state);
