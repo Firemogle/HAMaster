@@ -3,4 +3,4 @@
   sensors:
     house_armed:
       value_template: >-
-        {{ is_state('alarm_control_panel.alarm_panel','armed') }}
+        {{ is_state('alarm_control_panel.alarm_panel','disarmed') }}
