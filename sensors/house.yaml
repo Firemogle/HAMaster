@@ -97,7 +97,7 @@
     hvac_current_humidity:
       unit_of_measurement: "%"
       value_template: >-
-        {{ states.climate.hvac.attributes.actual_humidity }}  
+        {{ states.climate.hvac.attributes.current_humidity }}
   
 - platform: deluge
   host: 192.168.1.3
