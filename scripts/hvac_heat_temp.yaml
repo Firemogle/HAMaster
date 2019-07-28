@@ -17,3 +17,4 @@ hvac_heat_temp:
           {% else %}
             {{ states('input_number.hvac_away_heat_temp')|float }}
           {% endif %}
+      entity_id: climate.hvac
