@@ -9,3 +9,4 @@ hvac_fan:
           {% else %}
             auto
           {% endif %}
+      entity_id: climate.hvac
