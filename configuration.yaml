@@ -35,9 +35,6 @@ proximity:
 
 http:
   server_port: 8123 # Hard set port
-  trusted_networks: # Trust self and local IPs
-    - 127.0.0.1
-    - 192.168.1.0/24
   ip_ban_enabled: true # Allow bans
   login_attempts_threshold: 10 # Ban after 10 failed attempts
   
