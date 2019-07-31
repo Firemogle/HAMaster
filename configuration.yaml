@@ -142,6 +142,7 @@ abode:
 system_health: # load system health
 stream: # Load streaming for videos
 ffmpeg:
+wwlln:
 
 influxdb:
   host: a0d7b954-influxdb
