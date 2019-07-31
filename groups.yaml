@@ -4,10 +4,10 @@
     control: hidden
     entities:
       - binary_sensor.sliding_glass_door_opened
-      - binary_sensor.garage_door_bin
       - binary_sensor.livingroom_door_opened
       - binary_sensor.garage_door_back
-      - binary_sensor.garage_motion
+      - binary_sensor.garage_door
+      - binary_sensor.garage_door_2
       - binary_sensor.living_room_window
       - binary_sensor.main_floor_glass_break
   brett:
