@@ -43,7 +43,7 @@ websocket_api:
 alarm_control_panel:
   - platform: manual
     name: alarm_panel
-    pending_time: 5
+    pending_time: 0
     code: !secret alarmcode
 
 device_tracker:
