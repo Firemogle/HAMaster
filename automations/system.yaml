@@ -42,6 +42,17 @@
   - data:
       entity_id: script.hvac_run_setpoint
     service: script.turn_on
+  - data:
+      entity_id: alarm_control_panel.alarm_panel
+      code: !secret alarmcode
+    service_template: >
+      {% if is_state('binary_sensor.house_sts_occupants', 'off') and is_state('binary_sensor.house_sts_guest', 'off') %}
+        alarm_control_panel.alarm_arm_away
+      {% elif is_state('binary_sensor.house_sts_occupants', 'off') and is_state('house_status', 'vacation') %}
+        alarm_control_panel.alarm_arm_away
+      {% else %}
+        alarm_control_panel.alarm_disarm
+      {% endif %}
   - data_template:
       entity_id: >
            {% if is_state('binary_sensor.house_sts_occupants', 'off') and is_state('binary_sensor.house_sts_guest', 'off') %}
@@ -54,15 +65,5 @@
       message: >
         Occupancy mode changed to {{ states('binary_sensor.house_sts_occupants') }}
     service: notify.gmail_notify
-  - data:
-      entity_id: alarm_control_panel.alarm_panel
-      code: !secret alarmcode
-    service_template: >
-      {% if is_state('binary_sensor.house_sts_occupants', 'off') and is_state('binary_sensor.house_sts_guest', 'off') %}
-        alarm_control_panel.alarm_arm_away
-      {% elif is_state('binary_sensor.house_sts_occupants', 'off') and is_state('house_status', 'vacation') %}
-        alarm_control_panel.alarm_arm_away
-      {% else %}
-        alarm_control_panel.alarm_disarm
-      {% endif %}
+
       
