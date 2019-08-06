@@ -134,6 +134,8 @@ views:
   - title: Basement
     id: house_basement
     cards:
+      - type: media-control
+        entity: media_player.projector_media
       - type: entities
         title: Office
         show_header_toggle: false
