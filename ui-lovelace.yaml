@@ -160,6 +160,7 @@ views:
           - sensor.octoprint_target_tool0_temp
           - sensor.octoprint_current_state
           - sensor.octoprint_job_percentage
+          - sensor.octoprint_time_remaining
       - type: entities
         # Title of the entities card
         title: Laundry Room
