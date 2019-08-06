@@ -232,7 +232,7 @@ views:
       - type: picture-glance
         title: OctoPrint
         entities: []
-        camera_image: camera.OctoPrint
+        camera_image: camera.octoprint
   - title: Plants
     id: plants
     cards:
