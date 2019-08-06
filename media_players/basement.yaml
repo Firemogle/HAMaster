@@ -15,7 +15,7 @@
   host: 192.168.1.177
 
 - platform: universal
-  name: livingroom_media
+  name: projector_media
   children:
     - media_player.projector_kodi
     - media_player.projector_shield
