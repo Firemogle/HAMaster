@@ -233,6 +233,7 @@ views:
         title: OctoPrint
         entities: []
         camera_image: camera.octoprint
+        camera_view: live
   - title: Plants
     id: plants
     cards:
