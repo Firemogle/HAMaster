@@ -186,6 +186,7 @@ esp32_camera:
   href_pin: GPIO25
   pixel_clock_pin: GPIO19
   resolution: 640x480
+  idle_framerate: 0.01
 
 binary_sensor:
   - platform: gpio
