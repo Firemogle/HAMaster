@@ -144,6 +144,8 @@ switch:
       number: 6
       mode: OUTPUT
       inverted: False
+  - platform: restart
+    name: "Garage Board restart"
       
 cover:
   - platform: template
@@ -155,9 +157,11 @@ cover:
         return COVER_CLOSED;
       }
     open_action:
-          # Cancel any previous action
+      - if:
+        condition:
+          binary_sensor.is_on: house_armed_state
+        then:
           - switch.turn_off: garage_door_act
-          # Turn the OPEN switch on briefly
           - switch.turn_on: garage_door_act
           - delay: 0.1s
           - switch.turn_off: garage_door_act
