@@ -158,13 +158,13 @@ cover:
       }
     open_action:
       - if:
-        condition:
-          binary_sensor.is_on: house_armed_state
-        then:
-          - switch.turn_off: garage_door_act
-          - switch.turn_on: garage_door_act
-          - delay: 0.1s
-          - switch.turn_off: garage_door_act
+          condition:
+            binary_sensor.is_on: house_armed_state
+          then:
+            - switch.turn_off: garage_door_act
+            - switch.turn_on: garage_door_act
+            - delay: 0.1s
+            - switch.turn_off: garage_door_act
     close_action:
       - switch.turn_off: garage_door_act
       - switch.turn_on: garage_door_act
@@ -186,7 +186,7 @@ esp32_camera:
   href_pin: GPIO25
   pixel_clock_pin: GPIO19
   resolution: 640x480
-  idle_framerate: 0.01
+  idle_framerate: 0.01 fps
 
 binary_sensor:
   - platform: gpio
