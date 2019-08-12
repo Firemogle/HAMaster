@@ -101,7 +101,7 @@ switch:
       mcp23017: mcp23017_hub
       number: 0
       mode: OUTPUT
-      inverted: False
+      inverted: true
   - platform: gpio
     name: irr_master
     pin:
