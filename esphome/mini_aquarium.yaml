@@ -49,14 +49,14 @@ sensor:
     unit_of_measurement: "V"
   - platform: bme280
     temperature:
-      name: "BME280 Temperature"
+      name: "MiniTank Temperature"
       oversampling: 16x
       unit_of_measurement: "°C"
     pressure:
-      name: "BME280 Pressure"
+      name: "MiniTank Pressure"
       unit_of_measurement: "P"
     humidity:
-      name: "BME280 Humidity"
+      name: "MiniTank Humidity"
       unit_of_measurement: "%"
     address: 0x77
     update_interval: 60s
