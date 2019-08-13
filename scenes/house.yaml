@@ -6,7 +6,7 @@
     light.cabinet_led: on
     light.main_livingroom:
       state: on
-      brightness: 100
+      brightness: 250
     fan.kitchen_fan:
       speed: low
       state: on
@@ -38,6 +38,8 @@
       state: off
     light.main_bath_vanity:
       state: off
+    light.kitchen_lamp:
+      state: off
     fan.kitchen_fan:
       state: off
     fan.master_fan:
@@ -63,6 +65,8 @@
     light.porch_light:
       state: off
     fan.kitchen_fan:
+      state: off
+    light.kitchen_lamp:
       state: off
     lock.front_door:
       state: locked
