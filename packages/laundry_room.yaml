@@ -1,0 +1,100 @@
+laundry_room:
+  binary_sensor:
+  - platform: mqtt
+    state_topic: "/laundry_room/motion1/motion"
+    name: "laundry_motion_1"
+    payload_on: "1"
+    payload_off: "0"
+
+  - platform: mqtt
+    state_topic: "/laundry_room/motion2/motion"
+    name: "laundry_motion_2"
+    payload_on: "1"
+    payload_off: "0"
+
+  - platform: mqtt
+    state_topic: "/laundry_room/motion3/motion"
+    name: "laundry_motion_3"
+    payload_on: "1"
+    payload_off: "0"
+
+  - platform: mqtt
+    state_topic: "/laundry_room/motion4/motion"
+    name: "laundry_motion_4"
+    payload_on: "1"
+    payload_off: "0"
+
+  - platform: mqtt
+    state_topic: "/laundry_room/motion5/motion"
+    name: "laundry_motion_5"
+    payload_on: "1"
+    payload_off: "0"
+
+  - platform: template
+    sensors:
+      laundry_room_cat_detection:
+        value_template: >-
+          {{ is_state('binary_sensor.laundry_motion_1', 'on')
+             or is_state('binary_sensor.laundry_motion_2', 'on')
+             or is_state('binary_sensor.laundry_motion_3', 'on') }}
+        delay_off:
+          minutes: 30
+          
+  automation:
+  - id: laundry_room_litter_control
+    alias: laundry_room_litter_control
+    initial_state: 'off'
+    trigger:
+    - entity_id: binary_sensor.laundry_room_cat_detection
+      platform: state
+    condition: []
+    action:
+    - data:
+        entity_id: switch.laundry_room_litter_box
+      service_template: >
+        {% if is_state('binary_sensor.laundry_room_cat_detection','off') %}
+          switch.turn_on
+        {% else %}
+          switch.turn_off
+        {% endif %}
+        
+  sensor:
+    - platform: mqtt
+      name: "laundry_leak"
+      state_topic: "/laundry_room/moisture_sensor/Analog"
+
+    - platform: mqtt
+      name: "laundry_temp"
+      state_topic: "/laundry_room/enviroment/Temperature"
+      unit_of_measurement: "°C"
+
+    - platform: mqtt
+      name: "laundry_humidity"
+      state_topic: "/laundry_room/enviroment/Humidity"
+      unit_of_measurement: "%"
+
+    - platform: mqtt
+      name: "laundry_pressure"
+      state_topic: "/laundry_room/enviroment/Pressure"
+      unit_of_measurement: "hPa"
+      
+  switch:
+    - platform : mqtt
+      name: "Humidifier"
+      state_topic: "/laundry_room/humidifier/Switch"
+      command_topic: "/laundry_room/mcpgpio/4"
+      state_on: "1"
+      state_off: "0"
+      payload_on: "0"
+      payload_off: "1"
+      retain: true
+
+    - platform : mqtt
+      name: "laundry_room_litter_box"
+      state_topic: "/laundry_room/litter_box/Switch"
+      command_topic: "/laundry_room/mcpgpio/2"
+      state_on: "1"
+      state_off: "0"
+      payload_on: "0"
+      payload_off: "1"
+      retain: true
