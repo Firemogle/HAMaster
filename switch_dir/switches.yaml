@@ -23,26 +23,6 @@
   retain: true
 
 - platform : mqtt
-  name: "Humidifier"
-  state_topic: "/laundry_room/humidifier/Switch"
-  command_topic: "/laundry_room/mcpgpio/4"
-  state_on: "1"
-  state_off: "0"
-  payload_on: "0"
-  payload_off: "1"
-  retain: true
-  
-- platform : mqtt
-  name: "laundry_room_litter_box"
-  state_topic: "/laundry_room/litter_box/Switch"
-  command_topic: "/laundry_room/mcpgpio/2"
-  state_on: "1"
-  state_off: "0"
-  payload_on: "0"
-  payload_off: "1"
-  retain: true
-
-- platform : mqtt
   name: "xmas_lights"
   state_topic: "hawirelesslink/switch/xmaslights/state"
   command_topic: "/HAwirelesslink/return/switch/xmaslights/state"
