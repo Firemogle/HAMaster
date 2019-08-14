@@ -206,7 +206,7 @@ binary_sensor:
 font:
   - file: "FFF_Tusj.ttf"
     id: my_font
-    size: 18
+    size: 24
 
 display:
   - platform: ssd1306_i2c
@@ -214,4 +214,5 @@ display:
     address: 0x3C
     rotation: 180°
     lambda: |-
-      it.printf(0, 0, my_font, "Temperature: %.1f°C, Humidity: %.1f%%", id(temp).state, id(hum).state);
+      it.printf(0, 0, my_font, "Temperature: %.1f°C", id(temp).state);
+      it.printf(0, 60, my_font, "Humidity: %.1f%%", id(hum).state);
