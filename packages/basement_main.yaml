@@ -1,4 +1,5 @@
 homeassistant:
+  customize:
 media_player:
   - platform: kodi
     name: projector_kodi
