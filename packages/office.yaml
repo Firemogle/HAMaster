@@ -1,0 +1,98 @@
+homeassistant:
+  customize:
+binary_sensor:
+  - platform: mqtt
+    state_topic: "/Office/motion_sensor/Switch"
+    name: "off_sts_motion_raw"
+    payload_on: "1"
+    payload_off: "0"
+
+  - platform: template
+    sensors:
+      off_sts_motion:
+        value_template: >-
+          {{ is_state('binary_sensor.off_sts_motion_raw', 'on') }}
+        delay_off:
+          minutes: 15
+
+  - platform: template
+    sensors:
+      off_htr_needed:
+        value_template: >-
+          {{ is_state('binary_sensor.off_sts_motion','on')
+             and is_state('house_sts_hvac_heat_req','on')
+             and states('sensor.Office Temperature')|float < states('input_number.office_heater_thresh')|float }}
+             
+octoprint:
+  host: 192.168.1.176
+  api_key: !secret octo_key
+  
+sensor:
+  - platform: mqtt
+    name: "Office Temperature"
+    state_topic: "/office/enviroment/Temperature"
+    unit_of_measurement: "°C"
+
+  - platform: mqtt
+    name: "Office Pressure"
+    state_topic: "/office/enviroment/Pressure"
+    unit_of_measurement: "hPa"
+    
+  - platform: mqtt
+    name: "Office Humidity"
+    state_topic: "/office/enviroment/Humidity"
+    unit_of_measurement: "%"
+
+  - platform: mqtt
+    name: "Office Computer Power"
+    state_topic: "hawirelesslink/sensor/enerwave_zw15rm_plus_15a_tr_smart_meter_duplex_receptacle_power_2/power_consumption"
+    unit_of_measurement: "W"
+    
+switch:
+  - platform: wake_on_lan
+    name: off_4k_mon
+    mac_address: "a0:6a:44:23:f6:99"
+    host: 192.168.1.221
+    broadcast_address: 192.168.1.209
+
+  - platform: wake_on_lan
+    name: off_computron3000
+    mac_address: "40:16:7e:e8:dc:7b"
+    host: 192.168.1.107
+
+  - platform: wake_on_lan
+    name: off_frankenserver
+    mac_address: "68:1c:a2:13:24:37"
+    host: 192.168.1.186
+
+  - platform : mqtt
+    name: "Office Heater"
+    state_topic: "/Office_Heater/relay/switch"
+    command_topic: "/Office_Heater/gpio/12"
+    payload_on: "1"
+    payload_off: "0"
+    retain: true
+    
+automation:
+  - id: 'off_occ_on'
+    alias: off_occ_on
+    initial_state: 'off'
+    trigger:
+    - entity_id: binary_sensor.off_sts_motion
+      platform: state
+    condition: []
+    action:
+    - data:
+        entity_id: switch.office_heater
+      service_template: >
+        {% if is_state('binary_sensor.off_htr_needed','on') %}
+          switch.turn_on
+        {% else %}
+          switch.turn_off
+        {% endif %}
+    - data:
+        entity_id: switch.off_4k_mon
+      service: switch.turn_on
+    - data:
+        entity_id: switch.off_computron3000
+      service: switch.turn_on
