@@ -1,4 +1,5 @@
 homeassistant:
+  customize:
 binary_sensor:
 - platform: mqtt
   state_topic: "/laundry_room/motion1/motion"
