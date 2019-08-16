@@ -32,6 +32,18 @@
     name: emilia.carriger@gmail.com
     track: true
 
+- cal_id: liz.mercer33@gmail.com
+  entities:
+  - device_id: liz.mercer33gmailcom
+    ignore_availability: true
+    name: liz.mercer33@gmail.com
+    track: true
+  - device_id: liz_work_exception
+    name: liz_work_exception
+    track: true
+    search: "#Liz Work"
+    offset: "!!-1"
+
 - cal_id: brett.carriger@gmail.com
   entities:
   - device_id: brettcarrigergmailcom
@@ -76,6 +88,13 @@
     track: true
 
 - cal_id: '#contacts@group.v.calendar.google.com'
+  entities:
+  - device_id: contacts
+    ignore_availability: true
+    name: Contacts
+    track: true
+
+- cal_id: addressbook#contacts@group.v.calendar.google.com
   entities:
   - device_id: contacts
     ignore_availability: true
