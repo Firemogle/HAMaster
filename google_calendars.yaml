@@ -1,9 +1,9 @@
 
-- cal_id: teamcarriger@gmail.com
+- cal_id: !secret email_house
   entities:
-  - device_id: teamcarrigergmailcom
+  - device_id: !secret houseid
     ignore_availability: true
-    name: teamcarriger@gmail.com
+    name: !secret email_house
     track: true
   - device_id: dte_cheap
     name: Cheap DTE
@@ -25,18 +25,18 @@
     name: Work Schedule
     track: true
 
-- cal_id: emilia.carriger@gmail.com
+- cal_id: !secret email_emi
   entities:
-  - device_id: emiliacarrigergmailcom
+  - device_id: !secret emiid
     ignore_availability: true
-    name: emilia.carriger@gmail.com
+    name: !secret email_emi
     track: true
 
-- cal_id: brett.carriger@gmail.com
+- cal_id: !secret email_brett
   entities:
-  - device_id: brettcarrigergmailcom
+  - device_id: !secret brettid
     ignore_availability: true
-    name: brett.carriger@gmail.com
+    name: !secret email_brett
     track: true
   - device_id: guest_mode_date
     name: house_sts_gmd
