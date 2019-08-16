@@ -1,3 +1,3 @@
 - platform: command_line
   name: "network_image"
-  command: curl -s -H "Authorization: Bearer eyJrIjoibFFqd2JCNmR5Qmc2cTBsZTFUeFRnaTVPRHRDWWc3SUQiLCJuIjoiSEEiLCJpZCI6MX0=" "https://192.168.1.243:3000/d/cYqIkiIZk/internet-speed?orgId=1&from=1565965905284&to=1565976705284&theme=dark" > /home/homeassistant/.homeassistant/downloads/network.png
+  command: 'curl -s -H "Authorization: Bearer eyJrIjoibFFqd2JCNmR5Qmc2cTBsZTFUeFRnaTVPRHRDWWc3SUQiLCJuIjoiSEEiLCJpZCI6MX0=" "https://192.168.1.243:3000/d/cYqIkiIZk/internet-speed?orgId=1&from=1565965905284&to=1565976705284&theme=dark" > /home/homeassistant/.homeassistant/downloads/network.png'
