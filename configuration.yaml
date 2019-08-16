@@ -55,7 +55,6 @@ alarm_control_panel:
 device_tracker:
   - platform: google_maps
     username: !secret DEVICE_USER
-    password: !secret DEVICE_PW
     max_gps_accuracy: 100
   - platform: ping
     hosts:
