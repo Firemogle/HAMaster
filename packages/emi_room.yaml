@@ -77,6 +77,8 @@ automation:
     trigger:
     - entity_id: sensor.emi_temp
       platform: state
+    - entity_id: 'fan.emi_fan'
+      platform: state
     condition:
       - condition: state
         entity_id: 'fan.emi_fan'
