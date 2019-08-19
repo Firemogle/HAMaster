@@ -1,0 +1,97 @@
+homeassistant:
+binary_sensor:
+  - platform: mqtt # Emi fan state
+    state_topic: "hawirelesslink/fan/king_of_fans_inc_hbuniversalcfremote_0020d37b_1_514/state"
+    name: emi_fan_state
+    payload_on: "on"
+    payload_off: "off"
+
+  - platform: mqtt # Emi Motion Sensor
+    state_topic: "hawirelesslink/binary_sensor/imagic_by_greatstar_1117_s_fe53fcd3_1_1280/state"
+    name: emi_motion
+    payload_on: "on"
+    payload_off: "off"
+    
+fan:
+  - platform: template
+    fans:
+      emi_fan:
+        friendly_name: "Emi fan"
+        value_template: "{{ states('binary_sensor.emi_fan_state') }}"
+        speed_template: "{{ states('sensor.emi_fan_speed')|replace('\"','') }}"
+        turn_on:
+          service:  mqtt.publish
+          data_template:
+              topic: "/HAwirelesslink/return/fan/king_of_fans_inc_hbuniversalcfremote_0020d37b_1_514/state"
+              payload: 'on'
+        turn_off:
+          service:  mqtt.publish
+          data_template:
+              topic: "/HAwirelesslink/return/fan/king_of_fans_inc_hbuniversalcfremote_0020d37b_1_514/state"
+              payload: 'off'
+        set_speed:
+          service: mqtt.publish
+          data_template:
+              topic: "/HAwirelesslink/return/fan/king_of_fans_inc_hbuniversalcfremote_0020d37b_1_514/speed"
+              payload: '{{ speed }}'
+        speeds:
+          - 'low'
+          - 'medium'
+          - 'high'
+          - 'on'
+          - 'auto'
+          - 'smart'
+          - 'off'
+          
+light:
+  - platform : mqtt
+    name: emi_star_lamp
+    state_topic: "hawirelesslink/switch/ledvance_plug_00054677_1/state"
+    command_topic: "/HAwirelesslink/return/light/ledvance_plug_00054677_1/state"
+    payload_on: "on"
+    payload_off: "off"
+    retain: true
+
+  - platform : mqtt
+    name: emi_fan_light
+    state_topic: "hawirelesslink/switch/king_of_fans_inc_hbuniversalcfremote_0020d37b_1_6/state"
+    command_topic: "/HAwirelesslink/return/light/king_of_fans_inc_hbuniversalcfremote_0020d37b_1_6/state"
+    payload_on: "on"
+    payload_off: "off"
+    retain: true
+    
+sensor:
+  - platform: mqtt
+    name: "emi_fan_speed"
+    state_topic: "hawirelesslink/fan/king_of_fans_inc_hbuniversalcfremote_0020d37b_1_514/speed"
+
+  - platform: mqtt
+    name: emi_temp
+    state_topic: "hawirelesslink/sensor/imagic_by_greatstar_1117_s_fe53fcd3_1_1026/state"
+    unit_of_measurement: "°F"
+    
+automation:
+  - id: emi_fan_speed
+    alias: emi_fan_speed
+    initial_state: 'off'
+    trigger:
+    - entity_id: sensor.emi_temp
+      platform: state
+    condition:
+      - condition: state
+        entity_id: 'fan.emi_fan'
+        state: 'on'
+    action:
+    - service: fan.set_speed
+      data_template:
+        entity_id: fan.emi_fan
+        speed: >
+          {% if (states.sensor.emi_temp.state|float > 80 ) %}
+            on
+          {% elif (states.sensor.emi_temp.state|float <= 80 ) and (states.sensor.emi_temp.state|float > 76 ) %} 
+            high
+          {% elif (states.sensor.emi_temp.state|float <= 76 ) and (states.sensor.emi_temp.state|float > 74 ) %} 
+            medium
+          {% elif (states.sensor.emi_temp.state|float <= 74 ) %} 
+            low
+          {% endif %}
