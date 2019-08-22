@@ -1,0 +1,59 @@
+homeassistant:
+  customize:
+light:
+  - platform : mqtt
+    name: "Jayhawk Candle"
+    state_topic: "/Jayhawk_Candle/relay/switch"
+    command_topic: "/Jayhawk_Candle/gpio/12"
+    payload_on: "1"
+    payload_off: "0"
+    retain: true
+
+  - platform : mqtt
+    name: livingroom_entry
+    state_topic: "hawirelesslink/light/livingroom_entry/state"
+    command_topic: "/HAwirelesslink/return/light/livingroom_entry/state"
+    brightness_state_topic: "hawirelesslink/light/livingroom_entry/brightness"
+    brightness_command_topic: "/HAwirelesslink/return/light/livingroom_entry/brightness"
+    payload_on: "on"
+    payload_off: "off"
+    retain: true
+    
+media_player:
+  - platform: kodi
+    name: Livingroom_kodi
+    host: 192.168.1.241
+    username: !secret KODI_USR
+    password: !secret KODI_PW
+
+  - platform: androidtv
+    name: livingroom_shield
+    host: 192.168.1.241
+    adb_server_ip: 127.0.0.1
+    adb_server_port: 5037
+
+  - platform: universal
+    name: livingroom_media
+    children:
+      - media_player.Livingroom_kodi
+      - media_player.livingroom_shield
+      - media_player.living_room_un55ju6400
+      - media_player.living_room_tv
+      
+automation:
+  - id: house_sts_jayhawks_on
+    alias: house_sts_jayhawks_on
+    initial_state: 'off'
+    trigger:
+    - entity_id: binary_sensor.house_sts_jayhawks
+      platform: state
+    condition: []
+    action:
+    - data:
+        entity_id: light.jayhawk_candle
+      service_template: >
+        {% if is_state('binary_sensor.house_sts_jayhawks', 'on') %}
+          light.turn_on
+        {% else %}
+          light.turn_off
+        {% endif %}
