@@ -151,6 +151,10 @@ influxdb:
   password: !secret influxPW
   max_retries: 3
   default_measurement: state
+  
+mqtt_eventstream:
+  publish_topic: master/topic
+  subscribe_topic: slaves/#
 
 # Items loaded elsewhere
 octoprint: !include_dir_merge_named printer/
