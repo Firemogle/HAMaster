@@ -154,7 +154,7 @@ influxdb:
   
 mqtt_eventstream:
   publish_topic: master/topic
-  subscribe_topic: slaves/#
+  subscribe_topic: slaves/wireless_link
 
 # Items loaded elsewhere
 octoprint: !include_dir_merge_named printer/
