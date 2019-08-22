@@ -1,0 +1,130 @@
+homeassistant:
+  customize:
+  
+binary_sensor:
+  - platform: template
+    sensors:
+      sliding_glass_door_opened:
+        friendly_name: "Sliding Glass Door"
+        value_template: >-
+          {{ is_state('binary_sensor.sliding_glass_door', 'on') }}
+
+  - platform: mqtt # Garage Door Entry
+    state_topic: "hawirelesslink/binary_sensor/centralite_3320l_0e259d4b_1_1280/state"
+    name: garage_entry_opened
+    payload_on: "on"
+    payload_off: "off"
+
+  - platform: mqtt # Kitchen fan state
+    state_topic: "hawirelesslink/fan/king_of_fans_inc_hdc52eastwindfan_0016d039_1_514/state"
+    name: kitchen_fan_state
+    payload_on: "on"
+    payload_off: "off"
+
+  - platform: mqtt # Kitchen motion
+    state_topic: "hawirelesslink/sensor/jasco_products_26931_smart_motion_switch_burglar/state"
+    name: kitchen_motion
+    payload_on: "8"
+    payload_off: "0"
+    
+fan:
+  - platform: template
+    fans:
+      kitchen_fan:
+        friendly_name: "Kitchen fan"
+        value_template: "{{ states('binary_sensor.kitchen_fan_state') }}"
+        speed_template: "{{ states('sensor.kitchen_fan_speed')|replace('\"','') }}"
+        turn_on:
+          service:  mqtt.publish
+          data_template:
+              topic: "/HAwirelesslink/return/fan/king_of_fans_inc_hdc52eastwindfan_0016d039_1_514/state"
+              payload: 'on'
+        turn_off:
+          service:  mqtt.publish
+          data_template:
+              topic: "/HAwirelesslink/return/fan/king_of_fans_inc_hdc52eastwindfan_0016d039_1_514/state"
+              payload: 'off'
+        set_speed:
+          service: mqtt.publish
+          data_template:
+              topic: "/HAwirelesslink/return/fan/king_of_fans_inc_hdc52eastwindfan_0016d039_1_514/speed"
+              payload: '{{ speed }}'
+        speeds:
+          - 'low'
+          - 'medium'
+          - 'high'
+          - 'on'
+          - 'auto'
+          - 'smart'
+          - 'off'
+          
+light:
+  - platform : mqtt
+    name: "Cabinet_LED"
+    state_topic: "/Cabinet_LED/relay/switch"
+    command_topic: "/Cabinet_LED/gpio/12"
+    payload_on: "1"
+    payload_off: "0"
+    retain: true
+
+  - platform : mqtt
+    name: "kitchen_sink"
+    state_topic: "hawirelesslink/light/sengled_e11_g13_031e3554_1/state"
+    command_topic: "/HAwirelesslink/return/light/sengled_e11_g13_031e3554_1/state"
+    brightness_state_topic: "hawirelesslink/light/sengled_e11_g13_031e3554_1/brightness"
+    brightness_command_topic: "/HAwirelesslink/return/light/sengled_e11_g13_031e3554_1/brightness"
+    payload_on: "on"
+    payload_off: "off"
+    retain: true
+
+  - platform : mqtt
+    name: "kitchen_fan"
+    state_topic: "hawirelesslink/light/king_of_fans_inc_hdc52eastwindfan_0016d039_1/state"
+    command_topic: "/HAwirelesslink/return/light/king_of_fans_inc_hdc52eastwindfan_0016d039_1/state"
+    brightness_state_topic: "hawirelesslink/light/king_of_fans_inc_hdc52eastwindfan_0016d039_1/brightness"
+    brightness_command_topic: "/HAwirelesslink/return/light/king_of_fans_inc_hdc52eastwindfan_0016d039_1/brightness"
+    payload_on: "on"
+    payload_off: "off"
+    retain: true
+
+  - platform : mqtt
+    name: "kitchen_lamp"
+    state_topic: "hawirelesslink/switch/jasco_products_26931_smart_motion_switch_switch/state"
+    command_topic: "/HAwirelesslink/return/light/jasco_products_26931_smart_motion_switch_switch/state"
+    payload_on: "on"
+    payload_off: "off"
+    retain: true
+    
+sensor:
+  - platform: mqtt
+    name: "kitchen_leak"
+    state_topic: "/Kitchen_Leak/moisture_sensor/Analog"
+
+  - platform: mqtt
+    name: "kitchen_temp"
+    state_topic: "/Kitchen_Leak/under_cabinet/Temperature"
+    unit_of_measurement: "°C"
+
+  - platform: mqtt
+    name: "kitchen_humidity"
+    state_topic: "/Kitchen_Leak/under_cabinet/Humidity"
+    unit_of_measurement: "%"
+
+  - platform: mqtt
+    name: "kitchen_pressure"
+    state_topic: "/Kitchen_Leak/under_cabinet/Pressure"
+    unit_of_measurement: "hPa"
+
+  - platform: mqtt
+    name: "kitchen_fan_speed"
+    state_topic: "hawirelesslink/fan/king_of_fans_inc_hdc52eastwindfan_0016d039_1_514/speed"
+
+  - platform: mqtt
+    name: sliding_glass_door_temperature
+    state_topic: "hawirelesslink/sensor/centralite_3315_s_0e4974b8_1_1026/state"
+    unit_of_measurement: "°F"
+
+  - platform: mqtt
+    name: garage_entry_temperature
+    state_topic: "hawirelesslink/sensor/centralite_3320l_0e259d4b_1_1026/state"
+    unit_of_measurement: "°F"
