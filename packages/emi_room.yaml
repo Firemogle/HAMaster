@@ -1,4 +1,5 @@
 homeassistant:
+  customize:
 binary_sensor:
   - platform: mqtt # Emi fan state
     state_topic: "hawirelesslink/fan/king_of_fans_inc_hbuniversalcfremote_0020d37b_1_514/state"
