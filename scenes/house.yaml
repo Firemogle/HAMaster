@@ -20,6 +20,8 @@
       state: off
     light.kitchen_sink:
       state: off
+    light.kitchen_fan:
+      state: off
     light.cabinet_led: 
       state: off
     light.hallway:
@@ -53,6 +55,8 @@
 - name: house_night
   entities:
     light.kitchen_sink:
+      state: off
+    light.kitchen_fan:
       state: off
     light.cabinet_led: 
       state: off
