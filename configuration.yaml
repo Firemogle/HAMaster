@@ -158,7 +158,7 @@ octoprint: !include_dir_merge_named printer/
 plant: !include_dir_merge_named plants/
 lock: !include_dir_merge_list locks/
 recorder: !include recorder.yaml
-media_player: !include_dir_merge_list media_players/
+#media_player: !include_dir_merge_list media_players/
 person: !include_dir_merge_list people/
 camera: !include_dir_merge_list cameras/
 cover: !include_dir_merge_list covers/
