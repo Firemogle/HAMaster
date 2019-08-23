@@ -116,7 +116,7 @@ mqtt:
   password: !secret MQTTPW
 
 amcrest:
-  - host: 192.168.1.244
+  - host: 192.168.2.8
     username: !secret AMCREST_USER
     password: !secret AMCREST_PW
     stream_source: rtsp
