@@ -1,5 +1,5 @@
 - platform: foscam
   name: "Backyard"
-  ip:  192.168.1.181
+  ip:  192.168.2.108
   username: !secret fcUN
   password: !secret fcPW
