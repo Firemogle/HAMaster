@@ -208,6 +208,7 @@ views:
         title: Emi Room
         entities: []
         camera_image: camera.amcrest_camera
+        camera_view: live
         # Add front porch
       - type: picture-glance
         title: "Front Porch"
