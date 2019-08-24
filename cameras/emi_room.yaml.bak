@@ -1,4 +1,0 @@
-- platform: generic
-  name: emi_camera
-  still_image_url: "http://un:pw@192.168.1.244/cgi-bin/snapshot.cgi"
-  stream_source: "rtsp://un:pw@192.168.1.244:554/cam/realmonitor?channel=1&subtype=1"
