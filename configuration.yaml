@@ -111,12 +111,12 @@ map:
 
 # Enable connection to MQTT server
 mqtt:
-  broker: 192.168.1.243
+  broker: 192.168.2.2
   username: firemogle
   password: !secret MQTTPW
 
 amcrest:
-  - host: 192.168.2.8
+  - host: 192.168.1.243
     username: !secret AMCREST_USER
     password: !secret AMCREST_PW
     stream_source: rtsp
