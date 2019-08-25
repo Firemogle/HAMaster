@@ -17,7 +17,7 @@
 
 - platform: mqtt # Bath motion
   state_topic: "hawirelesslink/sensor/jasco_products_26931_smart_motion_switch_burglar_3/state"
-  name: kitchen_motion
+  name: main_bath_motion
   payload_on: "8"
   payload_off: "0"
 
