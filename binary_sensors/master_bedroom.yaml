@@ -3,3 +3,10 @@
   name: master_fan_state
   payload_on: "on"
   payload_off: "off"
+
+
+- platform: mqtt # Master Bedroom Window
+  state_topic: "hawirelesslink/binary_sensor/centralite_3315_s_0e4974b8_1_1280/state"
+  name: master_bed_window
+  payload_on: "on"
+  payload_off: "off"
