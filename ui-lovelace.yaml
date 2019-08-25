@@ -77,7 +77,6 @@ views:
           - sensor.kitchen_humidity
           - sensor.kitchen_pressure
           - sensor.kitchen_temp
-          - sensor.sliding_glass_door_temperature
           - sensor.garage_entry_temperature
           - binary_sensor.garage_entry_opened
           - binary_sensor.sliding_glass_door_opened
@@ -95,6 +94,8 @@ views:
           - switch.master_tv
           - light.liz_headboard
           - light.brett_headboard
+          - binary_sensor.master_bed_window
+          - sensor.master_bed_window_temp
       - type: media-control
         entity: media_player.master_tv
       - type: entities
