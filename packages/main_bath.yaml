@@ -1,0 +1,112 @@
+homeasssitant:
+
+binary_sensor:
+  - platform: template
+    sensors:
+      main_bath_vent_needed:
+        value_template: >-
+          {{ (states('sensor.bathroom_vent_humidity')|float > states('sensor.main_bath_target_humidity')|float
+             or is_state('light.main_bath_vent_light','on')) and is_state('binary_sensor.main_bath_vent_motion','on') }}
+        delay_off:
+          minutes: 5
+
+  - platform: mqtt # Bath motion
+    state_topic: "hawirelesslink/sensor/jasco_products_26931_smart_motion_switch_burglar_3/state"
+    name: main_bath_motion
+    payload_on: "8"
+    payload_off: "0"
+
+
+  - platform: template
+    sensors:
+      main_bath_vent_motion:
+        value_template: >-
+          {{ is_state('binary_sensor.main_bath_motion','on') }}
+        delay_off:
+          minutes: 20
+          
+light:
+  - platform : mqtt
+    name: main_bath_vent_light
+    state_topic: "hawirelesslink/light/leviton_dz6hd_1bz_decora_600w_smart_dimmer_level_2/state"
+    command_topic: "/HAwirelesslink/return/light/main_bath_vent_light/state"
+    brightness_state_topic: "hawirelesslink/light/leviton_dz6hd_1bz_decora_600w_smart_dimmer_level_2/brightness"
+    brightness_command_topic: "/HAwirelesslink/return/light/main_bath_vent_light/brightness"
+    payload_on: "on"
+    payload_off: "off"
+    retain: true
+
+  - platform : mqtt
+    name: main_bath_vanity
+    state_topic: "hawirelesslink/light/leviton_dz6hd_1bz_decora_600w_smart_dimmer_level/state"
+    command_topic: "/HAwirelesslink/return/light/leviton_dz6hd_1bz_decora_600w_smart_dimmer_level/state"
+    brightness_state_topic: "hawirelesslink/light/leviton_dz6hd_1bz_decora_600w_smart_dimmer_level/brightness"
+    brightness_command_topic: "/HAwirelesslink/return/light/leviton_dz6hd_1bz_decora_600w_smart_dimmer_level/brightness"
+    payload_on: "on"
+    payload_off: "off"
+    retain: true
+    
+sensor:
+  - platform: mqtt
+    name: "Bathroom Vent Temperature"
+    state_topic: "/Attic_Sensor/Vent/Temperature"
+    unit_of_measurement: "°C"
+
+  - platform: mqtt
+    name: "Bathroom Vent Pressure"
+    state_topic: "/Attic_Sensor/Vent/Pressure"
+    unit_of_measurement: "hPa"
+
+  - platform: mqtt
+    name: "Bathroom Vent Humidity"
+    state_topic: "/Attic_Sensor/Vent/Humidity"
+    unit_of_measurement: "%"
+
+  - platform: mqtt
+    name: "Bathroom Vent VOC"
+    state_topic: "/Attic_Sensor/Vent/Gas"
+    unit_of_measurement: "Ω"
+
+  - platform: template
+    sensors:
+      main_bath_target_humidity:
+        value_template: >-
+          {% if is_state('binary_sensor.house_sts_dte_cheap', 'on') and is_state('binary_sensor.house_sts_hvac_cool_req', 'on') %}
+            {{ 90 }}
+          {% elif is_state('binary_sensor.house_sts_hvac_shut', 'off') or is_state('binary_sensor.house_sts_hvac_cool_req', 'on') %}
+            {{ (states('sensor.hvac_humidity')|float+states('input_number.main_bath_humidity_thresh')|float) }}
+          {% elif (states('sensor.hvac_humidity')|float+states('input_number.main_bath_humidity_thresh')|float) > (states('input_number.hvac_humidity_max'))|float %}
+            {{ (states('input_number.hvac_humidity_max')|float+states('input_number.main_bath_humidity_thresh')|float) }}
+          {% else %}
+            {{ (states('sensor.hvac_target_humidity')|float+states('input_number.main_bath_humidity_thresh')|float) }}
+          {% endif %}
+        unit_of_measurement: "%"
+        
+switch:
+  - platform : mqtt
+    name: "main_bath_fan"
+    state_topic: "hawirelesslink/switch/jasco_products_26931_smart_motion_switch_switch_3/state"
+    command_topic: "hawirelesslink/switch/jasco_products_26931_smart_motion_switch_switch_3/state"
+    state_on: "on"
+    state_off: "off"
+    payload_on: "on"
+    payload_off: "off"
+    retain: true
+
+automation:
+  - id: main_bath_vent_control
+    alias: main_bath_vent_control
+    initial_state: 'off'
+    trigger:
+    - entity_id: binary_sensor.main_bath_vent_needed
+      platform: state
+    condition: []
+    action:
+    - data:
+        entity_id: switch.main_bath_fan
+      service_template: >
+        {% if is_state('binary_sensor.main_bath_vent_needed','on') %}
+          switch.turn_on
+        {% else %}
+          switch.turn_off
+        {% endif %}
