@@ -1,4 +1,5 @@
 homeassistant:
+  customize:
 
 binary_sensor:
   - platform: mqtt # Kitchen fan state
