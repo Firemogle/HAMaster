@@ -1,0 +1,23 @@
+homeassistant:
+
+binary_sensor:
+  - platform: template # Combine both hallway sensors into 1 logical 
+    sensors:
+      hallway_motion_combine:
+        value_template: >-
+          {{ is_state('binary_sensor.hallway_motion', 'on')
+             or is_state('binary_sensor.hallway_motion_2', 'on') }}
+        delay_off:
+          minutes: 5
+
+  - platform: mqtt # Hall window
+    state_topic: "hawirelesslink/binary_sensor/centralite_3315_s_0e263b91_1_1280/state"
+    name: hall_window_opened
+    payload_on: "on"
+    payload_off: "off"
+    
+sensor:
+  - platform: mqtt
+    name: hall_window_temperature
+    state_topic: "hawirelesslink/sensor/centralite_3315_s_0e263b91_1_1026/state"
+    unit_of_measurement: "°F"
