@@ -1,0 +1,72 @@
+esphomeyaml:
+  name: basement_lights
+  platform: ESP8266
+  board: nodemcuv2
+
+wifi:
+  ssid: !secret AP
+  password: !secret APPW
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  password: !secret AP_PW
+
+ota:
+  password: !secret OTA_PW
+ 
+i2c:
+  sda: D2
+  scl: D1
+  scan: False
+  
+i2c:
+  sda: D2
+  scl: D1
+  scan: False
+  
+sensor:
+  - platform: bme280
+    temperature:
+      name: "Basement Temperature"
+      oversampling: 16x
+      unit_of_measurement: "°C"
+    pressure:
+      name: "Basement Pressure"
+      unit_of_measurement: "P"
+    humidity:
+      name: "Basement Humidity"
+      unit_of_measurement: "%"
+    address: 0x77
+    update_interval: 60s
+    
+light:
+  - platform: fastled_clockless
+    chipset: WS2811
+    pin: D0
+    num_leds: 60
+    rgb_order: BRG
+    name: "basement_shelf_0"
+    
+  - platform: fastled_clockless
+    chipset: WS2811
+    pin: D3
+    num_leds: 60
+    rgb_order: BRG
+    name: "basement_shelf_1"
+    
+  - platform: fastled_clockless
+    chipset: WS2811
+    pin: D4
+    num_leds: 60
+    rgb_order: BRG
+    name: "basement_shelf_2"
+    
+  - platform: fastled_clockless
+    chipset: WS2811
+    pin: D5
+    num_leds: 60
+    rgb_order: BRG
+    name: "basement_shelf_3"
