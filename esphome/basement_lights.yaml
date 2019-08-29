@@ -22,11 +22,6 @@ i2c:
   scl: D1
   scan: False
   
-i2c:
-  sda: D2
-  scl: D1
-  scan: False
-  
 sensor:
   - platform: bme280
     temperature:
