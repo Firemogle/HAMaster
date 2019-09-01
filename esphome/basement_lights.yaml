@@ -41,27 +41,27 @@ light:
   - platform: fastled_clockless
     chipset: WS2811
     pin: D0
-    num_leds: 60
+    num_leds: 150
     rgb_order: BRG
     name: "basement_shelf_0"
     
   - platform: fastled_clockless
     chipset: WS2811
     pin: D3
-    num_leds: 60
+    num_leds: 150
     rgb_order: BRG
     name: "basement_shelf_1"
     
   - platform: fastled_clockless
     chipset: WS2811
     pin: D4
-    num_leds: 60
+    num_leds: 150
     rgb_order: BRG
     name: "basement_shelf_2"
     
   - platform: fastled_clockless
     chipset: WS2811
     pin: D5
-    num_leds: 60
+    num_leds: 150
     rgb_order: BRG
     name: "basement_shelf_3"
