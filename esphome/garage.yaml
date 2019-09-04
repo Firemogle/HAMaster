@@ -206,7 +206,7 @@ binary_sensor:
 font:
   - file: "FFF_Tusj.ttf"
     id: my_font
-    size: 24
+    size: 6
 
 display:
   - platform: ssd1306_i2c
