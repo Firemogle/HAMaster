@@ -17,25 +17,6 @@ api:
 ota:
   password: !secret OTA_PW
  
-i2c:
-  sda: D2
-  scl: D1
-  scan: False
-  
-sensor:
-  - platform: bme280
-    temperature:
-      name: "Basement Temperature"
-      oversampling: 16x
-      unit_of_measurement: "°C"
-    pressure:
-      name: "Basement Pressure"
-      unit_of_measurement: "P"
-    humidity:
-      name: "Basement Humidity"
-      unit_of_measurement: "%"
-    address: 0x77
-    update_interval: 60s
     
 light:
   - platform: fastled_clockless
