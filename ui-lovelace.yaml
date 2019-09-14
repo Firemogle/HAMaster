@@ -12,6 +12,10 @@ views:
   - title: Overview
     id: overview
     cards:
+      - type: alarm-panel
+        name: House Alarm
+        show_header_toggle: false
+        entity: alarm_control_panel.alarm_panel
         # Card for status bits.
       - type: entities
         title: People
@@ -32,10 +36,9 @@ views:
           - binary_sensor.garage_door_back
         state_filter:
           - "on"
-      - type: alarm-panel
-        name: House Alarm
-        show_header_toggle: false
-        entity: alarm_control_panel.alarm_panel
+          - "unlocked
+          - "open"
+        show_empty: false
         # Garage Door Card
       - type: entities
         title: Doors
@@ -43,9 +46,6 @@ views:
         entities:
           - cover.garage_door
           - lock.front_door
-        #HVAC control
-      - type: thermostat
-        entity: climate.hvac
       - type: entities
         title: Media Control
         show_header_toggle: false
@@ -191,6 +191,8 @@ views:
   - title: Other
     id: house_other
     cards:
+      - type: thermostat
+        entity: climate.hvac
       - type: entities
         title: Attic
         show_header_toggle: false
