@@ -14,12 +14,24 @@ views:
     cards:
         # Card for status bits.
       - type: entities
-        title: Home Status
+        title: People
         show_header_toggle: false
         entities:
           - person.brett
           - person.liz
-          - sensor.house_status
+      - type: entity-filter
+        title: Home Status
+        show_header_toggle: false
+        entities:
+          - cover.garage_door
+          - lock.front_door
+          - binary_sensor.livingroom_door_opened
+          - binary_sensor.living_room_window
+          - binary_sensor.garage_entry_opened
+          - binary_sensor.sliding_glass_door_opened
+          - binary_sensor.garage_door_back
+        state_filter:
+          - "on"
       - type: alarm-panel
         name: House Alarm
         show_header_toggle: false
@@ -70,9 +82,13 @@ views:
         entities:
           - fan.kitchen_fan
           - light.cabinet_led
+            name: "Under Cabinet LED"
           - light.kitchen_sink
+            name: "Kitchen Sink Light"
           - light.kitchen_lamp
+            name: "Kitchen overhead Light"
           - light.kitchen_fan
+            name: "Kitchen Fan Light"
           - sensor.kitchen_leak
           - sensor.kitchen_humidity
           - sensor.kitchen_pressure
@@ -91,7 +107,9 @@ views:
         entities:
           - fan.master_fan
           - light.master_fan_light
+            name: "Master Bedroom Light"
           - switch.master_tv
+            name: "Master Bedroom TV"
           - light.liz_headboard
           - light.brett_headboard
           - binary_sensor.master_bed_window
