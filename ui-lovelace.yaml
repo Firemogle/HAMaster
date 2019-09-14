@@ -82,13 +82,9 @@ views:
         entities:
           - fan.kitchen_fan
           - light.cabinet_led
-            name: Under Cabinet LED
           - light.kitchen_sink
-            name: Kitchen Sink Light
           - light.kitchen_lamp
-            name: "Kitchen overhead Light"
           - light.kitchen_fan
-            name: "Kitchen Fan Light"
           - sensor.kitchen_leak
           - sensor.kitchen_humidity
           - sensor.kitchen_pressure
@@ -107,9 +103,7 @@ views:
         entities:
           - fan.master_fan
           - light.master_fan_light
-            name: "Master Bedroom Light"
           - switch.master_tv
-            name: "Master Bedroom TV"
           - light.liz_headboard
           - light.brett_headboard
           - binary_sensor.master_bed_window
