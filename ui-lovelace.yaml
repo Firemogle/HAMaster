@@ -82,9 +82,9 @@ views:
         entities:
           - fan.kitchen_fan
           - light.cabinet_led
-            name: "Under Cabinet LED"
+            name: Under Cabinet LED
           - light.kitchen_sink
-            name: "Kitchen Sink Light"
+            name: Kitchen Sink Light
           - light.kitchen_lamp
             name: "Kitchen overhead Light"
           - light.kitchen_fan
