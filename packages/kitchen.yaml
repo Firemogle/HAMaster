@@ -123,3 +123,31 @@ sensor:
     name: garage_entry_temperature
     state_topic: "hawirelesslink/sensor/centralite_3320l_0e259d4b_1_1026/state"
     unit_of_measurement: "°F"
+
+automation:
+  - id: kitchen_fan_speed
+    alias: kitchen_fan_speed
+    initial_state: 'off'
+    trigger:
+    - entity_id: sensor.garage_entry_temperature
+      platform: state
+    - entity_id: 'fan.kitchen_fan'
+      platform: state
+    condition:
+      - condition: state
+        entity_id: 'fan.kitchen_fan'
+        state: 'on'
+    action:
+    - service: fan.set_speed
+      data_template:
+        entity_id: fan.kitchen_fan
+        speed: >
+          {% if (states.sensor.garage_entry_temperature.state|float > 80 ) %}
+            on
+          {% elif (states.sensor.garage_entry_temperature.state|float <= 80 ) and (states.sensor.garage_entry_temperature.state|float > 76 ) %} 
+            high
+          {% elif (states.sensor.garage_entry_temperature.state|float <= 76 ) and (states.sensor.garage_entry_temperature.state|float > 74 ) %} 
+            medium
+          {% elif (states.sensor.garage_entry_temperature.state|float <= 74 ) %} 
+            low
+          {% endif %}
