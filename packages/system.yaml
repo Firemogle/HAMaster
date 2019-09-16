@@ -1,0 +1,326 @@
+homeassistant:
+  customize:
+
+binary_sensor:
+  - platform: template
+    sensors:
+      house_sts_occupants:
+        value_template: >-
+          {{ is_state('group.occupants', 'home') }}
+  - platform: template
+    sensors:
+      house_sts_guest:
+        value_template: >-
+          {{ states.calendar.guest_mode_visitor.state == 'on'
+             or states.calendar.guest_mode_date.state == 'on' }}
+  - platform: template
+    sensors:
+      house_sts_vacation:
+        value_template: >-
+          {{ states.calendar.vacation_mode.state == 'on' }}
+
+  - platform: template
+    sensors:
+      house_sts_away_vacation:
+        value_template: >-
+          {{ ((states.proximity.brett_home.state)|float > 120 and 
+             (states.proximity.liz_home.state)|float) > 120 and 
+              is_state('binary_sensor.house_sts_vacation', 'on') }}
+              
+  - platform: template
+    sensors:
+      house_sts_incoming:
+        value_template: >-
+          {{ is_state('device_tracker.google_maps_116842525089175776476', 'homecoming')
+             or is_state('device_tracker.google_maps_108379141181739394475', 'homecoming') }}
+
+  - platform: template
+    sensors:
+      house_sts_dte_cheap:
+        value_template: >-
+          {{ states.calendar.dte_cheap.state == 'on' }}
+
+  - platform: template
+    sensors:
+      house_sts_jayhawks:
+        value_template: >-
+          {{ states.calendar.football_kuathleticscom.state == 'on'
+             or states.calendar.mens_basketball_kuathleticscom.state == 'on'
+             or states.calendar.volleyball_kuathleticscom.state == 'on' }}
+             
+  - platform: template
+    sensors:
+      house_boot_complete:
+        value_template: >-
+          {{ states('sensor.uptime')|float > 5 }}
+          
+input_number:
+  hvac_home_ac_temp:
+    mode: Slider
+    initial: 74
+    min: 60
+    max: 85
+    step: 1
+    unit_of_measurement: "F"
+  
+  hvac_home_heat_temp:
+    mode: Slider
+    initial: 74
+    min: 60
+    max: 85
+    step: 1
+    unit_of_measurement: "F"
+  
+  hvac_away_ac_temp:
+    mode: Slider
+    initial: 78
+    min: 60
+    max: 85
+    step: 1
+    unit_of_measurement: "F"
+  
+  hvac_away_heat_temp:
+    mode: Slider
+    initial: 65
+    min: 60
+    max: 85
+    step: 1
+    unit_of_measurement: "F"
+  
+  hvac_overnight_ac_temp:
+    mode: Slider
+    initial: 60
+    min: 60
+    max: 85
+    step: 1
+    unit_of_measurement: "F"
+  
+  hvac_overnight_heat_temp:
+    mode: Slider
+    initial: 65
+    min: 60
+    max: 85
+    step: 1
+    unit_of_measurement: "F"
+  
+  hvac_vacation_ac_temp:
+    mode: Slider
+    initial: 85
+    min: 60
+    max: 85
+    step: 1
+    unit_of_measurement: "F"
+  
+  hvac_vacation_heat_temp:
+    mode: Slider
+    initial: 60
+    min: 60
+    max: 85
+    step: 1
+    unit_of_measurement: "F"
+  
+  hvac_humidity_max:
+    mode: Slider
+    initial: 45
+    min: 30
+    max: 55
+    step: 1
+    unit_of_measurement: "%"
+
+sensor:
+  - platform: darksky
+    api_key: eccf5f65e6dce657df3792d7e362f0db
+    forecast:
+      - 0
+    monitored_conditions:
+      - summary
+      - icon
+      - nearest_storm_distance
+      - temperature
+      - apparent_temperature
+      - humidity
+      - temperature_high
+      - temperature_low
+
+  - platform: template
+    sensors:
+      timeday:
+        value_template: >-
+          {% if is_state('binary_sensor.house_wake_for_work', 'on') or is_state('binary_sensor.house_weekend_wakeup', 'on') %}
+            {{ "morning" }}
+          {% elif is_state('binary_sensor.afternoon', 'on') %} 
+            {{ "afternoon" }}
+          {% elif is_state('binary_sensor.evening', 'on') %}
+            {{ "evening" }}
+          {% else %}
+            {{ "night" }}
+          {% endif %}
+
+  - platform: openhardwaremonitor
+    host: 192.168.1.229
+
+  - platform: openhardwaremonitor
+    host: 192.168.2.201
+
+  - platform: uptime
+    unit_of_measurement: minutes
+
+  - platform: mqtt
+    name: "Attic Temp"
+    state_topic: "/Attic_Sensor/Attic/Temperature"
+    unit_of_measurement: "°C"
+
+  - platform: mqtt
+    name: "Attic Pressure"
+    state_topic: "/Attic_Sensor/Attic/Pressure"
+    unit_of_measurement: "hPa"
+
+  - platform: mqtt
+    name: "Attic Humidity"
+    state_topic: "/Attic_Sensor/Attic/Humidity"
+    unit_of_measurement: "%"
+
+
+  - platform: flunearyou
+
+  - platform: radarr
+    api_key: e9550bffc3584c27a8fadfea761e7167
+    host: 192.168.1.3
+    monitored_conditions:
+      - upcoming
+      - movies
+      - status
+    days: 7
+
+  - platform: sonarr
+    api_key: f5daad9766934d8394b07efe7f501c52
+    host: 192.168.1.3
+    monitored_conditions:
+      - upcoming
+      - series
+      - wanted
+    days: 7
+
+  - platform: template
+    sensors:
+      hvac_target_humidity:
+        unit_of_measurement: "%"
+        value_template: >-
+          {% if ((0.0049*states('sensor.dark_sky_overnight_low_temperature')|float+0.2668)*100) > states('input_number.hvac_humidity_max')|float %}
+            {{ states('input_number.hvac_humidity_max')|float }}
+          {% else %} 
+            {{ (0.0049*states('sensor.dark_sky_overnight_low_temperature')|float+0.2668)*100 }}
+          {% endif %}
+
+  - platform: template
+    sensors:
+      hvac_fan_state:
+        value_template: >-
+          {{ states.climate.hvac.attributes.fan }}
+
+  - platform: template
+    sensors:
+      hvac_current_humidity:
+        unit_of_measurement: "%"
+        value_template: >-
+          {{ states.climate.hvac.attributes.current_humidity }}
+
+  - platform: deluge
+    host: 192.168.1.3
+    username: Fire
+    password: Poop
+    monitored_variables:
+      - 'current_status'
+      - 'download_speed'
+      - 'upload_speed'
+
+  - platform: mqtt
+    name: "VPN down"
+    state_topic: "hawirelesslink/sensor/speedtest_download/state"
+    unit_of_measurement: "Mbit/s"
+
+  - platform: mqtt
+    name: "VPN up"
+    state_topic: "hawirelesslink/sensor/speedtest_upload/state"
+    unit_of_measurement: "Mbit/s"
+
+  - platform: zestimate
+    api_key: !secret ZILLOW
+    zpid: 
+      - 24680932
+
+  - platform: template
+    sensors:
+      house_status:
+        value_template: >-
+          {% if is_state('binary_sensor.house_sts_occupants', 'on') %}
+            {{ "Occupied" }}
+          {% elif is_state('binary_sensor.house_sts_guest', 'on') %} 
+            {{ "Guest mode" }}
+          {% elif is_state('binary_sensor.house_sts_vacation', 'on') %}
+            {{ "Vacation" }}
+          {% else %}
+            {{ "Away" }}
+          {% endif %}
+
+
+
+automation:
+  - id: system_update_available
+    alias: system_update_available
+    initial_state: 'off'
+    trigger:
+      platform: state
+      entity_id: updater.updater
+    action:
+      service: notify.brett_notify
+      data:
+        message: 'Update for Home Assistant is available.'
+
+  - id: 'ha_start'
+    alias: ha_start
+    trigger:
+    - event: start
+      platform: homeassistant
+    condition: []
+    action:
+    - data:
+        entity_id: script.initialization
+      service: script.turn_on
+
+  - id: 'house_sts_occupants'
+    alias: house_sts_occupants
+    initial_state: 'off'
+    trigger:
+    - entity_id: binary_sensor.house_sts_occupants
+      platform: state
+    condition: []
+    action:
+    - data:
+        entity_id: script.hvac_run_setpoint
+      service: script.turn_on
+    - data:
+        entity_id: alarm_control_panel.alarm_panel
+        code: !secret alarmcode
+      service_template: >
+        {% if is_state('binary_sensor.house_sts_occupants', 'off') and is_state('binary_sensor.house_sts_guest', 'off') %}
+          alarm_control_panel.alarm_arm_away
+        {% elif is_state('binary_sensor.house_sts_occupants', 'off') and is_state('house_status', 'vacation') %}
+          alarm_control_panel.alarm_arm_away
+        {% else %}
+          alarm_control_panel.alarm_disarm
+        {% endif %}
+    - data_template:
+        entity_id: >
+             {% if is_state('binary_sensor.house_sts_occupants', 'off') and is_state('binary_sensor.house_sts_guest', 'off') %}
+               scene.house_away
+             {% else %}
+               scene.house_home
+             {% endif %} 
+      service: scene.turn_on  
+    - data_template:
+        message: >
+          Occupancy mode changed to {{ states('binary_sensor.house_sts_occupants') }}
+      service: notify.gmail_notify
+
+      
