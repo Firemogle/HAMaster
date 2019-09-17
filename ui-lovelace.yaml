@@ -250,6 +250,7 @@ views:
         camera_view: live
   - title: Plants
     id: plants
+    icon: flower-outline
     cards:
       - type: plant-status
         entity: plant.cedars
@@ -257,6 +258,7 @@ views:
         entity: plant.trees
   - title: System
     id: house_system
+    icon: lan
     cards:
       - type: iframe
         url: https://192.168.1.243:3000/d/cYqIkiIZk/internet-speed?orgId=1&from=1565952833350&to=1565963633350
@@ -336,6 +338,7 @@ views:
 
   - title: Calibration
     id: house_calibration
+    icon: brain
     cards:
       - type: entities
         title: HVAC
