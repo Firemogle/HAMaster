@@ -1,0 +1,157 @@
+homeassistant:
+  customize:
+
+binary_sensor:
+  - platform: template # Determine if the house is opened up or not
+    sensors:
+      house_sts_hvac_shut:
+        value_template: >-
+          {{ is_state('binary_sensor.hall_window_opened', 'off')
+             and is_state('binary_sensor.sliding_glass_door_opened', 'off')
+             and is_state('binary_sensor.livingroom_door_opened', 'off') }}
+        delay_off:
+          minutes: 5        
+
+  - platform: template # Determine if AC is needed
+    sensors:
+      house_sts_hvac_cool_req:
+        value_template: >-
+          {{ states('sensor.dark_sky_daytime_high_temperature_0d')|float > states('input_number.hvac_ac_enable_temp')|float }}
+        delay_off:
+          minutes: 30
+        delay_on:
+          minutes: 5
+
+  - platform: template # Determine if heat is needed
+    sensors:
+      house_sts_hvac_heat_req:
+        value_template: >-
+          {{ states('sensor.dark_sky_daytime_high_temperature_0d')|float < states('input_number.hvac_heat_enable_temp')|float }}
+        delay_off:
+          minutes: 30
+        delay_on:
+          minutes: 5
+
+  - platform: template # Combine ac/heat to check if HVAC is needed
+    sensors:
+      house_sts_hvac_req:
+        value_template: >-
+          {{ is_state('binary_sensor.house_sts_hvac_cool_req', 'on')
+             or is_state('binary_sensor.house_sts_hvac_heat_req', 'on') }}
+
+  - platform: template # Determine if house is shut and HVAC needed, run HVAC
+    sensors:
+      house_sts_hvac_run:
+        value_template: >-
+          {{ is_state('binary_sensor.house_sts_hvac_req', 'on')
+             and is_state('binary_sensor.house_sts_hvac_shut', 'on') }}
+
+  - platform: template # Determine if the humidifier needs to run while the heat is on
+    sensors:
+      house_sts_hum_passive_req:
+        value_template: >-
+          {{ states('sensor.hvac_current_humidity')|float < states('sensor.hvac_target_humidity')|float }}
+
+  - platform: template # Determine if the humidifier needs to run by forcing HVAC fan on
+    sensors:
+      house_sts_hum_active_req:
+        value_template: >-
+          {{ states('sensor.hvac_current_humidity')|float < states('sensor.hvac_target_humidity')|float-5 }}
+
+  - platform: template # Run the humidifier passively
+    sensors:
+      house_sts_hum_passive_run:
+        value_template: >-
+          {{ is_state('binary_sensor.house_sts_hum_passive_req', 'on')
+             and is_state('sensor.hvac_fan_state', 'on') }}
+             
+sensor:
+  - platform: template
+    sensors:
+      hvac_target_humidity:
+        unit_of_measurement: "%"
+        value_template: >-
+          {% if ((0.0049*states('sensor.dark_sky_overnight_low_temperature')|float+0.2668)*100) > states('input_number.hvac_humidity_max')|float %}
+            {{ states('input_number.hvac_humidity_max')|float }}
+          {% else %} 
+            {{ (0.0049*states('sensor.dark_sky_overnight_low_temperature')|float+0.2668)*100 }}
+          {% endif %}
+
+  - platform: template
+    sensors:
+      hvac_fan_state:
+        value_template: >-
+          {{ states.climate.hvac.attributes.fan }}
+
+  - platform: template
+    sensors:
+      hvac_current_humidity:
+        unit_of_measurement: "%"
+        value_template: >-
+          {{ states.climate.hvac.attributes.current_humidity }}
+
+automation:
+  - id: 'house_hvac_ena'
+    alias: house_hvac_ena
+    initial_state: 'off'
+    trigger:
+    - entity_id: binary_sensor.house_sts_hvac_run
+      platform: state
+    condition: []
+    action:
+    - data:
+        entity_id: script.hvac_run_stop
+      service: script.turn_on
+
+  - id: 'house_hvac_set'
+    alias: house_hvac_set
+    initial_state: 'off'
+    trigger:
+    - entity_id: binary_sensor.house_sts_dte_cheap
+      platform: state
+    - entity_id: binary_sensor.house_sts_guest
+      platform: state
+    - entity_id: binary_sensor.house_sts_vacation
+      platform: state
+    - entity_id: binary_sensor.house_sts_incoming
+      platform: state
+    condition: []
+    action:
+    - data:
+        entity_id: script.hvac_run_setpoint
+      service: script.turn_on
+
+  - id: humidifier_passive
+    alias: humidifier_passive
+    initial_state: 'off'
+    trigger:
+    - entity_id: binary_sensor.house_sts_hum_passive_run
+      platform: state
+    condition: []
+    action:
+    - data:
+        entity_id: switch.humidifier
+      service_template: >
+        {% if is_state('binary_sensor.house_sts_hum_passive_run','on') %}
+          switch.turn_on
+        {% else %}
+          switch.turn_off
+        {% endif %}
+
+  - id: humidifier_active
+    alias: humidifier_active
+    initial_state: 'off'
+    trigger:
+    - entity_id: binary_sensor.house_sts_hum_active_req
+      platform: state
+    condition: []
+    action:
+    - data_template:
+        fan_mode: >
+            {% if is_state('binary_sensor.house_sts_hum_active_req', 'on') %}
+              on
+            {% else %}
+              auto
+            {% endif %}
+        entity_id: script.hvac_fan
+      service: climate.set_fan_mode
