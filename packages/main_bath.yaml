@@ -26,7 +26,6 @@ binary_sensor:
           {{ is_state('binary_sensor.main_bath_motion','on') }}
         delay_off:
           minutes: 20
-    device_class: motion
           
 light:
   - platform : mqtt
@@ -54,19 +53,16 @@ sensor:
     name: "Bathroom Vent Temperature"
     state_topic: "/Attic_Sensor/Vent/Temperature"
     unit_of_measurement: "°C"
-    device_class: temperature
 
   - platform: mqtt
     name: "Bathroom Vent Pressure"
     state_topic: "/Attic_Sensor/Vent/Pressure"
     unit_of_measurement: "hPa"
-    device_class: pressure
 
   - platform: mqtt
     name: "Bathroom Vent Humidity"
     state_topic: "/Attic_Sensor/Vent/Humidity"
     unit_of_measurement: "%"
-    device_class: humidity
 
   - platform: mqtt
     name: "Bathroom Vent VOC"
@@ -85,7 +81,6 @@ sensor:
             {{ (states('sensor.hvac_target_humidity')|float+states('input_number.main_bath_humidity_thresh')|float) }}
           {% endif %}
         unit_of_measurement: "%"
-    device_class: humidity
         
 switch:
   - platform : mqtt
