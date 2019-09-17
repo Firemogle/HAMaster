@@ -54,12 +54,12 @@
     step: 1
     unit_of_measurement: "F"
     
-  #hvac_ac_enable_temp:
-  #  name: Slider
-  #  min: 60
-  #  max: 85
-  #  step: 1
-  #  unit_of_measurement: "F"
+  hvac_ac_enable_temp:
+    name: Slider
+    min: 60
+    max: 85
+    step: 1
+    unit_of_measurement: "F"
   
   hvac_heat_enable_temp:
     name: Slider
