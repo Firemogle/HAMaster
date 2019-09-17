@@ -13,6 +13,7 @@ binary_sensor:
     name: master_bed_window
     payload_on: "on"
     payload_off: "off"
+    device_class: window
     
 fan:
   - platform: template
@@ -66,6 +67,7 @@ sensor:
     name: master_bed_window_temp
     state_topic: "hawirelesslink/sensor/centralite_3315_s_0e4974b8_1_1026/state"
     unit_of_measurement: "°F"
+    device_class: temperature
     
 switch:
   - platform : mqtt
@@ -77,6 +79,7 @@ switch:
     payload_on: "on"
     payload_off: "off"
     retain: true
+    icon: mdi:television-box
     
 automation:
   - id: 'mbr_tv_off'
