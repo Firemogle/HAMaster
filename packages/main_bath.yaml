@@ -9,7 +9,6 @@ binary_sensor:
              or is_state('binary_sensor.main_bath_vent_motion','on') }}
         delay_off:
           minutes: 5
-    device_class: moisture
 
   - platform: mqtt # Bath motion
     state_topic: "hawirelesslink/sensor/jasco_products_26931_smart_motion_switch_burglar_3/state"
