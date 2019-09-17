@@ -120,7 +120,7 @@ automation:
     trigger:
     - entity_id: light.main_bath_vent_light
       platform: state
-      to: on
+      to: "on"
     condition: []
     action:
     - data:
@@ -134,7 +134,7 @@ automation:
     trigger:
     - entity_id: binary_sensor.main_bath_vent_needed
       platform: state
-      to: off
+      to: "off"
     condition: []
     action:
     - data:
