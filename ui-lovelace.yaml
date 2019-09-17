@@ -221,6 +221,7 @@ views:
           - sensor.garage_humidity
   - title: Cameras
     id: house_camera
+    icon: mdi:cctv
     cards:
       - type: picture-glance
         title: Emi Room
