@@ -6,12 +6,14 @@ binary_sensor:
     name: emi_fan_state
     payload_on: "on"
     payload_off: "off"
+    device_class: power
 
   - platform: mqtt # Emi Motion Sensor
     state_topic: "hawirelesslink/binary_sensor/imagic_by_greatstar_1117_s_fe53fcd3_1_1280/state"
     name: emi_motion
     payload_on: "on"
     payload_off: "off"
+    device_class: motion
     
 fan:
   - platform: template
