@@ -60,6 +60,7 @@ views:
     # Main Level 
   - title: Main Level
     id: house_main
+    icon: mdi:home-floor-1
     cards:
       - type: entities
         title: Living room
@@ -95,6 +96,7 @@ views:
 
   - title: Upstairs
     id: house_upstairs
+    icon: mdi:home-floor-2
     cards:
       - type: entities
         title: Master Bed
@@ -145,6 +147,7 @@ views:
     # Basement view
   - title: Basement
     id: house_basement
+    icon: mdi:home-floor-negative-1
     cards:
       - type: media-control
         entity: media_player.projector_media
@@ -189,6 +192,7 @@ views:
           
   - title: Other
     id: house_other
+    icon: mdi:home-floor-0
     cards:
       - type: thermostat
         entity: climate.hvac
