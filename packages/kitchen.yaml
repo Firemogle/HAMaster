@@ -104,16 +104,19 @@ sensor:
     name: "kitchen_temp"
     state_topic: "/Kitchen_Leak/under_cabinet/Temperature"
     unit_of_measurement: "°C"
+    device_class: temperature
 
   - platform: mqtt
     name: "kitchen_humidity"
     state_topic: "/Kitchen_Leak/under_cabinet/Humidity"
     unit_of_measurement: "%"
+    device_class: humidity
 
   - platform: mqtt
     name: "kitchen_pressure"
     state_topic: "/Kitchen_Leak/under_cabinet/Pressure"
     unit_of_measurement: "hPa"
+    device_class: pressure
 
   - platform: mqtt
     name: "kitchen_fan_speed"
@@ -123,6 +126,7 @@ sensor:
     name: garage_entry_temperature
     state_topic: "hawirelesslink/sensor/centralite_3320l_0e259d4b_1_1026/state"
     unit_of_measurement: "°F"
+    device_class: temperature
 
 automation:
   - id: kitchen_fan_speed
