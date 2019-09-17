@@ -11,6 +11,7 @@ views:
     # System Overview tab
   - title: Overview
     id: overview
+    icon: mdi:home-assistant
     cards:
       - type: alarm-panel
         name: House Alarm
