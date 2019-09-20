@@ -1,5 +1,21 @@
 homeassistant:
   customize:
+  
+binary_sensor:
+
+  - platform: mqtt
+    state_topic: "hawirelesslink/lock/schlage_allegion_be469_touchscreen_deadbolt_locked_4/state"
+    name: "front_door_lock_stat"
+    payload_on: "locked"
+    payload_off: "unlocked"
+    
+  - platform: template
+    sensors:
+      livingroom_door_opened:
+        friendly_name: "Front Door"
+        value_template: >-
+          {{ is_state('binary_sensor.front_door', 'on') }}
+  
 light:
   - platform : mqtt
     name: "Jayhawk Candle"
@@ -18,6 +34,15 @@ light:
     payload_on: "on"
     payload_off: "off"
     retain: true
+    
+lock:
+  - platform: template
+    name: front_door
+    value_template: "{{ states('binary_sensor.front_door_lock_stat') }}"
+    lock:
+      service: script.front_door_lock
+    unlock:
+      service: script.front_door_unlock
     
 media_player:
   - platform: kodi
