@@ -1,5 +1,17 @@
 homeassistant:
   customize:
+  
+light:
+  - platform : mqtt
+    name: "basemet_dimmer"
+    state_topic: "hawirelesslink/light/basement_dim/state"
+    command_topic: "/HAwirelesslink/return/light/basement_dim/state"
+    brightness_state_topic: "hawirelesslink/light/basement_dim/brightness"
+    brightness_command_topic: "/HAwirelesslink/return/light/basement_dim/brightness"
+    payload_on: "on"
+    payload_off: "off"
+    retain: true
+  
 media_player:
   - platform: kodi
     name: projector_kodi
