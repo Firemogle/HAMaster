@@ -149,6 +149,11 @@ views:
     id: house_basement
     icon: mdi:home-floor-negative-1
     cards:
+      - type: entities
+        title: Main Basement
+        show_header_toggle: false
+        entities:
+          - light.basemet_dimmer
       - type: media-control
         entity: media_player.projector_media
       - type: entities
