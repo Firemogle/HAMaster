@@ -1,7 +1,7 @@
-esphomeyaml:
+esphome:
   name: mini_aquarium
-  platform: ESP8266
-  board: nodemcuv2
+    platform: ESP32
+    board: nodemcu-32s
 
 wifi:
   ssid: !secret AP
@@ -9,12 +9,6 @@ wifi:
 
 # Enable logging
 logger:
-
-#mqtt:
-#  broker: 192.168.1.243
-#  username: !secret MQTT_UN
-#  password: !secret MQTT_PW
-#  keepalive: 60
 
 # Enable Home Assistant API
 api:
@@ -27,24 +21,15 @@ i2c:
   sda: D2
   scl: D1
   scan: False
-
-# Set pca9685 frequency
-pca9685:
-  frequency: 1000
-  
-ads1115:
-  - address: 0x48
   
   
 sensor:
-  - platform: ads1115
-    multiplexer: 'A0_GND'
-    gain: 6.144
+  - platform: adc
+    pin: A0
     name: "water_prob_v"
     unit_of_measurement: "V"
-  - platform: ads1115
-    multiplexer: 'A1_GND'
-    gain: 6.144
+  - platform: adc
+    pin: A3
     name: "bed_prob_v"
     unit_of_measurement: "V"
   - platform: bme280
@@ -81,27 +66,30 @@ sensor:
     
 # Individual outputs
 output:
-  - platform: pca9685
+  - platform: ledc
     id: 'R'
-    channel: 0
-  - platform: pca9685
+    pin: Dx
+  - platform: ledc
     id: 'G'
-    channel: 1
-  - platform: pca9685
+    pin: Dx
+  - platform: ledc
     id: 'B'
-    channel: 2
-  - platform: pca9685
+    pin: Dx
+  - platform: ledc
     id: 'W'
-    channel: 3
+    pin: Dx
   - platform: pca9685
     id: 'Pump'
     channel: 4
-  - platform: pca9685
+  - platform: ledc
+    id: 'Pump'
+    pin: Dx
+  - platform: ledc
     id: 'Htr'
-    channel: 5
-  - platform: pca9685
+    pin: Dx
+  - platform: ledc
     id: 'Air'
-    channel: 6
+    pin: Dx
     
 light:
   - platform: rgbw
@@ -113,12 +101,10 @@ light:
   - platform: monochromatic
     name: "Bed Pump"
     output: 'Pump'
-    
-switch:
-  - platform: output
+  - platform: monochromatic
     name: "Heater"
     output: 'Htr'
-  - platform: output
+  - platform: monochromatic
     name: "Air Pump"
     output: 'Air'
     
