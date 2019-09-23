@@ -1,7 +1,7 @@
 esphome:
   name: basement_lights
-    platform: ESP32
-    board: nodemcu-32s
+  platform: ESP32
+  board: nodemcu-32s
 
 wifi:
   ssid: !secret AP
