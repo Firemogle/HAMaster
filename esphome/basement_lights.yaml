@@ -42,7 +42,7 @@ light:
     
   - platform: fastled_clockless
     chipset: WS2811
-    pin: D2
+    pin: D3
     num_leds: 150
     rgb_order: BRG
     name: "basement_shelf_3"
