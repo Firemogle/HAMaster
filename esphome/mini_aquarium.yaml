@@ -78,17 +78,16 @@ output:
   - platform: ledc
     id: 'W'
     pin: Dx
-  - platform: pca9685
-    id: 'Pump'
-    channel: 4
   - platform: ledc
     id: 'Pump'
     pin: Dx
   - platform: ledc
     id: 'Htr'
+    frequency: 120
     pin: Dx
   - platform: ledc
     id: 'Air'
+    frequency: 120
     pin: Dx
     
 light:
