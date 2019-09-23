@@ -1,7 +1,7 @@
 esphome:
   name: mini_aquarium
-    platform: ESP32
-    board: nodemcu-32s
+  platform: ESP32
+  board: nodemcu-32s
 
 wifi:
   ssid: !secret AP
