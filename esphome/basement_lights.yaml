@@ -1,7 +1,7 @@
 esphome:
   name: basement_lights
-  platform: ESP8266
-  board: nodemcuv2
+    platform: ESP32
+    board: nodemcu-32s
 
 wifi:
   ssid: !secret AP
@@ -21,28 +21,28 @@ ota:
 light:
   - platform: fastled_clockless
     chipset: WS2811
-    pin: D3
+    pin: D0
     num_leds: 150
     rgb_order: BRG
     name: "basement_shelf_0"
     
   - platform: fastled_clockless
     chipset: WS2811
-    pin: D4
+    pin: D1
     num_leds: 150
     rgb_order: BRG
     name: "basement_shelf_1"
     
   - platform: fastled_clockless
     chipset: WS2811
-    pin: D5
+    pin: D2
     num_leds: 150
     rgb_order: BRG
     name: "basement_shelf_2"
     
   - platform: fastled_clockless
     chipset: WS2811
-    pin: D6
+    pin: D2
     num_leds: 150
     rgb_order: BRG
     name: "basement_shelf_3"
