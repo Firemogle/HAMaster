@@ -9,3 +9,20 @@
   white_value: true
   effect: false
   optimistic: false
+  
+- platform: mqtt
+  name: 'garage_ext_1'
+  state_topic: "hawirelesslink/light/ledvance_a19_rgbw_00060a5e_1/state" 
+  command_topic: "/HAwirelesslink/return/light/ledvance_a19_rgbw_00060a5e_1/state"
+  brightness_state_topic: "hawirelesslink/light/ledvance_a19_rgbw_00060a5e_1/brightness"
+  brightness_command_topic: "/HAwirelesslink/return/light/ledvance_a19_rgbw_00060a5e_1/brightness"
+  payload_on: "on"
+  payload_off: "off"
+  rgb_state_topic: "hawirelesslink/light/ledvance_a19_rgbw_00060a5e_1/rgb_color"
+  rgb_command_topic: "/HAwirelesslink/return/light/ledvance_a19_rgbw_00060a5e_1/rgb_color"
+  color_temp: false
+  brightness: true
+  rgb: true
+  white_value: true
+  effect: false
+  optimistic: false
