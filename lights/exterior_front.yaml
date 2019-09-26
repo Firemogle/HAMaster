@@ -20,8 +20,5 @@
   payload_off: "off"
   rgb_state_topic: "hawirelesslink/light/ledvance_a19_rgbw_00060a5e_1/rgb_color"
   rgb_command_topic: "/HAwirelesslink/return/light/ledvance_a19_rgbw_00060a5e_1/rgb_color"
-  brightness: true
-  rgb: true
-  white_value: true
-  effect: false
+  rgb_value_template: "{{ value_json.rgb | join(',') }}"
   optimistic: false
