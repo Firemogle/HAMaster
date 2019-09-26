@@ -7,3 +7,8 @@
   name: "Garage outlet Power useage"
   state_topic: "hawirelesslink/sensor/aeotec_zw096_smart_switch_6_power/power_consumption"
   unit_of_measurement: "W"
+  
+  - platform: mqtt
+    name: "Test Garage"
+    state_topic: "hawirelesslink/light/ledvance_a19_rgbw_00060a5e_1/rgb_color"
+  
