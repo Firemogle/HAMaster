@@ -85,6 +85,12 @@
     light.kitchen_sink:
       state: on
       brightness: 100
+    light.porch_light:
+      state: on
+    light.garage_ext_1:
+      state: on
+    light.garage_ext_2:
+      state: on
     light.cabinet_led: on
     light.main_livingroom:
       state: on
@@ -96,12 +102,6 @@
       state: on
 - name: house_evening_vacation
   entities:
-    light.porch_light:
-      state: on
-    light.garage_ext_1:
-      state: on
-    light.garage_ext_2:
-      state: on
     light.kitchen_sink:
       state: on
       brightness: 100
