@@ -70,9 +70,9 @@
       state: off
     light.porch_light:
       state: off
-    light.light.garage_ext_1:
+    light.garage_ext_1:
       state: off
-    light.light.garage_ext_2:
+    light.garage_ext_2:
       state: off
     fan.kitchen_fan:
       state: off
