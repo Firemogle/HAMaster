@@ -46,4 +46,8 @@ exclude: # Configure recorder to not record extrainious data
     - sensor.virtualserver_st1000dm0102ep102_load_used_space
     - sensor.virtualserver_wdc_wd10ezex08wn4a0_load_used_space
     - sensor.virtualserver_wdc_wd5000aakx753ca1_load_used_space
+    - sensor.sonarr_wanted
+    - sensor.sonarr_series
+    - sensor.radarr_movies
+    - 
     - weather.hvac
