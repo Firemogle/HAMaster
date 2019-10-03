@@ -49,5 +49,4 @@ exclude: # Configure recorder to not record extrainious data
     - sensor.sonarr_wanted
     - sensor.sonarr_series
     - sensor.radarr_movies
-    - 
     - weather.hvac
