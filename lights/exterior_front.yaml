@@ -20,7 +20,7 @@
   payload_off: "off"
   rgb_state_topic: "hawirelesslink/light/ledvance_a19_rgbw_00060a5e_1/rgb_color"
   rgb_command_topic: "/HAwirelesslink/return/light/ledvance_a19_rgbw_00060a5e_1/rgb_color"
-  rgb_command_template: "{{ ‘#%02x%02x%02x’ | format(red, green, blue)}}"
+  rgb_command_template: "{{ ‘%02x%02x%02x’ | format(red, green, blue)}}"
   optimistic: false
 
 - platform: mqtt
@@ -33,5 +33,5 @@
   payload_off: "off"
   rgb_state_topic: "hawirelesslink/light/ledvance_a19_rgbw_00061a28_1/rgb_color"
   rgb_command_topic: "/HAwirelesslink/return/light/ledvance_a19_rgbw_00061a28_1/rgb_color"
-  rgb_command_template: "{{ ‘#%02x%02x%02x’ | format(red, green, blue)}}"
+  rgb_command_template: "{{ ‘%02x%02x%02x’ | format(red, green, blue)}}"
   optimistic: false
