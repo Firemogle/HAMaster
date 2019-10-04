@@ -62,8 +62,22 @@ sensor:
     integration_time: 2.4ms
     address: 0x29
     update_interval: 60s
-    
-    
+  - platform: homeassistant
+    name: "Feeder Toggle"
+    entity_id: sensor.feeder_toggle
+      on_value_range:
+        - above: 50.0
+          then:
+          - stepper.report_position:
+              id: feeder
+              position: 0
+            # It's best to call set_target directly after report_position, so that the stepper doesn't move
+          - stepper.set_target:
+              id: feeder
+              target: 0
+          - stepper.set_target:
+              id: feeder
+              target: 1000
 # Individual outputs
 output:
   - platform: ledc
@@ -109,7 +123,7 @@ light:
     
 stepper:
   - platform: a4988
-    id: my_stepper
+    id: feeder
     step_pin: D5
     dir_pin: D6
     max_speed: 250 steps/s
