@@ -21,28 +21,28 @@ ota:
 light:
   - platform: fastled_clockless
     chipset: WS2811
-    pin: GPIO32
+    pin: GPIO16
     num_leds: 150
     rgb_order: BRG
     name: "basement_shelf_0"
     
   - platform: fastled_clockless
     chipset: WS2811
-    pin: GPIO33
+    pin: GPIO17
     num_leds: 150
     rgb_order: BRG
     name: "basement_shelf_1"
     
   - platform: fastled_clockless
     chipset: WS2811
-    pin: GPIO34
+    pin: GPIO18
     num_leds: 150
     rgb_order: BRG
     name: "basement_shelf_2"
     
   - platform: fastled_clockless
     chipset: WS2811
-    pin: GPIO35
+    pin: GPIO19
     num_leds: 150
     rgb_order: BRG
     name: "basement_shelf_3"
