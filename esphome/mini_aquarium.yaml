@@ -18,8 +18,8 @@ ota:
   password: !secret OTA_PW
 
 i2c:
-  sda: D21
-  scl: D22
+  sda: GPIO21
+  scl: GPIO22
   scan: False
   
   
@@ -82,27 +82,27 @@ sensor:
 output:
   - platform: ledc
     id: 'R'
-    pin: D8
+    pin: GPIO8
   - platform: ledc
     id: 'G'
-    pin: D9
+    pin: GPIO9
   - platform: ledc
     id: 'B'
-    pin: D10
+    pin: GPIO10
   - platform: ledc
     id: 'W'
-    pin: D11
+    pin: GPIO11
   - platform: ledc
     id: 'Pump'
-    pin: D3
+    pin: GPIO3
   - platform: ledc
     id: 'Htr'
     frequency: 120
-    pin: D4
+    pin: GPIO4
   - platform: ledc
     id: 'Air'
     frequency: 120
-    pin: D5
+    pin: GPIO5
     
 light:
   - platform: rgbw
@@ -124,10 +124,10 @@ light:
 stepper:
   - platform: a4988
     id: feeder
-    step_pin: D0
-    dir_pin: D1
+    step_pin: GPIO0
+    dir_pin: GPIO1
     max_speed: 250 steps/s
     # Optional:
-    sleep_pin: D2
+    sleep_pin: GPIO2
     acceleration: inf
     deceleration: inf
