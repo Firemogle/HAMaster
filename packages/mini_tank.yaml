@@ -30,9 +30,12 @@ automation:
   condition: []
   action:
   - data:
-  - service: timer.start
+    service: timer.start
       entity_id: timer.mt_fish_feeder
-      duration: '00:10:00'        
+      duration: '00:10:00'  
+  - data:
+    service: light.turn_off
+      entitiy_id: light.bed_pump
                           
 - alias: feed_done
   id: feed_done
@@ -43,5 +46,5 @@ automation:
       entity_id: timer.mt_fish_feeder
   action:
   - data:
-  - service: light.turn_on
+    service: light.turn_on
       entitiy_id: light.bed_pump
