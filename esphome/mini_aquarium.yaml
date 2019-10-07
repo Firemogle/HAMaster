@@ -64,7 +64,7 @@ sensor:
     update_interval: 60s
   - platform: homeassistant
     name: "Feeder Toggle"
-    entity_id: sensor.feeder_toggle
+    entity_id: sensor.mt_feeder_toggle
     on_value_range:
       - above: 50.0
         then:
