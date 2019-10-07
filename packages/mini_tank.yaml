@@ -1,0 +1,51 @@
+homeassistant:
+  customize:
+  
+#binary_sensor:
+
+    
+timer:
+  mt_fish_feeder:
+    duration: '00:10:00'
+
+sensor:
+  - platform: template
+    sensors:
+      mt_feeder_toggle:
+      value_template: >
+        {% if mt_fish_feeder.state == 'active' %}
+          100
+        {% else %}
+          0
+        {% endif %}
+
+automation:
+
+- id: mt_feed
+  alias: mt_feed
+  initial_state: 'off'
+  trigger:
+    platform: time
+    at: "17:00:00"
+  condition: []
+  action:
+  - data:
+    - service: timer.start
+        entity_id: timer.mt_fish_feeder
+        data:
+          duration: '00:10:00'
+    - service: light.turn_off
+        entitiy_id: light.bed_pump
+        
+             
+- alias: feed_done
+  id: feed_done
+  trigger:
+  - platform: event
+    event_type: timer.finished
+    event_data:
+      entity_id: timer.mt_fish_feeder
+  action:
+  - data:
+    - service: light.turn_on
+        entitiy_id: light.bed_pump
