@@ -27,6 +27,10 @@ binary_sensor:
     payload_on: "8"
     payload_off: "0"
     
+timer:
+  fish_feeder:
+    duration: '00:05:00'
+      
 fan:
   - platform: template
     fans:
