@@ -112,13 +112,13 @@ light:
     blue: B
     white: W
   - platform: monochromatic
-    name: "Bed Pump"
+    name: "bed_pump"
     output: 'Pump'
   - platform: monochromatic
-    name: "Heater"
+    name: "heater"
     output: 'Htr'
   - platform: monochromatic
-    name: "Air Pump"
+    name: "air_pump"
     output: 'Air'
     
 stepper:
