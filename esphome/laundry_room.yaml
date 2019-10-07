@@ -1,0 +1,69 @@
+esphome:
+  name: laundry_room
+  platform: ESP32
+  board: nodemcu-32s
+
+wifi:
+  ssid: !secret AP
+  password: !secret APPW
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  password: !secret OTA_PW
+
+ota:
+  password: !secret OTA_PW
+
+i2c:
+  sda: GPIO21
+  scl: GPIO22
+  scan: False
+  
+binary_sensor:
+  - platform: gpio
+    pin: GPIO16
+    name: "laundry_motion_1"
+    device_class: motion
+  - platform: gpio
+    pin: GPIO17
+    name: "laundry_motion_2"
+    device_class: motion
+  - platform: gpio
+    pin: GPIO18
+    name: "laundry_motion_3"
+    device_class: motion
+  
+sensor:
+  - platform: adc
+    pin: A0
+    name: "laundry_leak_1"
+    unit_of_measurement: "V"
+  - platform: adc
+    pin: A3
+    name: "laundry_leak_2"
+    unit_of_measurement: "V"
+  - platform: bme280
+    temperature:
+      name: "laundry_temp"
+      oversampling: 16x
+      unit_of_measurement: "°C"
+    pressure:
+      name: "laundry_humidity"
+      unit_of_measurement: "P"
+    humidity:
+      name: "laundry_pressure"
+      unit_of_measurement: "%"
+    address: 0x77
+    update_interval: 60s
+
+# Individual outputs
+switch:
+  - platform: gpio
+    pin: GPIO19
+    name: "Humidifier"
+  - platform: gpio
+    pin: GPIO20
+    name: "laundry_room_litter_box"
