@@ -20,7 +20,7 @@ ota:
 i2c:
   sda: D4
   scl: D5
-  scan: False
+  scan: True
   
   
 sensor:
@@ -39,5 +39,5 @@ sensor:
     humidity:
       name: "under_cabinet_humidity"
       unit_of_measurement: "%"
-    address: 0x77
+    address: 0x76
     update_interval: 60s
