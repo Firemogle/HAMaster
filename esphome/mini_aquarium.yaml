@@ -71,7 +71,7 @@ sensor:
         - stepper.report_position:
             id: feeder
             position: 0
-
+# check target
         - stepper.set_target:
             id: feeder
             target: 0
