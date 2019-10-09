@@ -62,8 +62,8 @@ sensor:
 # Individual outputs
 switch:
   - platform: gpio
-    pin: GPIO19
+    pin: GPIO0
     name: "Humidifier"
   - platform: gpio
-    pin: GPIO20
+    pin: GPIO1
     name: "laundry_room_litter_box"
