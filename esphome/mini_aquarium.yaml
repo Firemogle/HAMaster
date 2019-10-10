@@ -78,7 +78,7 @@ sensor:
             id: feeder
             target: 1000
 # Individual outputs
-#output:
+output:
 #  - platform: ledc
 #    id: 'R'
 #    pin: GPIO8
