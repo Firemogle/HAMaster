@@ -65,19 +65,19 @@ sensor:
   - platform: homeassistant
     name: "Feeder Toggle"
     entity_id: sensor.mt_feeder_toggle
-    on_value_range:
-      - above: 50.0
-        then:
-        - stepper.report_position:
-            id: feeder
-            position: 0
+#    on_value_range:
+#      - above: 50.0
+#        then:
+#        - stepper.report_position:
+#            id: feeder
+#            position: 0
 # check target
-        - stepper.set_target:
-            id: feeder
-            target: 0
-        - stepper.set_target:
-            id: feeder
-            target: 1000
+#        - stepper.set_target:
+#            id: feeder
+#            target: 0
+#        - stepper.set_target:
+#            id: feeder
+#            target: 1000
 # Individual outputs
 output:
   - platform: ledc
