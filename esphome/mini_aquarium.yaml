@@ -20,7 +20,6 @@ ota:
 i2c:
   sda: GPIO21
   scl: GPIO22
-  scan: False
   
   
 sensor:
@@ -79,47 +78,47 @@ sensor:
 #            id: feeder
 #            target: 1000
 # Individual outputs
-output:
-  - platform: ledc
-    id: 'R'
-    pin: GPIO8
-  - platform: ledc
-    id: 'G'
-    pin: GPIO9
-  - platform: ledc
-    id: 'B'
-    pin: GPIO10
-  - platform: ledc
-    id: 'W'
-    pin: GPIO11
-  - platform: ledc
-    id: 'Pump'
-    pin: GPIO3
-  - platform: ledc
-    id: 'Htr'
-    frequency: 120
-    pin: GPIO4
-  - platform: ledc
-    id: 'Air'
-    frequency: 120
-    pin: GPIO5
+#output:
+#  - platform: ledc
+#    id: 'R'
+#    pin: GPIO8
+#  - platform: ledc
+#    id: 'G'
+#    pin: GPIO9
+#  - platform: ledc
+#    id: 'B'
+#    pin: GPIO10
+#  - platform: ledc
+#    id: 'W'
+#    pin: GPIO11
+#  - platform: ledc
+#    id: 'Pump'
+#    pin: GPIO3
+#  - platform: ledc
+#    id: 'Htr'
+#    frequency: 120
+#    pin: GPIO4
+#  - platform: ledc
+#    id: 'Air'
+#    frequency: 120
+#    pin: GPIO5
     
-light:
-  - platform: rgbw
-    name: "Tank Light"
-    red: R
-    green: G
-    blue: B
-    white: W
-  - platform: monochromatic
-    name: "bed_pump"
-    output: 'Pump'
-  - platform: monochromatic
-    name: "heater"
-    output: 'Htr'
-  - platform: monochromatic
-    name: "air_pump"
-    output: 'Air'
+#light:
+#  - platform: rgbw
+#    name: "Tank Light"
+#    red: R
+#    green: G
+#    blue: B
+#    white: W
+#  - platform: monochromatic
+#    name: "bed_pump"
+#    output: 'Pump'
+#  - platform: monochromatic
+#    name: "heater"
+#    output: 'Htr'
+#  - platform: monochromatic
+#    name: "air_pump"
+#    output: 'Air'
     
 #stepper:
 #  - platform: a4988
