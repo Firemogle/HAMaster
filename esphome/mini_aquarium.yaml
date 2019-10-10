@@ -79,9 +79,9 @@ sensor:
             target: 1000
 # Individual outputs
 output:
-#  - platform: ledc
-#    id: 'R'
-#    pin: GPIO8
+  - platform: ledc
+    id: 'R'
+    pin: GPIO8
 #  - platform: ledc
 #    id: 'G'
 #    pin: GPIO9
