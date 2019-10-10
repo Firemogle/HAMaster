@@ -24,14 +24,14 @@ i2c:
   
   
 sensor:
-  - platform: adc
-    pin: A0
-    name: "water_prob_v"
-    unit_of_measurement: "V"
-  - platform: adc
-    pin: A3
-    name: "bed_prob_v"
-    unit_of_measurement: "V"
+#  - platform: adc
+#    pin: A0
+#    name: "water_prob_v"
+#    unit_of_measurement: "V"
+#  - platform: adc
+#    pin: A3
+#    name: "bed_prob_v"
+#    unit_of_measurement: "V"
   - platform: bme280
     temperature:
       name: "MiniTank Temperature"
@@ -45,26 +45,26 @@ sensor:
       unit_of_measurement: "%"
     address: 0x77
     update_interval: 60s
-  - platform: tcs34725
-    red_channel:
-      name: "TCS34725 Red Channel"
-    green_channel:
-      name: "TCS34725 Green Channel"
-    blue_channel:
-      name: "TCS34725 Blue Channel"
-    clear_channel:
-      name: "TCS34725 Clear Channel"
-    illuminance:
-      name: "TCS34725 Illuminance"
-    color_temperature:
-      name: "TCS34725 Color Temperature"
-    gain: 1x
-    integration_time: 2.4ms
-    address: 0x29
-    update_interval: 60s
-  - platform: homeassistant
-    name: "Feeder Toggle"
-    entity_id: sensor.mt_feeder_toggle
+#  - platform: tcs34725
+#    red_channel:
+#      name: "TCS34725 Red Channel"
+#    green_channel:
+#      name: "TCS34725 Green Channel"
+#    blue_channel:
+#      name: "TCS34725 Blue Channel"
+#    clear_channel:
+#      name: "TCS34725 Clear Channel"
+#    illuminance:
+#      name: "TCS34725 Illuminance"
+#    color_temperature:
+#      name: "TCS34725 Color Temperature"
+#    gain: 1x
+#    integration_time: 2.4ms
+#    address: 0x29
+#    update_interval: 60s
+#  - platform: homeassistant
+#    name: "Feeder Toggle"
+#    entity_id: sensor.mt_feeder_toggle
 #    on_value_range:
 #      - above: 50.0
 #        then:
@@ -121,13 +121,13 @@ light:
     name: "air_pump"
     output: 'Air'
     
-stepper:
-  - platform: a4988
-    id: feeder
-    step_pin: GPIO0
-    dir_pin: GPIO1
-    max_speed: 250 steps/s
-    # Optional:
-    sleep_pin: GPIO2
-    acceleration: inf
-    deceleration: inf
+#stepper:
+#  - platform: a4988
+#    id: feeder
+#    step_pin: GPIO0
+#    dir_pin: GPIO1
+#    max_speed: 250 steps/s
+#    # Optional:
+#    sleep_pin: GPIO2
+#    acceleration: inf
+#    deceleration: inf
