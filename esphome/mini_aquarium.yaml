@@ -81,44 +81,44 @@ sensor:
 output:
   - platform: ledc
     id: 'R'
-    pin: GPIO8
-#  - platform: ledc
-#    id: 'G'
-#    pin: GPIO9
-#  - platform: ledc
-#    id: 'B'
-#    pin: GPIO10
-#  - platform: ledc
-#    id: 'W'
-#    pin: GPIO11
+    pin: GPIO0
+  - platform: ledc
+    id: 'G'
+    pin: GPIO1
+  - platform: ledc
+    id: 'B'
+    pin: GPIO2
+  - platform: ledc
+    id: 'W'
+    pin: GPIO3
   - platform: ledc
     id: 'Pump'
-    pin: GPIO3
+    pin: GPIO4
   - platform: ledc
     id: 'Htr'
     frequency: 120
-    pin: GPIO4
+    pin: GPIO5
   - platform: ledc
     id: 'Air'
     frequency: 120
-    pin: GPIO5
+    pin: GPIO6
     
-#light:
-#  - platform: rgbw
-#    name: "Tank Light"
-#    red: R
-#    green: G
-#    blue: B
-#    white: W
-#  - platform: monochromatic
-#    name: "bed_pump"
-#    output: 'Pump'
-#  - platform: monochromatic
-#    name: "heater"
-#    output: 'Htr'
-#  - platform: monochromatic
-#    name: "air_pump"
-#    output: 'Air'
+light:
+  - platform: rgbw
+    name: "Tank Light"
+    red: R
+    green: G
+    blue: B
+    white: W
+  - platform: monochromatic
+    name: "bed_pump"
+    output: 'Pump'
+  - platform: monochromatic
+    name: "heater"
+    output: 'Htr'
+  - platform: monochromatic
+    name: "air_pump"
+    output: 'Air'
     
 stepper:
   - platform: a4988
