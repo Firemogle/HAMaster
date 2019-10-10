@@ -23,27 +23,27 @@ i2c:
   
   
 sensor:
-#  - platform: adc
-#    pin: A0
-#    name: "water_prob_v"
-#    unit_of_measurement: "V"
-#  - platform: adc
-#    pin: A3
-#    name: "bed_prob_v"
-#    unit_of_measurement: "V"
-#  - platform: bme280
-#    temperature:
-#      name: "MiniTank Temperature"
-#      oversampling: 16x
-#      unit_of_measurement: "°C"
-#    pressure:
-#      name: "MiniTank Pressure"
-#      unit_of_measurement: "P"
-#    humidity:
-#      name: "MiniTank Humidity"
-#      unit_of_measurement: "%"
-#    address: 0x77
-#    update_interval: 60s
+  - platform: adc
+    pin: A0
+    name: "water_prob_v"
+    unit_of_measurement: "V"
+  - platform: adc
+    pin: A3
+    name: "bed_prob_v"
+    unit_of_measurement: "V"
+  - platform: bme280
+    temperature:
+      name: "MiniTank Temperature"
+      oversampling: 16x
+      unit_of_measurement: "°C"
+    pressure:
+      name: "MiniTank Pressure"
+      unit_of_measurement: "P"
+    humidity:
+      name: "MiniTank Humidity"
+      unit_of_measurement: "%"
+    address: 0x77
+    update_interval: 60s
 #  - platform: tcs34725
 #    red_channel:
 #      name: "TCS34725 Red Channel"
