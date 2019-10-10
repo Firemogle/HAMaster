@@ -61,9 +61,9 @@ sensor:
     integration_time: 2.4ms
     address: 0x29
     update_interval: 60s
-#  - platform: homeassistant
-#    name: "Feeder Toggle"
-#    entity_id: sensor.mt_feeder_toggle
+  - platform: homeassistant
+    name: "Feeder Toggle"
+    entity_id: sensor.mt_feeder_toggle
 #    on_value_range:
 #      - above: 50.0
 #        then:
