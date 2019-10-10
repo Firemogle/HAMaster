@@ -91,17 +91,17 @@ sensor:
 #  - platform: ledc
 #    id: 'W'
 #    pin: GPIO11
-#  - platform: ledc
-#    id: 'Pump'
-#    pin: GPIO3
-#  - platform: ledc
-#    id: 'Htr'
-#    frequency: 120
-#    pin: GPIO4
-#  - platform: ledc
-#    id: 'Air'
-#    frequency: 120
-#    pin: GPIO5
+  - platform: ledc
+    id: 'Pump'
+    pin: GPIO3
+  - platform: ledc
+    id: 'Htr'
+    frequency: 120
+    pin: GPIO4
+  - platform: ledc
+    id: 'Air'
+    frequency: 120
+    pin: GPIO5
     
 #light:
 #  - platform: rgbw
