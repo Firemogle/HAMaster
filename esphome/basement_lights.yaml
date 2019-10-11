@@ -26,6 +26,7 @@ light:
     rgb_order: BRG
     name: "basement_shelf_0"
     max_refresh_rate: 16ms
+    id: bsl1
     
   - platform: fastled_clockless
     chipset: WS2811
@@ -34,6 +35,7 @@ light:
     rgb_order: BRG
     name: "basement_shelf_1"
     max_refresh_rate: 16ms
+    id: bsl2
     
   - platform: fastled_clockless
     chipset: WS2811
@@ -42,6 +44,7 @@ light:
     rgb_order: BRG
     name: "basement_shelf_2"
     max_refresh_rate: 16ms
+    id: bsl3
     
   - platform: fastled_clockless
     chipset: WS2811
@@ -50,19 +53,20 @@ light:
     rgb_order: BRG
     name: "basement_shelf_3"
     max_refresh_rate: 16ms
+    id: bsl4
     
   - platform: partition
     name: "Basement Total"
     segments:
-      - id: basement_shelf_0
+      - id: bsl1
         from: 0
         to: 150
-      - id: basement_shelf_1
+      - id: bsl2
         from: 0
         to: 150
-      - id: basement_shelf_2
+      - id: bsl4
         from: 0
         to: 150
-      - id: basement_shelf_3
+      - id: bsl4
         from: 0
         to: 150
