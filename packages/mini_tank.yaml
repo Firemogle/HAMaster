@@ -39,12 +39,13 @@ automation:
                           
 - alias: feed_done
   id: feed_done
+  initial_state: 'off'
   trigger:
   - platform: event
     event_type: timer.finished
     event_data:
-      entity_id: timer.mt_fish_feeder
+  condition: []
   action:
   - data:
-    service: light.turn_on
       entitiy_id: light.bed_pump
+    service: light.turn_on
