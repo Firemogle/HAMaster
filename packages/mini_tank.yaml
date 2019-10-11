@@ -35,7 +35,7 @@ automation:
     duration: '00:10:00'  
   - data:
     service: light.turn_off
-      entitiy_id: light.bed_pump
+    entitiy_id: light.bed_pump
                           
 - alias: feed_done
   id: feed_done
@@ -46,5 +46,5 @@ automation:
   condition: []
   action:
   - data:
-      entitiy_id: light.bed_pump
+    entitiy_id: light.bed_pump
     service: light.turn_on
