@@ -101,7 +101,7 @@ output:
   - platform: ledc
     id: 'Air'
     frequency: 120
-    pin: GPIO6
+    pin: GPIO18
     
 light:
   - platform: rgbw
