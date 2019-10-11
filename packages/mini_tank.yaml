@@ -31,8 +31,8 @@ automation:
   action:
   - data:
     service: timer.start
-      entity_id: timer.mt_fish_feeder
-      duration: '00:10:00'  
+    entity_id: timer.mt_fish_feeder
+    duration: '00:10:00'  
   - data:
     service: light.turn_off
       entitiy_id: light.bed_pump
@@ -43,7 +43,6 @@ automation:
   trigger:
   - platform: event
     event_type: timer.finished
-    event_data:
   condition: []
   action:
   - data:
