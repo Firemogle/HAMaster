@@ -8,16 +8,16 @@ timer:
   mt_fish_feeder:
     duration: '00:10:00'
 
-sensor:
-  - platform: template
-    sensors:
-      mt_feeder_toggle:
-      value_template: >
-        {% if mt_fish_feeder.state == 'active' %}
-          100
-        {% else %}
-          0
-        {% endif %}
+#sensor:
+#  - platform: template
+#    sensors:
+#      mt_feeder_toggle:
+#      value_template: >
+#        {% if mt_fish_feeder.state == 'active' %}
+#          100
+#        {% else %}
+#          0
+#        {% endif %}
 
 automation:
 
