@@ -127,7 +127,6 @@ nest:
 
 ecobee:
   api_key: !secret ECOBEE_KEY
-  hold_temp: true
   
 ring:
   username: !secret ring_UN
