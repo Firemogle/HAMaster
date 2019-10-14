@@ -35,16 +35,44 @@ binary_sensor:
     pin: GPIO18
     name: "laundry_motion_3"
     device_class: motion
+  - platform: template
+    name: "laundry_leak_furnace"
+    device_class: moisture
+    lambda: |-
+      if (id(laundry_leak_furnace).state > 1) {
+        // LEAK.
+        return true;
+      } else {
+        // Nominal
+        return false;
+      }
+  - platform: template
+    name: "laundry_leak_sink"
+    device_class: moisture
+    lambda: |-
+      if (id(laundry_leak_sink).state > 1) {
+        // LEAK.
+        return true;
+      } else {
+        // Nominal
+        return false;
+      }
   
 sensor:
   - platform: adc
     pin: A0
-    name: "laundry_leak_1"
+    name: "laundry_leak_furnace"
+    id: "laundry_leak_furnace"
     unit_of_measurement: "V"
+    attenuation: 11db
+    internal: true
   - platform: adc
     pin: A3
-    name: "laundry_leak_2"
+    name: "laundry_leak_sink"
+    id: "laundry_leak_sink"
     unit_of_measurement: "V"
+    attenuation: 11db
+    internal: true
   - platform: bme280
     temperature:
       name: "laundry_temp"
