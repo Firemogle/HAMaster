@@ -22,6 +22,7 @@ sensor:
   - platform: adc
     pin: A0
     name: "kitchen_leak_raw"
+    id: "kitchen_leak_raw"
     unit_of_measurement: "V"
     filters:
       - multiply: 3.3
