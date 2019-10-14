@@ -1,5 +1,9 @@
 homeassistant:
   customize:
+    light.livingroom_entry:
+      friendly_name: "Livingroom Entry"
+    switch.livingroom_subwoofer:
+      friendly_name: "Livingroom Subwoofer"
   
 binary_sensor:
 
