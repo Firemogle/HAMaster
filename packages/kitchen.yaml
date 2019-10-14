@@ -1,5 +1,15 @@
 homeassistant:
   customize:
+    light.cabinet_led:
+      friendly_name: "Cabinet Lights"
+    light.kitchen_sink:
+      friendly_name: "Kitchen Sink Light"
+    light.kitchen_lamp:
+      friendly_name: "Kitchen Light"
+    light.kitchen_fan:
+      friendly_name: "Kitchen Fan Light"
+    binary_sensor.kitchen_leak:
+      friendly_name: "Kitchen Sink Leak Sensor"
   
 binary_sensor:
   - platform: template
