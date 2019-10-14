@@ -17,27 +17,10 @@ api:
 ota:
   password: !secret OTA_PW
  
-i2c:
-  sda: D4
-  scl: D5
-  scan: True
-  
   
 sensor:
   - platform: adc
     pin: A0
     name: "kitchen_leak"
     unit_of_measurement: "V"
-  - platform: bme280
-    temperature:
-      name: "under_cabinet_temperature"
-      oversampling: 16x
-      unit_of_measurement: "°C"
-    pressure:
-      name: "under_cabinet_pressure"
-      unit_of_measurement: "P"
-    humidity:
-      name: "under_cabinet_humidity"
-      unit_of_measurement: "%"
-    address: 0x76
-    update_interval: 60s
+
