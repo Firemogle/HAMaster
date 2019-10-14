@@ -21,6 +21,21 @@ ota:
 sensor:
   - platform: adc
     pin: A0
-    name: "kitchen_leak"
+    name: "kitchen_leak_raw"
     unit_of_measurement: "V"
+    filters:
+      - multiply: 3.3
+    internal: true
 
+binary_sensor:
+  - platform: template
+    name: "kitchen_leak"
+    device_class: moisture
+    lambda: |-
+      if (id(kitchen_leak_raw).state > 1) {
+        // LEAK.
+        return true;
+      } else {
+        // Nominal
+        return false;
+      }
