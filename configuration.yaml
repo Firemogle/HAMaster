@@ -114,6 +114,12 @@ mqtt:
   broker: 192.168.2.2
   username: firemogle
   password: !secret MQTTPW
+  birth_message:
+    topic: 'HAMaster/status'
+    payload: 'online'
+  will_message:
+    topic: 'HAMaster/status'
+    payload: 'offline'
 
 amcrest:
   - host: 192.168.1.243
