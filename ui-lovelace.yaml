@@ -85,10 +85,7 @@ views:
           - light.kitchen_sink
           - light.kitchen_lamp
           - light.kitchen_fan
-          - sensor.kitchen_leak
-          - sensor.kitchen_humidity
-          - sensor.kitchen_pressure
-          - sensor.kitchen_temp
+          - binary_sensor.kitchen_leak
           - sensor.garage_entry_temperature
           - binary_sensor.garage_entry_opened
           - binary_sensor.sliding_glass_door_opened
