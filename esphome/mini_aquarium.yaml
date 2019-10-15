@@ -26,11 +26,43 @@ sensor:
   - platform: adc
     pin: A0
     name: "water_prob_v"
+    id: "water_prob_v"
     unit_of_measurement: "V"
+    internal: true
   - platform: adc
     pin: A3
     name: "bed_prob_v"
+    id: "bed_prob_v"
     unit_of_measurement: "V"
+    internal: true
+  - platform: resistance
+    sensor: water_prob_v
+    configuration: DOWNSTREAM
+    resistor: 5.6kOhm
+    name: "tank_probe_r"
+    id: "tank_probe_r"
+    internal: true
+  - platform: resistance
+    sensor: bed_prob_v
+    configuration: DOWNSTREAM
+    resistor: 5.6kOhm
+    name: "bed_probe_r"
+    id: "bed_probe_r"
+    internal: true
+  - platform: ntc
+    sensor: tank_probe_r
+    calibration:
+      b_constant: 4050
+      reference_temperature: 25°C
+      reference_resistance: 10kOhm
+    name: tank_probe_c
+  - platform: ntc
+    sensor: bed_probe_r
+    calibration:
+      b_constant: 4050
+      reference_temperature: 25°C
+      reference_resistance: 10kOhm
+    name: bed_probe_c
   - platform: bme280
     temperature:
       name: "MiniTank Temperature"
