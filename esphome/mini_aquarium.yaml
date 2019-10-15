@@ -28,12 +28,14 @@ sensor:
     name: "water_prob_v"
     id: "water_prob_v"
     unit_of_measurement: "V"
+    attenuation: 11db
     internal: true
   - platform: adc
     pin: A3
     name: "bed_prob_v"
     id: "bed_prob_v"
     unit_of_measurement: "V"
+    attenuation: 11db
     internal: true
   - platform: resistance
     sensor: water_prob_v
