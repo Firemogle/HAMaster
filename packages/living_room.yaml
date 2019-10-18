@@ -51,13 +51,13 @@ lock:
 media_player:
   - platform: kodi
     name: Livingroom_kodi
-    host: 192.168.1.241
+    host: 192.168.3.6
     username: !secret KODI_USR
     password: !secret KODI_PW
 
   - platform: androidtv
     name: livingroom_shield
-    host: 192.168.1.241
+    host: 192.168.3.6
     adb_server_ip: 127.0.0.1
     adb_server_port: 5037
 
