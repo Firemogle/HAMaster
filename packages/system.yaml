@@ -54,6 +54,25 @@ binary_sensor:
         value_template: >-
           {{ states('sensor.uptime')|float > 5 }}
           
+  - platform: template
+    sensors:
+      ingress_alarm:
+        value_template: >-
+          {{ (states('alarm_control_panel.alarm_panel') == 'armed_away'
+             or states('alarm_control_panel.alarm_panel') == 'armed_home')
+             and states('group.security') == 'on' }}
+          
+alert:
+  ingress_alarm:
+    name: ingress_alarm
+    done_message: House is now secure
+    entity_id: input_boolean.ingress_alarm
+    state: 'on'
+    repeat: 5
+    can_acknowledge: true
+    skip_first: false
+    notifiers:
+      - notify.gmail_notify
 input_number:
   hvac_home_ac_temp:
     mode: slider
