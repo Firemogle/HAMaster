@@ -9,7 +9,6 @@
       - binary_sensor.garage_door
       - binary_sensor.garage_door_2
       - binary_sensor.living_room_window
-      - binary_sensor.main_floor_glass_break
   brett:
     name: brett
     view: no
