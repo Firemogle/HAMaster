@@ -65,14 +65,15 @@ binary_sensor:
 alert:
   ingress_alarm:
     name: ingress_alarm
-    done_message: House is now secure
+    done_message: "House is now secure"
+    message: "House is open bro"
     entity_id: input_boolean.ingress_alarm
     state: 'on'
     repeat: 5
     can_acknowledge: true
     skip_first: false
     notifiers:
-      - notify.gmail_notify
+      - gmail_notify
       
 input_number:
   hvac_home_ac_temp:
