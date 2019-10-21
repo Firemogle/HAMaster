@@ -73,6 +73,7 @@ alert:
     skip_first: false
     notifiers:
       - notify.gmail_notify
+      
 input_number:
   hvac_home_ac_temp:
     mode: slider
