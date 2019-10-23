@@ -1,6 +1,14 @@
 homeassistant:
   customize:
-
+    binary_sensor.house_sts_hvac_cool_req:
+      device_class: cold
+    binary_sensor.house_sts_hvac_heat_req:
+      device_class: heat
+    binary_sensor.house_sts_hvac_run:
+      device_class: power
+    binary_sensor.house_sts_hvac_shut:
+      device_class: door
+    
 binary_sensor:
   - platform: template # Determine if the house is opened up or not
     sensors:
@@ -10,7 +18,7 @@ binary_sensor:
              and is_state('binary_sensor.sliding_glass_door_opened', 'off')
              and is_state('binary_sensor.livingroom_door_opened', 'off') }}
         delay_off:
-          minutes: 5        
+          minutes: 5
 
   - platform: template # Determine if AC is needed
     sensors:
