@@ -4,19 +4,10 @@ device_tracker.google_maps_108379141181739394475:
   friendly_name: Liz
 device_tracker.google_maps_116842525089175776476:
   friendly_name: Brett
-binary_sensor.house_sts_hvac_cool_req:
-  device_class: cold
-binary_sensor.house_sts_hvac_heat_req:
-  device_class: heat
-binary_sensor.house_sts_hvac_run:
-  device_class: power
-binary_sensor.house_sts_hvac_shut:
-  device_class: door
+
 binary_sensor.house_sts_occupants:
   device_class: occupancy
-cover.garage_door:
-  assumed_state: true
-  device_class: garage
+
 sensor.home_eta:
   hidden: true
 sensor.home_security_state:
@@ -29,27 +20,14 @@ binary_sensor.livingroom_door_opened:
   friendly_name: Livingroom Door
 binary_sensor.garage_door_back:
   device_class: door
-binary_sensor.kidde_smoke_detector_co_detected:
-  device_class: gas
-  friendly_name: Kidde CO detector
-binary_sensor.kidde_smoke_detector_smoke_detected:
-  friendly_name: Kidde smoke detector
 binary_sensor.garage_entry_opened:
   device_class: door
   friendly_name: Garage Entry
 binary_sensor.hall_window_opened:
   device_class: window
   friendly_name: Hall Window
-fan.fan:
-  friendly_name: Kitchen Fan
-fan.fan_2:
-  friendly_name: Master Fan
-light.light_bulb:
-  friendly_name: Kitchen Fan Light
-light.light_bulb_2:
-  friendly_name: Master Light
-fan.fan_3:
-  friendly_name: Emi Fan
+
+
 binary_sensor.hallway_motion_combine:
   device_class: motion
 binary_sensor.main_bath_vent_needed:
@@ -62,16 +40,4 @@ binary_sensor.main_bath_motion:
   device_class: motion
 alarm_control_panel.abode_alarm_system:
   hidden: true
-sensor.office_computer_power:
-  device_class: power
-sensor.octoprint_target_bed_temp:
-  device_class: temperature
-sensor.office_pressure:
-  device_class: pressure
-sensor.office_temperature:
-  device_class: temperature
-sensor.office_humidity:
-  device_class: humidity
-sensor.kitchen_leak: {}
-sensor.octoprint_time_remaining:
-  unit_of_measurement: seconds
+
