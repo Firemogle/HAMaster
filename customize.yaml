@@ -54,3 +54,24 @@ binary_sensor.hallway_motion_combine:
   device_class: motion
 binary_sensor.main_bath_vent_needed:
   device_class: occupancy
+binary_sensor.sliding_glass_door_opened_2:
+  friendly_name: sliding_glass_door
+binary_sensor.kitchen_motion:
+  device_class: motion
+binary_sensor.main_bath_motion:
+  device_class: motion
+alarm_control_panel.abode_alarm_system:
+  hidden: true
+sensor.office_computer_power:
+  device_class: power
+sensor.octoprint_target_bed_temp:
+  device_class: temperature
+sensor.office_pressure:
+  device_class: pressure
+sensor.office_temperature:
+  device_class: temperature
+sensor.office_humidity:
+  device_class: humidity
+sensor.kitchen_leak: {}
+sensor.octoprint_time_remaining:
+  unit_of_measurement: seconds
