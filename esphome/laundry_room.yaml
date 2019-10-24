@@ -1,7 +1,7 @@
 esphome:
   name: laundry_room
   platform: ESP32
-  board: nodemcu-32s
+  board: esp-wrover-kit
 
 wifi:
   ssid: !secret AP
@@ -21,6 +21,14 @@ i2c:
   sda: GPIO21
   scl: GPIO22
   scan: False
+  
+mcp23017:
+  - id: 'mcp23017_hub'
+    address: 0x20
+    
+ads1115:
+  - id: ads1115_1
+    address: 0x48
   
 binary_sensor:
   - platform: gpio
@@ -59,19 +67,19 @@ binary_sensor:
       }
   
 sensor:
-  - platform: adc
-    pin: A0
+  - platform: ads1115
+    multiplexer: 'A0_GND'
+    ads1115_id: ads1115_1
+    gain: 6.144
     name: "laundry_leak_furnace"
     id: "laundry_leak_furnace"
-    unit_of_measurement: "V"
-    attenuation: 11db
     internal: true
-  - platform: adc
-    pin: A3
+  - platform: ads1115
+    multiplexer: 'A1_GND'
+    ads1115_id: ads1115_1
+    gain: 6.144
     name: "laundry_leak_sink"
     id: "laundry_leak_sink"
-    unit_of_measurement: "V"
-    attenuation: 11db
     internal: true
   - platform: bme280
     temperature:
@@ -90,8 +98,36 @@ sensor:
 # Individual outputs
 switch:
   - platform: gpio
-    pin: GPIO0
     name: "Humidifier"
+    pin:
+      mcp23017: mcp23017_hub
+      number: 0
+      mode: OUTPUT
   - platform: gpio
-    pin: GPIO1
     name: "laundry_room_litter_box"
+    pin:
+      mcp23017: mcp23017_hub
+      number: 1
+      mode: OUTPUT
+      inverted: False
+
+binary_sensor:
+  - platform: gpio
+    pin: 33
+    name: "laundry_motion"
+    device_class: moving
+
+esp32_camera:
+  name: 'laundry_room_camera'
+  external_clock:
+    pin: GPIO32
+    frequency: 20MHz
+  i2c_pins:
+    sda: GPIO13
+    scl: GPIO12
+  data_pins: [GPIO5, GPIO14, GPIO4, GPIO15, GPIO18, GPIO23, GPIO36, GPIO39]
+  vsync_pin: GPIO27
+  href_pin: GPIO25
+  pixel_clock_pin: GPIO19
+  resolution: 640x480
+  idle_framerate: 0.01 fps
