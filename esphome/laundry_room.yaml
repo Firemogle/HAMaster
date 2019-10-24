@@ -32,17 +32,51 @@ ads1115:
   
 binary_sensor:
   - platform: gpio
-    pin: GPIO16
+    pin: 
+      mcp23017: mcp23017_hub
+      number: 2
+      mode: INPUT_PULLUP
     name: "laundry_motion_1"
+    id: "laundry_motion_1"
     device_class: motion
+    internal: true
   - platform: gpio
-    pin: GPIO17
+    pin:  
+      mcp23017: mcp23017_hub
+      number: 3
+      mode: INPUT_PULLUP
     name: "laundry_motion_2"
+    id: "laundry_motion_2"
     device_class: motion
+    internal: true
   - platform: gpio
-    pin: GPIO18
+    pin:  
+      mcp23017: mcp23017_hub
+      number: 4
+      mode: INPUT_PULLUP
     name: "laundry_motion_3"
+    id: "laundry_motion_3"
     device_class: motion
+    internal: true
+  - platform: gpio
+    pin: 33
+    name: "laundry_motion_board"
+    id: "laundry_motion_board"
+    device_class: moving
+    internal: true
+  - platform: template
+    name: "cat_motion_combine"
+    device_class: motion
+    filters:
+      - delayed_off: 1800s
+    lambda: |-
+      if (id(laundry_motion_1).state or id(laundry_motion_2).state or id(laundry_motion_3).state or id(laundry_motion_board).state) {
+        // Motion.
+        return true;
+      } else {
+        // Nothing
+        return false;
+      }
   - platform: template
     name: "laundry_leak_furnace"
     device_class: moisture
@@ -110,12 +144,6 @@ switch:
       number: 1
       mode: OUTPUT
       inverted: False
-
-binary_sensor:
-  - platform: gpio
-    pin: 33
-    name: "laundry_motion"
-    device_class: moving
 
 esp32_camera:
   name: 'laundry_room_camera'
