@@ -80,3 +80,16 @@
       {% else %}
         alarm_control_panel.alarm_arm_home
       {% endif %}
+
+
+- id: 'ext_lights_off'
+  alias: ext_lights_off
+  initial_state: 'off'
+  trigger:
+  - platform: time
+    at: '8:30:00'
+  condition: []
+  action:
+  - data:
+      entity_id: scene.ext_lights_off
+    service: scene.turn_on
