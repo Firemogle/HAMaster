@@ -119,3 +119,12 @@
       state: on
     switch.livingroom_subwoofer:
       state: off
+
+- name: ext_lights_off
+  entities:
+    light.porch_light:
+      state: off
+    light.garage_ext_1:
+      state: off
+    light.garage_ext_2:
+      state: off
