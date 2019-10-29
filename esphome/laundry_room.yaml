@@ -126,7 +126,7 @@ sensor:
     humidity:
       name: "laundry_pressure"
       unit_of_measurement: "%"
-    address: 0x77
+    address: 0x76
     update_interval: 60s
 
 # Individual outputs
