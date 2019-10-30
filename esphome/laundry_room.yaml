@@ -20,7 +20,7 @@ ota:
 i2c:
   sda: GPIO21
   scl: GPIO22
-  scan: False
+  scan: TRUE
   
 mcp23017:
   - id: 'mcp23017_hub'
