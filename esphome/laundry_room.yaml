@@ -34,7 +34,7 @@ binary_sensor:
   - platform: gpio
     pin: 
       mcp23017: mcp23017_hub
-      number: 2
+      number: 8
       mode: INPUT_PULLUP
     name: "laundry_motion_1"
     id: "laundry_motion_1"
@@ -43,7 +43,7 @@ binary_sensor:
   - platform: gpio
     pin:  
       mcp23017: mcp23017_hub
-      number: 3
+      number: 9
       mode: INPUT_PULLUP
     name: "laundry_motion_2"
     id: "laundry_motion_2"
@@ -52,7 +52,7 @@ binary_sensor:
   - platform: gpio
     pin:  
       mcp23017: mcp23017_hub
-      number: 4
+      number: 10
       mode: INPUT_PULLUP
     name: "laundry_motion_3"
     id: "laundry_motion_3"
