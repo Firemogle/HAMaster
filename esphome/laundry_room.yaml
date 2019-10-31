@@ -121,10 +121,10 @@ sensor:
       oversampling: 16x
       unit_of_measurement: "°C"
     pressure:
-      name: "laundry_humidity"
+      name: "laundry_pressure"
       unit_of_measurement: "P"
     humidity:
-      name: "laundry_pressure"
+      name: "laundry_humidity"
       unit_of_measurement: "%"
     address: 0x76
     update_interval: 60s
