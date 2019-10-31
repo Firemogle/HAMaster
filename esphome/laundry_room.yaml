@@ -137,6 +137,7 @@ switch:
       mcp23017: mcp23017_hub
       number: 0
       mode: OUTPUT
+      inverted: False
   - platform: gpio
     name: "laundry_room_litter_box"
     pin:
