@@ -145,6 +145,9 @@ switch:
       number: 1
       mode: OUTPUT
       inverted: False
+  - platform: restart
+    name: "Laundry Board restart"
+
 
 esp32_camera:
   name: 'laundry_room_camera'
