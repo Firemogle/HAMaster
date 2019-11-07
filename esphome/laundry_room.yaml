@@ -115,7 +115,6 @@ sensor:
     id: "laundry_leak_sink"
     internal: true
   - platform: bme280
-    i2c_id: sensor_bus
     temperature:
       name: "laundry_temp"
       oversampling: 16x
