@@ -242,14 +242,6 @@ sensor:
     days: 7
 
 
-  - platform: deluge
-    host: 192.168.1.3
-    username: Fire
-    password: Poop
-    monitored_variables:
-      - 'current_status'
-      - 'download_speed'
-      - 'upload_speed'
 
   - platform: mqtt
     name: "VPN down"
