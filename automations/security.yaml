@@ -3,7 +3,7 @@
   initial_state: 'off'
   trigger:
     platform: state
-    entity_id: alarm_control_panel.abode_alarm_system
+    entity_id: alarm_control_panel.abode_alarm
     to: 'disarmed'
   action:
     service: alarm_control_panel.alarm_disarm
@@ -20,14 +20,14 @@
     to: 'disarmed'
   action:
     service: alarm_control_panel.alarm_disarm
-    entity_id: alarm_control_panel.abode_alarm_system
+    entity_id: alarm_control_panel.abode_alarm
     
 - id: update_abode_armed_away
   alias: update_abode_armed_away
   initial_state: 'off'
   trigger:
     platform: state
-    entity_id: alarm_control_panel.abode_alarm_system
+    entity_id: alarm_control_panel.abode_alarm
     to: 'armed_away'
   action:
     service: alarm_control_panel.alarm_arm_away
@@ -44,14 +44,14 @@
     to: 'armed_away'
   action:
     service: alarm_control_panel.alarm_arm_away
-    entity_id: alarm_control_panel.abode_alarm_system
+    entity_id: alarm_control_panel.abode_alarm
     
 - id: update_abode_armed_home
   alias: update_abode_armed_home
   initial_state: 'off'
   trigger:
     platform: state
-    entity_id: alarm_control_panel.abode_alarm_system
+    entity_id: alarm_control_panel.abode_alarm
     to: 'armed_home'
   action:
     service: alarm_control_panel.alarm_arm_home
@@ -68,4 +68,4 @@
     to: 'armed_home'
   action:
     service: alarm_control_panel.alarm_arm_home
-    entity_id: alarm_control_panel.abode_alarm_system
+    entity_id: alarm_control_panel.abode_alarm
