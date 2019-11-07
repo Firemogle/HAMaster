@@ -40,6 +40,11 @@ binary_sensor:
 timer:
   fish_feeder:
     duration: '00:05:00'
+    
+camera:
+  - platform: generic
+    name: kitchen_cam
+    stream_source: !secret kitchen_cam_link
       
 fan:
   - platform: template
