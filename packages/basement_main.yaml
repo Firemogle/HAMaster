@@ -25,10 +25,9 @@ media_player:
     adb_server_ip: 127.0.0.1
     adb_server_port: 5037
 
-  - platform: pjlink
-    name: projector
-    host: 192.168.3.10
-    password: admin
+# - platform: pjlink
+#   name: projector
+#   host: 192.168.3.10
 
   - platform: universal
     name: projector_media
@@ -36,3 +35,19 @@ media_player:
       - media_player.projector_kodi
       - media_player.projector_shield
       - media_player.projector
+      
+shell_command:
+  projector_ON: 'echo -n -e "\x7e\x30\x30\x30\x30\x20\x31\x0d" | nc -q 1 192.168.3.10 23'
+  projector_OFF: 'echo -n -e "\x7e\x30\x30\x30\x30\x20\x32\x0d" | nc -q 1 192.168.3.10 23'
+  
+automation:
+  - alias: turn_off_projector
+    trigger:
+      platform: state
+      entity_id: media_player.projector_shield
+      to: 'off'
+    action:
+      service: shell_command.projector_OFF
+
+# echo -n -e "\x7e\x30\x30\x30\x30\x20\x32\x0d" | nc -q 1 192.168.3.10 23 - turn OFF
+# echo -n -e "\x7e\x30\x30\x30\x30\x20\x31\x0d" | nc -q 1 192.168.3.10 23 - turn ON
