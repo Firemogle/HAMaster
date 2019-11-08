@@ -185,10 +185,7 @@ views:
         show_header_toggle: false
         entities:
           - switch.laundry_room_litter_box
-          - binary_sensor.laundry_motion_1
-          - binary_sensor.laundry_motion_2
-          - binary_sensor.laundry_motion_3
-          - binary_sensor.laundry_room_cat_detection
+          - binary_sensor.cat_motion_combine
           - sensor.laundry_temp
           - sensor.laundry_humidity
           - sensor.laundry_pressure
@@ -290,8 +287,9 @@ views:
           - sensor.sonarr_upcoming
           - sensor.sonarr_wanted
           - type: divider
-          - sensor.deluge_down_speed
-          - sensor.deluge_up_speed
+          - sensor.qbittorrent_down_speed
+          - sensor.qbittorrent_up_speed
+          - sensor.qbittorrent_status
       - type: entities
         title: Virtual Server
         show_header_toggle: false
@@ -308,7 +306,6 @@ views:
           - sensor.virtualserver_intel_core_i7_2600_temperatures_cpu_core_3
           - sensor.virtualserver_intel_core_i7_2600_temperatures_cpu_core_4
           - sensor.virtualserver_intel_core_i7_2600_temperatures_cpu_package
-          - sensor.virtualserver_wdc_wd10ezex_08wn4a0_temperatures_temperature
           - sensor.virtualserver_wdc_wd5000aakx_753ca1_temperatures_temperature
           - sensor.virtualserver_st1000dm010_2ep102_temperatures_temperature
           - type: divider
