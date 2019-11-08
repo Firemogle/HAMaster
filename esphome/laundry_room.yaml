@@ -162,3 +162,4 @@ esp32_camera:
   pixel_clock_pin: GPIO19
   resolution: 640x480
   idle_framerate: 0.01 fps
+  vertical_flip: false
