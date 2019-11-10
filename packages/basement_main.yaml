@@ -37,8 +37,8 @@ media_player:
       - media_player.projector
       
 shell_command:
-  projector_ON: echo -n -e "\x7e\x30\x30\x30\x30\x20\x31\x0d" | nc -q 1 192.168.3.10 23
-  projector_OFF: echo -n -e "\x7e\x30\x30\x30\x30\x20\x32\x0d" | nc -q 1 192.168.3.10 23
+  projector_on: echo -n -e "\x7e\x30\x30\x30\x30\x20\x31\x0d" | nc -q 1 192.168.3.10 23
+  projector_off: echo -n -e "\x7e\x30\x30\x30\x30\x20\x32\x0d" | nc -q 1 192.168.3.10 23
   
 automation:
   - alias: turn_off_projector
@@ -47,7 +47,7 @@ automation:
       entity_id: media_player.projector_shield
       to: 'off'
     action:
-      service: shell_command.projector_OFF
+      service: shell_command.projector_off
 
 # echo -n -e "\x7e\x30\x30\x30\x30\x20\x32\x0d" | nc -q 1 192.168.3.10 23 - turn OFF
 # echo -n -e "\x7e\x30\x30\x30\x30\x20\x31\x0d" | nc -q 1 192.168.3.10 23 - turn ON
