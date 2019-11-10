@@ -52,6 +52,7 @@ automation:
       entity_id: media_player.projector_shield
       to: 'off'
     action:
+    - data:
         entity_id: switch.projector
       service: switch.turn_off
       
