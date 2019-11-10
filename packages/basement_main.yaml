@@ -41,11 +41,13 @@ shell_command:
   projector_off: echo -n -e "\x7e\x30\x30\x30\x30\x20\x32\x0d" | nc -q 1 192.168.3.10 23
   
 switch:
-  - platform: command_line
-    switches:
-      projector_switch:
-        command_on: echo -n -e "\x7e\x30\x30\x30\x30\x20\x31\x0d" | nc -q 1 192.168.3.10 23
-        command_off: echo -n -e "\x7e\x30\x30\x30\x30\x20\x32\x0d" | nc -q 1 192.168.3.10 23
+  platform: telnet
+  switches:
+    projector:
+      resource: 192.168.3.10
+      port: 23
+      command_on: "\x7e\x30\x30\x30\x30\x20\x31\x0d"
+      command_off: "\x7e\x30\x30\x30\x30\x20\x32\x0d"
   
 automation:
   - alias: turn_off_projector
