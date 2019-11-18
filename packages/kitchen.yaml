@@ -42,9 +42,10 @@ timer:
     duration: '00:05:00'
     
 camera:
-  - platform: ffmpeg
+  - platform: generic
     name: kitchen_cam
-    input: !secret kitchen_cam_link
+    still_image_url: local/wyze-logo.jpg
+    stream_source: !secret kitchen_cam_link
       
 fan:
   - platform: template
