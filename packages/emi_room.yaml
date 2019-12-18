@@ -47,13 +47,55 @@ fan:
           - 'off'
           
 light:
-  - platform : mqtt
+
+  - platform: group
     name: emi_star_lamp
-    state_topic: "hawirelesslink/switch/ledvance_plug_00054677_1/state"
-    command_topic: "/HAwirelesslink/return/light/ledvance_plug_00054677_1/state"
+    entities:
+      - light.emi_star_1
+      - light.emi_star_2
+      - light.emi_star_3
+
+  - platform: mqtt
+    name: 'emi_star_1'
+    state_topic: "hawirelesslink/light/xxx/state" 
+    command_topic: "/HAwirelesslink/return/light/xxx/state"
+    brightness_state_topic: "hawirelesslink/light/xxx/brightness"
+    brightness_command_topic: "/HAwirelesslink/return/light/xxx/brightness"
     payload_on: "on"
     payload_off: "off"
-    retain: true
+    rgb_state_topic: "hawirelesslink/light/xxx/rgb_color"
+    rgb_value_template: "{{ value | replace('[','') | replace(']','') | trim }}"
+    rgb_command_topic: "/HAwirelesslink/return/light/xxx/rgb_color"
+    rgb_command_template: "{{ '%02x%02x%02x' | format(red, green, blue)}}"
+    optimistic: false
+    
+  - platform: mqtt
+    name: 'emi_star_2'
+    state_topic: "hawirelesslink/light/xxx/state" 
+    command_topic: "/HAwirelesslink/return/light/xxx/state"
+    brightness_state_topic: "hawirelesslink/light/xxx/brightness"
+    brightness_command_topic: "/HAwirelesslink/return/light/xxx/brightness"
+    payload_on: "on"
+    payload_off: "off"
+    rgb_state_topic: "hawirelesslink/light/xxx/rgb_color"
+    rgb_value_template: "{{ value | replace('[','') | replace(']','') | trim }}"
+    rgb_command_topic: "/HAwirelesslink/return/light/xxx/rgb_color"
+    rgb_command_template: "{{ '%02x%02x%02x' | format(red, green, blue)}}"
+    optimistic: false
+    
+  - platform: mqtt
+    name: 'emi_star_3'
+    state_topic: "hawirelesslink/light/xxx/state" 
+    command_topic: "/HAwirelesslink/return/light/xxx/state"
+    brightness_state_topic: "hawirelesslink/light/xxx/brightness"
+    brightness_command_topic: "/HAwirelesslink/return/light/xxx/brightness"
+    payload_on: "on"
+    payload_off: "off"
+    rgb_state_topic: "hawirelesslink/light/xxx/rgb_color"
+    rgb_value_template: "{{ value | replace('[','') | replace(']','') | trim }}"
+    rgb_command_topic: "/HAwirelesslink/return/light/xxx/rgb_color"
+    rgb_command_template: "{{ '%02x%02x%02x' | format(red, green, blue)}}"
+    optimistic: false
 
   - platform : mqtt
     name: emi_fan_light
