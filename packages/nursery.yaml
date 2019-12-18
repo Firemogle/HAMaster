@@ -1,0 +1,11 @@
+homeassistant:
+  customize:
+  
+switch:
+  - platform : mqtt
+    name: nursery_heater
+    state_topic: "hawirelesslink/switch/ledvance_plug_00054677_1/state"
+    command_topic: "/HAwirelesslink/return/light/ledvance_plug_00054677_1/state"
+    payload_on: "on"
+    payload_off: "off"
+    retain: true
