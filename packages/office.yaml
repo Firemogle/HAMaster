@@ -31,7 +31,7 @@ binary_sensor:
       off_htr_needed:
         value_template: >-
           {{ is_state('binary_sensor.off_sts_motion','on')
-             and is_state('house_sts_hvac_heat_req','on') }}
+             and is_state('binary_sensor.house_sts_hvac_heat_req','on') }}
   
 sensor:
   - platform: mqtt
@@ -80,6 +80,25 @@ switch:
     payload_off: "0"
     retain: true
     
+climate:
+  - platform: generic_thermostat
+    name: office_climate
+    heater: switch.office_heater
+    target_sensor: sensor.office_temperature
+    min_temp: 0
+    max_temp: 70
+    ac_mode: false
+    target_temp: 65
+    cold_tolerance: 0
+    hot_tolerance: 0
+    min_cycle_duration:
+      seconds: 5
+    keep_alive:
+      minutes: 3
+    initial_hvac_mode: "off"
+    away_temp: 0
+    precision: 0.1
+    
 automation:
   - id: 'off_occ_on'
     alias: off_occ_on
@@ -90,12 +109,12 @@ automation:
     condition: []
     action:
     - data:
-        entity_id: switch.office_heater
+        entity_id: climate.office_climate
       service_template: >
         {% if is_state('binary_sensor.off_htr_needed','on') %}
-          switch.turn_on
+          climate.turn_on
         {% else %}
-          switch.turn_off
+          climate.turn_off
         {% endif %}
     - data:
         entity_id: switch.off_4k_mon
