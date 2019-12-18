@@ -1,0 +1,45 @@
+homeassistant:
+  customize:
+  
+light:
+  - platform: mqtt
+    name: 'garage_ext_1'
+    state_topic: "hawirelesslink/light/ledvance_a19_rgbw_00060a5e_1/state" 
+    command_topic: "/HAwirelesslink/return/light/ledvance_a19_rgbw_00060a5e_1/state"
+    brightness_state_topic: "hawirelesslink/light/ledvance_a19_rgbw_00060a5e_1/brightness"
+    brightness_command_topic: "/HAwirelesslink/return/light/ledvance_a19_rgbw_00060a5e_1/brightness"
+    payload_on: "on"
+    payload_off: "off"
+    rgb_state_topic: "hawirelesslink/light/ledvance_a19_rgbw_00060a5e_1/rgb_color"
+    rgb_value_template: "{{ value | replace('[','') | replace(']','') | trim }}"
+    rgb_command_topic: "/HAwirelesslink/return/light/ledvance_a19_rgbw_00060a5e_1/rgb_color"
+    rgb_command_template: "{{ '%02x%02x%02x' | format(red, green, blue)}}"
+    optimistic: false
+
+  - platform: mqtt
+    name: 'garage_ext_2'
+    state_topic: "hawirelesslink/light/ledvance_a19_rgbw_00061a28_1/state" 
+    command_topic: "/HAwirelesslink/return/light/ledvance_a19_rgbw_00061a28_1/state"
+    brightness_state_topic: "hawirelesslink/light/ledvance_a19_rgbw_00061a28_1/brightness"
+    brightness_command_topic: "/HAwirelesslink/return/light/ledvance_a19_rgbw_00061a28_1/brightness"
+    payload_on: "on"
+    payload_off: "off"
+    rgb_state_topic: "hawirelesslink/light/ledvance_a19_rgbw_00061a28_1/rgb_color"
+    rgb_value_template: "{{ value | replace('[','') | replace(']','') | trim }}"
+    rgb_command_topic: "/HAwirelesslink/return/light/ledvance_a19_rgbw_00061a28_1/rgb_color"
+    rgb_command_template: "{{ '%02x%02x%02x' | format(red, green, blue)}}"
+    optimistic: false
+    
+  - platform: mqtt
+    name: 'porch'
+    state_topic: "hawirelesslink/light/xxx/state" 
+    command_topic: "/HAwirelesslink/return/light/xxx/state"
+    brightness_state_topic: "hawirelesslink/light/xxx/brightness"
+    brightness_command_topic: "/HAwirelesslink/return/light/xxx/brightness"
+    payload_on: "on"
+    payload_off: "off"
+    rgb_state_topic: "hawirelesslink/light/xxx/rgb_color"
+    rgb_value_template: "{{ value | replace('[','') | replace(']','') | trim }}"
+    rgb_command_topic: "/HAwirelesslink/return/light/xxx/rgb_color"
+    rgb_command_template: "{{ '%02x%02x%02x' | format(red, green, blue)}}"
+    optimistic: false
