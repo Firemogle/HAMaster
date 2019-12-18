@@ -25,10 +25,6 @@ media_player:
     adb_server_ip: 127.0.0.1
     adb_server_port: 5037
 
-# - platform: pjlink
-#   name: projector
-#   host: 192.168.3.10
-
   - platform: universal
     name: projector_media
     children:
@@ -47,10 +43,11 @@ switch:
   
 automation:
   - alias: turn_off_projector
+    initial_state: 'off'
     trigger:
-      platform: state
-      entity_id: media_player.projector_shield
-      to: 'off'
+    - platform: time
+      at: '1:30:00'
+    condition: []
     action:
     - data:
         entity_id: switch.projector
