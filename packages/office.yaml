@@ -108,14 +108,16 @@ automation:
       platform: state
     condition: []
     action:
-    - data:
-        entity_id: climate.office_climate
-      service_template: >
+  - service: climate.set_temperature
+    data_template:
+      temperature: >
         {% if is_state('binary_sensor.off_htr_needed','on') %}
-          climate.turn_on
+          65
         {% else %}
-          climate.turn_off
+          30
         {% endif %}
+      entity_id: climate.office_climate
+        
     - data:
         entity_id: switch.off_4k_mon
       service: switch.turn_on
