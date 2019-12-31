@@ -138,6 +138,7 @@ views:
           - light.hallway
           - binary_sensor.hallway_motion_combine
           - sensor.hallway_motion_temp
+          - sensor.hallway_motion_temp_2
           - binary_sensor.hall_window_opened
           - sensor.hall_window_temperature
           
