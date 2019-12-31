@@ -15,14 +15,14 @@ binary_sensor:
     name: hallway_motion
     payload_on: "on"
     payload_off: "off"
-    class: motion
+    device_class: motion
     
   - platform: mqtt # Upper hall sensor
     state_topic: "hawirelesslink/binary_sensor/centralite_3326_l_0f3aea9f_1_1280/state"
     name: hallway_motion_2
     payload_on: "on"
     payload_off: "off"
-    class: motion
+    device_class: motion
     
   - platform: mqtt # Hall window
     state_topic: "hawirelesslink/binary_sensor/centralite_3315_s_0e263b91_1_1280/state"
