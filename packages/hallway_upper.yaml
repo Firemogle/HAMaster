@@ -10,6 +10,20 @@ binary_sensor:
         delay_off:
           minutes: 5
 
+  - platform: mqtt # Lower hall sensor
+    state_topic: "hawirelesslink/binary_sensor/centralite_3326_l_0f3bafe3_1_1280/state"
+    name: hallway_motion
+    payload_on: "on"
+    payload_off: "off"
+    class: motion
+    
+  - platform: mqtt # Upper hall sensor
+    state_topic: "hawirelesslink/binary_sensor/centralite_3326_l_0f3aea9f_1_1280/state"
+    name: hallway_motion_2
+    payload_on: "on"
+    payload_off: "off"
+    class: motion
+    
   - platform: mqtt # Hall window
     state_topic: "hawirelesslink/binary_sensor/centralite_3315_s_0e263b91_1_1280/state"
     name: hall_window_opened
@@ -20,4 +34,14 @@ sensor:
   - platform: mqtt
     name: hall_window_temperature
     state_topic: "hawirelesslink/sensor/centralite_3315_s_0e263b91_1_1026/state"
+    unit_of_measurement: "°F"
+    
+  - platform: mqtt
+    name: hall_motion_temp
+    state_topic: "hawirelesslink/sensor/centralite_3326_l_0f3bafe3_1_1026/state"
+    unit_of_measurement: "°F"
+    
+  - platform: mqtt
+    name: hall_motion_temp_2
+    state_topic: "hawirelesslink/sensor/centralite_3326_l_0f3bafe3_1_1026/state"
     unit_of_measurement: "°F"
