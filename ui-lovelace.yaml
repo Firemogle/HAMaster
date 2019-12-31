@@ -164,7 +164,6 @@ views:
           - sensor.office_computer_power
           - sensor.office_humidity
           - sensor.office_pressure
-          - sensor.office_temperature
           - climate.office_climate
       - type: entities
         title: Printer
@@ -185,7 +184,7 @@ views:
         show_header_toggle: false
         entities:
           - switch.laundry_room_litter_box
-          - binary_sensor.cat_motion_combine
+          - binary_sensor.cat_motion_combine_2
           - sensor.laundry_temp
           - sensor.laundry_humidity
           - sensor.laundry_pressure
