@@ -43,5 +43,5 @@ sensor:
     
   - platform: mqtt
     name: hall_motion_temp_2
-    state_topic: "hawirelesslink/sensor/centralite_3326_l_0f3bafe3_1_1026/state"
+    state_topic: "hawirelesslink/sensor/centralite_3326_l_0f3aea9f_1_1026/state"
     unit_of_measurement: "°F"
