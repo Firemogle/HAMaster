@@ -30,9 +30,9 @@ light:
   - platform : mqtt
     name: main_bath_vent_light
     state_topic: "hawirelesslink/light/leviton_dz6hd_1bz_decora_600w_smart_dimmer_level_2/state"
-    command_topic: "/HAwirelesslink/return/light/main_bath_vent_light/state"
+    command_topic: "/HAwirelesslink/return/light/leviton_dz6hd_1bz_decora_600w_smart_dimmer_level_2/state"
     brightness_state_topic: "hawirelesslink/light/leviton_dz6hd_1bz_decora_600w_smart_dimmer_level_2/brightness"
-    brightness_command_topic: "/HAwirelesslink/return/light/main_bath_vent_light/brightness"
+    brightness_command_topic: "/HAwirelesslink/return/light/leviton_dz6hd_1bz_decora_600w_smart_dimmer_level_2/brightness"
     payload_on: "on"
     payload_off: "off"
     retain: true
