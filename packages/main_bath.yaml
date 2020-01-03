@@ -85,7 +85,7 @@ switch:
   - platform : mqtt
     name: "main_bath_fan"
     state_topic: "hawirelesslink/switch/jasco_products_26931_smart_motion_switch_switch_3/state"
-    command_topic: "hawirelesslink/switch/jasco_products_26931_smart_motion_switch_switch_3/state"
+    command_topic: "/HAwirelesslink/return/switch/jasco_products_26931_smart_motion_switch_switch_3/state"
     state_on: "on"
     state_off: "off"
     payload_on: "on"
