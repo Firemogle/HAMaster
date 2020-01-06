@@ -1,9 +1,0 @@
-- platform: mqtt
-  name: "master_fan_speed"
-  state_topic: "hawirelesslink/fan/king_of_fans_inc_hdc52eastwindfan_0020d39d_1_514/speed"
-
-
-- platform: mqtt
-  name: master_bed_window_temp
-  state_topic: "hawirelesslink/sensor/centralite_3315_s_0e4974b8_1_1026/state"
-  unit_of_measurement: "°F"
