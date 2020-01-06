@@ -134,10 +134,6 @@ nest:
 ecobee:
   api_key: !secret ECOBEE_KEY
   
-ring:
-  username: !secret ring_UN
-  password: !secret ring_PW
-  
 abode:
   username: !secret abode_username
   password: !secret abode_password
@@ -160,9 +156,7 @@ influxdb:
 # Items loaded elsewhere
 octoprint: !include_dir_merge_named printer/
 plant: !include_dir_merge_named plants/
-#lock: !include_dir_merge_list locks/
 recorder: !include recorder.yaml
-#media_player: !include_dir_merge_list media_players/
 person: !include_dir_merge_list people/
 camera: !include_dir_merge_list cameras/
 cover: !include_dir_merge_list covers/
@@ -175,6 +169,4 @@ automation: !include_dir_merge_list automations/
 script: !include_dir_merge_named scripts/
 scene: !include_dir_merge_list scenes/
 zone: !include_dir_merge_list zones/
-#input_number: !include input_number.yaml
-#fan: !include_dir_merge_list fans/
 notify: !include notify.yaml
