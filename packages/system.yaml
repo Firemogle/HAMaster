@@ -61,6 +61,12 @@ binary_sensor:
           {{ (states('alarm_control_panel.alarm_panel') == 'armed_away'
              or states('alarm_control_panel.alarm_panel') == 'armed_home')
              and states('group.security') == 'on' }}
+             
+  - platform: template
+    sensors:
+      house_armed:
+        value_template: >-
+          {{ is_state('alarm_control_panel.alarm_panel','disarmed') }}
           
 alert:
   ingress_alarm:
