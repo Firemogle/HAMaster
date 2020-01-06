@@ -1,7 +1,0 @@
-- platform: template
-  name: front_door
-  value_template: "{{ states('binary_sensor.front_door_lock_stat') }}"
-  lock:
-    service: script.front_door_lock
-  unlock:
-    service: script.front_door_unlock
