@@ -68,16 +68,17 @@ binary_sensor:
         value_template: >-
           {{ is_state('alarm_control_panel.alarm_panel','disarmed') }}
           
+          
 alert:
   ingress_alarm:
     name: ingress_alarm
     done_message: "House is now secure"
     message: "House is open bro"
-    entity_id: input_boolean.ingress_alarm
+    entity_id: binary_sensor.ingress_alarm
     state: 'on'
     repeat: 5
     can_acknowledge: true
-    skip_first: false
+    skip_first: true
     notifiers:
       - gmail_notify
       
