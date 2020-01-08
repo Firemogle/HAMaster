@@ -133,11 +133,6 @@ nest:
 
 ecobee:
   api_key: !secret ECOBEE_KEY
-  
-abode:
-  username: !secret abode_username
-  password: !secret abode_password
-  polling: false
     
 system_health: # load system health
 stream: # Load streaming for videos
