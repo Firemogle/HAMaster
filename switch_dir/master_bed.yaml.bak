@@ -1,9 +1,0 @@
-- platform : mqtt
-  name: "master_tv"
-  state_topic: "hawirelesslink/switch/ledvance_plug_000738b9_1/state"
-  command_topic: "/HAwirelesslink/return/switch/ledvance_plug_000738b9_1/state"
-  state_on: "on"
-  state_off: "off"
-  payload_on: "on"
-  payload_off: "off"
-  retain: true
