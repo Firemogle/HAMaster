@@ -1,9 +1,0 @@
-- platform : mqtt
-  name: "master_fan_light"
-  state_topic: "hawirelesslink/light/king_of_fans_inc_hdc52eastwindfan_0020d39d_1/state"
-  command_topic: "/HAwirelesslink/return/light/king_of_fans_inc_hdc52eastwindfan_0020d39d_1/state"
-  brightness_state_topic: "hawirelesslink/light/king_of_fans_inc_hdc52eastwindfan_0020d39d_1/brightness"
-  brightness_command_topic: "/HAwirelesslink/return/light/king_of_fans_inc_hdc52eastwindfan_0020d39d_1/brightness"
-  payload_on: "on"
-  payload_off: "off"
-  retain: true
