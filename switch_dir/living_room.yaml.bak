@@ -1,9 +1,0 @@
-- platform : mqtt
-  name: "livingroom_subwoofer"
-  state_topic: "hawirelesslink/switch/ledvance_plug_00073b5c_1/state"
-  command_topic: "/HAwirelesslink/return/switch/ledvance_plug_00073b5c_1/state"
-  state_on: "on"
-  state_off: "off"
-  payload_on: "on"
-  payload_off: "off"
-  retain: true
