@@ -1,0 +1,185 @@
+homeassistant:
+  customize:
+  
+binary_sensor:
+#Define times of day for the house, early, morning, afternoon, evening and night
+  - platform: tod
+    name: early_morning
+    after: '05:30'
+    before: '08:00'
+
+  - platform: tod
+    name: morning
+    after: '8:00'
+    before: '12:00'
+
+  - platform: tod
+    name: afternoon
+    after: '12:00'
+    before: sunset
+    before_offset: '-00:30'
+
+  - platform: tod
+    name: evening
+    after: sunset
+    after_offset: '-00:30'
+    before: '23:59'
+
+  - platform: tod
+    name: night
+    after: '23:59'
+    before: '05:30'
+
+  - platform: workday # Define workdays for house
+    name: workday_raw
+    country: US
+    province: MI
+    workdays: [mon, tue, wed, thu, fri]
+    excludes: [sat, sun, holiday]
+
+  - platform: template # Use gcal to define if liz is working weird shifts
+    sensors:
+      house_time_liz_work_exception:
+        value_template: >-
+          {{ (as_timestamp(states.calendar.liz_work_exception.attributes.start_time) - 7200) < as_timestamp(now()) + (states('sensor.house_rand_0_100')|float)/100 }}
+  - platform: template # Define workday as normal or liz exception
+    sensors:
+      house_time_workday_combine:
+        value_template: >-
+          {{ is_state('binary_sensor.workday_raw', 'on') 
+             or is_state('binary_sensor.house_time_liz_work_exception', 'on') }} 
+  - platform: template # Define wakeup time if workday determined
+    sensors:
+      work_wakeup_time:
+        value_template: >-
+          {{ is_state('binary_sensor.early_morning', 'on') 
+             or is_state('binary_sensor.house_time_liz_work_exception', 'on')  }}  
+  - platform: template # House needs woken up for workdays
+    sensors:
+      house_wake_for_work:
+        value_template: >-
+          {{ is_state('binary_sensor.house_time_workday_combine', 'on') 
+             and is_state('binary_sensor.work_wakeup_time', 'on')  }}  
+
+  - platform: template # House needs woken up for non-workdays
+    sensors:
+      house_weekend_wakeup:
+        value_template: >-
+          {{ is_state('binary_sensor.workday_raw', 'off') 
+             and is_state('binary_sensor.morning', 'on')  }} 
+  - platform: template # Combine wakeups into one wake signal
+    sensors:
+      house_wakeup:
+        value_template: >-
+          {{ is_state('binary_sensor.house_wake_for_work', 'on') 
+             or is_state('binary_sensor.house_weekend_wakeup', 'on')  }} 
+
+
+  - platform: template # Vacation morning
+    sensors:
+      house_wakeup_vacation_morning:
+        value_template: >-
+          {{ is_state('binary_sensor.early_morning', 'on') 
+             and is_state('binary_sensor.house_sts_vacation', 'on')  }}
+
+  - platform: template # Vacation evening
+    sensors:
+      house_wakeup_vacation_evening:
+        value_template: >-
+          {{ is_state('binary_sensor.evening', 'on') 
+             and is_state('binary_sensor.house_sts_vacation', 'on')  }}
+  
+automation:
+  - id: 'house_wakeup'
+    alias: house_wakeup
+    initial_state: 'off'
+    trigger:
+    - entity_id: binary_sensor.house_wakeup
+      platform: state
+      to: 'on'
+    condition: []
+    action:
+    - data:
+        entity_id: scene.house_wakeup
+      service: scene.turn_on
+    - data:
+        entity_id: script.hvac_run_setpoint
+      service: script.turn_on
+
+  - id: 'house_wakeup_vacation'
+    alias: house_wakeup_vacation
+    initial_state: 'off'
+    trigger:
+    - entity_id: binary_sensor.house_wakeup_vacation_evening
+      platform: state
+      to: 'on'
+    condition: []
+    action:
+    - data_template:
+        entity_id: >
+            {% if is_state('binary_sensor.house_sts_vacation', 'on') %}
+              scene.house_wakeup
+            {% else %}
+              scene.house_away
+            {% endif %}
+      service: scene.turn_on
+
+  - id: 'house_evening_mode'
+    alias: house_evening_mode
+    initial_state: 'off'
+    trigger:
+    - entity_id: binary_sensor.evening
+      platform: state
+      to: 'on'
+    condition: []
+    action:
+    - data_template:
+        entity_id: >
+            {% if is_state('binary_sensor.house_sts_vacation', 'on') %}
+              scene.house_evening_vacation
+            {% else %}
+              scene.house_evening
+            {% endif %}
+      service: scene.turn_on
+    - data:
+        entity_id: script.hvac_run_setpoint
+      service: script.turn_on
+
+  - id: 'house_night_mode'
+    alias: house_night_mode
+    initial_state: 'off'
+    trigger:
+    - entity_id: binary_sensor.night
+      platform: state
+      to: 'on'
+    condition: []
+    action:
+    - data:
+        entity_id: scene.house_night
+      service: scene.turn_on
+    - data:
+        entity_id: script.hvac_run_setpoint
+      service: script.turn_on
+    - data:
+        entity_id: cover.garage_door
+      service: cover.close_cover
+    - data:
+        entity_id: alarm_control_panel.alarm_panel
+        code: !secret alarmcode
+      service_template: >
+        {% if is_state('house_status', 'vacation') %}
+          alarm_control_panel.alarm_arm_away
+        {% else %}
+          alarm_control_panel.alarm_arm_home
+        {% endif %}
+  - id: 'ext_lights_off'
+    alias: ext_lights_off
+    initial_state: 'off'
+    trigger:
+    - platform: time
+      at: '8:30:00'
+    condition: []
+    action:
+    - data:
+        entity_id: scene.ext_lights_off
+      service: scene.turn_on
