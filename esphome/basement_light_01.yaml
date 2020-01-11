@@ -1,0 +1,29 @@
+esphomeyaml:
+  name: basement_light_01
+  platform: ESP8266
+  board: nodemcuv2
+
+wifi:
+  ssid: !secret AP
+  password: !secret APPW
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  password: !secret AP_PW
+
+ota:
+  password: !secret OTA_PW
+ 
+  
+light:
+  - platform: fastled_clockless
+    chipset: WS2811
+    pin: D1
+    num_leds: 150
+    rgb_order: BRG
+    name: "basement_shelf_0"
+    max_refresh_rate: 16ms
+    id: bsl1
