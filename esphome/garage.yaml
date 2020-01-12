@@ -101,7 +101,6 @@ switch:
       mcp23017: mcp23017_hub
       number: 0
       mode: OUTPUT
-      inverted: true
   - platform: gpio
     name: irr_master
     pin:
@@ -172,6 +171,7 @@ cover:
       - switch.turn_off: garage_door_act
     optimistic: true
     assumed_state: true
+    device_class: garage
     
 esp32_camera:
   name: 'ttgocam01'
