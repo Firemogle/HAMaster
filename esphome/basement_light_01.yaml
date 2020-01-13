@@ -1,5 +1,8 @@
+substitutions:
+  devicename: basement_light_01
+
 esphomeyaml:
-  name: basement_light_01
+  name: ${devicename}
   platform: ESP8266
   board: nodemcuv2
 
@@ -24,6 +27,5 @@ light:
     pin: D1
     num_leds: 150
     rgb_order: BRG
-    name: "basement_shelf_0"
-    max_refresh_rate: 16ms
-    id: bsl1
+    name: ${devicename}
+    id: ${devicename}
