@@ -1,31 +1,4 @@
 substitutions:
   devicename: basement_light_01
 
-esphomeyaml:
-  name: ${devicename}
-  platform: ESP8266
-  board: nodemcuv2
-
-wifi:
-  ssid: !secret AP
-  password: !secret APPW
-
-# Enable logging
-logger:
-
-# Enable Home Assistant API
-api:
-  password: !secret AP_PW
-
-ota:
-  password: !secret OTA_PW
- 
-  
-light:
-  - platform: fastled_clockless
-    chipset: WS2811
-    pin: D1
-    num_leds: 150
-    rgb_order: BRG
-    name: ${devicename}
-    id: ${devicename}
+<<: !include shelf_lights.yaml
