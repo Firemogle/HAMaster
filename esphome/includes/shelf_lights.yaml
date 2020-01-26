@@ -27,4 +27,4 @@ light:
     name: ${devicename}
     id: ${devicename}
     
-<<: !include ../secret.yaml
+<<: !include ../secrets.yaml
