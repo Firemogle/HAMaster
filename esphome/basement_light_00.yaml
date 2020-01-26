@@ -1,0 +1,4 @@
+substitutions:
+  devicename: basement_light_00
+
+<<: !include shelf_lights.yaml
