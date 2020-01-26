@@ -26,3 +26,5 @@ light:
     rgb_order: BRG
     name: ${devicename}
     id: ${devicename}
+    
+<<: !include ../secret.yaml
