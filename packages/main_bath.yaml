@@ -8,7 +8,7 @@ binary_sensor:
           {{ states('sensor.bathroom_vent_humidity')|float > states('sensor.main_bath_target_humidity')|float 
              or is_state('binary_sensor.main_bath_vent_motion','on') }}
         delay_off:
-          minutes: 1
+          minutes: 5
 
   - platform: mqtt # Bath motion
     state_topic: "hawirelesslink/sensor/jasco_products_26931_smart_motion_switch_burglar_3/state"
@@ -24,7 +24,7 @@ binary_sensor:
         value_template: >-
           {{ is_state('binary_sensor.main_bath_motion','on') }}
         delay_off:
-          minutes: 20
+          minutes: 1
           
 light:
   - platform : mqtt
