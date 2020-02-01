@@ -11,6 +11,14 @@ light:
     payload_on: "on"
     payload_off: "off"
     retain: true
+    
+  - platform: group
+    name: shelf_light_combine
+    entities:
+      - light.basement_light_00
+      - light.basement_light_01
+      - light.basement_light_02
+      - light.basement_light_03
   
 media_player:
   - platform: kodi
