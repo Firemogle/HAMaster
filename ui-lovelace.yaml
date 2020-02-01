@@ -153,6 +153,7 @@ views:
         entities:
           - light.basemet_dimmer
           - light.basement_stairs
+          - light.shelf_light_combine
       - type: media-control
         entity: media_player.projector_media
       - type: entities
