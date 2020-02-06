@@ -193,7 +193,7 @@ sensor:
     sensors:
       timeday:
         value_template: >-
-          {% if is_state('binary_sensor.house_wake_for_work', 'on') or is_state('binary_sensor.house_weekend_wakeup', 'on') %}
+          {% if is_state('binary_sensor.house_wake_for_work', 'on') or is_state('binary_sensor.house_weekend_wakeup', 'on') or is_state('binary_sensor.morning', 'on')%}
             {{ "morning" }}
           {% elif is_state('binary_sensor.afternoon', 'on') %} 
             {{ "afternoon" }}
