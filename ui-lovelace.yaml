@@ -269,7 +269,7 @@ views:
     id: house_system
     icon: mdi:lan
     cards:
-        type: history-graph
+      - type: history-graph
         title: 'House Temperatures'
         entities:
           - sensor.hvac_temperature
