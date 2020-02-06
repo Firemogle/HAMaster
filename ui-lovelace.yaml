@@ -280,7 +280,6 @@ views:
           - sensor.hall_motion_temp_2
           - sensor.laundry_temp
           - sensor.garage_temperature
-        refresh_interval: 2
       - type: entities
         title: Network
         show_header_toggle: false
