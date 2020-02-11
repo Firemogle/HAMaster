@@ -110,7 +110,7 @@ homeassistant:
 
 sensor:
   - platform: mail_and_packages
-    host: !secret mail_host
+    host: imap.gmail.com
 #.   port: !secret mail_port Using Default Port
     username: !secret mail_username
     password: !secret mail_password
