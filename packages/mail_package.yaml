@@ -112,8 +112,8 @@ sensor:
   - platform: mail_and_packages
     host: imap.gmail.com
 #.   port: !secret mail_port Using Default Port
-    username: !secret mail_username
-    password: !secret mail_password
+    username: !secret GMAILUN
+    password: !secret GMAILPW
 #    folder: 'Inbox' Using Deafult Folder
 #     image_path: !secret mail_image_output_path Using Default Path   
           
