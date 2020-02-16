@@ -57,6 +57,30 @@ views:
             name: Radarr
             url: https://radarr.teamcarriger.club
             icon: mdi:library-movie
+    - type: vertical-stack
+      title: Mail Today
+      cards:
+        - type: picture-glance
+          camera_image: camera.mail_usps
+          entities: []
+        - type: entity-filter
+          state_filter:
+            - operator: '>'
+              value: '0'
+          entities:
+            - entity: sensor.mail_usps_mail
+              name: USPS Mail
+            - entity: sensor.mail_usps_packages
+              name: USPS Packages
+            - entity: sensor.fedex_packages
+              name: FedEx Packages
+            - sensor.mail_ups_packages
+            - sensor.mail_packages_in_transit
+            - sensor.mail_packages_delivered
+            - entity: sensor.mail_updated
+              state_filter:
+                - operator: regex
+                  value: 20
     # Main Level 
   - title: Main Level
     id: house_main
