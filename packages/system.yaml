@@ -80,7 +80,7 @@ alert:
     can_acknowledge: true
     skip_first: true
     notifiers:
-      - gmail_notify
+      - group_notify
       
 input_number:
   hvac_home_ac_temp:
@@ -338,6 +338,6 @@ automation:
     - data_template:
         message: >
           Occupancy mode changed to {{ states('binary_sensor.house_sts_occupants') }}
-      service: notify.gmail_notify
+      service: notify.group_notify
 
       
