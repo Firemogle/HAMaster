@@ -81,6 +81,7 @@ binary_sensor:
         value_template: >-
           {{ is_state('binary_sensor.early_morning', 'on') 
              and is_state('binary_sensor.house_sts_vacation', 'on')  }}
+             
 
   - platform: template # Vacation evening
     sensors:
@@ -172,13 +173,29 @@ automation:
         {% else %}
           alarm_control_panel.alarm_arm_home
         {% endif %}
+        
   - id: 'ext_lights_off'
     alias: ext_lights_off
     initial_state: 'off'
     trigger:
-    - platform: time
-      at: '8:30:00'
+    - entity_id: binary_sensor.morning
+      platform: state
+      to: 'on'
     condition: []
+    action:
+    - data:
+        entity_id: scene.ext_lights_off
+      service: scene.turn_on
+      
+  - id: 'vacation_lights_off_morning'
+    alias: vacation_lights_off_morning
+    initial_state: 'off'
+    trigger:
+    - platform: time
+      at: '8:00:00'
+    condition: 
+      - condition: template
+        value_template: "{{ is_state('binary_sensor.house_sts_vacation', 'on') }}"
     action:
     - data:
         entity_id: scene.ext_lights_off
