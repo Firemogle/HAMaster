@@ -99,8 +99,8 @@ light:
 
   - platform : mqtt
     name: emi_fan_light
-    state_topic: "hawirelesslink/switch/king_of_fans_inc_hbuniversalcfremote_0020d37b_1_6/state"
-    command_topic: "/HAwirelesslink/return/switch/king_of_fans_inc_hbuniversalcfremote_0020d37b_1_6/state"
+    state_topic: "hawirelesslink/light/king_of_fans_inc_hbuniversalcfremote_7bd32000_level_on_off/state"
+    command_topic: "/HAwirelesslink/return/light/king_of_fans_inc_hbuniversalcfremote_7bd32000_level_on_off/state"
     payload_on: "on"
     payload_off: "off"
     retain: true
