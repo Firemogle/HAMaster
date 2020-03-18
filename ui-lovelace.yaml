@@ -46,6 +46,19 @@ views:
           - cover.garage_door
           - lock.front_door
       - type: entities
+        title: Rapture Alert
+        show_header_toggle: false
+        entities:
+          - sensor.avian_flu_symptoms
+          - sensor.dengue_fever_symptoms
+          - sensor.flu_like_symptoms
+          - sensor.flu_symptoms
+          - sensor.leptospirosis_symptoms
+          - sensor.us_coronavirus_confirmed
+          - sensor.us_coronavirus_deaths
+          - sensor.total_symptoms
+          
+      - type: entities
         title: Media Control
         show_header_toggle: false
         entities:
@@ -57,30 +70,30 @@ views:
             name: Radarr
             url: https://radarr.teamcarriger.club
             icon: mdi:library-movie
-      - type: vertical-stack
-        title: Mail Today
-        cards:
-          - type: picture-glance
-            camera_image: camera.mail_usps
-            entities: []
-          - type: entity-filter
-            state_filter:
-              - operator: '>'
-                value: '0'
-            entities:
-              - entity: sensor.mail_usps_mail
-                name: USPS Mail
-              - entity: sensor.mail_usps_packages
-                name: USPS Packages
-              - entity: sensor.fedex_packages
-                name: FedEx Packages
-              - sensor.mail_ups_packages
-              - sensor.mail_packages_in_transit
-              - sensor.mail_packages_delivered
-              - entity: sensor.mail_updated
-                state_filter:
-                  - operator: regex
-                    value: 20
+#      - type: vertical-stack
+#        title: Mail Today
+#        cards:
+#          - type: picture-glance
+#            camera_image: camera.mail_usps
+#            entities: []
+#          - type: entity-filter
+#            state_filter:
+#              - operator: '>'
+#                value: '0'
+#            entities:
+#              - entity: sensor.mail_usps_mail
+#                name: USPS Mail
+#              - entity: sensor.mail_usps_packages
+#                name: USPS Packages
+#              - entity: sensor.fedex_packages
+#                name: FedEx Packages
+#              - sensor.mail_ups_packages
+#              - sensor.mail_packages_in_transit
+#              - sensor.mail_packages_delivered
+#              - entity: sensor.mail_updated
+#                state_filter:
+#                  - operator: regex
+#                    value: 20
     # Main Level 
   - title: Main Level
     id: house_main
