@@ -50,3 +50,24 @@ binary_sensor:
     name: front_foscam_motion
     payload_on: "motion"
     payload_off: "clear"
+
+automation:
+  - id: main_bath_vent_control
+    alias: main_bath_vent_control
+    initial_state: 'off'
+    trigger:
+    - entity_id: binary_sensor.front_foscam_motion
+      platform: state
+    condition: []
+    action:
+      service: notify.mobile_app_brett_phone
+      data:
+        message: "request_location_update"
+      service: notify.notify.mobile_app_liz_phone
+      data:
+        message: "request_location_update"
+      service: notify.mobile_app_brett_phone
+      data:
+        message: "Camera Motion Triggered" 
+
+
