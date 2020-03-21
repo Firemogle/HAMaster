@@ -52,8 +52,8 @@ binary_sensor:
     payload_off: "clear"
 
 automation:
-  - id: main_bath_vent_control
-    alias: main_bath_vent_control
+  - id: front_motion_update
+    alias: front_motion_update
     initial_state: 'off'
     trigger:
     - entity_id: binary_sensor.front_foscam_motion
