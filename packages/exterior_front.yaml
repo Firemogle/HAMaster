@@ -43,3 +43,10 @@ light:
     rgb_command_topic: "/HAwirelesslink/return/light/ledvance_a19_rgbw_0005ccab_1/rgb_color"
     rgb_command_template: "{{ '%02x%02x%02x' | format(red, green, blue)}}"
     optimistic: false
+
+binary_sensor:
+  - platform: mqtt # Detect motion from fron camera from blueiris
+    state_topic: "blueiris/frontyard"
+    name: front_foscam_motion
+    payload_on: "motion"
+    payload_off: "clear"
