@@ -66,8 +66,5 @@ automation:
       service: notify.notify.mobile_app_liz_phone
       data:
         message: "request_location_update"
-      service: notify.mobile_app_brett_phone
-      data:
-        message: "Camera Motion Triggered" 
 
 
