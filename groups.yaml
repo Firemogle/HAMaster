@@ -1,6 +1,5 @@
   security:
     name: security
-    view: no
     control: hidden
     entities:
       - binary_sensor.sliding_glass_door_opened
@@ -11,18 +10,15 @@
       - binary_sensor.living_room_window
   brett:
     name: brett
-    view: no
     entities:
       - device_tracker.google_maps_116842525089175776476
       - device_tracker.brettphone
   liz:
     name: liz
-    view: no
     entities:
       - device_tracker.google_maps_108379141181739394475
   occupants:
     name: occupants
-    view: no
     entities:
       - group.brett
       - group.liz
