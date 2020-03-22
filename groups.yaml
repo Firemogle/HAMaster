@@ -1,6 +1,5 @@
   security:
     name: security
-    control: hidden
     entities:
       - binary_sensor.sliding_glass_door_opened
       - binary_sensor.livingroom_door_opened
