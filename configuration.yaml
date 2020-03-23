@@ -140,14 +140,14 @@ stream: # Load streaming for videos
 ffmpeg:
 wwlln:
 
-influxdb:
-  host: a0d7b954-influxdb
-  port: 8086
-  database: homeassistant
-  username: !secret influxUN
-  password: !secret influxPW
-  max_retries: 3
-  default_measurement: state
+#influxdb:
+#  host: a0d7b954-influxdb
+#  port: 8086
+#  database: homeassistant
+#  username: !secret influxUN
+#  password: !secret influxPW
+#  max_retries: 3
+#  default_measurement: state
 
 # Items loaded elsewhere
 octoprint: !include_dir_merge_named printer/
