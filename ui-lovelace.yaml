@@ -55,7 +55,9 @@ views:
           - sensor.flu_symptoms
           - sensor.leptospirosis_symptoms
           - sensor.us_coronavirus_confirmed
+          - sensor.us_coronavirus_current
           - sensor.us_coronavirus_deaths
+          - sensor.us_coronavirus_recovered
           - sensor.total_symptoms
           
       - type: entities
