@@ -51,20 +51,20 @@ binary_sensor:
     payload_on: "motion"
     payload_off: "clear"
 
-automation:
-  - id: front_motion_update
-    alias: front_motion_update
-    initial_state: 'off'
-    trigger:
-    - entity_id: binary_sensor.front_foscam_motion
-      platform: state
-    condition: []
-    action:
-      - service: notify.mobile_app_brett_phone
-        data:
-          message: "request_location_update"
-      - service: notify.mobile_app_liz_phone
-        data:
-          message: "request_location_update"
+#automation:
+#  - id: front_motion_update
+#    alias: front_motion_update
+#    initial_state: 'off'
+#    trigger:
+#    - entity_id: binary_sensor.front_foscam_motion
+#      platform: state
+#    condition: []
+#    action:
+#      - service: notify.mobile_app_brett_phone
+#        data:
+#          message: "request_location_update"
+#      - service: notify.mobile_app_liz_phone
+#        data:
+#          message: "request_location_update"
 
 
