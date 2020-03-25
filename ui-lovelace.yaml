@@ -59,6 +59,8 @@ views:
           - sensor.us_coronavirus_deaths
           - sensor.us_coronavirus_recovered
           - sensor.total_symptoms
+          - states.sensor.statewide_covid_stats.attributes["positive"]
+          - states.sensor.statewide_covid_stats.attributes["negative"]
           
       - type: entities
         title: Media Control
