@@ -27,7 +27,7 @@ light:
     command_topic: "/Jayhawk_Candle/gpio/12"
     payload_on: "1"
     payload_off: "0"
-    retain: true
+    retain: false
 
   - platform : mqtt
     name: livingroom_entry
@@ -37,7 +37,7 @@ light:
     brightness_command_topic: "/HAwirelesslink/return/light/livingroom_entry/brightness"
     payload_on: "on"
     payload_off: "off"
-    retain: true
+    retain: false
     
 lock:
   - platform: template
@@ -78,7 +78,7 @@ switch:
     state_off: "off"
     payload_on: "on"
     payload_off: "off"
-    retain: true
+    retain: false
       
 automation:
   - id: house_sts_jayhawks_on
