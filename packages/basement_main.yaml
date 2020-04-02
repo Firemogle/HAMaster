@@ -10,7 +10,7 @@ light:
     brightness_command_topic: "/HAwirelesslink/return/light/basement_dim/brightness"
     payload_on: "on"
     payload_off: "off"
-    retain: true
+    retain: false
     
   - platform: group
     name: shelf_light_combine
