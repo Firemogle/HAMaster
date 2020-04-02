@@ -103,7 +103,7 @@ light:
     command_topic: "/HAwirelesslink/return/light/king_of_fans_inc_hbuniversalcfremote_7bd32000_level_on_off/state"
     payload_on: "on"
     payload_off: "off"
-    retain: true
+    retain: false
     
 sensor:
   - platform: mqtt
