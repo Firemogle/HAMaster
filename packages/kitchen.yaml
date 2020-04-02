@@ -85,7 +85,7 @@ light:
     command_topic: "/Cabinet_LED/gpio/12"
     payload_on: "1"
     payload_off: "0"
-    retain: true
+    retain: false
 
   - platform : mqtt
     name: "kitchen_sink"
@@ -95,7 +95,7 @@ light:
     brightness_command_topic: "/HAwirelesslink/return/light/sengled_e11_g13_031e3554_1/brightness"
     payload_on: "on"
     payload_off: "off"
-    retain: true
+    retain: false
 
   - platform : mqtt
     name: "kitchen_fan"
@@ -105,7 +105,7 @@ light:
     brightness_command_topic: "/HAwirelesslink/return/light/king_of_fans_inc_hdc52eastwindfan_0016d039_1/brightness"
     payload_on: "on"
     payload_off: "off"
-    retain: true
+    retain: false
 
   - platform : mqtt
     name: "kitchen_lamp"
@@ -113,7 +113,7 @@ light:
     command_topic: "/HAwirelesslink/return/switch/jasco_products_26931_smart_motion_switch_switch/state"
     payload_on: "on"
     payload_off: "off"
-    retain: true
+    retain: false
     
 sensor:
   - platform: mqtt
