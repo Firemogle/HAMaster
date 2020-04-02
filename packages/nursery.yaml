@@ -8,7 +8,7 @@ switch:
     command_topic: "/HAwirelesslink/return/light/ledvance_plug_00054677_1/state"
     payload_on: "on"
     payload_off: "off"
-    retain: true
+    retain: false
 
 climate:
   - platform: generic_thermostat
