@@ -24,14 +24,14 @@ i2c:
   
 sensor:
   - platform: adc
-    pin: A0
+    pin: GPIO32
     name: "water_prob_v"
     id: "water_prob_v"
     unit_of_measurement: "V"
     attenuation: 11db
     internal: true
   - platform: adc
-    pin: A3
+    pin: GPIO33
     name: "bed_prob_v"
     id: "bed_prob_v"
     unit_of_measurement: "V"
@@ -78,23 +78,6 @@ sensor:
       unit_of_measurement: "%"
     address: 0x77
     update_interval: 60s
-  - platform: tcs34725
-    red_channel:
-      name: "TCS34725 Red Channel"
-    green_channel:
-      name: "TCS34725 Green Channel"
-    blue_channel:
-      name: "TCS34725 Blue Channel"
-    clear_channel:
-      name: "TCS34725 Clear Channel"
-    illuminance:
-      name: "TCS34725 Illuminance"
-    color_temperature:
-      name: "TCS34725 Color Temperature"
-    gain: 1x
-    integration_time: 2.4ms
-    address: 0x29
-    update_interval: 60s
   - platform: homeassistant
     name: "Feeder Toggle"
     entity_id: sensor.mt_feeder_toggle
@@ -115,23 +98,23 @@ sensor:
 output:
   - platform: ledc
     id: 'R'
-    pin: GPIO0
+    pin: GPIO13
   - platform: ledc
     id: 'G'
-    pin: GPIO1
+    pin: GPIO14
   - platform: ledc
     id: 'B'
-    pin: GPIO2
+    pin: GPIO15
   - platform: ledc
     id: 'W'
-    pin: GPIO3
+    pin: GPIO16
   - platform: ledc
     id: 'Pump'
-    pin: GPIO4
+    pin: GPIO26
   - platform: ledc
     id: 'Htr'
     frequency: 120
-    pin: GPIO5
+    pin: GPIO27
   - platform: ledc
     id: 'Air'
     frequency: 120
@@ -157,10 +140,10 @@ light:
 stepper:
   - platform: a4988
     id: feeder
-    step_pin: GPIO0
-    dir_pin: GPIO1
+    step_pin: GPIO5
+    dir_pin: GPIO4
     max_speed: 250 steps/s
     # Optional:
-    sleep_pin: GPIO2
+    sleep_pin: GPIO25
     acceleration: inf
     deceleration: inf
