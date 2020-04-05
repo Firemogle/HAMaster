@@ -144,8 +144,8 @@ stepper:
     dir_pin: GPIO4
     max_speed: 250 steps/s
     # Optional:
-    sleep_pin:
-      number: GPIO25
-      inverted: true
+#    sleep_pin:
+#      number: GPIO25
+#      inverted: true
     acceleration: inf
     deceleration: inf
