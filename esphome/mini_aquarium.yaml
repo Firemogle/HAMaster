@@ -79,10 +79,12 @@ sensor:
       unit_of_measurement: "%"
     address: 0x76
     update_interval: 60s
+
+binary_sensor:
   - platform: homeassistant
     name: "Feeder Toggle"
     entity_id: binary_sensor.mt_feeder_toggle
-    on_state:
+    on_press:
         then:
         - stepper.report_position:
             id: feeder
@@ -94,6 +96,7 @@ sensor:
         - stepper.set_target:
             id: feeder
             target: 1000
+
 # Individual outputs
 output:
   - platform: ledc
