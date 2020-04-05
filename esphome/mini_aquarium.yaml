@@ -81,9 +81,8 @@ sensor:
     update_interval: 60s
   - platform: homeassistant
     name: "Feeder Toggle"
-    entity_id: sensor.mt_feeder_toggle
-    on_value_range:
-      - above: 50.0
+    entity_id: binary_sensor.mt_feeder_toggle
+    on_state:
         then:
         - stepper.report_position:
             id: feeder
