@@ -146,6 +146,6 @@ stepper:
     # Optional:
     sleep_pin:
       number: GPIO25
-      inverted: True
+      inverted: false
     acceleration: inf
     deceleration: inf
