@@ -92,9 +92,6 @@ binary_sensor:
 # check target
         - stepper.set_target:
             id: feeder
-            target: 0
-        - stepper.set_target:
-            id: feeder
             target: 1000
 
 # Individual outputs
