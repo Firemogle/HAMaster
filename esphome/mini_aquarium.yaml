@@ -77,7 +77,7 @@ sensor:
     humidity:
       name: "MiniTank Humidity"
       unit_of_measurement: "%"
-    address: 0x77
+    address: 0x76
     update_interval: 60s
   - platform: homeassistant
     name: "Feeder Toggle"
