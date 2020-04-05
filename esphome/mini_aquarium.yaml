@@ -137,6 +137,12 @@ light:
     name: "air_pump"
     output: 'Air'
     
+switch:
+  - platform: gpio
+    pin: GPIO25
+    name: "Living Room DehumidifierEnable Pin"
+    restore_mode: ALWAYS_ON
+    
 stepper:
   - platform: a4988
     id: feeder
