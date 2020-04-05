@@ -8,16 +8,17 @@ timer:
   mt_fish_feeder:
     duration: '00:10:00'
 
-#sensor:
-#  - platform: template
-#    sensors:
-#      mt_feeder_toggle:
-#      value_template: >
-#        {% if mt_fish_feeder.state == 'active' %}
-#          100
-#        {% else %}
-#          0
-#        {% endif %}
+binary_sensor:
+  - platform: template
+    sensors:
+      mt_feeder_toggle:
+        value_template: >-
+          {{ is_state('input_boolean.feed_mini_tank', 'on') }}
+
+input_boolean:
+  feed_mini_tank:
+    name: Feed Fish
+    initial: off
 
 #automation:
 #
