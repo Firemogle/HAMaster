@@ -137,11 +137,11 @@ light:
     name: "air_pump"
     output: 'Air'
     
-switch:
-  - platform: gpio
-    pin: GPIO25
-    name: "Living Room DehumidifierEnable Pin"
-    restore_mode: ALWAYS_ON
+#switch:
+#  - platform: gpio
+#    pin: GPIO25
+#    name: "Living Room DehumidifierEnable Pin"
+#    restore_mode: ALWAYS_ON
     
 stepper:
   - platform: a4988
@@ -150,8 +150,8 @@ stepper:
     dir_pin: GPIO4
     max_speed: 250 steps/s
     # Optional:
-#    sleep_pin:
-#      number: GPIO25
-#      inverted: true
+    sleep_pin:
+      number: GPIO25
+      inverted: true
     acceleration: inf
     deceleration: inf
