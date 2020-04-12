@@ -188,6 +188,18 @@ sensor:
       - lastUpdateEt
     value_template: '{{ value_json.state }}'
     scan_interval: 60
+    
+  - platform: template
+    sensors:
+      mi_positve:
+        value_template: >-
+          {{ states.sensor.statewide_covid_stats.attributes.positive }}
+          
+  - platform: template
+    sensors:
+      mi_died:
+        value_template: >-
+          {{ states.sensor.statewide_covid_stats.attributes.death }}
 
   - platform: darksky
     api_key: eccf5f65e6dce657df3792d7e362f0db
