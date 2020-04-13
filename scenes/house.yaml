@@ -52,6 +52,8 @@
       state: off
     lock.front_door:
       state: locked
+    cover.garage_door:
+      state: closed
 - name: house_night
   entities:
     light.basemet_dimmer:
