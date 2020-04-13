@@ -7,6 +7,6 @@ proxmoxve:
     username: !secret proxmoxUN
     password: !secret proxmoxPW
     verify_ssl: false
-    real: pve
+    realm: pve
     nodes:
       - node: rebaccah
