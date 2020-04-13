@@ -1,0 +1,8 @@
+
+
+proxmoxve:
+  - host: 192.168.1.4
+    username: USERNAME
+    password: PASSWORD
+    nodes:
+      - node: rebaccah
