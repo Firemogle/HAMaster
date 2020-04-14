@@ -10,3 +10,8 @@ proxmoxve:
     realm: pve
     nodes:
       - node: rebaccah
+        vms:
+          - 100
+          - 201
+          - 300
+          - 400
