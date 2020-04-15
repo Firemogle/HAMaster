@@ -167,10 +167,14 @@ cover:
             - delay: 0.5s
             - switch.turn_off: garage_door_act
     close_action:
-      - switch.turn_off: garage_door_act
-      - switch.turn_on: garage_door_act
-      - delay: 0.5s
-      - switch.turn_off: garage_door_act
+      - if:
+          condition:
+            binary_sensor.is_on: gd_state
+          then:
+            - switch.turn_off: garage_door_act
+            - switch.turn_on: garage_door_act
+            - delay: 0.5s
+            - switch.turn_off: garage_door_act
     optimistic: true
     assumed_state: true
     device_class: garage
