@@ -175,8 +175,8 @@ cover:
             - switch.turn_on: garage_door_act
             - delay: 0.5s
             - switch.turn_off: garage_door_act
-    optimistic: true
-    assumed_state: true
+    optimistic: false
+    assumed_state: false
     device_class: garage
     
 esp32_camera:
