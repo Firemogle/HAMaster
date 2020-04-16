@@ -260,7 +260,7 @@ sensor:
     days: 7
 
   - platform: sonarr
-    api_key: 4208feb776af401ea6cb76833bf23d73
+    api_key: d633b3116b584c39a0df91a027b27d38
     host: 192.168.100.100
     monitored_conditions:
       - upcoming
