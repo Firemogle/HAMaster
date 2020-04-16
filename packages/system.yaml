@@ -251,7 +251,7 @@ sensor:
   - platform: flunearyou
 
   - platform: radarr
-    api_key: cc9b6cb785744745b0877c7278d7e9d9
+    api_key: c037c402e3814b978495137f7d18bf89
     host: 192.168.100.100
     monitored_conditions:
       - upcoming
