@@ -6,6 +6,7 @@ esphome:
 wifi:
   ssid: !secret AP
   password: !secret APPW
+  use_address: 192.168.2.115
 
 # Enable logging
 logger:
