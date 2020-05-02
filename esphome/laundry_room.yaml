@@ -39,7 +39,7 @@ binary_sensor:
     name: "laundry_motion_1"
     id: "laundry_motion_1"
     device_class: motion
-    internal: true
+    internal: false
   - platform: gpio
     pin:  
       mcp23017: mcp23017_hub
@@ -48,7 +48,7 @@ binary_sensor:
     name: "laundry_motion_2"
     id: "laundry_motion_2"
     device_class: motion
-    internal: true
+    internal: false
   - platform: gpio
     pin:  
       mcp23017: mcp23017_hub
@@ -57,13 +57,13 @@ binary_sensor:
     name: "laundry_motion_3"
     id: "laundry_motion_3"
     device_class: motion
-    internal: true
+    internal: false
   - platform: gpio
     pin: 33
     name: "laundry_motion_board"
     id: "laundry_motion_board"
-    device_class: moving
-    internal: true
+    device_class: motion
+    internal: false
   - platform: template
     name: "cat_motion_combine"
     device_class: motion
