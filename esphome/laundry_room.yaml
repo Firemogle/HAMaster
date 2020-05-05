@@ -71,7 +71,7 @@ binary_sensor:
     name: "cat_motion_combine"
     device_class: motion
     filters:
-      - delayed_off: 1800s
+      - delayed_off: 10s
     lambda: |-
       if (id(laundry_motion_1).state or id(laundry_motion_2).state or id(laundry_motion_3).state or id(laundry_motion_board).state) {
         // Motion.
