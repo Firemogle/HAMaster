@@ -109,9 +109,6 @@ output:
     id: 'W'
     pin: GPIO16
   - platform: ledc
-    id: 'Pump'
-    pin: GPIO17
-  - platform: ledc
     id: 'Htr'
     frequency: 120
     pin: GPIO27
@@ -120,6 +117,11 @@ output:
     frequency: 120
     pin: GPIO18
     
+switch:
+  - platform: gpio
+    pin: GPIO17
+    name: "bed_pump"
+    
 light:
   - platform: rgbw
     name: "Tank Light"
@@ -127,9 +129,6 @@ light:
     green: G
     blue: B
     white: W
-  - platform: monochromatic
-    name: "bed_pump"
-    output: 'Pump'
   - platform: monochromatic
     name: "heater"
     output: 'Htr'
