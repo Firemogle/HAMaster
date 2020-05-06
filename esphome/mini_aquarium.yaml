@@ -110,7 +110,7 @@ output:
     pin: GPIO16
   - platform: ledc
     id: 'Pump'
-    pin: GPIO26
+    pin: GPIO17
   - platform: ledc
     id: 'Htr'
     frequency: 120
