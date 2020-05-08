@@ -28,9 +28,8 @@ light:
     id: ${devicename}
     effects:
       - addressable_fireworks:
-      - addressable_fireworks:
-          name: Pretty
+          name: Fireworks
           update_interval: 32ms
-          spark_probability: 10%
-          use_random_color: false
-          fade_out_rate: 120
+          spark_probability: 15%
+          use_random_color: true
+          fade_out_rate: 300
