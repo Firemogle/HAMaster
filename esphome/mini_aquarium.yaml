@@ -92,7 +92,7 @@ binary_sensor:
 # check target
         - stepper.set_target:
             id: feeder
-            target: 1000
+            target: 2000
 
 # Individual outputs
 output:
@@ -109,7 +109,7 @@ output:
     id: 'W'
     pin: GPIO16
   - platform: ledc
-    id: 'Htr'
+    id: 'bp'
     frequency: 120
     pin: GPIO27
   - platform: ledc
@@ -117,10 +117,10 @@ output:
     frequency: 120
     pin: GPIO18
     
-switch:
-  - platform: gpio
-    pin: GPIO17
-    name: "bed_pump"
+#switch:
+#  - platform: gpio
+#    pin: GPIO17
+#    name: "bed_pump"
     
 light:
   - platform: rgbw
@@ -130,8 +130,8 @@ light:
     blue: B
     white: W
   - platform: monochromatic
-    name: "heater"
-    output: 'Htr'
+    name: "bed_pump"
+    output: 'bp'
   - platform: monochromatic
     name: "air_pump"
     output: 'Air'
