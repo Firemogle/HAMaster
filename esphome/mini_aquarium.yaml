@@ -108,23 +108,17 @@ output:
   - platform: ledc
     id: 'W'
     pin: GPIO16
-  - platform: ledc
-    id: 'bp'
-    frequency: 120
-    pin: GPIO27
-  - platform: ledc
-    id: 'Air'
-    frequency: 120
-    pin: GPIO18
-  - platform: ledc
-    id: 'htr'
-    frequency: 120
-    pin: GPIO23
     
-#switch:
-#  - platform: gpio
-#    pin: GPIO17
-#    name: "bed_pump"
+switch:
+  - platform: gpio
+    pin: GPIO27
+    name: "bed_pump"
+  - platform: gpio
+    pin: GPIO18
+    name: "air_pump"
+  - platform: gpio
+    pin: GPIO23
+    name: "heater"
     
 light:
   - platform: rgbw
@@ -133,15 +127,6 @@ light:
     green: G
     blue: B
     white: W
-  - platform: monochromatic
-    name: "bed_pump"
-    output: 'bp'
-  - platform: monochromatic
-    name: "air_pump"
-    output: 'Air'
-  - platform: monochromatic
-    name: "heater"
-    output: 'htr'
     
     
 stepper:
