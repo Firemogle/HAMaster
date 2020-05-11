@@ -111,16 +111,12 @@ output:
   - platform: ledc
     id: 'bp'
     pin: GPIO27
-    frequency: 120
   - platform: ledc
-    id: 'Air'
+    id: 'air'
     pin: GPIO18
-    frequency: 120
-    name: "bed_pump"
   - platform: ledc
     id: 'htr'
     pin: GPIO23
-    frequency: 120
     
 light:
   - platform: rgbw
@@ -134,7 +130,7 @@ light:
     output: 'bp'
   - platform: monochromatic
     name: "air_pump"
-    output: 'Air'
+    output: 'air'
   - platform: monochromatic
     name: "heater"
     output: 'htr'
