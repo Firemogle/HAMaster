@@ -116,6 +116,10 @@ output:
     id: 'Air'
     frequency: 120
     pin: GPIO18
+  - platform: ledc
+    id: 'htr'
+    frequency: 120
+    pin: GPIO23
     
 #switch:
 #  - platform: gpio
@@ -135,12 +139,10 @@ light:
   - platform: monochromatic
     name: "air_pump"
     output: 'Air'
+  - platform: monochromatic
+    name: "heater"
+    output: 'htr'
     
-#switch:
-#  - platform: gpio
-#    pin: GPIO25
-#    name: "Living Room DehumidifierEnable Pin"
-#    restore_mode: ALWAYS_ON
     
 stepper:
   - platform: a4988
