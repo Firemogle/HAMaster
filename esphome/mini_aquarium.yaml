@@ -110,7 +110,7 @@ output:
     pin: GPIO16
   - platform: ledc
     id: 'bp'
-    pin: GPIO27
+    pin: GPIO17
   - platform: ledc
     id: 'air'
     pin: GPIO18
