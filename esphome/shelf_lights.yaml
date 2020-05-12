@@ -32,4 +32,4 @@ light:
           update_interval: 32ms
           spark_probability: 15%
           use_random_color: true
-          fade_out_rate: 200
+          fade_out_rate: 50
