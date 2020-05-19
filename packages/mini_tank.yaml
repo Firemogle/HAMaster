@@ -20,32 +20,10 @@ input_boolean:
     name: Feed Fish
     initial: off
 
-#automation:
-#
-#- id: mt_feed
-#  alias: mt_feed
-#  initial_state: 'off'
-#  trigger:
-#    platform: time
-#    at: "17:00:00"
-#  condition: []
-#  action:
-#  - data:
-#    service: timer.start
-#    entity_id: timer.mt_fish_feeder
-#    duration: '00:10:00'
-#  - data:
-#    service: light.turn_off
-#    entitiy_id: light.bed_pump
-                          
-#- alias: feed_done
-#  id: feed_done
-#  initial_state: 'off'
-#  trigger:
-#  - platform: event
-#    event_type: timer.finished
-#  condition: []
-#  action:
-#  - data:
-#    entitiy_id: light.bed_pump
-#    service: light.turn_on
+script:
+  feed_fish:
+    alias: feed_fish
+    sequence:
+      - service: light.turn_off
+        data:
+          entity_id: light.bed_pump
