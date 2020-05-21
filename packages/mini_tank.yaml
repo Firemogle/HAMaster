@@ -60,10 +60,10 @@ automation:
     alias: mt_heater
     initial_state: 'off'
     trigger:
-    - platform: numeric_state
-      entity_id: sensor.tank_probe_c
-      above: 80
-      below: 70
+    - platform: template
+      value_template: "{% if states('sensor.tank_probe_c')|float < 70.0 %}true{% endif %}"
+    - platform: template
+      value_template: "{% if states('sensor.tank_probe_c')|float > 80.0 %}true{% endif %}"
     condition: []
     action:
     - data:
