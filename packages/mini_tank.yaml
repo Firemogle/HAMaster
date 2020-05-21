@@ -65,6 +65,7 @@ automation:
       above: 80
       below: 70
     condition: []
+    action:
     - data:
         entity_id: light.heater
       service_template: >
