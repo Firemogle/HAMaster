@@ -64,13 +64,8 @@ switch:
   - platform: wake_on_lan
     name: off_computron3000
     mac: "40:16:7e:e8:dc:7b"
-    host: 192.168.1.107
-    broadcast_address: 192.168.1.107
-
-  - platform: wake_on_lan
-    name: off_frankenserver
-    mac: "68:1c:a2:13:24:37"
-    host: 192.168.1.186
+    host: 192.168.1.195
+    broadcast_address: 192.168.1.195
 
   - platform : mqtt
     name: "Office Heater"
