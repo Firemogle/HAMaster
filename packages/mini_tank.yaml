@@ -45,7 +45,7 @@ automation:
       service: light.turn_off
 
   - id: 'mt_feed'
-    alias:mt_feed
+    alias: mt_feed
     initial_state: 'off'
     trigger:
     - platform: time
@@ -57,7 +57,7 @@ automation:
       service: script.turn_on
       
   - id: 'mt_heater'
-    alias:mt_heater
+    alias: mt_heater
     initial_state: 'off'
     trigger:
     - platform: numeric_state
