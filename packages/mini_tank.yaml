@@ -56,8 +56,8 @@ automation:
         entity_id: script.mt_feed_fish
       service: script.turn_on
       
-  - id: 'mt_feed'
-    alias:mt_feed
+  - id: 'mt_heater'
+    alias:mt_heater
     initial_state: 'off'
     trigger:
     - platform: numeric_state
@@ -65,16 +65,15 @@ automation:
       above: 80
       below: 70
     condition: []
-  - service: script.turn_on
-    data_template:
-      entity_id: >
-          {% if is_state('binary_sensor.house_sts_hvac_cool_req', 'on') %}
-            script.hvac_ac_temp
-          {% else %}
-            script.hvac_heat_temp
-          {% endif %}
+    - data:
+        entity_id: light.heater
+      service_template: >
+        {% if states('sensor.tank_probe_c')|float < 70.0 %}
+          light.turn_on
+        {% else %}
+          lighth.turn_off
+        {% endif %}
       
-
 
 script:
   mt_feed_fish:
