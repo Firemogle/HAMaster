@@ -72,7 +72,7 @@ automation:
         {% if states('sensor.tank_probe_c')|float < 70.0 %}
           light.turn_on
         {% else %}
-          lighth.turn_off
+          light.turn_off
         {% endif %}
       
 
