@@ -56,6 +56,23 @@ automation:
         entity_id: script.mt_feed_fish
       service: script.turn_on
       
+  - id: 'mt_feed'
+    alias: mt_feed
+    initial_state: 'off'
+    trigger:
+      platform: time_pattern
+      minutes: "/3"
+    condition: []
+    action:
+    - data:
+        entity_id: light.bed_pump
+      service_template: >
+        {% if states('light.bed_pump') == "off" %}
+          light.turn_on
+        {% else %}
+          light.turn_off
+        {% endif %}
+      
   - id: 'mt_heater'
     alias: mt_heater
     initial_state: 'off'
