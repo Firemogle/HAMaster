@@ -306,6 +306,21 @@ views:
         entity: plant.cedars
       - type: plant-status
         entity: plant.trees
+      - type: entities
+        title: Mini-tank
+        show_header_toggle: false
+        entities:
+          - light.air_pump
+          - light.bed_pump
+          - light.heater
+          - input_boolean.feed_mini_tan
+          - sensor.bed_probe_c
+          - sensor.tank_probe_c
+          - sensor.minitank_humidity
+          - sensor.minitank_pressure
+          - sensor.minitank_temperature
+          - light.tank_light
+        
   - title: System
     id: house_system
     icon: mdi:lan
@@ -341,48 +356,7 @@ views:
           - sensor.qbittorrent_down_speed
           - sensor.qbittorrent_up_speed
           - sensor.qbittorrent_status
-      - type: entities
-        title: Virtual Server
-        show_header_toggle: false
-        entities:
-          - sensor.virtualserver_generic_memory_data_available_memory
-          - sensor.virtualserver_generic_memory_data_used_memory
-          - sensor.virtualserver_intel_core_i7_2600_clocks_cpu_core_1
-          - sensor.virtualserver_intel_core_i7_2600_clocks_cpu_core_2
-          - sensor.virtualserver_intel_core_i7_2600_clocks_cpu_core_3
-          - sensor.virtualserver_intel_core_i7_2600_clocks_cpu_core_4
-          - type: divider
-          - sensor.virtualserver_intel_core_i7_2600_temperatures_cpu_core_1
-          - sensor.virtualserver_intel_core_i7_2600_temperatures_cpu_core_2
-          - sensor.virtualserver_intel_core_i7_2600_temperatures_cpu_core_3
-          - sensor.virtualserver_intel_core_i7_2600_temperatures_cpu_core_4
-          - sensor.virtualserver_intel_core_i7_2600_temperatures_cpu_package
-          - sensor.virtualserver_wdc_wd5000aakx_753ca1_temperatures_temperature
-          - sensor.virtualserver_st1000dm010_2ep102_temperatures_temperature
-          - type: divider
-          - sensor.virtualserver_st1000dm010_2ep102_load_used_space
-      - type: entities
-        title: Virtual Server
-        show_header_toggle: false
-        entities:
-          - sensor.frankenserver_generic_memory_data_available_memory
-          - sensor.frankenserver_generic_memory_data_used_memory
-          - sensor.frankenserver_intel_core_i3_6100_clocks_cpu_core_1
-          - sensor.frankenserver_intel_core_i3_6100_clocks_cpu_core_2
-          - type: divider
-          - sensor.frankenserver_intel_core_i3_6100_temperatures_cpu_core_1
-          - sensor.frankenserver_intel_core_i3_6100_temperatures_cpu_core_2
-          - sensor.frankenserver_intel_core_i3_6100_temperatures_cpu_package
-          - sensor.frankenserver_wdc_wd20ears_00s8b1_temperatures_temperature
-          - sensor.frankenserver_wdc_wd20ears_00s8b1_temperatures_temperature_2
-          - sensor.frankenserver_wdc_wd20earx_00pasb0_temperatures_temperature
-          - sensor.frankenserver_wdc_wd20earx_00pasb0_temperatures_temperature_2
-          - sensor.frankenserver_wdc_wd20ezrx_00d8pb0_temperatures_temperature
-          - type: divider
-          - sensor.frankenserver_generic_hard_disk_load_used_space
-          - sensor.frankenserver_generic_hard_disk_load_used_space_2
-          - type: divider
-          - switch.off_frankenserver
+
       - type: entities
         title: HVAC Status
         show_header_toggle: false
