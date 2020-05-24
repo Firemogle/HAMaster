@@ -1,10 +1,6 @@
 homeassistant:
   customize:
   
-#binary_sensor:
-
-    
-
 binary_sensor:
   - platform: template
     sensors:
