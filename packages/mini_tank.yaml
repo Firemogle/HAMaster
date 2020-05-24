@@ -104,11 +104,38 @@ script:
       - service: input_boolean.turn_on
         data:
           entity_id: input_boolean.feed_mini_tank
-      - delay: '00:1:00'
-      - service: input_boolean.turn_off
-        data:
-          entity_id: input_boolean.feed_mini_tank
       - delay: '00:20:00'
       - service: light.turn_on
         data:
           entity_id: light.bed_pump
+      - service: input_boolean.turn_off
+        data:
+          entity_id: input_boolean.feed_mini_tank
+      - service: script.turn_on
+        data:
+          entity_id: script.mt_pump_on
+   
+  mt_pump_off:
+    alias: mt_pump_off
+    sequence:
+      - service: light.turn_off
+        data:
+          entity_id: light.bed_pump
+      - delay: '00:10:00'
+      - service: script.turn_on
+        data:
+          entity_id: script.mt_pump_on
+          
+  mt_pump_on:
+    alias: mt_pump_on
+    sequence:
+      - condition: state
+        entity_id: 'input_boolean.feed_mini_tank'
+        state: 'off'
+      - service: light.turn_on
+        data:
+          entity_id: light.bed_pump
+      - delay: '00:02:00'
+      - service: script.turn_on
+        data:
+          entity_id: script.mt_pump_off
