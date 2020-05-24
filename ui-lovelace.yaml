@@ -313,7 +313,7 @@ views:
           - light.air_pump
           - light.bed_pump
           - light.heater
-          - input_boolean.feed_mini_tan
+          - input_boolean.feed_mini_tank
           - sensor.bed_probe_c
           - sensor.tank_probe_c
           - sensor.minitank_humidity
