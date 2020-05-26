@@ -114,7 +114,7 @@ script:
       - service: light.turn_on
         data:
           entity_id: light.bed_pump
-      - delay: '00:00:30'
+      - delay: '00:00:10'
       - service: script.turn_on
         data:
           entity_id: script.mt_pump_off
