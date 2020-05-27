@@ -1,4 +1,0 @@
-- platform: generic
-  name: emi_camera
-  still_image_url: secret! emi_stil
-  stream_source: secret! emi_motion
