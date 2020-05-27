@@ -276,6 +276,11 @@ views:
       - type: picture-glance
         title: "Front Porch"
         entities: []
+        camera_image: camera.frontdoor
+        camera_view: live
+      - type: picture-glance
+        title: "Front Porch"
+        entities: []
         camera_image: camera.front_porch
         camera_view: live
       - type: picture-glance
