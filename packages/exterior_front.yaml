@@ -50,21 +50,15 @@ binary_sensor:
     name: front_foscam_motion
     payload_on: "motion"
     payload_off: "clear"
+    
+camera:
+  - platform: mjpeg
+    name: frontdoor
+    still_image_url: http://192.168.1.205:81/image/frontdoor?q=100&s=100
+    mjpeg_url: http://192.168.1.205:81/mjpg/frontdoor/video.mjpg
+    
+    
 
-#automation:
-#  - id: front_motion_update
-#    alias: front_motion_update
-#    initial_state: 'off'
-#    trigger:
-#    - entity_id: binary_sensor.front_foscam_motion
-#      platform: state
-#    condition: []
-#    action:
-#      - service: notify.mobile_app_brett_phone
-#        data:
-#          message: "request_location_update"
-#      - service: notify.mobile_app_liz_phone
-#        data:
-#          message: "request_location_update"
+
 
 
