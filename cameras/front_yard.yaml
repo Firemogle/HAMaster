@@ -1,5 +1,0 @@
-- platform: foscam
-  name: "Front Porch"
-  ip: 192.168.2.109
-  username: !secret fcUN
-  password: !secret fcPW
