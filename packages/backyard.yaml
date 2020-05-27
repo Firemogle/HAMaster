@@ -1,0 +1,9 @@
+homeassistant:
+  customize:
+  
+camera:
+  - platform: mjpeg
+    name: Backyard
+    still_image_url: http://192.168.2.200:81/image/backyard?q=100&s=100
+    mjpeg_url: http://192.168.2.200:81/mjpg/backyard/video.mjpg
+
