@@ -115,6 +115,12 @@ sensor:
     state_topic: "hawirelesslink/sensor/imagic_by_greatstar_1117_s_fe53fcd3_1_1026/state"
     unit_of_measurement: "°F"
     
+camera:
+  - platform: mjpeg
+    name: emi_camera
+    still_image_url: http://192.168.2.200:81/image/emibed?q=100&s=100
+    mjpeg_url: http://192.168.2.200:81/mjpg/emibed/video.mjpg
+    
 automation:
   - id: emi_fan_speed
     alias: emi_fan_speed
