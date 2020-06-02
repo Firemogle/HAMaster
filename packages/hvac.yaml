@@ -58,13 +58,15 @@ binary_sensor:
     sensors:
       house_sts_hum_passive_req:
         value_template: >-
-          {{ states('sensor.hvac_current_humidity')|float < states('sensor.hvac_target_humidity')|float }}
+          {{ is_state('binary_sensor.house_sts_hvac_heat_req', 'on')
+             and states('sensor.hvac_current_humidity')|float < states('sensor.hvac_target_humidity')|float }}
 
   - platform: template # Determine if the humidifier needs to run by forcing HVAC fan on
     sensors:
       house_sts_hum_active_req:
         value_template: >-
-          {{ states('sensor.hvac_current_humidity')|float < states('sensor.hvac_target_humidity')|float-5 }}
+          {{ is_state('binary_sensor.house_sts_hvac_heat_req', 'on')
+             and states('sensor.hvac_current_humidity')|float < states('sensor.hvac_target_humidity')|float-5 }}
 
   - platform: template # Run the humidifier passively
     sensors:
