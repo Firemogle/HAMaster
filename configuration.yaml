@@ -35,8 +35,8 @@ proximity:
 
 http:
   server_port: 8123 # Hard set port
-  ip_ban_enabled: true # Allow bans
-  login_attempts_threshold: 10 # Ban after 10 failed attempts
+#  ip_ban_enabled: true # Allow bans
+#  login_attempts_threshold: 10 # Ban after 10 failed attempts
   
 websocket_api:
 mobile_app:
