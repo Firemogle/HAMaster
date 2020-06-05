@@ -44,7 +44,7 @@ mobile_app:
 alarm_control_panel:
   - platform: manual
     name: alarm_panel
-    pending_time: 0
+    arming_time: 0
     code: !secret alarmcode
 
 device_tracker:
