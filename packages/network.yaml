@@ -9,7 +9,7 @@ proxmoxve:
     verify_ssl: false
     realm: pve
     nodes:
-      - node: rebaccah
+      - node: rebbacah
         vms:
           - 100
           - 201
