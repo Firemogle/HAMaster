@@ -3,10 +3,12 @@ esphomeyaml:
   platform: ESP32
   board: esp32cam
 
+
+
 wifi:
   ssid: !secret AP
   password: !secret APPW
-
+  use_address: 192.168.2.119
 # Enable logging
 logger:
 
