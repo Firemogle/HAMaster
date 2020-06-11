@@ -1,6 +1,6 @@
 esphomeyaml:
   name: backyard_bluetooth
-  platform: espressif32
+  platform: ESP32
   board: esp32cam
 
 wifi:
