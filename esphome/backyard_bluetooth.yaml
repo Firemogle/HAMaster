@@ -20,6 +20,22 @@ ota:
   
 esp32_ble_tracker:
 
+sensor:
+  - platform: xiaomi_hhccjcy01
+    mac_address: 'C4:7C:8D:63:F7:31'
+    temperature:
+      name: "Hydrangea Temperature"
+    moisture:
+      name: "Hydrangea Moisture"
+    illuminance:
+      name: "Hydrangea Illuminance"
+    conductivity:
+      name: "Hydrangea Soil Conductivity"
+    battery_level:
+      name: "Hydrangea probe Battery Level"
+
+
+
 esp32_camera:
   external_clock:
     pin: GPIO0
