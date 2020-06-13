@@ -12,6 +12,14 @@ light:
     payload_off: "off"
     retain: false
     
+  - platform : mqtt
+    name: "basement_stair_light"
+    state_topic: "hawirelesslink/switch/jasco_products_26931_smart_motion_switch_switch_7/state"
+    command_topic: "/HAwirelesslink/return/switch/jasco_products_26931_smart_motion_switch_switch_7/state"
+    payload_on: "on"
+    payload_off: "off"
+    retain: false
+    
   - platform: group
     name: shelf_light_combine
     entities:
@@ -19,6 +27,14 @@ light:
       - light.basement_light_01
       - light.basement_light_02
       - light.basement_light_03
+      
+binary_sensor:
+  - platform: mqtt # 
+    state_topic: "hawirelesslink/sensor/jasco_products_26931_smart_motion_switch_burglar_7/state"
+    name: basement_stair_motion
+    payload_on: "8"
+    payload_off: "0"
+    device_class: motion
   
 media_player:
   - platform: kodi
@@ -62,5 +78,3 @@ automation:
       service: switch.turn_off
       
 
-# echo -n -e "\x7e\x30\x30\x30\x30\x20\x32\x0d" | nc -q 1 192.168.3.10 23 - turn OFF
-# echo -n -e "\x7e\x30\x30\x30\x30\x20\x31\x0d" | nc -q 1 192.168.3.10 23 - turn ON
