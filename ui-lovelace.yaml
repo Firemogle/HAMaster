@@ -193,7 +193,7 @@ views:
         show_header_toggle: false
         entities:
           - light.basemet_dimmer
-          - light.basement_stairs
+          - light.basement_stair_light
           - light.shelf_light_combine
       - type: media-control
         entity: media_player.projector_media
