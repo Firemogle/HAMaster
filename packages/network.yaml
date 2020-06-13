@@ -15,3 +15,18 @@ proxmoxve:
           - 201
           - 300
           - 400
+
+
+
+sensor:
+  - platform: mqtt
+    name: "Rebbacah CPU"
+    state_topic: "rebbacah/rebbacah/cpu"
+    unit_of_measurement: '%'
+    value_template: "{{ my_test_json.fields.usage_system|float + my_test_json.fields.usage_guest|float }}"
+    
+  - platform: mqtt
+    name: "Rebbacah CPU"
+    state_topic: "rebbacah/rebbacah/cpu"
+    unit_of_measurement: '%'
+    value_template: "{{ my_test_json.fields.usage_system|float + my_test_json.fields.usage_guest|float }}"
