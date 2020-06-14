@@ -103,7 +103,7 @@ switch:
       number: 0
       mode: OUTPUT
       inverted: True
-      restore_mode: ALWAYS_OFF
+    restore_mode: ALWAYS_OFF
   - platform: gpio
     name: irr_master
     pin:
@@ -112,7 +112,7 @@ switch:
       mode: OUTPUT
       id: MR
       inverted: true
-      restore_mode: ALWAYS_OFF
+    restore_mode: ALWAYS_OFF
   - platform: gpio
     name: irr_zone1
     pin:
@@ -120,7 +120,7 @@ switch:
       number: 2
       mode: OUTPUT
       inverted: true
-      restore_mode: ALWAYS_OFF
+    restore_mode: ALWAYS_OFF
     on_turn_on:
     - switch.turn_on: MR
     on_turn_off:
@@ -132,7 +132,7 @@ switch:
       number: 3
       mode: OUTPUT
       inverted: true
-      restore_mode: ALWAYS_OFF
+    restore_mode: ALWAYS_OFF
     on_turn_on:
     - switch.turn_on: MR
     on_turn_off:
@@ -144,7 +144,7 @@ switch:
       number: 4
       mode: OUTPUT
       inverted: true
-      restore_mode: ALWAYS_OFF
+    restore_mode: ALWAYS_OFF
     on_turn_on:
     - switch.turn_on: MR
     on_turn_off:
@@ -156,7 +156,7 @@ switch:
       number: 5
       mode: OUTPUT
       inverted: true
-      restore_mode: ALWAYS_OFF
+    restore_mode: ALWAYS_OFF
     on_turn_on:
     - switch.turn_on: MR
     on_turn_off:
@@ -168,7 +168,7 @@ switch:
       number: 6
       mode: OUTPUT
       inverted: true
-      restore_mode: ALWAYS_OFF
+    restore_mode: ALWAYS_OFF
     on_turn_on:
     - switch.turn_on: MR
     on_turn_off:
