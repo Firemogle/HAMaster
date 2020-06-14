@@ -109,42 +109,42 @@ switch:
       mcp23017: mcp23017_hub
       number: 1
       mode: OUTPUT
-      inverted: False
-  - platform: gpio
-    name: irr_no_fert
-    pin:
-      mcp23017: mcp23017_hub
-      number: 2
-      mode: OUTPUT
-      inverted: False
-  - platform: gpio
-    name: irr_fert
-    pin:
-      mcp23017: mcp23017_hub
-      number: 3
-      mode: OUTPUT
-      inverted: False
+      inverted: true
   - platform: gpio
     name: irr_zone1
     pin:
       mcp23017: mcp23017_hub
-      number: 4
+      number: 2
       mode: OUTPUT
-      inverted: False
+      inverted: true
   - platform: gpio
     name: irr_zone2
     pin:
       mcp23017: mcp23017_hub
-      number: 5
+      number: 3
       mode: OUTPUT
-      inverted: False
+      inverted: true
   - platform: gpio
     name: irr_zone3
     pin:
       mcp23017: mcp23017_hub
+      number: 4
+      mode: OUTPUT
+      inverted: true
+  - platform: gpio
+    name: irr_zone4
+    pin:
+      mcp23017: mcp23017_hub
+      number: 5
+      mode: OUTPUT
+      inverted: true
+  - platform: gpio
+    name: irr_zone5
+    pin:
+      mcp23017: mcp23017_hub
       number: 6
       mode: OUTPUT
-      inverted: False
+      inverted: true
   - platform: restart
     name: "Garage Board restart"
       
