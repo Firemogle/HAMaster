@@ -121,10 +121,10 @@ switch:
       mode: OUTPUT
       inverted: true
       restore_mode: ALWAYS_OFF
-      on_turn_on:
-      - switch.turn_on: MR
-      on_turn_off:
-      - switch.turn_off: MR
+    on_turn_on:
+    - switch.turn_on: MR
+    on_turn_off:
+    - switch.turn_off: MR
   - platform: gpio
     name: irr_zone2
     pin:
@@ -133,10 +133,10 @@ switch:
       mode: OUTPUT
       inverted: true
       restore_mode: ALWAYS_OFF
-      on_turn_on:
-      - switch.turn_on: MR
-      on_turn_off:
-      - switch.turn_off: MR
+    on_turn_on:
+    - switch.turn_on: MR
+    on_turn_off:
+    - switch.turn_off: MR
   - platform: gpio
     name: irr_zone3
     pin:
@@ -145,10 +145,10 @@ switch:
       mode: OUTPUT
       inverted: true
       restore_mode: ALWAYS_OFF
-      on_turn_on:
-      - switch.turn_on: MR
-      on_turn_off:
-      - switch.turn_off: MR
+    on_turn_on:
+    - switch.turn_on: MR
+    on_turn_off:
+    - switch.turn_off: MR
   - platform: gpio
     name: irr_zone4
     pin:
@@ -157,10 +157,10 @@ switch:
       mode: OUTPUT
       inverted: true
       restore_mode: ALWAYS_OFF
-      on_turn_on:
-      - switch.turn_on: MR
-      on_turn_off:
-      - switch.turn_off: MR
+    on_turn_on:
+    - switch.turn_on: MR
+    on_turn_off:
+    - switch.turn_off: MR
   - platform: gpio
     name: irr_zone5
     pin:
@@ -169,10 +169,10 @@ switch:
       mode: OUTPUT
       inverted: true
       restore_mode: ALWAYS_OFF
-      on_turn_on:
-      - switch.turn_on: MR
-      on_turn_off:
-      - switch.turn_off: MR
+    on_turn_on:
+    - switch.turn_on: MR
+    on_turn_off:
+    - switch.turn_off: MR
   - platform: restart
     name: "Garage Board restart"
       
