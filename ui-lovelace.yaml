@@ -325,6 +325,14 @@ views:
           - sensor.minitank_pressure
           - sensor.minitank_temperature
           - light.tank_light
+      - type: entities
+        title: Irragation
+        show_header_toggle: false
+        entities:
+          - switch.irr_master
+          - switch.irr_zone1
+          - switch.irr_zone2
+          - sensor.water_flow
         
   - title: System
     id: house_system
