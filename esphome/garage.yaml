@@ -106,11 +106,11 @@ switch:
     restore_mode: ALWAYS_OFF
   - platform: gpio
     name: irr_master
+    id: MR
     pin:
       mcp23017: mcp23017_hub
       number: 1
       mode: OUTPUT
-      id: MR
       inverted: true
     restore_mode: ALWAYS_OFF
   - platform: gpio
