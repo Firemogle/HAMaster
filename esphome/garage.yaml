@@ -103,13 +103,16 @@ switch:
       number: 0
       mode: OUTPUT
       inverted: True
+      restore_mode: ALWAYS_OFF
   - platform: gpio
     name: irr_master
     pin:
       mcp23017: mcp23017_hub
       number: 1
       mode: OUTPUT
+      id: MR
       inverted: true
+      restore_mode: ALWAYS_OFF
   - platform: gpio
     name: irr_zone1
     pin:
@@ -117,6 +120,11 @@ switch:
       number: 2
       mode: OUTPUT
       inverted: true
+      restore_mode: ALWAYS_OFF
+      on_turn_on:
+      - switch.turn_on: MR
+      on_turn_off:
+      - switch.turn_off: MR
   - platform: gpio
     name: irr_zone2
     pin:
@@ -124,6 +132,11 @@ switch:
       number: 3
       mode: OUTPUT
       inverted: true
+      restore_mode: ALWAYS_OFF
+      on_turn_on:
+      - switch.turn_on: MR
+      on_turn_off:
+      - switch.turn_off: MR
   - platform: gpio
     name: irr_zone3
     pin:
@@ -131,6 +144,11 @@ switch:
       number: 4
       mode: OUTPUT
       inverted: true
+      restore_mode: ALWAYS_OFF
+      on_turn_on:
+      - switch.turn_on: MR
+      on_turn_off:
+      - switch.turn_off: MR
   - platform: gpio
     name: irr_zone4
     pin:
@@ -138,6 +156,11 @@ switch:
       number: 5
       mode: OUTPUT
       inverted: true
+      restore_mode: ALWAYS_OFF
+      on_turn_on:
+      - switch.turn_on: MR
+      on_turn_off:
+      - switch.turn_off: MR
   - platform: gpio
     name: irr_zone5
     pin:
@@ -145,6 +168,11 @@ switch:
       number: 6
       mode: OUTPUT
       inverted: true
+      restore_mode: ALWAYS_OFF
+      on_turn_on:
+      - switch.turn_on: MR
+      on_turn_off:
+      - switch.turn_off: MR
   - platform: restart
     name: "Garage Board restart"
       
