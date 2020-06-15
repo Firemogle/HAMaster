@@ -90,6 +90,7 @@ sensor:
     pin: 34
     name: "water_flow"
     unit_of_measurement: 'l/m'
+    update_interval: 5s
     filters:
       - multiply: 0.0222
 
@@ -114,7 +115,7 @@ switch:
       inverted: true
     restore_mode: ALWAYS_OFF
     on_turn_on:
-    - delay: 1800s
+    - delay: 0.5h
     - switch.turn_off: irr1
     - switch.turn_off: irr2
     - switch.turn_off: irr3
