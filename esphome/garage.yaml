@@ -123,10 +123,10 @@ switch:
       mode: OUTPUT
       inverted: true
     restore_mode: ALWAYS_OFF
-    on_turn_on:
-    - switch.turn_on: irr_master
-    on_turn_off:
-    - switch.turn_off: irr_master
+#    on_turn_on:
+#    - switch.turn_on: irr_master
+#    on_turn_off:
+#    - switch.turn_off: irr_master
   - platform: gpio
     name: irr_zone2
     id: irr2
@@ -136,10 +136,10 @@ switch:
       mode: OUTPUT
       inverted: true
     restore_mode: ALWAYS_OFF
-    on_turn_on:
-    - switch.turn_on: irr_master
-    on_turn_off:
-    - switch.turn_off: irr_master
+#    on_turn_on:
+#    - switch.turn_on: irr_master
+#    on_turn_off:
+#    - switch.turn_off: irr_master
   - platform: gpio
     name: irr_zone3
     id: irr3
@@ -149,10 +149,10 @@ switch:
       mode: OUTPUT
       inverted: true
     restore_mode: ALWAYS_OFF
-    on_turn_on:
-    - switch.turn_on: irr_master
-    on_turn_off:
-    - switch.turn_off: irr_master
+#    on_turn_on:
+#    - switch.turn_on: irr_master
+#    on_turn_off:
+#    - switch.turn_off: irr_master
   - platform: gpio
     name: irr_zone4
     id: irr4
@@ -162,10 +162,10 @@ switch:
       mode: OUTPUT
       inverted: true
     restore_mode: ALWAYS_OFF
-    on_turn_on:
-    - switch.turn_on: irr_master
-    on_turn_off:
-    - switch.turn_off: irr_master
+#    on_turn_on:
+#    - switch.turn_on: irr_master
+#    on_turn_off:
+#    - switch.turn_off: irr_master
   - platform: gpio
     name: irr_zone5
     id: irr5
@@ -175,10 +175,10 @@ switch:
       mode: OUTPUT
       inverted: true
     restore_mode: ALWAYS_OFF
-    on_turn_on:
-    - switch.turn_on: irr_master
-    on_turn_off:
-    - switch.turn_off: irr_master
+#    on_turn_on:
+#    - switch.turn_on: irr_master
+#    on_turn_off:
+#    - switch.turn_off: irr_master
   - platform: restart
     name: "Garage Board restart"
       
