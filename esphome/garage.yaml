@@ -114,19 +114,6 @@ switch:
       mode: OUTPUT
       inverted: true
     restore_mode: ALWAYS_OFF
-    on_turn_on:
-    - delay: 0.5h
-    - switch.turn_off: irr1
-    - switch.turn_off: irr2
-    - switch.turn_off: irr3
-    - switch.turn_off: irr4
-    - switch.turn_off: irr5
-    on_turn_off:
-    - switch.turn_off: irr1
-    - switch.turn_off: irr2
-    - switch.turn_off: irr3
-    - switch.turn_off: irr4
-    - switch.turn_off: irr5
   - platform: gpio
     name: irr_zone1
     id: irr1
