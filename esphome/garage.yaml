@@ -220,20 +220,20 @@ cover:
     assumed_state: false
     device_class: garage
     
-esp32_camera:
-  name: 'ttgocam01'
-  external_clock:
-    pin: GPIO32
-    frequency: 20MHz
-  i2c_pins:
-    sda: GPIO13
-    scl: GPIO12
-  data_pins: [GPIO5, GPIO14, GPIO4, GPIO15, GPIO18, GPIO23, GPIO36, GPIO39]
-  vsync_pin: GPIO27
-  href_pin: GPIO25
-  pixel_clock_pin: GPIO19
-  resolution: 640x480
-  idle_framerate: 0.01 fps
+#esp32_camera:
+#  name: 'ttgocam01'
+#  external_clock:
+#    pin: GPIO32
+#    frequency: 20MHz
+#  i2c_pins:
+#    sda: GPIO13
+#    scl: GPIO12
+#  data_pins: [GPIO5, GPIO14, GPIO4, GPIO15, GPIO18, GPIO23, GPIO36, GPIO39]
+#  vsync_pin: GPIO27
+#  href_pin: GPIO25
+#  pixel_clock_pin: GPIO19
+#  resolution: 640x480
+#  idle_framerate: 0.01 fps
 
 binary_sensor:
   - platform: gpio
