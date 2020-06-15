@@ -89,6 +89,7 @@ sensor:
   - platform: pulse_counter
     pin: 34
     name: "water_flow"
+    icon: mdi:hydro-power
     unit_of_measurement: 'l/m'
     update_interval: 5s
     filters:
@@ -108,6 +109,7 @@ switch:
   - platform: gpio
     name: irr_master
     id: irr_master
+    icon: mid:watering-can
     pin:
       mcp23017: mcp23017_hub
       number: 1
@@ -116,6 +118,7 @@ switch:
     restore_mode: ALWAYS_OFF
   - platform: gpio
     name: irr_zone1
+    icon: mdi:watering-can
     id: irr1
     pin:
       mcp23017: mcp23017_hub
@@ -129,6 +132,7 @@ switch:
 #    - switch.turn_off: irr_master
   - platform: gpio
     name: irr_zone2
+    icon: mdi:watering-can
     id: irr2
     pin:
       mcp23017: mcp23017_hub
@@ -142,6 +146,7 @@ switch:
 #    - switch.turn_off: irr_master
   - platform: gpio
     name: irr_zone3
+    icon: mdi:watering-can
     id: irr3
     pin:
       mcp23017: mcp23017_hub
@@ -155,6 +160,7 @@ switch:
 #    - switch.turn_off: irr_master
   - platform: gpio
     name: irr_zone4
+    icon: mdi:watering-can
     id: irr4
     pin:
       mcp23017: mcp23017_hub
@@ -168,6 +174,7 @@ switch:
 #    - switch.turn_off: irr_master
   - platform: gpio
     name: irr_zone5
+    icon: mdi:watering-can
     id: irr5
     pin:
       mcp23017: mcp23017_hub
