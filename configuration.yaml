@@ -138,7 +138,6 @@ ecobee:
 system_health: # load system health
 stream: # Load streaming for videos
 ffmpeg:
-wwlln:
 
 #influxdb:
 #  host: a0d7b954-influxdb
@@ -157,7 +156,6 @@ person: !include_dir_merge_list people/
 camera: !include_dir_merge_list cameras/
 cover: !include_dir_merge_list covers/
 sensor: !include_dir_merge_list sensors/
-#binary_sensor: !include_dir_merge_list binary_sensors/
 light: !include_dir_merge_list lights/
 switch: !include_dir_merge_list switch_dir/
 group: !include groups.yaml
