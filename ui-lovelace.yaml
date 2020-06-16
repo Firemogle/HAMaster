@@ -308,9 +308,9 @@ views:
     icon: mdi:flower-outline
     cards:
       - type: plant-status
-        entity: plant.cedars
+        entity: plant.zone1
       - type: plant-status
-        entity: plant.trees
+        entity: plant.zone2
       - type: entities
         title: Mini-tank
         show_header_toggle: false
