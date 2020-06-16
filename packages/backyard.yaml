@@ -7,3 +7,11 @@ camera:
     still_image_url: http://192.168.2.200:81/image/backyard?q=100&s=100
     mjpeg_url: http://192.168.2.200:81/mjpg/backyard/video.mjpg
 
+plant:
+  hydrangea:
+    sensors:
+      moisture: sensor.hydrangea_moisture
+      temperature: sensor.hydrangea_temperature
+      conductivity: sensor.hydrangea_soil_conductivity
+      brightness: sensor.hydrangea_illuminance
+    min_moisture: 20
