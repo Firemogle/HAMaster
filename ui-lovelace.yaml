@@ -308,9 +308,9 @@ views:
     icon: mdi:flower-outline
     cards:
       - type: plant-status
-        entity: plant.zone1
+        entity: plant.trees
       - type: plant-status
-        entity: plant.zone2
+        entity: plant.hydrangea
       - type: entities
         title: Mini-tank
         show_header_toggle: false
