@@ -1,5 +1,0 @@
-cedars:
-  sensors:
-    moisture: sensor.cedar_moisture_combine
-    temperature: sensor.dark_sky_temperature
-  min_moisture: 20
