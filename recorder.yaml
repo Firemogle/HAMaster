@@ -1,6 +1,6 @@
 db_url: !secret DB # Location of offloaded DB
 purge_keep_days: 10 # Test purge days with offloaded DB
-autopurge: true
+auto_purge: true
 exclude: # Configure recorder to not record extrainious data
   domains:
     - media_player
