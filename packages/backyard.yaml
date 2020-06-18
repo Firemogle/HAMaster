@@ -15,3 +15,92 @@ plant:
       conductivity: sensor.hydrangea_soil_conductivity
       brightness: sensor.hydrangea_illuminance
     min_moisture: 20
+
+script:
+  by_irrigation:
+    alias: by_irrigation
+    sequence:
+      - service: switch.turn_on
+        data:
+          entity_id: switch.irr_master
+      - service: switch.turn_on
+        data:
+          entity_id: switch.irr_zone1
+      - delay: '00:30:00'
+      - service: switch.turn_off
+        data:
+          entity_id: switch.irr_master
+      - service: switch.turn_off
+        data:
+          entity_id: switch.irr_zone1
+      - delay: '00:30:00'
+      - service: switch.turn_on
+        data:
+          entity_id: switch.irr_master
+      - service: switch.turn_on
+        data:
+          entity_id: switch.irr_zone2
+      - delay: '00:30:00'
+      - service: switch.turn_off
+        data:
+          entity_id: switch.irr_master
+      - service: switch.turn_off
+        data:
+          entity_id: switch.irr_zone2
+      - delay: '00:30:00'
+      - service: switch.turn_on
+        data:
+          entity_id: switch.irr_master
+      - service: switch.turn_on
+        data:
+          entity_id: switch.irr_zone1
+      - delay: '00:30:00'
+      - service: switch.turn_off
+        data:
+          entity_id: switch.irr_master
+      - service: switch.turn_off
+        data:
+          entity_id: switch.irr_zone1
+      - delay: '00:30:00'
+      - service: switch.turn_on
+        data:
+          entity_id: switch.irr_master
+      - service: switch.turn_on
+        data:
+          entity_id: switch.irr_zone2
+      - delay: '00:30:00'
+      - service: switch.turn_off
+        data:
+          entity_id: switch.irr_master
+      - service: switch.turn_off
+        data:
+          entity_id: switch.irr_zone2
+      - delay: '00:30:00'
+      - service: switch.turn_on
+        data:
+          entity_id: switch.irr_master
+      - service: switch.turn_on
+        data:
+          entity_id: switch.irr_zone1
+      - delay: '00:30:00'
+      - service: switch.turn_off
+        data:
+          entity_id: switch.irr_master
+      - service: switch.turn_off
+        data:
+          entity_id: switch.irr_zone1
+      - delay: '00:30:00'
+      - service: switch.turn_on
+        data:
+          entity_id: switch.irr_master
+      - service: switch.turn_on
+        data:
+          entity_id: switch.irr_zone2
+      - delay: '00:30:00'
+      - service: switch.turn_off
+        data:
+          entity_id: switch.irr_master
+      - service: switch.turn_off
+        data:
+          entity_id: switch.irr_zone2
+      - delay: '00:30:00'
