@@ -31,6 +31,7 @@ sensor:
     unit_of_measurement: "V"
     attenuation: 11db
     internal: true
+    update_interval: 300s
   - platform: adc
     pin: GPIO33
     name: "bed_prob_v"
@@ -38,6 +39,7 @@ sensor:
     unit_of_measurement: "V"
     attenuation: 11db
     internal: true
+    update_interval: 300s
   - platform: resistance
     sensor: water_prob_v
     configuration: DOWNSTREAM
@@ -78,7 +80,7 @@ sensor:
       name: "MiniTank Humidity"
       unit_of_measurement: "%"
     address: 0x76
-    update_interval: 60s
+    update_interval: 300s
 
 binary_sensor:
   - platform: homeassistant
