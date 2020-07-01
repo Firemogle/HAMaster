@@ -27,6 +27,7 @@ sensor:
     filters:
       - multiply: 3.3
     internal: true
+    update_interval: 300s
 
 binary_sensor:
   - platform: template
