@@ -111,6 +111,7 @@ sensor:
     name: "laundry_leak_furnace"
     id: "laundry_leak_furnace"
     internal: true
+    update_interval: 300s
   - platform: ads1115
     multiplexer: 'A1_GND'
     ads1115_id: ads1115_1
@@ -118,6 +119,7 @@ sensor:
     name: "laundry_leak_sink"
     id: "laundry_leak_sink"
     internal: true
+    update_interval: 300s
   - platform: bme280
     temperature:
       name: "laundry_temp"
@@ -130,7 +132,7 @@ sensor:
       name: "laundry_humidity"
       unit_of_measurement: "%"
     address: 0x76
-    update_interval: 60s
+    update_interval: 300s
 
 # Individual outputs
 switch:
@@ -152,19 +154,19 @@ switch:
     name: "Laundry Board restart"
 
 
-esp32_camera:
-  name: 'laundry_room_camera'
-  external_clock:
-    pin: GPIO32
-    frequency: 20MHz
-  i2c_pins:
-    sda: GPIO13
-    scl: GPIO12
-  data_pins: [GPIO5, GPIO14, GPIO4, GPIO15, GPIO18, GPIO23, GPIO36, GPIO39]
-  vsync_pin: GPIO27
-  href_pin: GPIO25
-  pixel_clock_pin: GPIO19
-  resolution: 640x480
-  idle_framerate: 0.01 fps
-  vertical_flip: false
-  horizontal_mirror: false
+#esp32_camera:
+#  name: 'laundry_room_camera'
+#  external_clock:
+#    pin: GPIO32
+#    frequency: 20MHz
+#  i2c_pins:
+#    sda: GPIO13
+#    scl: GPIO12
+#  data_pins: [GPIO5, GPIO14, GPIO4, GPIO15, GPIO18, GPIO23, GPIO36, GPIO39]
+#  vsync_pin: GPIO27
+#  href_pin: GPIO25
+#  pixel_clock_pin: GPIO19
+#  resolution: 640x480
+#  idle_framerate: 0.01 fps
+#  vertical_flip: false
+#  horizontal_mirror: false
