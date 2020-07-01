@@ -46,52 +46,12 @@ sensor:
       id: hum
     address: 0x76
     update_interval: 60s
-  - platform: ads1115
-    multiplexer: 'A0_GND'
-    ads1115_id: ads1115_1
-    gain: 6.144
-    name: "Soil Moisture 1"
-  - platform: ads1115
-    multiplexer: 'A1_GND'
-    ads1115_id: ads1115_1
-    gain: 6.144
-    name: "Soil Moisture 2"
-  - platform: ads1115
-    multiplexer: 'A2_GND'
-    ads1115_id: ads1115_1
-    gain: 6.144
-    name: "Soil Moisture 3"
-  - platform: ads1115
-    multiplexer: 'A3_GND'
-    ads1115_id: ads1115_1
-    gain: 6.144
-    name: "Soil Moisture 4"
-  - platform: ads1115
-    multiplexer: 'A0_GND'
-    ads1115_id: ads1115_2
-    gain: 6.144
-    name: "Soil Moisture 5"
-  - platform: ads1115
-    multiplexer: 'A1_GND'
-    ads1115_id: ads1115_2
-    gain: 6.144
-    name: "Soil Moisture 6"
-  - platform: ads1115
-    multiplexer: 'A2_GND'
-    ads1115_id: ads1115_2
-    gain: 6.144
-    name: "Soil Moisture 7"
-  - platform: ads1115
-    multiplexer: 'A3_GND'
-    ads1115_id: ads1115_2
-    gain: 6.144
-    name: "Soil Moisture 8"
   - platform: pulse_counter
     pin: 34
     name: "water_flow"
     icon: mdi:hydro-power
     unit_of_measurement: 'l/m'
-    update_interval: 5s
+    update_interval: 30s
     filters:
       - multiply: 0.0222
 
@@ -220,20 +180,6 @@ cover:
     assumed_state: false
     device_class: garage
     
-#esp32_camera:
-#  name: 'ttgocam01'
-#  external_clock:
-#    pin: GPIO32
-#    frequency: 20MHz
-#  i2c_pins:
-#    sda: GPIO13
-#    scl: GPIO12
-#  data_pins: [GPIO5, GPIO14, GPIO4, GPIO15, GPIO18, GPIO23, GPIO36, GPIO39]
-#  vsync_pin: GPIO27
-#  href_pin: GPIO25
-#  pixel_clock_pin: GPIO19
-#  resolution: 640x480
-#  idle_framerate: 0.01 fps
 
 binary_sensor:
   - platform: gpio
