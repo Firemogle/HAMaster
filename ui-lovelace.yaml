@@ -49,31 +49,10 @@ views:
         title: Rapture Alert
         show_header_toggle: false
         entities:
-          - sensor.avian_flu_symptoms
-          - sensor.dengue_fever_symptoms
-          - sensor.flu_like_symptoms
-          - sensor.flu_symptoms
-          - sensor.leptospirosis_symptoms
           - sensor.us_coronavirus_confirmed
           - sensor.us_coronavirus_current
           - sensor.us_coronavirus_deaths
           - sensor.us_coronavirus_recovered
-          - sensor.total_symptoms
-          - sensor.mi_positve
-          - sensor.mi_died
-          
-      - type: entities
-        title: Media Control
-        show_header_toggle: false
-        entities:
-          - type: weblink
-            name: Sonarr
-            url: https://sonarr.teamcarriger.club
-            icon: mdi:television-box
-          - type: weblink
-            name: Radarr
-            url: https://radarr.teamcarriger.club
-            icon: mdi:library-movie
 #      - type: vertical-stack
 #        title: Mail Today
 #        cards:
@@ -292,11 +271,6 @@ views:
         title: Garage
         entities: []
         camera_image: camera.garage
-        camera_view: live
-      - type: picture-glance
-        title: Garage Board
-        entities: []
-        camera_image: camera.ttgocam01
         camera_view: live
       - type: picture-glance
         title: OctoPrint
