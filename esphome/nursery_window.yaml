@@ -1,5 +1,6 @@
 substitutions:
   devicename: nursery_window_controller
+  motion_name: "Nursery Motion"
   temp_name: "Nursery window temp"
   hum_name: "Nursery window humidity"
   lux_name: "Nursery light level"
@@ -24,8 +25,8 @@ substitutions:
   mot3_MS1_name: "Nursery M3MS1"
   mot3_MS2_name: "Nursery M3MS2"
   mot3_MS3_name: "Nursery M3MS3"
-  blind_name: "Nursery blind step"
-  curt1_name: "Nursery curtain1 step"
-  curt2_name: "Nursery curtain2 step"
+  blind_name: "Nursery_blind_step"
+  curt1_name: "Nursery_curtain1_step"
+  curt2_name: "Nursery_curtain2_step"
 
 <<: !include window_blind_2xcurtain.conf
