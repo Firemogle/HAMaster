@@ -12,7 +12,7 @@ binary_sensor:
 fan:
   - platform: template
     fans:
-      emi_fan:
+     nursery_fan:
         friendly_name: "Nursery fan"
         value_template: "{{ states('binary_sensor.nursery_fan_state') }}"
         speed_template: "{{ states('sensor.nursery_fan_speed')|replace('\"','') }}"
