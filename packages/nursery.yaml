@@ -3,7 +3,7 @@ homeassistant:
 
 binary_sensor:
   - platform: mqtt # Emi fan state
-    state_topic: "hawirelesslink/fan/king_of_fans_inc_hbuniversalcfremote_0020d37b_1_514/state"
+    state_topic: "hawirelesslink/fan/king_of_fans_inc_hbuniversalcfremote_a4952a00_fan/state"
     name: nursery_fan_state
     payload_on: "on"
     payload_off: "off"
@@ -19,17 +19,17 @@ fan:
         turn_on:
           service:  mqtt.publish
           data_template:
-              topic: "/HAwirelesslink/return/fan/king_of_fans_inc_hbuniversalcfremote_0020d37b_1_514/state"
+              topic: "/HAwirelesslink/return/fan/king_of_fans_inc_hbuniversalcfremote_a4952a00_fan/state"
               payload: 'on'
         turn_off:
           service:  mqtt.publish
           data_template:
-              topic: "/HAwirelesslink/return/fan/king_of_fans_inc_hbuniversalcfremote_0020d37b_1_514/state"
+              topic: "/HAwirelesslink/return/fan/king_of_fans_inc_hbuniversalcfremote_a4952a00_fan/state"
               payload: 'off'
         set_speed:
           service: mqtt.publish
           data_template:
-              topic: "/HAwirelesslink/return/fan/king_of_fans_inc_hbuniversalcfremote_0020d37b_1_514/speed"
+              topic: "/HAwirelesslink/return/fan/king_of_fans_inc_hbuniversalcfremote_a4952a00_fan/speed"
               payload: '{{ speed }}'
         speeds:
           - 'low'
@@ -48,8 +48,8 @@ sensor:
 light:
   - platform : mqtt
     name: nursery_fan_light
-    state_topic: "hawirelesslink/light/king_of_fans_inc_hbuniversalcfremote_7bd32000_level_on_off/state"
-    command_topic: "/HAwirelesslink/return/light/king_of_fans_inc_hbuniversalcfremote_7bd32000_level_on_off/state"
+    state_topic: "hawirelesslink/light/king_of_fans_inc_hbuniversalcfremote_a4952a00_level_on_off/state"
+    command_topic: "/HAwirelesslink/return/light/king_of_fans_inc_hbuniversalcfremote_a4952a00_level_on_off/state"
     payload_on: "on"
     payload_off: "off"
     retain: false
