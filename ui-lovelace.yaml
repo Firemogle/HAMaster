@@ -139,6 +139,12 @@ views:
           - sensor.emi_temp
         camera_image: camera.amcrest_camera
       - type: entities
+        title: Nursery Room
+        show_header_toggle: false
+        entities:
+          - fan.nursery_fan
+          - light.nursery_fan_light
+      - type: entities
         title: Main Bath
         show_header_toggle: false
         entities:
