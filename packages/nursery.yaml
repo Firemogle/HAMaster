@@ -48,12 +48,14 @@ sensor:
 light:
   - platform : mqtt
     name: nursery_fan_light
-    state_topic: "hawirelesslink/light/king_of_fans_inc_hbuniversalcfremote_a4952a00_level_on_off/state"
+    state_topic: "king_of_fans_inc_hbuniversalcfremote_a4952a00_level_on_off/state"
     command_topic: "/HAwirelesslink/return/light/king_of_fans_inc_hbuniversalcfremote_a4952a00_level_on_off/state"
+    brightness_state_topic: "hawirelesslink/light/king_of_fans_inc_hbuniversalcfremote_a4952a00_level_on_off/brightness"
+    brightness_command_topic: "/HAwirelesslink/return/light/king_of_fans_inc_hbuniversalcfremote_a4952a00_level_on_off/brightness"
     payload_on: "on"
     payload_off: "off"
     retain: false
-    
+  
   
 switch:
   - platform : mqtt
@@ -82,3 +84,31 @@ climate:
     initial_hvac_mode: "off"
     away_temp: 0
     precision: 0.1
+    
+automation:
+  - id: nursery_fan_speed
+    alias: nursery_fan_speed
+    initial_state: 'off'
+    trigger:
+    - entity_id: sensor.emi_temp
+      platform: state
+    - entity_id: 'fan.emi_fan'
+      platform: state
+    condition:
+      - condition: state
+        entity_id: 'fan.emi_fan'
+        state: 'on'
+    action:
+    - service: fan.set_speed
+      data_template:
+        entity_id: fan.nursery_fan
+        speed: >
+          {% if (states.sensor.emi_temp.state|float > 80 ) %}
+            on
+          {% elif (states.sensor.emi_temp.state|float <= 80 ) and (states.sensor.emi_temp.state|float > 76 ) %} 
+            high
+          {% elif (states.sensor.emi_temp.state|float <= 76 ) and (states.sensor.emi_temp.state|float > 74 ) %} 
+            medium
+          {% elif (states.sensor.emi_temp.state|float <= 74 ) %} 
+            low
+          {% endif %}
