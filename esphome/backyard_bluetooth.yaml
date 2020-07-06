@@ -2,6 +2,20 @@ esphome:
   name: backyard_bluetooth
   platform: ESP32
   board: nodemcu-32s
+  
+mqtt:
+  broker: 192.168.2.2
+  username: !secret MQTTUN
+  password: !secret MQTTPW
+  on_message:
+    topic: backyard_bluetooth/ota_mode
+    payload: 'ON'
+    then:
+      - deep_sleep.prevent: deep_sleep_1 
+deep_sleep:
+  run_duration: 10min
+  sleep_duration: 30min
+  id: deep_sleep_1
 
 wifi:
   ssid: !secret AP
