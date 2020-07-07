@@ -75,6 +75,22 @@ camera:
     platform: mqtt
     topic: frigate/doorbell/car/snapshot
 
-
-
+automation:
+  - alias: doorbell_person_detected
+    trigger: 
+      platform: state
+      entity_id: binary_sensor.doorbell_person
+      from: 'off'
+      to: 'on'
+    condition:
+      - condition: state
+        entity_id: lock.front_door
+        state: locked
+    action:
+      - service: notify.group_notify
+        data:
+          message: "Homie be up in your yard"
+          data:
+            photo:
+              - url: http://192.168.2.52:5000/doorbell/person/best.jpg  
 
