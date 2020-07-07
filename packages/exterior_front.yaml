@@ -87,7 +87,7 @@ automation:
         entity_id: lock.front_door
         state: locked
     action:
-      - service: notify.group_notify
+      - service: notify.gmail_notify
         data:
           message: "Homie be up in your yard"
           data:
