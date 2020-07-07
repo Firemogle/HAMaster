@@ -51,6 +51,12 @@ binary_sensor:
     payload_on: "motion"
     payload_off: "clear"
     
+  - name: <camera_name> Person
+    platform: mqtt
+    state_topic: "frigate/<camera_name>/person"
+    device_class: motion
+    availability_topic: "frigate/available"
+    
 camera:
   - platform: mjpeg
     name: frontdoor
@@ -62,7 +68,12 @@ camera:
     still_image_url: http://192.168.2.200:81/image/Frontyard?q=100&s=100
     mjpeg_url: http://192.168.2.200:81/mjpg/frontyard/video.mjpg
     
-    
+  - name: Doorbell Last Person
+    platform: mqtt
+    topic: frigate/doorbell/person/snapshot
+  - name: Doorbell Last Car
+    platform: mqtt
+    topic: frigate/doorbell/car/snapshot
 
 
 
