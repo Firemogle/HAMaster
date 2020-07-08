@@ -97,5 +97,4 @@ automation:
           message: "Homie be up in your yard"
           data:
             photo:
-              - file: /config/www/snapshot1.jpg
-
+              - url: https://homeassistant.teamcarriger.club/local/snapshot1.jpg
