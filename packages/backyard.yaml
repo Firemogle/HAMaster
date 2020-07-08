@@ -6,6 +6,13 @@ camera:
     name: Backyard
     still_image_url: http://192.168.2.200:81/image/backyard?q=100&s=100
     mjpeg_url: http://192.168.2.200:81/mjpg/backyard/video.mjpg
+    
+  - name: Backyard Last Person
+    platform: mqtt
+    topic: frigate/backyard/person/snapshot
+  - name: Backyard Last Car
+    platform: mqtt
+    topic: frigate/backyard/car/snapshot
 
 plant:
   hydrangea:
@@ -15,6 +22,32 @@ plant:
       conductivity: sensor.hydrangea_soil_conductivity
       brightness: sensor.hydrangea_illuminance
     min_moisture: 20
+    
+binary_sensor:
+  - name: backyard_person
+    platform: mqtt
+    state_topic: "frigate/backyard/person"
+    device_class: motion
+    availability_topic: "frigate/available"
+    
+automation:
+  - alias: backyard_person_detected
+    trigger: 
+      platform: state
+      entity_id: binary_sensor.backyard_person
+      from: 'off'
+      to: 'on'
+    condition:
+      - condition: state
+        entity_id: lock.front_door
+        state: locked
+    action:
+      - service: notify.gmail_notify
+        data:
+          message: "Homie be up in your yard"
+          data:
+            photo:
+              - url: http://192.168.2.52:5000/backyard/person/best.jpg  
 
 script:
   by_irrigation:
