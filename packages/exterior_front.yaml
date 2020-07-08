@@ -57,6 +57,12 @@ binary_sensor:
     device_class: motion
     availability_topic: "frigate/available"
     
+  - name: frontyard_person
+    platform: mqtt
+    state_topic: "frigate/frontyard/person"
+    device_class: motion
+    availability_topic: "frigate/available"
+    
 camera:
   - platform: mjpeg
     name: frontdoor
@@ -74,6 +80,13 @@ camera:
   - name: Doorbell Last Car
     platform: mqtt
     topic: frigate/doorbell/car/snapshot
+    
+  - name: Frontyard Last Person
+    platform: mqtt
+    topic: frigate/frontyard/person/snapshot
+  - name: Backyard Last Car
+    platform: mqtt
+    topic: frigate/frontyard/car/snapshot
 
 automation:
   - alias: doorbell_person_detected
