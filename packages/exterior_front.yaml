@@ -68,7 +68,7 @@ camera:
     still_image_url: http://192.168.2.200:81/image/Frontyard?q=100&s=100
     mjpeg_url: http://192.168.2.200:81/mjpg/frontyard/video.mjpg
     
-  - name: Doorbell Last Person
+  - name: doorbell_last_person
     platform: mqtt
     topic: frigate/doorbell/person/snapshot
   - name: Doorbell Last Car
@@ -87,10 +87,15 @@ automation:
         entity_id: lock.front_door
         state: locked
     action:
+      - service: camera.snapshot
+        data:
+          entity_id: camera.doorbell_last_person
+          filename: /tmp/snapshot1.jpg
+      - delay: 5
       - service: notify.gmail_notify
         data:
           message: "Homie be up in your yard"
           data:
             photo:
-              - url: http://192.168.2.52:5000/doorbell/person/best.jpg  
+              - file: /tmp/snapshot1.jpg
 
