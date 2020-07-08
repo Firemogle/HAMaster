@@ -92,9 +92,11 @@ automation:
           entity_id: camera.doorbell_last_person
           filename: /config/www/snapshot1.jpg
       - delay: 5
-      - service: notify.gmail_notify
+      - service: notify.group_notify
         data:
           message: "Homie be up in your yard"
           data:
-            photo:
-              - url: https://homeassistant.teamcarriger.club/local/snapshot1.jpg
+             attachment:
+            url: "hhttps://homeassistant.teamcarriger.club/local/snapshot1.jpg"
+            content-type: png
+            hide-thumbnail: false
