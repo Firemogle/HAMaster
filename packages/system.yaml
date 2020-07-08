@@ -180,26 +180,12 @@ sensor:
     resource: https://covidtracking.com/api/states?state=MI
     json_attributes:
       - positive
-      - negative
-      - pending
       - hospitalized
       - death
       - total
-      - lastUpdateEt
     value_template: '{{ value_json.state }}'
     scan_interval: 60
     
-  - platform: template
-    sensors:
-      mi_positve:
-        value_template: >-
-          {{ states.sensor.statewide_covid_stats.attributes.positive }}
-          
-  - platform: template
-    sensors:
-      mi_died:
-        value_template: >-
-          {{ states.sensor.statewide_covid_stats.attributes.death }}
 
   - platform: darksky
     api_key: eccf5f65e6dce657df3792d7e362f0db
@@ -207,8 +193,6 @@ sensor:
       - 0
     monitored_conditions:
       - summary
-      - icon
-      - nearest_storm_distance
       - temperature
       - apparent_temperature
       - humidity
@@ -248,7 +232,6 @@ sensor:
     unit_of_measurement: "%"
 
 
-  - platform: flunearyou
 
   - platform: radarr
     api_key: c037c402e3814b978495137f7d18bf89
@@ -272,21 +255,6 @@ sensor:
     url: 'http://192.168.100.100:8112'
     username: !secret QBUN
     password: !secret QBPW
-
-  - platform: mqtt
-    name: "VPN down"
-    state_topic: "hawirelesslink/sensor/speedtest_download/state"
-    unit_of_measurement: "Mbit/s"
-
-  - platform: mqtt
-    name: "VPN up"
-    state_topic: "hawirelesslink/sensor/speedtest_upload/state"
-    unit_of_measurement: "Mbit/s"
-
-  - platform: zestimate
-    api_key: !secret ZILLOW
-    zpid: 
-      - 24680932
 
   - platform: template
     sensors:
