@@ -123,12 +123,6 @@ mqtt:
     topic: 'HAMaster/status'
     payload: 'offline'
 
-amcrest:
-  - host: 192.168.1.243
-    username: !secret AMCREST_USER
-    password: !secret AMCREST_PW
-    stream_source: rtsp
-
 nest:
   client_id: !secret NEST_ID
   client_secret: !secret NEST_SECRET
