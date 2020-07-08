@@ -96,7 +96,5 @@ automation:
         data:
           message: "Homie be up in your yard"
           data:
-             attachment:
-            url: "hhttps://homeassistant.teamcarriger.club/local/snapshot1.jpg"
-            content-type: png
-            hide-thumbnail: false
+            attachment:
+              image: "hhttps://homeassistant.teamcarriger.club/local/snapshot1.jpg"
