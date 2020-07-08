@@ -90,12 +90,12 @@ automation:
       - service: camera.snapshot
         data:
           entity_id: camera.doorbell_last_person
-          filename: /share/snapshot1.jpg
+          filename: /images/snapshot1.jpg
       - delay: 5
       - service: notify.gmail_notify
         data:
           message: "Homie be up in your yard"
           data:
             photo:
-              - file: /share/snapshot1.jpg
+              - file: /images/snapshot1.jpg
 
