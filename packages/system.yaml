@@ -245,10 +245,6 @@ sensor:
   - platform: sonarr
     api_key: d633b3116b584c39a0df91a027b27d38
     host: 192.168.100.100
-    monitored_conditions:
-      - upcoming
-      - series
-      - wanted
     days: 7
 
   - platform: qbittorrent
