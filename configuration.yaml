@@ -97,7 +97,6 @@ updater:
 # Discover some devices automatically
 discovery:
 zeroconf:
-homekit:
 
 # Enables support for tracking state changes over time
 history:
