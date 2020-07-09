@@ -106,6 +106,9 @@ history:
 
 logger:
   default: warning
+  logs:
+  homeassistant.components.homekit_controller: debug
+  aiohomekit: debug
     
 # Enables a map showing the location of tracked devices
 map:
