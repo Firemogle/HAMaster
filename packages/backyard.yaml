@@ -29,6 +29,8 @@ binary_sensor:
     state_topic: "frigate/backyard/person"
     device_class: motion
     availability_topic: "frigate/available"
+    delay_off:
+      minutes: 1
     
 automation:
   - alias: backyard_person_detected
