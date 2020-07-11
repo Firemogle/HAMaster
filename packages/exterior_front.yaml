@@ -55,7 +55,8 @@ binary_sensor:
     platform: mqtt
     state_topic: "frigate/doorbell/person"
     device_class: motion
-    availability_topic: "frigate/available"
+    delay_off:
+      minutes: 1
     
   - name: frontyard_person
     platform: mqtt
