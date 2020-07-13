@@ -11,7 +11,7 @@ hvac_run_stop:
           {% else %}
             heat
           {% endif %}
-      entity_id: climate.hvac
+      entity_id: climate.hvac_local
   - condition: state
     entity_id: binary_sensor.house_sts_hvac_run
     state: 'on'
