@@ -222,7 +222,7 @@ views:
     icon: mdi:home-floor-0
     cards:
       - type: thermostat
-        entity: climate.hvac
+        entity: climate.hvac_local
       - type: entities
         title: Attic
         show_header_toggle: false
