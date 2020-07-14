@@ -8,3 +8,7 @@ initialization:
   - service: automation.turn_on
     data:
       entity_id: "all"
+  - service: script.turn_on
+    data:
+      entity_id: script.mt_pump_off
+
