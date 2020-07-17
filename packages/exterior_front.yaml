@@ -51,12 +51,20 @@ binary_sensor:
     payload_on: "motion"
     payload_off: "clear"
     
-  - name: doorbell_person
+  - name: doorbell_person_raw
     platform: mqtt
     state_topic: "frigate/doorbell/person"
     device_class: motion
-    delay_off:
-      minutes: 1
+      
+  - platform: template
+    sensors:
+      doorbell_person:
+        value_template: >-
+          {{ is_state('binary_sensor.doorbell_person_raw', 'on') }}
+      delay_off:
+        minutes: 5
+      
+
     
   - name: frontyard_person
     platform: mqtt
@@ -105,7 +113,7 @@ automation:
         data:
           entity_id: camera.doorbell_last_person
           filename: /config/www/snapshot1.jpg
-      - delay: 5
+      - delay: 8
       - service: notify.group_notify
         data:
           message: "Homie be up in your yard"
