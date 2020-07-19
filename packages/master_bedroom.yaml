@@ -87,7 +87,11 @@ automation:
     initial_state: 'off'
     trigger:
     - platform: time
-      at: '1:30:00'
+      at: '2:30:00'
+    - platform: time
+      at: '3:30:00'
+    - platform: time
+      at: '4:30:00'
     condition: []
     action:
     - data:
