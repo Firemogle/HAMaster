@@ -46,12 +46,6 @@ automation:
         data:
           entity_id: camera.backyard_last_person
           filename: /config/www/snapshot1.jpg
-      - delay: 5
-      - service: notify.group_notify
-        data:
-          message: "Homie be up in your yard"
-          data:
-            image: "https://homeassistant.teamcarriger.club/local/snapshot1.jpg"
 
 
 script:
