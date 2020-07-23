@@ -283,8 +283,8 @@ automation:
       data:
         message: 'Update for Home Assistant is available.'
         
-  - id: system_update_available
-    alias: system_update_available
+  - id: send_person_detected
+    alias: send_person_detected
     initial_state: 'off'
     trigger:
       platform: event
