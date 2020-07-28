@@ -29,7 +29,7 @@ midnight:
                                                                              
 # Paper card                                                               
   paper-card-header-color: 'var(--accent-color)'                                  # Card header text colour
-  paper-card-background-color: '#434954'                                          # Card background colour
+  ha-card-background: '#434954'                                                   # Card background colour
   paper-dialog-background-color: '#434954'                                        # Card dialog background colour
   paper-item-icon-color: 'var(--primary-text-color)'                              # Icon color
   paper-item-icon-active-color: '#F9C536'                                         # Icon color active
@@ -88,7 +88,7 @@ material_dark_green:
 # not sure where used 
   sidebar-text_-_background: "var(--pink)"
 # card background colour, part of media player background
-  paper-card-background-color: "var(--light_grey)"
+  ha-card-background: "var(--light_grey)"
 # mqtt pubish header and thats it 
   paper-card-header-color: "var(--white)"
 # main background colour of states page
@@ -153,7 +153,7 @@ darkred:
   disabled-text-color: "#545454"
   divider-color: "rgba(255, 255, 255, 0.12)"
   light-primary-color: "#e06c6c"
-  paper-card-background-color: "#1d1d1d"
+  ha-card-background: "#1d1d1d"
   paper-grey-200: "#191919"
   paper-item-icon-color: "#d3d3d3"
   paper-listbox-background-color: "#202020"
@@ -178,5 +178,5 @@ darkred:
   paper-toggle-button-checked-bar-color: "var(--light-primary-color)"
   paper-toggle-button-unchecked-bar-color: "var(--primary-text-color)"
   secondary-text-color: "var(--primary-color)"
-  table-row-background-color: "var(--paper-card-background-color)"
+  table-row-background-color: "var(--ha-card-background)"
   table-row-alternative-background-color: "var(--sidebar-text_-_background)"
