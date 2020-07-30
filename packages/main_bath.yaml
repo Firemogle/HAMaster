@@ -28,7 +28,7 @@ binary_sensor:
           
 light:
   - platform : mqtt
-    name: main_bath_vent_light
+    name: main_bath_vanity
     state_topic: "hawirelesslink/light/leviton_dz6hd_1bz_decora_600w_smart_dimmer_level_2/state"
     command_topic: "/HAwirelesslink/return/light/leviton_dz6hd_1bz_decora_600w_smart_dimmer_level_2/state"
     brightness_state_topic: "hawirelesslink/light/leviton_dz6hd_1bz_decora_600w_smart_dimmer_level_2/brightness"
@@ -38,7 +38,7 @@ light:
     retain: false
 
   - platform : mqtt
-    name: main_bath_vanity
+    name: main_bath_vent_light
     state_topic: "hawirelesslink/light/leviton_dz6hd_1bz_decora_600w_smart_dimmer_level/state"
     command_topic: "/HAwirelesslink/return/light/leviton_dz6hd_1bz_decora_600w_smart_dimmer_level/state"
     brightness_state_topic: "hawirelesslink/light/leviton_dz6hd_1bz_decora_600w_smart_dimmer_level/brightness"
