@@ -7,6 +7,7 @@ wifi:
   ssid: !secret AP
   password: !secret APPW
   use_address: 192.168.2.112
+  power_save_mode: none
 
 # Enable logging
 logger:
