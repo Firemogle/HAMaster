@@ -1,7 +1,6 @@
 - name: Brett
   id: brett
   device_trackers:
-    - device_tracker.brettphone
     - device_tracker.google_maps_116842525089175776476
     - device_tracker.g965f
 - name: Liz
