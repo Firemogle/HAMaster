@@ -22,3 +22,12 @@ ota:
  
   
 esp32_ble_tracker:
+
+binary_sensor:
+  - platform: ble_presence
+    mac_address: DD:33:0A:11:1D:28
+    name: "Liz_BLE"
+    
+  - platform: ble_presence
+    mac_address: DD:33:0A:11:1A:8B
+    name: "Brett_BLE"
