@@ -1,0 +1,21 @@
+esphome:
+  name: front_BLE
+  platform: ESP32
+  board: nodemcu-32s
+ 
+
+wifi:
+  ssid: !secret AP
+  password: !secret APPW
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  password: !secret AP_PW
+
+ota:
+  password: !secret OTA_PW
+ 
+  
+esp32_ble_tracker:
