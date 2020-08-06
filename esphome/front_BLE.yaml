@@ -1,5 +1,5 @@
 esphome:
-  name: front_BLE
+  name: front_ble
   platform: ESP32
   board: nodemcu-32s
  
@@ -7,6 +7,9 @@ esphome:
 wifi:
   ssid: !secret AP
   password: !secret APPW
+  power_save_mode: none
+  
+  
 # Enable logging
 logger:
 
