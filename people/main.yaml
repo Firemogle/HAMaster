@@ -2,9 +2,7 @@
   id: brett
   device_trackers:
     - device_tracker.g965f
-    - binary_sensor.brett_ble
 - name: Liz
   id: liz
   device_trackers:
     - device_tracker.g975f
-    - binary_sensor.liz_ble
