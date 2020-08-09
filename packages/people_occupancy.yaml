@@ -1,0 +1,34 @@
+  
+homeassistant:
+  customize:
+  
+automation:
+  - id: 'brett_home'
+    alias: brett_home
+    initial_state: 'off'
+    trigger:
+    - entity_id: binary_sensor.brett_ble
+      platform: state
+      from: 'Away'
+      to: 'Home'
+    condition: []
+    action:
+    - service: device_tracker.see
+      data:
+        dev_id: sm_g965f
+        location_name: 'Home'
+        
+  - id: 'liz_home'
+    alias: liz_home
+    initial_state: 'off'
+    trigger:
+    - entity_id: binary_sensor.liz_ble
+      platform: state
+      from: 'Away'
+      to: 'Home'
+    condition: []
+    action:
+    - service: device_tracker.see
+      data:
+        dev_id: sm_g975f
+        location_name: 'Home'
