@@ -37,7 +37,7 @@ binary_sensor:
       mcp23017: mcp23017_hub
       number: 4
       mode: INPUT
-      inverted: True
+      inverted: False
     name: "laundry_motion_1"
     id: "laundry_motion_1"
     device_class: motion
@@ -47,7 +47,7 @@ binary_sensor:
       mcp23017: mcp23017_hub
       number: 5
       mode: INPUT
-      inverted: True
+      inverted: False
     name: "laundry_motion_2"
     id: "laundry_motion_2"
     device_class: motion
@@ -57,7 +57,7 @@ binary_sensor:
       mcp23017: mcp23017_hub
       number: 6
       mode: INPUT
-      inverted: True
+      inverted: False
     name: "laundry_motion_3"
     id: "laundry_motion_3"
     device_class: motion
