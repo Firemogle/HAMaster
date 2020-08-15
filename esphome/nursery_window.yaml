@@ -2,6 +2,7 @@ substitutions:
   devicename: nursery_window_controller
   motion_name: "nursery_motion"
   temp_name: "Nursery window temp"
+  press_name: "Nursery window pressure"
   hum_name: "Nursery window humidity"
   lux_name: "Nursery light level"
   mot1_i_name: "Nursery moter1 current"
