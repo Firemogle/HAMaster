@@ -35,5 +35,6 @@ substitutions:
   blind_name_cov: "nursery_blind"
   curt1_name_cov: "nursery_curtain1"
   curt2_name_cov: "nursery_curtain2"
+  led_en: "nursery_led_enable"
 
 <<: !include window_blind_2xcurtain.conf
