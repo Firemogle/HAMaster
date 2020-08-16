@@ -32,5 +32,8 @@ substitutions:
   blind_stop: "nursery_blind_stop"
   curt1_stop: "nursery_curt1_stop"
   curt2_stop: "nursery_curt2_stop"
+  blind_name_cov: "nursery_blind"
+  curt1_name_cov: "nursery_curtain1"
+  curt2_name_cov: "nursery_curtain2"
 
 <<: !include window_blind_2xcurtain.conf
