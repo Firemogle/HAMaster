@@ -41,7 +41,7 @@ binary_sensor:
     name: "laundry_motion_1"
     id: "laundry_motion_1"
     device_class: motion
-    internal: false
+    internal: true
   - platform: gpio
     pin:  
       mcp23017: mcp23017_hub
@@ -51,7 +51,7 @@ binary_sensor:
     name: "laundry_motion_2"
     id: "laundry_motion_2"
     device_class: motion
-    internal: false
+    internal: true
   - platform: gpio
     pin:  
       mcp23017: mcp23017_hub
@@ -61,18 +61,18 @@ binary_sensor:
     name: "laundry_motion_3"
     id: "laundry_motion_3"
     device_class: motion
-    internal: false
+    internal: true
   - platform: gpio
     pin: 33
     name: "laundry_motion_board"
     id: "laundry_motion_board"
     device_class: motion
-    internal: false
+    internal: true
   - platform: template
     name: "cat_motion_combine"
     device_class: motion
     filters:
-      - delayed_off: 10s
+      - delayed_off: 900s
     lambda: |-
       if (id(laundry_motion_1).state or id(laundry_motion_2).state or id(laundry_motion_3).state or id(laundry_motion_board).state) {
         // Motion.
