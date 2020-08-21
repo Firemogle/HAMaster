@@ -10,12 +10,11 @@
   brett:
     name: brett
     entities:
-      - device_tracker.google_maps_116842525089175776476
-      - device_tracker.brettphone
+      - device_tracker.sm_g965f
   liz:
     name: liz
     entities:
-      - device_tracker.google_maps_108379141181739394475
+      - device_tracker.sm_g975f
   occupants:
     name: occupants
     entities:
