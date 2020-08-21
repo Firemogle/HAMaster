@@ -16,7 +16,7 @@ automation:
     - service: device_tracker.see
       data:
         dev_id: sm_g965f
-        location_name: 'Home'
+        location_name: 'home'
         
   - id: 'liz_home'
     alias: liz_home
@@ -31,4 +31,4 @@ automation:
     - service: device_tracker.see
       data:
         dev_id: sm_g975f
-        location_name: 'Home'
+        location_name: 'home'
