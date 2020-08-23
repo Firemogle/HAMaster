@@ -15,7 +15,7 @@ automation:
     action:
     - service: device_tracker.see
       data:
-        dev_id: sm_g965f
+        dev_id: device_tracker.google_maps_116842525089175776476
         location_name: 'home'
         
   - id: 'liz_home'
@@ -30,5 +30,5 @@ automation:
     action:
     - service: device_tracker.see
       data:
-        dev_id: sm_g975f
+        dev_id: google_maps_108379141181739394475
         location_name: 'home'
