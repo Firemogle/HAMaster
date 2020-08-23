@@ -2,7 +2,9 @@
   id: brett
   device_trackers:
     - device_tracker.g965f
+    - device_tracker.google_maps_116842525089175776476
 - name: Liz
   id: liz
   device_trackers:
     - device_tracker.g975f
+    - device_tracker.google_maps_108379141181739394475
