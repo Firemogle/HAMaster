@@ -1,0 +1,4 @@
+substitutions:
+  devicename: nursery_window_controller
+
+<<: !include window_blind_2xcurtain.conf
