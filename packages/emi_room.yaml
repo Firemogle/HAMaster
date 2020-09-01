@@ -1,5 +1,22 @@
 homeassistant:
   customize:
+    binary_sensor.emi_window_controller_motion:
+      friendly_name: Emi Room Motion
+    sensor.emi_window_controller_temp:
+      friendly_name: Emi Room Temperature
+    sensor.emi_window_controller_humidity:
+      friendly_name: Emi Room  Humidity
+    sensor.emi_window_controller_pressure:
+      friendly_name: Emi Room Pressure
+    cover.emi_window_controller_blind:
+      friendly_name: Emi Room Blind
+    cover.emi_window_controller_curt1:
+      friendly_name: Emi Room Sheer Curtain
+    cover.emi_window_controller_curt2:
+      friendly_name: Emi Room Curtain
+    sensor.emi_window_controller_lux:
+      friendly_name: Emi Room Light Lux
+  
 binary_sensor:
   - platform: mqtt # Emi fan state
     state_topic: "hawirelesslink/fan/king_of_fans_inc_hbuniversalcfremote_0020d37b_1_514/state"
