@@ -136,8 +136,15 @@ views:
           - light.emi_fan_light
           - light.emi_star_lamp
           - binary_sensor.emi_motion
+          - binary_sensor.emi_window_controller_motion
           - sensor.emi_temp
-        camera_image: camera.amcrest_camera
+          - sensor.emi_window_controller_temp
+          - sensor.emi_window_controller_humidity
+          - sensor.emi_window_controller_pressure
+          - cover.emi_window_controller_blind
+          - cover.emi_window_controller_curt1
+          - cover.emi_window_controller_curt2
+          - sensor.emi_window_controller_lux
       - type: entities
         title: Nursery Room
         show_header_toggle: false
