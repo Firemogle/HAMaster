@@ -80,7 +80,10 @@ binary_sensor:
       } else {
         // Nothing
         return false;
-      }
+    on_state:
+      then:
+        - switch.turn_off: laundry_room_litter_box
+        - switch.turn_off: laundry_room_litter_box_activate
   - platform: template
     name: "laundry_leak_furnace"
     device_class: moisture
@@ -149,6 +152,13 @@ switch:
     pin:
       mcp23017: mcp23017_hub
       number: 1
+      mode: OUTPUT
+      inverted: False
+  - platform: gpio
+    name: "laundry_room_litter_box_activate"
+    pin:
+      mcp23017: mcp23017_hub
+      number: 2
       mode: OUTPUT
       inverted: False
   - platform: restart
