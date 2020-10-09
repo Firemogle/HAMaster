@@ -165,9 +165,6 @@ automation:
         entity_id: cover.garage_door
       service: cover.close_cover
     - data:
-        entity_id: script.by_irrigation
-      service: script.turn_on
-    - data:
         entity_id: alarm_control_panel.alarm_panel
         code: !secret alarmcode
       service_template: >
