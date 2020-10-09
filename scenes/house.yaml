@@ -16,8 +16,6 @@
       state: unlocked
 - name: house_away
   entities:
-    light.basemet_dimmer:
-      state: off
     light.emi_star_lamp:
       state: off
     light.kitchen_sink:
@@ -60,8 +58,6 @@
       state: off
 - name: house_night
   entities:
-    light.basemet_dimmer:
-      state: off
     light.kitchen_sink:
       state: off
     light.kitchen_fan:
