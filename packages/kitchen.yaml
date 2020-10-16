@@ -41,11 +41,10 @@ timer:
   fish_feeder:
     duration: '00:05:00'
     
-camera:
-  - platform: generic
-    name: kitchen_cam
-    still_image_url: local/wyze-logo.jpg
-    stream_source: !secret kitchen_cam_link
+roomba:
+  - host: 192.168.2.121
+    blid: secret! megamaid_un
+    password: secret! megamaid_pw
       
 fan:
   - platform: template
