@@ -110,29 +110,7 @@ views:
           - binary_sensor.garage_entry_opened
           - binary_sensor.sliding_glass_door_opened
           - binary_sensor.kitchen_motion
-      - type: 'custom:vacuum-card'
-        entity: vacuum.mega_maid
-        stats:
-          default:
-            - attribute: filter_left
-              unit: hours
-              subtitle: Filter
-            - attribute: side_brush_left
-              unit: hours
-              subtitle: Side brush
-            - attribute: main_brush_left
-              unit: hours
-              subtitle: Main brush
-            - attribute: sensor_dirty_left
-              unit: hours
-              subtitle: Sensors
-          cleaning:
-            - attribute: cleaned_area
-              unit: m2
-              subtitle: Cleaning area
-            - attribute: cleaning_time
-              unit: minutes
-              subtitle: Cleaning time
+          - vacuum.mega_maid
 
   - title: Upstairs
     id: house_upstairs
