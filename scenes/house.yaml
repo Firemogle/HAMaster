@@ -56,6 +56,8 @@
       state: off
     light.basemet_dimmer:
       state: off
+    vacuum.mega_maid:
+      state: start
 - name: house_night
   entities:
     light.kitchen_sink:
