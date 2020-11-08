@@ -80,6 +80,7 @@ binary_sensor:
       } else {
         // Nothing
         return false;
+      }
     on_state:
       then:
         - switch.turn_off: laundry_room_litter_box
