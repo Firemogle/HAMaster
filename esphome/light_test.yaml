@@ -1,0 +1,4 @@
+substitutions:
+  devicename: light_test
+
+<<: !include light_board.conf
