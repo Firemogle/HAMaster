@@ -1,0 +1,4 @@
+substitutions:
+  devicename: front_garage
+
+<<: !include light_board.conf
