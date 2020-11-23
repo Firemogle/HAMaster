@@ -1,4 +1,6 @@
 substitutions:
   devicename: light_test
+  length: 151
+  rgb: rgb
 
 <<: !include light_board.conf
