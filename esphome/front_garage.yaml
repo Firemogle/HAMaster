@@ -1,6 +1,6 @@
 substitutions:
   devicename: front_garage
   length: 151
-  rgb: RGB
+  rgb: "RGB"
 
 <<: !include light_board.conf
