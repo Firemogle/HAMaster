@@ -386,7 +386,19 @@ views:
           - sensor.hvac_humidity
           - sensor.hvac_target_humidity
           - switch.humidifier
-
+          
+  - title: Holiday
+    id: house_holiday
+    icon: mdi:brain
+    cards:
+      - type: entities
+        title: HVAC
+        show_header_toggle: false
+        entities:
+          - entity: light.front_garage_light
+            name: "Front Awning LED"
+            
+            
   - title: Calibration
     id: house_calibration
     icon: mdi:brain
