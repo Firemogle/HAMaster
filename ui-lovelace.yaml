@@ -392,11 +392,13 @@ views:
     icon: mdi:brain
     cards:
       - type: entities
-        title: HVAC
+        title: Holiday Lights
         show_header_toggle: false
         entities:
           - entity: light.front_garage_light
             name: "Front Awning LED"
+          - entity: switch.garage_wall_switch
+            name: "Garage Wall Switch"
             
             
   - title: Calibration
