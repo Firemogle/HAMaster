@@ -1,0 +1,13 @@
+homeassistant:
+  customize:
+        
+switch:
+  - platform : mqtt
+    name: "garage_wall_switch"
+    state_topic: "hawirelesslink/switch/switch.enerwave_zw15rm_plus_15a_tr_smart_meter_duplex_receptacle_switch/state"
+    command_topic: "/HAwirelesslink/return/switch/switch.enerwave_zw15rm_plus_15a_tr_smart_meter_duplex_receptacle_switch/state"
+    state_on: "on"
+    state_off: "off"
+    payload_on: "on"
+    payload_off: "off"
+    retain: false
