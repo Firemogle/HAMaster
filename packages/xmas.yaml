@@ -9,7 +9,7 @@ automation:
     - entity_id: binary_sensor.house_wakeup
       platform: state
       to: 'on'
-    condition: {{ states.calendar.xmas_lights.state == 'on' }}
+    condition: "{{ states.calendar.xmas_lights.state == 'on' }}"
     action:
     - data:
         entity_id: scene.xmas_lights_off
@@ -22,7 +22,7 @@ automation:
     - entity_id: binary_sensor.evening
       platform: state
       to: 'on'
-    condition: {{ states.calendar.xmas_lights.state == 'on' }}
+    condition: "{{ states.calendar.xmas_lights.state == 'on' }}"
     action:
     - data:
         entity_id: scene.xmas_lights_on
