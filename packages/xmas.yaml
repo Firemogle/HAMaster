@@ -1,0 +1,45 @@
+homeassistant:
+  customize:
+        
+automation:
+  - id: 'xmas_lights_off'
+    alias: xmas_lights_off
+    initial_state: 'off'
+    trigger:
+    - entity_id: binary_sensor.house_wakeup
+      platform: state
+      to: 'on'
+    condition: {{ states.calendar.xmas_lights.state == 'on' }}
+    action:
+    - data:
+        entity_id: scene.xmas_lights_off
+      service: scene.turn_on
+      
+  - id: 'house_wakeup'
+    alias: house_wakeup
+    initial_state: 'off'
+    trigger:
+    - entity_id: binary_sensor.evening
+      platform: state
+      to: 'on'
+    condition: {{ states.calendar.xmas_lights.state == 'on' }}
+    action:
+    - data:
+        entity_id: scene.xmas_lights_on
+      service: scene.turn_on
+        
+scene:
+  - name: xmas_lights_on
+    entities:
+      light.front_garage_light:
+        state: on
+        effect: Christmas stripes
+        brightness: 255
+      switch.garage_wall_switch:
+        state: on
+  - name: xmas_lights_off
+    entities:
+      light.front_garage_light:
+        state: off
+      switch.garage_wall_switch:
+        state: off
