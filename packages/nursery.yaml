@@ -92,11 +92,11 @@ automation:
     trigger:
     - entity_id: sensor.emi_temp
       platform: state
-    - entity_id: 'fan.emi_fan'
+    - entity_id: 'fan.nursery_fan'
       platform: state
     condition:
       - condition: state
-        entity_id: 'fan.emi_fan'
+        entity_id: 'fan.nursery_fan'
         state: 'on'
     action:
     - service: fan.set_speed
