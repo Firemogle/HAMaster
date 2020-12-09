@@ -15,8 +15,8 @@ automation:
         entity_id: scene.xmas_lights_off
       service: scene.turn_on
       
-  - id: 'house_wakeup'
-    alias: house_wakeup
+  - id: 'xmas_lights_on'
+    alias: xmas_lights_on
     initial_state: 'off'
     trigger:
     - entity_id: binary_sensor.evening
