@@ -35,6 +35,11 @@ binary_sensor:
     payload_on: "8"
     payload_off: "0"
     device_class: motion
+    
+roomba:
+  - host: 192.168.2.121
+    blid: secret! megamaid_un
+    password: secret! megamaid_pw
   
 media_player:
   - platform: kodi
