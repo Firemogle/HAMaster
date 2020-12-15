@@ -40,11 +40,7 @@ binary_sensor:
 timer:
   fish_feeder:
     duration: '00:05:00'
-    
-roomba:
-  - host: 192.168.2.121
-    blid: secret! megamaid_un
-    password: secret! megamaid_pw
+   
       
 fan:
   - platform: template
