@@ -75,6 +75,14 @@ switch:
     payload_off: "0"
     retain: false
     
+  - platform : mqtt
+    name: "ender3"
+    state_topic: "hawirelesslink/switch/ender3_on_off/state"
+    command_topic: "/HAwirelesslink/return/switch/ender3_on_off/state"
+    payload_on: "on"
+    payload_off: "off"
+    retain: false
+    
 climate:
   - platform: generic_thermostat
     name: office_climate
