@@ -110,7 +110,7 @@ views:
           - binary_sensor.garage_entry_opened
           - binary_sensor.sliding_glass_door_opened
           - binary_sensor.kitchen_motion
-          - vacuum.vacuum.rrroomba
+          - vacuum.rrroomba
 
   - title: Upstairs
     id: house_upstairs
