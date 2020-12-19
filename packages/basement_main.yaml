@@ -53,6 +53,12 @@ media_player:
     host: 192.168.3.3
     adb_server_ip: 127.0.0.1
     adb_server_port: 5037
+    
+  - platform: onkyo
+    host: 192.168.3.4
+    name: projector_receiver
+    sources:
+      pc: 'HTPC'
 
   - platform: universal
     name: projector_media
@@ -60,22 +66,16 @@ media_player:
       - media_player.projector_kodi
       - media_player.projector_shield
       - media_player.projector_receiver
-  commands:
-    turn_on:
-      service: switch.turn_on
-      data:
-        entity_id: switch.projector
-    attributes:
-      state: switch.projector
-      source: media_player.projector_receiver|source
-      source_list: media_player.projector_receiver|source_list
+    commands:
+      turn_on:
+        service: switch.turn_on
+        data:
+          entity_id: switch.projector
+      attributes:
+        state: switch.projector
+        source: media_player.projector_receiver|source
+        source_list: media_player.projector_receiver|source_list
 
-  - platform: onkyo
-    host: 192.168.3.4
-    name: projector_receiver
-    sources:
-      pc: 'HTPC'
-  
 switch:
   platform: telnet
   switches:
