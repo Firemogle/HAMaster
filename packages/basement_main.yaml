@@ -88,6 +88,11 @@ media_player:
         service: media_player.turn_off
         data:
           entity_id: media_player.projector_shield
+      select_source:
+        service: media_player.select_source
+        data:
+          entity_id: media_player.projector_receiver
+          source: '{{ source }}'
     attributes:
       state: media_player.projector_receiver
       source: media_player.projector_receiver|source
