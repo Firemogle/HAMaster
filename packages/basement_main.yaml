@@ -72,7 +72,6 @@ media_player:
         data:
           entity_id: switch.projector
       attributes:
-        state: switch.projector
         source: media_player.projector_receiver|source
         source_list: media_player.projector_receiver|source_list
 
