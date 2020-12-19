@@ -59,7 +59,16 @@ media_player:
     children:
       - media_player.projector_kodi
       - media_player.projector_shield
-      - media_player.projector
+      - media_player.projector_receiver
+  commands:
+    turn_on:
+      service: switch.turn_on
+      data:
+        entity_id: switch.projector
+    attributes:
+      state: switch.projector
+      source: media_player.projector_receiver|source
+      source_list: media_player.projector_receiver|source_list
 
   - platform: onkyo
     host: 192.168.3.4
