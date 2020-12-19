@@ -78,6 +78,16 @@ media_player:
         service: media_player.turn_on
         data:
           entity_id: media_player.projector_shield
+      turn_off:
+        service: switch.turn_off
+        data:
+          entity_id: switch.projector
+        service: media_player.turn_off
+        data:
+          entity_id: media_player.projector_receiver
+        service: media_player.turn_off
+        data:
+          entity_id: media_player.projector_shield
     attributes:
       state: media_player.projector_receiver
       source: media_player.projector_receiver|source
