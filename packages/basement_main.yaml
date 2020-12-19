@@ -60,6 +60,12 @@ media_player:
       - media_player.projector_kodi
       - media_player.projector_shield
       - media_player.projector
+
+  - platform: onkyo
+    host: 192.168.3.4
+    name: projector_receiver
+    sources:
+      pc: 'HTPC'
   
 switch:
   platform: telnet
