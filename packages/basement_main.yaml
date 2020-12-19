@@ -71,9 +71,9 @@ media_player:
         service: switch.turn_on
         data:
           entity_id: switch.projector
-      attributes:
-        source: media_player.projector_receiver|source
-        source_list: media_player.projector_receiver|source_list
+    attributes:
+      source: media_player.projector_receiver|source
+      source_list: media_player.projector_receiver|source_list
 
 switch:
   platform: telnet
