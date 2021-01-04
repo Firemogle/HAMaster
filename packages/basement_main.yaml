@@ -69,25 +69,11 @@ media_player:
       - media_player.projector_receiver
     commands:
       turn_on:
-        service: switch.turn_on
-        data:
-          entity_id: switch.projector
-        service: media_player.turn_on
-        data:
-          entity_id: media_player.projector_receiver
-        service: media_player.turn_on
-        data:
-          entity_id: media_player.projector_shield
+        service: script.turn_on
+        entity_id: script.turn_on_projector
       turn_off:
-        service: switch.turn_off
-        data:
-          entity_id: switch.projector
-        service: media_player.turn_off
-        data:
-          entity_id: media_player.projector_receiver
-        service: media_player.turn_off
-        data:
-          entity_id: media_player.projector_shield
+        service: script.turn_on
+        entity_id: script.turn_off_projector
       select_source:
         service: media_player.select_source
         data:
@@ -119,4 +105,27 @@ automation:
         entity_id: switch.projector
       service: switch.turn_off
       
-
+      
+script:
+  turn_off_projector:
+    sequence:
+      service: switch.turn_off
+      data:
+        entity_id: switch.projector
+      service: media_player.turn_off
+      data:
+        entity_id: media_player.projector_receiver
+      service: media_player.turn_off
+      data:
+        entity_id: media_player.projector_shield
+  turn_on_projector:
+    sequence:
+      service: switch.turn_on
+      data:
+        entity_id: switch.projector
+      service: media_player.turn_on
+      data:
+        entity_id: media_player.projector_receiver
+      service: media_player.turn_on
+      data:
+        entity_id: media_player.projector_shield
