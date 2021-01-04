@@ -226,4 +226,4 @@ automation:
     action:
     - data:
         entity_id: vacuum.rrroomba
-      service_: vacuum.start
+      service: vacuum.start
