@@ -2,11 +2,6 @@ homeassistant:
   customize:
 
 binary_sensor:
-  - platform: mqtt # Kitchen fan state
-    state_topic: "hawirelesslink/fan/king_of_fans_inc_hdc52eastwindfan_0020d39d_1_514/state"
-    name: master_fan_state
-    payload_on: "on"
-    payload_off: "off"
 
   - platform: mqtt # Master Bedroom Window
     state_topic: "hawirelesslink/binary_sensor/centralite_3315_s_0e4974b8_1_1280/state"
@@ -14,72 +9,15 @@ binary_sensor:
     payload_on: "on"
     payload_off: "off"
     device_class: window
-    
-fan:
-  - platform: template
-    fans:
-      master_fan:
-        friendly_name: "Master fan"
-        value_template: "{{ states('binary_sensor.master_fan_state') }}"
-        speed_template: "{{ states('sensor.master_fan_speed')|replace('\"','') }}"
-        turn_on:
-          service:  mqtt.publish
-          data_template:
-              topic: "/HAwirelesslink/return/fan/king_of_fans_inc_hdc52eastwindfan_0020d39d_1_514/state"
-              payload: 'on'
-        turn_off:
-          service:  mqtt.publish
-          data_template:
-              topic: "/HAwirelesslink/return/fan/king_of_fans_inc_hdc52eastwindfan_0020d39d_1_514/state"
-              payload: 'off'
-        set_speed:
-          service: mqtt.publish
-          data_template:
-              topic: "/HAwirelesslink/return/fan/king_of_fans_inc_hdc52eastwindfan_0020d39d_1_514/speed"
-              payload: '{{ speed }}'
-        speeds:
-          - 'low'
-          - 'medium'
-          - 'high'
-          - 'on'
-          - 'auto'
-          - 'smart'
-          - 'off'
           
-light:
-  - platform : mqtt
-    name: "master_fan_light"
-    state_topic: "hawirelesslink/light/king_of_fans_inc_hdc52eastwindfan_0020d39d_1/state"
-    command_topic: "/HAwirelesslink/return/light/king_of_fans_inc_hdc52eastwindfan_0020d39d_1/state"
-    brightness_state_topic: "hawirelesslink/light/king_of_fans_inc_hdc52eastwindfan_0020d39d_1/brightness"
-    brightness_command_topic: "/HAwirelesslink/return/light/king_of_fans_inc_hdc52eastwindfan_0020d39d_1/brightness"
-    payload_on: "on"
-    payload_off: "off"
-    retain: false
     
 sensor:
-  - platform: mqtt
-    name: "master_fan_speed"
-    state_topic: "hawirelesslink/fan/king_of_fans_inc_hdc52eastwindfan_0020d39d_1_514/speed"
-
-
   - platform: mqtt
     name: master_bed_window_temp
     state_topic: "hawirelesslink/sensor/centralite_3315_s_0e4974b8_1_1026/state"
     unit_of_measurement: "°F"
     device_class: temperature
     
-switch:
-  - platform : mqtt
-    name: "master_tv"
-    state_topic: "hawirelesslink/switch/ledvance_plug_000738b9_1/state"
-    command_topic: "/HAwirelesslink/return/switch/ledvance_plug_000738b9_1/state"
-    state_on: "on"
-    state_off: "off"
-    payload_on: "on"
-    payload_off: "off"
-    retain: false
-    icon: mdi:television-box
     
 automation:
   - id: 'mbr_tv_off'
