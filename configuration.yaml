@@ -98,11 +98,24 @@ updater:
 discovery:
 zeroconf:
 
+#Initial config to move zwave to main install
+zwave:
+  network_key: "0x05, 0x3C, 0xB9, 0x02, 0x36, 0x8E, 0x6E, 0x68, 0xBD, 0xE2, 0x9C, 0xFE, 0xEA, 0x98, 0x82, 0xCE"
+  usb_path: /dev/ttyUSB0
+  device_config: !include zwave_device_config.yaml
+  
+#Initial config to move zigbee to main install 
+zha:
+  usb_path: /dev/ttyUSB1
+  database_path: /config/zigbee.db
+  device_config:
+      00:22:a3:00:00:16:d0:39-1:
+          type: 'light'
+      00:22:a3:00:00:20:d3:9d-1:
+          type: 'light'
+
 # Enables support for tracking state changes over time
 history:
-
-# View all events in a logbook
-#logbook:
 
 logger:
   default: warning
@@ -132,15 +145,6 @@ ecobee:
 system_health: # load system health
 stream: # Load streaming for videos
 ffmpeg:
-
-#influxdb:
-#  host: a0d7b954-influxdb
-#  port: 8086
-#  database: homeassistant
-#  username: !secret influxUN
-#  password: !secret influxPW
-#  max_retries: 3
-#  default_measurement: state
 
 # Items loaded elsewhere
 octoprint: !include_dir_merge_named printer/
