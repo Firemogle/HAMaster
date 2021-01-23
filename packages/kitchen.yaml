@@ -25,53 +25,12 @@ binary_sensor:
     payload_on: "on"
     payload_off: "off"
 
-  - platform: mqtt # Kitchen fan state
-    state_topic: "hawirelesslink/fan/king_of_fans_inc_hdc52eastwindfan_0016d039_1_514/state"
-    name: kitchen_fan_state
-    payload_on: "on"
-    payload_off: "off"
-
   - platform: mqtt # Kitchen motion
     state_topic: "hawirelesslink/sensor/jasco_products_26931_smart_motion_switch_burglar/state"
     name: kitchen_motion
     payload_on: "8"
     payload_off: "0"
-    
-timer:
-  fish_feeder:
-    duration: '00:05:00'
-   
-      
-fan:
-  - platform: template
-    fans:
-      kitchen_fan:
-        friendly_name: "Kitchen fan"
-        value_template: "{{ states('binary_sensor.kitchen_fan_state') }}"
-        speed_template: "{{ states('sensor.kitchen_fan_speed')|replace('\"','') }}"
-        turn_on:
-          service:  mqtt.publish
-          data_template:
-              topic: "/HAwirelesslink/return/fan/king_of_fans_inc_hdc52eastwindfan_0016d039_1_514/state"
-              payload: 'on'
-        turn_off:
-          service:  mqtt.publish
-          data_template:
-              topic: "/HAwirelesslink/return/fan/king_of_fans_inc_hdc52eastwindfan_0016d039_1_514/state"
-              payload: 'off'
-        set_speed:
-          service: mqtt.publish
-          data_template:
-              topic: "/HAwirelesslink/return/fan/king_of_fans_inc_hdc52eastwindfan_0016d039_1_514/speed"
-              payload: '{{ speed }}'
-        speeds:
-          - 'low'
-          - 'medium'
-          - 'high'
-          - 'on'
-          - 'auto'
-          - 'smart'
-          - 'off'
+  
           
 light:
   - platform : mqtt
@@ -80,34 +39,6 @@ light:
     command_topic: "/Cabinet_LED/gpio/12"
     payload_on: "1"
     payload_off: "0"
-    retain: false
-
-  - platform : mqtt
-    name: "kitchen_sink"
-    state_topic: "hawirelesslink/light/sengled_e11_g13_031e3554_1/state"
-    command_topic: "/HAwirelesslink/return/light/sengled_e11_g13_031e3554_1/state"
-    brightness_state_topic: "hawirelesslink/light/sengled_e11_g13_031e3554_1/brightness"
-    brightness_command_topic: "/HAwirelesslink/return/light/sengled_e11_g13_031e3554_1/brightness"
-    payload_on: "on"
-    payload_off: "off"
-    retain: false
-
-  - platform : mqtt
-    name: "kitchen_fan"
-    state_topic: "hawirelesslink/light/king_of_fans_inc_hdc52eastwindfan_0016d039_1/state"
-    command_topic: "/HAwirelesslink/return/light/king_of_fans_inc_hdc52eastwindfan_0016d039_1/state"
-    brightness_state_topic: "hawirelesslink/light/king_of_fans_inc_hdc52eastwindfan_0016d039_1/brightness"
-    brightness_command_topic: "/HAwirelesslink/return/light/king_of_fans_inc_hdc52eastwindfan_0016d039_1/brightness"
-    payload_on: "on"
-    payload_off: "off"
-    retain: false
-
-  - platform : mqtt
-    name: "kitchen_lamp"
-    state_topic: "hawirelesslink/switch/jasco_products_26931_smart_motion_switch_switch/state"
-    command_topic: "/HAwirelesslink/return/switch/jasco_products_26931_smart_motion_switch_switch/state"
-    payload_on: "on"
-    payload_off: "off"
     retain: false
     
 sensor:
@@ -132,10 +63,6 @@ sensor:
     state_topic: "/Kitchen_Leak/under_cabinet/Pressure"
     unit_of_measurement: "hPa"
     device_class: pressure
-
-  - platform: mqtt
-    name: "kitchen_fan_speed"
-    state_topic: "hawirelesslink/fan/king_of_fans_inc_hdc52eastwindfan_0016d039_1_514/speed"
 
   - platform: mqtt
     name: garage_entry_temperature
