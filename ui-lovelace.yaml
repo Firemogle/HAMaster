@@ -63,7 +63,7 @@ views:
         entities:
           - light.main_livingroom
           - light.jayhawk_candle
-          - light.livingroom_entry
+          - entity: light.livingroom_entry
             name: "Livingroom Entry"
           - sensor.hvac_humidity
           - sensor.hvac_temperature
@@ -77,14 +77,14 @@ views:
         title: Kitchen
         show_header_toggle: false
         entities:
-          - fan.kitchen_fan
+          - entity: fan.kitchen_fan
             name: "Kitchen Fan"
           - light.cabinet_led
-          - light.kitchen_sink
+          - entity: light.kitchen_sink
             name: "Kitchen Sink Light"
-          - light.kitchen_lamp
+          - entity: light.kitchen_lamp
             name: "Kitchen Light"
-          - light.kitchen_fan
+          - entity: light.kitchen_fan
             name: "Kitchen Fan Light"
           - binary_sensor.kitchen_leak
           - sensor.garage_entry_temperature
@@ -101,12 +101,12 @@ views:
         title: Master Bed
         show_header_toggle: false
         entities:
-          - fan.master_fan
+          - entity: fan.master_fan
             name: "Master Fan"
-          - light.master_fan_light
+          - entity: light.master_fan_light
             name: "Master Fan Light"
-          - switch.master_tv
-            name: "Kitchen Fan Light"
+          - entity: switch.master_tv
+            name: "Master TV"
           - light.liz_headboard
           - light.brett_headboard
           - binary_sensor.master_bed_window
