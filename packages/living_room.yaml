@@ -28,16 +28,6 @@ light:
     payload_on: "1"
     payload_off: "0"
     retain: false
-
-  - platform : mqtt
-    name: livingroom_entry
-    state_topic: "hawirelesslink/light/livingroom_entry/state"
-    command_topic: "/HAwirelesslink/return/light/livingroom_entry/state"
-    brightness_state_topic: "hawirelesslink/light/livingroom_entry/brightness"
-    brightness_command_topic: "/HAwirelesslink/return/light/livingroom_entry/brightness"
-    payload_on: "on"
-    payload_off: "off"
-    retain: false
     
 lock:
   - platform: template
