@@ -18,18 +18,6 @@ binary_sensor:
         friendly_name: "Sliding Glass Door"
         value_template: >-
           {{ is_state('binary_sensor.sliding_glass_door', 'on') }}
-
-  - platform: mqtt # Garage Door Entry
-    state_topic: "hawirelesslink/binary_sensor/centralite_3320l_0e259d4b_1_1280/state"
-    name: garage_entry_opened
-    payload_on: "on"
-    payload_off: "off"
-
-  - platform: mqtt # Kitchen motion
-    state_topic: "hawirelesslink/sensor/jasco_products_26931_smart_motion_switch_burglar/state"
-    name: kitchen_motion
-    payload_on: "8"
-    payload_off: "0"
   
           
 light:
@@ -45,35 +33,6 @@ light:
     name: kitchen_lamp
     entity_id: switch.kitchen_light_switch
     
-sensor:
-  - platform: mqtt
-    name: "kitchen_leak"
-    state_topic: "/Kitchen_Leak/moisture_sensor/Analog"
-
-  - platform: mqtt
-    name: "kitchen_temp"
-    state_topic: "/Kitchen_Leak/under_cabinet/Temperature"
-    unit_of_measurement: "°C"
-    device_class: temperature
-
-  - platform: mqtt
-    name: "kitchen_humidity"
-    state_topic: "/Kitchen_Leak/under_cabinet/Humidity"
-    unit_of_measurement: "%"
-    device_class: humidity
-
-  - platform: mqtt
-    name: "kitchen_pressure"
-    state_topic: "/Kitchen_Leak/under_cabinet/Pressure"
-    unit_of_measurement: "hPa"
-    device_class: pressure
-
-  - platform: mqtt
-    name: garage_entry_temperature
-    state_topic: "hawirelesslink/sensor/centralite_3320l_0e259d4b_1_1026/state"
-    unit_of_measurement: "°F"
-    device_class: temperature
-
 automation:
   - id: kitchen_fan_speed
     alias: kitchen_fan_speed
