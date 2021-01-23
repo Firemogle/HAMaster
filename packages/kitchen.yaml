@@ -41,6 +41,10 @@ light:
     payload_off: "0"
     retain: false
     
+  - platform: switch
+    name: kitchen_lamp
+    entity_id: switch.kitchen_light_switch
+    
 sensor:
   - platform: mqtt
     name: "kitchen_leak"
