@@ -6,8 +6,6 @@ homeassistant:
       friendly_name: "Livingroom Subwoofer"
   
 binary_sensor:
-    payload_off: "unlocked"
-    
   - platform: template
     sensors:
       livingroom_door_opened:
