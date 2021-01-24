@@ -32,7 +32,7 @@ light:
 lock:
   - platform: template
     name: front_door
-    value_template: "{{ states('binary_sensor.front_door_lock_stat') }}"
+    value_template: "{{ states('lock.schlage_allegion_be469_touchscreen_deadbolt_locked') }}"
     lock:
       service: script.front_door_lock
     unlock:
