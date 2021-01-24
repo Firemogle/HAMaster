@@ -2,24 +2,6 @@ homeassistant:
   customize:
   
 light:
-  - platform : mqtt
-    name: "basemet_dimmer"
-    state_topic: "hawirelesslink/light/basement_dim/state"
-    command_topic: "/HAwirelesslink/return/light/basement_dim/state"
-    brightness_state_topic: "hawirelesslink/light/basement_dim/brightness"
-    brightness_command_topic: "/HAwirelesslink/return/light/basement_dim/brightness"
-    payload_on: "on"
-    payload_off: "off"
-    retain: false
-    
-  - platform : mqtt
-    name: "basement_stair_light"
-    state_topic: "hawirelesslink/switch/jasco_products_26931_smart_motion_switch_switch_7/state"
-    command_topic: "/HAwirelesslink/return/switch/jasco_products_26931_smart_motion_switch_switch_7/state"
-    payload_on: "on"
-    payload_off: "off"
-    retain: false
-    
   - platform: group
     name: shelf_light_combine
     entities:
