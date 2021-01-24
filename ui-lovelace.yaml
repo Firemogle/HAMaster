@@ -87,7 +87,8 @@ views:
           - entity: light.kitchen_fan
             name: "Kitchen Fan Light"
           - binary_sensor.kitchen_leak
-          - sensor.garage_entry_temperature
+          - entity: sensor.garage_entry_temperature
+            name: "Garage Entry Temperature" 
           - binary_sensor.garage_entry_opened
           - binary_sensor.sliding_glass_door_opened
           - binary_sensor.kitchen_motion
@@ -109,20 +110,27 @@ views:
             name: "Master TV"
           - light.liz_headboard
           - light.brett_headboard
-          - binary_sensor.master_bed_window
-          - sensor.master_bed_window_temp
+          - entity: binary_sensor.master_bed_window
+            name: "Master Bedroom Window"
+          - entity: sensor.master_bed_window_temp
+            name: "Master Bedroom Window Temp"
+
       - type: media-control
         entity: media_player.master_tv
       - type: entities
         title: Emi Room
         show_header_toggle: false
         entities:
-          - fan.emi_fan
-          - light.emi_fan_light
+          - entity: fan.emi_fan
+            name: "Emi Bedroom Fan"
+          - entity: light.emi_fan_light
+            name: "Emi Bedroom Light"
           - light.emi_star_lamp
-          - binary_sensor.emi_motion
+          - entity: binary_sensor.emi_motion
+            name: "Emi Bedroom Motion"
           - binary_sensor.emi_window_controller_motion
-          - sensor.emi_temp
+          - entity: sensor.emi_temp
+            name: "Emi Bedroom Temperature"
           - sensor.emi_window_controller_temp
           - sensor.emi_window_controller_humidity
           - sensor.emi_window_controller_pressure
@@ -134,8 +142,10 @@ views:
         title: Nursery Room
         show_header_toggle: false
         entities:
-          - fan.nursery_fan
-          - light.nursery_fan_light
+          - entity: fan.nursery_fan
+            name: "Nursery Fan"
+          - entity: light.nursery_fan_light
+            name: "Nursery Light"
       - type: entities
         title: Main Bath
         show_header_toggle: false
