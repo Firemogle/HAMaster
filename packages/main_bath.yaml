@@ -17,7 +17,6 @@ binary_sensor:
     payload_off: "0"
     device_class: motion
 
-
   - platform: template
     sensors:
       main_bath_vent_motion:
@@ -26,26 +25,6 @@ binary_sensor:
         delay_off:
           minutes: 1
           
-light:
-  - platform : mqtt
-    name: main_bath_vanity
-    state_topic: "hawirelesslink/light/leviton_dz6hd_1bz_decora_600w_smart_dimmer_level_2/state"
-    command_topic: "/HAwirelesslink/return/light/leviton_dz6hd_1bz_decora_600w_smart_dimmer_level_2/state"
-    brightness_state_topic: "hawirelesslink/light/leviton_dz6hd_1bz_decora_600w_smart_dimmer_level_2/brightness"
-    brightness_command_topic: "/HAwirelesslink/return/light/leviton_dz6hd_1bz_decora_600w_smart_dimmer_level_2/brightness"
-    payload_on: "on"
-    payload_off: "off"
-    retain: false
-
-  - platform : mqtt
-    name: main_bath_vent_light
-    state_topic: "hawirelesslink/light/leviton_dz6hd_1bz_decora_600w_smart_dimmer_level/state"
-    command_topic: "/HAwirelesslink/return/light/leviton_dz6hd_1bz_decora_600w_smart_dimmer_level/state"
-    brightness_state_topic: "hawirelesslink/light/leviton_dz6hd_1bz_decora_600w_smart_dimmer_level/brightness"
-    brightness_command_topic: "/HAwirelesslink/return/light/leviton_dz6hd_1bz_decora_600w_smart_dimmer_level/brightness"
-    payload_on: "on"
-    payload_off: "off"
-    retain: false
     
 sensor:
   - platform: mqtt
@@ -81,16 +60,6 @@ sensor:
           {% endif %}
         unit_of_measurement: "%"
         
-switch:
-  - platform : mqtt
-    name: "main_bath_fan"
-    state_topic: "hawirelesslink/switch/jasco_products_26931_smart_motion_switch_switch_3/state"
-    command_topic: "/HAwirelesslink/return/switch/jasco_products_26931_smart_motion_switch_switch_3/state"
-    state_on: "on"
-    state_off: "off"
-    payload_on: "on"
-    payload_off: "off"
-    retain: false
 
 input_boolean:
   bath_fan_needed:
