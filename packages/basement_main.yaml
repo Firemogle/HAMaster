@@ -9,6 +9,9 @@ light:
       - light.basement_light_01
       - light.basement_light_02
       - light.basement_light_03
+  - platform: switch
+    name: basement_stair_light
+    entity_id: switch.basement_stair_light
       
 binary_sensor:
   - platform: mqtt # 
