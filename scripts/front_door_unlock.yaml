@@ -4,9 +4,6 @@ front_door_unlock:
     - condition: state
       entity_id: alarm_control_panel.alarm_panel
       state: 'disarmed'
-    - service: mqtt.publish
+    - service: lock.unlock
       data:
-        {
-          "topic": "/HAwirelesslink/return/hawirelesslink/lock/schlage_allegion_be469_touchscreen_deadbolt_locked_4/state",
-          "payload": "UNLOCK"
-        }
+        entity_id: lock.schlage_allegion_be469_touchscreen_deadbolt_locked
