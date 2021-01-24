@@ -371,7 +371,7 @@ views:
   - title: Holiday
     id: house_holiday
     icon: mdi:string-lights
-    visible: {{ states.calendar.xmas_lights.state == 'on' }}
+    visible: states.calendar.xmas_lights.state
     cards:
       - type: entities
         title: Holiday Lights
