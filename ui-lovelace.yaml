@@ -165,9 +165,9 @@ views:
         entities:
           - light.hallway
           - binary_sensor.hallway_motion_combine
-          - entity: sensor.hall_motion_temperature
+          - entity: sensor.hallway_motion_temperature
             name: "Hall Window Temperature"
-          - entity: sensor.hall_motion_temperature_2
+          - entity: sensor.hallway_motion_2_temperature
             name: "Hall Window Temperature"
           - binary_sensor.hall_window_opened
           - entity: sensor.hall_window_temperature
