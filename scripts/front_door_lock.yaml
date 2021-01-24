@@ -5,11 +5,8 @@ front_door_lock:
     - condition: state
       entity_id: binary_sensor.livingroom_door_opened
       state: 'off'
-    - service: mqtt.publish
+    - service: lock.lock
       data:
-        {
-          "topic": "/HAwirelesslink/return/hawirelesslink/lock/schlage_allegion_be469_touchscreen_deadbolt_locked_4/state",
-          "payload": "LOCK"
-        }
+        entity_id: lock.schlage_allegion_be469_touchscreen_deadbolt_locked
         
         
