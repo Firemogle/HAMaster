@@ -1,43 +1,10 @@
-zone.brett_work:
-  radius: 5000
-device_tracker.google_maps_108379141181739394475:
-  friendly_name: Liz
-device_tracker.google_maps_116842525089175776476:
-  friendly_name: Brett
-
-binary_sensor.house_sts_occupants:
-  device_class: occupancy
-
-sensor.home_eta:
-  hidden: true
-sensor.home_security_state:
-  hidden: true
-binary_sensor.sliding_glass_door_opened:
-  device_class: door
-  friendly_name: Sliding glass door
-binary_sensor.livingroom_door_opened:
-  device_class: door
-  friendly_name: Livingroom Door
-binary_sensor.garage_door_back:
-  device_class: door
-binary_sensor.garage_entry_opened:
-  device_class: door
-  friendly_name: Garage Entry
-binary_sensor.hall_window_opened:
-  device_class: window
-  friendly_name: Hall Window
 
 
-binary_sensor.hallway_motion_combine:
-  device_class: motion
-binary_sensor.main_bath_vent_needed:
-  device_class: occupancy
-binary_sensor.sliding_glass_door_opened_2:
-  friendly_name: sliding_glass_door
-binary_sensor.kitchen_motion:
-  device_class: motion
-binary_sensor.main_bath_motion:
-  device_class: motion
-alarm_control_panel.abode_alarm_system:
-  hidden: true
+
+
+
+
+
+
+
 
