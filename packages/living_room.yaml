@@ -4,6 +4,10 @@ homeassistant:
       friendly_name: "Livingroom Entry"
     switch.livingroom_subwoofer:
       friendly_name: "Livingroom Subwoofer"
+      icon: mdi:speaker
+    binary_sensor.livingroom_door_opened:
+      device_class: door
+      friendly_name: Livingroom Door
   
 binary_sensor:
   - platform: template
