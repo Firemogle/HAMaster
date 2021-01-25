@@ -2,7 +2,7 @@ homeassistant:
   customize:
     switch.main_bath_fan:
       friendly_name: Main Bathroom Vent
-      icon: mdi:mdi-fan
+      icon: mdi:fan
     light.main_bath_vanity:
       friendly_name: Main Bathroom Vanity
     light.main_bath_vent_light:
@@ -39,16 +39,19 @@ sensor:
     name: "Bathroom Vent Temperature"
     state_topic: "/Attic_Sensor/Vent/Temperature"
     unit_of_measurement: "°C"
+    device_class: temperature
 
   - platform: mqtt
     name: "Bathroom Vent Pressure"
     state_topic: "/Attic_Sensor/Vent/Pressure"
     unit_of_measurement: "hPa"
+    device_class: temperature
 
   - platform: mqtt
     name: "Bathroom Vent Humidity"
     state_topic: "/Attic_Sensor/Vent/Humidity"
     unit_of_measurement: "%"
+    device_class: pressure
 
   - platform: mqtt
     name: "Bathroom Vent VOC"
