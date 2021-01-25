@@ -1,5 +1,10 @@
 homeassistant:
   customize:
+    light.porch_light:
+      friendly_name: Porch Light
+    light.garage_ext_2:
+      friendly_name: Driveway Light 2
+      
 
 binary_sensor:
   - platform: mqtt # Detect motion from fron camera from blueiris
