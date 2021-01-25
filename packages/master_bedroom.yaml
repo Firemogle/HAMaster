@@ -7,7 +7,6 @@ homeassistant:
       friendly_name: Master Bedroom TV
       icon: mdi-television
       
-    
 automation:
   - id: 'mbr_tv_off'
     alias: mbr_tv_off
