@@ -1,4 +1,11 @@
+  
 homeassistant:
+  customize:
+    binary_sensor.hall_window_opened:
+      device_class: window
+      friendly_name: Hall Window
+    binary_sensor.hallway_motion_combine:
+      device_class: motion
 
 binary_sensor:
   - platform: template # Combine both hallway sensors into 1 logical 
