@@ -1,5 +1,14 @@
 homeassistant:
   customize:
+    switch.main_bath_fan:
+      friendly_name: Main Bathroom Vent
+      icon: mdi:mdi-fan
+    light.main_bath_vanityn:
+      friendly_name: Main Bathroom Vanity
+    light.main_bath_vent_light:
+      friendly_name: Main Bathroom Vent Light
+  
+  
 binary_sensor:
   - platform: template
     sensors:
@@ -10,12 +19,11 @@ binary_sensor:
         delay_off:
           minutes: 5
 
-  - platform: mqtt # Bath motion
-    state_topic: "hawirelesslink/sensor/jasco_products_26931_smart_motion_switch_burglar_3/state"
-    name: main_bath_motion
-    payload_on: "8"
-    payload_off: "0"
-    device_class: motion
+  - platform: template
+    sensors:
+      main_bath_motion:
+        value_template: >-
+          {{ states('sensor.bathroom_motion_raw')|float > 0 }}
 
   - platform: template
     sensors:
