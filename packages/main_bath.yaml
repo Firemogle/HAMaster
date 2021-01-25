@@ -3,7 +3,7 @@ homeassistant:
     switch.main_bath_fan:
       friendly_name: Main Bathroom Vent
       icon: mdi:mdi-fan
-    light.main_bath_vanityn:
+    light.main_bath_vanity:
       friendly_name: Main Bathroom Vanity
     light.main_bath_vent_light:
       friendly_name: Main Bathroom Vent Light
