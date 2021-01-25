@@ -1,5 +1,20 @@
 homeassistant:
   customize:
+    alarm_control_panel.abode_alarm_system:
+      hidden: true
+    sensor.home_eta:
+      hidden: true
+    sensor.home_security_state:
+      hidden: true
+    zone.brett_work:
+      radius: 5000
+    device_tracker.google_maps_108379141181739394475:
+      friendly_name: Liz
+    device_tracker.google_maps_116842525089175776476:
+      friendly_name: Brett
+    binary_sensor.house_sts_occupants:
+      device_class: occupancy
+      
 
 binary_sensor:
   - platform: template
