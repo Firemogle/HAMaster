@@ -1,6 +1,12 @@
 homeassistant:
   customize:
-    
+    binary_sensor.master_bed_window:
+      friendly_name: Master Bedroom Window
+      device_class: window
+    switch.master_tv:
+      friendly_name: Master Bedroom TV
+      icon: mdi-television
+      
     
 automation:
   - id: 'mbr_tv_off'
