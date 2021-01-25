@@ -10,6 +10,16 @@ homeassistant:
       friendly_name: "Kitchen Fan Light"
     binary_sensor.kitchen_leak:
       friendly_name: "Kitchen Sink Leak Sensor"
+    binary_sensor.garage_entry_opened:
+      device_class: door
+      friendly_name: Garage Entry
+    binary_sensor.sliding_glass_door_opened:
+      device_class: door
+      friendly_name: Sliding glass door
+    binary_sensor.sliding_glass_door_opened_2:
+      friendly_name: sliding_glass_door
+    binary_sensor.kitchen_motion:
+      device_class: motion
   
 binary_sensor:
   - platform: template
