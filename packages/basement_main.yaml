@@ -1,6 +1,12 @@
 homeassistant:
   customize:
-  
+    light.basemet_dimmer:
+      friendly_name: Basement Dimmer
+    light.shelf_light_combine:
+      friendly_name: Basement Shelf Light
+    switch.basement_stair_light:
+      friendly_name: Basement Stair Light
+      
 light:
   - platform: group
     name: shelf_light_combine
