@@ -90,6 +90,65 @@ automation:
         entity_id: switch.projector
       service: switch.turn_off
       
+  - id: sync_hall_light
+    alias: "Sync Zwave lights in basement stairwell"
+    initial_state: 'on'
+    mode: single
+    trigger:
+      - platform: state
+        entity_id: 
+          - switch.basement_stair_light
+          - switch.basement_stair_remote
+    action:
+      - choose:
+        - conditions:
+            - condition: state
+              entity_id: switch.basement_stair_light
+              state: 'on'
+            - condition: template
+              value_template: "{{ state_attr(trigger.entity_id, 'friendly_name') == states.switch.basement_stair_light.attributes.friendly_name }}"
+          sequence:
+            - service: switch.turn_on
+              entity_id: switch.basement_stair_remote
+            - delay:
+                milliseconds: 500
+
+        - conditions:
+            - condition: state
+              entity_id: switch.basement_stair_remote
+              state: 'on'
+            - condition: template
+              value_template: "{{ state_attr(trigger.entity_id, 'friendly_name') ==  states.switch.basement_stair_remote.attributes.friendly_name }}"
+          sequence:
+            - service: switch.turn_on
+              entity_id: switch.basement_stair_light
+            - delay:
+                milliseconds: 500
+
+        - conditions:
+            - condition: state
+              entity_id: switch.basement_stair_light
+              state: 'off'
+            - condition: template
+              value_template: "{{ state_attr(trigger.entity_id, 'friendly_name') == states.switch.basement_stair_light.attributes.friendly_name }}"
+          sequence:
+            - service: switch.turn_off
+              entity_id: switch.basement_stair_remote
+            - delay:
+                milliseconds: 500
+
+        - conditions:
+            - condition: state
+              entity_id: switch.basement_stair_remote
+              state: 'off'
+            - condition: template
+              value_template: "{{ state_attr(trigger.entity_id, 'friendly_name') == states.switch.basement_stair_remote.attributes.friendly_name }}"
+          sequence:
+            - service: switch.turn_off
+              entity_id: switch.basement_stair_light
+            - delay:
+                milliseconds: 500
+      
       
 script:
   turn_off_projector:
