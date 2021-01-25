@@ -7,6 +7,10 @@ homeassistant:
       friendly_name: Main Bathroom Vanity
     light.main_bath_vent_light:
       friendly_name: Main Bathroom Vent Light
+    binary_sensor.main_bath_vent_needed:
+      device_class: occupancy
+    binary_sensor.main_bath_motion:
+      device_class: motion
   
   
 binary_sensor:
