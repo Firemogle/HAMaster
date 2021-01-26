@@ -12,8 +12,6 @@ homeassistant:
       friendly_name: Master Fan Light
     switch.master_tv:
       friendly_name: Master TV
-    binary_sensor.master_bed_window:
-      friendly_name: Master Bedroom Window
     sensor.master_bed_window_temp:
       friendly_name: Master Bedroom Window Temp
       
