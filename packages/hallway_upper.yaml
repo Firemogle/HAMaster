@@ -6,6 +6,12 @@ homeassistant:
       friendly_name: Hall Window
     binary_sensor.hallway_motion_combine:
       device_class: motion
+    sensor.hallway_motion_temperature:
+      friendly_name: Hall Lower Temperature
+    sensor.hallway_motion_2_temperature:
+      friendly_name: Hall Upper Temperature
+    sensor.hall_window_temperature:
+      friendly_name: Hall Window Temperature
 
 binary_sensor:
   - platform: template # Combine both hallway sensors into 1 logical 
