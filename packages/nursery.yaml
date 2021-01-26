@@ -1,5 +1,9 @@
 homeassistant:
   customize:
+    fan.nursery_fan:
+      friendly_name: Nursery Fan
+    light.nursery_fan_light:
+      friendly_name: Nursery Light
 
 
 climate:
