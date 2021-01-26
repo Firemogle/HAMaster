@@ -63,8 +63,7 @@ views:
         entities:
           - light.main_livingroom
           - light.jayhawk_candle
-          - entity: light.livingroom_entry
-            name: "Livingroom Entry"
+          - light.livingroom_entry
           - sensor.hvac_humidity
           - sensor.hvac_temperature
           - binary_sensor.livingroom_door_opened
@@ -77,18 +76,13 @@ views:
         title: Kitchen
         show_header_toggle: false
         entities:
-          - entity: fan.kitchen_fan
-            name: "Kitchen Fan"
+          - fan.kitchen_fan
           - light.cabinet_led
-          - entity: light.kitchen_sink
-            name: "Kitchen Sink Light"
-          - entity: light.kitchen_lamp
-            name: "Kitchen Light"
-          - entity: light.kitchen_fan
-            name: "Kitchen Fan Light"
+          - light.kitchen_sink
+          - light.kitchen_lamp
+          - light.kitchen_fan
           - binary_sensor.kitchen_leak
-          - entity: sensor.garage_entry_temperature
-            name: "Garage Entry Temperature" 
+          - sensor.garage_entry_temperature
           - binary_sensor.garage_entry_opened
           - binary_sensor.sliding_glass_door_opened
           - binary_sensor.kitchen_motion
@@ -102,18 +96,13 @@ views:
         title: Master Bed
         show_header_toggle: false
         entities:
-          - entity: fan.master_fan
-            name: "Master Fan"
-          - entity: light.master_fan_light
-            name: "Master Fan Light"
-          - entity: switch.master_tv
-            name: "Master TV"
+          - fan.master_fan
+          - light.master_fan_light
+          - switch.master_tv
           - light.liz_headboard
           - light.brett_headboard
-          - entity: binary_sensor.master_bed_window
-            name: "Master Bedroom Window"
-          - entity: sensor.master_bed_window_temp
-            name: "Master Bedroom Window Temp"
+          - binary_sensor.master_bed_window
+          - sensor.master_bed_window_temp
 
       - type: media-control
         entity: media_player.master_tv
@@ -121,16 +110,12 @@ views:
         title: Emi Room
         show_header_toggle: false
         entities:
-          - entity: fan.emi_fan
-            name: "Emi Bedroom Fan"
-          - entity: light.emi_fan_light
-            name: "Emi Bedroom Light"
+          - fan.emi_fan
+          - light.emi_fan_light
           - light.emi_star_lamp
-          - entity: binary_sensor.emi_motion
-            name: "Emi Bedroom Motion"
+          - binary_sensor.emi_motion
           - binary_sensor.emi_window_controller_motion
-          - entity: sensor.emi_temp
-            name: "Emi Bedroom Temperature"
+          - sensor.emi_temp
           - sensor.emi_window_controller_temp
           - sensor.emi_window_controller_humidity
           - sensor.emi_window_controller_pressure
@@ -142,10 +127,8 @@ views:
         title: Nursery Room
         show_header_toggle: false
         entities:
-          - entity: fan.nursery_fan
-            name: "Nursery Fan"
-          - entity: light.nursery_fan_light
-            name: "Nursery Light"
+          - fan.nursery_fan
+          - light.nursery_fan_light
       - type: entities
         title: Main Bath
         show_header_toggle: false
@@ -165,13 +148,10 @@ views:
         entities:
           - light.hallway
           - binary_sensor.hallway_motion_combine
-          - entity: sensor.hallway_motion_temperature
-            name: "Hall Lower Temperature"
-          - entity: sensor.hallway_motion_2_temperature
-            name: "Hall Upper Temperature"
+          - sensor.hallway_motion_temperature
+          - sensor.hallway_motion_2_temperature
           - binary_sensor.hall_window_opened
-          - entity: sensor.hall_window_temperature
-            name: "Hall Window Temperature"
+          - sensor.hall_window_temperature
           
     # Basement view
   - title: Basement
