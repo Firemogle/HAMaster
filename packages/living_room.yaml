@@ -8,6 +8,8 @@ homeassistant:
     binary_sensor.livingroom_door_opened:
       device_class: door
       friendly_name: Livingroom Door
+    light.livingroom_entry:
+      friendly_name: Livingroom Entry
   
 binary_sensor:
   - platform: template
