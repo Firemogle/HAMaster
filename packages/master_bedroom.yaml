@@ -6,6 +6,16 @@ homeassistant:
     switch.master_tv:
       friendly_name: Master Bedroom TV
       icon: mdi:television
+    fan.master_fan:
+      friendly_name: Master Fan
+    light.master_fan_light:
+      friendly_name: Master Fan Light
+    switch.master_tv:
+      friendly_name: Master TV
+    binary_sensor.master_bed_window:
+      friendly_name: Master Bedroom Window
+    sensor.master_bed_window_temp:
+      friendly_name: Master Bedroom Window Temp
       
 automation:
   - id: 'mbr_tv_off'
