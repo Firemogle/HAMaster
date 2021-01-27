@@ -17,9 +17,9 @@ homeassistant:
     sensor.emi_window_controller_lux:
       friendly_name: Emi Room Light Lux
     fan.emi_fan:
-      friendly_name: Emi Bedroom Fan
+      friendly_name: Emi Fan
     light.emi_fan_light:
-      friendly_name: Emi Bedroom Light
+      friendly_name: Emi Fan Light
     binary_sensor.emi_motion:
       friendly_name: Emi Bedroom Motion
     sensor.emi_temp:
