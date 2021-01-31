@@ -227,9 +227,9 @@ automation:
     - data:
         entity_id: vacuum.rrroomba
       service: vacuum.start
-
-  - id: 'weekend_ext_light'
-    alias: weekend_ext_light
+      
+  - id: 'bedroom_wakeup'
+    alias: bedroom_wakeup
     initial_state: 'off'
     trigger:
     - platform: time
