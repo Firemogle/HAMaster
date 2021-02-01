@@ -319,6 +319,7 @@ views:
           - sensor.hall_motion_temp_2
           - sensor.laundry_temp
           - sensor.garage_temperature
+          - sensor.front_garage_temp
       - type: entities
         title: Network
         show_header_toggle: false
@@ -351,7 +352,7 @@ views:
   - title: Holiday
     id: house_holiday
     icon: mdi:string-lights
-    visible: false #states.calendar.xmas_lights.state
+    visible: {{ is_state('calendar.xmas_lights','on') }}
     cards:
       - type: entities
         title: Holiday Lights
