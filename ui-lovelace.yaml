@@ -6,7 +6,7 @@ resources:
   - url: /local/my-webfont.css
     type: css
 
-background: center / cover no-repeat url("https://lh3.googleusercontent.com/proxy/y2PnWY0uA1yjiQs3dqrrh89sHol2JtKkCu9JLH2RVIGwJtNfS5M89eniu5-O3Xb3iq1vgKqKULwnecrIJw51wkbjlCdwMtAU1AMfm30fdoPL-RpLx5i6z72VD9MbPMkeotEL0ogh8fknDQL2zt0OydPC3p4BKJNQtR52J8qVjMwqmPQ2B0UCqVz4Y3Hq") fixed
+background: center / cover no-repeat url("https://wallpapercave.com/wp/wp2630764.jpg") fixed
 views:
     # System Overview tab
   - title: Overview
