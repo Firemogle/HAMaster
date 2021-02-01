@@ -352,7 +352,7 @@ views:
   - title: Holiday
     id: house_holiday
     icon: mdi:string-lights
-    visible: is_state('calendar.xmas_lights','on') 
+    visible: "{{ is_state('calendar.xmas_lights','on') }}"
     cards:
       - type: entities
         title: Holiday Lights
