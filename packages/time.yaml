@@ -250,9 +250,9 @@ automation:
       data:
         entity_id: light.emi_star_lamp
         brightness: 255
-        transition: 00:30:00
+        transition: 1800
     - service: light.turn_on
       data:
         entity_id: light.master_fan_light
         brightness: 255
-        transition: 00:30:00
+        transition: 1800
