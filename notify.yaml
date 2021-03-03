@@ -39,4 +39,4 @@
   platform: group
   services:
     - service: mobile_app_liz_phone
-    - service: mobile_app_brett_phone
+    - service: mobile_app_sm_g975f
