@@ -22,8 +22,8 @@ views:
         title: People
         show_header_toggle: false
         entities:
-          - device_tracker.google_maps_108379141181739394475
-          - device_tracker.google_maps_116842525089175776476
+          - device_tracker.sm_g965f
+          - device_tracker.sm_g975f
       - type: entity-filter
         title: Home Status
         show_header_toggle: false
