@@ -176,7 +176,6 @@ views:
         entities:
           - switch.off_4k_mon
           - switch.off_computron3000
-          - switch.ender3
           - binary_sensor.off_sts_motion
           - sensor.office_computer_power
           - sensor.office_humidity
@@ -186,6 +185,7 @@ views:
         title: Printer
         show_header_toggle: false
         entities:
+          - switch.3d_printer
           - binary_sensor.octoprint_printing
           - binary_sensor.octoprint_printing_error
           - sensor.octoprint_actual_bed_temp
