@@ -253,7 +253,7 @@ views:
         camera_image: camera.frontdoor
         camera_view: live
       - type: picture-glance
-        title: "Front Porch"
+        title: "Driveway"
         entities: []
         camera_image: camera.front_porch
         camera_view: live
@@ -261,11 +261,6 @@ views:
         title: Backyard
         entities: []
         camera_image: camera.backyard
-        camera_view: live
-      - type: picture-glance
-        title: Garage
-        entities: []
-        camera_image: camera.garage
         camera_view: live
       - type: picture-glance
         title: OctoPrint
