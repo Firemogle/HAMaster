@@ -36,10 +36,10 @@ lock:
       service: script.front_door_lock
     unlock:
       service: script.front_door_unlock
-roomba:
-  - host: 192.168.2.123
-    blid: secret! lrr_un
-    password: secret! lrr_pw
+#roomba:
+#  - host: 192.168.2.123
+#    blid: secret! lrr_un
+#    password: secret! lrr_pw
     
 media_player:
   - platform: kodi
