@@ -328,6 +328,21 @@ automation:
     - data:
         entity_id: script.initialization
       service: script.turn_on
+    - data_template:
+        message: "Home Assistant is now booting"
+      service: notify.group_notify
+      
+
+  - id: 'ha_down'
+    alias: ha_down
+    trigger:
+    - event: shutdown
+      platform: homeassistant
+    condition: []
+    action:
+    - data_template:
+        message: "Home Assistant is now shutting down"
+      service: notify.group_notify
 
   - id: 'house_sts_occupants'
     alias: house_sts_occupants
