@@ -4,14 +4,12 @@ homeassistant:
       friendly_name: Master Bedroom Window
       device_class: window
     switch.master_tv:
-      friendly_name: Master Bedroom TV
+      friendly_name: Master TV
       icon: mdi:television
     fan.master_fan:
       friendly_name: Master Fan
     light.master_fan_light:
       friendly_name: Master Fan Light
-    switch.master_tv:
-      friendly_name: Master TV
     sensor.master_bed_window_temp:
       friendly_name: Master Bedroom Window Temp
       
