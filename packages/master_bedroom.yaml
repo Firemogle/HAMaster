@@ -44,3 +44,14 @@ automation:
     - data:
         entity_id: switch.master_tv
       service: switch.turn_off
+
+  - id: 'mbr_tv_on'
+    alias: mbr_tv_on
+    initial_state: 'off'
+    trigger:
+      platform: state
+      entity_id: media_player.mbed_shield
+    action:
+    - data:
+        entity_id: switch.master_tv
+      service: switch.turn_on
