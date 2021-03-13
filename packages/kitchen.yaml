@@ -22,12 +22,6 @@ homeassistant:
       device_class: motion
     fan.kitchen_fan:
       friendly_name: Kitchen Fan
-    light.kitchen_sink:
-      friendly_name: Kitchen Sink Light
-    light.kitchen_lamp:
-      friendly_name: Kitchen Light
-    light.kitchen_fan:
-      friendly_name: Kitchen Fan Light
     sensor.garage_entry_temperature:
       friendly_name: Garage Entry Temperature
   
