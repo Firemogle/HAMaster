@@ -1,0 +1,95 @@
+esphome:
+  name: master_headboard
+  platform: ESP32
+  board: nodemcu-32s
+
+wifi:
+  ssid: !secret AP
+  password: !secret APPW
+  power_save_mode: none
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  password: !secret AP_PW
+
+ota:
+  password: !secret OTA_PW
+ 
+  
+light:
+  - platform: fastled_clockless
+    chipset: WS2811
+    pin: GPIO16
+    num_leds: 60
+    name: master_headboard
+    id: master_headboard
+
+  - platform: partition
+    name: master_headboard_status
+    segments:
+      - id: master_headboard
+        from: 0
+        to: 0
+  - platform: partition
+    name: Brett Headboard
+    segments:
+      - id: master_headboard
+        from: 1
+        to: 30
+    effects:
+      - addressable_fireworks:
+          name: Fireworks
+          update_interval: 32ms
+          spark_probability: 75%
+          use_random_color: true
+          fade_out_rate: 125
+      - addressable_twinkle:
+          name: twinkle
+          twinkle_probability: 10%
+          progress_interval: 64ms
+          
+  - platform: partition
+    name: Liz Headboard
+    segments:
+      - id: master_headboard
+        from: 31
+        to: 60
+    effects:
+      - addressable_fireworks:
+          name: Fireworks
+          update_interval: 32ms
+          spark_probability: 75%
+          use_random_color: true
+          fade_out_rate: 125
+      - addressable_twinkle:
+          name: twinkle
+          twinkle_probability: 10%
+          progress_interval: 64ms
+
+i2c:
+   sda: GPIO21
+   scl: GPIO22  
+    
+sensor:
+  - platform: bme280
+    temperature:
+      name: master_headboard_temp
+      oversampling: 16x
+    humidity:
+      name: master_headboard_humidity
+    address: 0x76
+    pressure:
+      name: master_headboard_pressure
+    update_interval: 60s
+    
+  - platform: bh1750
+    name: master_headboard_lux
+    address: 0x23
+    update_interval: 4s
+    filters:
+    - sliding_window_moving_average:
+        window_size: 15
+        send_every: 15
