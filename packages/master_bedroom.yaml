@@ -49,7 +49,7 @@ automation:
     trigger:
       platform: state
       entity_id: media_player.mbed_shield
-      to: 'on'
+      from: 'off'
     action:
     - data:
         entity_id: switch.master_tv
