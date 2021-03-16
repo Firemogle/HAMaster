@@ -134,7 +134,7 @@ automation:
     trigger:
       platform: state
       entity_id: sensor.octoprint_target_bed_temp
-      from: 32
+      from: '32'
     action:
     - data:
         entity_id: switch.3d_printer
@@ -146,7 +146,7 @@ automation:
     trigger:
       platform: state
       entity_id: sensor.octoprint_job_percentage
-      to: 100
+      to: '100'
     action:
     - data:
         entity_id: switch.3d_printer
