@@ -126,3 +126,30 @@ automation:
     - data:
         entity_id: switch.off_computron3000
       service: switch.turn_on
+      
+      
+  - id: 'printer_on'
+    alias: printer_on
+    initial_state: 'off'
+    trigger:
+      platform: state
+      entity_id: sensor.octoprint_target_bed_temp
+      from: 32
+    action:
+    - data:
+        entity_id: switch.3d_printer
+      service: switch.turn_on
+      
+  - id: 'printer_off'
+    alias: printer_off
+    initial_state: 'off'
+    trigger:
+      platform: state
+      entity_id: sensor.octoprint_job_percentage
+      to: 100
+    action:
+    - data:
+        entity_id: switch.3d_printer
+      service: switch.turn_off
+      
+      
