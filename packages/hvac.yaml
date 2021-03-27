@@ -34,7 +34,8 @@ binary_sensor:
     sensors:
       house_sts_hvac_heat_req:
         value_template: >-
-          {{ states('sensor.dark_sky_daytime_high_temperature_0d')|float < states('input_number.hvac_heat_enable_temp')|float }}
+          {{ state_attr('weather.hvac', 'temperature')|float < states('input_number.hvac_heat_enable_temp')|float
+             and state_attr('weather.hvac', 'forecast')[0]['templow']|float < 50 }}
         delay_off:
           minutes: 30
         delay_on:
