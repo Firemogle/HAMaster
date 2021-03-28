@@ -2,6 +2,12 @@ homeassistant:
   customize:
     binary_sensor.garage_door_back:
       device_class: door
+      
+camera:
+  - platform: mjpeg
+    name: Backyard
+    still_image_url: http://192.168.1.210:81/image/garage?q=100&s=100
+    mjpeg_url: http://192.168.1.210:81/mjpg/garage/video.mjpg
         
 switch:
   - platform : mqtt
