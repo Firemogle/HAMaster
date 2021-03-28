@@ -263,6 +263,11 @@ views:
         camera_image: camera.backyard
         camera_view: live
       - type: picture-glance
+        title: Garage
+        entities: []
+        camera_image: camera.garage
+        camera_view: live
+      - type: picture-glance
         title: OctoPrint
         entities: []
         camera_image: camera.octoprint
