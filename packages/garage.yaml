@@ -6,8 +6,8 @@ homeassistant:
 camera:
   - platform: mjpeg
     name: Garage
-    still_image_url: http://192.168.1.210:81/image/garage?q=100&s=100
-    mjpeg_url: http://192.168.1.210:81/mjpg/garage/video.mjpg
+    still_image_url: http://192.168.2.200:81/image/garage?q=100&s=100
+    mjpeg_url: http://192.168.2.200:81/mjpg/garage/video.mjpg
         
 switch:
   - platform : mqtt
