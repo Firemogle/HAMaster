@@ -23,7 +23,7 @@ light:
   - platform: fastled_clockless
     chipset: WS2811
     pin: GPIO16
-    num_leds: 60
+    num_leds: 20
     name: master_headboard
     id: master_headboard
 
@@ -38,7 +38,7 @@ light:
     segments:
       - id: master_headboard
         from: 1
-        to: 30
+        to: 10
     effects:
       - addressable_fireworks:
           name: Fireworks
@@ -55,8 +55,8 @@ light:
     name: Liz Headboard
     segments:
       - id: master_headboard
-        from: 31
-        to: 60
+        from: 11
+        to: 20
     effects:
       - addressable_fireworks:
           name: Fireworks
