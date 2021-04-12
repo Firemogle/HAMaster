@@ -24,6 +24,7 @@ light:
     chipset: WS2811
     pin: GPIO16
     num_leds: 20
+    rgb_order: RBG
     name: master_headboard
     id: master_headboard
 
