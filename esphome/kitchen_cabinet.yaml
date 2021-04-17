@@ -1,0 +1,115 @@
+esphome:
+  name: kitchen_cabinet
+  platform: ESP32
+  board: nodemcu-32s
+
+wifi:
+  ssid: !secret AP
+  password: !secret APPW
+  power_save_mode: none
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  password: !secret AP_PW
+
+ota:
+  password: !secret OTA_PW
+ 
+  
+light:
+  - platform: fastled_clockless
+    chipset: WS2811
+    pin: GPIO16
+    num_leds: 20
+    rgb_order: RBG
+    name: kitchen_cabinet
+    id: kitchen_cabinet
+
+  - platform: partition
+    name: kitchen_cabinet_status
+    segments:
+      - id: kitchen_cabinet
+        from: 0
+        to: 0
+        
+  - platform: partition
+    name: Cabinet Top
+    segments:
+      - id: kitchen_cabinet
+        from: 1
+        to: 10
+    effects:
+      - addressable_fireworks:
+          name: Fireworks
+          update_interval: 32ms
+          spark_probability: 75%
+          use_random_color: true
+          fade_out_rate: 125
+      - addressable_twinkle:
+          name: twinkle
+          twinkle_probability: 10%
+          progress_interval: 64ms
+          
+  - platform: partition
+    name: Cabinet Under
+    segments:
+      - id: kitchen_cabinet
+        from: 11
+        to: 20
+    effects:
+      - addressable_fireworks:
+          name: Fireworks
+          update_interval: 32ms
+          spark_probability: 75%
+          use_random_color: true
+          fade_out_rate: 125
+      - addressable_twinkle:
+          name: twinkle
+          twinkle_probability: 10%
+          progress_interval: 64ms
+          
+  - platform: partition
+    name: Stove Light
+    segments:
+      - id: kitchen_cabinet
+        from: 21
+        to: 30
+    effects:
+      - addressable_fireworks:
+          name: Fireworks
+          update_interval: 32ms
+          spark_probability: 75%
+          use_random_color: true
+          fade_out_rate: 125
+      - addressable_twinkle:
+          name: twinkle
+          twinkle_probability: 10%
+          progress_interval: 64ms
+
+i2c:
+   sda: GPIO21
+   scl: GPIO22  
+    
+sensor:
+  - platform: bme280
+    temperature:
+      name: kitchen_cabinet_temp
+      oversampling: 16x
+    humidity:
+      name: kitchen_cabinet_humidity
+    address: 0x76
+    pressure:
+      name: kitchen_cabinet_pressure
+    update_interval: 60s
+    
+  - platform: bh1750
+    name: kitchen_cabinet_lux
+    address: 0x23
+    update_interval: 4s
+    filters:
+    - sliding_window_moving_average:
+        window_size: 15
+        send_every: 15
