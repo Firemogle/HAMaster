@@ -25,8 +25,8 @@ light:
     pin: GPIO16
     num_leds: 60
     rgb_order: RBG
-    name: master_headboard
-    id: master_headboard
+    name: kitchen_cabinet
+    id: kitchen_cabinet
 
   - platform: partition
     name: kitchen_cabinet_status
