@@ -23,10 +23,10 @@ light:
   - platform: fastled_clockless
     chipset: WS2811
     pin: GPIO16
-    num_leds: 20
+    num_leds: 60
     rgb_order: RBG
-    name: kitchen_cabinet
-    id: kitchen_cabinet
+    name: master_headboard
+    id: master_headboard
 
   - platform: partition
     name: kitchen_cabinet_status
@@ -34,6 +34,42 @@ light:
       - id: kitchen_cabinet
         from: 0
         to: 0
+        
+  - platform: partition
+    name: Cabinet Top
+    segments:
+      - id: kitchen_cabinet
+        from: 1
+        to: 40
+    effects:
+      - addressable_fireworks:
+          name: Fireworks
+          update_interval: 32ms
+          spark_probability: 75%
+          use_random_color: true
+          fade_out_rate: 125
+      - addressable_twinkle:
+          name: twinkle
+          twinkle_probability: 10%
+          progress_interval: 64ms
+          
+  - platform: partition
+    name: Cabinet Bottom
+    segments:
+      - id: kitchen_cabinet
+        from: 41
+        to: 60
+    effects:
+      - addressable_fireworks:
+          name: Fireworks
+          update_interval: 32ms
+          spark_probability: 75%
+          use_random_color: true
+          fade_out_rate: 125
+      - addressable_twinkle:
+          name: twinkle
+          twinkle_probability: 10%
+          progress_interval: 64ms
 
 
 i2c:
