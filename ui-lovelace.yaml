@@ -79,7 +79,9 @@ views:
         show_header_toggle: false
         entities:
           - fan.kitchen_fan
-          - light.cabinet_led
+          - light.cabinet_bottom
+          - light.cabinet_top
+          - light.stove
           - light.kitchen_sink
           - light.kitchen_lamp
           - light.kitchen_fan
