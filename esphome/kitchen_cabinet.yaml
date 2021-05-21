@@ -24,7 +24,7 @@ light:
     chipset: WS2811
     pin: GPIO16
     num_leds: 81
-    rgb_order: RBG
+    rgb_order: RGB
     name: kitchen_cabinet
     id: kitchen_cabinet
 
@@ -58,7 +58,7 @@ light:
     segments:
       - id: kitchen_cabinet
         from: 41
-        to: 81
+        to: 80
     effects:
       - addressable_fireworks:
           name: Fireworks
@@ -70,6 +70,13 @@ light:
           name: twinkle
           twinkle_probability: 10%
           progress_interval: 64ms
+          
+  - platform: partition
+    name: Stove
+    segments:
+      - id: kitchen_cabinet
+        from: 81
+        to: 101
 
 
 i2c:
