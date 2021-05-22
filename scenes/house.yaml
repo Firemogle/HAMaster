@@ -3,7 +3,15 @@
     light.kitchen_sink:
       state: on
       brightness: 100
-    light.cabinet_led: on
+    light.cabinet_bottom:
+      state: on
+      brightness: 255
+    light.cabinet_top:
+      state: on
+      brightness: 100
+    light.stove:
+      state: on
+      brightness: 255
     light.main_livingroom:
       state: on
       brightness: 250
@@ -22,7 +30,11 @@
       state: off
     light.kitchen_fan:
       state: off
-    light.cabinet_led: 
+    light.cabinet_bottom:
+      state: off
+    light.cabinet_top:
+      state: off
+    light.stove:
       state: off
     light.hallway:
       state: off
@@ -62,8 +74,15 @@
       state: off
     light.kitchen_fan:
       state: off
-    light.cabinet_led: 
-      state: off
+    light.cabinet_bottom:
+      state: on
+      brightness: 100
+    light.cabinet_top:
+      state: on
+      brightness: 50
+    light.stove:
+      state: on
+      brightness: 100
     light.hallway:
       state: off
     light.main_livingroom:
@@ -97,7 +116,15 @@
       state: on
     light.garage_ext_2:
       state: on
-    light.cabinet_led: on
+    light.cabinet_bottom:
+      state: on
+      brightness: 255
+    light.cabinet_top:
+      state: on
+      brightness: 100
+    light.stove:
+      state: on
+      brightness: 255
     light.main_livingroom:
       state: on
       brightness: 100
@@ -111,7 +138,15 @@
     light.kitchen_sink:
       state: on
       brightness: 100
-    light.cabinet_led: on
+    light.cabinet_bottom:
+      state: on
+      brightness: 255
+    light.cabinet_top:
+      state: on
+      brightness: 100
+    light.stove:
+      state: on
+      brightness: 255
     light.main_livingroom:
       state: on
       brightness: 100
