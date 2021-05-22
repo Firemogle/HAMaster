@@ -23,7 +23,7 @@ light:
   - platform: fastled_clockless
     chipset: WS2811
     pin: GPIO16
-    num_leds: 81
+    num_leds: 101
     rgb_order: RGB
     name: kitchen_cabinet
     id: kitchen_cabinet
