@@ -23,7 +23,7 @@ light:
   - platform: fastled_clockless
     chipset: WS2811
     pin: GPIO16
-    num_leds: 101
+    num_leds: 121
     rgb_order: RGB
     name: kitchen_cabinet
     id: kitchen_cabinet
@@ -59,6 +59,9 @@ light:
       - id: kitchen_cabinet
         from: 41
         to: 80
+      - id: kitchen_cabinet
+        from: 101
+        to: 121
     effects:
       - addressable_fireworks:
           name: Fireworks
