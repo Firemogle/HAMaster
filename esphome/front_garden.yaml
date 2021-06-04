@@ -1,0 +1,19 @@
+esphome:
+  name: front_garden
+  platform: ESP32
+  board: nodemcu-32s
+
+wifi:
+  ssid: !secret AP
+  password: !secret APPW
+  power_save_mode: none
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  password: !secret AP_PW
+
+ota:
+  password: !secret OTA_PW
