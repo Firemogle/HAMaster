@@ -17,3 +17,40 @@ api:
 
 ota:
   password: !secret OTA_PW
+
+
+i2c:
+   sda: GPIO21
+   scl: GPIO22
+    
+pcf8574:
+  - id: 'pcf8574_hub'
+    address: 0x27
+    pcf8575: True
+    
+ads1115:
+  - id: ads1115_1
+    address: 0x48
+  - id: ads1115_2
+    address: 0x49
+    
+sensor:
+  - platform: bme280
+    temperature:
+      name: front_garden_temp
+      oversampling: 16x
+    humidity:
+      name: front_garden_humidity
+    address: 0x76
+    pressure:
+      name: front_garden_pressure
+    update_interval: 60s
+    
+light:
+  - platform: fastled_clockless
+    chipset: WS2811
+    pin: GPIO16
+    num_leds: 1
+    rgb_order: RGB
+    name: "Livingroom Window Ext Light"
+    id: front_garden
