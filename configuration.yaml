@@ -37,8 +37,8 @@ http:
   server_port: 8123 # Hard set port
   use_x_forwarded_for: true
   trusted_proxies:
-    - 172.17.0.1/16
-    - 172.30.32.1/23
+    - 172.17.0.0/16
+    - 172.30.32.0/23
   
 websocket_api:
 mobile_app:
