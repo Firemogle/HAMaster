@@ -87,16 +87,16 @@ i2c:
    scl: GPIO22  
     
 sensor:
-#  - platform: bme280
-#    temperature:
-#      name: kitchen_cabinet_temp
-#      oversampling: 16x
-#    humidity:
-#      name: kitchen_cabinet_humidity
-#    address: 0x76
-#    pressure:
-#      name: kitchen_cabinet_pressure
-#    update_interval: 60s
+  - platform: bme280
+    temperature:
+      name: kitchen_cabinet_temp
+      oversampling: 16x
+    humidity:
+      name: kitchen_cabinet_humidity
+    address: 0x76
+    pressure:
+      name: kitchen_cabinet_pressure
+    update_interval: 60s
     
   - platform: bh1750
     name: kitchen_cabinet_lux
