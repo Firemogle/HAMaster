@@ -229,7 +229,6 @@ sensor:
           {% endif %}
 
   - platform: uptime
-    unit_of_measurement: minutes
 
   - platform: mqtt
     name: "Attic Temp"
@@ -245,8 +244,6 @@ sensor:
     name: "Attic Humidity"
     state_topic: "/Attic_Sensor/Attic/Humidity"
     unit_of_measurement: "%"
-
-
 
   - platform: radarr
     api_key: c037c402e3814b978495137f7d18bf89
