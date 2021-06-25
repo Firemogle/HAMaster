@@ -1,3 +1,0 @@
-- platform: decora_wifi
-  username: !secret DECORA_USER
-  password: !secret DECORA_PW
