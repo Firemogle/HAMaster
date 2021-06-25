@@ -152,7 +152,6 @@ person: !include_dir_merge_list people/
 camera: !include_dir_merge_list cameras/
 cover: !include_dir_merge_list covers/
 sensor: !include_dir_merge_list sensors/
-light: !include_dir_merge_list lights/
 switch: !include_dir_merge_list switch_dir/
 group: !include groups.yaml
 automation: !include_dir_merge_list automations/
