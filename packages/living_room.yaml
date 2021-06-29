@@ -2,6 +2,8 @@ homeassistant:
   customize:
     light.livingroom_entry:
       friendly_name: "Livingroom Entry"
+    light.main_livingroom_entry:
+      friendly_name: "Main Livingroom"
     switch.livingroom_subwoofer:
       friendly_name: "Livingroom Subwoofer"
       icon: mdi:speaker
