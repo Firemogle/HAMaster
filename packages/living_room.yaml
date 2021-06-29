@@ -2,7 +2,7 @@ homeassistant:
   customize:
     light.livingroom_entry:
       friendly_name: "Livingroom Entry"
-    light.main_livingroom_entry:
+    light.main_livingroom:
       friendly_name: "Main Livingroom"
     switch.livingroom_subwoofer:
       friendly_name: "Livingroom Subwoofer"
