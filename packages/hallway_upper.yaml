@@ -12,6 +12,8 @@ homeassistant:
       friendly_name: Hall Upper Temperature
     sensor.hall_window_temperature:
       friendly_name: Hall Window Temperature
+    light.hallway:
+      friendly_name: Hallway Light
 
 binary_sensor:
   - platform: template # Combine both hallway sensors into 1 logical 
