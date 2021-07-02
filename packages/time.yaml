@@ -214,19 +214,6 @@ automation:
     - data:
         entity_id: scene.ext_lights_off
       service: scene.turn_on
-
-  - id: 'house_afternoon'
-    alias: house_afternoon
-    initial_state: 'off'
-    trigger:
-    - entity_id: binary_sensor.afternoon
-      platform: state
-      to: 'on'
-    condition: []
-    action:
-    - data:
-        entity_id: vacuum.rrroomba
-      service: vacuum.start
       
   - id: 'bedroom_wakeup'
     alias: bedroom_wakeup
@@ -251,4 +238,7 @@ automation:
         entity_id: light.emi_star_lamp
         brightness: 255
         transition: 1800
+    - data:
+        entity_id: vacuum.rrroomba
+      service: vacuum.start
 
