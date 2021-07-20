@@ -71,32 +71,36 @@ automation:
 script:
   goodnight_emi:
     sequence:
-      - light.turn_on
-        data:
+      - service:  light.turn_on
+        target:
           entity_id:  light.emi_star_lamp
+        data:
           kelvin: 3700
           brightness_pct: 100
-     - fan.turn_on
-       data:
-         fan.emi_fan
-      - light.turn_on
-        data:
+      - service:  fan.turn_on
+        target:
+          entity_id:  fan.emi_fan
+      - service:  light.turn_on
+        target:
           entity_id:  light.hallway
+        data:
           brightness_pct: 10
       - delay:
           minutes: 30
-      - light.turn_off
+      - service:  light.turn_off
         data:
           entity_id:  light.emi_fan_light
-      - light.turn_on
-        data:
+      - service:  light.turn_on
+        target:
           entity_id:  light.emi_star_lamp
+        data:
           kelvin: 3700
           brightness_pct: 10
           transition: 900
       - delay:
           minutes: 15
-      - light.turn_off
-        data:
+      - service:  light.turn_off
+        target:
           entity_id:  light.emi_star_lamp
+        data:
           transition: 300
