@@ -67,3 +67,36 @@ automation:
           {% elif (states.sensor.emi_temp.state|float <= 74 ) %} 
             low
           {% endif %}
+
+script:
+  goodnight_emi:
+    sequence:
+      - light.turn_on
+        data:
+          entity_id:  light.emi_star_lamp
+          kelvin: 3700
+          brightness_pct: 100
+     - fan.turn_on
+       data:
+         fan.emi_fan
+      - light.turn_on
+        data:
+          entity_id:  light.hallway
+          brightness_pct: 10
+      - delay:
+          minutes: 30
+      - light.turn_off
+        data:
+          entity_id:  light.emi_fan_light
+      - light.turn_on
+        data:
+          entity_id:  light.emi_star_lamp
+          kelvin: 3700
+          brightness_pct: 10
+          transition: 900
+      - delay:
+          minutes: 15
+      - light.turn_off
+        data:
+          entity_id:  light.emi_star_lamp
+          transition: 300
