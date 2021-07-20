@@ -284,11 +284,6 @@ views:
         entities: []
         camera_image: camera.doorbell_last_person
         camera_view: live
-      - type: picture-glance
-        title: Last Person in Driveway
-        entities: []
-        camera_image: camera.frontyard_last_person
-        camera_view: live
         
         
   - title: Plants
