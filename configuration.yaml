@@ -67,6 +67,8 @@ alexa:
   smart_home:
     endpoint: https://api.amazonalexa.com/v3/events
     filter:
+      include_entities:
+        - script.goodnight_emi
       include_domains:
         - light
         - switch
