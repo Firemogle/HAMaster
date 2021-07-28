@@ -75,7 +75,7 @@ script:
         target:
           entity_id:  light.emi_star_lamp
         data:
-          kelvin: 4000
+          kelvin: 4700
           brightness_pct: 100
       - service:  fan.turn_on
         target:
@@ -84,7 +84,7 @@ script:
         target:
           entity_id:  light.hallway
         data:
-          brightness_pct: 15
+          brightness_pct: 20
       - delay:
           minutes: 30
       - service:  light.turn_off
