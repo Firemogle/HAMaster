@@ -45,6 +45,7 @@ http:
   
 websocket_api:
 mobile_app:
+energy:
 
 alarm_control_panel:
   - platform: manual
