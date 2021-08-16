@@ -117,6 +117,7 @@ views:
           - fan.emi_fan
           - light.emi_fan_light
           - light.emi_star_lamp
+          - input_number.emi_night_timer
           - binary_sensor.emi_motion
           - binary_sensor.emi_window_controller_motion
           - sensor.emi_temp
