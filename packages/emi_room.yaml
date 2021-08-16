@@ -67,6 +67,16 @@ automation:
           {% elif (states.sensor.emi_temp.state|float <= 74 ) %} 
             low
           {% endif %}
+          
+input_number:
+  emi_night_timer:
+    name: "Emi nighttime routine timer"
+    mode: slider
+    initial: 30
+    min: 1
+    max: 60
+    step: 1
+    unit_of_measurement: "M"
 
 script:
   goodnight_emi:
@@ -86,6 +96,8 @@ script:
         data:
           brightness_pct: 25
       - delay:
+        minutes: >
+          {{ states('input_number.emi_night_timer')|int }}
           minutes: 30
       - service:  light.turn_off
         data:
