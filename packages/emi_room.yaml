@@ -96,8 +96,7 @@ script:
         data:
           brightness_pct: 25
       - delay:
-        minutes: >
-          {{ states('input_number.emi_night_timer')|int }}
+        minutes: {{ states('input_number.emi_night_timer')|int }}
           minutes: 30
       - service:  light.turn_off
         data:
