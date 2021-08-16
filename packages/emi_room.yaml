@@ -95,9 +95,7 @@ script:
           entity_id:  light.hallway
         data:
           brightness_pct: 25
-      - delay:
-        minutes: >
-            {{ states('input_number.emi_night_timer')|int }}
+      - delay: "{{ states('input_number.emi_night_timer') | multiply(60) | int }}"
       - service:  light.turn_off
         data:
           entity_id:  light.emi_fan_light
