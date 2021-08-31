@@ -22,7 +22,7 @@ views:
         title: People
         show_header_toggle: false
         entities:
-          - entity: device_tracker.sm_g965f
+          - entity: device_tracker.brettphone_s21u
             name: "Brett"
           - entity: device_tracker.sm_g975f
             name: "Liz"
