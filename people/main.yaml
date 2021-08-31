@@ -1,7 +1,7 @@
 - name: Brett
   id: brett
   device_trackers:
-    - device_tracker.g965f
+    - device_tracker.brettphone_s21u
 - name: Liz
   id: liz
   device_trackers:
