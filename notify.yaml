@@ -38,5 +38,5 @@
 - name: group_notify
   platform: group
   services:
-    - service: mobile_app_brett_phone
+    - service: mobile_app_brettphone
     - service: mobile_app_sm_g975f
