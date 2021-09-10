@@ -1,0 +1,124 @@
+esphome:
+  name: front_garden
+  platform: ESP32
+  board: nodemcu-32s
+
+ethernet:
+  type: LAN8720
+  mdc_pin: GPIO23
+  mdio_pin: GPIO18
+  clk_mode: GPIO17_OUT
+  phy_addr: 0
+  power_pin: GPIO12
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  password: !secret AP_PW
+
+ota:
+  password: !secret OTA_PW
+
+
+i2c:
+   sda: GPIO13
+   scl: GPIO16
+   
+pca9685:
+  frequency: 500
+  
+output:
+  - platform: pca9685
+    id: 'fan_00_pwm'
+    channel: 0
+  - platform: pca9685
+    id: 'fan_01_pwm'
+    channel: 1
+  - platform: pca9685
+    id: 'fan_02_pwm'
+    channel: 2
+  - platform: pca9685
+    id: 'fan_03_pwm'
+    channel: 3
+  - platform: pca9685
+    id: 'fan_10_pwm'
+    channel: 4
+  - platform: pca9685
+    id: 'fan_11_pwm'
+    channel: 5
+  - platform: pca9685
+    id: 'fan_12_pwm'
+    channel: 6
+  - platform: pca9685
+    id: 'fan_13_pwm'
+    channel: 7
+  - platform: pca9685
+    id: 'fan_14_pwm'
+    channel: 8
+  - platform: pca9685
+    id: 'fan_15_pwm'
+    channel: 9
+  - platform: pca9685
+    id: 'mux_0'
+    channel: 10
+  - platform: pca9685
+    id: 'mux_1'
+    channel: 11
+  - platform: pca9685
+    id: 'mux_2'
+    channel: 12
+  - platform: pca9685
+    id: 'mux_3'
+    channel: 13
+  - platform: pca9685
+    id: 'baffle_servo'
+    channel: 14
+  - platform: pca9685
+    id: 'lock_servo'
+    channel: 15
+    
+fan:
+  - platform: speed
+    output: fan_00_pwm
+    name: "Fan 00"
+  - platform: speed
+    output: fan_01_pwm
+    name: "Fan 01"
+  - platform: speed
+    output: fan_02_pwm
+    name: "Fan 02"
+  - platform: speed
+    output: fan_03_pwm
+    name: "Fan 03"
+  - platform: speed
+    output: fan_10_pwm
+    name: "Fan 10"
+  - platform: speed
+    output: fan_11_pwm
+    name: "Fan 11"
+  - platform: speed
+    output: fan_12_pwm
+    name: "Fan 12"
+  - platform: speed
+    output: fan_13_pwm
+    name: "Fan 13"
+    
+sensor:
+  - platform: bme280
+    temperature:
+      name: server_intake_temp
+      oversampling: 16x
+    humidity:
+      name: server_intake_humidity
+    address: 0x76
+    pressure:
+      name: server_intake_pressure
+    update_interval: 60s
+    
+  - platform: pulse_counter
+    pin: GPIO39
+    id: raw_fan_rpm
+    name: "raw_rpm"
+    internal: true
