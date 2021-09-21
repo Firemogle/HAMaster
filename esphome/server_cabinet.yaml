@@ -25,9 +25,9 @@ ota:
 i2c:
    sda: GPIO13
    scl: GPIO16
-   
+    
 pca9685:
-  frequency: 500
+  frequency: 24000
   
 output:
   - platform: pca9685
@@ -72,12 +72,17 @@ output:
   - platform: pca9685
     id: 'mux_3'
     channel: 13
-  - platform: pca9685
-    id: 'baffle_servo'
-    channel: 14
-  - platform: pca9685
-    id: 'lock_servo'
-    channel: 15
+  - platform: ledc
+    pin: GPIO19     # Need to find good pin
+    id: baffle_servo
+    frequency: 50 Hz
+    
+servo:
+  - id: baffle_control
+    output: baffle_server
+    min_level: 2%
+    idle_level: 5%
+    max_level: 10%
     
 fan:
   - platform: speed
