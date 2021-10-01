@@ -3,6 +3,12 @@ esphome:
   platform: ESP32
   board: nodemcu-32s
 
+ globals:
+   - id: channel_count
+     type: int
+     restore_value: no
+     initial_value: '0'
+
 ethernet:
   type: LAN8720
   mdc_pin: GPIO23
@@ -109,6 +115,9 @@ fan:
   - platform: speed
     output: fan_13_pwm
     name: "Fan 13"
+  - platform: speed
+    output: fan_14_pwm
+    name: "Fan 14"
     
 sensor:
   - platform: bme280
@@ -127,3 +136,59 @@ sensor:
     id: raw_fan_rpm
     name: "raw_rpm"
     internal: true
+    on_value:
+      then:
+        - !lambda |-
+          if (id(channel_count) & 1) {
+            id(mux_0_switch).turn_on();
+          } else {
+            id(mux_0_switch).turn_off();
+          }
+          if ((id(channel_count) & 2) >> 1) {
+            id(mux_1_switch).turn_on();
+          } else {
+            id(mux_1_switch).turn_off();
+          }
+          if ((id(channel_count) & 4) >> 2) {
+            id(mux_2_switch).turn_on();
+          } else {
+            id(mux_2_switch).turn_off();
+          }
+          switch(id(channel_count)) {
+             case 0 :
+                id(fan_00_rpm).publish_state(id(raw_fan_rpm).state);
+                id(channel_count)++;
+                break;
+             case 1 :
+                id(fan_01_rpm).publish_state(id(raw_fan_rpm).state);
+                id(channel_count)++;
+                break;
+             case 2 :
+                id(fan_02_rpm).publish_state(id(raw_fan_rpm).state);
+                id(channel_count)++;
+                break;
+             case 3 :
+                id(fan_03_rpm).publish_state(id(raw_fan_rpm).state);
+                id(channel_count)++;
+                break;
+             case 4 :
+                id(fan_10_rpm).publish_state(id(raw_fan_rpm).state);
+                id(channel_count)++;
+                break;
+             case 5 :
+                id(fan_11_rpm).publish_state(id(raw_fan_rpm).state);
+                id(channel_count)++;
+                break;
+             case 6 :
+                id(fan_12_rpm).publish_state(id(raw_fan_rpm).state);
+                id(channel_count)++;
+                break;
+             case 7 :
+                id(fan_13_rpm).publish_state(id(raw_fan_rpm).state);
+                id(channel_count)++;
+                break;
+             case 8 :
+                id(fan_14_rpm).publish_state(id(raw_fan_rpm).state);
+                id(channel_count) = 0;
+                break;
+
