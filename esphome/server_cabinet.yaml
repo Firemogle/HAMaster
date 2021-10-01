@@ -69,15 +69,19 @@ output:
   - platform: pca9685
     id: 'mux_0'
     channel: 10
+    internal: true
   - platform: pca9685
     id: 'mux_1'
     channel: 11
+    internal: true
   - platform: pca9685
     id: 'mux_2'
     channel: 12
+    internal: true
   - platform: pca9685
     id: 'mux_3'
     channel: 13
+    internal: true
   - platform: ledc
     pin: GPIO19     # Need to find good pin
     id: baffle_servo
@@ -131,6 +135,42 @@ sensor:
       name: server_intake_pressure
     update_interval: 60s
     
+  - platform: template
+    name: "fan_00_rpm"
+    id: fan_00_rpm
+    
+  - platform: template
+    name: "fan_01_rpm"
+    id: fan_01_rpm
+        
+  - platform: template
+    name: "fan_02_rpm"
+    id: fan_02_rpm
+    
+  - platform: template
+    name: "fan_03_rpm"
+    id: fan_03_rpm
+
+  - platform: template
+    name: "fan_10_rpm"
+    id: fan_10_rpm
+    
+  - platform: template
+    name: "fan_11_rpm"
+    id: fan_11_rpm
+        
+  - platform: template
+    name: "fan_12_rpm"
+    id: fan_12_rpm
+    
+  - platform: template
+    name: "fan_13_rpm"
+    id: fan_13_rpm
+    
+  - platform: template
+    name: "fan_14_rpm"
+    id: fan_14_rpm
+    
   - platform: pulse_counter
     pin: GPIO39
     id: raw_fan_rpm
@@ -140,19 +180,19 @@ sensor:
       then:
         - !lambda |-
           if (id(channel_count) & 1) {
-            id(mux_0_switch).turn_on();
+            id(mux_0).set_level(1);
           } else {
-            id(mux_0_switch).turn_off();
+            id(mux_0).set_level(0);
           }
           if ((id(channel_count) & 2) >> 1) {
-            id(mux_1_switch).turn_on();
+            id(mux_1).set_level(1);
           } else {
-            id(mux_1_switch).turn_off();
+            id(mux_1).set_level(0);
           }
           if ((id(channel_count) & 4) >> 2) {
-            id(mux_2_switch).turn_on();
+            id(mux_2).set_level(1);
           } else {
-            id(mux_2_switch).turn_off();
+            id(mux_2).set_level(0);
           }
           switch(id(channel_count)) {
              case 0 :
