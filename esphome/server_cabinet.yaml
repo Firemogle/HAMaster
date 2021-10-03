@@ -3,11 +3,11 @@ esphome:
   platform: ESP32
   board: nodemcu-32s
 
- globals:
-   - id: channel_count
-     type: int
-     restore_value: no
-     initial_value: '0'
+globals:
+  - id: channel_count
+    type: int
+    restore_value: no
+    initial_value: '0'
 
 ethernet:
   type: LAN8720
