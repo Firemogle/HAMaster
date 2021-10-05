@@ -175,56 +175,56 @@ sensor:
     on_value:
       then:
         - lambda: |-
-          if (id(channel_count) & 1) {
-            id(mux_0).set_level(1);
-          } else {
-            id(mux_0).set_level(0);
-          }
-          if ((id(channel_count) & 2) >> 1) {
-            id(mux_1).set_level(1);
-          } else {
-            id(mux_1).set_level(0);
-          }
-          if ((id(channel_count) & 4) >> 2) {
-            id(mux_2).set_level(1);
-          } else {
-            id(mux_2).set_level(0);
-          }
-          switch(id(channel_count)) {
-             case 0 :
-                id(fan_00_rpm).publish_state(id(raw_fan_rpm).state);
-                id(channel_count)++;
-                break;
-             case 1 :
-                id(fan_01_rpm).publish_state(id(raw_fan_rpm).state);
-                id(channel_count)++;
-                break;
-             case 2 :
-                id(fan_02_rpm).publish_state(id(raw_fan_rpm).state);
-                id(channel_count)++;
-                break;
-             case 3 :
-                id(fan_03_rpm).publish_state(id(raw_fan_rpm).state);
-                id(channel_count)++;
-                break;
-             case 4 :
-                id(fan_10_rpm).publish_state(id(raw_fan_rpm).state);
-                id(channel_count)++;
-                break;
-             case 5 :
-                id(fan_11_rpm).publish_state(id(raw_fan_rpm).state);
-                id(channel_count)++;
-                break;
-             case 6 :
-                id(fan_12_rpm).publish_state(id(raw_fan_rpm).state);
-                id(channel_count)++;
-                break;
-             case 7 :
-                id(fan_13_rpm).publish_state(id(raw_fan_rpm).state);
-                id(channel_count)++;
-                break;
-             case 8 :
-                id(fan_14_rpm).publish_state(id(raw_fan_rpm).state);
-                id(channel_count) = 0;
-                break;
+            if (id(channel_count) & 1) {
+              id(mux_0).set_level(1);
+            } else {
+              id(mux_0).set_level(0);
+            }
+            if ((id(channel_count) & 2) >> 1) {
+              id(mux_1).set_level(1);
+            } else {
+              id(mux_1).set_level(0);
+            }
+            if ((id(channel_count) & 4) >> 2) {
+              id(mux_2).set_level(1);
+            } else {
+              id(mux_2).set_level(0);
+            }
+            switch(id(channel_count)) {
+               case 0 :
+                  id(fan_00_rpm).publish_state(id(raw_fan_rpm).state);
+                  id(channel_count)++;
+                  break;
+               case 1 :
+                  id(fan_01_rpm).publish_state(id(raw_fan_rpm).state);
+                  id(channel_count)++;
+                  break;
+               case 2 :
+                  id(fan_02_rpm).publish_state(id(raw_fan_rpm).state);
+                  id(channel_count)++;
+                  break;
+               case 3 :
+                  id(fan_03_rpm).publish_state(id(raw_fan_rpm).state);
+                  id(channel_count)++;
+                  break;
+               case 4 :
+                  id(fan_10_rpm).publish_state(id(raw_fan_rpm).state);
+                  id(channel_count)++;
+                  break;
+               case 5 :
+                  id(fan_11_rpm).publish_state(id(raw_fan_rpm).state);
+                  id(channel_count)++;
+                  break;
+               case 6 :
+                  id(fan_12_rpm).publish_state(id(raw_fan_rpm).state);
+                  id(channel_count)++;
+                  break;
+               case 7 :
+                  id(fan_13_rpm).publish_state(id(raw_fan_rpm).state);
+                  id(channel_count)++;
+                  break;
+               case 8 :
+                  id(fan_14_rpm).publish_state(id(raw_fan_rpm).state);
+                  id(channel_count) = 0;
+                  break;
 
