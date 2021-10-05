@@ -174,7 +174,7 @@ sensor:
     internal: true
     on_value:
       then:
-        - !lambda: |-
+        - lambda: |-
           if (id(channel_count) & 1) {
             id(mux_0).set_level(1);
           } else {
