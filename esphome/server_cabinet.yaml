@@ -33,7 +33,7 @@ i2c:
    scl: GPIO16
     
 pca9685:
-  frequency: 15000
+  frequency: 1500
   
 output:
   - platform: pca9685
@@ -174,7 +174,7 @@ sensor:
     internal: true
     on_value:
       then:
-        - !lambda |-
+        - !lambda: |-
           if (id(channel_count) & 1) {
             id(mux_0).set_level(1);
           } else {
