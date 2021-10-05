@@ -85,7 +85,7 @@ output:
     
 servo:
   - id: baffle_control
-    output: baffle_server
+    output: baffle_servo
     min_level: 2%
     idle_level: 5%
     max_level: 10%
