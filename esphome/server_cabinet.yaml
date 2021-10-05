@@ -33,7 +33,7 @@ i2c:
    scl: GPIO16
     
 pca9685:
-  frequency: 24000
+  frequency: 15000
   
 output:
   - platform: pca9685
@@ -69,19 +69,15 @@ output:
   - platform: pca9685
     id: 'mux_0'
     channel: 10
-    internal: true
   - platform: pca9685
     id: 'mux_1'
     channel: 11
-    internal: true
   - platform: pca9685
     id: 'mux_2'
     channel: 12
-    internal: true
   - platform: pca9685
     id: 'mux_3'
     channel: 13
-    internal: true
   - platform: ledc
     pin: GPIO19     # Need to find good pin
     id: baffle_servo
