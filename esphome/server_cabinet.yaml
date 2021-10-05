@@ -1,5 +1,5 @@
 esphome:
-  name: front_garden
+  name: server_control
   platform: ESP32
   board: nodemcu-32s
 
