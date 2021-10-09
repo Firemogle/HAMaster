@@ -35,6 +35,8 @@ i2c:
 pca9685:
   frequency: 1500
   
+bme680_bsec:
+  
 output:
   - platform: pca9685
     id: 'fan_00_pwm'
@@ -118,17 +120,37 @@ fan:
   - platform: speed
     output: fan_14_pwm
     name: "Fan 14"
-    
+
+
+text_sensor:
+  - platform: bme680_bsec
+    iaq_accuracy:
+      name: "Server Intake IAQ Accuracy"
+
 sensor:
+  - platform: bme680_bsec
+    temperature:
+      name: "Server Intake Temperature"
+    pressure:
+      name: "Server Intake Pressure"
+    humidity:
+      name: "Server Intake Humidity"
+    iaq:
+      name: "Server Intake IAQ"
+    co2_equivalent:
+      name: "Server Intake CO2 Equivalent"
+    breath_voc_equivalent:
+      name: "Server Intake Breath VOC Equivalent"
+
   - platform: bme280
     temperature:
-      name: server_intake_temp
+      name: "Server Rack Temp"
       oversampling: 16x
     humidity:
-      name: server_intake_humidity
+      name: "Server Rack Humidity"
     address: 0x76
     pressure:
-      name: server_intake_pressure
+      name: "Server Rack Pressure"
     update_interval: 60s
     
   - platform: template
