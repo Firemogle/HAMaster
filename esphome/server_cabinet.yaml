@@ -249,4 +249,5 @@ sensor:
                   id(fan_14_rpm).publish_state(id(raw_fan_rpm).state);
                   id(channel_count) = 0;
                   break;
+               }
 
