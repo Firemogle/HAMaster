@@ -2,6 +2,7 @@ homeassistant:
   name: Home
   latitude: !secret lat
   longitude: !secret long
+  external_url: !secret url
   elevation: 283
   unit_system: imperial
   time_zone: America/New_York
