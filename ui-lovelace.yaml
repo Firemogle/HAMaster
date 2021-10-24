@@ -227,9 +227,9 @@ views:
         title: "Front Porch"
         show_header_toggle: false
         entities:
-          - light.porch_light
-          - light.garage_ext_1
-          - light.garage_ext_2
+          - light.front_light1_level_light_color_on_off
+          - light.front_light2_level_light_color_on_off
+          - light.front_light3_level_light_color_on_off
       - type: entities
         title: Garage
         show_header_toggle: false
