@@ -36,6 +36,7 @@ pca9685:
   frequency: 1500
   
 bme680_bsec:
+  address: 0x77
   
 output:
   - platform: pca9685
@@ -129,7 +130,6 @@ text_sensor:
 
 sensor:
   - platform: bme680_bsec
-    address: 0x77
     temperature:
       name: "Server Intake Temperature"
     pressure:
