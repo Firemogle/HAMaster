@@ -129,6 +129,7 @@ text_sensor:
 
 sensor:
   - platform: bme680_bsec
+    address: 0x77
     temperature:
       name: "Server Intake Temperature"
     pressure:
