@@ -62,7 +62,7 @@ switch:
     name: garage_door_act
     id: garage_door_act
     pin:
-      mcp23017: mcp23017_hub
+      mcp23xxx: mcp23017_hub
       number: 0
       mode: OUTPUT
       inverted: True
@@ -72,7 +72,7 @@ switch:
     id: irr_master
     icon: mdi:watering-can
     pin:
-      mcp23017: mcp23017_hub
+      mcp23xxx: mcp23017_hub
       number: 1
       mode: OUTPUT
       inverted: true
@@ -82,7 +82,7 @@ switch:
     icon: mdi:watering-can
     id: irr1
     pin:
-      mcp23017: mcp23017_hub
+      mcp23xxx: mcp23017_hub
       number: 2
       mode: OUTPUT
       inverted: true
@@ -96,7 +96,7 @@ switch:
     icon: mdi:watering-can
     id: irr2
     pin:
-      mcp23017: mcp23017_hub
+      mcp23xxx: mcp23017_hub
       number: 3
       mode: OUTPUT
       inverted: true
@@ -110,7 +110,7 @@ switch:
     icon: mdi:watering-can
     id: irr3
     pin:
-      mcp23017: mcp23017_hub
+      mcp23xxx: mcp23017_hub
       number: 4
       mode: OUTPUT
       inverted: true
@@ -124,7 +124,7 @@ switch:
     icon: mdi:watering-can
     id: irr4
     pin:
-      mcp23017: mcp23017_hub
+      mcp23xxx: mcp23017_hub
       number: 5
       mode: OUTPUT
       inverted: true
@@ -138,7 +138,7 @@ switch:
     icon: mdi:watering-can
     id: irr5
     pin:
-      mcp23017: mcp23017_hub
+      mcp23xxx: mcp23017_hub
       number: 6
       mode: OUTPUT
       inverted: true
