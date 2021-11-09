@@ -1,0 +1,61 @@
+
+esphome:
+  name: mainbathvent
+  platform: ESP8266
+  board: nodemcuv2
+
+wifi:
+  ssid: !secret AP
+  password: !secret APPW
+  power_save_mode: none
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  password: !secret AP_PW
+
+ota:
+  password: !secret OTA_PW
+
+
+i2c:
+   sda: GPIO4
+   scl: GPIO5
+    
+  
+bme680_bsec:
+  address: 0x77
+  
+text_sensor:
+  - platform: bme680_bsec
+    iaq_accuracy:
+      name: "Main Bath Vent Intake IAQ Accuracy"
+
+sensor:
+  - platform: bme680_bsec
+    temperature:
+      name: "Main Bath Vent Temperature"
+    pressure:
+      name: "Main Bath Vent Pressure"
+    humidity:
+      name: "Main Bath Vent Humidity"
+    iaq:
+      name: "Main Bath Vent IAQ"
+    co2_equivalent:
+      name: "Main Bath Vent CO2 Equivalent"
+    breath_voc_equivalent:
+      name: "Main Bath Vent Breath VOC Equivalent"
+
+  - platform: bme280
+    temperature:
+      name: "Attic Temp"
+      oversampling: 16x
+    humidity:
+      name: "Attic Humidity"
+    address: 0x76
+    pressure:
+      name: "Attic Rack Pressure"
+    update_interval: 60s
+    
