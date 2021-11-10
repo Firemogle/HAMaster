@@ -27,7 +27,7 @@ binary_sensor:
     sensors:
       main_bath_vent_motion:
         value_template: >-
-          {{ is_state('binary_sensor.main_bath_motion','on') }}
+          {{ is_state('binary_sensor.main_bath_motion','off') }}
         delay_off:
           minutes: 1
           
