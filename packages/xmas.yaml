@@ -37,6 +37,22 @@ scene:
         brightness: 255
       switch.garage_wall_switch:
         state: on
+      light.front_garden_level_light_color_on_off:
+        state: on
+        brightness: 255
+        rgb_color: [0,255,0]
+      light.front_light1_level_light_color_on_off:
+        state: on
+        brightness: 255
+        rgb_color: [0,255,0]
+      light.front_light1_level_light_color_on_off:
+        state: on
+        brightness: 255
+        rgb_color: [255,0,0]
+      light.front_light1_level_light_color_on_off:
+        state: on
+        brightness: 255
+        rgb_color: [255,0,0]
   - name: xmas_lights_off
     entities:
       light.front_garage_light:
