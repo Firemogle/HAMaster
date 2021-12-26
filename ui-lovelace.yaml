@@ -102,7 +102,6 @@ views:
         entities:
           - fan.master_fan
           - light.master_fan_light
-          - switch.master_tv
           - light.liz_headboard
           - light.brett_headboard
           - binary_sensor.master_bed_window
@@ -118,6 +117,7 @@ views:
           - light.emi_fan_light
           - light.emi_star_lamp
           - input_number.emi_night_timer
+          - switch.emi_tv
           - binary_sensor.emi_motion
           - binary_sensor.emi_window_controller_motion
           - sensor.emi_temp
