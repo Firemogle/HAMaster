@@ -40,6 +40,20 @@ camera:
     still_image_url: http://192.168.2.200:81/image/emibed?q=100&s=100
     mjpeg_url: http://192.168.2.200:81/mjpg/emibed/video.mjpg
     
+media_player:
+  - platform: kodi
+    name: mbed_kodi
+    host: 192.168.3.9
+    username: !secret KODI_USR
+    password: !secret KODI_PW
+
+  - platform: androidtv
+    name: mbed_shield
+    host: 192.168.3.14
+    adb_server_ip: 127.0.0.1
+    adb_server_port: 5037
+      
+    
 automation:
   - id: emi_fan_speed
     alias: emi_fan_speed
@@ -68,6 +82,29 @@ automation:
             low
           {% endif %}
           
+  - id: 'emi_tv_off'
+    alias: emi_tv_off
+    initial_state: 'off'
+    trigger:
+    - platform: time
+      at: '20:30:00'
+    condition: []
+    action:
+    - data:
+        entity_id: switch.emi_tv
+      service: switch.turn_off
+
+  - id: 'emi_tv_on'
+    alias: emi_tv_on
+    initial_state: 'off'
+    trigger:
+      platform: state
+      entity_id: media_player.emi_shield
+      from: 'off'
+    action:
+    - data:
+        entity_id: switch.emi_tv
+      service: switch.turn_on          
 input_number:
   emi_night_timer:
     name: "Emi nighttime routine timer"
