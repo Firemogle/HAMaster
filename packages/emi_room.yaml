@@ -42,13 +42,13 @@ camera:
     
 media_player:
   - platform: kodi
-    name: mbed_kodi
-    host: 192.168.3.9
+    name: emi_kodi
+    host: 192.168.3.14
     username: !secret KODI_USR
     password: !secret KODI_PW
 
   - platform: androidtv
-    name: mbed_shield
+    name: emi_shield
     host: 192.168.3.14
     adb_server_ip: 127.0.0.1
     adb_server_port: 5037
@@ -97,6 +97,11 @@ automation:
   - id: 'emi_tv_on'
     alias: emi_tv_on
     initial_state: 'off'
+    condition:
+      alias: "Emi TV Time"
+      condition: time
+      after: "6:00:00"
+      before: "20:30:00"
     trigger:
       platform: state
       entity_id: media_player.emi_shield
@@ -104,7 +109,20 @@ automation:
     action:
     - data:
         entity_id: switch.emi_tv
-      service: switch.turn_on          
+      service: switch.turn_on     
+      
+  - id: 'emi_tv_on'
+    alias: emi_tv_on
+    initial_state: 'off'
+    trigger:
+      platform: state
+      entity_id: media_player.emi_shield
+      from: 'on'
+    action:
+    - data:
+        entity_id: switch.emi_tv
+      service: switch.turn_off 
+     
 input_number:
   emi_night_timer:
     name: "Emi nighttime routine timer"
