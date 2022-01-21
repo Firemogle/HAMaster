@@ -111,8 +111,8 @@ automation:
         entity_id: switch.emi_tv
       service: switch.turn_on     
       
-  - id: 'emi_tv_on'
-    alias: emi_tv_on
+  - id: 'emi_tv_off_idle'
+    alias: emi_tv_off_idle
     initial_state: 'off'
     trigger:
       platform: state
