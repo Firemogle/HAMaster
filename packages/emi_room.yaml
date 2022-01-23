@@ -127,7 +127,7 @@ input_number:
   emi_night_timer:
     name: "Emi nighttime routine timer"
     mode: slider
-    initial: 30
+    initial: 8
     min: 1
     max: 60
     step: 1
