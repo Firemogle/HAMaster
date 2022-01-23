@@ -114,6 +114,7 @@ automation:
   - id: 'emi_tv_off_idle'
     alias: emi_tv_off_idle
     initial_state: 'off'
+    condition: []
     trigger:
       platform: state
       entity_id: media_player.emi_shield
