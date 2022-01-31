@@ -18,12 +18,22 @@ binary_sensor:
     sensors:
       main_bath_vent_needed:
         value_template: >-
-          {{ (states('sensor.bathroom_vent_humidity')|float > states('sensor.main_bath_target_humidity')|float) 
-             and ( is_state('binary_sensor.main_bath_motion','on')
+          {{ ( is_state('binary_sensor.main_bath_is_humid','on') 
              or (is_state('binary_sensor.centralite_3320_l_e278490e_ias_zone','on'))
-             or is_state('light.main_bath_vent_light', on)) }}
+             or is_state('light.main_bath_vent_light', on) }}
         delay_off:
           minutes: 5
+          
+  - platform: template
+    sensors:
+      main_bath_is_humid:
+        value_template: >-
+          {{ (states('sensor.bathroom_vent_humidity')|float > states('sensor.main_bath_target_humidity')|float) 
+             and ( is_state('binary_sensor.main_bath_motion','on')
+             or is_state('light.main_bath_vent_light', on)) }}
+        delay_off:
+          minutes: 20
+          
 
   - platform: template
     sensors:
@@ -72,24 +82,19 @@ sensor:
         unit_of_measurement: "%"
         
 
-input_boolean:
-  bath_fan_needed:
-    name: bath_fan_needed
-    initial: off
-
 automation:
   - id: main_bath_vent_control
     alias: main_bath_vent_control
     initial_state: 'off'
     trigger:
-    - entity_id: input_boolean.bath_fan_needed
+    - entity_id: binary_sensor.main_bath_vent_needed
       platform: state
     condition: []
     action:
     - data:
         entity_id: switch.main_bath_fan
       service_template: >
-        {% if is_state('input_boolean.bath_fan_needed','on') %}
+        {% if is_state('binary_sensor.main_bath_vent_needed','on') %}
           switch.turn_on
         {% else %}
           switch.turn_off
