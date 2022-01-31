@@ -18,10 +18,10 @@ binary_sensor:
     sensors:
       main_bath_vent_needed:
         value_template: >-
-          {{ (states('sensor.bathroom_vent_humidity')|float > states('sensor.main_bath_target_humidity')|float 
+          {{ (states('sensor.bathroom_vent_humidity')|float > states('sensor.main_bath_target_humidity')|float) 
              and ( is_state('binary_sensor.main_bath_motion','on')
              or (is_state('binary_sensor.centralite_3320_l_e278490e_ias_zone','on'))
-             or is_state('light.main_bath_vent_light', on) }}
+             or is_state('light.main_bath_vent_light', on)) }}
         delay_off:
           minutes: 5
 
