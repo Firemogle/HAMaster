@@ -1,3 +1,0 @@
-- platform: local_file
-  name: Grafana_temperature
-  file_path: /home/homeassistant/.homeassistant/downloads/network.png
