@@ -53,11 +53,6 @@ websocket_api:
 mobile_app:
 energy:
 
-sensor:
-  - platform: dte_energy_bridge
-    name: DTE
-    ip: 192.168.2.128
-
 alarm_control_panel:
   - platform: manual
     name: alarm_panel
