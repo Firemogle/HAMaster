@@ -83,6 +83,10 @@ binary_sensor:
         value_template: >-
           {{ is_state('alarm_control_panel.alarm_panel','disarmed') }}
           
+binary_sensor:
+  - platform: ping
+    host: 192.168.2.51
+          
           
 alert:
   ingress_alarm:
@@ -190,17 +194,17 @@ input_number:
     unit_of_measurement: "F"
 
 sensor:
-  - platform: rest
-    name: Statewide Covid Stats
-    resource: https://covidtracking.com/api/states?state=MI
-    json_attributes:
-      - positive
-      - hospitalized
-      - death
-      - total
-    value_template: '{{ value_json.state }}'
-    scan_interval: 60
+  - platform: mqtt
+    name: "DTE Energy Bridge Summary"
+    state_topic: "event/metering/summation/minute"
+    unit_of_measurement: 'W'
+    value_template: "{{ value_json.value | round(0) }}" 
     
+  - platform: integration
+    source: sensor.dte_energy_bridge_summary
+    name: energy_spent
+    unit_prefix: k
+    round: 2
 
   - platform: darksky
     api_key: eccf5f65e6dce657df3792d7e362f0db
