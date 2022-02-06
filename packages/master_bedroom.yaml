@@ -25,32 +25,3 @@ media_player:
     host: 192.168.3.9
     adb_server_ip: 127.0.0.1
     adb_server_port: 5037
-      
-automation:
-  - id: 'mbr_tv_off'
-    alias: mbr_tv_off
-    initial_state: 'off'
-    trigger:
-    - platform: time
-      at: '2:30:00'
-    - platform: time
-      at: '3:30:00'
-    - platform: time
-      at: '4:30:00'
-    condition: []
-    action:
-    - data:
-        entity_id: switch.master_tv
-      service: switch.turn_off
-
-  - id: 'mbr_tv_on'
-    alias: mbr_tv_on
-    initial_state: 'off'
-    trigger:
-      platform: state
-      entity_id: media_player.mbed_shield
-      from: 'off'
-    action:
-    - data:
-        entity_id: switch.master_tv
-      service: switch.turn_on
