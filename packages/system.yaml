@@ -258,10 +258,6 @@ sensor:
       - status
     days: 7
 
-  - platform: sonarr
-    api_key: d633b3116b584c39a0df91a027b27d38
-    host: 192.168.100.100
-    days: 7
 
   - platform: qbittorrent
     url: 'http://192.168.100.100:8112'
@@ -330,7 +326,7 @@ automation:
         entity_id: script.initialization
       service: script.turn_on
     - data_template:
-        message: "Home Assistant is now booting"
+        message: "Rejoice! For now is the blessed time for home assistant has once again booted."
       service: notify.group_notify
       
 
