@@ -35,14 +35,6 @@ binary_sensor:
   
           
 light:
-  - platform : mqtt
-    name: "Cabinet_LED"
-    state_topic: "/Cabinet_LED/relay/switch"
-    command_topic: "/Cabinet_LED/gpio/12"
-    payload_on: "1"
-    payload_off: "0"
-    retain: false
-    
   - platform: switch
     name: kitchen_lamp
     entity_id: switch.kitchen_light_switch
@@ -61,7 +53,7 @@ automation:
         entity_id: 'fan.kitchen_fan'
         state: 'on'
     action:
-    - service: fan.set_preset_mode
+    - service: fan.set_speed
       data_template:
         entity_id: fan.kitchen_fan
         speed: >
