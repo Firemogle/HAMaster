@@ -128,6 +128,8 @@ views:
           - cover.emi_window_controller_curt1
           - cover.emi_window_controller_curt2
           - sensor.emi_window_controller_lux
+      - type: media-control
+        entity: media_player.emi_media
       - type: entities
         title: Nursery Room
         show_header_toggle: false
