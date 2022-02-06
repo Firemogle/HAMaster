@@ -39,7 +39,7 @@ automation:
         entity_id: 'fan.nursery_fan'
         state: 'on'
     action:
-    - service: fan.set_preset_mode
+    - service: fan.set_speed
       data_template:
         entity_id: fan.nursery_fan
         speed: >
