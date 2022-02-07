@@ -16,73 +16,76 @@ homeassistant:
       device_class: occupancy
       
 
-binary_sensor:
-  - platform: template
-    sensors:
-      house_sts_occupants:
-        value_template: >-
+template:
+  - binary_sensor:
+      - name: house_sts_occupants
+        state: >
           {{ is_state('group.occupants', 'home') }}
-  - platform: template
-    sensors:
-      house_sts_guest:
+  - binary_sensor:
+      - name: house_sts_guest
         value_template: >-
           {{ states.calendar.guest_mode_visitor.state == 'on'
              or states.calendar.guest_mode_date.state == 'on' }}
-  - platform: template
-    sensors:
-      house_sts_vacation:
-        value_template: >-
+  - binary_sensor:
+      - name: house_sts_vacation
+        state: >
           {{ states.calendar.vacation_mode.state == 'on' }}
 
-  - platform: template
-    sensors:
-      house_sts_away_vacation:
-        value_template: >-
+  - binary_sensor:
+      - name: house_sts_away_vacation
+        state: >
           {{ ((states.proximity.brett_home.state)|float > 120 and 
              (states.proximity.liz_home.state)|float) > 120 and 
               is_state('binary_sensor.house_sts_vacation', 'on') }}
               
-  - platform: template
-    sensors:
-      house_sts_incoming:
-        value_template: >-
+  - binary_sensor:
+      - name: house_sts_incoming
+        state: >
           {{ is_state('device_tracker.google_maps_116842525089175776476', 'homecoming')
              or is_state('device_tracker.google_maps_108379141181739394475', 'homecoming') }}
 
-  - platform: template
-    sensors:
-      house_sts_dte_cheap:
-        value_template: >-
+  - binary_sensor:
+      - name: house_sts_dte_cheap
+        state: >
           {{ states.calendar.dte_cheap.state == 'on' }}
 
-  - platform: template
-    sensors:
-      house_sts_jayhawks:
-        value_template: >-
+  - binary_sensor:
+      - name: house_sts_jayhawks
+        state: >
           {{ states.calendar.football_kuathleticscom.state == 'on'
              or states.calendar.mens_basketball_kuathleticscom.state == 'on'
              or states.calendar.volleyball_kuathleticscom.state == 'on' }}
              
-  - platform: template
-    sensors:
-      house_boot_complete:
-        value_template: >-
+  - binary_sensor:
+      - name: house_boot_complete
+        state: >
           {{ states('sensor.uptime')|float > 5 }}
           
-  - platform: template
-    sensors:
-      ingress_alarm:
-        value_template: >-
+  - binary_sensor:
+      - name: ingress_alarm
+        state: >
           {{ (states('alarm_control_panel.alarm_panel') == 'armed_away'
              or states('alarm_control_panel.alarm_panel') == 'armed_home')
              and states('group.security') == 'on' }}
              
-  - platform: template
-    sensors:
-      house_armed:
-        value_template: >-
+  - binary_sensor:
+      - name: house_armed
+        state: >
           {{ is_state('alarm_control_panel.alarm_panel','disarmed') }}
           
+  - sensor:
+      - name: timeday
+        state: >
+          {% if is_state('binary_sensor.house_wake_for_work', 'on') or is_state('binary_sensor.house_weekend_wakeup', 'on') or is_state('binary_sensor.morning', 'on')%}
+            {{ "morning" }}
+          {% elif is_state('binary_sensor.afternoon', 'on') %} 
+            {{ "afternoon" }}
+          {% elif is_state('binary_sensor.evening', 'on') %}
+            {{ "evening" }}
+          {% else %}
+            {{ "night" }}
+          {% endif %}
+
 binary_sensor:
   - platform: ping
     host: 192.168.2.51
@@ -218,20 +221,6 @@ sensor:
       - temperature_high
       - temperature_low
 
-  - platform: template
-    sensors:
-      timeday:
-        value_template: >-
-          {% if is_state('binary_sensor.house_wake_for_work', 'on') or is_state('binary_sensor.house_weekend_wakeup', 'on') or is_state('binary_sensor.morning', 'on')%}
-            {{ "morning" }}
-          {% elif is_state('binary_sensor.afternoon', 'on') %} 
-            {{ "afternoon" }}
-          {% elif is_state('binary_sensor.evening', 'on') %}
-            {{ "evening" }}
-          {% else %}
-            {{ "night" }}
-          {% endif %}
-
   - platform: uptime
 
   - platform: mqtt
@@ -264,19 +253,6 @@ sensor:
     username: !secret QBUN
     password: !secret QBPW
 
-  - platform: template
-    sensors:
-      house_status:
-        value_template: >-
-          {% if is_state('binary_sensor.house_sts_occupants', 'on') %}
-            {{ "Occupied" }}
-          {% elif is_state('binary_sensor.house_sts_guest', 'on') %} 
-            {{ "Guest mode" }}
-          {% elif is_state('binary_sensor.house_sts_vacation', 'on') %}
-            {{ "Vacation" }}
-          {% else %}
-            {{ "Away" }}
-          {% endif %}
           
 folder_watcher:
   - folder: /config/www/
