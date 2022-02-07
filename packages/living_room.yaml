@@ -11,12 +11,11 @@ homeassistant:
       device_class: door
       friendly_name: Livingroom Door
   
-binary_sensor:
-  - platform: template
-    sensors:
-      livingroom_door_opened:
+template:
+  - binary_sensor:
+      - name: livingroom_door_opened:
         friendly_name: "Front Door"
-        value_template: >-
+        speed: >
           {{ is_state('binary_sensor.front_door', 'on') }}
   
 light:
