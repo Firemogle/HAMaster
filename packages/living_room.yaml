@@ -14,7 +14,6 @@ homeassistant:
 template:
   - binary_sensor:
       - name: livingroom_door_opened
-        friendly_name: "Front Door"
         state: >
           {{ is_state('binary_sensor.front_door', 'on') }}
   
