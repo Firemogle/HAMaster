@@ -13,7 +13,7 @@ homeassistant:
   
 template:
   - binary_sensor:
-      - name: livingroom_door_opened:
+      - name: livingroom_door_opened
         friendly_name: "Front Door"
         speed: >
           {{ is_state('binary_sensor.front_door', 'on') }}
