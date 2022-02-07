@@ -19,13 +19,6 @@ light:
     name: basement_stair_light
     entity_id: switch.basement_stair_light
       
-binary_sensor:
-  - platform: mqtt # 
-    state_topic: "hawirelesslink/sensor/jasco_products_26931_smart_motion_switch_burglar_7/state"
-    name: basement_stair_motion
-    payload_on: "8"
-    payload_off: "0"
-    device_class: motion
     
 #roomba:
 #  - host: 192.168.2.121
