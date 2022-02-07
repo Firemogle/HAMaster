@@ -18,18 +18,16 @@ binary_sensor:
     payload_on: "1"
     payload_off: "0"
 
-  - platform: template
-    sensors:
-      off_sts_motion:
-        value_template: >-
+template:
+  - binary_sensor:
+      - name: off_sts_motion
+        state: >
           {{ is_state('binary_sensor.off_sts_motion_raw', 'on') }}
         delay_off:
           minutes: 15
-
-  - platform: template
-    sensors:
-      off_htr_needed:
-        value_template: >-
+  - binary_sensor:
+      - name: off_htr_needed
+        state: >
           {{ is_state('binary_sensor.off_sts_motion','on')
              and is_state('binary_sensor.house_sts_hvac_heat_req','on') }}
   
