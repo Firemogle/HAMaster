@@ -59,7 +59,7 @@ template:
   - binary_sensor:
       - name: house_boot_complete
         state: >
-          {{ states('sensor.uptime')|float > 5 }}
+          {{ states('sensor.uptime', default=0)|float > 5 }}
           
   - binary_sensor:
       - name: ingress_alarm
