@@ -13,21 +13,19 @@ homeassistant:
       device_class: motion
   
   
-binary_sensor:
-  - platform: template
-    sensors:
-      main_bath_vent_needed:
-        value_template: >-
+template:
+  - binary_sensor:
+      - name: main_bath_vent_needed
+        state: >
           {{ ( is_state('binary_sensor.main_bath_is_humid','on') 
              or is_state('binary_sensor.centralite_3320_l_e278490e_ias_zone','on'))
              or is_state('light.main_bath_vent_light', 'on') }}
         delay_off:
           minutes: 5
           
-  - platform: template
-    sensors:
-      main_bath_is_humid:
-        value_template: >-
+  - binary_sensor:
+      - name: main_bath_is_humid
+        state: >
           {{ (states('sensor.bathroom_vent_humidity')|float > states('sensor.main_bath_target_humidity')|float) 
              and ( is_state('binary_sensor.main_bath_motion','on')
              or is_state('light.main_bath_vent_light', 'on')) }}
@@ -35,14 +33,24 @@ binary_sensor:
           minutes: 20
           
 
-  - platform: template
-    sensors:
-      main_bath_vent_motion:
-        value_template: >-
+  - binary_sensor:
+      - name: main_bath_vent_motion
+        state: >
           {{ is_state('binary_sensor.main_bath_motion','off') }}
         delay_off:
           minutes: 1
           
+  - binary_sensor:
+      - name: main_bath_target_humidity
+        state: >
+          {% if is_state('binary_sensor.house_sts_hvac_shut', 'off') or is_state('binary_sensor.house_sts_hvac_cool_req', 'on') %}
+            {{ (states('sensor.hvac_humidity')|float+states('input_number.main_bath_humidity_thresh')|float) }}
+          {% elif (states('sensor.hvac_humidity')|float+states('input_number.main_bath_humidity_thresh')|float) > (states('input_number.hvac_humidity_max'))|float %}
+            {{ (states('input_number.hvac_humidity_max')|float+states('input_number.main_bath_humidity_thresh')|float) }}
+          {% else %}
+            {{ (states('sensor.hvac_target_humidity')|float+states('input_number.main_bath_humidity_thresh')|float) }}
+          {% endif %}
+        unit_of_measurement: "%"
     
 sensor:
   - platform: mqtt
@@ -68,18 +76,7 @@ sensor:
     state_topic: "/Attic_Sensor/Vent/Gas"
     unit_of_measurement: "Ω"
 
-  - platform: template
-    sensors:
-      main_bath_target_humidity:
-        value_template: >-
-          {% if is_state('binary_sensor.house_sts_hvac_shut', 'off') or is_state('binary_sensor.house_sts_hvac_cool_req', 'on') %}
-            {{ (states('sensor.hvac_humidity')|float+states('input_number.main_bath_humidity_thresh')|float) }}
-          {% elif (states('sensor.hvac_humidity')|float+states('input_number.main_bath_humidity_thresh')|float) > (states('input_number.hvac_humidity_max'))|float %}
-            {{ (states('input_number.hvac_humidity_max')|float+states('input_number.main_bath_humidity_thresh')|float) }}
-          {% else %}
-            {{ (states('sensor.hvac_target_humidity')|float+states('input_number.main_bath_humidity_thresh')|float) }}
-          {% endif %}
-        unit_of_measurement: "%"
+
         
 
 automation:
