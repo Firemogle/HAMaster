@@ -15,7 +15,7 @@ template:
   - binary_sensor:
       - name: livingroom_door_opened
         friendly_name: "Front Door"
-        speed: >
+        state: >
           {{ is_state('binary_sensor.front_door', 'on') }}
   
 light:
