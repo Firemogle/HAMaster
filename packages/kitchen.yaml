@@ -25,12 +25,11 @@ homeassistant:
     sensor.garage_entry_temperature:
       friendly_name: Garage Entry Temperature
   
-binary_sensor:
-  - platform: template
-    sensors:
-      sliding_glass_door_opened:
+template:
+  - binary_sensor:
+      - name: sliding_glass_door_opened:
         friendly_name: "Sliding Glass Door"
-        value_template: >-
+        state: >
           {{ is_state('binary_sensor.sliding_glass_door', 'on') }}
   
           
