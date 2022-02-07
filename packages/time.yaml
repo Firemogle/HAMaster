@@ -37,56 +37,50 @@ binary_sensor:
     workdays: [mon, tue, wed, thu, fri]
     excludes: [sat, sun, holiday]
 
-  - platform: template # Use gcal to define if liz is working weird shifts
-    sensors:
-      house_time_liz_work_exception:
-        value_template: >-
-          {{ (as_timestamp(states.calendar.liz_work_exception.attributes.start_time) - 7200) < as_timestamp(now()) + (states('sensor.house_rand_0_100')|float)/100 }}
-  - platform: template # Define workday as normal or liz exception
-    sensors:
-      house_time_workday_combine:
-        value_template: >-
-          {{ is_state('binary_sensor.workday_raw', 'on') 
-             or is_state('binary_sensor.house_time_liz_work_exception', 'on') }} 
-  - platform: template # Define wakeup time if workday determined
-    sensors:
-      work_wakeup_time:
-        value_template: >-
+#template:
+#  - binary_sensor:
+#      - name: house_time_liz_work_exception:
+#        value_template: >-
+#          {{ (as_timestamp(states.calendar.liz_work_exception.attributes.start_time) - 7200) < as_timestamp(now()) + (states('sensor.house_rand_0_100')|float)/100 }}
+template:
+  - binary_sensor:
+      - name: house_time_workday_combine
+        state: >
+          {{ is_state('binary_sensor.workday_raw', 'on') }}
+#             or is_state('binary_sensor.house_time_liz_work_exception', 'on') }} 
+  - binary_sensor:
+      - name: work_wakeup_time
+        state: >
           {{ is_state('binary_sensor.early_morning', 'on') 
              or is_state('binary_sensor.house_time_liz_work_exception', 'on')  }}  
-  - platform: template # House needs woken up for workdays
-    sensors:
-      house_wake_for_work:
-        value_template: >-
+  - binary_sensor:
+      - name: house_wake_for_work
+        state: >
           {{ is_state('binary_sensor.house_time_workday_combine', 'on') 
              and is_state('binary_sensor.work_wakeup_time', 'on')  }}  
 
-  - platform: template # House needs woken up for non-workdays
-    sensors:
-      house_weekend_wakeup:
-        value_template: >-
+  - binary_sensor:
+      - name: house_weekend_wakeup
+        state: >
           {{ is_state('binary_sensor.workday_raw', 'off') 
              and is_state('binary_sensor.morning', 'on')  }} 
-  - platform: template # Combine wakeups into one wake signal
-    sensors:
-      house_wakeup:
-        value_template: >-
+  - binary_sensor:
+      - name: house_wakeup
+        state: >
           {{ is_state('binary_sensor.house_wake_for_work', 'on') 
              or is_state('binary_sensor.house_weekend_wakeup', 'on')  }} 
 
 
-  - platform: template # Vacation morning
-    sensors:
-      house_wakeup_vacation_morning:
-        value_template: >-
+  - binary_sensor:
+      - name: house_wakeup_vacation_morning
+        state: >
           {{ is_state('binary_sensor.early_morning', 'on') 
              and is_state('binary_sensor.house_sts_vacation', 'on')  }}
              
 
-  - platform: template # Vacation evening
-    sensors:
-      house_wakeup_vacation_evening:
-        value_template: >-
+  - binary_sensor:
+      - name: house_wakeup_vacation_evening
+        state: >
           {{ is_state('binary_sensor.evening', 'on') 
              and is_state('binary_sensor.house_sts_vacation', 'on')  }}
   
