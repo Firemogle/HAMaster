@@ -26,7 +26,7 @@ template:
   - binary_sensor:
       - name: main_bath_is_humid
         state: >
-          {{ (states('sensor.bathroom_vent_humidity')|float > states('sensor.main_bath_target_humidity')|float) 
+          {{ (states('sensor.bathroom_vent_humidity')|float(default='0') > states('sensor.main_bath_target_humidity')|float(default='0')) 
              and ( is_state('binary_sensor.main_bath_motion','on')
              or is_state('light.main_bath_vent_light', 'on')) }}
         delay_off:
@@ -44,11 +44,11 @@ template:
       - name: main_bath_target_humidity
         state: >
           {% if is_state('binary_sensor.house_sts_hvac_shut', 'off') or is_state('binary_sensor.house_sts_hvac_cool_req', 'on') %}
-            {{ (states('sensor.hvac_humidity')|float+states('input_number.main_bath_humidity_thresh')|float) }}
-          {% elif (states('sensor.hvac_humidity')|float+states('input_number.main_bath_humidity_thresh')|float) > (states('input_number.hvac_humidity_max'))|float %}
-            {{ (states('input_number.hvac_humidity_max')|float+states('input_number.main_bath_humidity_thresh')|float) }}
+            {{ (states('sensor.hvac_humidity')|float(default='0')+states('input_number.main_bath_humidity_thresh')|float(default='0')) }}
+          {% elif (states('sensor.hvac_humidity')|float(default='0')+states('input_number.main_bath_humidity_thresh')|float(default='0')) > (states('input_number.hvac_humidity_max'))|float(default='0') %}
+            {{ (states('input_number.hvac_humidity_max')|float(default='0')+states('input_number.main_bath_humidity_thresh')|float(default='0')) }}
           {% else %}
-            {{ (states('sensor.hvac_target_humidity')|float+states('input_number.main_bath_humidity_thresh')|float) }}
+            {{ (states('sensor.hvac_target_humidity')|float(default='0')+states('input_number.main_bath_humidity_thresh')|float(default='0')) }}
           {% endif %}
         unit_of_measurement: "%"
     
