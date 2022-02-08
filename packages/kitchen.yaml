@@ -55,12 +55,12 @@ automation:
       data_template:
         entity_id: fan.kitchen_fan
         speed: >
-          {% if (states.sensor.garage_entry_temperature.state|float > 80 ) %}
+          {% if (states.sensor.garage_entry_temperature.state|float(default='0') > 80 ) %}
             on
-          {% elif (states.sensor.garage_entry_temperature.state|float <= 80 ) and (states.sensor.garage_entry_temperature.state|float > 76 ) %} 
+          {% elif (states.sensor.garage_entry_temperature.state|float(default='0') <= 80 ) and (states.sensor.garage_entry_temperature.state|float(default='0') > 76 ) %} 
             high
-          {% elif (states.sensor.garage_entry_temperature.state|float <= 76 ) and (states.sensor.garage_entry_temperature.state|float > 74 ) %} 
+          {% elif (states.sensor.garage_entry_temperature.state|float(default='0') <= 76 ) and (states.sensor.garage_entry_temperature.state|float(default='0') > 74 ) %} 
             medium
-          {% elif (states.sensor.garage_entry_temperature.state|float <= 74 ) %} 
+          {% elif (states.sensor.garage_entry_temperature.state|float(default='0') <= 74 ) %} 
             low
           {% endif %}
