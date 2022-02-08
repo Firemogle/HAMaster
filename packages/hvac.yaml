@@ -72,10 +72,10 @@ template:
       - name: hvac_target_humidity
         unit_of_measurement: "%"
         state: >
-          {% if ((0.0049*states('sensor.dark_sky_temperature')|float+0.2668)*100) > states('input_number.hvac_humidity_max')|float %}
-            {{ states('input_number.hvac_humidity_max')|float }}
+          {% if ((0.0049*states('sensor.dark_sky_temperature')| float(default='0')+0.2668)*100) > states('input_number.hvac_humidity_max')|float(default='0') %}
+            {{ states('input_number.hvac_humidity_max')| float(default='0') }}
           {% else %} 
-            {{ (0.0049*states('sensor.dark_sky_temperature')|float+0.2668)*100 }}
+            {{ (0.0049*states('sensor.dark_sky_temperature')|float(default='0')+0.2668)*100 }}
           {% endif %}
 
   - sensor:
@@ -87,7 +87,7 @@ template:
       - name: hvac_current_humidity
         unit_of_measurement: "%"
         state: >
-          {{ states.climate.hvac.attributes.current_humidity }}
+          {{ states.climate.hvac.attributes.current_humidity|float(default='0') }}
 
 automation:
   - id: 'house_hvac_ena'
