@@ -23,7 +23,7 @@ template:
           {{ is_state('group.occupants', 'home') }}
   - binary_sensor:
       - name: house_sts_guest
-        value_template: >-
+        value_template: >
           {{ states.calendar.guest_mode_visitor.state == 'on'
              or states.calendar.guest_mode_date.state == 'on' }}
   - binary_sensor:
