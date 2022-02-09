@@ -3,11 +3,11 @@
     cedar_moisture_combine:
       unit_of_measurement: "%"
       value_template: >-
-        {{ (states('sensor.soil_moisture_1')|float + states('sensor.soil_moisture_2')|float) /2 }}
+        {{ (states('sensor.soil_moisture_1')|float(default=0) + states('sensor.soil_moisture_2')|float(default=0)) /2 }}
         
 - platform: template
   sensors:
     tree_moisture_combine:
       unit_of_measurement: "%"
       value_template: >-
-        {{ (states('sensor.soil_moisture_3')|float + states('sensor.soil_moisture_4')|float) /2 }}
+        {{ (states('sensor.soil_moisture_3')|float(default=0) + states('sensor.soil_moisture_4')|float(default=0)) /2 }}
