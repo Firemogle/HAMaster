@@ -43,12 +43,12 @@ automation:
       data_template:
         entity_id: fan.nursery_fan
         speed: >
-          {% if (states.sensor.emi_temp.state|float > 80 ) %}
+          {% if (states.sensor.emi_temp.state|float(default=0) > 80 ) %}
             on
-          {% elif (states.sensor.emi_temp.state|float <= 80 ) and (states.sensor.emi_temp.state|float > 76 ) %} 
+          {% elif (states.sensor.emi_temp.state|float(default=0) <= 80 ) and (states.sensor.emi_temp.state|float(default=0) > 76 ) %} 
             high
-          {% elif (states.sensor.emi_temp.state|float <= 76 ) and (states.sensor.emi_temp.state|float > 74 ) %} 
+          {% elif (states.sensor.emi_temp.state|float(default=0) <= 76 ) and (states.sensor.emi_temp.state|float(default=0) > 74 ) %} 
             medium
-          {% elif (states.sensor.emi_temp.state|float <= 74 ) %} 
+          {% elif (states.sensor.emi_temp.state|float(default=0) <= 74 ) %} 
             low
           {% endif %}
