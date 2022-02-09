@@ -34,8 +34,8 @@ template:
   - binary_sensor:
       - name: house_sts_away_vacation
         state: >
-          {{ ((states.proximity.brett_home.state)|float > 120 and 
-             (states.proximity.liz_home.state)|float) > 120 and 
+          {{ ((states.proximity.brett_home.state)|float(default=0) > 120 and 
+             (states.proximity.liz_home.state)|float(default=0)) > 120 and 
               is_state('binary_sensor.house_sts_vacation', 'on') }}
               
   - binary_sensor:
