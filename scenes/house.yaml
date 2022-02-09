@@ -95,6 +95,8 @@
       state: off
     light.front_light3_level_light_color_on_off:
       state: off
+    light.front_garden_level_light_color_on_off:
+      state: off
     fan.kitchen_fan:
       state: off
     light.kitchen_lamp:
@@ -116,6 +118,9 @@
       state: on
     light.front_light3_level_light_color_on_off:
       state: on
+    light.front_garden_level_light_color_on_off:
+      state: on
+      brightness: 150
     light.cabinet_bottom:
       state: on
       brightness: 255
@@ -158,6 +163,9 @@
       state: on
     light.front_light3_level_light_color_on_off:
       state: on
+    light.front_garden_level_light_color_on_off:
+      state: on
+      brightness: 150
     switch.livingroom_subwoofer:
       state: off
 
