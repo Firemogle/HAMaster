@@ -152,7 +152,7 @@ automation:
             {% else %}
               auto
             {% endif %}
-        entity_id: script.hvac_fan
+        entity_id: climate.hvac_local
       service: climate.set_fan_mode
     - delay:
         milliseconds: 500
@@ -163,7 +163,7 @@ automation:
             {% else %}
               auto
             {% endif %}
-        entity_id: script.hvac_fan
+        entity_id: climate.hvac_local
       service: climate.set_fan_mode
     - delay:
         milliseconds: 500
@@ -174,5 +174,5 @@ automation:
             {% else %}
               auto
             {% endif %}
-        entity_id: script.hvac_fan
+        entity_id: climate.hvac_local
       service: climate.set_fan_mode
