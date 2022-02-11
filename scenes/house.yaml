@@ -177,3 +177,5 @@
       state: off
     light.front_light3_level_light_color_on_off:
       state: off
+    light.front_garden_level_light_color_on_off:
+      state: off
