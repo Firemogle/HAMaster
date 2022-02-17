@@ -131,7 +131,7 @@ views:
       - type: media-control
         entity: media_player.emi_media
       - type: entities
-        title: Nursery Room
+        title: Scarlett Room
         show_header_toggle: false
         entities:
           - fan.nursery_fan
