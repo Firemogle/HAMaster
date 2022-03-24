@@ -249,9 +249,9 @@ views:
     icon: mdi:cctv
     cards:
       - type: picture-glance
-        title: Emi Room
+        title: Lottie
         entities: []
-        camera_image: camera.emi_camera
+        camera_image: camera.lottie_camera
         camera_view: live
         # Add front porch
       - type: picture-glance
