@@ -144,7 +144,7 @@ script:
           entity_id:  light.emi_star_lamp
         data:
           kelvin: 2800
-          brightness_pct: 100
+          brightness_pct: 25
       - service:  fan.turn_on
         target:
           entity_id:  fan.emi_fan
