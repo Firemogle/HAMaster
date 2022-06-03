@@ -99,18 +99,9 @@ config:
 #Track the sun
 sun:
 
-updater:
-  include_used_components: true
-
 # Discover some devices automatically
 discovery:
 zeroconf:
-
-#Initial config to move zwave to main install
-#zwave:
-#  network_key: !secret zwavekey
-#  usb_path: /dev/ttyUSB0
-#  device_config: !include zwave_device_config.yaml
   
 #Initial config to move zigbee to main install 
 zha:
