@@ -31,11 +31,6 @@ template:
         state: >
           {{ is_state('binary_sensor.sliding_glass_door', 'on') }}
   
-          
-light:
-  - platform: switch
-    name: kitchen_lamp
-    entity_id: switch.kitchen_light_switch
     
 automation:
   - id: kitchen_fan_speed
