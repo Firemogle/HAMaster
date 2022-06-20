@@ -73,7 +73,8 @@ automation:
     - service: fan.set_preset_mode
       data_template:
         entity_id: fan.emi_fan
-        speed: >
+      data:
+        preset_mode: >
           {% if (states.sensor.emi_temp.state|float(default=0) > 80 ) %}
             on
           {% elif (states.sensor.emi_temp.state|float(default=0) <= 80 ) and (states.sensor.emi_temp.state|float(default=0) > 76 ) %} 
