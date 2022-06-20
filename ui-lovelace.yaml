@@ -82,7 +82,7 @@ views:
           - light.cabinet_top
           - light.stove
           - light.kitchen_sink
-          - light.kitchen_lamp
+          - switch.kitchen_light_switch
           - light.kitchen_fan
           - binary_sensor.kitchen_leak
           - sensor.garage_entry_temperature
