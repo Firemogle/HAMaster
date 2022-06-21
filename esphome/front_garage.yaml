@@ -1,6 +1,7 @@
 substitutions:
   devicename: front_garage
   length: "601"
+  length_index: "600"
   rgb: "BRG"
 
 
