@@ -70,19 +70,19 @@ automation:
         entity_id: 'fan.emi_fan'
         state: 'on'
     action:
-    - service: fan.set_preset_mode
+    - service: fan.set_percentage
       data_template:
         entity_id: fan.emi_fan
       data:
         preset_mode: >
           {% if (states.sensor.emi_temp.state|float(default=0) > 80 ) %}
-            on
+            100
           {% elif (states.sensor.emi_temp.state|float(default=0) <= 80 ) and (states.sensor.emi_temp.state|float(default=0) > 76 ) %} 
-            high
+            75
           {% elif (states.sensor.emi_temp.state|float(default=0) <= 76 ) and (states.sensor.emi_temp.state|float(default=0) > 74 ) %} 
-            medium
+            50
           {% elif (states.sensor.emi_temp.state|float(default=0) <= 74 ) %} 
-            low
+            25
           {% endif %}
           
   - id: 'emi_tv_off'
