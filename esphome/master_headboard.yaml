@@ -57,7 +57,7 @@ light:
     segments:
       - id: master_headboard
         from: 11
-        to: 20
+        to: 19
     effects:
       - addressable_fireworks:
           name: Fireworks
