@@ -76,6 +76,7 @@ alexa:
     filter:
       include_entities:
         - script.goodnight_emi
+        - binary_sensor.kitchen_leak
       include_domains:
         - light
         - switch
