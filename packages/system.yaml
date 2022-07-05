@@ -223,21 +223,6 @@ sensor:
 
   - platform: uptime
 
-  - platform: mqtt
-    name: "Attic Temp"
-    state_topic: "/Attic_Sensor/Attic/Temperature"
-    unit_of_measurement: "°C"
-
-  - platform: mqtt
-    name: "Attic Pressure"
-    state_topic: "/Attic_Sensor/Attic/Pressure"
-    unit_of_measurement: "hPa"
-
-  - platform: mqtt
-    name: "Attic Humidity"
-    state_topic: "/Attic_Sensor/Attic/Humidity"
-    unit_of_measurement: "%"
-
   - platform: radarr
     api_key: c037c402e3814b978495137f7d18bf89
     host: 192.168.100.100
