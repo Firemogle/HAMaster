@@ -17,7 +17,7 @@ template:
   - binary_sensor:
       - name: main_bath_vent_needed
         state: >
-          {{ ( is_state('binary_sensor.main_bath_is_humid','on') 
+          {{ is_state('binary_sensor.main_bath_is_humid','on') 
              or is_state('light.main_bath_vent_light', 'on') }}
         delay_off:
           minutes: 5
