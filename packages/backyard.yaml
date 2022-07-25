@@ -7,7 +7,7 @@ camera:
     still_image_url: http://192.168.2.200:81/image/backyard?q=100&s=100
     mjpeg_url: http://192.168.2.200:81/mjpg/backyard/video.mjpg
   - platform: mjpeg
-    name: Wide Backyard
+    name: widebackyard
     still_image_url: http://192.168.2.200:81/image/widebackyard?q=100&s=100
     mjpeg_url: http://192.168.2.200:81/mjpg/widebackyard/video.mjpg
     
