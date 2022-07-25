@@ -269,6 +269,11 @@ views:
         camera_image: camera.backyard
         camera_view: live
       - type: picture-glance
+        title: Backyard
+        entities: []
+        camera_image: camera.wide_backyard
+        camera_view: live
+      - type: picture-glance
         title: Garage
         entities: []
         camera_image: camera.garage
