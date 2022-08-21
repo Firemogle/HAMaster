@@ -27,7 +27,7 @@ i2c:
 time:
   - platform: homeassistant
     id: homeassistant_time
-      # Every morning on weekdays
+      on_time:
       - seconds: 0
         minutes: 0
         hours: 4
