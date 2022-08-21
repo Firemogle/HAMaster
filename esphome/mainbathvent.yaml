@@ -24,6 +24,20 @@ i2c:
    sda: GPIO4
    scl: GPIO5
     
+time:
+  - platform: homeassistant
+    id: homeassistant_time
+      # Every morning on weekdays
+      - seconds: 0
+        minutes: 0
+        hours: 4
+        then:
+          - button.press: mainbathventreboot
+  
+button:
+  - platform: restart
+    name: "mainbathventreboot"
+    id: "mainbathventreboot"
   
 bme680_bsec:
   address: 0x77
