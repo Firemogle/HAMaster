@@ -18,6 +18,7 @@ api:
 ota:
   password: !secret OTA_PW
  
+bluetooth_proxy:
   
 light:
   - platform: fastled_clockless
