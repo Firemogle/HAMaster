@@ -83,9 +83,9 @@ alexa:
         - switch
         - fan
 
-google:
-    client_id: !secret GOOGLE_ID
-    client_secret: !secret GOOGLE_SECRET
+#google:
+#    client_id: !secret GOOGLE_ID
+#    client_secret: !secret GOOGLE_SECRET
 
 # Enables the frontend
 frontend:
