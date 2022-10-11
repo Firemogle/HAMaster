@@ -15,6 +15,14 @@ homeassistant:
     binary_sensor.house_sts_occupants:
       device_class: occupancy
       
+      
+input_boolean:
+  house_sts_guest:
+    name: house_sts_guest
+  house_sts_dte_cheap:
+    name: house_sts_dte_cheap
+  house_sts_vacation:
+    name: house_sts_vacation
 
 template:
   - binary_sensor:
@@ -24,12 +32,11 @@ template:
   - binary_sensor:
       - name: house_sts_guest
         state: >
-          {{ states.calendar.guest_mode_visitor.state == 'on'
-             or states.calendar.guest_mode_date.state == 'on' }}
+          {{ is_state('input_boolean.house_sts_guest', 'on') }}
   - binary_sensor:
       - name: house_sts_vacation
         state: >
-          {{ states.calendar.vacation_mode.state == 'on' }}
+          {{ is_state('input_boolean.house_sts_vacation', 'on') }}
 
   - binary_sensor:
       - name: house_sts_away_vacation
@@ -47,7 +54,7 @@ template:
   - binary_sensor:
       - name: house_sts_dte_cheap
         state: >
-          {{ states.calendar.dte_cheap.state == 'on' }}
+          {{ is_state('input_boolean.house_sts_dte_cheap', 'on') }}
 
   - binary_sensor:
       - name: house_sts_jayhawks
@@ -354,18 +361,63 @@ automation:
           - "{{ trigger.event == 'start' }}"
         then:
           - service: input_boolean.turn_on
+            entity_id: input_boolean.house_sts_dte_cheap
+        else:
+          - service: input_boolean.turn_off
+            entity_id: input_boolean.house_sts_dte_cheap
+    mode: queued
+      
+  - id: 'house_guest_switch'
+    alias: house_guest_switch
+    trigger:
+      - platform: calendar
+        event: start
+        entity_id: calendar.teamcarriger_gmail_com
+        offset: -02:00:00
+      - platform: calendar
+        event: end
+        entity_id: calendar.teamcarriger_gmail_com
+    condition: or
+    conditions:
+      - condition: template
+        value_template: "{{ 'in town' in trigger.calendar_event.summary }}"
+      - condition: template
+        value_template: "{{ 'date night' in trigger.calendar_event.summary }}"
+    action:
+      - if:
+          - "{{ trigger.event == 'start' }}"
+        then:
+          - service: input_boolean.turn_on
             entity_id: input_boolean.house_sts_guest
         else:
           - service: input_boolean.turn_off
             entity_id: input_boolean.house_sts_guest
     mode: queued
-      
-      
-input_boolean:
-  house_sts_guest:
-    name: house_sts_guest
-  house_sts_dte_cheap:
-    name: house_sts_dte_cheap
-  house_sts_vacation:
-    name: house_sts_vacation
+
+  - id: 'house_vacation_switch'
+    alias: house_guestacation_switch
+    trigger:v
+      - platform: calendar
+        event: start
+        entity_id: calendar.teamcarriger_gmail_com
+        offset: -02:00:00
+      - platform: calendar
+        event: end
+        entity_id: calendar.teamcarriger_gmail_com
+    condition:
+      - condition: template
+        value_template: "{{ 'vacation' in trigger.calendar_event.summary }}"
+    action:
+      - if:
+          - "{{ trigger.event == 'start' }}"
+        then:
+          - service: input_boolean.turn_on
+            entity_id: input_boolean.house_sts_vacation
+        else:
+          - service: input_boolean.turn_off
+            entity_id: input_boolean.house_sts_vacation
+    mode: queued
+
+
+
     
