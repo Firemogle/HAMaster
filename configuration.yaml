@@ -52,7 +52,6 @@ http:
 websocket_api:
 mobile_app:
 energy:
-bluetooth:
 
 alarm_control_panel:
   - platform: manual
