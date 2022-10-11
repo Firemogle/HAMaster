@@ -337,4 +337,35 @@ automation:
           Occupancy mode changed to {{ states('binary_sensor.house_sts_occupants') }}
       service: notify.group_notify
 
+  - id: 'DTE_cheap_switch'
+    alias: DTE_cheap_switch
+    trigger:
+      - platform: calendar
+        event: start
+        entity_id: calendar.teamcarriger_gmail_com
+      - platform: calendar
+        event: end
+        entity_id: calendar.teamcarriger_gmail_com
+    condition:
+      - condition: template
+        value_template: "{{ 'DTE Cheap' in trigger.calendar_event.summary }}"
+    action:
+      - if:
+          - "{{ trigger.event == 'start' }}"
+        then:
+          - service: input_boolean.turn_on
+            entity_id: input_boolean.house_sts_guest
+        else:
+          - service: input_boolean.turn_off
+            entity_id: input_boolean.house_sts_guest
+    mode: queued
       
+      
+input_boolean:
+  house_sts_guest:
+    name: house_sts_guest
+  house_sts_dte_cheap:
+    name: house_sts_dte_cheap
+  house_sts_vacation:
+    name: house_sts_vacation
+    
