@@ -18,6 +18,7 @@ api:
 ota:
   password: !secret OTA_PW
  
+esp32_ble_tracker:
 bluetooth_proxy:
   
 light:
