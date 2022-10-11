@@ -396,7 +396,7 @@ automation:
 
   - id: 'house_vacation_switch'
     alias: house_guestacation_switch
-    trigger:v
+    trigger:
       - platform: calendar
         event: start
         entity_id: calendar.teamcarriger_gmail_com
