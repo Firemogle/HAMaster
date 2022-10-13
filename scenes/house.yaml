@@ -50,7 +50,7 @@
       state: off
     light.main_bath_vanity:
       state: off
-    light.kitchen_lamp:
+    switch.kitchen_light_switch:
       state: off
     fan.kitchen_fan:
       state: off
@@ -99,7 +99,7 @@
       state: off
     fan.kitchen_fan:
       state: off
-    light.kitchen_lamp:
+    switch.kitchen_light_switch:
       state: off
     lock.front_door:
       state: locked
