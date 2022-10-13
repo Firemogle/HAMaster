@@ -3,7 +3,7 @@ homeassistant:
   customize:
     person.brett:
       entity_picture: "https://lh3.googleusercontent.com/a-/AAuE7mAFoTSi0SiXnqVRLTmC9jrqC8duqWiPUirXhUFFnA"
-    person.brett:
+    person.liz:
       entity_picture: "https://lh3.googleusercontent.com/a-/AAuE7mAWnEl6y091B1GyCwAp_-1FldDoDGy7kJNvsRUn"
   
   
