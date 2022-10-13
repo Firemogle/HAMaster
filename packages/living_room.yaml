@@ -17,8 +17,8 @@ template:
         state: >
           {{ is_state('binary_sensor.front_door', 'on') }}
   
-light:
-  - platform : mqtt
+mqtt:
+  light:
     name: "Jayhawk Candle"
     state_topic: "/Jayhawk_Candle/relay/switch"
     command_topic: "/Jayhawk_Candle/gpio/12"
