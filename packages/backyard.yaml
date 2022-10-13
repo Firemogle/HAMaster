@@ -12,7 +12,7 @@ mqtt:
   camera:
     - name: Backyard Last Person
       topic: frigate/backyard/person/snapshot
-      
+  camera:
     - name: Backyard Last Car
       topic: frigate/backyard/car/snapshot
 
