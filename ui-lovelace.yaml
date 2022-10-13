@@ -5,6 +5,8 @@ resources:
     type: js
   - url: /local/my-webfont.css
     type: css
+  - url: /local/mushroom.js
+    type: module
 
 background: center / cover no-repeat url("https://wallpapercave.com/wp/wp2630764.jpg") fixed
 views:
