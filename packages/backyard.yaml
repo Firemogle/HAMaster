@@ -7,28 +7,22 @@ camera:
     still_image_url: http://192.168.2.200:81/image/backyard?q=100&s=100
     mjpeg_url: http://192.168.2.200:81/mjpg/backyard/video.mjpg
     
-  - name: Backyard Last Person
-    platform: mqtt
-    topic: frigate/backyard/person/snapshot
-  - name: Backyard Last Car
-    platform: mqtt
-    topic: frigate/backyard/car/snapshot
-
-plant:
-  hydrangea:
-    sensors:
-      moisture: sensor.hydrangea_moisture
-      temperature: sensor.hydrangea_temperature
-      conductivity: sensor.hydrangea_soil_conductivity
-      brightness: sensor.hydrangea_illuminance
-    min_moisture: 20
     
-binary_sensor:
-  - name: backyard_person
-    platform: mqtt
-    state_topic: "frigate/backyard/person"
-    device_class: motion
-    availability_topic: "frigate/available"
+mqtt:
+  camera:
+    - name: Backyard Last Person
+      topic: frigate/backyard/person/snapshot
+      
+    - name: Backyard Last Car
+      topic: frigate/backyard/car/snapshot
+
+    
+mqtt:
+  binary_sensor:
+    - name: backyard_person
+      state_topic: "frigate/backyard/person"
+      device_class: motion
+      availability_topic: "frigate/available"
     
 automation:
   - alias: backyard_person_detected
