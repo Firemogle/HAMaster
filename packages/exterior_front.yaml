@@ -6,20 +6,20 @@ homeassistant:
       friendly_name: Driveway Light 2
       
 
-binary_sensor:
-  - platform: mqtt # Detect motion from fron camera from blueiris
+mqtt:
+  binary_sensor:
     state_topic: "blueiris/frontyard"
     name: front_foscam_motion
     payload_on: "motion"
     payload_off: "clear"
     
+  binary_sensor:
   - name: doorbell_person_raw
-    platform: mqtt
     state_topic: "frigate/doorbell/person"
     device_class: motion
       
+  binary_sensor:
   - name: frontyard_person
-    platform: mqtt
     state_topic: "frigate/frontyard/person"
     device_class: motion
     availability_topic: "frigate/available"
@@ -44,18 +44,20 @@ camera:
     still_image_url: http://192.168.2.200:81/image/Frontyard?q=100&s=100
     mjpeg_url: http://192.168.2.200:81/mjpg/frontyard/video.mjpg
     
+mqtt:
+  camera:
   - name: doorbell_last_person
-    platform: mqtt
     topic: frigate/doorbell/person/snapshot
+  camera:
   - name: Doorbell Last Car
     platform: mqtt
     topic: frigate/doorbell/car/snapshot
     
+  camera:
   - name: Frontyard Last Person
-    platform: mqtt
     topic: frigate/frontyard/person/snapshot
+  camera:
   - name: Backyard Last Car
-    platform: mqtt
     topic: frigate/frontyard/car/snapshot
 
 automation:
