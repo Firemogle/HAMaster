@@ -203,13 +203,14 @@ input_number:
     step: 1
     unit_of_measurement: "F"
 
-sensor:
-  - platform: mqtt
+mqtt:
+  sensor:
     name: "DTE Energy Bridge Summary"
     state_topic: "event/metering/summation/minute"
     unit_of_measurement: 'W'
     value_template: "{{ value_json.value | round(0) }}" 
-    
+
+sensor:    
   - platform: integration
     source: sensor.dte_energy_bridge_summary
     name: energy_spent
