@@ -11,46 +11,6 @@ homeassistant:
     sensor.office_humidity:
       device_class: humidity
   
-binary_sensor:
-  - platform: mqtt
-    state_topic: "/Office/motion_sensor/Switch"
-    name: "off_sts_motion_raw"
-    payload_on: "1"
-    payload_off: "0"
-
-template:
-  - binary_sensor:
-      - name: off_sts_motion
-        state: >
-          {{ is_state('binary_sensor.off_sts_motion_raw', 'on') }}
-        delay_off:
-          minutes: 15
-  - binary_sensor:
-      - name: off_htr_needed
-        state: >
-          {{ is_state('binary_sensor.off_sts_motion','on')
-             and is_state('binary_sensor.house_sts_hvac_heat_req','on') }}
-  
-sensor:
-  - platform: mqtt
-    name: "Office Temperature"
-    state_topic: "/office/enviroment/Temperature"
-    unit_of_measurement: "°C"
-
-  - platform: mqtt
-    name: "Office Pressure"
-    state_topic: "/office/enviroment/Pressure"
-    unit_of_measurement: "hPa"
-    
-  - platform: mqtt
-    name: "Office Humidity"
-    state_topic: "/office/enviroment/Humidity"
-    unit_of_measurement: "%"
-
-  - platform: mqtt
-    name: "Office Computer Power"
-    state_topic: "hawirelesslink/sensor/enerwave_zw15rm_plus_15a_tr_smart_meter_duplex_receptacle_power_2/power_consumption"
-    unit_of_measurement: "W"
     
 switch:
   - platform: wake_on_lan
@@ -64,22 +24,6 @@ switch:
     mac: "40:16:7e:e8:dc:7b"
     host: 192.168.1.195
     broadcast_address: 192.168.1.195
-
-  - platform : mqtt
-    name: "Office Heater"
-    state_topic: "/Office_Heater/relay/switch"
-    command_topic: "/Office_Heater/gpio/12"
-    payload_on: "1"
-    payload_off: "0"
-    retain: false
-    
-  - platform : mqtt
-    name: "ender3"
-    state_topic: "hawirelesslink/switch/ender3_on_off/state"
-    command_topic: "/HAwirelesslink/return/switch/ender3_on_off/state"
-    payload_on: "on"
-    payload_off: "off"
-    retain: false
     
 climate:
   - platform: generic_thermostat
