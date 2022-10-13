@@ -46,7 +46,7 @@ automation:
         entity_id: 'fan.kitchen_fan'
         state: 'on'
     action:
-    - service: fan.set_preset_mode
+    - service: fan.set_percentage
       data_template:
         entity_id: fan.kitchen_fan
         speed: >
