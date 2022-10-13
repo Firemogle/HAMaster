@@ -228,18 +228,6 @@ sensor:
       - temperature_high
       - temperature_low
 
-  - platform: uptime
-
-  - platform: radarr
-    api_key: c037c402e3814b978495137f7d18bf89
-    host: 192.168.100.100
-    monitored_conditions:
-      - upcoming
-      - movies
-      - status
-    days: 7
-
-
   - platform: qbittorrent
     url: 'http://192.168.100.100:8112'
     username: !secret QBUN
