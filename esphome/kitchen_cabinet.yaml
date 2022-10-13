@@ -6,6 +6,7 @@ esphome:
 wifi:
   ssid: !secret AP
   password: !secret APPW
+  power_save_mode: none
   manual_ip:
     static_ip: 192.168.2.127
     gateway: 192.168.1.1
@@ -21,7 +22,6 @@ api:
 ota:
   password: !secret OTA_PW
  
-bluetooth_proxy:
   
 light:
   - platform: fastled_clockless
