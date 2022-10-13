@@ -91,11 +91,22 @@ frontend:
   themes: !include themes.yaml
   
 # Use lovelace config file  
+#lovelace:
+#  mode: yaml
+#  resources:
+#    - url: /local/mushroom.js
+#      type: module
+      
 lovelace:
-  mode: yaml
-  resources:
-    - url: /local/mushroom.js
-      type: module
+  mode: storage
+  # Add yaml dashboards
+  dashboards:
+    lovelace-yaml:
+      mode: yaml
+      title: House
+      icon: mdi:script
+      show_in_sidebar: true
+      filename: ui-lovelace.yaml
 # Enables configuration UI
 config:
 
@@ -135,10 +146,6 @@ mqtt:
   will_message:
     topic: 'HAMaster/status'
     payload: 'offline'
-
-nest:
-  client_id: !secret NEST_ID
-  client_secret: !secret NEST_SECRET
 
 ecobee:
   api_key: !secret ECOBEE_KEY
