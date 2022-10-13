@@ -93,7 +93,9 @@ frontend:
 # Use lovelace config file  
 lovelace:
   mode: yaml
-  
+  resources:
+      - url: /local/mushroom.js
+        type: module
 # Enables configuration UI
 config:
 
