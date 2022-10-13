@@ -14,12 +14,12 @@ mqtt:
     payload_off: "clear"
     
   binary_sensor:
-  - name: doorbell_person_raw
+    name: doorbell_person_raw
     state_topic: "frigate/doorbell/person"
     device_class: motion
       
   binary_sensor:
-  - name: frontyard_person
+    name: frontyard_person
     state_topic: "frigate/frontyard/person"
     device_class: motion
     availability_topic: "frigate/available"
@@ -46,18 +46,18 @@ camera:
     
 mqtt:
   camera:
-  - name: doorbell_last_person
+    name: doorbell_last_person
     topic: frigate/doorbell/person/snapshot
   camera:
-  - name: Doorbell Last Car
+    name: Doorbell Last Car
     platform: mqtt
     topic: frigate/doorbell/car/snapshot
     
   camera:
-  - name: Frontyard Last Person
+    name: Frontyard Last Person
     topic: frigate/frontyard/person/snapshot
   camera:
-  - name: Backyard Last Car
+    name: Backyard Last Car
     topic: frigate/frontyard/car/snapshot
 
 automation:
