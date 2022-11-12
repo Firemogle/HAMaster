@@ -171,3 +171,17 @@ script:
           entity_id:  light.emi_star_lamp
         data:
           transition: 300
+
+  reset_emi_fan:
+    mode: restart
+    repeat:
+      count: "{{ count|int * 4 - 1 }}"
+      sequence:
+        - service:  switch.turn_off
+          target:
+            entity_id:  switch.shelly1pm_c45bbe6b41e3
+        - delay: 3
+        - service:  switch.turn_on
+          target:
+            entity_id:  switch.shelly1pm_c45bbe6b41e3
+        - delay: 3
