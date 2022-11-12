@@ -179,9 +179,8 @@ script:
         target:
           entity_id:  switch.shelly1pm_c45bbe6b41e3
       - delay: 3
-      - alias: "Cycle switch 3-3-5"
-        repeat:
-          count: 5
+      - repeat:
+          count: '5'
           sequence:
             - service:  switch.turn_off
               target:
