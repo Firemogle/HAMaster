@@ -174,14 +174,20 @@ script:
 
   reset_emi_fan:
     mode: restart
-    repeat:
-      count: "{{ count|int * 4 - 1 }}"
-      sequence:
-        - service:  switch.turn_off
-          target:
-            entity_id:  switch.shelly1pm_c45bbe6b41e3
-        - delay: 3
-        - service:  switch.turn_on
-          target:
-            entity_id:  switch.shelly1pm_c45bbe6b41e3
-        - delay: 3
+    sequence:
+      - service:  switch.turn_on
+        target:
+          entity_id:  switch.shelly1pm_c45bbe6b41e3
+      - delay: 3
+      - alias: "Cycle switch 3-3-5"
+        repeat:
+          count: "{{ count|int * 4 - 1 }}"
+          sequence:
+            - service:  switch.turn_off
+              target:
+                entity_id:  switch.shelly1pm_c45bbe6b41e3
+            - delay: 3
+            - service:  switch.turn_on
+              target:
+                entity_id:  switch.shelly1pm_c45bbe6b41e3
+            - delay: 3
