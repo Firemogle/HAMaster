@@ -181,7 +181,7 @@ script:
       - delay: 3
       - alias: "Cycle switch 3-3-5"
         repeat:
-          count: "{{ count|int * 4 - 1 }}"
+          count: 5
           sequence:
             - service:  switch.turn_off
               target:
