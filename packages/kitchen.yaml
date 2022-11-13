@@ -66,15 +66,15 @@ script:
       - service:  switch.turn_on
         target:
           entity_id:  switch.shelly1pm_c45bbe6b423f
-      - delay: 5
+      - delay: 4
       - repeat:
           count: '5'
           sequence:
             - service:  switch.turn_off
               target:
                 entity_id:  switch.shelly1pm_c45bbe6b423f
-            - delay: 5
+            - delay: 4
             - service:  switch.turn_on
               target:
                 entity_id:  switch.shelly1pm_c45bbe6b423f
-            - delay: 5
+            - delay: 4
