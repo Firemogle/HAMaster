@@ -59,7 +59,7 @@ automation:
           {% elif (states.sensor.garage_entry_temperature.state|float(default=0) <= 74 ) %} 
             low
           {% endif %}
-
+script:
   reset_kitchen_fan:
     mode: restart
     sequence:
