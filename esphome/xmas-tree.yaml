@@ -26,8 +26,8 @@ light:
     pin: GPIO16
     num_leds: 240
     rgb_order: RBG
-    name: xmas-tree
-    id: xmas-tree
+    name: xmastree
+    id: xmastree
     effects:
       - flicker:
       - flicker:
