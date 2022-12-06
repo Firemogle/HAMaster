@@ -31,6 +31,6 @@ light:
     effects:
       - flicker:
       - flicker:
-          name: Flicker
+          name: Flickering 60
           alpha: 60%
           intensity: 1.5%
