@@ -1,0 +1,30 @@
+esphome:
+  name: xmas-tree
+  platform: ESP32
+  board: nodemcu-32s
+
+wifi:
+  ssid: !secret AP
+  password: !secret APPW
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  password: !secret AP_PW
+
+ota:
+  password: !secret OTA_PW
+ 
+esp32_ble_tracker:
+bluetooth_proxy:
+  
+light:
+  - platform: fastled_clockless
+    chipset: WS2811
+    pin: GPIO16
+    num_leds: 240
+    rgb_order: RBG
+    name: master_headboard
+    id: master_headboard
