@@ -28,3 +28,9 @@ light:
     rgb_order: RBG
     name: master_headboard
     id: master_headboard
+    effects:
+      - flicker:
+      - flicker:
+          name: Flicker Effect With Custom Values
+          alpha: 60%
+          intensity: 1.5%
