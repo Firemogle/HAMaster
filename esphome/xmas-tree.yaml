@@ -29,8 +29,7 @@ light:
     name: xmastree
     id: xmastree
     effects:
-      - flicker:
-      - flicker:
-          name: Flickering 60
-          alpha: 60%
-          intensity: 1.5%
+      - addressable_flicker:
+      - addressable_flicker:
+          name: Flickering 25
+          intensity: 25%
