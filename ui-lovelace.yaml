@@ -213,7 +213,7 @@ views:
       - type: thermostat
         entity: climate.hvac_local
       - type: thermostat
-        entity: climate.Lottie_Heater
+        entity: climate.lottie_heater
       - type: entities
         title: Attic
         show_header_toggle: false
