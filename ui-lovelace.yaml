@@ -118,15 +118,7 @@ views:
           - input_number.emi_night_timer
           - switch.emi_tv
           - binary_sensor.emi_motion
-          - binary_sensor.emi_window_controller_motion
           - sensor.emi_temp
-          - sensor.emi_window_controller_temp
-          - sensor.emi_window_controller_humidity
-          - sensor.emi_window_controller_pressure
-          - cover.emi_window_controller_blind
-          - cover.emi_window_controller_curt1
-          - cover.emi_window_controller_curt2
-          - sensor.emi_window_controller_lux
       - type: media-control
         entity: media_player.emi_media
       - type: entities
@@ -135,6 +127,10 @@ views:
         entities:
           - fan.nursery_fan
           - light.nursery_fan_light
+          - sensor.lottie_room_air_temperature
+          - sensor.lottie_room_humidity
+          - sensor.lottie_room_illuminance
+          - binary_sensor.lottie_room_motion_detection
       - type: entities
         title: Main Bath
         show_header_toggle: false
@@ -216,6 +212,8 @@ views:
     cards:
       - type: thermostat
         entity: climate.hvac_local
+      - type: thermostat
+        entity: climate.Lottie_Heater
       - type: entities
         title: Attic
         show_header_toggle: false
