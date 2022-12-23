@@ -14,21 +14,21 @@ camera:
 
 climate:
   - platform: generic_thermostat
-    name: nursery_heater
-    heater: switch.nursery_heater
-    target_sensor: sensor.nursery_temp
-    min_temp: 0
-    max_temp: 70
+    name: Lottie Heater
+    heater: switch.lottie_heater_switch
+    target_sensor: sensor.lottie_room_air_temperature
+    min_temp: 50
+    max_temp: 75
     ac_mode: false
-    target_temp: 65
+    target_temp: 70
     cold_tolerance: 0
     hot_tolerance: 0
     min_cycle_duration:
       seconds: 5
-    keep_alive:
-      minutes: 3
     initial_hvac_mode: "off"
-    away_temp: 0
+    away_temp: 50
+    sleep_temp: 68
+    comfort_temp: 70
     precision: 0.1
     
 automation:
