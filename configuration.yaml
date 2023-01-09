@@ -3,6 +3,8 @@ homeassistant:
   latitude: !secret lat
   longitude: !secret long
   external_url: !secret url
+  country: US
+  currency: USD
   elevation: 283
   unit_system: imperial
   time_zone: America/New_York
@@ -82,20 +84,10 @@ alexa:
         - switch
         - fan
 
-#google:
-#    client_id: !secret GOOGLE_ID
-#    client_secret: !secret GOOGLE_SECRET
 
 # Enables the frontend
 frontend:
   themes: !include themes.yaml
-  
-# Use lovelace config file  
-#lovelace:
-#  mode: yaml
-#  resources:
-#    - url: /local/mushroom.js
-#      type: module
       
 lovelace:
   mode: storage
