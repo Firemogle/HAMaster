@@ -20,3 +20,8 @@
     entities:
       - group.brett
       - group.liz
+  leak:
+    name: leak_sensor_combined
+    entities:
+      - binary_sensor.laundry_leak_sensor_water_leak_detected
+      - binary_sensor.kitchen_leak
