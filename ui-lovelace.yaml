@@ -118,6 +118,7 @@ views:
           - input_number.emi_night_timer
           - switch.emi_tv
           - binary_sensor.emi_motion
+          - binary_sensor.emi_window
           - sensor.emi_temp
       - type: media-control
         entity: media_player.emi_media
