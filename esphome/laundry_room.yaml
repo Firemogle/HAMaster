@@ -16,7 +16,8 @@ bluetooth_proxy:
 
 # Enable Home Assistant API
 api:
-  password: !secret OTA_PW
+  encryption:
+    key: fp5cNg1T9MH2bIkvVBhpBbGKv+Y1j5zI7U0xOXPXPOQ=
 
 ota:
   password: !secret OTA_PW
