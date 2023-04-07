@@ -25,11 +25,11 @@ ota:
  
   
 light:
-  - platform: fastled_clockless
-    chipset: WS2811
+  - platform: neopixelbus
+    variant: WS2811
     pin: GPIO16
     num_leds: 201
-    rgb_order: RGB
+    type: GRB
     name: kitchen_cabinet
     id: kitchen_cabinet
 
