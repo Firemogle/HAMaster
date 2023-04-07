@@ -1,7 +1,7 @@
 esphome:
   name: master_headboard
   platform: ESP32
-  board: nodemcu-32s
+  board: esp32dev
 
 wifi:
   ssid: !secret AP
