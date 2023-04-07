@@ -22,11 +22,11 @@ esp32_ble_tracker:
 bluetooth_proxy:
   
 light:
-  - platform: fastled_clockless
-    chipset: WS2811
+  - platform: neopixelbus
+    variant: WS2811
     pin: GPIO16
     num_leds: 20
-    rgb_order: RBG
+    type: GRB
     name: master_headboard
     id: master_headboard
 
