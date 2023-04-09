@@ -1,0 +1,51 @@
+esphome:
+  name: ape-test
+  includes:
+    - arduino_port_expander.h
+  platform: ESP32
+  board: nodemcu-32s
+
+wifi:
+  ssid: !secret AP
+  password: !secret APPW
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: fp5cNg1T9MH2bIkvVBhpBbGKv+Y1j5zI7U0xOXPXPOQ=
+
+ota:
+  password: !secret OTA_PW
+ 
+esp32_ble_tracker:
+bluetooth_proxy:
+  
+i2c:
+   sda: GPIO04
+   scl: GPIO05
+   id: i2c
+   
+custom_component:
+  - id: expander1
+    lambda: |-
+      auto expander = new ArduinoPortExpander(i2c, 0x08, true);
+      return {expander};
+      
+# define analog sensors
+sensor:
+  - platform: custom
+    lambda: |-
+      return {ape_analog_input(expander1, 1),  // 1 = A1
+              ape_analog_input(expander1, 2)};
+    sensors:
+      - name: Analog A1
+        id: analog_a1
+        filters:
+          - throttle: 0.5s
+      - name: Analog A2
+        id: analog_a2
+        filters:
+          - throttle: 0.5s
