@@ -3,7 +3,7 @@ esphome:
   includes:
     - arduino_port_expander.h
   platform: ESP32
-  board: nodemcu-32s
+  board: seeed_xiao_esp32c3
 
 wifi:
   ssid: !secret AP
