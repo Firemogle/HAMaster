@@ -26,12 +26,12 @@ bluetooth_proxy:
 i2c:
    sda: GPIO04
    scl: GPIO05
-   id: i2c
+   id: i2c_channel
    
 custom_component:
   - id: expander1
     lambda: |-
-      auto expander = new ArduinoPortExpander(i2c, 0x08, true);
+      auto expander = new ArduinoPortExpander(i2c_channel, 0x08, true);
       return {expander};
       
 # define analog sensors
