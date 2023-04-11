@@ -4,9 +4,7 @@ esphome:
 #    - arduino_port_expander.h
 
 esp32:
-  board: esp32-c3-devkitm-1
-  framework:
-    type: arduino
+  board: seeed_xiao_esp32c3
   
 
 wifi:
