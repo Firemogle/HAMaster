@@ -6,6 +6,15 @@ esphome:
 esp32:
   variant: ESP32C3
   board: esp32-c3-devkitm-1
+  framework:
+    type: esp-idf
+    version: recommended
+    # Custom sdkconfig options
+    sdkconfig_options:
+      CONFIG_COMPILER_OPTIMIZATION_SIZE: y
+    # Advanced tweaking options
+    advanced:
+      ignore_efuse_mac_crc: false
   
 
 wifi:
