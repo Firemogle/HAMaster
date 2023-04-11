@@ -2,8 +2,12 @@ esphome:
   name: ape-test
   includes:
     - arduino_port_expander.h
-  platform: ESP32
-  board: seeed_xiao_esp32c3
+
+esp32:
+  board: esp32-c3-devkitm-1
+  framework:
+    tyoe: arduino
+  
 
 wifi:
   ssid: !secret AP
