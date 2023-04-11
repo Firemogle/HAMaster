@@ -1,5 +1,8 @@
 esphome:
   name: ape-test
+  platformio_options:
+    board_build.flash_mode: dio
+    board_build.mcu: esp32c3
 #  includes:
 #    - arduino_port_expander.h
 
