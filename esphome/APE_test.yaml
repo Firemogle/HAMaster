@@ -20,7 +20,7 @@ logger:
 # Enable Home Assistant API
 api:
   encryption:
-    key: fp5cNg1T9MH2bIkvVBhpBbGKv+Y1j5zI7U0xOXPXPOQ=
+    key: !secret ENC_KEY
 
 ota:
   password: !secret OTA_PW
