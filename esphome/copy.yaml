@@ -11,21 +11,14 @@ esp32:
 # Enable Home Assistant API
 api:
   encryption:
-    key: "thisisasecret:)"
+    key: !secret ENC_KEY
 
 ota:
-  password: "thisisasecret:)"
+  password: !secret OTA_PW
 
 wifi:
   ssid: !secret AP
   password: !secret APPW
-
-  # Enable fallback hotspot (captive portal) in case wifi connection fails
-  ap:
-    ssid: "thisisasecret:)"
-    password: "thisisasecret:)"
-
-captive_portal:
 
 switch:
   - platform: gpio
