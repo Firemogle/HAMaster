@@ -42,7 +42,7 @@ custom_component:
       auto expander = new ArduinoPortExpander(i2c_channel, 0x08, true);
       return {expander};
       
- define analog sensors
+
 sensor:
   - platform: custom
     lambda: |-
