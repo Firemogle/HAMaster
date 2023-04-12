@@ -29,10 +29,10 @@ ota:
 #esp32_ble_tracker:
 #bluetooth_proxy:
   
-i2c:
-   sda: GPIO04
-   scl: GPIO05
-   id: i2c_channel
+#i2c:
+#   sda: GPIO04
+#   scl: GPIO05
+#   id: i2c_channel
    
 #custom_component:
 #  - id: expander1
