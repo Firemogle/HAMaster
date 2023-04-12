@@ -3,14 +3,13 @@ esphome:
   friendly_name: Initial testing for ape-xiao
   platformio_options:
     board_build.flash_mode: dio
+    board_build.mcu: esp32c3
 
 esp32:
-  board: seeed_xiao_esp32c3
+  board: esp32-c3-devkitm-1
   variant: esp32c3
   framework:
-    type: Arduino
-    version: 2.0.5
-    platform_version: 5.2.0
+    type: esp-idf
 
 wifi:
   ssid: !secret AP
