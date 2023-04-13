@@ -30,8 +30,8 @@ ota:
 #bluetooth_proxy:
   
 i2c:
-   sda: GPIO04
-   scl: GPIO05
+   sda: GPIO06
+   scl: GPIO07
    id: i2c_channel
    
 custom_component:
