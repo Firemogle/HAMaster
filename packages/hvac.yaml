@@ -73,10 +73,10 @@ template:
       - name: hvac_target_humidity
         unit_of_measurement: "%"
         state: >
-          {% if ((0.0049*states('sensor.dark_sky_temperature')| float(default='0')+0.2668)*100) > states('input_number.hvac_humidity_max')|float(default=0) %}
+          {% if ((0.0049*state_attr('weather.karb_daynight', 'temperature')|float(default=0)+0.2668)*100) > states('input_number.hvac_humidity_max')|float(default=0) %}
             {{ states('input_number.hvac_humidity_max')| float(default='0') }}
           {% else %} 
-            {{ (0.0049*states('sensor.dark_sky_temperature')|float(default=0)+0.2668)*100 }}
+            {{ (0.0049*state_attr('weather.karb_daynight', 'temperature')|float(default=0)+0.2668)*100 }}
           {% endif %}
 
   - sensor:
