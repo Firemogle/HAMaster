@@ -69,8 +69,6 @@ device_tracker:
     hosts:
       brettphone: 192.168.1.224
 
-speedtestdotnet:
-
 api:
 alexa:
   smart_home:
