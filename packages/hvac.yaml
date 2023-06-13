@@ -22,8 +22,8 @@ template:
   - binary_sensor:
       - name: house_sts_hvac_cool_req
         state: >
-          {{ state_attr('weather.karb_daynight', 'forecast')[0]['temperature'])|float(default=0) > states('input_number.hvac_ac_enable_temp')|float(default=0)
-             or state_attr('weather.karb_daynight', 'forecast')[1]['temperature'])|float(default=0) > states('input_number.hvac_ac_enable_temp')|float(default=0)}}
+          {{ state_attr('weather.karb_daynight', 'forecast')[0]['temperature']|float(default=0) > states('input_number.hvac_ac_enable_temp')|float(default=0)
+             or state_attr('weather.karb_daynight', 'forecast')[1]['temperature']|float(default=0) > states('input_number.hvac_ac_enable_temp')|float(default=0)}}
         delay_off:
           minutes: 30
         delay_on:
@@ -33,7 +33,7 @@ template:
       - name: house_sts_hvac_heat_req
         state: >
           {{ state_attr('weather.karb_daynight', 'temperature')|float(default=0) < states('input_number.hvac_heat_enable_temp')|float
-             and (state_attr('weather.karb_daynight', 'forecast')[0]['temperature'])|float(default=0) < 50 or state_attr('weather.karb_daynight', 'forecast')[1]['temperature'])|float(default=0) < 50}}
+             and (state_attr('weather.karb_daynight', 'forecast')[0]['temperature']|float(default=0) < 50 or state_attr('weather.karb_daynight', 'forecast')[1]['temperature']|float(default=0) < 50}}
         delay_off:
           minutes: 30
         delay_on:
