@@ -46,12 +46,6 @@ views:
         entities:
           - cover.garage_door
           - lock.front_door
-      - type: entities
-        title: Rapture Alert
-        show_header_toggle: false
-        entities:
-          - sensor.us_coronavirus_confirmed
-          - sensor.us_coronavirus_deaths
 
     # Main Level 
   - title: Main Level
