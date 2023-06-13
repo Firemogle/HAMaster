@@ -15,7 +15,8 @@ template:
         state: >
           {{ is_state('binary_sensor.hall_window_opened', 'off')
              and is_state('binary_sensor.sliding_glass_door_opened', 'off')
-             and is_state('binary_sensor.livingroom_door_opened', 'off') }}
+             and is_state('binary_sensor.livingroom_door_opened', 'off') 
+             and is_state('binary_sensor.living_room_window', 'off') }}
         delay_off:
           minutes: 5
 
