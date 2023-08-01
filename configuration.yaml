@@ -81,6 +81,8 @@ alexa:
         - light
         - switch
         - fan
+      exclude_entities:
+        - light.emi_star_lamp
 
 
 # Enables the frontend
