@@ -139,6 +139,7 @@ input_number:
 
 script:
   goodnight_emi:
+    mode: single
     sequence:
       - service:  light.turn_on
         target:
@@ -171,6 +172,8 @@ script:
           entity_id:  light.emi_star_lamp
         data:
           transition: 300
+      - delay:
+          minutes: 90
 
   reset_emi_fan:
     mode: restart
