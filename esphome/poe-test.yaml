@@ -1,0 +1,4 @@
+substitutions:
+  devicename: poe-test
+
+<<: !include poe-eth-main.conf
