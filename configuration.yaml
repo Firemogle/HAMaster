@@ -106,7 +106,6 @@ config:
 sun:
 
 # Discover some devices automatically
-discovery:
 zeroconf:
   
 #Initial config to move zigbee to main install 
