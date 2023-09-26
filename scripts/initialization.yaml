@@ -8,3 +8,6 @@ initialization:
   - service: automation.turn_on
     data:
       entity_id: "all"
+  - service: automation.turn_off
+    data:
+      entity_id: "automation.emi_light_stay_off"
