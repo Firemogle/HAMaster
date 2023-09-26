@@ -179,6 +179,9 @@ script:
         data:
           brightness_pct: 10
           transition: 900
+      - service: automation.turn_on
+        data:
+          entity_id: "automation.emi_light_stay_off"
       - delay:
           minutes: 15
       - service:  light.turn_off
@@ -188,6 +191,9 @@ script:
           transition: 300
       - delay:
           minutes: 90
+      - service: automation.turn_on
+        data:
+          entity_id: "automation.emi_light_stay_off"
 
   reset_emi_fan:
     mode: restart
