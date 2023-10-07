@@ -80,17 +80,6 @@ template:
             {{ (0.0049*state_attr('weather.karb_daynight', 'temperature')|float(default=0)+0.2668)*100 }}
           {% endif %}
 
-  - sensor:
-      - name: hvac_fan_state
-        state: >
-          {{ states.climate.hvac.attributes.fan }}
-
-  - sensor:
-      - name: hvac_current_humidity
-        unit_of_measurement: "%"
-        state: >
-          {{ states.climate.hvac.attributes.current_humidity|float(default=0) }}
-
 automation:
   - id: 'house_hvac_ena'
     alias: house_hvac_ena
@@ -122,59 +111,19 @@ automation:
         entity_id: script.hvac_run_setpoint
       service: script.turn_on
 
-  - id: humidifier_passive
-    alias: humidifier_passive
+  - id: 'house_humid'
+    alias: house_humid
     initial_state: 'off'
     trigger:
-    - entity_id: binary_sensor.house_sts_hum_passive_run
+    - entity_id: sensor.hvac_target_humidity
       platform: state
     condition: []
     action:
-    - data:
-        entity_id: switch.humidifier
-      service_template: >
-        {% if is_state('binary_sensor.house_sts_hum_passive_run','on') %}
-          switch.turn_on
-        {% else %}
-          switch.turn_off
-        {% endif %}
+    - service: humidifier.set_humidity
+      target:
+        entity_id: humidifier.house
+      data:
+        humidity: sensor.hvac_target_humidity
 
-  - id: humidifier_active
-    alias: humidifier_active
-    initial_state: 'off'
-    trigger:
-    - entity_id: binary_sensor.house_sts_hum_active_req
-      platform: state
-    condition: []
-    action:
-    - data_template:
-        fan_mode: >
-            {% if is_state('binary_sensor.house_sts_hum_active_req', 'on') %}
-              on
-            {% else %}
-              auto
-            {% endif %}
-        entity_id: climate.hvac_local
-      service: climate.set_fan_mode
-    - delay:
-        milliseconds: 500
-    - data_template:
-        fan_mode: >
-            {% if is_state('binary_sensor.house_sts_hum_active_req', 'on') %}
-              on
-            {% else %}
-              auto
-            {% endif %}
-        entity_id: climate.hvac_local
-      service: climate.set_fan_mode
-    - delay:
-        milliseconds: 500
-    - data_template:
-        fan_mode: >
-            {% if is_state('binary_sensor.house_sts_hum_active_req', 'on') %}
-              on
-            {% else %}
-              auto
-            {% endif %}
-        entity_id: climate.hvac_local
-      service: climate.set_fan_mode
+
+
