@@ -18,3 +18,10 @@ hvac_run_stop:
   - service: script.turn_on
     data: 
       entity_id: script.hvac_run_setpoint
+  - service: >
+        {% if is_state('binary_sensor.house_sts_hvac_heat_req', 'on') %}
+          humidifier.turn_on
+        {% else %}
+          humidifier.turn_off
+        {% endif %}
+    entity_id: humidifier.house
