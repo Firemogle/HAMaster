@@ -4,4 +4,4 @@
   platform: group
   services:
     - service: mobile_app_brettphone
-    - service: mobile_app_sm_g975f
+    - service: mobile_app_liz_phone
