@@ -6,6 +6,6 @@
 - name: Liz
   id: liz
   device_trackers:
-    - device_tracker.sm_g975f
+    - device_tracker.liz_phone
 
 
