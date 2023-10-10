@@ -5,3 +5,4 @@
   services:
     - service: mobile_app_brettphone
     - service: mobile_app_liz_phone
+    - service: mobile_app_emi_phone
