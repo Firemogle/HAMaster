@@ -15,11 +15,16 @@
     name: liz
     entities:
       - device_tracker.liz_phone
+  emi:
+    name: emi
+    entities:
+      - device_tracker.emi_phone
   occupants:
     name: occupants
     entities:
       - group.brett
       - group.liz
+      - group.emi
   leak:
     name: leak_sensor_combined
     entities:
