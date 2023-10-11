@@ -18,7 +18,7 @@
   emi:
     name: emi
     entities:
-      - device_tracker.emi_phone
+      - device_tracker.emi_phone_2
   occupants:
     name: occupants
     entities:
