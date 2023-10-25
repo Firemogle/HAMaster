@@ -123,7 +123,7 @@ automation:
       target:
         entity_id: humidifier.house
       data:
-        humidity: states('sensor.hvac_target_humidity')|float(default=20) }}
+        humidity: states('sensor.hvac_target_humidity')|int(default=20) }}
 
 
 
