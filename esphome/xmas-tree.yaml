@@ -6,6 +6,11 @@ esphome:
 wifi:
   ssid: !secret AP
   password: !secret APPW
+  manual_ip:
+    static_ip: 192.168.2.114 
+    gateway: 192.168.2.1
+    subnet: 255.255.255.0
+  
 
 # Enable logging
 logger:
