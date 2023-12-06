@@ -31,7 +31,7 @@ light:
     chipset: WS2811
     pin: GPIO16
     num_leds: 240
-    rgb_order: RBG
+    rgb_order: BRG
     name: xmastree
     id: xmastree
     effects:
