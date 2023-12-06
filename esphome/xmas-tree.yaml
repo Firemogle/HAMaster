@@ -41,19 +41,19 @@ light:
           intensity: 25%
       - addressable_lambda:
           name: Gold Glitter
-          update_interval: 18ms
+          update_interval: 12ms
           lambda:
             static int state = 0;
       
             if (initial_run){
               state = 0;
       
-              it.all() = ESPColor(218,165,32);
+              it.all() = ESPColor(218,32,32);
       
               ESP_LOGD("custom", "Gold Glitter");
             } else {
       
-              it.all() = ESPColor(218,165,32);
+              it.all() = ESPColor(218,32,32);
       
               if(state==0){
                 int i = rand() % it.size();
