@@ -66,7 +66,7 @@ light:
             }
       - addressable_lambda:
           name: Rainbow
-          lambda: 
+          lambda: |-
 
             if (initial_run) {
               it.all() = Color(0, 0, 0);
