@@ -107,6 +107,8 @@
       state: off
     light.basemet_dimmer:
       state: off
+    switch.garage_wall_switch:
+      state: off
 - name: house_wakeup
   entities:
     light.kitchen_sink:
@@ -168,6 +170,8 @@
       brightness: 150
     switch.livingroom_subwoofer:
       state: off
+    switch.garage_wall_switch:
+      state:: on
 
 - name: ext_lights_off
   entities:
