@@ -67,13 +67,13 @@ light:
       - addressable_lambda:
           name: Rainbow
           lambda: 
-            uint8_t led_change = 24; //(higher is more change) the difference in hue for each led down the strip
-            float speed = 7; //(lower is faster) the speed the first led colour changes at (therefore affecting all)
-            
+
             if (initial_run) {
               it.all() = Color(0, 0, 0);
             }
             
+            uint8_t led_change = 24; //(higher is more change) the difference in hue for each led down the strip
+            float speed = 7; //(lower is faster) the speed the first led colour changes at (therefore affecting all)
             unsigned long time = millis() / speed;
             int repetitions = time / 1529;
             uint16_t hue = time - (1529 * repetitions);
