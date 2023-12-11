@@ -171,7 +171,7 @@
     switch.livingroom_subwoofer:
       state: off
     switch.garage_wall_switch:
-      state:: on
+      state: on
 
 - name: ext_lights_off
   entities:
