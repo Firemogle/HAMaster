@@ -362,6 +362,8 @@ views:
             name: "Front Awning LED"
           - entity: switch.garage_wall_switch
             name: "Garage Wall Switch"
+          - entity: light.xmastree
+            name: "Tree Lights"
           - entity: light.front_garden_level_light_color_on_off
             name: "Front Garden Lights"
             
