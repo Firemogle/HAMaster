@@ -182,8 +182,8 @@ light:
     name: Fiber Optic Tree
     segments:
       - id: xmastree
-        from: 100
-        to: 119
+        from: 50
+        to: 69
       - id: xmastree
         from: 170
         to: 189
@@ -261,7 +261,10 @@ light:
     segments:
       - id: xmastree
         from: 0
-        to: 99
+        to: 49
+      - id: xmastree
+        from: 170
+        to: 119
       - id: xmastree
         from: 120
         to: 169
