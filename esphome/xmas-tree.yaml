@@ -103,3 +103,234 @@ light:
                 hue-=1530;
               }
             }
+  - platform: partition
+    name: Tree Star
+    segments:
+      - id: xmastree
+        from: 190
+        to: 239
+    effects:
+      - addressable_flicker:
+      - addressable_flicker:
+          name: Flickering 25
+          intensity: 25%
+      - addressable_lambda:
+          name: Gold Glitter
+          update_interval: 12ms
+          lambda:
+            static int state = 0;
+      
+            if (initial_run){
+              state = 0;
+      
+              it.all() = ESPColor(218,32,32);
+      
+              ESP_LOGD("custom", "Gold Glitter");
+            } else {
+      
+              it.all() = ESPColor(218,32,32);
+      
+              if(state==0){
+                int i = rand() % it.size();
+                it[i] = ESPColor::WHITE;
+                state += 1;
+              } else {
+                state += 1;
+                state = state % 10;
+              }
+            }
+      - addressable_lambda:
+          name: Rainbow
+          lambda: |-
+
+            if (initial_run) {
+              it.all() = Color(0, 0, 0);
+            }
+            
+            uint8_t led_change = 24; //(higher is more change) the difference in hue for each led down the strip
+            float speed = 4; //(lower is faster) the speed the first led colour changes at (therefore affecting all)
+            unsigned long time = millis() / speed;
+            int repetitions = time / 1529;
+            uint16_t hue = time - (1529 * repetitions);
+            
+            for (int i = 0; i < it.size(); i++) {
+              if (hue >= 0 && hue < 255) {
+                uint8_t green = hue;
+                it[i] = Color(255, green, 0);
+              } else if (hue >= 255 && hue < 510) {
+                uint8_t red = hue - 255;
+                it[i] = Color((255 - red), 255, 0);
+              } else if (hue >= 510 && hue < 765) {
+                uint8_t blue = hue - 510;
+                it[i] = Color(0, 255, blue);
+              } else if (hue >= 765 && hue < 1020) {
+                uint8_t green = hue - 765;
+                it[i] = Color(0, (255 - green), 255);
+              } else if (hue >= 1020 && hue < 1275) {
+                uint8_t red = hue - 1020;
+                it[i] = Color(red, 0, 255);
+              } else if (hue >= 1275 && hue < 1530) {
+                uint8_t blue = hue - 1275;
+                it[i] = Color(255, 0, (255 - blue));
+              }
+              hue+=led_change;
+              if (hue >= 1530) {
+                hue-=1530;
+              }
+            }
+  - platform: partition
+    name: Fiber Optic Tree
+    segments:
+      - id: xmastree
+        from: 100
+        to: 119
+      - id: xmastree
+        from: 170
+        to: 189
+    effects:
+      - addressable_flicker:
+      - addressable_flicker:
+          name: Flickering 25
+          intensity: 25%
+      - addressable_lambda:
+          name: Gold Glitter
+          update_interval: 12ms
+          lambda:
+            static int state = 0;
+      
+            if (initial_run){
+              state = 0;
+      
+              it.all() = ESPColor(218,32,32);
+      
+              ESP_LOGD("custom", "Gold Glitter");
+            } else {
+      
+              it.all() = ESPColor(218,32,32);
+      
+              if(state==0){
+                int i = rand() % it.size();
+                it[i] = ESPColor::WHITE;
+                state += 1;
+              } else {
+                state += 1;
+                state = state % 10;
+              }
+            }
+      - addressable_lambda:
+          name: Rainbow
+          lambda: |-
+
+            if (initial_run) {
+              it.all() = Color(0, 0, 0);
+            }
+            
+            uint8_t led_change = 24; //(higher is more change) the difference in hue for each led down the strip
+            float speed = 4; //(lower is faster) the speed the first led colour changes at (therefore affecting all)
+            unsigned long time = millis() / speed;
+            int repetitions = time / 1529;
+            uint16_t hue = time - (1529 * repetitions);
+            
+            for (int i = 0; i < it.size(); i++) {
+              if (hue >= 0 && hue < 255) {
+                uint8_t green = hue;
+                it[i] = Color(255, green, 0);
+              } else if (hue >= 255 && hue < 510) {
+                uint8_t red = hue - 255;
+                it[i] = Color((255 - red), 255, 0);
+              } else if (hue >= 510 && hue < 765) {
+                uint8_t blue = hue - 510;
+                it[i] = Color(0, 255, blue);
+              } else if (hue >= 765 && hue < 1020) {
+                uint8_t green = hue - 765;
+                it[i] = Color(0, (255 - green), 255);
+              } else if (hue >= 1020 && hue < 1275) {
+                uint8_t red = hue - 1020;
+                it[i] = Color(red, 0, 255);
+              } else if (hue >= 1275 && hue < 1530) {
+                uint8_t blue = hue - 1275;
+                it[i] = Color(255, 0, (255 - blue));
+              }
+              hue+=led_change;
+              if (hue >= 1530) {
+                hue-=1530;
+              }
+            }
+  - platform: partition
+    name: Tree Body
+    segments:
+      - id: xmastree
+        from: 0
+        to: 99
+      - id: xmastree
+        from: 120
+        to: 169
+    effects:
+      - addressable_flicker:
+      - addressable_flicker:
+          name: Flickering 25
+          intensity: 25%
+      - addressable_lambda:
+          name: Gold Glitter
+          update_interval: 12ms
+          lambda:
+            static int state = 0;
+      
+            if (initial_run){
+              state = 0;
+      
+              it.all() = ESPColor(218,32,32);
+      
+              ESP_LOGD("custom", "Gold Glitter");
+            } else {
+      
+              it.all() = ESPColor(218,32,32);
+      
+              if(state==0){
+                int i = rand() % it.size();
+                it[i] = ESPColor::WHITE;
+                state += 1;
+              } else {
+                state += 1;
+                state = state % 10;
+              }
+            }
+      - addressable_lambda:
+          name: Rainbow
+          lambda: |-
+
+            if (initial_run) {
+              it.all() = Color(0, 0, 0);
+            }
+            
+            uint8_t led_change = 24; //(higher is more change) the difference in hue for each led down the strip
+            float speed = 4; //(lower is faster) the speed the first led colour changes at (therefore affecting all)
+            unsigned long time = millis() / speed;
+            int repetitions = time / 1529;
+            uint16_t hue = time - (1529 * repetitions);
+            
+            for (int i = 0; i < it.size(); i++) {
+              if (hue >= 0 && hue < 255) {
+                uint8_t green = hue;
+                it[i] = Color(255, green, 0);
+              } else if (hue >= 255 && hue < 510) {
+                uint8_t red = hue - 255;
+                it[i] = Color((255 - red), 255, 0);
+              } else if (hue >= 510 && hue < 765) {
+                uint8_t blue = hue - 510;
+                it[i] = Color(0, 255, blue);
+              } else if (hue >= 765 && hue < 1020) {
+                uint8_t green = hue - 765;
+                it[i] = Color(0, (255 - green), 255);
+              } else if (hue >= 1020 && hue < 1275) {
+                uint8_t red = hue - 1020;
+                it[i] = Color(red, 0, 255);
+              } else if (hue >= 1275 && hue < 1530) {
+                uint8_t blue = hue - 1275;
+                it[i] = Color(255, 0, (255 - blue));
+              }
+              hue+=led_change;
+              if (hue >= 1530) {
+                hue-=1530;
+              }
+            }
