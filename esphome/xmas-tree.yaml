@@ -185,8 +185,8 @@ light:
         from: 50
         to: 69
       - id: xmastree
-        from: 170
-        to: 189
+        from: 120
+        to: 139
     effects:
       - addressable_flicker:
       - addressable_flicker:
@@ -263,11 +263,11 @@ light:
         from: 0
         to: 49
       - id: xmastree
-        from: 170
+        from: 70
         to: 119
       - id: xmastree
-        from: 120
-        to: 169
+        from: 140
+        to: 189
     effects:
       - addressable_flicker:
       - addressable_flicker:
