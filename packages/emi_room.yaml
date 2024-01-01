@@ -42,12 +42,6 @@ media_player:
     host: 192.168.3.14
     username: !secret KODI_USR
     password: !secret KODI_PW
-
-  - platform: androidtv
-    name: emi_shield
-    host: 192.168.3.14
-    adb_server_ip: 127.0.0.1
-    adb_server_port: 5037
     
   - platform: universal
     name: emi_media
