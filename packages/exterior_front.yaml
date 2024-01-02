@@ -33,17 +33,6 @@ template:
         delay_off:
           minutes: 5
     
-camera:
-  - platform: mjpeg
-    name: frontdoor
-    still_image_url: http://192.168.2.200:81/image/frontdoor?q=100&s=100
-    mjpeg_url: http://192.168.2.200:81/mjpg/frontdoor/video.mjpg
-    
-  - platform: mjpeg
-    name: "Front Porch"
-    still_image_url: http://192.168.2.200:81/image/Frontyard?q=100&s=100
-    mjpeg_url: http://192.168.2.200:81/mjpg/frontyard/video.mjpg
-    
 mqtt:
   camera:
     name: doorbell_last_person
