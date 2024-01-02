@@ -5,12 +5,6 @@ homeassistant:
     light.nursery_fan_light:
       friendly_name: Scarlett Light
       
-      
-camera:
-  - platform: mjpeg
-    name: lottie_camera
-    still_image_url: http://192.168.2.200:81/image/n_cam?q=100&s=100
-    mjpeg_url: http://192.168.2.200:81/mjpg/n_cam/video.mjpg
 
 climate:
   - platform: generic_thermostat
