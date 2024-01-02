@@ -123,21 +123,6 @@ logger:
     
 # Enables a map showing the location of tracked devices
 map:
-
-# Enable connection to MQTT server
-#mqtt:
-#  broker: 192.168.2.2
-#  username: firemogle
-#  password: !secret MQTTPW
-#  birth_message:
-#    topic: 'HAMaster/status'
-#    payload: 'online'
-#  will_message:
-#    topic: 'HAMaster/status'
-#    payload: 'offline'
-
-ecobee:
-  api_key: !secret ECOBEE_KEY
     
 system_health: # load system health
 stream: # Load streaming for videos
