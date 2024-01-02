@@ -32,11 +32,11 @@ media_player:
     username: !secret KODI_USR
     password: !secret KODI_PW
 
-  - platform: androidtv
-    name: projector_shield
-    host: 192.168.3.3
-    adb_server_ip: 127.0.0.1
-    adb_server_port: 5037
+#  - platform: androidtv
+#    name: projector_shield
+#    host: 192.168.3.3
+#    adb_server_ip: 127.0.0.1
+#    adb_server_port: 5037
     
   - platform: onkyo
     host: 192.168.3.4
