@@ -30,13 +30,6 @@ binary_sensor:
     after: '23:59'
     before: '05:30'
 
-  - platform: workday # Define workdays for house
-    name: workday_raw
-    country: US
-    province: MI
-    workdays: [mon, tue, wed, thu, fri]
-    excludes: [sat, sun, holiday]
-
 #template:
 #  - binary_sensor:
 #      - name: house_time_liz_work_exception:
