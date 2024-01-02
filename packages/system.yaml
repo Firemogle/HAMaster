@@ -92,10 +92,6 @@ template:
           {% else %}
             {{ "night" }}
           {% endif %}
-
-binary_sensor:
-  - platform: ping
-    host: 192.168.2.51
           
           
 alert:
