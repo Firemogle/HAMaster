@@ -24,7 +24,6 @@
     entities:
       - group.brett
       - group.liz
-      - group.emi
   leak:
     name: leak_sensor_combined
     entities:
