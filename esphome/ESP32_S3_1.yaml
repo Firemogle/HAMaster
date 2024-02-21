@@ -35,12 +35,7 @@ esp32:
 psram:
   mode: octal
   speed: 80MHz
- 
-mqtt:
-  broker: !secret mqtt_address
-  username: !secret mqtt_user
-  password: !secret mqtt_password
- 
+  
  
 i2c:
   - id: bus_a
@@ -87,8 +82,8 @@ wifi:
     then:
       - script.execute: reset_display
       - ble.enable:
-  ssid: !secret wifi_ssid
-  password: !secret wifi_password
+  ssid: !secret AP
+  password: !secret APPW
  
 improv_serial:
 esp32_improv:
