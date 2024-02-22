@@ -62,7 +62,7 @@ api:
     then:
       - script.execute: reset_display
   encryption:
-    key: !secret enc_key
+    key: fp5cNg1T9MH2bIkvVBhpBbGKv+Y1j5zI7U0xOXPXPOQ=
  
 ota:
 logger:
