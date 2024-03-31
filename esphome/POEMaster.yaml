@@ -4,6 +4,7 @@ esphome:
 
 esp32:
   variant: esp32s3
+  board: nodemcu-32s
 
 # Enable logging
 logger:
