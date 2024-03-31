@@ -3,7 +3,6 @@ esphome:
   friendly_name: Initial testing for poe
 
 esp32:
-  board: esp32-s3-devkitm-1
   variant: esp32s3
 
 # Enable logging
