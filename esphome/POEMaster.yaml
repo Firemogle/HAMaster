@@ -3,8 +3,10 @@ esphome:
   friendly_name: Initial testing for poe
 
 esp32:
-  board: ESP32DEV
-  variant: ESP32S3
+  board: esp32-s3-devkitm-1
+  framework:
+    type: esp-idf
+    version: recommended
 
 # Enable logging
 logger:
