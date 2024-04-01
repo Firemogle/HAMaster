@@ -19,8 +19,7 @@ wifi:
 
 # Enable logging
 logger:
-  baud_rate: 0
-  hardware_uart: UART0
+  hardware_uart: USB_CDC
 
 # Enable Home Assistant API
 api:
