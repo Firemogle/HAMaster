@@ -8,6 +8,12 @@ esp32:
   framework:
     type: esp-idf
     version: recommended
+    sdkconfig_options:
+      CONFIG_ESP32_S3_BOX_BOARD: "y"
+   
+psram:
+  mode: octal
+  speed: 80MHz
 
 wifi:
   ssid: !secret AP
