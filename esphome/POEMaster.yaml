@@ -2,15 +2,18 @@ esphome:
   name: poemastertest
   friendly_name: Initial testing for poe
 
+esphome:
+  name: esp32s3
+  platformio_options:
+    build_flags: -DBOARD_HAS_PSRAM
+    board_build.arduino.memory_type: qio_opi
+    board_build.f_flash: 80000000L
+    board_build.flash_mode: qio 
+
 esp32:
   board: esp32-s3-devkitc-1
-  variant: esp32s3
   framework:
     type: arduino
-   
-psram:
-  mode: octal
-  speed: 80MHz
 
 wifi:
   ssid: !secret AP
