@@ -60,5 +60,5 @@ sensor:
       name: "poemastertest Pressure"
     humidity:
       name: "poemastertest Humidity"
-    address: 0x77
+    address: 0x76
     update_interval: 60s
