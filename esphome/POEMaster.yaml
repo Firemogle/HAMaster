@@ -2,7 +2,7 @@ esphome:
   name: poemastertest
   friendly_name: Initial testing for poe
   platformio_options:
-    board_build.flash_mode: dio
+    board_build.flash_mode: qio
 
 esp32:
   board: esp32-s3-devkitc-1
