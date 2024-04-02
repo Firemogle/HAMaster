@@ -2,15 +2,12 @@ esphome:
   name: poemastertest
   friendly_name: Initial testing for poe
   platformio_options:
-    build_flags: -DBOARD_HAS_PSRAM
-    board_build.arduino.memory_type: qio_opi
-    board_build.f_flash: 80000000L
-    board_build.flash_mode: qio 
+    board_build.flash_mode: dio
 
 esp32:
   board: esp32-s3-devkitc-1
   framework:
-    type: arduino
+    type: esp-idf
 
 wifi:
   ssid: !secret AP
