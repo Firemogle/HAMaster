@@ -62,3 +62,5 @@ sensor:
       name: "poemastertest Humidity"
     address: 0x76
     update_interval: 60s
+  - platform: internal_temperature
+    name: "poemastertest Internal Temperature"
