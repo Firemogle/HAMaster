@@ -15,11 +15,6 @@ psram:
   mode: octal
   speed: 80MHz
 
-#wifi:
-#  ssid: !secret AP
-#  password: !secret APPW
-#  power_save_mode: none
-
 # Enable logging
 logger:
   hardware_uart: USB_SERIAL_JTAG
