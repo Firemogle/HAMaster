@@ -59,11 +59,11 @@ sensor:
 
 light:
   - platform: esp32_rmt_led_strip
-    chipset: WS2811
+    chipset: WS2812
     pin: GPIO37
     num_leds: 30
     rmt_channel: 0
-    type: GRB
+    rgb_order: GRB
     name: poetest
     id: poetest
     effects:
