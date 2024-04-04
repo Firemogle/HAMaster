@@ -61,7 +61,7 @@ light:
   - platform: esp32_rmt_led_strip
     chipset: WS2812
     pin: GPIO37
-    num_leds: 30
+    num_leds: 75
     rmt_channel: 0
     rgb_order: GRB
     name: poetest
