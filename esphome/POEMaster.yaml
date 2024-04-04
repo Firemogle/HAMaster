@@ -58,10 +58,11 @@ sensor:
     name: "poemastertest Internal Temperature"
 
 light:
-  - platform: neopixelbus
-    variant: WS2811
+  - platform: esp32_rmt_led_strip
+    chipset: WS2811
     pin: GPIO37
-    num_leds: 150
+    num_leds: 30
+    rmt_channel: 0
     type: GRB
     name: poetest
     id: poetest
