@@ -38,7 +38,7 @@ ads1115:
     address: 0x49  
   
 sensor:
-  - platform: bme280
+  - platform: bme280_i2c
     temperature:
       name: "Garage Temperature"
       oversampling: 16x
