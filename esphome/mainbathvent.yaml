@@ -63,7 +63,7 @@ sensor:
     breath_voc_equivalent:
       name: "Main Bath Vent Breath VOC Equivalent"
 
-  - platform: bme280
+  - platform: bme280_i2c
     temperature:
       name: "Attic Temp"
       oversampling: 16x
