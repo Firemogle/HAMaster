@@ -77,7 +77,7 @@ i2c:
    scl: GPIO22  
     
 sensor:
-  - platform: bme280
+  - platform: bme280_i2c
     temperature:
       name: master_headboard_temp
       oversampling: 16x
