@@ -3,7 +3,7 @@ mqtt:
 
 go2rtc:
   streams:
-    frontyard: "ffmpeg:{your_mjpeg_stream_url}#video=h264#hardware" # <- use hardware acceleration to create an h264 stream usable for other components.
+    frontyard: "ffmpeg:{http://192.168.2.200:81/mjpg/frontyard/video.mjpg}#video=h264#hardware" # <- use hardware acceleration to create an h264 stream usable for other components.
 
 cameras:
   frontyard: # <------ Name the camera
