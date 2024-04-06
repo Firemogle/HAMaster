@@ -1,12 +1,16 @@
 mqtt:
   enabled: False
 
+go2rtc:
+  streams:
+    frontyard: "ffmpeg:{your_mjpeg_stream_url}#video=h264#hardware" # <- use hardware acceleration to create an h264 stream usable for other components.
+
 cameras:
   frontyard: # <------ Name the camera
     enabled: True
     ffmpeg:
       inputs:
-        - path: http://192.168.2.200:81/mjpg/frontyard/video.mjpg # <----- The stream you want to use for detection
+        - path: rtsp://127.0.0.1:8554/frontyard # <----- The stream you want to use for detection
           roles:
             - detect
     detect:
