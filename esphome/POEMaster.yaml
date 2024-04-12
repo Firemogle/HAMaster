@@ -60,6 +60,8 @@ sensor:
     update_interval: 60s
   - platform: internal_temperature
     name: "poemastertest Internal Temperature"
+  - platform: "a02yyuw"
+    name: "Distance"
 
 light:
   - platform: esp32_rmt_led_strip
