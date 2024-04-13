@@ -9,7 +9,7 @@ esp32:
   board: esp32-s3-devkitc-1
   framework:
     version: recommended    
-    type: esp-idf
+    type: arduino
 
 i2s_audio:
   i2s_lrclk_pin: GPIO39
@@ -28,6 +28,7 @@ microphone:
     id: external_mic
     adc_type: external
     i2s_din_pin: GPIO40
+    pdm: false
 
 uart:
   tx_pin: 2
