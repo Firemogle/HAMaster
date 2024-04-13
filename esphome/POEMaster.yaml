@@ -11,6 +11,24 @@ esp32:
     version: recommended    
     type: esp-idf
 
+i2s_audio:
+  i2s_lrclk_pin: GPIO39
+  i2s_bclk_pin: GPIO38
+  i2s_mclk_pin: GPIO41
+
+media_player:
+  - platform: i2s_audio
+    name: poemastertest Media Player
+    dac_type: external
+    i2s_dout_pin: GPIO40
+    mode: mono
+
+microphone:
+  - platform: i2s_audio
+    id: external_mic
+    adc_type: external
+    i2s_din_pin: GPIO40
+
 uart:
   tx_pin: 2
   rx_pin: 1
