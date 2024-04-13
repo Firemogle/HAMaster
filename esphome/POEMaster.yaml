@@ -37,7 +37,7 @@ uart:
 
 # Enable logging
 logger:
-  hardware_uart: USB_SERIAL_JTAG
+  hardware_uart: USB_CDC
 
 # Enable Home Assistant API
 api:
@@ -77,8 +77,6 @@ sensor:
       name: "poemastertest Humidity"
     address: 0x76
     update_interval: 60s
-  - platform: internal_temperature
-    name: "poemastertest Internal Temperature"
   - platform: "a02yyuw"
     name: "Distance"
 
