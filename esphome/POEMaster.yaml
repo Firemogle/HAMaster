@@ -91,37 +91,3 @@ sensor:
       name: "Hydrangea Illuminance"
     conductivity:
       name: "Hydrangea Soil Conductivity"
-
-light:
-  - platform: esp32_rmt_led_strip
-    chipset: WS2812
-    pin: GPIO37
-    num_leds: 75
-    rmt_channel: 0
-    rgb_order: GRB
-    name: poetest
-    id: poetest
-    effects:
-      - addressable_fireworks:
-          name: Fireworks
-          update_interval: 32ms
-          spark_probability: 75%
-          use_random_color: true
-          fade_out_rate: 125
-      - addressable_twinkle:
-          name: twinkle
-          twinkle_probability: 10%
-          progress_interval: 64ms
-      - addressable_color_wipe:
-          name: Christmas stripes
-          colors:
-            - red: 100%
-              green: 0%
-              blue: 0%
-              num_leds: 50
-            - red: 0%
-              green: 100%
-              blue: 0%
-              num_leds: 50
-          add_led_interval: 100ms
-          reverse: False
