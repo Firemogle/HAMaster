@@ -65,6 +65,8 @@ ethernet:
   interrupt_pin: GPIO46
   reset_pin: GPIO3
   clock_speed: 25Mhz
+  
+esp32_ble_tracker:
 
 sensor:
   - platform: bme280_i2c
