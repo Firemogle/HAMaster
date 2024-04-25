@@ -31,8 +31,8 @@ microphone:
     pdm: false
 
 uart:
-  rx_pin: GPIO37
-  tx_pin: GPIO36
+  rx_pin: GPIO43
+  tx_pin: GPIO44
   baud_rate: 9600
   id: dist
   debug:
