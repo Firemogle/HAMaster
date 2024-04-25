@@ -38,7 +38,7 @@ uart:
 # Enable logging
 logger:
   hardware_uart: USB_CDC
-level: VERBOSE
+  level: VERBOSE
 
 # Enable Home Assistant API
 api:
