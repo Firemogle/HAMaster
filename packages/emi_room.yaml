@@ -92,6 +92,20 @@ automation:
     - data:
         entity_id: light.emi_star_lamp
       service: light.turn_off
+
+  - id: 'emi_light_stay_off_fan'
+    alias: emi_light_stay_off_fan
+    initial_state: 'off'
+    trigger:
+    - entity_id: light.emi_fan_light
+      platform: state
+      from: "off"
+      to: "on"
+    condition: []
+    action:
+    - data:
+        entity_id: light.emi_fan_light
+      service: light.turn_off
           
   - id: 'emi_tv_off'
     alias: emi_tv_off
