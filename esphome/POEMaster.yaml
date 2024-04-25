@@ -33,6 +33,7 @@ microphone:
 uart:
   rx_pin: GPIO44
   baud_rate: 9600
+  id: dist
 
 # Enable logging
 logger:
@@ -81,6 +82,7 @@ sensor:
     update_interval: 60s
   - platform: "a02yyuw"
     name: "Distance"
+    uart_id: dist
     filters:
       - throttle: 10s
   - platform: xiaomi_hhccjcy01
