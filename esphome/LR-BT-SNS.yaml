@@ -1,0 +1,67 @@
+esphome:
+  name: LR-BT-SNS
+  friendly_name: Living Room Sensor Board
+  platformio_options:
+    board_build.flash_mode: dio
+    board_build.mcu: esp32s3
+
+esp32:
+  board: esp32-s3-devkitc-1
+  framework:
+    version: recommended    
+    type: arduino
+
+# Enable logging
+logger:
+  hardware_uart: USB_CDC
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: !secret ENC_KEY
+
+ota:
+  password: !secret OTA_PW
+ 
+#esp32_ble_tracker:
+#bluetooth_proxy:
+  
+i2c:
+   sda: GPIO05
+   scl: GPIO04
+   id: i2c_channel
+
+
+ethernet:
+  type: W5500
+  clk_pin: GPIO11
+  mosi_pin: GPIO9
+  miso_pin: GPIO10
+  cs_pin: GPIO12
+  interrupt_pin: GPIO46
+  reset_pin: GPIO3
+  clock_speed: 25Mhz
+  
+esp32_ble_tracker:
+
+sensor:
+  - platform: bme280_i2c
+    temperature:
+      name: "poemastertest Temperature"
+      oversampling: 16x
+    pressure:
+      name: "poemastertest Pressure"
+    humidity:
+      name: "poemastertest Humidity"
+    address: 0x76
+    update_interval: 60s      
+  - platform: xiaomi_hhccjcy01
+    mac_address: 'C4:7C:8D:63:F7:31'
+    temperature:
+      name: "Hydrangea Temperature"
+    moisture:
+      name: "Hydrangea Moisture"
+    illuminance:
+      name: "Hydrangea Illuminance"
+    conductivity:
+      name: "Hydrangea Soil Conductivity"
