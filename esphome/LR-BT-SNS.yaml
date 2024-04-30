@@ -47,12 +47,12 @@ esp32_ble_tracker:
 sensor:
   - platform: bme280_i2c
     temperature:
-      name: "poemastertest Temperature"
+      name: "lr-bt-sns Temperature"
       oversampling: 16x
     pressure:
-      name: "poemastertest Pressure"
+      name: "lr-bt-sns Pressure"
     humidity:
-      name: "poemastertest Humidity"
+      name: "lr-bt-sns Humidity"
     address: 0x76
     update_interval: 60s      
   - platform: xiaomi_hhccjcy01
