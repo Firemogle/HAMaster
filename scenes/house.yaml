@@ -109,6 +109,8 @@
       state: off
     switch.garage_wall_switch:
       state: off
+    light.landscape:
+      state: on
 - name: house_wakeup
   entities:
     light.kitchen_sink:
@@ -174,6 +176,8 @@
     switch.livingroom_subwoofer:
       state: off
     switch.garage_wall_switch:
+      state: on
+    light.landscape:
       state: on
 
 - name: ext_lights_off
