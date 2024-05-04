@@ -1,0 +1,57 @@
+esphome:
+  name: rainbrarrel
+  friendly_name: rainbarrel
+  platformio_options:
+    board_build.flash_mode: dio
+    board_build.mcu: esp32s3
+
+esp32:
+  board: esp32-s3-devkitc-1
+  framework:
+    version: recommended    
+    type: arduino
+
+# Enable logging
+logger:
+  hardware_uart: USB_CDC
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: !secret ENC_KEY
+
+ota:
+  password: !secret OTA_PW
+ 
+#esp32_ble_tracker:
+#bluetooth_proxy:
+  
+i2c:
+   sda: GPIO05
+   scl: GPIO04
+   id: i2c_channel
+
+
+ethernet:
+  type: W5500
+  clk_pin: GPIO11
+  mosi_pin: GPIO9
+  miso_pin: GPIO10
+  cs_pin: GPIO12
+  interrupt_pin: GPIO46
+  reset_pin: GPIO3
+  clock_speed: 25Mhz
+  
+esp32_ble_tracker:
+
+sensor:
+  - platform: bme280_i2c
+    temperature:
+      name: "rainbarrel Temperature"
+      oversampling: 16x
+    pressure:
+      name: "rainbarrel Pressure"
+    humidity:
+      name: "rainbarrel Humidity"
+    address: 0x76
+    update_interval: 60s      
