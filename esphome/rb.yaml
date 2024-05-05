@@ -44,7 +44,7 @@ ethernet:
 
 pcf8574:
   - id: 'pcf8574_hub'
-    address: 0x21
+    address: 0x27
     pcf8575: false
   
 esp32_ble_tracker:
