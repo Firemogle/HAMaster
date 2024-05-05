@@ -41,6 +41,11 @@ ethernet:
   interrupt_pin: GPIO46
   reset_pin: GPIO3
   clock_speed: 25Mhz
+
+pcf8574:
+  - id: 'pcf8574_hub'
+    address: 0x21
+    pcf8575: false
   
 esp32_ble_tracker:
 
