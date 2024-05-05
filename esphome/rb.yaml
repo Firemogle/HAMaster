@@ -14,7 +14,6 @@ esp32:
 # Enable logging
 logger:
   hardware_uart: USB_CDC
-  level: VERY_VERBOSE
 
 # Enable Home Assistant API
 api:
@@ -46,7 +45,7 @@ ethernet:
 pcf8574:
   - id: 'pcf8574_hub'
     address: 0x27
-    pcf8575: true
+    pcf8575: false
 
 # Individual outputs
 switch:
@@ -55,7 +54,7 @@ switch:
     pin:
       pcf8574: pcf8574_hub
       # Use pin number 0
-      number: 0
+      number: 4
       # One of INPUT or OUTPUT
       mode:
         output: true
@@ -65,7 +64,7 @@ switch:
     pin:
       pcf8574: pcf8574_hub
       # Use pin number 0
-      number: 1
+      number: 5
       # One of INPUT or OUTPUT
       mode:
         output: true
@@ -75,7 +74,7 @@ switch:
     pin:
       pcf8574: pcf8574_hub
       # Use pin number 0
-      number: 2
+      number: 6
       # One of INPUT or OUTPUT
       mode:
         output: true
@@ -85,11 +84,12 @@ switch:
     pin:
       pcf8574: pcf8574_hub
       # Use pin number 0
-      number: 3
+      number: 7
       # One of INPUT or OUTPUT
       mode:
         output: true
       inverted: false
+      
   
 esp32_ble_tracker:
 
