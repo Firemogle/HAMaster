@@ -46,6 +46,49 @@ pcf8574:
   - id: 'pcf8574_hub'
     address: 0x27
     pcf8575: false
+
+# Individual outputs
+switch:
+  - platform: gpio
+    name: "rainbarrel relay 1"
+    pin:
+      pcf8574: pcf8574_hub
+      # Use pin number 0
+      number: 0
+      # One of INPUT or OUTPUT
+      mode:
+        output: true
+      inverted: false
+  - platform: gpio
+    name: "rainbarrel relay 2"
+    pin:
+      pcf8574: pcf8574_hub
+      # Use pin number 0
+      number: 1
+      # One of INPUT or OUTPUT
+      mode:
+        output: true
+      inverted: false
+  - platform: gpio
+    name: "rainbarrel relay 3"
+    pin:
+      pcf8574: pcf8574_hub
+      # Use pin number 0
+      number: 2
+      # One of INPUT or OUTPUT
+      mode:
+        output: true
+      inverted: false
+  - platform: gpio
+    name: "rainbarrel relay 4"
+    pin:
+      pcf8574: pcf8574_hub
+      # Use pin number 0
+      number: 3
+      # One of INPUT or OUTPUT
+      mode:
+        output: true
+      inverted: false
   
 esp32_ble_tracker:
 
