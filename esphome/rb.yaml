@@ -58,7 +58,7 @@ switch:
       # One of INPUT or OUTPUT
       mode:
         output: true
-      inverted: false
+      inverted: true
   - platform: gpio
     name: "rainbarrel relay 2"
     pin:
@@ -68,7 +68,7 @@ switch:
       # One of INPUT or OUTPUT
       mode:
         output: true
-      inverted: false
+      inverted: true
   - platform: gpio
     name: "rainbarrel relay 3"
     pin:
@@ -78,9 +78,9 @@ switch:
       # One of INPUT or OUTPUT
       mode:
         output: true
-      inverted: false
+      inverted: true
   - platform: gpio
-    name: "rainbarrel relay 4"
+    name: "Rainbarrel Sol"
     pin:
       pcf8574: pcf8574_hub
       # Use pin number 0
@@ -88,7 +88,7 @@ switch:
       # One of INPUT or OUTPUT
       mode:
         output: true
-      inverted: false
+      inverted: true
       
   
 esp32_ble_tracker:
