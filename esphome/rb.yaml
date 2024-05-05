@@ -66,7 +66,7 @@ light:
     variant: WS2811
     pin: GPIO37
     num_leds: 400
-    type: GRB
+    type: RGB
     name: decklight
     id: decklight
     effects:
