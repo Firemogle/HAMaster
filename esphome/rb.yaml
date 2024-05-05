@@ -14,6 +14,7 @@ esp32:
 # Enable logging
 logger:
   hardware_uart: USB_CDC
+  level: VERY_VERBOSE
 
 # Enable Home Assistant API
 api:
@@ -45,7 +46,7 @@ ethernet:
 pcf8574:
   - id: 'pcf8574_hub'
     address: 0x27
-    pcf8575: false
+    pcf8575: true
 
 # Individual outputs
 switch:
