@@ -68,7 +68,7 @@ light:
     num_leds: 400
     type: GRB
     name: decklight
-    id: "Deck Lights"
+    id: decklight
     effects:
       - addressable_fireworks:
           name: Fireworks
