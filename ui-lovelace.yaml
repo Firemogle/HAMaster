@@ -292,18 +292,11 @@ views:
     id: plants
     icon: mdi:flower-outline
     cards:
-      - type: plant-status
-        entity: plant.trees
-      - type: plant-status
-        entity: plant.hydrangea
       - type: entities
         title: Irragation
         show_header_toggle: false
         entities:
-          - switch.irr_master
-          - switch.irr_zone1
-          - switch.irr_zone2
-          - sensor.water_flow
+          - switch.rainbrarrel_rainbarrel_sol
         
   - title: System
     id: house_system
