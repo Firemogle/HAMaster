@@ -110,7 +110,9 @@
     switch.garage_wall_switch:
       state: off
     light.landscape:
-      state: on
+      state: off
+    light.rainbrarrel_decklight:
+      state: off
 - name: house_wakeup
   entities:
     light.kitchen_sink:
@@ -179,7 +181,9 @@
       state: on
     light.landscape:
       state: on
-
+    light.rainbrarrel_decklight:
+      state: on
+      
 - name: ext_lights_off
   entities:
     light.front_light1_level_light_color_on_off:
