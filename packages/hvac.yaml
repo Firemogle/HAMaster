@@ -19,7 +19,7 @@ template:
           type: twice_daily
         target:
           entity_id: weather.karb_daynight
-        response_variable: hourly
+        response_variable: twice_daily
     sensor:
       - name: Temperature forecast next day
         unique_id: house_sts_forcast_temp
