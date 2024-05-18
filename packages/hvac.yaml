@@ -18,7 +18,7 @@ template:
         data:
           type: twice_daily
         target:
-          entity_id: weather.home
+          entity_id: weather.karb_daynight
         response_variable: hourly
     sensor:
       - name: Temperature forecast next day
