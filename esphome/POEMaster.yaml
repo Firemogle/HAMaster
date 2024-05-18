@@ -35,18 +35,10 @@ uart:
   tx_pin: GPIO44
   baud_rate: 9600
   id: dist
-  debug:
-    direction: BOTH
-    dummy_receiver: false
-    after:
-      delimiter: "\n"
-    sequence:
-      - lambda: UARTDebug::log_string(direction, bytes);
 
 # Enable logging
 logger:
   hardware_uart: USB_CDC
-  level: VERY_VERBOSE
 
 # Enable Home Assistant API
 api:
@@ -56,7 +48,7 @@ api:
 ota:
   password: !secret OTA_PW
  
-#esp32_ble_tracker:
+esp32_ble_tracker:
 #bluetooth_proxy:
   
 i2c:
