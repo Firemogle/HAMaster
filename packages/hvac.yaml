@@ -8,6 +8,23 @@ homeassistant:
       device_class: power
     binary_sensor.house_sts_hvac_shut:
       device_class: door
+
+template:
+  - trigger:
+      - platform: time_pattern
+        hours: /1
+    action:
+      - service: weather.get_forecasts
+        data:
+          type: twice_daily
+        target:
+          entity_id: weather.home
+        response_variable: hourly
+    sensor:
+      - name: Temperature forecast next day
+        unique_id: house_sts_forcast_temp
+        state: "{{ twice_daily['weather.karb_daynight'].forecast[1].temperature }}"
+        unit_of_measurement: °F
     
 template:
   - binary_sensor:
@@ -23,8 +40,8 @@ template:
   - binary_sensor:
       - name: house_sts_hvac_cool_req
         state: >
-          {{ state_attr('weather.karb_daynight', 'forecast')[0]['temperature']|float(default=0) > states('input_number.hvac_ac_enable_temp')|float(default=0)
-             or state_attr('weather.karb_daynight', 'forecast')[1]['temperature']|float(default=0) > states('input_number.hvac_ac_enable_temp')|float(default=0)}}
+          {{ state_attr('weather.karb_daynight', 'temperature')|float(default=0) > states('input_number.hvac_ac_enable_temp')|float(default=0)
+             or states(sensor.house_sts_forcast_temp)|float(default=0) > states('input_number.hvac_ac_enable_temp')|float(default=0)}}
         delay_off:
           minutes: 30
         delay_on:
