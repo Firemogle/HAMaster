@@ -4,6 +4,32 @@ homeassistant:
       friendly_name: Porch Light
     light.garage_ext_2:
       friendly_name: Driveway Light 2
+
+plant:
+  MidFront_Hydrangea:
+    sensors:
+      moisture: sensor.lr_bt_sns_hydrangea_moisture
+      temperature: sensor.lr_bt_sns_hydrangea_temperature
+      conductivity: sensor.lr_bt_sns_hydrangea_soil_conductivity
+      brightness: sensor.lr_bt_sns_hydrangea_illuminance
+  Door_Lilac:
+    sensors:
+      moisture: sensor.lr_bt_sns_4_moisture
+      temperature: sensor.lr_bt_sns_4_temperature
+      conductivity: sensor.lr_bt_sns_4_soil_conductivity
+      brightness: sensor.lr_bt_sns_4_illuminance
+  MidOut_Hydrangea:
+    sensors:
+      moisture: sensor.lr_bt_sns_3_moisture
+      temperature: sensor.lr_bt_sns_3_temperature
+      conductivity: sensor.lr_bt_sns_3_soil_conductivity
+      brightness: sensor.lr_bt_sns_3_illuminance
+  Mid_Hydrangea:
+    sensors:
+      moisture: sensor.lr_bt_sns_2_moisture
+      temperature: sensor.lr_bt_sns_2_temperature
+      conductivity: sensor.lr_bt_sns_2_soil_conductivity
+      brightness: sensor.lr_bt_sns_2_illuminance
       
 
 mqtt:
