@@ -23,8 +23,20 @@ api:
 ota:
   password: !secret OTA_PW
  
-#esp32_ble_tracker:
-#bluetooth_proxy:
+time:
+  - platform: homeassistant
+    id: homeassistant_time
+    on_time:
+      - seconds: 0
+        minutes: 0
+        hours: 4
+        then:
+          - button.press: lr-bt-sns-reboot
+
+button:
+  - platform: restart
+    name: "lr-bt-sns-reboot"
+    id: "lr-bt-sns-reboot"
   
 i2c:
    sda: GPIO05
