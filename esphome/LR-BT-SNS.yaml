@@ -65,3 +65,33 @@ sensor:
       name: "Hydrangea Illuminance"
     conductivity:
       name: "Hydrangea Soil Conductivity"
+  - platform: xiaomi_hhccjcy01
+    mac_address: '5C:85:7E:12:D5:A6'
+    temperature:
+      name: "4 Temperature"
+    moisture:
+      name: "4 Moisture"
+    illuminance:
+      name: "4 Illuminance"
+    conductivity:
+      name: "4 Soil Conductivity"
+  - platform: xiaomi_hhccjcy01
+    mac_address: '5C:85:7E:12:D5:2E'
+    temperature:
+      name: "2 Temperature"
+    moisture:
+      name: "2 Moisture"
+    illuminance:
+      name: "2 Illuminance"
+    conductivity:
+      name: "2 Soil Conductivity"
+  - platform: xiaomi_hhccjcy01
+    mac_address: '5C:85:7E:12:D5:40'
+    temperature:
+      name: "3 Temperature"
+    moisture:
+      name: "3 Moisture"
+    illuminance:
+      name: "3 Illuminance"
+    conductivity:
+      name: "3 Soil Conductivity"
