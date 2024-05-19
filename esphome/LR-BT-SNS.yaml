@@ -31,12 +31,12 @@ time:
         minutes: 0
         hours: 4
         then:
-          - button.press: lr-bt-sns-reboot
+          - button.press: lrbtsnsreboot
 
 button:
   - platform: restart
-    name: "lr-bt-sns-reboot"
-    id: "lr-bt-sns-reboot"
+    name: "lrbtsnsreboot"
+    id: "lrbtsnsreboot"
   
 i2c:
    sda: GPIO05
