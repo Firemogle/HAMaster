@@ -41,7 +41,7 @@ template:
       - name: house_sts_hvac_cool_req
         state: >
           {{ state_attr('weather.karb_daynight', 'temperature')|float(default=0) > states('input_number.hvac_ac_enable_temp')|float(default=0)
-             or states(sensor.house_sts_forcast_temp)|float(default=0) > states('input_number.hvac_ac_enable_temp')|float(default=0)}}
+             or states(sensor.temperature_forecast_next_hour)|float(default=0) > states('input_number.hvac_ac_enable_temp')|float(default=0)}}
         delay_off:
           minutes: 30
         delay_on:
