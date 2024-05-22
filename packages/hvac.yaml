@@ -19,11 +19,11 @@ template:
           type: twice_daily
         target:
           entity_id: weather.karb_daynight
-        response_variable: twice_daily
+        response_variable: hourly
     sensor:
-      - name: house_sts_forcast_temp
-        unique_id: house_sts_forcast_temp
-        state: "{{ twice_daily['weather.karb_daynight'].forecast[0].temperature|float(default=75) }}"
+      - name: Temperature forecast next hour
+        unique_id: temperature_forecast_next_hour
+        state: "{{ hourly['weather.karb_daynight'].forecast[0].temperature }}"
         unit_of_measurement: °F
     
 template:
