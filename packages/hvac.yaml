@@ -23,7 +23,7 @@ template:
     sensor:
       - name: house_sts_forcast_temp
         unique_id: house_sts_forcast_temp
-        state: "{{ twice_daily['weather.karb_daynight'].forecast[0].temperature }}"
+        state: "{{ twice_daily['weather.karb_daynight'].forecast[0].temperature|float(default=75) }}"
         unit_of_measurement: °F
     
 template:
