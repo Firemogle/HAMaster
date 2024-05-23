@@ -16,7 +16,7 @@ template:
     action:
       - service: weather.get_forecasts
         data:
-          type: twice_daily
+          type: hourly
         target:
           entity_id: weather.karb_daynight
         response_variable: hourly
