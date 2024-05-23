@@ -12,24 +12,32 @@ plant:
       temperature: sensor.lr_bt_sns_hydrangea_temperature
       conductivity: sensor.lr_bt_sns_hydrangea_soil_conductivity
       brightness: sensor.lr_bt_sns_hydrangea_illuminance
+    min_moisture: 20
+    min_conductivity: 50
   Door_Lilac:
     sensors:
       moisture: sensor.lr_bt_sns_4_moisture
       temperature: sensor.lr_bt_sns_4_temperature
       conductivity: sensor.lr_bt_sns_4_soil_conductivity
       brightness: sensor.lr_bt_sns_4_illuminance
+    min_moisture: 20
+    min_conductivity: 50
   MidOut_Hydrangea:
     sensors:
       moisture: sensor.lr_bt_sns_3_moisture
       temperature: sensor.lr_bt_sns_3_temperature
       conductivity: sensor.lr_bt_sns_3_soil_conductivity
       brightness: sensor.lr_bt_sns_3_illuminance
+    min_moisture: 20
+    min_conductivity: 50
   Mid_Hydrangea:
     sensors:
       moisture: sensor.lr_bt_sns_2_moisture
       temperature: sensor.lr_bt_sns_2_temperature
       conductivity: sensor.lr_bt_sns_2_soil_conductivity
       brightness: sensor.lr_bt_sns_2_illuminance
+    min_moisture: 20
+    min_conductivity: 50
       
 
 mqtt:
