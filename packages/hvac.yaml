@@ -16,14 +16,14 @@ template:
     action:
       - service: weather.get_forecasts
         data:
-          type: hourly
+          type: twice_daily
         target:
           entity_id: weather.karb_daynight
         response_variable: hourly
     sensor:
       - name: Temperature forecast next hour
         unique_id: temperature_forecast_next_hour
-        state: "{{ hourly['weather.karb_daynight'].forecast[0].temperature }}"
+        state: "{{ hourly['weather.karb_daynight']}}"
         unit_of_measurement: °F
     
 template:
