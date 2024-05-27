@@ -109,7 +109,7 @@ light:
   - platform: neopixelbus
     variant: WS2811
     pin: GPIO37
-    num_leds: 400
+    num_leds: 428
     type: RGB
     name: decklight
     id: decklight
