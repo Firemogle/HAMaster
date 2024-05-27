@@ -23,7 +23,10 @@ template:
     sensor:
       - name: daily_high
         unique_id: daily_high
-        state: "{{ high['weather.karb_daynight']['forecast'][0]['temperature'] }}"
+        state: >
+          '{%set highlist = high['weather.karb_daynight']['forecast'][0]['temperature'],high['weather.karb_daynight']['forecast'][1]['temperature'],high['weather.karb_daynight']['forecast'][2]['temperature']%} {{ highlist|max |float }}'
+        
+#        state: "{{ high['weather.karb_daynight']['forecast'][0]['temperature'] }}"
 
   - binary_sensor:
       - name: house_sts_hvac_shut
