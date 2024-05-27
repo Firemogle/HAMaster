@@ -23,7 +23,7 @@ template:
     sensor:
       - name: daily_high
         unique_id: daily_high
-        state: "{{ high['weather.keul_daynight']['forecast'][0]['temperature'] }}"
+        state: "{{ high['weather.keul_daynight']['forecast'][0].temperature }}"
 
   - binary_sensor:
       - name: house_sts_hvac_shut
