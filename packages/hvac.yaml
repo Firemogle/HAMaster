@@ -12,7 +12,7 @@ homeassistant:
 template:
   - trigger:
       - platform: time_pattern
-        minutes: /1
+        hours: /1
     action:
       - service: weather.get_forecasts
         data:
@@ -24,9 +24,7 @@ template:
       - name: daily_high
         unique_id: daily_high
         state: >
-          '{%set highlist = high['weather.karb_daynight']['forecast'][0]['temperature'],high['weather.karb_daynight']['forecast'][1]['temperature'],high['weather.karb_daynight']['forecast'][2]['temperature']%} {{ highlist|max |float }}'
-        
-#        state: "{{ high['weather.karb_daynight']['forecast'][0]['temperature'] }}"
+          {%set highlist = high['weather.karb_daynight']['forecast'][0]['temperature'],high['weather.karb_daynight']['forecast'][1]['temperature'],high['weather.karb_daynight']['forecast'][2]['temperature']%} {{ highlist|max |float }}
 
   - binary_sensor:
       - name: house_sts_hvac_shut
