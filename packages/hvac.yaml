@@ -19,15 +19,12 @@ template:
           type: twice_daily
         target:
           entity_id: weather.karb_daynight
-        response_variable: hourly
+        response_variable: high
     sensor:
-      - name: Weather Forecast Hourly
-        unique_id: weather_forecast_hourly
-        state: "{{ now().isoformat() }}"
-        attributes:
-          forecast: "{{ hourly['weather.karb_daynight'].forecast }}"
-    
-template:
+      - name: daily_high
+        unique_id: daily_high
+        state: "{{ high['weather.keul_daynight']['forecast'][0]['temperature'] }}"
+
   - binary_sensor:
       - name: house_sts_hvac_shut
         state: >
