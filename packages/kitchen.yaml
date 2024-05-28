@@ -51,13 +51,13 @@ automation:
         entity_id: fan.kitchen_fan
         speed: >
           {% if (states.sensor.garage_entry_temperature.state|float(default=0) > 80 ) %}
-            on
+            100
           {% elif (states.sensor.garage_entry_temperature.state|float(default=0) <= 80 ) and (states.sensor.garage_entry_temperature.state|float(default=0) > 76 ) %} 
-            high
+            75
           {% elif (states.sensor.garage_entry_temperature.state|float(default=0) <= 76 ) and (states.sensor.garage_entry_temperature.state|float(default=0) > 74 ) %} 
-            medium
+            50
           {% elif (states.sensor.garage_entry_temperature.state|float(default=0) <= 74 ) %} 
-            low
+            25
           {% endif %}
 script:
   reset_kitchen_fan:
