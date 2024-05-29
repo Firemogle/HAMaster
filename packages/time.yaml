@@ -93,6 +93,10 @@ automation:
     - data:
         entity_id: script.hvac_run_setpoint
       service: script.turn_on
+    - data:
+        entity_id: script.by_irrigation
+      service: script.turn_on
+
 
   - id: 'house_wakeup_vacation'
     alias: house_wakeup_vacation
