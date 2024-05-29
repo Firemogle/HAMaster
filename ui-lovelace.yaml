@@ -293,13 +293,13 @@ views:
     icon: mdi:flower-outline
     cards:
       - type: plant-status
-        entity: plant.MidFront_Hydrangea
+        entity: plant.midfront_hydrangea
       - type: plant-status
         entity: plant.door_lilac
       - type: plant-status
-        entity: plant.MidOut_Hydrangea
+        entity: plant.midout_hydrangea
       - type: plant-status
-        entity: plant.Mid_Hydrangea
+        entity: plant.mid_hydrangea
       - type: entities
         title: Irragation
         show_header_toggle: false
