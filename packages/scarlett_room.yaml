@@ -30,7 +30,7 @@ automation:
     alias: nursery_fan_speed
     initial_state: 'off'
     trigger:
-    - entity_id: sensor.emi_temp
+    - entity_id: sensor.lottie_room_air_temperature
       platform: state
     - entity_id: 'fan.nursery_fan'
       platform: state
