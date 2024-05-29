@@ -295,7 +295,7 @@ views:
       - type: plant-status
         entity: plant.MidFront_Hydrangea
       - type: plant-status
-        entity: plant.Door_Lilac
+        entity: plant.door_lilac
       - type: plant-status
         entity: plant.MidOut_Hydrangea
       - type: plant-status
