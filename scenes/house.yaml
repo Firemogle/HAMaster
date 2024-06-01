@@ -183,7 +183,7 @@
       state: on
     light.rainbrarrel_decklight:
       state: on
-      brightness: 90
+      brightness: 210
       
 - name: ext_lights_off
   entities:
