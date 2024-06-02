@@ -99,8 +99,6 @@ history:
 logger:
   default: warning
     
-# Enables a map showing the location of tracked devices
-map:
     
 system_health: # load system health
 stream: # Load streaming for videos
