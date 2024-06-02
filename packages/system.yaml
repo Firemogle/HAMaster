@@ -213,12 +213,6 @@ sensor:
     unit_prefix: k
     round: 2
 
-          
-folder_watcher:
-  - folder: /config/www/
-    patterns:
-      - '*.jpg'
-
 automation:
   - id: system_update_available
     alias: system_update_available
