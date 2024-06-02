@@ -123,7 +123,7 @@
       brightness: 100
     light.front_light1_level_light_color_on_off:
       state: on
-     color_name: white
+      color_name: white
       brightness: 255
     light.front_light2_level_light_color_on_off:
       state: on
