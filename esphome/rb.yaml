@@ -152,5 +152,5 @@ light:
               green: 0%
               blue: 100%
               num_leds: 20
-          add_led_interval: 300ms
+          add_led_interval: 33ms
           reverse: false
