@@ -154,4 +154,3 @@ light:
               num_leds: 75
           add_led_interval: 100ms
           reverse: false
-          gradient: false
