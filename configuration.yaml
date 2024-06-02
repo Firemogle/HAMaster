@@ -22,25 +22,6 @@ homeassistant:
         - 192.168.1.0/24
         - 192.168.2.0/24
   
-proximity:
-  brett_home:
-    ignored_zones:
-      - Liz Work
-      - Brett Work
-      - Emi Daycare
-    devices:
-      - device_tracker.google_maps_116842525089175776476
-    tolerance: 50
-    unit_of_measurement: mi
-  liz_home:
-    ignored_zones:
-      - Liz Work
-      - Brett Work
-      - Emi Daycare
-    devices:
-      - device_tracker.google_maps_108379141181739394475
-    tolerance: 50
-    unit_of_measurement: mi
 
 http:
   server_port: 8123 # Hard set port
@@ -65,9 +46,6 @@ device_tracker:
   - platform: google_maps
     username: !secret DEVICE_USER
     max_gps_accuracy: 100
-  - platform: ping
-    hosts:
-      brettphone: 192.168.1.224
 
 api:
 alexa:
