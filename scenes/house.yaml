@@ -207,6 +207,7 @@
       state: on
       color_name: white
       brightness: 215
+      effect: "None"
       
 - name: ext_lights_off
   entities:
