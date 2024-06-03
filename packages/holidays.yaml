@@ -1,7 +1,6 @@
 homeassistant:
   customize:
-
-
+  
 input_boolean:
   independence_day:
     name: independence_day
@@ -49,18 +48,18 @@ scene:
         color_name: red
       light.front_light1_level_light_color_on_off:
         color_name: red
-- name: house_evening_independence
-  entities:
-    light.front_light1_level_light_color_on_off:
-      color_name: red
-    light.front_light2_level_light_color_on_off:
-      color_name: white
-    light.front_light3_level_light_color_on_off:
-      color_name: red
-    light.front_garden_level_light_color_on_off:
-      color_name: blue
-    light.rainbrarrel_decklight:
-      state: on
-      brightness: 215
-      effect: "Independence Day"
+ - name: house_evening_independence
+   entities:
+     light.front_light1_level_light_color_on_off:
+       color_name: red
+     light.front_light2_level_light_color_on_off:
+       color_name: white
+     light.front_light3_level_light_color_on_off:
+       color_name: red
+     light.front_garden_level_light_color_on_off:
+       color_name: blue
+     light.rainbrarrel_decklight:
+       state: on
+       brightness: 215
+       effect: "Independence Day"
 
