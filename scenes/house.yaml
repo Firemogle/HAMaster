@@ -19,7 +19,7 @@
       state: on
       brightness: 250
     fan.kitchen_fan:
-      speed: low
+      speed: 25
       state: on
     switch.livingroom_subwoofer:
       state: on
@@ -224,20 +224,20 @@
   entities:
     light.front_light1_level_light_color_on_off:
       state: on
-      color_name: red
       brightness: 255
+      color_name: red
     light.front_light2_level_light_color_on_off:
       state: on
-      color_name: white
       brightness: 255
+      color_name: white
     light.front_light3_level_light_color_on_off:
       state: on
-      color_name: red
       brightness: 255
+      color_name: red
     light.front_garden_level_light_color_on_off:
       state: on
-      color_name: white
       brightness: 255
+      color_name: white
     switch.livingroom_subwoofer:
       state: off
     switch.garage_wall_switch:
