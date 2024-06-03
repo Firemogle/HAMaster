@@ -61,6 +61,8 @@
       state: off
     fan.emi_fan:
       state: off
+    fan.nursery_fan:
+      state: off
     switch.livingroom_subwoofer:
       state: off
     lock.front_door:
@@ -204,7 +206,7 @@
     light.rainbrarrel_decklight:
       state: on
       color_name: white
-      brightness: 235
+      brightness: 215
       
 - name: ext_lights_off
   entities:
