@@ -6,15 +6,12 @@
     light.cabinet_bottom:
       state: on
       brightness: 255
-      color_name: white
     light.cabinet_top:
       state: on
       brightness: 150
-      color_name: white
     light.stove:
       state: on
       brightness: 255
-      color_name: white
     light.main_livingroom:
       state: on
       brightness: 250
@@ -125,34 +122,27 @@
       brightness: 100
     light.front_light1_level_light_color_on_off:
       state: on
-      color_name: white
       brightness: 255
     light.front_light2_level_light_color_on_off:
       state: on
-      color_name: white
       brightness: 255
     light.front_light3_level_light_color_on_off:
       state: on
-      color_name: white
       brightness: 255
     light.front_garden_level_light_color_on_off:
       state: on
-      color_name: white
       brightness: 255
     light.cabinet_bottom:
       state: on
       brightness: 255
     light.cabinet_top:
       state: on
-      color_name: white
       brightness: 150
     light.stove:
       state: on
-      color_name: white
       brightness: 255
     light.main_livingroom:
       state: on
-      color_name: white
       brightness: 255
     fan.kitchen_fan:
       speed: low
@@ -183,19 +173,15 @@
   entities:
     light.front_light1_level_light_color_on_off:
       state: on
-      color_name: white
       brightness: 255
     light.front_light2_level_light_color_on_off:
       state: on
-      color_name: white
       brightness: 255
     light.front_light3_level_light_color_on_off:
       state: on
-      color_name: white
       brightness: 255
     light.front_garden_level_light_color_on_off:
       state: on
-      color_name: white
       brightness: 255
     switch.livingroom_subwoofer:
       state: off
@@ -205,7 +191,6 @@
       state: on
     light.rainbrarrel_decklight:
       state: on
-      color_name: white
       brightness: 215
       effect: "None"
       
@@ -224,19 +209,34 @@
   entities:
     light.front_light1_level_light_color_on_off:
       state: on
-      brightness: 255
       color_name: red
     light.front_light2_level_light_color_on_off:
       state: on
-      brightness: 255
       color_name: white
     light.front_light3_level_light_color_on_off:
       state: on
-      brightness: 255
       color_name: red
     light.front_garden_level_light_color_on_off:
       state: on
-      brightness: 255
+      color_name: white
+    light.rainbrarrel_decklight:
+      state: on
+      brightness: 215
+      effect: "Independence Day"
+
+- name: house_evening_color_normal
+  entities:
+    light.front_light1_level_light_color_on_off:
+      state: on
+      color_name: white
+    light.front_light2_level_light_color_on_off:
+      state: on
+      color_name: white
+    light.front_light3_level_light_color_on_off:
+      state: on
+      color_name: white
+    light.front_garden_level_light_color_on_off:
+      state: on
       color_name: white
     switch.livingroom_subwoofer:
       state: off
@@ -246,5 +246,4 @@
       state: on
     light.rainbrarrel_decklight:
       state: on
-      brightness: 215
-      effect: "Independence Day"
+      color_name: white
