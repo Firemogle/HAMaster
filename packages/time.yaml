@@ -136,6 +136,16 @@ automation:
     - data:
         entity_id: script.hvac_run_setpoint
       service: script.turn_on
+    - data_template:
+        entity_id: >
+            {% if is_state('binary_sensor.house_sts_independence_day', 'on') %}
+              scene.house_sts_independence_day
+            {% else %}
+              scene.house_evening_color_normal
+            {% endif %}
+      service: scene.turn_on
+
+
 
   - id: 'house_night_mode'
     alias: house_night_mode
