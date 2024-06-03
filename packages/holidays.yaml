@@ -6,7 +6,7 @@ input_boolean:
   independence_day:
     name: independence_day
 
-binary_sensor:
+template:
   - binary_sensor:
       - name: house_sts_independence_day
         state: >
