@@ -1,0 +1,37 @@
+homeassistant:
+  customize:
+
+
+input_boolean:
+  independence day:
+    name: independence_day
+
+
+  - binary_sensor:
+      - name: house_sts_independence_day
+        state: >
+          {{ is_state('input_boolean.independence_day', 'on') }}
+
+automation:
+  - id: 'DTE_cheap_switch'
+    alias: DTE_cheap_switch
+    trigger:
+      - platform: calendar
+        event: start
+        entity_id: calendar.teamcarriger_gmail_com
+      - platform: calendar
+        event: end
+        entity_id: calendar.teamcarriger_gmail_com
+    condition:
+      - condition: template
+        value_template: "{{ 'independence day' in trigger.calendar_event.summary }}"
+    action:
+      - if:
+          - "{{ trigger.event == 'start' }}"
+        then:
+          - service: input_boolean.turn_on
+            entity_id: input_boolean.independence day
+        else:
+          - service: input_boolean.turn_off
+            entity_id: input_boolean.independence day
+    mode: queued
