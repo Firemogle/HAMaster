@@ -1,6 +1,7 @@
 homeassistant:
   customize:
   
+
 input_boolean:
   independence_day:
     name: independence_day
@@ -29,10 +30,10 @@ automation:
           - "{{ trigger.event == 'start' }}"
         then:
           - service: input_boolean.turn_on
-            entity_id: input_boolean.independence day
+            entity_id: input_boolean.independence_day
         else:
           - service: input_boolean.turn_off
-            entity_id: input_boolean.independence day
+            entity_id: input_boolean.independence_day
     mode: queued
 
 scene:
