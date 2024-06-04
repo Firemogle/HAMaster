@@ -139,11 +139,11 @@ automation:
     - data_template:
         entity_id: >
             {% if is_state('binary_sensor.house_sts_independence_day', 'on') %}
-              scene.house_sts_independence_day
+              script.independence_day
             {% else %}
-              scene.house_evening_color_normal
+              script.normal_day
             {% endif %}
-      service: scene.turn_on
+      service: script.turn_on
 
 
 
