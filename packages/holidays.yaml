@@ -80,19 +80,19 @@ script:
     sequence:
     - service: light.turn_on
       data:
-        white: true
+        color_name: white
         entity_id: light.front_light1_level_light_color_on_off
     - service: light.turn_on
       data:
-        white: true
+        color_name: white
         entity_id: light.front_light2_level_light_color_on_off
     - service: light.turn_on
       data:
-        white: true
+        color_name: white
         entity_id: light.front_light3_level_light_color_on_off
     - service: light.turn_on
       data:
-        white: true
+        color_name: white
         entity_id: light.front_garden_level_light_color_on_off
     - service: light.turn_on
       data:
