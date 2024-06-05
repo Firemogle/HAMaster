@@ -47,10 +47,10 @@ automation:
           {% if (states.sensor.emi_temp.state|float(default=0) > 80 ) %}
             100
           {% elif (states.sensor.emi_temp.state|float(default=0) <= 80 ) and (states.sensor.emi_temp.state|float(default=0) > 76 ) %} 
-            67
+            75
           {% elif (states.sensor.emi_temp.state|float(default=0) <= 76 ) and (states.sensor.emi_temp.state|float(default=0) > 74 ) %} 
-            33
+            50
           {% elif (states.sensor.emi_temp.state|float(default=0) <= 74 ) %} 
-            0
+            25
           {% endif %}
           
