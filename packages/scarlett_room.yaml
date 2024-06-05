@@ -43,7 +43,7 @@ automation:
       data_template:
         entity_id: fan.nursery_fan
       data:
-        preset_mode: >
+        percentage: >
           {% if (states.sensor.emi_temp.state|float(default=0) > 80 ) %}
             100
           {% elif (states.sensor.emi_temp.state|float(default=0) <= 80 ) and (states.sensor.emi_temp.state|float(default=0) > 76 ) %} 
