@@ -6,7 +6,8 @@ resources:
   - url: /local/my-webfont.css
     type: css
 
-background: center / cover no-repeat url("https://wallpapercave.com/wp/wp2630764.jpg") fixed
+#background: center / cover no-repeat url("https://wallpapercave.com/wp/wp2630764.jpg") fixed
+background: center / cover no-repeat url("https://www.pixelstalk.net/wp-content/uploads/images5/4K-Red-HD-Wallpaper.jpg") fixed
 views:
     # System Overview tab
   - title: Overview
