@@ -346,6 +346,8 @@ automation:
           value_template: "{{ 'in town' in trigger.calendar_event.summary }}"
         - condition: template
           value_template: "{{ 'date night' in trigger.calendar_event.summary }}"
+        - condition: template
+          value_template: "{{ 'cleaner' in trigger.calendar_event.summary }}"
     action:
       - if:
           - "{{ trigger.event == 'start' }}"
