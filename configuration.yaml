@@ -61,6 +61,11 @@ alexa:
         - fan
 
 
+ourgroceries:
+  username: !secret OGUN
+  password: !secret OGPW
+
+
 # Enables the frontend
 frontend:
   themes: !include themes.yaml
