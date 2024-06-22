@@ -1,0 +1,118 @@
+esphome:
+  name: garageeth
+  friendly_name: garageeth
+  platformio_options:
+    board_build.flash_mode: dio
+    board_build.mcu: esp32s3
+
+esp32:
+  board: esp32-s3-devkitc-1
+  framework:
+    version: recommended    
+    type: arduino
+
+# Enable logging
+logger:
+  hardware_uart: USB_CDC
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: !secret ENC_KEY
+
+ota:
+  platform: esphome
+  password: !secret OTA_PW
+ 
+#esp32_ble_tracker:
+#bluetooth_proxy:
+  
+i2c:
+   sda: GPIO05
+   scl: GPIO04
+   id: i2c_channel
+
+
+ethernet:
+  type: W5500
+  clk_pin: GPIO11
+  mosi_pin: GPIO9
+  miso_pin: GPIO10
+  cs_pin: GPIO12
+  interrupt_pin: GPIO46
+  reset_pin: GPIO3
+  clock_speed: 25Mhz
+
+      
+  
+esp32_ble_tracker:
+
+sensor:
+  - platform: bme280_i2c
+    temperature:
+      name: "Garage Temperature"
+      oversampling: 16x
+    pressure:
+      name: "Garage Pressure"
+    humidity:
+      name: "Garage Humidity"
+    address: 0x76
+    update_interval: 60s     
+
+
+
+switch:
+  - platform: gpio
+    name: garage_door_act
+    id: garage_door_act
+    pin: GPIO37
+    restore_mode: ALWAYS_OFF
+
+  - platform: restart
+    name: "Garage Board restart"
+      
+cover:
+  - platform: template
+    name: "Garage Door"
+    lambda: |-
+      if (id(gd_state).state) {
+        return COVER_OPEN;
+      } else {
+        return COVER_CLOSED;
+      }
+    open_action:
+      - if:
+          condition:
+            binary_sensor.is_on: house_armed_state
+          then:
+            - switch.turn_off: garage_door_act
+            - switch.turn_on: garage_door_act
+            - delay: 0.5s
+            - switch.turn_off: garage_door_act
+    close_action:
+      - if:
+          condition:
+            binary_sensor.is_on: gd_state
+          then:
+            - switch.turn_off: garage_door_act
+            - switch.turn_on: garage_door_act
+            - delay: 0.5s
+            - switch.turn_off: garage_door_act
+    optimistic: false
+    assumed_state: false
+    device_class: garage
+    
+
+binary_sensor:
+  - platform: gpio
+    pin: 33
+    name: "Garage Motion"
+    device_class: moving
+  - platform: homeassistant
+    name: "garage_door"
+    id: gd_state
+    entity_id: binary_sensor.garage_door
+  - platform: homeassistant
+    name: "house_armed"
+    id: house_armed_state
+    entity_id: binary_sensor.house_armed  
