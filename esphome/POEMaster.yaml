@@ -18,7 +18,6 @@ i2s_audio:
 
 speaker:
   - platform: i2s_audio
-    name: poemastertest Media Player
     dac_type: external
     i2s_dout_pin: GPIO40
     mode: mono
