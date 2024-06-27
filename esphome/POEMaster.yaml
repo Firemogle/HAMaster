@@ -30,10 +30,11 @@ microphone:
     pdm: false
 
 uart:
-  rx_pin: GPIO43
-  tx_pin: GPIO44
+  rx_pin: GPIO37
   baud_rate: 9600
   id: dist
+
+#tx_pin: GPIO44
 
 # Enable logging
 logger:
