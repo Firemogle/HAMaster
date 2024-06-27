@@ -16,7 +16,7 @@ i2s_audio:
   i2s_bclk_pin: GPIO38
   i2s_mclk_pin: GPIO41
 
-media_player:
+speaker:
   - platform: i2s_audio
     name: poemastertest Media Player
     dac_type: external
