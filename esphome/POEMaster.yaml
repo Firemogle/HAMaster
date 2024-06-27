@@ -8,8 +8,8 @@ esphome:
 esp32:
   board: esp32-s3-devkitc-1
   framework:
-    version: recommended    
-    type: arduino
+    type: esp-idf
+    version: recommended
 
 i2s_audio:
   i2s_lrclk_pin: GPIO39
@@ -38,7 +38,7 @@ uart:
 
 # Enable logging
 logger:
-  hardware_uart: USB_CDC
+  hardware_uart: USB_SERIAL_JTAG
 
 # Enable Home Assistant API
 api:
