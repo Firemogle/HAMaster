@@ -58,14 +58,12 @@ sensor:
       name: "Garage Board Humidity"
     address: 0x76
     update_interval: 60s   
-  - platform: bme280_i2c
+  - platform: bmp280
     temperature:
       name: "Garage Temperature"
       oversampling: 16x
     pressure:
       name: "Garage Pressure"
-    humidity:
-      name: "Garage Humidity"
     address: 0x77
     update_interval: 60s  
 
