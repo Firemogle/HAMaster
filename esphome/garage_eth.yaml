@@ -57,7 +57,17 @@ sensor:
     humidity:
       name: "Garage Humidity"
     address: 0x76
-    update_interval: 60s     
+    update_interval: 60s   
+  - platform: bme280_i2c
+    temperature:
+      name: "Garage Float Temperature"
+      oversampling: 16x
+    pressure:
+      name: "Garage Float Pressure"
+    humidity:
+      name: "Garage Float Humidity"
+    address: 0x77
+    update_interval: 60s  
 
 
 
