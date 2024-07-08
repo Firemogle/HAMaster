@@ -43,6 +43,7 @@ uart:
 # Enable logging
 logger:
   hardware_uart: USB_SERIAL_JTAG
+  level: VERY_VERBOSE
 
 # Enable Home Assistant API
 api:
