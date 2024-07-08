@@ -36,6 +36,7 @@ uart:
   stop_bits: 1
   data_bits: 8
   id: dist
+  debug:
 
 #tx_pin: GPIO44
 
