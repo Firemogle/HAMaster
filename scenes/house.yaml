@@ -115,6 +115,8 @@
       state: off
     light.rainbrarrel_decklight:
       state: off
+    light.porch_light:
+      state: off
 - name: house_wakeup
   entities:
     light.kitchen_sink:
@@ -193,6 +195,8 @@
       state: on
       brightness: 215
       effect: "None"
+    light.porch_light:
+      state: on
       
 - name: ext_lights_off
   entities:
@@ -203,6 +207,8 @@
     light.front_light3_level_light_color_on_off:
       state: off
     light.front_garden_level_light_color_on_off:
+      state: off
+    light.porch_light:
       state: off
 
 - name: house_evening_color_normal
