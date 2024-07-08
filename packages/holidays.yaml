@@ -97,6 +97,10 @@ script:
         entity_id: light.front_garden_level_light_color_on_off
     - service: light.turn_on
       data:
+        color_name: white
+        entity_id: light.porch_light
+    - service: light.turn_on
+      data:
         brightness: 215
         entity_id: light.rainbrarrel_decklight
         color_name: white
