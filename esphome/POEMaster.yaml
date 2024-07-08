@@ -33,6 +33,8 @@ uart:
   rx_pin: GPIO36
   tx_pin: GPIO37
   baud_rate: 9600
+  stop_bits: 1
+  data_bits: 8
   id: dist
 
 #tx_pin: GPIO44
