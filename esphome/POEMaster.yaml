@@ -29,21 +29,10 @@ microphone:
     i2s_din_pin: GPIO42
     pdm: false
 
-uart:
-  rx_pin: GPIO44
-  tx_pin: GPIO43
-  baud_rate: 9600
-  stop_bits: 1
-  data_bits: 8
-  id: dist
-  debug:
-
-#tx_pin: GPIO44
 
 # Enable logging
 logger:
   hardware_uart: USB_SERIAL_JTAG
-  level: VERY_VERBOSE
 
 # Enable Home Assistant API
 api:
@@ -86,10 +75,6 @@ sensor:
       name: "poemastertest Humidity"
     address: 0x76
     update_interval: 60s
-  - platform: "a02yyuw"
-    name: "Distance"
-    uart_id: dist
-    filters:
-      - throttle: 10s
+
       
 
