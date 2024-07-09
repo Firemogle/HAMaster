@@ -119,8 +119,8 @@ sensor:
     internal: true
     filters:
       - exponential_moving_average:
-        alpha: 0.1
-        send_every: 15
+          alpha: 0.1
+          send_every: 15
   - platform: template
     name: "Tank Volume"
     id: tank_vol
