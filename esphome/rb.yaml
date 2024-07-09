@@ -117,7 +117,7 @@ sensor:
     id: raw_dist
     uart_id: dist
     internal: true
-  - exponential_moving_average:
+    exponential_moving_average:
       alpha: 0.1
       send_every: 60
   - platform: template
