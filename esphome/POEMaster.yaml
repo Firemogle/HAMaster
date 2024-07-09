@@ -30,8 +30,8 @@ microphone:
     pdm: false
 
 uart:
-  rx_pin: GPIO36
-  tx_pin: GPIO37
+  rx_pin: RXD0
+  tx_pin: TXD0
   baud_rate: 9600
   stop_bits: 1
   data_bits: 8
