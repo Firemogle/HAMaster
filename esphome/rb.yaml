@@ -117,9 +117,10 @@ sensor:
     id: raw_dist
     uart_id: dist
     internal: true
-    exponential_moving_average:
-      alpha: 0.1
-      send_every: 60
+    filters:
+      - exponential_moving_average:
+        alpha: 0.1
+        send_every: 15
   - platform: template
     name: "Tank Volume"
     id: tank_vol
