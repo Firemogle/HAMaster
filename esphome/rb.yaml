@@ -23,6 +23,13 @@ api:
 ota:
   platform: esphome
   password: !secret OTA_PW
+uart:
+  rx_pin: GPIO44
+  tx_pin: GPIO43
+  baud_rate: 9600
+  stop_bits: 1
+  data_bits: 8
+  id: dist
  
 #esp32_ble_tracker:
 #bluetooth_proxy:
@@ -104,7 +111,26 @@ sensor:
     humidity:
       name: "rainbarrel Humidity"
     address: 0x76
-    update_interval: 60s     
+    update_interval: 60s   
+  - platform: "a02yyuw"
+    name: "Distance"
+    id: raw_dist
+    uart_id: dist
+    internal: true
+  - exponential_moving_average:
+      alpha: 0.1
+      send_every: 60
+  - platform: template
+    name: "Tank Volume"
+    id: tank_vol
+    lambda: return 2 * (((id(raw_dist).state) * 34.75 * 3.14 * 23.25 * 23.25) * 0.004329);
+  - platform: template
+    name: "Tank Volume"
+    lambda: return ((id(raw_dist).state) / 110) * 100;
+    
+
+    
+      
 
 light:
   - platform: neopixelbus
