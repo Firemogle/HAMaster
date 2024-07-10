@@ -120,6 +120,10 @@ sensor:
       - exponential_moving_average:
           alpha: 0.1
           send_every: 15
+      - clamp:
+          min_value: 3
+          max_value: 34
+          ignore_out_of_range: true
   - platform: template
     name: "Tank Volume"
     id: tank_vol
