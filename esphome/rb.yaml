@@ -128,7 +128,7 @@ sensor:
   - platform: template
     name: "Tank Percentage"
     lambda: return (id(tank_vol).state / 110.00) * 100.00;
-    unit_of_measurement: %
+    device_class: humidity
     
       
 
