@@ -128,8 +128,6 @@ sensor:
     name: "Tank Volume"
     lambda: return (id(raw_dist).state / 110.00) * 100.00;
     
-return x * (9.0/5.0) + 32.0;
-    
       
 
 light:
