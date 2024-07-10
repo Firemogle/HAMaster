@@ -124,9 +124,11 @@ sensor:
     name: "Tank Volume"
     id: tank_vol
     lambda: return 2.00 * (( (34.75 - (id(raw_dist).state) * 0.0393701) * 3.14 * 16.5 * 16.5) * 0.004329);
+    device_class: volume_storage
   - platform: template
     name: "Tank Percentage"
     lambda: return ((id(tank_vol).state * 0.0393701) / 110.00) * 100.00;
+    unit_of_measurement: %
     
       
 
