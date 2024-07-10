@@ -116,7 +116,6 @@ sensor:
     name: "Distance"
     id: raw_dist
     uart_id: dist
-    internal: true
     filters:
       - exponential_moving_average:
           alpha: 0.1
@@ -124,12 +123,12 @@ sensor:
   - platform: template
     name: "Tank Volume"
     id: tank_vol
-    lambda: return 2.00 * (( * (34.75 - (id(raw_dist).state)) * 3.14 * 23.25 * 23.25) * 0.004329);
+    lambda: return 2.00 * (( (34.75 - id(raw_dist).state) * 3.14 * 23.25 * 23.25) * 0.004329);
   - platform: template
     name: "Tank Volume"
-    lambda: return ((id(raw_dist).state) / 110.00) * 100.00;
+    lambda: return (id(raw_dist).state / 110.00) * 100.00;
     
-
+return x * (9.0/5.0) + 32.0;
     
       
 
