@@ -227,6 +227,7 @@ views:
           - entity: light.front_garden_level_light_color_on_off
             name: "Front Garden Lights"
           - light.rainbrarrel_decklight
+          - light.porch_light_light
       - type: entities
         title: Garage
         show_header_toggle: false
@@ -311,6 +312,7 @@ views:
         show_header_toggle: false
         entities:
           - switch.rainbrarrel_rainbarrel_sol
+          - sensor.rainbrarrel_tank_percentage
         
   - title: System
     id: house_system
