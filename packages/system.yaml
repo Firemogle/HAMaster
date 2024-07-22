@@ -19,10 +19,13 @@ homeassistant:
 input_boolean:
   house_sts_guest:
     name: house_sts_guest
+    initial: false
   house_sts_dte_cheap:
     name: house_sts_dte_cheap
+    initial: false
   house_sts_vacation:
     name: house_sts_vacation
+    initial: false
 
 template:
   - binary_sensor:
