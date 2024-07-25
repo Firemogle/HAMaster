@@ -281,7 +281,7 @@ views:
       - type: picture-glance
         title: OctoPrint
         entities: []
-        camera_image: camera.octoprint
+        camera_image: camera.octoprint_camera
         camera_view: live
       - type: picture-glance
         title: Last Person in Backyard
