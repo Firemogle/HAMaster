@@ -117,6 +117,8 @@
       state: off
     light.porch_light:
       state: off
+    switch.shelly1pm_c45bbe6b427e:
+      state: off
 - name: house_wakeup
   entities:
     light.kitchen_sink:
