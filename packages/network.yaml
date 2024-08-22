@@ -1,5 +1,12 @@
 homeassistant:
   customize:
   
-
+sensor:
+- platform: pfsense_gateways
+  host: 192.168.1.1
+  name: pfSense gateway
+  key: pfsense
+  monitored_gateway_interfaces:
+    - wan
+    - wan2
 
