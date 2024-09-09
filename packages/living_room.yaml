@@ -59,6 +59,20 @@ media_player:
       - media_player.livingroom_shield
       - media_player.living_room_un55ju6400
       - media_player.living_room_tv
+
+      
+alert:
+  water_bowl_alarm:
+    name: water_bowl_alarm
+    done_message: "Petbowl Leak Resolved"
+    message: "The water bowl is leaking bruh"
+    entity_id: binary_sensor.water_bowl
+    state: 'on'
+    repeat: 30
+    can_acknowledge: true
+    skip_first: true
+    notifiers:
+      - group_notify
       
 automation:
   - id: house_sts_jayhawks_on
@@ -77,3 +91,21 @@ automation:
         {% else %}
           light.turn_off
         {% endif %}
+
+  - id: petbowl_leak
+    alias: petbowl_leak
+    initial_state: 'off'
+    trigger:
+    - entity_id: binary_sensor.water_bowl
+      platform: state
+    condition: []
+    action:
+    - data:
+        entity_id: switch.water_bowl
+      service_template: >
+        {% if is_state('binary_sensor.water_bowl', 'off') %}
+          switch.turn_on
+        {% else %}
+          switch.turn_off
+        {% endif %}
+        
