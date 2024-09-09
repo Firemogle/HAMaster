@@ -70,7 +70,7 @@ alert:
     state: 'on'
     repeat: 30
     can_acknowledge: true
-    skip_first: true
+    skip_first: false
     notifiers:
       - group_notify
       
