@@ -338,7 +338,6 @@ automation:
       - platform: calendar
         event: start
         entity_id: calendar.teamcarriger_gmail_com
-        offset: -02:00:00
       - platform: calendar
         event: end
         entity_id: calendar.teamcarriger_gmail_com
@@ -350,7 +349,7 @@ automation:
         - condition: template
           value_template: "{{ 'date night' in trigger.calendar_event.summary }}"
         - condition: template
-          value_template: "{{ 'cleaner' in trigger.calendar_event.summary }}"
+          value_template: "{{ 'cleaners' in trigger.calendar_event.summary }}"
     action:
       - if:
           - "{{ trigger.event == 'start' }}"
@@ -368,7 +367,6 @@ automation:
       - platform: calendar
         event: start
         entity_id: calendar.teamcarriger_gmail_com
-        offset: -02:00:00
       - platform: calendar
         event: end
         entity_id: calendar.teamcarriger_gmail_com
