@@ -190,6 +190,12 @@ script:
       - service: automation.turn_on
         data:
           entity_id: "automation.emi_light_stay_off"
+      - service: automation.turn_on
+        data:
+          entity_id: "emi_light_stay_off_fan"
+      - service: automation.turn_off
+        data:
+          entity_id: "emi_tv_on"
       - delay:
           minutes: 15
       - service:  light.turn_off
@@ -197,14 +203,22 @@ script:
           entity_id:  light.emi_star_lamp
         data:
           transition: 300
-      - delay:
-          minutes: 90
       - service:  light.turn_off
         target:
           entity_id:  light.hallway
+        data:
+          transistion: 600
+      - delay:
+          minutes: 180
       - service: automation.turn_off
         data:
           entity_id: "automation.emi_light_stay_off"
+      - service: automation.turn_off
+        data:
+          entity_id: "emi_light_stay_off_fan"
+      - service: automation.turn_on
+        data:
+          entity_id: "emi_tv_on"
 
   reset_emi_fan:
     mode: restart
