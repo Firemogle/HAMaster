@@ -192,10 +192,10 @@ script:
           entity_id: "automation.emi_light_stay_off"
       - service: automation.turn_on
         data:
-          entity_id: "emi_light_stay_off_fan"
+          entity_id: "automation.emi_light_stay_off_fan"
       - service: automation.turn_off
         data:
-          entity_id: "emi_tv_on"
+          entity_id: "automation.emi_tv_on"
       - delay:
           minutes: 15
       - service:  light.turn_off
@@ -215,10 +215,10 @@ script:
           entity_id: "automation.emi_light_stay_off"
       - service: automation.turn_off
         data:
-          entity_id: "emi_light_stay_off_fan"
+          entity_id: "automation.emi_light_stay_off_fan"
       - service: automation.turn_on
         data:
-          entity_id: "emi_tv_on"
+          entity_id: "automation.emi_tv_on"
 
   reset_emi_fan:
     mode: restart
