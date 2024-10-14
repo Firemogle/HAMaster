@@ -20,7 +20,7 @@ speaker:
   - platform: i2s_audio
     dac_type: external
     i2s_dout_pin: GPIO40
-    mode: mono
+    i2s_mode: mono
 
 microphone:
   - platform: i2s_audio
