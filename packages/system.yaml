@@ -26,6 +26,9 @@ input_boolean:
   house_sts_vacation:
     name: house_sts_vacation
     initial: false
+  jayhawk_lamp_req:
+    name: jayhawk_lamp_req
+    initial: false
 
 template:
   - binary_sensor:
@@ -62,9 +65,7 @@ template:
   - binary_sensor:
       - name: house_sts_jayhawks
         state: >
-          {{ states.calendar.football_kuathleticscom.state == 'on'
-             or states.calendar.mens_basketball_kuathleticscom.state == 'on'
-             or states.calendar.volleyball_kuathleticscom.state == 'on' }}
+          {{ is_state('input_boolean.jayhawk_lamp_req', 'on') }}
              
   - binary_sensor:
       - name: house_boot_complete
@@ -382,4 +383,29 @@ automation:
         else:
           - service: input_boolean.turn_off
             entity_id: input_boolean.house_sts_vacation
+    mode: queued
+
+  - id: 'house_guest_switch'
+    alias: house_guest_switch
+    trigger:
+      - platform: calendar
+        event: start
+        entity_id: calendar.teamcarriger_gmail_com
+      - platform: calendar
+        event: end
+        entity_id: calendar.teamcarriger_gmail_com
+    condition:
+      condition: or
+      conditions:
+        - condition: template
+          value_template: "{{ 'University of Kansas Men's Basketball' in trigger.calendar_event.summary }}"
+    action:
+      - if:
+          - "{{ trigger.event == 'start' }}"
+        then:
+          - service: input_boolean.turn_on
+            entity_id: input_boolean.jayhawk_lamp_req
+        else:
+          - service: input_boolean.turn_off
+            entity_id: input_boolean.jayhawk_lamp_req
     mode: queued
