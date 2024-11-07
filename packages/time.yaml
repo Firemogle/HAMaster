@@ -241,7 +241,4 @@ automation:
         entity_id: light.emi_star_lamp
         brightness: 255
         transition: 1800
-    - data:
-        entity_id: vacuum.rrroomba
-      service: vacuum.start
 
