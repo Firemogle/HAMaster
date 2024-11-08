@@ -140,6 +140,8 @@ automation:
         entity_id: >
             {% if is_state('binary_sensor.house_sts_independence_day', 'on') %}
               script.independence_day
+            {% elif is_state('binary_sensor.house_sts_xmas_lights', 'on') %}
+              script.xmas_light
             {% else %}
               script.normal_day
             {% endif %}
