@@ -5,13 +5,23 @@ homeassistant:
 input_boolean:
   independence_day:
     name: independence_day
+    initial: false
+  house_sts_xmas_lights:
+    name: xmas_lights
+    initial: false
 
+    
 template:
   - binary_sensor:
       - name: house_sts_independence_day
         state: >
           {{ is_state('input_boolean.independence_day', 'on') }}
+  - binary_sensor:
+      - name: house_sts_xmas_lights
+        state: >
+          {{ is_state('input_boolean.xmas_lights', 'on') }}
 
+          
 automation:
   - id: 'independence_day_on'
     alias: independence_day_on
@@ -36,21 +46,55 @@ automation:
             entity_id: input_boolean.independence_day
     mode: queued
 
-scene:
-  - name: xmas_lights_on
-    entities:
-      light.front_garden_level_light_color_on_off:
-        state: on
-        color_name: green
-      light.front_light1_level_light_color_on_off:
-        state: on
-        color_name: green
-      light.front_light1_level_light_color_on_off:
-        state: on
+automation:
+  - id: 'house_sts_xmas_lights'
+    alias: house_sts_xmas_lights
+    trigger:
+      - platform: calendar
+        event: start
+        entity_id: calendar.teamcarriger_gmail_com
+      - platform: calendar
+        event: end
+        entity_id: calendar.teamcarriger_gmail_com
+    condition:
+      - condition: template
+        value_template: "{{ 'xmas_lights' in trigger.calendar_event.summary }}"
+    action:
+      - if:
+          - "{{ trigger.event == 'start' }}"
+        then:
+          - service: input_boolean.turn_on
+            entity_id: input_boolean.house_sts_xmas_lights
+        else:
+          - service: input_boolean.turn_off
+            entity_id: input_boolean.house_sts_xmas_lights
+    mode: queued
+
+
+script:
+  xmas_light:
+    sequence:
+    - service: light.turn_on
+      data:
         color_name: red
-      light.front_light1_level_light_color_on_off:
-        state: on
-        color_name: red
+        entity_id: light.front_light1_level_light_color_on_off
+    - service: light.turn_on
+      data:
+        color_name: blue
+        entity_id: light.front_light2_level_light_color_on_off
+    - service: light.turn_on
+      data:
+        color_name: green
+        entity_id: light.front_light3_level_light_color_on_off
+    - service: light.turn_on
+      data:
+        color_name: blue
+        entity_id: light.front_garden_level_light_color_on_off
+    - service: light.turn_on
+      data:
+        brightness: 215
+        entity_id: light.rainbrarrel_decklight
+        effect: "Christmas stripes"
 
 script:
   independence_day:
@@ -76,6 +120,7 @@ script:
         brightness: 215
         entity_id: light.rainbrarrel_decklight
         effect: "Independence Day"
+        
 script:
   normal_day:
     sequence:
