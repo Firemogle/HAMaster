@@ -34,7 +34,7 @@ automation:
         entity_id: calendar.teamcarriger_gmail_com
     condition:
       - condition: template
-        value_template: "{{ 'independence day' in trigger.calendar_event.summary }}"
+        value_template: "{{ '4th of July Lights' in trigger.calendar_event.summary }}"
     action:
       - if:
           - "{{ trigger.event == 'start' }}"
