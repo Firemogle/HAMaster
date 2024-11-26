@@ -140,7 +140,7 @@ light:
   - platform: neopixelbus
     variant: WS2811
     pin: GPIO37
-    num_leds: 428
+    num_leds: 600
     type: RGB
     name: rb_string
     id: rb_string
