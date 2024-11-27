@@ -185,6 +185,24 @@ light:
               num_leds: 20
           add_led_interval: 33ms
           reverse: false
+     - addressable_lambda:
+          name: Blue Sparkle
+          update_interval: 12ms
+          lambda:
+            static int state = 0;
+      
+            if (initial_run){
+              state = 0;
+      
+              it.all() = ESPColor(0,0,255);
+            } else {
+      
+              it.all() = ESPColor(0,0,255);
+      
+              int i = rand() % it.size();
+              it[i] = ESPColor(255,255,255);
+           }
+           
 
   - platform: partition
     name: decklight
@@ -234,26 +252,3 @@ light:
               num_leds: 20
           add_led_interval: 33ms
           reverse: false
-      - addressable_lambda:
-          name: Blue Sparkle
-          update_interval: 12ms
-          lambda:
-            static int state = 0;
-      
-            if (initial_run){
-              state = 0;
-      
-              it.all() = ESPColor(0,0,255);
-            } else {
-      
-              it.all() = ESPColor(0,0,255);
-      
-              if(state==0){
-                int i = rand() % it.size();
-                it[i] = ESPColor(255,255,255);
-                state += 1;
-              } else {
-                state += 1;
-                state = state % 10;
-              }
-            }
