@@ -198,7 +198,7 @@ light:
             } else {
       
               it.all() = ESPColor(0,0,255);
-              for (int i = it.size() % 10; i > 0; i--) {
+              for (int i = it.size() / 30; i > 0; i--) {
                 int p = rand() % it.size();
                 it[p] = ESPColor(255,255,255);
               }
