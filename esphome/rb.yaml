@@ -185,7 +185,7 @@ light:
               num_leds: 20
           add_led_interval: 33ms
           reverse: false
-     - addressable_lambda:
+      - addressable_lambda:
           name: Blue Sparkle
           update_interval: 12ms
           lambda:
@@ -201,7 +201,8 @@ light:
       
               int i = rand() % it.size();
               it[i] = ESPColor(255,255,255);
-           }
+            }
+
            
 
   - platform: partition
