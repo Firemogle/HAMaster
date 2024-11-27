@@ -243,14 +243,14 @@ light:
             if (initial_run){
               state = 0;
       
-              it.all() = ESPColor::blue;
+              it.all() = ESPColor(0,0,255);
             } else {
       
-              it.all() = ESPColor::blue;
+              it.all() = ESPColor(0,0,255);
       
               if(state==0){
                 int i = rand() % it.size();
-                it[i] = ESPColor::white;
+                it[i] = ESPColor(255,255,255);
                 state += 1;
               } else {
                 state += 1;
