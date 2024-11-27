@@ -93,8 +93,8 @@ script:
     - service: light.turn_on
       data:
         brightness: 215
-        entity_id: light.rainbrarrel_decklight
-        effect: "Christmas stripes"
+        entity_id: light.rainbrarrel_rb_string
+        effect: "Blue Sparkle"
 
 script:
   independence_day:
