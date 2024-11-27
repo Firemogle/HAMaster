@@ -201,7 +201,7 @@ light:
       
               int i = rand() % it.size();
               it[i] = ESPColor(255,255,255);
-              int i = rand() % it.size();
+              i = rand() % it.size();
               it[i] = ESPColor(255,255,255);        
             }
 
