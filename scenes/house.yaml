@@ -115,6 +115,8 @@
       state: off
     light.rainbrarrel_decklight:
       state: off
+    light.rainbrarrel_rb_string:
+      state: off
     light.porch_light:
       state: off
     switch.shelly1pm_c45bbe6b427e:
