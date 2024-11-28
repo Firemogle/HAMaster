@@ -70,6 +70,7 @@
       state: off
     light.basemet_dimmer:
       state: off
+      
 - name: house_night
   entities:
     light.kitchen_sink:
@@ -117,10 +118,13 @@
       state: off
     light.rainbrarrel_rb_string:
       state: off
+    light.lr_bt_sns_fy_string:
+      state: off
     light.porch_light:
       state: off
     switch.shelly1pm_c45bbe6b427e:
       state: off
+      
 - name: house_wakeup
   entities:
     light.kitchen_sink:
@@ -175,6 +179,7 @@
     light.main_livingroom:
       state: on
       brightness: 100
+      
 - name: house_evening
   entities:
     light.front_light1_level_light_color_on_off:
@@ -213,6 +218,12 @@
     light.front_garden_level_light_color_on_off:
       state: off
     light.porch_light:
+      state: off
+    light.rainbrarrel_decklight:
+      state: off
+    light.rainbrarrel_rb_string:
+      state: off
+    light.lr_bt_sns_fy_string:
       state: off
 
 - name: house_evening_color_normal
