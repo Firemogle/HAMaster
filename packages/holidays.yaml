@@ -96,7 +96,7 @@ script:
         entity_id: light.rainbrarrel_decklight
 
 script:
-  xmas_light:
+  xmas_lighting:
     sequence:
     - service: light.turn_on
       data:
