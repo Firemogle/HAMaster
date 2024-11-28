@@ -98,32 +98,48 @@ script:
 script:
   xmas_lighting:
     sequence:
-    - service: light.turn_on
+    - action: light.turn_on
       data:
-        color_name: red
+        rgb_color: 
+          - 255
+          - 0
+          - 0
+      target:
         entity_id: light.front_light1_level_light_color_on_off
-    - service: light.turn_on
+    - action: light.turn_on
       data:
-        color_name: blue
+        rgb_color: 
+          - 0
+          - 0
+          - 255
+      target:
         entity_id: light.front_light2_level_light_color_on_off
-    - service: light.turn_on
+    - action: light.turn_on
       data:
-        color_name: green
+        rgb_color: 
+          - 0
+          - 255
+          - 0
+      target:
         entity_id: light.front_light3_level_light_color_on_off
-    - service: light.turn_on
+    - action: light.turn_on
       data:
-        color_name: blue
-        entity_id: light.front_garden_level_light_color_on_off
-    - service: light.turn_on
+        rgb_color: 
+          - 0
+          - 0
+          - 255
+      target:
+        entity_id: light.front_garden_level_light_color_on_off    
+    - action: light.turn_on
       data:
-        brightness: 215
+        effect: Blue Sparkle
+      target:
         entity_id: light.rainbrarrel_rb_string
-        effect: "Blue Sparkle"
-    - service: light.turn_on
+    - action: light.turn_on
       data:
-        brightness: 215
+        effect: Blue Sparkle
+      target:
         entity_id: light.lr_bt_sns_fy_string
-        effect: "Blue Sparkle"
 
         
 script:
