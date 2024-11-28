@@ -72,37 +72,6 @@ automation:
 
 
 script:
-  xmas_light:
-    sequence:
-    - service: light.turn_on
-      data:
-        color_name: red
-        entity_id: light.front_light1_level_light_color_on_off
-    - service: light.turn_on
-      data:
-        color_name: blue
-        entity_id: light.front_light2_level_light_color_on_off
-    - service: light.turn_on
-      data:
-        color_name: green
-        entity_id: light.front_light3_level_light_color_on_off
-    - service: light.turn_on
-      data:
-        color_name: blue
-        entity_id: light.front_garden_level_light_color_on_off
-    - service: light.turn_on
-      data:
-        brightness: 255
-        entity_id: light.rainbrarrel_rb_string
-        effect: "Blue Sparkle"
-    - service: light.turn_on
-      data:
-        brightness: 255
-        entity_id: light.lr_bt_sns_fy_string
-        effect: "Blue Sparkle"
-
-
-script:
   independence_day:
     sequence:
     - service: light.turn_on
@@ -125,7 +94,38 @@ script:
       data:
         brightness: 215
         entity_id: light.rainbrarrel_decklight
-        effect: "Independence Day"
+
+script:
+  xmas_light:
+    sequence:
+    - service: light.turn_on
+      data:
+        color_name: red
+        entity_id: light.front_light1_level_light_color_on_off
+    - service: light.turn_on
+      data:
+        color_name: blue
+        entity_id: light.front_light2_level_light_color_on_off
+    - service: light.turn_on
+      data:
+        color_name: green
+        entity_id: light.front_light3_level_light_color_on_off
+    - service: light.turn_on
+      data:
+        color_name: blue
+        entity_id: light.front_garden_level_light_color_on_off
+    - service: light.turn_on
+      data:
+        brightness: 255
+        color_name: blue
+        entity_id: light.rainbrarrel_rb_string
+        effect: "Blue Sparkle"
+    - service: light.turn_on
+      data:
+        brightness: 255
+        color_name: blue
+        entity_id: light.lr_bt_sns_fy_string
+        effect: "Blue Sparkle"
         
 script:
   normal_day:
