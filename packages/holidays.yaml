@@ -116,14 +116,12 @@ script:
         entity_id: light.front_garden_level_light_color_on_off
     - service: light.turn_on
       data:
-        brightness: 255
-        color_name: blue
+        brightness: 215
         entity_id: light.rainbrarrel_rb_string
         effect: "Blue Sparkle"
     - service: light.turn_on
       data:
-        brightness: 255
-        color_name: blue
+        brightness: 215
         entity_id: light.lr_bt_sns_fy_string
         effect: "Blue Sparkle"
         
