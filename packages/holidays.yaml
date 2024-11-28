@@ -7,7 +7,7 @@ input_boolean:
     name: independence_day
     initial: false
   house_sts_xmas_lights:
-    name: xmas_lights
+    name: house_sts_xmas_lights
     initial: false
 
     
@@ -19,7 +19,7 @@ template:
   - binary_sensor:
       - name: house_sts_xmas_lights
         state: >
-          {{ is_state('input_boolean.xmas_lights', 'on') }}
+          {{ is_state('input_boolean.house_sts_xmas_lights', 'on') }}
 
           
 automation:
