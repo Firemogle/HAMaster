@@ -72,7 +72,7 @@ automation:
 
 
 script:
-  independence_day:
+  xmas_light:
     sequence:
     - service: light.turn_on
       data:
@@ -96,7 +96,7 @@ script:
         entity_id: light.rainbrarrel_decklight
 
 script:
-  winter_lighting:
+  independence_day:
     sequence:
     - action: light.turn_on
       data:
