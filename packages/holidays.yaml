@@ -70,31 +70,6 @@ automation:
             entity_id: input_boolean.house_sts_xmas_lights
     mode: queued
 
-
-script:
-  independence_day:
-    sequence:
-    - service: light.turn_on
-      data:
-        color_name: red
-        entity_id: light.front_light1_level_light_color_on_off
-    - service: light.turn_on
-      data:
-        color_name: white
-        entity_id: light.front_light2_level_light_color_on_off
-    - service: light.turn_on
-      data:
-        color_name: red
-        entity_id: light.front_light3_level_light_color_on_off
-    - service: light.turn_on
-      data:
-        color_name: blue
-        entity_id: light.front_garden_level_light_color_on_off
-    - service: light.turn_on
-      data:
-        brightness: 215
-        entity_id: light.rainbrarrel_decklight
-
 script:
   xmas_light:
     sequence:
