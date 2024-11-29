@@ -100,7 +100,6 @@ script:
         color_name: white
         effect: None
         
-script:
   normal_day:
     sequence:
     - service: light.turn_on
