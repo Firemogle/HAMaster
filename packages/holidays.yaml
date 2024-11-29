@@ -75,30 +75,36 @@ script:
     sequence:
     - service: light.turn_on
       data:
-        color_name: white
+        color_name: blue
         entity_id: light.front_light1_level_light_color_on_off
     - service: light.turn_on
       data:
-        color_name: white
+        color_name: green
         entity_id: light.front_light2_level_light_color_on_off
     - service: light.turn_on
       data:
-        color_name: white
+        color_name: red
         entity_id: light.front_light3_level_light_color_on_off
     - service: light.turn_on
       data:
-        color_name: white
+        color_name: blue
         entity_id: light.front_garden_level_light_color_on_off
     - service: light.turn_on
       data:
-        color_name: white
+        color_name: red
         entity_id: light.porch_light
     - service: light.turn_on
       data:
         brightness: 215
         entity_id: light.rainbrarrel_rb_string
         color_name: white
-        effect: None
+        effect: "Blue Sparkle"
+    - service: light.turn_on
+      data:
+        brightness: 215
+        entity_id: light.lr_bt_sns_fy_string
+        color_name: white
+        effect: "Blue Sparkle"
         
   normal_day:
     sequence:
