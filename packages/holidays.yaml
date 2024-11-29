@@ -72,7 +72,7 @@ automation:
 
 
 script:
-  xmas_light:
+  independence_day:
     sequence:
     - service: light.turn_on
       data:
@@ -96,51 +96,34 @@ script:
         entity_id: light.rainbrarrel_decklight
 
 script:
-  independence_day:
+  xmas_light:
     sequence:
-    - action: light.turn_on
+    - service: light.turn_on
       data:
-        rgb_color: 
-          - 255
-          - 0
-          - 0
-      target:
+        color_name: white
         entity_id: light.front_light1_level_light_color_on_off
-    - action: light.turn_on
+    - service: light.turn_on
       data:
-        rgb_color: 
-          - 0
-          - 0
-          - 255
-      target:
+        color_name: white
         entity_id: light.front_light2_level_light_color_on_off
-    - action: light.turn_on
+    - service: light.turn_on
       data:
-        rgb_color: 
-          - 0
-          - 255
-          - 0
-      target:
+        color_name: white
         entity_id: light.front_light3_level_light_color_on_off
-    - action: light.turn_on
+    - service: light.turn_on
       data:
-        rgb_color: 
-          - 0
-          - 0
-          - 255
-      target:
-        entity_id: light.front_garden_level_light_color_on_off    
-    - action: light.turn_on
+        color_name: white
+        entity_id: light.front_garden_level_light_color_on_off
+    - service: light.turn_on
       data:
-        effect: Blue Sparkle
-      target:
+        color_name: white
+        entity_id: light.porch_light
+    - service: light.turn_on
+      data:
+        brightness: 215
         entity_id: light.rainbrarrel_rb_string
-    - action: light.turn_on
-      data:
-        effect: Blue Sparkle
-      target:
-        entity_id: light.lr_bt_sns_fy_string
-
+        color_name: white
+        effect: None
         
 script:
   normal_day:
