@@ -159,8 +159,6 @@
       state: on
     switch.livingroom_subwoofer:
       state: on
-    switch.garage_wall_switch:
-      state: on
       
 - name: house_evening_vacation
   entities:
