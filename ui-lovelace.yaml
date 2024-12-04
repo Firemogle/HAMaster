@@ -324,7 +324,7 @@ views:
           - sensor.hall_motion_temp_2
           - sensor.laundry_temp
           - sensor.garage_temperature
-          - sensor.front_garage_temp
+          - sensor.garageeth_garage_temperature
       - type: entities
         title: Network
         show_header_toggle: false
@@ -352,7 +352,6 @@ views:
           - binary_sensor.house_sts_hum_active_req
           - sensor.hvac_humidity
           - sensor.hvac_target_humidity
-          - switch.humidifier
           
   - title: Holiday
     id: house_holiday
