@@ -93,8 +93,15 @@ automation:
     - data:
         entity_id: script.hvac_run_setpoint
       service: script.turn_on
-    - data:
-        entity_id: script.by_irrigation
+    - data_template:
+        entity_id: >
+            {% if is_state('binary_sensor.house_sts_independence_day', 'on') %}
+              script.independence_day
+            {% elif is_state('binary_sensor.house_sts_xmas_lights', 'on') %}
+              script.xmas_light
+            {% else %}
+              script.normal_day
+            {% endif %}
       service: script.turn_on
 
 
