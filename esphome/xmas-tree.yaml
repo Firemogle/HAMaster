@@ -29,14 +29,12 @@ ota:
   platform: esphome
   password: !secret OTA_PW
  
-esp32_ble_tracker:
-bluetooth_proxy:
   
 light:
   - platform: fastled_clockless
     chipset: WS2811
     pin: GPIO16
-    num_leds: 240
+    num_leds: 190
     rgb_order: GBR
     name: xmastree
     id: xmastree
@@ -113,8 +111,8 @@ light:
     name: Tree Star
     segments:
       - id: xmastree
-        from: 190
-        to: 239
+        from: 140
+        to: 189
     effects:
       - addressable_flicker:
       - addressable_flicker:
@@ -188,11 +186,11 @@ light:
     name: Fiber Optic Tree
     segments:
       - id: xmastree
-        from: 50
-        to: 69
+        from: 0
+        to: 19
       - id: xmastree
-        from: 120
-        to: 139
+        from: 70
+        to: 89
     effects:
       - addressable_flicker:
       - addressable_flicker:
@@ -266,14 +264,11 @@ light:
     name: Tree Body
     segments:
       - id: xmastree
-        from: 0
-        to: 49
+        from: 20
+        to: 69
       - id: xmastree
-        from: 70
-        to: 119
-      - id: xmastree
-        from: 140
-        to: 189
+        from: 100
+        to: 139
     effects:
       - addressable_flicker:
       - addressable_flicker:
