@@ -1,0 +1,4 @@
+substitutions:
+  devicename: poe_test_12v
+
+<<: !include POE.conf

@@ -1,5 +1,0 @@
-substitutions:
-  devicename: poe_test_va
-
-<<: !include POE.conf
-<<: !include POE_VA.conf
