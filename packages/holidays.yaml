@@ -74,7 +74,7 @@ automation:
     alias: morning_xmas
     trigger:
     - platform: time
-      at: '8:00:00'
+      at: '7:30:00'
     condition:
       - condition: template
         value_template: "{{ is_state('input_boolean.house_sts_xmas_lights', 'on') }}"
