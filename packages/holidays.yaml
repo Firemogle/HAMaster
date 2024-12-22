@@ -70,8 +70,8 @@ automation:
             entity_id: input_boolean.house_sts_xmas_lights
     mode: queued
 
-  - id: 'ext_xmas_off'
-    alias: ext_xmas_off
+  - id: 'morning_xmas'
+    alias: morning_xmas
     trigger:
     - platform: time
       at: '8:00:00'
@@ -82,6 +82,10 @@ automation:
     - data:
         entity_id: switch.garage_wall_switch
       service: switch.turn_off
+    - data:
+        entity_id: light.uhall_ban_hall_ban
+        brightness: 255
+      service: light.turn_on
     mode: queued
     
 
