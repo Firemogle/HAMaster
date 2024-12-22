@@ -96,6 +96,10 @@ template:
             {{ (0.0049*state_attr('weather.karb_daynight', 'temperature')|float(default=0)+0.2668)*100 }}
           {% endif %}
 
+timer:
+  house_hvac_run_time:
+    duration: "01:00:00"
+
 automation:
   - id: 'house_hvac_ena'
     alias: house_hvac_ena
