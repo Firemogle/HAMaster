@@ -70,6 +70,21 @@ automation:
             entity_id: input_boolean.house_sts_xmas_lights
     mode: queued
 
+  - id: 'ext_xmas_off'
+    alias: ext_xmas_off
+    trigger:
+    - platform: time
+      at: '8:00:00'
+    condition:
+      - condition: template
+        value_template: "{{ is_state('input_boolean.house_sts_xmas_lights', 'on') }}"
+    action:
+    - data:
+        entity_id: switch.garage_wall_switch
+      service: switch.turn_off
+    mode: queued
+    
+
 script:
   xmas_light:
     sequence:
