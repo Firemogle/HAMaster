@@ -144,14 +144,14 @@ automation:
     alias: house_active_hum
     initial_state: 'off'
     trigger:
-    - entity_id: binary_sensor.house_sts_dte_cheap
+    - entity_id: binary_sensor.house_sts_hum_active_req
       platform: state
     condition: []
     action:
     - data:
         entity_id: climate.hvac_local
         fan_mode: >
-          {% if is_state('binary_sensor.house_sts_dte_cheap', 'on') %}
+          {% if is_state('binary_sensor.house_sts_hum_active_req', 'on') %}
             Low
           {% else %} 
             Auto low
