@@ -347,8 +347,6 @@ views:
         show_header_toggle: false
         entities:
           - binary_sensor.house_sts_hvac_run
-          - binary_sensor.house_sts_hum_passive_req
-          - binary_sensor.house_sts_hum_passive_run
           - binary_sensor.house_sts_hum_active_req
           - sensor.hvac_humidity
           - sensor.hvac_target_humidity
@@ -356,7 +354,6 @@ views:
   - title: Holiday
     id: house_holiday
     icon: mdi:string-lights
-    visible: "{{ is_state('calendar.xmas_lights','on') }}"
     cards:
       - type: entities
         title: Holiday Lights
