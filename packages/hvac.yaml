@@ -79,6 +79,13 @@ template:
         state: >
           {{ is_state('binary_sensor.house_sts_hum_passive_req', 'on')
              and is_state('sensor.hvac_fan_state', 'on') }}
+
+  - binary_sensor:
+      - name: hvac_running
+        state: >
+          {{ state_attr('climate.hvac_local','hvac_action') == 'heating'
+             or state_attr('climate.hvac_local','hvac_action') == 'cooling'
+             or state_attr('climate.hvac_local','hvac_action') == 'fan' }}
              
   - sensor:
       - name: hvac_target_humidity
@@ -157,6 +164,23 @@ automation:
             Auto low
           {% endif %}
       service: climate.set_fan_mode
+
+  - id: 'house_min_fan'
+    alias: house_min_fan
+    initial_state: 'off'
+    trigger:
+    - entity_id: binary_sensor.hvac_running
+      platform: state
+    condition: []
+    action:
+    - data:
+        entity_id: house_hvac_run_time
+      service: >
+          {% if is_state('binary_sensor.hvac_running', 'on') %}
+            timer.start
+          {% else %} 
+            timer.pause
+          {% endif %}
 
 
 
