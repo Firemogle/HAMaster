@@ -174,7 +174,7 @@ automation:
     condition: []
     action:
     - data:
-        entity_id: house_hvac_run_time
+        entity_id: timer.house_hvac_run_time
       service: >
           {% if is_state('binary_sensor.hvac_running', 'on') %}
             timer.start
