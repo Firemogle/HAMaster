@@ -212,7 +212,7 @@ light:
     segments:
       - id: rb_string
         from: 0
-        to: 428
+        to: 427
     effects:
       - addressable_fireworks:
           name: Fireworks
