@@ -153,8 +153,8 @@ input_number:
   emi_night_timer:
     name: "Emi nighttime routine timer"
     mode: slider
-    initial: 8
-    min: 1
+    initial: 0
+    min: 0
     max: 60
     step: 1
     unit_of_measurement: "M"
@@ -187,12 +187,6 @@ script:
         data:
           brightness_pct: 10
           transition: 900
-      - service: automation.turn_on
-        data:
-          entity_id: "automation.emi_light_stay_off"
-      - service: automation.turn_on
-        data:
-          entity_id: "automation.emi_light_stay_off_fan"
       - service: automation.turn_off
         data:
           entity_id: "automation.emi_tv_on"
