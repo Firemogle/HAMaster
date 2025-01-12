@@ -70,6 +70,9 @@
       state: off
     light.basemet_dimmer:
       state: off
+    light.emi_fan_light:
+      state: off
+    
       
 - name: house_night
   entities:
