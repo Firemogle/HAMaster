@@ -1,9 +1,41 @@
 packages:
   wifi: !include packages/ethernet.yaml
 
-
 substitutions:
   devicename: poe_test_12v
 
-<<: !include POE.conf
+esphome:
+  name: ${devicename}
+  friendly_name: ${devicename}
+
+esp32:
+  board: esp32-s3-devkitc-1
+  variant: esp32s3
+  framework:
+    type: esp-idf
+    version: recommended
+
+psram:
+  mode: octal
+  speed: 80MHz
+
+
+# Enable logging
+logger:
+  hardware_uart: USB_CDC
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: !secret ENC_KEY
+
+ota:
+  platform: esphome
+  password: !secret OTA_PW
+  
+i2c:
+   sda: GPIO05
+   scl: GPIO04
+   id: i2c_channel   
+
 <<: !include POE_VA.conf
