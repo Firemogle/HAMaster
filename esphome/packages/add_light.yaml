@@ -15,15 +15,6 @@ light:
           fade_out_rate: 125
       - addressable_twinkle:
           name: twinkle
-    effects:
-      - addressable_fireworks:
-          name: Fireworks
-          update_interval: 32ms
-          spark_probability: 75%
-          use_random_color: true
-          fade_out_rate: 125
-      - addressable_twinkle:
-          name: twinkle
           twinkle_probability: 10%
           progress_interval: 64ms
       - addressable_color_wipe:
