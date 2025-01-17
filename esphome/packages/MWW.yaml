@@ -1,0 +1,7 @@
+micro_wake_word:
+  models:
+    - okay_nabu
+  on_wake_word_detected:
+    - voice_assistant.start:
+    - light.turn_on:
+        id: ${devicename}_status
