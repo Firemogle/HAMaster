@@ -72,6 +72,9 @@
       state: off
     light.emi_fan_light:
       state: off
+    light.uhall_ban_hall_ban:
+      state: on
+      brightness: 10
     
       
 - name: house_night
