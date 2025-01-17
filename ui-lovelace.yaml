@@ -149,6 +149,7 @@ views:
           - sensor.hallway_motion_2_temperature
           - binary_sensor.hall_window_opened
           - sensor.hall_window_temperature
+          - light.uhall_ban_hall_ban
           
     # Basement view
   - title: Basement
