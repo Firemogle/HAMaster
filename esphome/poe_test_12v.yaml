@@ -1,8 +1,12 @@
-packages:
-  wifi: !include packages/ethernet.yaml
-
 substitutions:
   devicename: poe_test_12v
+
+packages:
+  wifi: !include packages/ethernet.yaml
+  voice: !include 
+    file: packages/voice.yaml
+    vars:
+      devicename: ${devicename}
 
 esphome:
   name: ${devicename}
