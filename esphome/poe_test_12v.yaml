@@ -1,3 +1,7 @@
+packages:
+  wifi: !include packages/ethernet.yaml
+
+
 substitutions:
   devicename: poe_test_12v
 
