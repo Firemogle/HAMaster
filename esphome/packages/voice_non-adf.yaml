@@ -34,8 +34,9 @@ speaker:
     audio_dac: es8311_dac
 
 microphone:
-  - platform: es7210
+  - platform: i2s_audio
     id: external_mic
+    i2s_din_pin: GPIO16
 
 voice_assistant:
   microphone: external_mic
