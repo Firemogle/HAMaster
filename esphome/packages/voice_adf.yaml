@@ -15,6 +15,6 @@ speaker:
   - platform: esp_adf
     id: ${devicename}_speaker
 
-speaker:
+microphone:
   - platform: esp_adf
     id: external_mic
