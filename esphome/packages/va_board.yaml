@@ -18,6 +18,7 @@ sensor:
       name: ${devicename}_Humidity
     address: 0x77
     update_interval: 60s
+    i2c_id: i2c_channel 
   - platform: veml7700
     address: 0x10
     update_interval: 60s
@@ -26,3 +27,4 @@ sensor:
     infrared: ${devicename}_Infrared
     ambient_light_counts: ${devicename}_AMB_LIGHT_COUNT
     full_spectrum_counts: ${devicename}_FS_COUNT
+    i2c_id: i2c_channel
