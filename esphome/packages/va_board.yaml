@@ -1,6 +1,6 @@
 packages:
   string_light: !include 
-    file: packages/add_light.yaml
+    file: add_light.yaml
     vars:
       pin: GPIO48
       length: 12
