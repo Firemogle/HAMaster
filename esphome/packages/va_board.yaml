@@ -1,0 +1,38 @@
+switch:
+  - platform: template
+    name: "Template Switch"
+    turn_on_action:
+      - micro_wake_word.start:
+    turn_off_action:
+      - micro_wake_word.stop:
+
+
+light:
+  - platform: esp32_rmt_led_strip
+    rgb_order: GRB
+    chipset: WS2812
+    pin: GPIO48
+    rmt_channel: 0
+    num_leds: 12
+    name: ${devicename}_status
+    id: ${devicename}_status
+
+sensor:
+  - platform: bme280_i2c
+    temperature:
+      name: ${devicename}_Temperature
+      oversampling: 16x
+    pressure:
+      name: ${devicename}_Pressure
+    humidity:
+      name: ${devicename}_Humidity
+    address: 0x77
+    update_interval: 60s
+  - platform: veml7700
+    address: 0x10
+    update_interval: 60s
+    ambient_light: ${devicename}_Ambient_Light
+    full_spectrum: ${devicename}_Full_Spectrum
+    infrared: ${devicename}_Infrared
+    ambient_light_counts: ${devicename}_AMB_LIGHT_COUNT
+    full_spectrum_counts: ${devicename}_FS_COUNT
