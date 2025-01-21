@@ -46,6 +46,10 @@ ota:
   password: !secret OTA_PW
   
 i2c:
-   sda: GPIO05
-   scl: GPIO04
-   id: i2c_channel   
+   - id: i2c_channel
+     sda: GPIO05
+     scl: GPIO04
+   - id: audio_i2c
+     sda: GPIO08
+     scl: GPIO18
+
