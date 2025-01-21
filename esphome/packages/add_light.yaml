@@ -1,9 +1,9 @@
 light:
   - platform: esp32_rmt_led_strip
-    variant: WS2812
+    chipset: WS2812
     pin: ${pin}
     num_leds: ${length}
-    type: ${color_line}
+    rgb_order: ${color_line}
     name: ${name}
     id: ${name}
     rmt_channel: 0
