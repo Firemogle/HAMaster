@@ -21,11 +21,20 @@ esphome:
   friendly_name: ${devicename}
   
 esp32:
-  board: esp32-s3-devkitc-1
+  board: esp32s3box
+  flash_size: 16MB
   framework:
     type: esp-idf
-    version: 5.2.2
-    platform_version: 6.7.0
+    sdkconfig_options:
+      CONFIG_ESP32S3_DEFAULT_CPU_FREQ_240: "y"
+      CONFIG_ESP32S3_DATA_CACHE_64KB: "y"
+      CONFIG_ESP32S3_DATA_CACHE_LINE_64B: "y"
+      CONFIG_AUDIO_BOARD_CUSTOM: "y"
+      CONFIG_ESP32_S3_BOX_3_BOARD: "y"
+    components:
+      - name: esp32_s3_box_3_board
+        source: github://jesserockz/esp32-s3-box-3-board@main
+        refresh: 0s
 
 psram:
   mode: octal
