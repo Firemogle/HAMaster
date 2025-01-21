@@ -21,8 +21,7 @@ esphome:
   friendly_name: ${devicename}
 
 esp32:
-  board: esp32-s3-devkitc-1
-  variant: esp32s3
+  board: esp32s3box
   framework:
     type: esp-idf
     version: recommended
