@@ -1,11 +1,12 @@
 light:
-  - platform: neopixelbus
-    variant: WS2811
+  - platform: esp32_rmt_led_strip
+    variant: WS2812
     pin: ${pin}
     num_leds: ${length}
     type: ${color_line}
     name: ${name}
     id: ${name}
+    rmt_channel: 0
     effects:
       - addressable_fireworks:
           name: Fireworks
