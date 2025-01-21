@@ -17,4 +17,4 @@ speaker:
 
 speaker:
   - platform: esp_adf
-    id: box_speaker
+    id: external_mic
