@@ -1,0 +1,20 @@
+external_components:
+  - source: github://pr#5230
+    components: esp_adf
+    refresh: 0s
+
+esp_adf:
+
+i2s_audio:
+  i2s_lrclk_pin: GPIO39
+  i2s_bclk_pin: GPIO38
+  i2s_mclk_pin: GPIO41
+
+
+speaker:
+  - platform: esp_adf
+    id: ${devicename}_speaker
+
+speaker:
+  - platform: esp_adf
+    id: box_speaker
