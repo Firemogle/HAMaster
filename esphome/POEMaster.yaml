@@ -9,7 +9,8 @@ esp32:
   board: esp32-s3-devkitc-1
   framework:
     type: esp-idf
-    version: recommended
+    version: 5.2.2
+    platform_version: 6.7.0
 
 i2s_audio:
   i2s_lrclk_pin: GPIO39
