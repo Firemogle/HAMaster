@@ -1,3 +1,4 @@
+packages:
   string_light: !include 
     file: packages/add_light.yaml
     vars:
