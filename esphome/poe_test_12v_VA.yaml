@@ -11,10 +11,10 @@ packages:
 #    file: packages/voice.yaml
 #    vars:
 #      devicename: ${devicename}
-#  va_board: !include 
-#    file: packages/va_board.yaml
-#    vars:
-#      devicename: ${devicename}
+  va_board: !include 
+    file: packages/va_board.yaml
+    vars:
+      devicename: ${devicename}
 
 esphome:
   name: ${devicename}
