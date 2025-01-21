@@ -26,3 +26,11 @@ micro_wake_word:
     - voice_assistant.start:
     - light.turn_on:
         id: ${devicename}_status
+
+switch:
+  - platform: template
+    name: "Template Switch"
+    turn_on_action:
+      - micro_wake_word.start:
+    turn_off_action:
+      - micro_wake_word.stop:
