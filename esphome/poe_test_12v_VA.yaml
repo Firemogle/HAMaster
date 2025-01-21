@@ -1,5 +1,5 @@
 substitutions:
-  devicename: poe_test_12v
+  devicename: poe_test_12v_va
 
 packages:
   wifi: !include packages/ethernet.yaml
