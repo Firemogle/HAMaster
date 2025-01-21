@@ -4,7 +4,7 @@ substitutions:
 packages:
   eth: !include packages/ethernet.yaml
   va_adf: !include 
-    file: packages/voice_adf.yaml
+    file: packages/voice_non-adf.yaml
     vars:
       devicename: ${devicename}
   voice: !include 
