@@ -2,7 +2,11 @@ substitutions:
   devicename: poe_test_12v_va
 
 packages:
-  wifi: !include packages/ethernet.yaml
+  eth: !include packages/ethernet.yaml
+  va_adf: !include 
+    file: packages/voice_adf.yaml
+    vars:
+      devicename: ${devicename}
   voice: !include 
     file: packages/voice.yaml
     vars:
@@ -45,5 +49,3 @@ i2c:
    sda: GPIO05
    scl: GPIO04
    id: i2c_channel   
-
-<<: !include POE_VA.conf
