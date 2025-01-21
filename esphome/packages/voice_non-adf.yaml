@@ -36,6 +36,7 @@ speaker:
 microphone:
   - platform: i2s_audio
     id: external_mic
+    adc_type: external
     i2s_din_pin: GPIO16
 
 voice_assistant:
