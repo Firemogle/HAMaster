@@ -3,10 +3,10 @@ substitutions:
 
 packages:
   eth: !include packages/ethernet.yaml
-  va_adf: !include 
-    file: packages/voice_adf.yaml
-    vars:
-      devicename: ${devicename}
+#  va_adf: !include 
+#    file: packages/voice_adf.yaml
+#    vars:
+#      devicename: ${devicename}
 #  voice: !include 
 #    file: packages/voice.yaml
 #    vars:
