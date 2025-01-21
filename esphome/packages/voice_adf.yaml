@@ -5,12 +5,6 @@ external_components:
 
 esp_adf:
 
-i2s_audio:
-  i2s_lrclk_pin: GPIO39
-  i2s_bclk_pin: GPIO38
-  i2s_mclk_pin: GPIO41
-
-
 speaker:
   - platform: esp_adf
     id: ${devicename}_speaker
@@ -18,3 +12,16 @@ speaker:
 microphone:
   - platform: esp_adf
     id: external_mic
+
+voice_assistant:
+  microphone: external_mic
+  speaker: ${devicename}_speaker
+  use_wake_word: true
+
+micro_wake_word:
+  models:
+    - okay_nabu
+  on_wake_word_detected:
+    - voice_assistant.start:
+    - light.turn_on:
+        id: ${devicename}_status
