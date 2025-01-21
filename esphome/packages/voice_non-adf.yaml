@@ -8,11 +8,6 @@ i2s_audio:
   i2s_mclk_pin: GPIO02
   id: audio_bus
 
-i2c:
-   sda: GPIO08
-   scl: GPIO18
-   id: audio_i2c
-
 audio_dac:
   - platform: es8311
     id: es8311_dac
