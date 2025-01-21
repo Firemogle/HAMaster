@@ -7,14 +7,6 @@ packages:
       color_line: GRB
       name: ${devicename}_status
 
-switch:
-  - platform: template
-    name: "Template Switch"
-    turn_on_action:
-      - micro_wake_word.start:
-    turn_off_action:
-      - micro_wake_word.stop:
-
 sensor:
   - platform: bme280_i2c
     temperature:
