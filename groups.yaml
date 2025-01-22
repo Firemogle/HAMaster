@@ -10,7 +10,7 @@
   brett:
     name: brett
     entities:
-      - device_tracker.brettphone_s21u
+      - device_tracker.sm_s928u1
   liz:
     name: liz
     entities:
