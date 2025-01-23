@@ -1,5 +1,3 @@
-- name: ecobee_notify
-  platform: ecobee
 - name: group_notify
   platform: group
   services:
