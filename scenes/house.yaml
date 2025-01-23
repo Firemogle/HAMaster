@@ -72,9 +72,6 @@
       state: off
     light.emi_fan_light:
       state: off
-    light.uhall_ban_hall_ban:
-      state: on
-      brightness: 10
     
       
 - name: house_night
@@ -130,6 +127,9 @@
       state: off
     switch.shelly1pm_c45bbe6b427e:
       state: off
+    light.uhall_ban_hall_ban:
+      state: on
+      brightness: 20
       
 - name: house_wakeup
   entities:
