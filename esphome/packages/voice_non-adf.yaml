@@ -29,18 +29,6 @@ speaker:
     channel: mono
     audio_dac: es8311_dac
 
-media_player:
-  - platform: nabu
-    id: ${devicename}_Media
-    name: ${devicename}_Media
-    internal: false
-    audio_dac:
-    speaker:
-    sample_rate: 16000
-    volume_increment: 0.05
-    volume_min: 0.4
-    volume_max: 0.85
-
 microphone:
   - platform: i2s_audio
     id: external_mic
