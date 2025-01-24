@@ -129,7 +129,7 @@
       state: off
     light.uhall_ban_hall_ban:
       state: on
-      brightness: 20
+      brightness: 51
       
 - name: house_wakeup
   entities:
