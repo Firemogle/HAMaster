@@ -1,6 +1,13 @@
 external_components:
   - source: github://rpatel3001/esphome@es7210
     components: [ es7210 ]
+  - source:
+      type: git
+      url: https://github.com/esphome/home-assistant-voice-pe
+      ref: dev
+    components:
+      - media_player
+    refresh: 0s
 
 i2s_audio:
   i2s_lrclk_pin: GPIO45
@@ -29,6 +36,18 @@ speaker:
     channel: mono
     audio_dac: es8311_dac
 
+media_player:
+  - platform: nabu
+    id: ${devicename}_Media
+    name: ${devicename}_Media
+    internal: false
+    audio_dac:
+    speaker:
+    sample_rate: 16000
+    volume_increment: 0.05
+    volume_min: 0.4
+    volume_max: 0.85
+
 microphone:
   - platform: i2s_audio
     id: external_mic
@@ -37,18 +56,6 @@ microphone:
     i2s_din_pin: GPIO16
     bits_per_sample: 16bit
 
-voice_assistant:
-  microphone: external_mic
-  speaker: ${devicename}_speaker
-  use_wake_word: true
-
-micro_wake_word:
-  models:
-    - model: okay_nabu
-  on_wake_word_detected:
-    - voice_assistant.start:
-    - light.turn_on:
-        id: ${devicename}_status
 
 switch:
   - platform: template
