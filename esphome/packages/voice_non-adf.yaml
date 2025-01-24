@@ -18,7 +18,7 @@ audio_dac:
 es7210:
   i2c_id: audio_i2c
 
-media_player:
+speaker:
   - platform: i2s_audio
     i2s_audio_id: audio_bus
     id: ${devicename}_speaker
