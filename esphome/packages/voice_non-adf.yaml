@@ -18,7 +18,7 @@ audio_dac:
 es7210:
   i2c_id: audio_i2c
 
-speaker:
+media_player:
   - platform: i2s_audio
     i2s_audio_id: audio_bus
     id: ${devicename}_speaker
@@ -26,7 +26,7 @@ speaker:
     dac_type: external
     sample_rate: 16000
     bits_per_sample: 16bit
-    channel: stereo
+    channel: mono
     audio_dac: es8311_dac
 
 microphone:
