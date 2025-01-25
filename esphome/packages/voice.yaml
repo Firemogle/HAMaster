@@ -2,6 +2,45 @@ voice_assistant:
   microphone: external_mic
   speaker: ${devicename}_speaker
   use_wake_word: false
+  noise_suppression_level: 0
+  auto_gain: 0 dbfs
+  volume_multiplier: 1
+  on_client_connected:
+    - micro_wake_word.start:
+  on_client_disconnected:
+    - voice_assistant.stop:
+  #on_error:
+  # When the voice assistant starts: Play a wake up sound, duck audio.
+  on_start:
+    - ${devicename}_speaker.set_ducking:
+        decibel_reduction: 20   # Number of dB quieter; higher implies more quiet, 0 implies full volume
+        duration: 0.0s          # The duration of the transition (default is 0)
+  #on_listening:
+  #on_stt_vad_start:
+  #on_stt_vad_end:
+  #on_tts_start:
+  # When the voice assistant ends ...
+  on_end:
+    - wait_until:
+        not:
+          voice_assistant.is_running:
+    # Stop ducking audio.
+    - ${devicename}_speaker.set_ducking:
+        decibel_reduction: 0   # 0 dB means no reduction
+        duration: 1.0s
+    # Stop the script that would potentially enable the stop word if the response is longer than a second
+    #- script.stop: activate_stop_word_if_tts_step_is_long
+    # Disable the stop word (If the tiemr is not ringing)
+  #on_timer_finished:
+  #  - switch.turn_on: timer_ringing
+  #on_timer_started:
+  #  - script.execute: control_leds
+  #on_timer_cancelled:
+  #  - script.execute: control_leds
+  #on_timer_updated:
+  #  - script.execute: control_leds
+  #on_timer_tick:
+  #  - script.execute: control_leds
 
 micro_wake_word:
   microphone: external_mic
