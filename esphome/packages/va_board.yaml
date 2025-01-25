@@ -2,7 +2,7 @@ packages:
   string_light: !include 
     file: add_light.yaml
     vars:
-      pin: GPIO48
+      pin: GPIO07
       length: 12
       color_line: GRB
       name: ${devicename}_status
