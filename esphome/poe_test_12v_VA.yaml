@@ -25,7 +25,6 @@ esp32:
   variant: esp32s3
   framework:
     type: esp-idf
-    version: 4.4.6
 
 psram:
   mode: octal
