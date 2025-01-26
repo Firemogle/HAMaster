@@ -23,7 +23,6 @@ audio_dac:
     sample_rate: 16000
     i2c_id: audio_i2c
     use_mclk: true
-    use_microphone: true
     
 
 es7210:
@@ -39,6 +38,7 @@ speaker:
     audio_dac: es8311_dac
     sample_rate: 16000
     bits_per_sample: 16bit
+    i2s_comm_fmt: i2s_msb
 
 media_player:
   - platform: nabu
