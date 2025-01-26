@@ -1,6 +1,11 @@
 external_components:
   - source: github://rpatel3001/esphome@es7210
-    components: [ es7210 ]
+  - source:
+      type: git
+      url: https://github.com/esphome/home-assistant-voice-pe
+      ref: dev
+    components:
+      - media_player
 
 i2s_audio:
   i2s_lrclk_pin: GPIO45
@@ -18,21 +23,26 @@ audio_dac:
 es7210:
   i2c_id: audio_i2c
 
-#speaker:
-#  - platform: i2s_audio
-#    i2s_audio_id: audio_bus
-#    id: ${devicename}_speaker
-#    i2s_dout_pin: GPIO15
-#    dac_type: external
-#    sample_rate: 16000
-#    bits_per_sample: 16bit
-#    channel: mono
-#    audio_dac: es8311_dac
+speaker:
+  - platform: i2s_audio
+    i2s_audio_id: audio_bus
+    id: ${devicename}_speaker
+    i2s_dout_pin: GPIO15
+    dac_type: external
+    sample_rate: 16000
+    bits_per_sample: 16bit
+    channel: mono
+    audio_dac: es8311_dac
 
 media_player:
   - platform: i2s_audio
-    name: Media Player
+    name: ${devicename}_speaker
     id: ext_speaker
+    audio_dac:
+    speaker:
+    volume_increment: 0.05
+    volume_min: 0.4
+    volume_max: 0.85
     dac_type: external
     i2s_dout_pin: GPIO15
 
