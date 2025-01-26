@@ -29,8 +29,9 @@ voice_assistant:
           voice_assistant.is_running:
     # Stop ducking audio.
     - speaker.volume_set:
-        id: ${devicename}_status
+        id: ${devicename}_speaker
         volume: 50%
+    - micro_wake_word.start:
     # Stop the script that would potentially enable the stop word if the response is longer than a second
     #- script.stop: activate_stop_word_if_tts_step_is_long
     # Disable the stop word (If the tiemr is not ringing)
