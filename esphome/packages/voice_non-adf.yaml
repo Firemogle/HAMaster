@@ -36,8 +36,8 @@ speaker:
     dac_type: external
     channel: mono
     audio_dac: es8311_dac
-    #sample_rate: 16000
-    #bits_per_sample: 16bit
+    sample_rate: 16000
+    bits_per_sample: 16bit
 
 media_player:
   - platform: nabu
