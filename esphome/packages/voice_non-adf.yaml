@@ -66,12 +66,3 @@ microphone:
     pdm: false
     i2s_din_pin: GPIO16
     bits_per_sample: 16bit
-
-
-switch:
-  - platform: template
-    name: "Template Switch"
-    turn_on_action:
-      - micro_wake_word.start:
-    turn_off_action:
-      - micro_wake_word.stop:
