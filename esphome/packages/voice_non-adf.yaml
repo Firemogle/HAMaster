@@ -37,7 +37,7 @@ speaker:
     audio_dac: es8311_dac
 
 media_player:
-  - platform: i2s_audio
+  - platform: nabu
     name: ${devicename}_speaker
     id: ext_speaker
     audio_dac:
