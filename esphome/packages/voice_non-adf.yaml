@@ -46,8 +46,6 @@ media_player:
     volume_increment: 0.05
     volume_min: 0.4
     volume_max: 0.85
-    dac_type: external
-    i2s_dout_pin: GPIO15
 
 microphone:
   - platform: i2s_audio
