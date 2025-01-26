@@ -9,7 +9,6 @@ external_components:
     components:
       - media_player
       - nabu
-      - speaker
 
 i2s_audio:
   i2s_lrclk_pin: GPIO45
