@@ -12,9 +12,12 @@ voice_assistant:
   #on_error:
   # When the voice assistant starts: Play a wake up sound, duck audio.
   on_start:
-    - ${devicename}_speaker.set_ducking:
-        decibel_reduction: 20   # Number of dB quieter; higher implies more quiet, 0 implies full volume
-        duration: 0.0s          # The duration of the transition (default is 0)
+    - speaker.volume_set:
+     id: speaker_id
+     volume: 10%
+    - light.turn_off:
+        id: ${devicename}_status
+
   #on_listening:
   #on_stt_vad_start:
   #on_stt_vad_end:
@@ -25,9 +28,9 @@ voice_assistant:
         not:
           voice_assistant.is_running:
     # Stop ducking audio.
-    - ${devicename}_speaker.set_ducking:
-        decibel_reduction: 0   # 0 dB means no reduction
-        duration: 1.0s
+    - speaker.volume_set:
+     id: speaker_id
+     volume: 50%
     # Stop the script that would potentially enable the stop word if the response is longer than a second
     #- script.stop: activate_stop_word_if_tts_step_is_long
     # Disable the stop word (If the tiemr is not ringing)
@@ -50,3 +53,4 @@ micro_wake_word:
     - voice_assistant.start:
     - light.turn_on:
         id: ${devicename}_status
+        brightness: 50
