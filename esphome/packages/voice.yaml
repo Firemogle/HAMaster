@@ -74,7 +74,7 @@ micro_wake_word:
   models:
     - okay_nabu
   on_wake_word_detected:
-   - script.execute:
+     - script.execute:
         id: play_sound
         priority: true
         sound_file: !lambda return id(wake_word_triggered_sound);    
