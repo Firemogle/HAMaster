@@ -8,9 +8,6 @@ voice_assistant:
   volume_multiplier: 1
   on_client_connected:
     - micro_wake_word.start:
-    - audio_dac.set_volume Action:
-        id: es8311_dac
-        volume: 100%
   on_client_disconnected:
     - voice_assistant.stop:
   #on_error:
