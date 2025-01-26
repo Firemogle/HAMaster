@@ -74,13 +74,36 @@ micro_wake_word:
   models:
     - okay_nabu
   on_wake_word_detected:
-    - speaker.stop:
-        id: ${devicename}_speaker
-    - voice_assistant.stop:
-    - delay: 1000ms
+   - script.execute:
+        id: play_sound
+        priority: true
+        sound_file: !lambda return id(wake_word_triggered_sound);    
     - voice_assistant.start:
     - light.turn_on:
         id: ${devicename}_status
         brightness: 50%
         transition_length: 0s
+
+script:
+  # Script executed when we want to play sounds on the device.
+  - id: play_sound
+    parameters:
+      priority: bool
+      sound_file: "media_player::MediaFile*"
+    then:
+      - lambda: |-
+          if (priority) {
+            id(${devicename}_media)
+              ->make_call()
+              .set_command(media_player::MediaPlayerCommand::MEDIA_PLAYER_COMMAND_STOP)
+              .set_announcement(true)
+              .perform();
+          }
+          if ( (id(${devicename}_media).state != media_player::MediaPlayerState::MEDIA_PLAYER_STATE_ANNOUNCING ) || priority) {
+            id(nabu_media_player)
+              ->make_call()
+              .set_announcement(true)
+              .set_local_media_file(sound_file)
+              .perform();
+          }
 
