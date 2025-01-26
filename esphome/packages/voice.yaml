@@ -73,6 +73,8 @@ micro_wake_word:
   models:
     - okay_nabu
   on_wake_word_detected:
+    - speaker.stop
+      id: ${devicename}_speaker
     - delay: 1000ms
     - voice_assistant.start:
     - light.turn_on:
