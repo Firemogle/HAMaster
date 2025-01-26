@@ -19,7 +19,7 @@ i2s_audio:
 audio_dac:
   - platform: es8311
     id: es8311_dac
-    bits_per_sample: 16bit
+    bits_per_sample: 24bit
     sample_rate: 16000
     i2c_id: audio_i2c
     use_mclk: true
@@ -37,8 +37,8 @@ speaker:
     channel: mono
     audio_dac: es8311_dac
     sample_rate: 16000
-    bits_per_sample: 16bit
-    i2s_comm_fmt: pcm
+    bits_per_sample: 24bit
+    i2s_comm_fmt: stand_i2s
 
 media_player:
   - platform: nabu
