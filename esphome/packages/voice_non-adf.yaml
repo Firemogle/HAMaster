@@ -38,7 +38,7 @@ speaker:
     audio_dac: es8311_dac
     sample_rate: 16000
     bits_per_sample: 16bit
-    i2s_comm_fmt: i2s_msb
+    i2s_comm_fmt: pcm
 
 media_player:
   - platform: nabu
