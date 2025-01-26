@@ -8,6 +8,7 @@ external_components:
       ref: dev
     components:
       - media_player
+      - nabu
 
 i2s_audio:
   i2s_lrclk_pin: GPIO45
