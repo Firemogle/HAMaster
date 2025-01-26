@@ -73,6 +73,9 @@ micro_wake_word:
   microphone: external_mic
   models:
     - okay_nabu
+    - model: https://github.com/kahrendt/microWakeWord/releases/download/stop/stop.json
+      id: stop
+      internal: true
   on_wake_word_detected:
     - speaker.stop:
         id: ${devicename}_speaker
