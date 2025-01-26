@@ -73,24 +73,14 @@ micro_wake_word:
   microphone: external_mic
   models:
     - okay_nabu
-    - model: https://github.com/kahrendt/microWakeWord/releases/download/stop/stop.json
-      id: stop
   on_wake_word_detected:
     - speaker.stop:
         id: ${devicename}_speaker
+    - voice_assistant.stop:
     - delay: 1000ms
     - voice_assistant.start:
     - light.turn_on:
         id: ${devicename}_status
         brightness: 50%
         transition_length: 0s
-script:
-  # Script used activate the stop word if the TTS step is long.
-  # Why is this wrapped on a script?
-  #   Becasue we want to stop the sequence if the TTS step is faster than that.
-  #   This allows us to prevent having the deactivation of the stop word before its own activation.
-  - id: activate_stop_word_if_tts_step_is_long
-    then:
-      - delay: 1s
-      # Enable stop wake word
-      - lambda: id(stop).enable();
+
