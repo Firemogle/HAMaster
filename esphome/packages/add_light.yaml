@@ -7,8 +7,6 @@ light:
     name: ${name}
     id: ${name}
     rmt_channel: 0
-    max_refresh_rate: 32ms
-    use_psram: false
     effects:
       - addressable_fireworks:
           name: Fireworks
