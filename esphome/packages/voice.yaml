@@ -82,7 +82,7 @@ micro_wake_word:
         id: ${devicename}_status
         brightness: 50%
         transition_length: 0s
-
+script:
   # Script used activate the stop word if the TTS step is long.
   # Why is this wrapped on a script?
   #   Becasue we want to stop the sequence if the TTS step is faster than that.
