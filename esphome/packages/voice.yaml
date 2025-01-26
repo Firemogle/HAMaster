@@ -21,7 +21,10 @@ voice_assistant:
   #on_listening:
   #on_stt_vad_start:
   #on_stt_vad_end:
-  #on_tts_start:
+  on_tts_start:
+    - speaker.volume_set:
+        id: ${devicename}_speaker
+        volume: 100%
   # When the voice assistant ends ...
   on_end:
     - wait_until:
