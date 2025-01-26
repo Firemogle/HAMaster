@@ -23,6 +23,7 @@ audio_dac:
     sample_rate: 16000
     i2c_id: audio_i2c
     use_mclk: true
+    use_microphone: true
     
 
 es7210:
