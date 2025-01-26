@@ -15,16 +15,32 @@ voice_assistant:
     - speaker.volume_set:
         id: ${devicename}_speaker
         volume: 10%
-    - light.turn_off:
+    - light.turn_on:
         id: ${devicename}_status
+        brightness: 50%
+        red: 0%
+        green: 0%
+        blue: 100%
 
-  #on_listening:
+  on_listening:
+    - light.turn_on:
+        id: ${devicename}_status
+        brightness: 50%
+        red: 100%
+        green: 0%
+        blue: 100%
   #on_stt_vad_start:
   #on_stt_vad_end:
   on_tts_start:
     - speaker.volume_set:
         id: ${devicename}_speaker
         volume: 100%
+    - light.turn_on:
+        id: ${devicename}_status
+        brightness: 50%
+        red: 100%
+        green: 100%
+        blue: 0%
   # When the voice assistant ends ...
   on_end:
     - wait_until:
@@ -35,6 +51,8 @@ voice_assistant:
         id: ${devicename}_speaker
         volume: 50%
     - micro_wake_word.start:
+    - light.turn_off:
+        id: ${devicename}_status
     # Stop the script that would potentially enable the stop word if the response is longer than a second
     #- script.stop: activate_stop_word_if_tts_step_is_long
     # Disable the stop word (If the tiemr is not ringing)
@@ -54,6 +72,7 @@ micro_wake_word:
   models:
     - okay_nabu
   on_wake_word_detected:
+    - delay: 50ms
     - voice_assistant.start:
     - light.turn_on:
         id: ${devicename}_status
