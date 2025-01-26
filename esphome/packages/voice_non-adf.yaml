@@ -22,6 +22,7 @@ audio_dac:
     bits_per_sample: 16bit
     sample_rate: 16000
     i2c_id: audio_i2c
+    use_mclk: true
 
 es7210:
   i2c_id: audio_i2c
@@ -34,7 +35,7 @@ speaker:
     dac_type: external
     sample_rate: 16000
     bits_per_sample: 16bit
-    channel: mono
+    channel: stereo
     audio_dac: es8311_dac
 
 media_player:
