@@ -40,7 +40,7 @@ speaker:
 media_player:
   - platform: nabu
     name: ${devicename}_media
-    id: ext_speaker
+    id: ${devicename}_media
     audio_dac:
     speaker:
     volume_increment: 0.05
