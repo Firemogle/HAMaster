@@ -42,6 +42,7 @@ voice_assistant:
         red: 100%
         green: 100%
         blue: 0%
+    - script.execute: activate_stop_word_if_tts_step_is_long
   # When the voice assistant ends ...
   on_end:
     - wait_until:
@@ -81,3 +82,13 @@ micro_wake_word:
         id: ${devicename}_status
         brightness: 50%
         transition_length: 0s
+
+  # Script used activate the stop word if the TTS step is long.
+  # Why is this wrapped on a script?
+  #   Becasue we want to stop the sequence if the TTS step is faster than that.
+  #   This allows us to prevent having the deactivation of the stop word before its own activation.
+  - id: activate_stop_word_if_tts_step_is_long
+    then:
+      - delay: 1s
+      # Enable stop wake word
+      - lambda: id(stop).enable();
