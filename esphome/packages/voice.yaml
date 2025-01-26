@@ -53,4 +53,4 @@ micro_wake_word:
     - voice_assistant.start:
     - light.turn_on:
         id: ${devicename}_status
-        brightness: 50
+        brightness: 50%
