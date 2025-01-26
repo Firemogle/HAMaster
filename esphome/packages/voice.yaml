@@ -1,6 +1,7 @@
 voice_assistant:
   microphone: external_mic
-  speaker: ${devicename}_speaker
+  #speaker: ${devicename}_speaker
+  media_player: ext_speaker
   use_wake_word: false
   noise_suppression_level: 0
   auto_gain: 0 dbfs
