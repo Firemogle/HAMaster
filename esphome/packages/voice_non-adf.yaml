@@ -39,7 +39,7 @@ speaker:
 
 media_player:
   - platform: nabu
-    name: ${devicename}_speaker
+    name: ${devicename}_media
     id: ext_speaker
     audio_dac:
     speaker:
