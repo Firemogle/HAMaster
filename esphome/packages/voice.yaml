@@ -18,6 +18,7 @@ voice_assistant:
     - light.turn_on:
         id: ${devicename}_status
         brightness: 50%
+        Transition length: 1.0s
         red: 0%
         green: 0%
         blue: 100%
@@ -72,8 +73,9 @@ micro_wake_word:
   models:
     - okay_nabu
   on_wake_word_detected:
-    - delay: 50ms
+    - delay: 1000ms
     - voice_assistant.start:
     - light.turn_on:
         id: ${devicename}_status
         brightness: 50%
+        Transition length: 0s
