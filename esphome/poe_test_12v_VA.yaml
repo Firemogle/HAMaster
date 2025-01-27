@@ -6,3 +6,10 @@ packages:
     file: packages/poe_board_base_2.6.yaml
     vars:
       devicename: ${devicename}
+  string_light: !include 
+    file: packages/add_light.yaml
+    vars:
+      pin: GPIO12
+      length: 20
+      color_line: GRB
+      name: ${devicename}_other_strip
