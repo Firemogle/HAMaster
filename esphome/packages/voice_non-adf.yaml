@@ -42,7 +42,7 @@ media_player:
   - platform: nabu
     name: ${devicename}_media
     id: ${devicename}_media
-    audio_dac:
+    #audio_dac:
     speaker:
     volume_increment: 0.05
     volume_min: 0.4
