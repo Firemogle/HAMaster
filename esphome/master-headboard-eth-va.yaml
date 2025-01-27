@@ -16,14 +16,14 @@ packages:
   brett: !include 
     file: packages/partition_light.yaml
     vars:
-      name: Brett Headboard
+      name: brett_headboard
       parent: master_headboard
       start: 0
       end: 9
   liz: !include 
     file: packages/partition_light.yaml
     vars:
-      name: Liz Headboard
+      name: liz_headboard
       parent: master_headboard
       start: 10
       end: 19
