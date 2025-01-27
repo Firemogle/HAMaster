@@ -19,6 +19,19 @@ light:
           twinkle_probability: 10%
           progress_interval: 64ms
       - addressable_color_wipe:
+          name: Cheifs
+          colors:
+            - red: 89%
+              green: 9%
+              blue: 21%
+              num_leds: 50
+            - red: 100%
+              green: 72%
+              blue: 9%
+              num_leds: 25
+          add_led_interval: 1000ms
+          reverse: False
+      - addressable_color_wipe:
           name: Christmas stripes
           colors:
             - red: 100%
