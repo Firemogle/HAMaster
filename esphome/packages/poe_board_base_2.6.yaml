@@ -1,0 +1,50 @@
+packages:
+  eth: !include packages/ethernet.yaml
+  va_adf: !include 
+    file: packages/voice_non-adf.yaml
+    vars:
+      devicename: ${devicename}
+  voice: !include 
+    file: packages/voice.yaml
+    vars:
+      devicename: ${devicename}
+  va_board: !include 
+    file: packages/va_board.yaml
+    vars:
+      devicename: ${devicename}
+
+esphome:
+  name: ${devicename}
+  friendly_name: ${devicename}
+  
+esp32:
+  board: esp32-s3-devkitc-1
+  variant: esp32s3
+  framework:
+    type: esp-idf
+
+psram:
+  mode: octal
+  speed: 80MHz
+
+
+# Enable logging
+logger:
+  hardware_uart: USB_CDC
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: !secret ENC_KEY
+
+ota:
+  platform: esphome
+  password: !secret OTA_PW
+  
+i2c:
+   - id: i2c_channel
+     sda: GPIO05
+     scl: GPIO04
+   - id: audio_i2c
+     sda: GPIO08
+     scl: GPIO18
