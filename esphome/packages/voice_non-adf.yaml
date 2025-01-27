@@ -33,6 +33,7 @@ speaker:
     bits_per_sample: 32bit
     channel: stereo
     audio_dac: es8311_dac
+    buffer_duration: 2000ms
     
 
 es7210:
