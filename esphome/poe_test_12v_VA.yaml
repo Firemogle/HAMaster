@@ -28,4 +28,5 @@ sensor:
     pressure:
       name: ${devicename}_ext_pressure
     address: 0x77
+    i2c_id: i2c_channel
     update_interval: 60s  
