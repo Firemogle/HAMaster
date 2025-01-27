@@ -27,6 +27,6 @@ sensor:
       oversampling: 16x
     pressure:
       name: ${devicename}_ext_pressure
-    address: 0x77
+    address: 0x76
     i2c_id: i2c_channel
     update_interval: 60s  
