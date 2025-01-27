@@ -21,7 +21,7 @@ light:
 
 
 sensor:   
-  - platform: bme280_i2c
+  - platform: bmp280_i2c
     temperature:
       name: ${devicename}_ext_temp
       oversampling: 16x
