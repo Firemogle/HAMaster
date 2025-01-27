@@ -1,0 +1,45 @@
+substitutions:
+  devicename: master-headboard-eth-va
+
+packages:
+  va_board: !include 
+    file: packages/poe_board_base_2.6.yaml
+    vars:
+      devicename: ${devicename}
+  string_light: !include 
+    file: packages/add_light.yaml
+    vars:
+      pin: GPIO48
+      length: 20
+      color_line: GRB
+      name: master_headboard
+  string_light_part: !include 
+    file: packages/partition_light.yaml
+    vars:
+      name: decklight
+      parent: Brett Headboard
+      start: 0
+      end: 9
+  string_light_part: !include 
+    file: packages/partition_light.yaml
+    vars:
+      name: Liz Headboard
+      parent: master_headboard
+      start: 10
+      end: 19
+
+light:
+  - id: !extend master_headboard
+    rmt_channel: 1
+
+
+sensor:   
+  - platform: bmp280_i2c
+    temperature:
+      name: ${devicename}_ext_temp
+      oversampling: 16x
+    pressure:
+      name: ${devicename}_ext_pressure
+    address: 0x76
+    i2c_id: i2c_channel
+    update_interval: 60s  
