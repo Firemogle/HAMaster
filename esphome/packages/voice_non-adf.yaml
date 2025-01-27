@@ -33,7 +33,7 @@ speaker:
     sample_rate: 16000
     bits_per_sample: 16bit
     channel: stereo
-#    audio_dac: es8311_dac
+    audio_dac: es8311_dac
     
 
 es7210:
