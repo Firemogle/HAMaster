@@ -29,7 +29,7 @@ light:
               green: 72%
               blue: 9%
               num_leds: 25
-          add_led_interval: 1000ms
+          add_led_interval: 100ms
           reverse: False
       - addressable_color_wipe:
           name: Christmas stripes
