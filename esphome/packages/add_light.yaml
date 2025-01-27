@@ -19,7 +19,7 @@ light:
           twinkle_probability: 10%
           progress_interval: 64ms
       - addressable_color_wipe:
-          name: Cheifs
+          name: Chiefs
           colors:
             - red: 89%
               green: 9%
