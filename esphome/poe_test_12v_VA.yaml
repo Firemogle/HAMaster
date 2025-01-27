@@ -12,5 +12,9 @@ packages:
       pin: GPIO48
       length: 20
       color_line: GRB
-      rmt_channel: 1
       name: ${devicename}_other_strip
+
+
+light:
+  - id: !extend ${devicename}_other_strip
+    rmt_channe: 1
