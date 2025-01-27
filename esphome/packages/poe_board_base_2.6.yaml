@@ -1,15 +1,15 @@
 packages:
-  eth: !include packages/ethernet.yaml
+  eth: !include ethernet.yaml
   va_adf: !include 
-    file: packages/voice_non-adf.yaml
+    file: voice_non-adf.yaml
     vars:
       devicename: ${devicename}
   voice: !include 
-    file: packages/voice.yaml
+    file: voice.yaml
     vars:
       devicename: ${devicename}
   va_board: !include 
-    file: packages/va_board.yaml
+    file: va_board.yaml
     vars:
       devicename: ${devicename}
 
