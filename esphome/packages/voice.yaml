@@ -55,10 +55,6 @@ voice_assistant:
     - micro_wake_word.start:
     - light.turn_off:
         id: ${devicename}_status
-    - script.execute:
-        id: play_sound
-        priority: true
-        sound_file: !lambda return id(wake_word_triggered_sound);
     # Stop the script that would potentially enable the stop word if the response is longer than a second
     #- script.stop: activate_stop_word_if_tts_step_is_long
     # Disable the stop word (If the tiemr is not ringing)
