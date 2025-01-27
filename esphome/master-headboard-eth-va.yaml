@@ -1,5 +1,5 @@
 substitutions:
-  devicename: master-headboard-eth-va
+  devicename: master_headboard_eth_va
 
 packages:
   va_board: !include 
