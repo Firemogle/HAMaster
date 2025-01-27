@@ -17,4 +17,4 @@ packages:
 
 light:
   - id: !extend ${devicename}_other_strip
-    rmt_channe: 1
+    rmt_channel: 1
