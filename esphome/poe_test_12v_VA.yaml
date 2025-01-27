@@ -18,3 +18,14 @@ packages:
 light:
   - id: !extend ${devicename}_other_strip
     rmt_channel: 1
+
+
+sensor:   
+  - platform: bmp280_i2c
+    temperature:
+      name: ${devicename}_ext_temp
+      oversampling: 16x
+    pressure:
+      name: ${devicename}_ext_pressure
+    address: 0x77
+    update_interval: 60s  
