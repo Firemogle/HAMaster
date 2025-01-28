@@ -7,8 +7,6 @@ external_components:
       url: https://github.com/esphome/home-assistant-voice-pe
       ref: dev
     components:
-      - media_player
-      - nabu
       - audio_dac
 
 i2s_audio:
@@ -41,24 +39,6 @@ speaker:
 es7210:
   i2c_id: audio_i2c
 
-media_player:
-  - platform: nabu
-    name: ${devicename}_media
-    id: ${devicename}_media
-    audio_dac:
-    speaker:
-    volume_increment: 0.05
-    volume_min: 0.4
-    volume_max: 0.85
-    files:
-      - id: timer_finished_sound
-        file: https://github.com/esphome/home-assistant-voice-pe/raw/dev/sounds/timer_finished.flac
-      - id: wake_word_triggered_sound
-        file: https://github.com/esphome/home-assistant-voice-pe/raw/dev/sounds/wake_word_triggered.flac
-      - id: easter_egg_tick_sound
-        file: https://github.com/esphome/home-assistant-voice-pe/raw/dev/sounds/easter_egg_tick.mp3
-      - id: easter_egg_tada_sound
-        file: https://github.com/esphome/home-assistant-voice-pe/raw/dev/sounds/easter_egg_tada.mp3
 
 microphone:
   - platform: i2s_audio
