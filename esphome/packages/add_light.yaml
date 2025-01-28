@@ -25,14 +25,17 @@ light:
               green: 9%
               blue: 21%
               num_leds: 25
+              gradient: true
             - red: 89%
               green: 9%
               blue: 21%
               num_leds: 75
+              gradient: true
             - red: 100%
               green: 72%
               blue: 9%
               num_leds: 25
+              gradient: true
             - red: 100%
               green: 72%
               blue: 9%
