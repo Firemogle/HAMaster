@@ -24,11 +24,19 @@ light:
             - red: 89%
               green: 9%
               blue: 21%
-              num_leds: 100
+              num_leds: 25
+            - red: 89%
+              green: 9%
+              blue: 21%
+              num_leds: 75
             - red: 100%
               green: 72%
               blue: 9%
-              num_leds: 100
+              num_leds: 25
+            - red: 100%
+              green: 72%
+              blue: 9%
+              num_leds: 75
               gradient: true
           add_led_interval: 200ms
           reverse: False
