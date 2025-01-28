@@ -103,26 +103,26 @@ micro_wake_word:
 #      - id: easter_egg_tada_sound
 #        file: https://github.com/esphome/home-assistant-voice-pe/raw/dev/sounds/easter_egg_tada.mp3
 
-script:
-  # Script executed when we want to play sounds on the device.
-  - id: play_sound
-    parameters:
-      priority: bool
-      sound_file: "media_player::MediaFile*"
-    then:
-      - lambda: |-
-          if (priority) {
-            id(${devicename}_media)
-              ->make_call()
-              .set_command(media_player::MediaPlayerCommand::MEDIA_PLAYER_COMMAND_STOP)
-              .set_announcement(true)
-              .perform();
-          }
-          if ( (id(${devicename}_media).state != media_player::MediaPlayerState::MEDIA_PLAYER_STATE_ANNOUNCING ) || priority) {
-            id(${devicename}_media)
-              ->make_call()
-              .set_announcement(true)
-              .set_local_media_file(sound_file)
-              .perform();
-          }
+#script:
+#  # Script executed when we want to play sounds on the device.
+#  - id: play_sound
+#    parameters:
+#      priority: bool
+#      sound_file: "media_player::MediaFile*"
+#    then:
+#      - lambda: |-
+#          if (priority) {
+#            id(${devicename}_media)
+#              ->make_call()
+#              .set_command(media_player::MediaPlayerCommand::MEDIA_PLAYER_COMMAND_STOP)
+#              .set_announcement(true)
+#              .perform();
+#          }
+#          if ( (id(${devicename}_media).state != media_player::MediaPlayerState::MEDIA_PLAYER_STATE_ANNOUNCING ) || priority) {
+#            id(${devicename}_media)
+#              ->make_call()
+#              .set_announcement(true)
+#              .set_local_media_file(sound_file)
+#              .perform();
+#          }
 
