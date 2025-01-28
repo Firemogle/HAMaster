@@ -4,6 +4,7 @@ external_components:
     refresh: 0s
 
 esp_adf:
+  board: esp32s3box
 
 microphone:
   - platform: esp_adf
