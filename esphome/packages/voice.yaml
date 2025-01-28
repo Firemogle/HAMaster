@@ -20,6 +20,10 @@ voice_assistant:
         red: 0%
         green: 0%
         blue: 100%
+        - script.execute:
+            id: play_sound
+            priority: true
+            sound_file: !lambda return id(timer_finished_sound);
 
   on_listening:
     - light.turn_on:
