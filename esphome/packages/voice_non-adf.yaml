@@ -16,7 +16,7 @@ i2s_audio:
     i2s_lrclk_pin: 
         number: GPIO45
         allow_other_uses: true
-    i2s_bclk_pin:: 
+    i2s_bclk_pin: 
         number: GPIO17
         allow_other_uses: true
     i2s_mclk_pin:
@@ -29,7 +29,7 @@ i2s_audio:
     i2s_bclk_pin:
         number: GPIO17
         allow_other_uses: true
-    i2s_mclk_pin:: 
+    i2s_mclk_pin:
         number: GPIO02
         allow_other_uses: true
 
