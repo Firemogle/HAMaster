@@ -13,9 +13,6 @@ voice_assistant:
   #on_error:
   # When the voice assistant starts: Play a wake up sound, duck audio.
   on_start:
-    - speaker.volume_set:
-        id: ${devicename}_speaker
-        volume: 10%
     - light.turn_on:
         id: ${devicename}_status
         brightness: 50%
@@ -34,9 +31,6 @@ voice_assistant:
   #on_stt_vad_start:
   #on_stt_vad_end:
   on_tts_start:
-    - speaker.volume_set:
-        id: ${devicename}_speaker
-        volume: 100%
     - light.turn_on:
         id: ${devicename}_status
         brightness: 50%
@@ -49,9 +43,6 @@ voice_assistant:
         not:
           voice_assistant.is_running:
     # Stop ducking audio.
-    - speaker.volume_set:
-        id: ${devicename}_speaker
-        volume: 50%
     - micro_wake_word.start:
     - light.turn_off:
         id: ${devicename}_status
