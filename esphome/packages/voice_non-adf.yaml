@@ -34,6 +34,7 @@ speaker:
     bits_per_sample: 16bit
     channel: stereo
     audio_dac: es8311_dac
+    i2s_audio_id: audio_bus
     
 
 es7210:
