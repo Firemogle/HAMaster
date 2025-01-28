@@ -22,6 +22,7 @@ i2s_audio:
       number: GPIO02
       allow_other_uses: true
   id: audio_bus
+i2s_audio:
   i2s_lrclk_pin: 
       number: GPIO45
       allow_other_uses: true
