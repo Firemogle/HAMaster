@@ -34,8 +34,6 @@ speaker:
     bits_per_sample: 16bit
     channel: stereo
     audio_dac: es8311_dac
-    timeout: never
-    buffer_duration: 500ms
     
     
 
