@@ -1,3 +1,13 @@
+external_components:
+  - source:
+      type: git
+      url: https://github.com/esphome/home-assistant-voice-pe
+      ref: dev
+    components:
+      - media_player
+      - nabu
+
+
 voice_assistant:
   microphone: external_mic
   #speaker: ${devicename}_speaker
