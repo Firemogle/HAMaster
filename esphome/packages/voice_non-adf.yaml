@@ -78,6 +78,7 @@ media_player:
 
 microphone:
   - platform: i2s_audio
+    i2s_audio_id: audio_bus
     id: external_mic
     adc_type: external
     pdm: false
