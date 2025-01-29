@@ -14,6 +14,10 @@ i2s_audio:
     i2s_lrclk_pin: GPIO45
     i2s_bclk_pin: GPIO17
     i2s_mclk_pin: GPIO02
+  - id: audio_bus_out
+    i2s_lrclk_pin: 
+      number: GPIO45
+      allow_other_uses: true
 
 
 audio_dac:
@@ -25,7 +29,7 @@ audio_dac:
 
 speaker:
   - platform: i2s_audio
-    i2s_audio_id: audio_bus
+    i2s_audio_id: audio_bus_out
     id: ${devicename}_speaker
     i2s_dout_pin: GPIO15
     dac_type: external
