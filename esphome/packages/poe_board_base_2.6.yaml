@@ -34,6 +34,7 @@ psram:
 logger:
   #hardware_uart: USB_CDC
   hardware_uart: USB_SERIAL_JTAG
+  baud_rate: 0
 
 # Enable Home Assistant API
 api:
