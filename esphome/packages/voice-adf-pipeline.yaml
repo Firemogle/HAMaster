@@ -18,8 +18,8 @@ i2s_audio:
 adf_pipeline:
   - platform: i2s_audio
     type: audio_out
-    id: ${devicename}_speaker
-    i2s_audio_id: i2s_out
+    id: adf_i2s_out
+    i2s_audio_id: i2s_shared
     i2s_dout_pin: GPIO15
 
   - platform: i2s_audio
