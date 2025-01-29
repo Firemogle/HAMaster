@@ -22,8 +22,6 @@ esp32:
   variant: esp32s3
   framework:
     type: esp-idf
-    version: 4.4.8
-    platform_version: 5.4.0
 
 psram:
   mode: octal
@@ -32,9 +30,8 @@ psram:
 
 # Enable logging
 logger:
-  #hardware_uart: USB_CDC
-  hardware_uart: USB_SERIAL_JTAG
-  baud_rate: 0
+  hardware_uart: USB_CDC
+
 
 # Enable Home Assistant API
 api:
