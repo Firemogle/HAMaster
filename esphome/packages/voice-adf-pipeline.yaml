@@ -26,7 +26,7 @@ adf_pipeline:
     type: audio_in
     id: adf_i2s_in
     i2s_audio_id: i2s_shared
-    i2s_din_pin: GPIO14
+    i2s_din_pin: GPIO16
     pdm: false
     adc:
       model: es7210
