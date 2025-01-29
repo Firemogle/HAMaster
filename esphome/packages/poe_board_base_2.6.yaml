@@ -31,9 +31,7 @@ psram:
 # Enable logging
 logger:
   hardware_uart: USB_CDC
-  level: debug
-  logs:
-    voice_assistant: VERY_VERBOSE
+  level: VERY_VERBOSE
 
 
 # Enable Home Assistant API
