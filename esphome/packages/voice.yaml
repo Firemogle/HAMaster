@@ -37,7 +37,11 @@ voice_assistant:
         id: ${devicename}_status
         brightness: 75%
         effect: "voice_listen"
-  #on_stt_vad_start:
+  on_stt_vad_start:
+    - light.turn_on:
+        id: ${devicename}_status
+        brightness: 75%
+        effect: "voice_thinking"
   #on_stt_vad_end:
   on_tts_start:
     - light.turn_on:
