@@ -23,7 +23,10 @@ voice_assistant:
   #on_error:
   # When the voice assistant starts: Play a wake up sound, duck audio.
   on_start:
-
+    - light.turn_on:
+        id: ${devicename}_status
+        brightness: 75%
+        effect: "voice_listen"
     #- script.execute:
     #    id: play_sound
     #    priority: true
