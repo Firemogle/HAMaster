@@ -10,6 +10,8 @@ homeassistant:
   time_zone: America/New_York
   customize: !include customize.yaml
   packages: !include_dir_named packages
+  media_dirs:
+    media: /media
   auth_mfa_modules:  # Setup two factor auth
     - type: totp
       name: Authenticator app
