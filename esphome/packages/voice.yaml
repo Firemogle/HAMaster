@@ -1,11 +1,11 @@
-external_components:
-  - source:
-      type: git
-      url: https://github.com/esphome/home-assistant-voice-pe
-      ref: dev
-    components:
-      - media_player
-      - nabu
+#external_components:
+#  - source:
+#      type: git
+#      url: https://github.com/esphome/home-assistant-voice-pe
+#      ref: dev
+#    components:
+#      - media_player
+#      - nabu
 
 
 voice_assistant:
@@ -85,14 +85,14 @@ micro_wake_word:
         brightness: 50%
         transition_length: 0s
 
-media_player:
-  - platform: nabu
-    name: ${devicename}_media
-    id: ${devicename}_media
-    speaker:
-    volume_increment: 0.05
-    volume_min: 0.4
-    volume_max: 0.85
+#media_player:
+#  - platform: nabu
+#    name: ${devicename}_media
+#    id: ${devicename}_media
+#    speaker:
+#    volume_increment: 0.05
+#    volume_min: 0.4
+#    volume_max: 0.85
     #files:
     #  - id: timer_finished_sound
     #    file: https://github.com/esphome/home-assistant-voice-pe/raw/dev/sounds/timer_finished.flac
@@ -103,26 +103,26 @@ media_player:
     #  - id: easter_egg_tada_sound
     #    file: https://github.com/esphome/home-assistant-voice-pe/raw/dev/sounds/easter_egg_tada.mp3
 
-script:
-  # Script executed when we want to play sounds on the device.
-  - id: play_sound
-    parameters:
-      priority: bool
-      sound_file: "media_player::MediaFile*"
-    then:
-      - lambda: |-
-          if (priority) {
-            id(${devicename}_media)
-              ->make_call()
-              .set_command(media_player::MediaPlayerCommand::MEDIA_PLAYER_COMMAND_STOP)
-              .set_announcement(true)
-              .perform();
-          }
-          if ( (id(${devicename}_media).state != media_player::MediaPlayerState::MEDIA_PLAYER_STATE_ANNOUNCING ) || priority) {
-            id(${devicename}_media)
-              ->make_call()
-              .set_announcement(true)
-              .set_local_media_file(sound_file)
-              .perform();
-          }
+#script:
+#  # Script executed when we want to play sounds on the device.
+#  - id: play_sound
+#    parameters:
+#      priority: bool
+#      sound_file: "media_player::MediaFile*"
+#    then:
+#      - lambda: |-
+#          if (priority) {
+#            id(${devicename}_media)
+#              ->make_call()
+#              .set_command(media_player::MediaPlayerCommand::MEDIA_PLAYER_COMMAND_STOP)
+#              .set_announcement(true)
+#              .perform();
+#          }
+#          if ( (id(${devicename}_media).state != media_player::MediaPlayerState::MEDIA_PLAYER_STATE_ANNOUNCING ) || priority) {
+#            id(${devicename}_media)
+#              ->make_call()
+#              .set_announcement(true)
+#              .set_local_media_file(sound_file)
+#              .perform();
+#          }
 
