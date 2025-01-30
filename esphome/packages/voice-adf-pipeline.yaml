@@ -47,8 +47,6 @@ microphone:
 speaker:
   - platform: adf_pipeline
     id: ${devicename}_speaker
-    name: ${devicename}_speaker
-    internal: false
     keep_pipeline_alive: false
     pipeline:
       - self
