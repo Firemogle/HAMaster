@@ -44,6 +44,21 @@ light:
           add_led_interval: 200ms
           reverse: False
       - addressable_color_wipe:
+          name: voice_listen
+          colors:
+            - red: 100%
+              green: 100%
+              blue: 100%
+              num_leds: 9
+              gradient: true
+            - red: 0%
+              green: 9%
+              blue: 90%
+              num_leds: 3
+              gradient: true
+          add_led_interval: 100ms
+          reverse: False
+      - addressable_color_wipe:
           name: Christmas stripes
           colors:
             - red: 100%
