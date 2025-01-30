@@ -8,7 +8,6 @@ external_components:
       ref: dev
     components:
       - audio_dac
-external_components:
   - source:
       type: git
       url: https://github.com/gnumpi/esphome_audio
