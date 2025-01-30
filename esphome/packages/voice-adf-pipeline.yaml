@@ -13,7 +13,7 @@ i2s_audio:
     i2s_lrclk_pin: GPIO45
     i2s_bclk_pin: GPIO17
     i2s_mclk_pin: GPIO02
-    access_mode: duplex
+    access_mode: exclusive
 
 adf_pipeline:
   - platform: i2s_audio
