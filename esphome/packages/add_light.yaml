@@ -155,6 +155,7 @@ light:
                 hue-=1530;
               }
             }
+      - addressable_color_wipe:
           name: voice_listen
           colors:
             - red: 100%
