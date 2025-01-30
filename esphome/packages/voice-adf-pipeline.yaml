@@ -44,9 +44,9 @@ microphone:
       - adf_i2s_in
       - self
 
-speaker:
+media_player:
   - platform: adf_pipeline
-    id: ${devicename}_speaker
+    id: ${devicename}_media
     keep_pipeline_alive: false
     pipeline:
       - self
