@@ -6,12 +6,13 @@ external_components:
     components:
       - media_player
       - nabu
+      - voice_assistant
 
 
 voice_assistant:
   microphone: external_mic
-  speaker: ${devicename}_speaker
-  #media_player: ${devicename}_media
+  #speaker: ${devicename}_speaker
+  media_player: ${devicename}_media
   use_wake_word: false
   noise_suppression_level: 0
   auto_gain: 0 dbfs
