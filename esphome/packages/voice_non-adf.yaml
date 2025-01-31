@@ -11,11 +11,15 @@ external_components:
 
 i2s_audio:
   - id: audio_bus
-    i2s_lrclk_pin: GPIO45
+    i2s_lrclk_pin: 
+      number: GPIO45
+      allow_other_uses: true
     i2s_bclk_pin: GPIO17
     i2s_mclk_pin: GPIO02
   - id: audio_bus_out
-    i2s_lrclk_pin: GPIO06
+    i2s_lrclk_pin: 
+      number: GPIO45
+      allow_other_uses: true
 
 
 audio_dac:
