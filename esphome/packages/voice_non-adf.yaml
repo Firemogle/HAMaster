@@ -27,7 +27,7 @@ audio_dac:
 
 speaker:
   - platform: i2s_audio
-    i2s_audio_id: audio_bus
+    i2s_audio_id: audio_bus_out
     id: ${devicename}_speaker
     i2s_dout_pin: GPIO15
     dac_type: external
