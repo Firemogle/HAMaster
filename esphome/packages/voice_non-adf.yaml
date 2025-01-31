@@ -24,7 +24,6 @@ audio_dac:
     bits_per_sample: 16bit
     sample_rate: 16000
     i2c_id: audio_i2c
-    use_mclk: false
 
 speaker:
   - platform: i2s_audio
