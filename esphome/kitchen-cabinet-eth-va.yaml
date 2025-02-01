@@ -1,0 +1,66 @@
+substitutions:
+  devicename: kitchen_cabinet_eth_va
+
+packages:
+  va_board: !include 
+    file: packages/poe_board_base_2.6.yaml
+    vars:
+      devicename: ${devicename}
+  headboard: !include 
+    file: packages/add_light.yaml
+    vars:
+      pin: GPIO48
+      length: 200
+      color_line: GRB
+      name: kitchen_cabinet
+  brett: !include 
+    file: packages/partition_light.yaml
+    vars:
+      name: stove
+      parent: kitchen_cabinet
+      start: 80
+      end: 99
+
+light:
+  - id: !extend kitchen_cabinet
+    rmt_channel: 1
+  - platform: partition
+    name: Cabinet Top
+    segments:
+      - id: kitchen_cabinet
+        from: 0
+        to: 39
+      - id: kitchen_cabinet
+        from: 179
+        to: 200
+    effects:
+      - addressable_fireworks:
+          name: Fireworks
+          update_interval: 32ms
+          spark_probability: 75%
+          use_random_color: true
+          fade_out_rate: 125
+      - addressable_twinkle:
+          name: twinkle
+          twinkle_probability: 10%
+          progress_interval: 64ms
+  - platform: partition
+    name: Cabinet Bottom
+    segments:
+      - id: kitchen_cabinet
+        from: 40
+        to: 79
+      - id: kitchen_cabinet
+        from: 100
+        to: 179
+    effects:
+      - addressable_fireworks:
+          name: Fireworks
+          update_interval: 32ms
+          spark_probability: 75%
+          use_random_color: true
+          fade_out_rate: 125
+      - addressable_twinkle:
+          name: twinkle
+          twinkle_probability: 10%
+          progress_interval: 64ms
