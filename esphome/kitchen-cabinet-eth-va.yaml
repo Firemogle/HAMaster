@@ -11,7 +11,7 @@ packages:
     vars:
       pin: GPIO48
       length: 200
-      color_line: GRB
+      color_line: RGB
       name: kitchen_cabinet
   brett: !include 
     file: packages/partition_light.yaml
