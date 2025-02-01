@@ -32,7 +32,7 @@ light:
         to: 39
       - id: kitchen_cabinet
         from: 179
-        to: 200
+        to: 199
     effects:
       - addressable_fireworks:
           name: Fireworks
