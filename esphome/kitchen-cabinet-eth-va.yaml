@@ -64,3 +64,14 @@ light:
           name: twinkle
           twinkle_probability: 10%
           progress_interval: 64ms
+
+sensor:   
+  - platform: bmp280_i2c
+    temperature:
+      name: ${devicename}_ext_temp
+      oversampling: 16x
+    pressure:
+      name: ${devicename}_ext_pressure
+    address: 0x76
+    i2c_id: i2c_channel
+    update_interval: 60s  
