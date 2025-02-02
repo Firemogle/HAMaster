@@ -7,6 +7,10 @@ packages:
       color_line: GRB
       name: ${devicename}_status
 
+light:
+  - id: !extend ${devicename}_status
+    internal: true 
+
 sensor:
   - platform: bme280_i2c
     temperature:
