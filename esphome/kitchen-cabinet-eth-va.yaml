@@ -13,10 +13,24 @@ packages:
       length: 200
       color_line: RGB
       name: kitchen_cabinet
-  brett: !include 
+  stove: !include 
     file: packages/partition_light.yaml
     vars:
       name: stove
+      parent: 
+      start: 80
+      end: 99
+  cabinet_top: !include 
+    file: packages/partition_light.yaml
+    vars:
+      name: Cabinet Top
+      parent: kitchen_cabinet
+      start: 80
+      end: 99
+  cabinet_bottom: !include 
+    file: packages/partition_light.yaml
+    vars:
+      name: Cabinet Bottom
       parent: kitchen_cabinet
       start: 80
       end: 99
@@ -24,8 +38,7 @@ packages:
 light:
   - id: !extend kitchen_cabinet
     rmt_channel: 1
-  - platform: partition
-    name: Cabinet Top
+  - id: !extend Cabinet Top
     segments:
       - id: kitchen_cabinet
         from: 0
@@ -33,19 +46,7 @@ light:
       - id: kitchen_cabinet
         from: 179
         to: 199
-    effects:
-      - addressable_fireworks:
-          name: Fireworks
-          update_interval: 32ms
-          spark_probability: 75%
-          use_random_color: true
-          fade_out_rate: 125
-      - addressable_twinkle:
-          name: twinkle
-          twinkle_probability: 10%
-          progress_interval: 64ms
-  - platform: partition
-    name: Cabinet Bottom
+  - id: !extend Cabinet Bottom
     segments:
       - id: kitchen_cabinet
         from: 40
@@ -53,17 +54,6 @@ light:
       - id: kitchen_cabinet
         from: 100
         to: 179
-    effects:
-      - addressable_fireworks:
-          name: Fireworks
-          update_interval: 32ms
-          spark_probability: 75%
-          use_random_color: true
-          fade_out_rate: 125
-      - addressable_twinkle:
-          name: twinkle
-          twinkle_probability: 10%
-          progress_interval: 64ms
 
 sensor:   
   - platform: bme280_i2c
