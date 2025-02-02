@@ -18,6 +18,70 @@ light:
           twinkle_probability: 10%
           progress_interval: 64ms
       - addressable_color_wipe:
+          name: Chiefs
+          colors:
+            - red: 89%
+              green: 9%
+              blue: 21%
+              num_leds: 25
+              gradient: true
+            - red: 89%
+              green: 9%
+              blue: 21%
+              num_leds: 75
+              gradient: true
+            - red: 100%
+              green: 72%
+              blue: 9%
+              num_leds: 25
+              gradient: true
+            - red: 100%
+              green: 72%
+              blue: 9%
+              num_leds: 75
+              gradient: true
+          add_led_interval: 200ms
+          reverse: False
+      - addressable_color_wipe:
+          name: voice_listen
+          colors:
+            - red: 100%
+              green: 100%
+              blue: 100%
+              num_leds: 3
+              gradient: true
+            - red: 0%
+              green: 9%
+              blue: 90%
+              num_leds: 9
+              gradient: true
+          add_led_interval: 100ms
+          reverse: False
+      - addressable_color_wipe:
+          name: voice_thinking
+          colors:
+            - red: 100%
+              green: 100%
+              blue: 100%
+              num_leds: 3
+              gradient: true
+            - red: 0%
+              green: 9%
+              blue: 90%
+              num_leds: 3
+            - red: 100%
+              green: 100%
+              blue: 100%
+              num_leds: 3
+              gradient: true
+            - red: 0%
+              green: 9%
+              blue: 90%
+              num_leds: 3
+              gradient: true
+          add_led_interval: 50ms
+          reverse: False
+      - addressable_color_wipe:
           name: Christmas stripes
           colors:
             - red: 100%
