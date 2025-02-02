@@ -25,15 +25,15 @@ packages:
     vars:
       name: cabinet_top
       parent: kitchen_cabinet
-      start: 80
-      end: 99
+      start: 0
+      end: 39
   cabinet_bottom: !include 
     file: packages/partition_light.yaml
     vars:
       name: cabinet_bottom
       parent: kitchen_cabinet
-      start: 80
-      end: 99
+      start: 40
+      end: 79
 
 light:
   - id: !extend kitchen_cabinet
@@ -41,16 +41,10 @@ light:
   - id: !extend cabinet_top
     segments:
       - id: kitchen_cabinet
-        from: 0
-        to: 39
-      - id: kitchen_cabinet
         from: 179
         to: 199
   - id: !extend cabinet_bottom
     segments:
-      - id: kitchen_cabinet
-        from: 40
-        to: 79
       - id: kitchen_cabinet
         from: 100
         to: 179
