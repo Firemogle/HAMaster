@@ -23,14 +23,14 @@ packages:
   cabinet_top: !include 
     file: packages/partition_light.yaml
     vars:
-      name: Cabinet Top
+      name: cabinet_top
       parent: kitchen_cabinet
       start: 80
       end: 99
   cabinet_bottom: !include 
     file: packages/partition_light.yaml
     vars:
-      name: Cabinet Bottom
+      name: cabinet_bottom
       parent: kitchen_cabinet
       start: 80
       end: 99
@@ -38,7 +38,7 @@ packages:
 light:
   - id: !extend kitchen_cabinet
     rmt_channel: 1
-  - id: !extend Cabinet Top
+  - id: !extend cabinet_top
     segments:
       - id: kitchen_cabinet
         from: 0
@@ -46,7 +46,7 @@ light:
       - id: kitchen_cabinet
         from: 179
         to: 199
-  - id: !extend Cabinet Bottom
+  - id: !extend cabinet_bottom
     segments:
       - id: kitchen_cabinet
         from: 40
