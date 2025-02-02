@@ -17,7 +17,7 @@ packages:
     file: packages/partition_light.yaml
     vars:
       name: stove
-      parent: 
+      parent: kitchen_cabinet
       start: 80
       end: 99
   cabinet_top: !include 
