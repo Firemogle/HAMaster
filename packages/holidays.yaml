@@ -9,6 +9,9 @@ input_boolean:
   house_sts_xmas_lights:
     name: house_sts_xmas_lights
     initial: false
+  super_bowl:
+    name: house_sts_super_bowl
+    initial: false
 
     
 template:
@@ -20,6 +23,10 @@ template:
       - name: house_sts_xmas_lights
         state: >
           {{ is_state('input_boolean.house_sts_xmas_lights', 'on') }}
+  - binary_sensor:
+      - name: house_sts_super_bowl
+        state: >
+          {{ is_state('input_boolean.super_bowl', 'on') }}
 
           
 automation:
