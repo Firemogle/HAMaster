@@ -128,6 +128,40 @@ script:
       data:
         entity_id: switch.garage_wall_switch
 
+script:
+  super_bowl:
+    sequence:
+    - service: light.turn_on
+      data:
+        brightness: 215
+        entity_id: light.rainbrarrel_rb_string
+        color_name: white
+        effect: "Chiefs"
+    - service: light.turn_on
+      data:
+        brightness: 215
+        entity_id: light.lr_bt_sns_fy_string
+        color_name: white
+        effect: "Chiefs"
+    - service: light.turn_on
+      data:
+        brightness: 215
+        entity_id: light.cabinet_bottom
+        color_name: white
+        effect: "Chiefs"
+    - service: light.turn_on
+      data:
+        brightness: 215
+        entity_id: light.cabinet_top
+        color_name: white
+        effect: "Chiefs"
+    - service: light.turn_on
+      data:
+        brightness: 215
+        entity_id: light.uhall_ban_hall_ban
+        color_name: white
+        effect: "Chiefs"
+
         
   normal_day:
     sequence:
