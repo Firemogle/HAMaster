@@ -2,4 +2,4 @@ packages:
   sonoff: !include 
     file: packages/sonoff-basic-R1.yaml
     vars:
-      devicename: growlight
+      name: growlight
