@@ -1,6 +1,26 @@
 esp8266:
   board: ${name}
 
+
+wifi:
+  ssid: !secret AP
+  password: !secret APPW
+  
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: !secret ENC_KEY
+
+ota:
+  platform: esphome
+  password: !secret OTA_PW
+ 
+esp32_ble_tracker:
+bluetooth_proxy:
+
 binary_sensor:
   - platform: gpio
     pin:
