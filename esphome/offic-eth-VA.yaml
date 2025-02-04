@@ -7,7 +7,6 @@ packages:
     vars:
       devicename: ${devicename}
 
-
 sensor:   
   - platform: bmp280_i2c
     temperature:
@@ -18,14 +17,5 @@ sensor:
     address: 0x76
     i2c_id: i2c_channel
     update_interval: 60s  
-
-binary_sensor:
-  - platform: gpio
-    pin: GPIO43
-    name: "Office Motion"
-    device_class: motion
-    filters:
-      invert:
-
 
     
