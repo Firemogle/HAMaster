@@ -24,8 +24,8 @@ binary_sensor:
     pin: GPIO44
     name: "Office Motion"
     device_class: motion
-    inverted: true
     filters:
+      invert:
       delayed_off: 300s
 
 
