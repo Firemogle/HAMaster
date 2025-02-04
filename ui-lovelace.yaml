@@ -170,27 +170,12 @@ views:
         title: Office
         show_header_toggle: false
         entities:
-          - switch.off_4k_mon
-          - switch.off_computron3000
           - binary_sensor.off_sts_motion
           - sensor.office_computer_power
           - sensor.office_humidity
           - sensor.office_pressure
+          - sensor.office_eth_va_office_eth_va_ambient_light
           - climate.office_climate
-      - type: entities
-        title: Printer
-        show_header_toggle: false
-        entities:
-          - switch.3d_printer
-          - binary_sensor.octoprint_printing
-          - binary_sensor.octoprint_printing_error
-          - sensor.octoprint_actual_bed_temp
-          - sensor.octoprint_target_bed_temp
-          - sensor.octoprint_actual_tool0_temp
-          - sensor.octoprint_target_tool0_temp
-          - sensor.octoprint_current_state
-          - sensor.octoprint_job_percentage
-          - sensor.octoprint_time_remaining
       - type: entities
         # Title of the entities card
         title: Laundry Room
@@ -208,8 +193,6 @@ views:
     cards:
       - type: thermostat
         entity: climate.hvac_local
-      - type: thermostat
-        entity: climate.lottie_heater
       - type: entities
         title: Attic
         show_header_toggle: false
