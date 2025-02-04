@@ -28,12 +28,12 @@ switch:
 climate:
   - platform: generic_thermostat
     name: office_climate
-    heater: switch.office_heater
+    heater: switch.office_heater_switch
     target_sensor: sensor.office_temperature
     min_temp: 0
     max_temp: 70
     ac_mode: false
-    target_temp: 65
+    target_temp: 68
     cold_tolerance: 0
     hot_tolerance: 0
     min_cycle_duration:
