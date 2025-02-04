@@ -1,5 +1,5 @@
 substitutions:
-  devicename: poe_test_12v_va
+  devicename: office_eth_va
 
 packages:
   va_board: !include 
