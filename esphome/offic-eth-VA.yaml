@@ -26,7 +26,6 @@ binary_sensor:
     device_class: motion
     filters:
       invert:
-      delayed_off: 300s
 
 
     
