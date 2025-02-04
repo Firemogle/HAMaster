@@ -21,7 +21,7 @@ sensor:
 
 binary_sensor:
   - platform: gpio
-    pin: GPIO44
+    pin: GPIO43
     name: "Office Motion"
     device_class: motion
     filters:
