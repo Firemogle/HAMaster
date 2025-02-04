@@ -20,9 +20,6 @@ api:
 ota:
   platform: esphome
   password: !secret OTA_PW
- 
-esp32_ble_tracker:
-bluetooth_proxy:
 
 binary_sensor:
   - platform: gpio
