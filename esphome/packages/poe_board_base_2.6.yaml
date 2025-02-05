@@ -25,9 +25,7 @@ esp32:
     version: 4.4.8
     platform_version: 5.4.0
     sdkconfig_options:
-       need to set a s3 compatible board for the adf-sdk to compile
-       board specific code is not used though
-       CONFIG_ESP32_S3_BOX_BOARD: "y"
+    CONFIG_ESP32_S3_BOX_BOARD: "y"
 
 psram:
   mode: octal
