@@ -12,7 +12,7 @@ template:
           {% set hour = now().hour %}
           {% if hour < 15 or hour >= 19 or day_of_week in [6, 7] %}
             0.17
-          {% elif if hour > 15 and hour <= 19 %}
+          {% elif hour > 15 and hour <= 19 %}
             0.25
           {% else %}
             0.13
