@@ -1,5 +1,0 @@
-packages:
-  sonoff: !include 
-    file: packages/sonoff-basic-R1.yaml
-    vars:
-      name: officeheater
