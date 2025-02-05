@@ -83,14 +83,14 @@ micro_wake_word:
         brightness: 50%
         transition_length: 0s
 
-media_player:
-  - platform: nabu
-    name: ${devicename}_media
-    id: ${devicename}_media
-    speaker:
-    volume_increment: 0.05
-    volume_min: 0.4
-    volume_max: 0.85
+#media_player:
+#  - platform: nabu
+#    name: ${devicename}_media
+#    id: ${devicename}_media
+#    speaker:
+#    volume_increment: 0.05
+#    volume_min: 0.4
+#    volume_max: 0.85
 #    files:
 #      - id: timer_finished_sound
 #        file: https://github.com/esphome/home-assistant-voice-pe/raw/dev/sounds/timer_finished.flac
