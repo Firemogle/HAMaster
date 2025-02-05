@@ -13,7 +13,14 @@ i2s_audio:
     i2s_lrclk_pin: GPIO45
     i2s_bclk_pin: GPIO17
     i2s_mclk_pin: GPIO02
-    access_mode: exclusive
+    access_mode: duplex
+
+#audio_dac:
+#  - platform: es8311
+#    id: es8311_dac
+#    bits_per_sample: 16bit
+#    sample_rate: 16000
+#    i2c_id: audio_i2c
 
 adf_pipeline:
   - platform: i2s_audio
@@ -21,6 +28,16 @@ adf_pipeline:
     id: adf_i2s_out
     i2s_audio_id: i2s_shared
     i2s_dout_pin: GPIO15
+    adf_alc: false
+    dac:
+      model: ES8388
+      address: 0x18
+      i2c_id: audio_i2c
+    sample_rate: 16000
+    bits_per_sample: 16bit
+    fixed_settings: true
+
+    
 
   - platform: i2s_audio
     type: audio_in
@@ -39,7 +56,7 @@ microphone:
   - platform: adf_pipeline
     id: external_mic
     gain_log2: 3
-    keep_pipeline_alive: false
+    keep_pipeline_alive: true
     pipeline:
       - adf_i2s_in
       - self
@@ -47,7 +64,7 @@ microphone:
 media_player:
   - platform: adf_pipeline
     id: ${devicename}_media
-    keep_pipeline_alive: false
+    keep_pipeline_alive: true
     pipeline:
       - self
       - resampler
