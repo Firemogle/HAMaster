@@ -29,7 +29,6 @@ adf_pipeline:
     i2s_audio_id: i2s_shared
     i2s_dout_pin: GPIO15
     adf_alc: false
-    dac:
     sample_rate: 16000
     bits_per_sample: 16bit
     fixed_settings: true
