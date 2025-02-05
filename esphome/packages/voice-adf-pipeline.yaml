@@ -30,7 +30,7 @@ adf_pipeline:
     i2s_dout_pin: GPIO15
     adf_alc: false
     dac:
-      model: ES8388
+      model: es8388
       address: 0x18
       i2c_id: audio_i2c
     sample_rate: 16000
