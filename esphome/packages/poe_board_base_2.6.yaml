@@ -22,10 +22,10 @@ esp32:
   variant: esp32s3
   framework:
     type: esp-idf
-    version: 4.4.8
-    platform_version: 5.4.0
-    sdkconfig_options:
-      CONFIG_ESP32_S3_BOX_BOARD: "y"
+    #version: 4.4.8
+    #platform_version: 5.4.0
+    #sdkconfig_options:
+    #  CONFIG_ESP32_S3_BOX_BOARD: "y"
 
 psram:
   mode: octal
