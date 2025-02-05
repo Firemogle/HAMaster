@@ -14,7 +14,7 @@ homeassistant:
 sensor:
   - platform: integration
     source: sensor.computron_w
-    name: computron_kwh
+    name: computron_khw
     unit_prefix: k
     round: 2
     max_sub_interval:
