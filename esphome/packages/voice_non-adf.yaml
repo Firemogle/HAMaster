@@ -15,11 +15,25 @@ i2s_audio:
       number: GPIO45
       allow_other_uses: true
       ignore_strapping_warning: true
-    i2s_bclk_pin: GPIO17
-    i2s_mclk_pin: GPIO02
+    i2s_bclk_pin: 
+      number: GPIO17
+      allow_other_uses: true
+      ignore_strapping_warning: true
+    i2s_mclk_pin: 
+      number: GPIO02
+      allow_other_uses: true
+      ignore_strapping_warning: true
   - id: audio_bus_out
     i2s_lrclk_pin: 
       number: GPIO45
+      allow_other_uses: true
+      ignore_strapping_warning: true
+    i2s_bclk_pin: 
+      number: GPIO17
+      allow_other_uses: true
+      ignore_strapping_warning: true
+    i2s_mclk_pin: 
+      number: GPIO02
       allow_other_uses: true
       ignore_strapping_warning: true
 
@@ -42,7 +56,6 @@ speaker:
     channel: mono
     audio_dac: es8311_dac
     timeout: never
-    buffer_duration: 2000ms
     
     
 
