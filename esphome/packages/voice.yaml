@@ -28,6 +28,9 @@ voice_assistant:
   #on_error:
   # When the voice assistant starts: Play a wake up sound, duck audio.
   on_start:
+    - nabu.set_ducking:
+        decibel_reduction: 20   # Number of dB quieter; higher implies more quiet, 0 implies full volume
+        duration: 0.0s          # The duration of the transition (default is 0)
     - light.turn_on:
         id: ${devicename}_status
         brightness: 75%
@@ -48,7 +51,6 @@ voice_assistant:
         id: ${devicename}_status
         brightness: 75%
         effect: "voice_thinking"
-  # When the voice assistant ends ...
   on_end:
     - light.turn_on:
         id: ${devicename}_status
@@ -59,11 +61,13 @@ voice_assistant:
     - wait_until:
         not:
           voice_assistant.is_running:
-    # Stop ducking audio.
     - delay: 7s
     - micro_wake_word.start:
     - light.turn_off:
         id: ${devicename}_status
+    - nabu.set_ducking:
+        decibel_reduction: 0   # 0 dB means no reduction
+        duration: 1.0s
     # Stop the script that would potentially enable the stop word if the response is longer than a second
     #- script.stop: activate_stop_word_if_tts_step_is_long
     # Disable the stop word (If the tiemr is not ringing)
@@ -97,4 +101,11 @@ media_player:
     volume_increment: 0.05
     volume_min: 0.4
     volume_max: 0.85
-
+    on_announcement:
+      - nabu.set_ducking:
+          decibel_reduction: 20
+          duration: 0.0s
+    on_idle:
+    - micro_wake_word.stop:
+    - delay: 2s
+    - micro_wake_word.start:
