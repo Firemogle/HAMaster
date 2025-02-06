@@ -31,5 +31,6 @@ binary_sensor:
     pin:
       pcf8574: pcf8574_hub
       number: 0
+      mode:
         input: true
         pullup: true
