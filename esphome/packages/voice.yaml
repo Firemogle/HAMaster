@@ -53,6 +53,7 @@ voice_assistant:
     - micro_wake_word.start:
     - light.turn_off:
         id: ${devicename}_status
+    - delay: 5s
     # Stop the script that would potentially enable the stop word if the response is longer than a second
     #- script.stop: activate_stop_word_if_tts_step_is_long
     # Disable the stop word (If the tiemr is not ringing)
