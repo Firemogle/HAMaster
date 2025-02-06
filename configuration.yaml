@@ -37,6 +37,7 @@ http:
 websocket_api:
 mobile_app:
 energy:
+media_source:
 
 alarm_control_panel:
   - platform: manual
