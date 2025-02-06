@@ -9,7 +9,7 @@ packages:
     vars:
       devicename: ${devicename}
   va_board: !include 
-    file: va_board.yaml
+    file: va_board_2.0.yaml
     vars:
       devicename: ${devicename}
 
