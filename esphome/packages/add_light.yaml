@@ -121,13 +121,13 @@ light:
             if (initial_run){
               state = 0;
       
-              it.all() = ESPColor(0,0,255);
+              it.all() = Color(0,0,255);
             } else {
       
-              it.all() = ESPColor(0,0,255);
+              it.all() = Color(0,0,255);
               for (int i = it.size() / 30; i > 0; i--) {
                 int p = rand() % it.size();
-                it[p] = ESPColor(255,255,255);
+                it[p] = Color(255,255,255);
               }
             }
       - addressable_lambda:
@@ -139,16 +139,16 @@ light:
             if (initial_run){
               state = 0;
       
-              it.all() = ESPColor(218,32,32);
+              it.all() = Color(218,32,32);
       
               ESP_LOGD("custom", "Gold Glitter");
             } else {
       
-              it.all() = ESPColor(218,32,32);
+              it.all() = Color(218,32,32);
       
               if(state==0){
                 int i = rand() % it.size();
-                it[i] = ESPColor::WHITE;
+                it[i] = Color::WHITE;
                 state += 1;
               } else {
                 state += 1;
