@@ -9,7 +9,7 @@ packages:
 
 pcf8574:
   - id: 'pcf8574_hub'
-    address: 0x21
+    address: 0x20
     pcf8575: false
     i2c_id: i2c_channel
 
