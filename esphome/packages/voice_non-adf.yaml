@@ -46,6 +46,7 @@ speaker:
     bits_per_sample: 16bit
     channel: mono
     audio_dac: es8311_dac
+    timeout: never
     
 es7210:
   i2c_id: audio_i2c
