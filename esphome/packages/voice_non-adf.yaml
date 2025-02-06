@@ -18,11 +18,9 @@ i2s_audio:
     i2s_bclk_pin: 
       number: GPIO17
       allow_other_uses: true
-      ignore_strapping_warning: true
     i2s_mclk_pin: 
       number: GPIO02
       allow_other_uses: true
-      ignore_strapping_warning: true
   - id: audio_bus_out
     i2s_lrclk_pin: 
       number: GPIO45
@@ -31,11 +29,9 @@ i2s_audio:
     i2s_bclk_pin: 
       number: GPIO17
       allow_other_uses: true
-      ignore_strapping_warning: true
     i2s_mclk_pin: 
       number: GPIO02
       allow_other_uses: true
-      ignore_strapping_warning: true
 
 
 audio_dac:
