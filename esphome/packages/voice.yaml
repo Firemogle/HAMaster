@@ -18,6 +18,11 @@ voice_assistant:
   volume_multiplier: 1
   on_client_connected:
     - micro_wake_word.start:
+    - light.turn_on:
+        id: ${devicename}_status
+        brightness: 5%
+    - light.turn_off:
+        id: ${devicename}_status
   on_client_disconnected:
     - voice_assistant.stop:
   #on_error:
