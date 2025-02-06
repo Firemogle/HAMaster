@@ -7,10 +7,25 @@ i2s_audio:
   - id: audio_bus
     i2s_lrclk_pin: 
       number: GPIO45
+      allow_other_uses: true
       ignore_strapping_warning: true
-    i2s_bclk_pin: GPIO17
-    i2s_mclk_pin: GPIO02
-
+    i2s_bclk_pin: 
+      number: GPIO17
+      allow_other_uses: true
+    i2s_mclk_pin: 
+      number: GPIO02
+      allow_other_uses: true
+  - id: audio_bus_out
+    i2s_lrclk_pin: 
+      number: GPIO45
+      allow_other_uses: true
+      ignore_strapping_warning: true
+    i2s_bclk_pin: 
+      number: GPIO17
+      allow_other_uses: true
+    i2s_mclk_pin: 
+      number: GPIO02
+      allow_other_uses: true
 
 audio_dac:
   - platform: es8311
@@ -21,7 +36,7 @@ audio_dac:
 
 speaker:
   - platform: i2s_audio
-    i2s_audio_id: audio_bus
+    i2s_audio_id: audio_bus_out
     id: ${devicename}_speaker
     i2s_dout_pin: GPIO15
     dac_type: external
