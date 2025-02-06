@@ -7,6 +7,13 @@ packages:
     vars:
       devicename: ${devicename}
 
+pcf8574:
+  - id: 'pcf8574_hub'
+    address: 0x21
+    pcf8575: false
+    i2c_id: i2c_channel
+
+
 sensor:   
   - platform: bmp280_i2c
     temperature:
@@ -16,6 +23,15 @@ sensor:
       name: ${devicename}_ext_pressure
     address: 0x76
     i2c_id: i2c_channel
-    update_interval: 60s  
-
+    update_interval: 60s
     
+binary_sensor:
+  - platform: gpio
+    name: ${devicename}_office_motion
+    pin:
+      pcf8574: pcf8574_hub
+      number: 0
+      mode:
+        INPUT: true
+      inverted: false
+    class: motion
