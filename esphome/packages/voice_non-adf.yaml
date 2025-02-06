@@ -39,7 +39,7 @@ speaker:
     dac_type: external
     sample_rate: 16000
     bits_per_sample: 16bit
-    channel: left
+    channel: right
     audio_dac: es8311_dac
     timeout: never
     
