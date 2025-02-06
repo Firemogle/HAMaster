@@ -11,7 +11,6 @@ external_components:
 
 voice_assistant:
   microphone: external_mic
-  #speaker: ${devicename}_speaker
   media_player: ${devicename}_media
   use_wake_word: false
   noise_suppression_level: 2
@@ -93,36 +92,4 @@ media_player:
     volume_increment: 0.05
     volume_min: 0.4
     volume_max: 0.85
-#    files:
-#      - id: timer_finished_sound
-#        file: https://github.com/esphome/home-assistant-voice-pe/raw/dev/sounds/timer_finished.flac
-#      - id: wake_word_triggered_sound
-#        file: https://github.com/esphome/home-assistant-voice-pe/raw/dev/sounds/wake_word_triggered.flac
-#      - id: easter_egg_tick_sound
-#        file: https://github.com/esphome/home-assistant-voice-pe/raw/dev/sounds/easter_egg_tick.mp3
-#      - id: easter_egg_tada_sound
-#        file: https://github.com/esphome/home-assistant-voice-pe/raw/dev/sounds/easter_egg_tada.mp3
-
-#script:
-#  # Script executed when we want to play sounds on the device.
-#  - id: play_sound
-#    parameters:
-#      priority: bool
-#      sound_file: "media_player::MediaFile*"
-#    then:
-#      - lambda: |-
-#          if (priority) {
-#            id(${devicename}_media)
-#              ->make_call()
-#              .set_command(media_player::MediaPlayerCommand::MEDIA_PLAYER_COMMAND_STOP)
-#              .set_announcement(true)
-#              .perform();
-#          }
-#          if ( (id(${devicename}_media).state != media_player::MediaPlayerState::MEDIA_PLAYER_STATE_ANNOUNCING ) || priority) {
-#            id(${devicename}_media)
-#              ->make_call()
-#              .set_announcement(true)
-#              .set_local_media_file(sound_file)
-#              .perform();
-#          }
 
