@@ -14,8 +14,8 @@ voice_assistant:
   #speaker: ${devicename}_speaker
   media_player: ${devicename}_media
   use_wake_word: false
-  noise_suppression_level: 0
-  auto_gain: 0 dbfs
+  noise_suppression_level: 2
+  auto_gain: 31 dbfs
   volume_multiplier: 1
   on_client_connected:
     - micro_wake_word.start:
@@ -28,11 +28,6 @@ voice_assistant:
         id: ${devicename}_status
         brightness: 75%
         effect: "voice_listen"
-    #- script.execute:
-    #    id: play_sound
-    #    priority: true
-    #    sound_file: !lambda return id(timer_finished_sound);
-
   on_listening:
     - light.turn_on:
         id: ${devicename}_status
