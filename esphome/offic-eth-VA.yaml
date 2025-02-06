@@ -31,7 +31,5 @@ binary_sensor:
     pin:
       pcf8574: pcf8574_hub
       number: 0
-      mode:
-        INPUT: true
-      inverted: false
-    class: motion
+        input: true
+        pullup: true
