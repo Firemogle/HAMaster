@@ -62,10 +62,6 @@ script:
   - id: control_leds
     then:
       - lambda: |
-          id(check_if_timers_active).execute();
-          if (id(is_timer_active)){
-            id(fetch_first_active_timer).execute();
-          }
           if (id(init_in_progress)) {
           # Reset the LED string on init
             - light.turn_on:
