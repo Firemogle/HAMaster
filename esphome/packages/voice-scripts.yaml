@@ -63,12 +63,7 @@ script:
     then:
       - lambda: |
           if (id(init_in_progress)) {
-          # Reset the LED string on init
-            - light.turn_on:
-                id: ${devicename}_status
-                brightness: 5%
-            - light.turn_off:
-                id: ${devicename}_status
+            id(control_leds_init_state).execute();
           } else if (id(voice_assistant_phase) == ${voice_assist_waiting_for_command_phase_id}) {
             #
           } else if (id(voice_assistant_phase) == ${voice_assist_listening_for_command_phase_id}) {
@@ -86,4 +81,16 @@ script:
           } else if (id(voice_assistant_phase) == ${voice_assist_idle_phase_id}) {
             #
           }
+
+  - id: control_leds_init_state
+    then:
+      - if:
+      # Reset the LED string on init
+      - light.turn_on:
+          id: ${devicename}_status
+          brightness: 5%
+      - light.turn_off:
+          id: ${devicename}_status
+
+
 
