@@ -84,7 +84,6 @@ script:
 
   - id: control_leds_init_state
     then:
-      - if:
       # Reset the LED string on init
       - light.turn_on:
           id: ${devicename}_status
