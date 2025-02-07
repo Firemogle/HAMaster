@@ -53,7 +53,6 @@ automation:
             entity_id: input_boolean.independence_day
     mode: queued
 
-automation:
   - id: 'house_sts_xmas_lights'
     alias: house_sts_xmas_lights
     trigger:
@@ -134,8 +133,7 @@ script:
     - service: switch.turn_on
       data:
         entity_id: switch.garage_wall_switch
-
-script:
+        
   super_bowl:
     sequence:
     - service: light.turn_on
