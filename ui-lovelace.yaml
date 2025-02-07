@@ -47,6 +47,11 @@ views:
         entities:
           - cover.garage_door
           - lock.front_door
+      - type: entities
+        title: Car
+        show_header_toggle: false
+        entities:
+          - switch.car_charger_switch
 
     # Main Level 
   - title: Main Level
