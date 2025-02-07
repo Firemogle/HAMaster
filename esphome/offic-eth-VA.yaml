@@ -37,3 +37,4 @@ binary_sensor:
         input: true
     filters:
       - delayed_off: 300s
+      - delayed_on: 5s
