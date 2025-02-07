@@ -1,3 +1,10 @@
+packages:
+  va_board: !include 
+    file: voice-scripts.yaml
+    vars:
+      devicename: ${devicename}
+
+
 external_components:
   - source:
       type: git
