@@ -24,12 +24,11 @@ voice_assistant:
   auto_gain: 31 dbfs
   volume_multiplier: 10
   on_client_connected:
+    - lambda: id(init_in_progress) = true;
+    - script.execute: control_leds
     - micro_wake_word.start:
-    - light.turn_on:
-        id: ${devicename}_status
-        brightness: 5%
-    - light.turn_off:
-        id: ${devicename}_status
+    - lambda: id(voice_assistant_phase) = ${voice_assist_idle_phase_id};
+    - script.execute: control_leds
   on_client_disconnected:
     - voice_assistant.stop:
   #on_error:
