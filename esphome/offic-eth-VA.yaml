@@ -28,8 +28,10 @@ sensor:
 binary_sensor:
   - platform: gpio
     name: ${devicename}_office_motion
+    id: ${devicename}_office_motion
     pin:
       pcf8574: pcf8574_hub
       number: 0
       mode:
         input: true
+        pullup: true
