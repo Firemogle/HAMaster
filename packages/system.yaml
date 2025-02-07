@@ -385,8 +385,8 @@ automation:
             entity_id: input_boolean.house_sts_vacation
     mode: queued
 
-  - id: 'house_guest_switch'
-    alias: house_guest_switch
+  - id: 'kansas_playing'
+    alias: kansas_playing
     trigger:
       - platform: calendar
         event: start
