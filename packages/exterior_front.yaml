@@ -39,24 +39,6 @@ plant:
     min_moisture: 20
     min_conductivity: 50
       
-
-mqtt:
-  binary_sensor:
-    state_topic: "blueiris/frontyard"
-    name: front_foscam_motion
-    payload_on: "motion"
-    payload_off: "clear"
-    
-  binary_sensor:
-    name: doorbell_person_raw
-    state_topic: "frigate/doorbell/person"
-    device_class: motion
-      
-  binary_sensor:
-    name: frontyard_person
-    state_topic: "frigate/frontyard/person"
-    device_class: motion
-    availability_topic: "frigate/available"
     
       
 template:
@@ -67,21 +49,6 @@ template:
         delay_off:
           minutes: 5
     
-mqtt:
-  camera:
-    name: doorbell_last_person
-    topic: frigate/doorbell/person/snapshot
-  camera:
-    name: Doorbell Last Car
-    platform: mqtt
-    topic: frigate/doorbell/car/snapshot
-    
-  camera:
-    name: Frontyard Last Person
-    topic: frigate/frontyard/person/snapshot
-  camera:
-    name: Backyard Last Car
-    topic: frigate/frontyard/car/snapshot
 
 automation:
   - alias: doorbell_person_detected
