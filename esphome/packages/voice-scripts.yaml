@@ -73,8 +73,6 @@ script:
                 brightness: 5%
             - light.turn_off:
                 id: ${devicename}_status
-          } else if (id(timer_ringing).state) {
-            #
           } else if (id(voice_assistant_phase) == ${voice_assist_waiting_for_command_phase_id}) {
             #
           } else if (id(voice_assistant_phase) == ${voice_assist_listening_for_command_phase_id}) {
