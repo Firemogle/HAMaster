@@ -34,4 +34,4 @@ binary_sensor:
       number: 0
       mode:
         input: true
-        pullup: true
+      pullup: true
