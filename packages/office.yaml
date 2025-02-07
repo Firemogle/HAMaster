@@ -57,49 +57,21 @@ automation:
     alias: off_occ_on
     initial_state: 'off'
     trigger:
-    - entity_id: binary_sensor.off_sts_motion
+    - entity_id: binary_sensor.office_eth_va_office_eth_va_office_motion
       platform: state
     condition: []
     action:
-    - service: climate.set_temperature
+    - service: climate.set_hvac_mode
       data_template:
-        temperature: >
-          {% if is_state('binary_sensor.off_htr_needed','on') %}
-            65
-          {% else %}
-            30
-          {% endif %}
-      entity_id: climate.office_climate
-    - data:
-        entity_id: switch.off_4k_mon
-      service: switch.turn_on
-    - data:
-        entity_id: switch.off_computron3000
-      service: switch.turn_on
-      
-      
-  - id: 'printer_on'
-    alias: printer_on
-    initial_state: 'off'
-    trigger:
-      platform: state
-      entity_id: sensor.octoprint_target_bed_temp
-      from: '32'
-    action:
-    - data:
-        entity_id: switch.3d_printer
-      service: switch.turn_on
-      
-  - id: 'printer_off'
-    alias: printer_off
-    initial_state: 'off'
-    trigger:
-      platform: state
-      entity_id: sensor.octoprint_job_percentage
-      to: '100'
-    action:
-    - data:
-        entity_id: switch.3d_printer
-      service: switch.turn_off
+        hvac_mode: >
+            {% if is_state('binary_sensor.office_eth_va_office_eth_va_office_motion', 'off') %}
+              off
+            {% else %}
+              heat
+            {% endif %}
+        entity_id: climate.office_climate
+
+
+    
       
       
