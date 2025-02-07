@@ -398,7 +398,7 @@ automation:
       condition: or
       conditions:
         - condition: template
-          value_template: "{{ 'University of Kansas Men's Basketball' in trigger.calendar_event.summary }}"
+          value_template: "{{ 'University of Kansas Men' in trigger.calendar_event.summary }}"
     action:
       - if:
           - "{{ trigger.event == 'start' }}"
