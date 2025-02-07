@@ -1,21 +1,6 @@
 homeassistant:
   customize:    
     
-mqtt:
-  camera:
-    - name: Backyard Last Person
-      topic: frigate/backyard/person/snapshot
-  camera:
-    - name: Backyard Last Car
-      topic: frigate/backyard/car/snapshot
-
-    
-mqtt:
-  binary_sensor:
-    - name: backyard_person
-      state_topic: "frigate/backyard/person"
-      device_class: motion
-      availability_topic: "frigate/available"
     
 automation:
   - alias: backyard_person_detected
