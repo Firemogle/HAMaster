@@ -46,8 +46,6 @@ climate:
     hot_tolerance: 0
     min_cycle_duration:
       seconds: 300
-    keep_alive:
-      minutes: 3
     initial_hvac_mode: "off"
     away_temp: 0
     precision: 1
