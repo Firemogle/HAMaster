@@ -1,6 +1,6 @@
 packages:
   light_effects: !include 
-    file: light_effects.yam
+    file: light_effects.yaml
     vars:
       devicename: ${name}
 
