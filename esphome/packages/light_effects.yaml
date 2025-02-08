@@ -1,10 +1,6 @@
 light:
     id: !extend ${name}
     effects:
-      - addressable_twinkle:
-          name: twinkle
-          twinkle_probability: 10%
-          progress_interval: 64ms
       - addressable_color_wipe:
           name: Chiefs
           colors:
