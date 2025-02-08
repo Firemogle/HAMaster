@@ -7,12 +7,6 @@ light:
         from: ${start}
         to: ${end}
     effects:
-      - addressable_fireworks:
-          name: Fireworks
-          update_interval: 32ms
-          spark_probability: 75%
-          use_random_color: true
-          fade_out_rate: 125
       - addressable_twinkle:
           name: twinkle
           twinkle_probability: 10%
@@ -38,6 +32,31 @@ light:
             - red: 100%
               green: 72%
               blue: 9%
+              num_leds: 75
+              gradient: true
+          add_led_interval: 200ms
+          reverse: False
+      - addressable_color_wipe:
+          name: Jayhawks
+          colors:
+            - red: 91%
+              green: 0%
+              blue: 5%
+              num_leds: 25
+              gradient: true
+            - red: 91%
+              green: 0%
+              blue: 5%
+              num_leds: 75
+              gradient: true
+            - red: 0%
+              green: 32%
+              blue: 73%
+              num_leds: 25
+              gradient: true
+            - red: 0%
+              green: 32%
+              blue: 73%
               num_leds: 75
               gradient: true
           add_led_interval: 200ms
