@@ -13,3 +13,8 @@ light:
     name: ${name}
     id: ${name}
     rmt_channel: 0
+    effects:
+      - addressable_twinkle:
+          name: twinkle
+          twinkle_probability: 10%
+          progress_interval: 64ms
