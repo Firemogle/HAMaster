@@ -11,3 +11,8 @@ light:
       - id: ${parent}
         from: ${start}
         to: ${end}
+    effects:
+      - addressable_twinkle:
+          name: twinkle
+          twinkle_probability: 10%
+          progress_interval: 64ms
