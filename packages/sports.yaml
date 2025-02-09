@@ -1,0 +1,85 @@
+automation:
+  - id: 'kansas_playing'
+    alias: kansas_playing
+    trigger:
+    - entity_id: sensor.kansas_basketball
+      platform: state
+    - entity_id: sensor.kansas_football
+      platform: state
+    - entity_id: sensor.kansas_volleyball
+      platform: state
+    condition:
+      condition: not
+      conditions:
+        - condition: template
+          value_template: "{{ trigger.to_state == 'PRE' }}"
+    action:
+      - if:
+          - "{{ trigger.to_state == 'IN' }}"
+        then:
+          - service: light.turn_on
+            data:
+              brightness: 255
+              entity_id: light.uhall_ban_hall_ban
+              color_name: white
+              effect: "Jayhawks"
+          - service: light.turn_on
+            data:
+              brightness: 255
+              entity_id: light.cabinet_top
+              color_name: white
+              effect: "Jayhawks"
+        else:
+          - service: light.turn_on
+            data:
+              brightness: 50
+              entity_id: light.uhall_ban_hall_ban
+              color_name: white
+              effect: "None"
+          - service: light.turn_on
+            data:
+              brightness: 255
+              entity_id: light.cabinet_top
+              color_name: white
+              effect: "None"
+    mode: queued
+  - id: 'chiefs_playing'
+    alias: chiefs_playing
+    trigger:
+    - entity_id: sensor.kansas_city_chiefs
+      platform: state
+    condition:
+      condition: not
+      conditions:
+        - condition: template
+          value_template: "{{ trigger.to_state == 'PRE' }}"
+    action:
+      - if:
+          - "{{ trigger.to_state == 'IN' }}"
+        then:
+          - service: light.turn_on
+            data:
+              brightness: 255
+              entity_id: light.uhall_ban_hall_ban
+              color_name: white
+              effect: "Chiefs"
+          - service: light.turn_on
+            data:
+              brightness: 255
+              entity_id: light.cabinet_top
+              color_name: white
+              effect: "Chiefs"
+        else:
+          - service: light.turn_on
+            data:
+              brightness: 50
+              entity_id: light.uhall_ban_hall_ban
+              color_name: white
+              effect: "None"
+          - service: light.turn_on
+            data:
+              brightness: 255
+              entity_id: light.cabinet_top
+              color_name: white
+              effect: "None"
+    mode: queued
