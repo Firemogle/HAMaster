@@ -384,28 +384,3 @@ automation:
           - service: input_boolean.turn_off
             entity_id: input_boolean.house_sts_vacation
     mode: queued
-
-  - id: 'kansas_playing'
-    alias: kansas_playing
-    trigger:
-      - platform: calendar
-        event: start
-        entity_id: calendar.teamcarriger_gmail_com
-      - platform: calendar
-        event: end
-        entity_id: calendar.teamcarriger_gmail_com
-    condition:
-      condition: or
-      conditions:
-        - condition: template
-          value_template: "{{ 'University of Kansas Men' in trigger.calendar_event.summary }}"
-    action:
-      - if:
-          - "{{ trigger.event == 'start' }}"
-        then:
-          - service: input_boolean.turn_on
-            entity_id: input_boolean.jayhawk_lamp_req
-        else:
-          - service: input_boolean.turn_off
-            entity_id: input_boolean.jayhawk_lamp_req
-    mode: queued
