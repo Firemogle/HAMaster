@@ -29,6 +29,9 @@ automation:
               entity_id: light.cabinet_top
               color_name: white
               effect: "Jayhawks"
+          - data_template:
+              message: "Jayhawks be playing."
+            service: notify.group_notify
         else:
           - service: light.turn_on
             data:
@@ -69,6 +72,9 @@ automation:
               entity_id: light.cabinet_top
               color_name: white
               effect: "Chiefs"
+          - data_template:
+              message: "Chiefs be playing."
+            service: notify.group_notify
         else:
           - service: light.turn_on
             data:
