@@ -4,10 +4,28 @@ automation:
     trigger:
     - entity_id: sensor.kansas_basketball
       platform: state
+      from:
+        - "PRE"
+        - "IN"
+      to:
+        - "IN"
+        - "POST"
     - entity_id: sensor.kansas_football
       platform: state
+      from:
+        - "PRE"
+        - "IN"
+      to:
+        - "IN"
+        - "POST"
     - entity_id: sensor.kansas_volleyball
       platform: state
+      from:
+        - "PRE"
+        - "IN"
+      to:
+        - "IN"
+        - "POST"
     condition:
       condition: not
       conditions:
@@ -51,6 +69,12 @@ automation:
     trigger:
     - entity_id: sensor.kansas_city_chiefs
       platform: state
+      from:
+        - "PRE"
+        - "IN"
+      to:
+        - "IN"
+        - "POST"
     condition:
       condition: not
       conditions:
