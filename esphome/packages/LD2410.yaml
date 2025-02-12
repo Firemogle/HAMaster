@@ -1,0 +1,18 @@
+uart:
+  rx_pin: GPIO44
+  tx_pin: GPIO43
+  baud_rate: 256000
+  stop_bits: 1
+  parity: none
+  data_bits: 8
+
+ld2410:
+
+binary_sensor:
+  - platform: ld2410
+    has_target:
+      name: ${devicename}_presence
+    has_moving_target:
+      name: ${devicename}_moving
+    has_still_target:
+      name: ${devicename}_stationary
