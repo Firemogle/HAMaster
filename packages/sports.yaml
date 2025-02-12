@@ -31,7 +31,7 @@ automation:
       - if:
           - condition: template
             value_template: >-
-              {{ trigger.to_state == 'IN' }}
+              "{{ trigger.to_state.state == 'IN' }}"
         then:
           - service: light.turn_on
             data:
@@ -78,7 +78,7 @@ automation:
       - if:
           - condition: template
             value_template: >-
-              {{ trigger.to_state == 'IN' }}
+              "{{ trigger.to_state.state == 'IN' }}"
         then:
           - service: light.turn_on
             data:
