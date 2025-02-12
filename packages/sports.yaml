@@ -29,7 +29,9 @@ automation:
     condition: []
     action:
       - if:
-          - "{{ trigger.to_state == 'IN' }}"
+          - condition: template
+            value_template: >-
+              {{ trigger.to_state == 'IN' }}
         then:
           - service: light.turn_on
             data:
@@ -71,14 +73,12 @@ automation:
       to:
         - "IN"
         - "POST"
-    condition:
-      condition: not
-      conditions:
-        - condition: template
-          value_template: "{{ trigger.to_state == 'PRE' }}"
+    condition: []
     action:
       - if:
-          - "{{ trigger.to_state == 'IN' }}"
+          - condition: template
+            value_template: >-
+              {{ trigger.to_state == 'IN' }}
         then:
           - service: light.turn_on
             data:
