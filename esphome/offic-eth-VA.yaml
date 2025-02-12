@@ -6,6 +6,10 @@ packages:
     file: packages/poe_board_base_2.6.yaml
     vars:
       devicename: ${devicename}
+  occupancy: !include 
+    file: packages/LD2410.yaml
+    vars:
+      devicename: ${devicename}
 
 pcf8574:
   - id: 'pcf8574_hub'
