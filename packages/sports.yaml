@@ -30,7 +30,7 @@ automation:
     action:
       - if:
           - condition: state
-            entity_id: trigger.to_state
+            entity_id: trigger.id
             state: "IN"
         then:
           - service: light.turn_on
