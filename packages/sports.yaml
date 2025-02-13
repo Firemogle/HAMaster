@@ -29,9 +29,8 @@ automation:
     condition: []
     action:
       - if:
-          - condition: state
-            entity_id: trigger.id
-            state: "IN"
+          - condition: template
+            value_template: "{{ trigger.to_state.state == 'IN' }}"
         then:
           - service: light.turn_on
             data:
