@@ -115,7 +115,6 @@ ffmpeg:
 recorder: !include recorder.yaml
 person: !include_dir_merge_list people/
 camera: !include_dir_merge_list cameras/
-cover: !include_dir_merge_list covers/
 group: !include groups.yaml
 automation: !include_dir_merge_list automations/
 script: !include_dir_merge_named scripts/
