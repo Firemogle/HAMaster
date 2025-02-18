@@ -8,23 +8,5 @@ exclude: # Configure recorder to not record extrainious data
     - script
     - camera
   entities:
-    - binary_sensor.garage_camera_online
-    - binary_sensor.garage_camera_person_detected
-    - binary_sensor.garage_door_bin
-    - binary_sensor.home_away
-    - binary_sensor.front_door_lock_stat
-    - binary_sensor.laundry_motion_1
-    - binary_sensor.laundry_motion_2
-    - binary_sensor.laundry_motion_3
-    - binary_sensor.laundry_motion_4
-    - binary_sensor.laundry_motion_5
-    - sensor.amcrest_camera_motion_detected
-    - sensor.dark_sky_icon
-    - sensor.dark_sky_summary
-    - sensor.garage_door_bin_to_pct
     - sensor.house_rand_0_100
-    - sensor.stats_garage_pct_mean
-    - sensor.sonarr_wanted
-    - sensor.sonarr_series
-    - sensor.radarr_movies
-    - weather.hvac
+
