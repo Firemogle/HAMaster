@@ -41,6 +41,8 @@ media_source:
 image_upload:
 my:
 homeassistant_alerts:
+conversation:
+bluetooth:
 
 alarm_control_panel:
   - platform: manual
