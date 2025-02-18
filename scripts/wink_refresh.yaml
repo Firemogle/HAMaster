@@ -1,7 +1,0 @@
-wink_refresh:
-  alias: wink_refresh
-  sequence:
-  - service: wink.refresh_state_from_wink
-  - service: script.turn_on
-    data:
-      entity_id: script.wink_timer
