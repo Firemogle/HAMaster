@@ -1,9 +1,0 @@
-
-lockup:
-  alias: lockup
-  sequence:
-    - condition: state
-      entity_id: cover.garage_door
-      state: 'open'
-    - service: cover.close
-      data: cover.garage_door
