@@ -39,6 +39,8 @@ mobile_app:
 energy:
 media_source:
 image_upload:
+my:
+homeassistant_alerts:
 
 alarm_control_panel:
   - platform: manual
