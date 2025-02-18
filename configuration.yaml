@@ -112,7 +112,6 @@ stream: # Load streaming for videos
 ffmpeg:
 
 # Items loaded elsewhere
-plant: !include_dir_merge_named plants/
 recorder: !include recorder.yaml
 person: !include_dir_merge_list people/
 camera: !include_dir_merge_list cameras/
