@@ -45,6 +45,23 @@ speaker:
     channel: mono
     audio_dac: es8311_dac
     timeout: 5s
+
+media_player:
+  - platform: nabu
+    name: ${devicename}_media
+    id: ${devicename}_media
+    speaker:
+    volume_increment: 0.05
+    volume_min: 0.4
+    volume_max: 0.85
+    on_announcement:
+      - nabu.set_ducking:
+          decibel_reduction: 20
+          duration: 0.0s
+    on_idle:
+    - micro_wake_word.stop:
+    - delay: 2s
+    - micro_wake_word.start:
     
 es7210:
   i2c_id: audio_i2c
