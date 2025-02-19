@@ -1,7 +1,7 @@
 packages:
   eth: !include ethernet.yaml
   va_adf: !include 
-    file: voice_non-adf.yaml
+    file: audio.yaml
     vars:
       devicename: ${devicename}
   voice: !include 
