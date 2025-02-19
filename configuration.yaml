@@ -23,8 +23,9 @@ homeassistant:
       trusted_networks:
         - 192.168.1.0/24
         - 192.168.2.0/24
+        
+default_config:
   
-
 http:
   server_port: 8123 # Hard set port
   use_x_forwarded_for: true
@@ -33,16 +34,7 @@ http:
     - 172.17.0.0/16
     - 172.30.33.0/24
     - 192.168.2.1
-  
-websocket_api:
-mobile_app:
-energy:
-media_source:
-image_upload:
-my:
-homeassistant_alerts:
-conversation:
-bluetooth:
+
 
 alarm_control_panel:
   - platform: manual
@@ -82,14 +74,7 @@ lovelace:
       icon: mdi:script
       show_in_sidebar: true
       filename: ui-lovelace.yaml
-# Enables configuration UI
-config:
 
-#Track the sun
-sun:
-
-# Discover some devices automatically
-zeroconf:
   
 #Initial config to move zigbee to main install 
 zha:
@@ -99,16 +84,9 @@ zha:
           type: 'light'
       00:22:a3:00:00:20:d3:9d-1:
           type: 'light'
-
-# Enables support for tracking state changes over time
-history:
-
 logger:
   default: warning
-    
-    
-system_health: # load system health
-stream: # Load streaming for videos
+
 ffmpeg:
 
 # Items loaded elsewhere
