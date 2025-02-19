@@ -6,6 +6,14 @@ packages:
       length: 12
       color_line: GRB
       name: ${devicename}_status
+  va_adf: !include 
+    file: audio.yaml
+    vars:
+      devicename: ${devicename}
+  voice: !include 
+    file: voice.yaml
+    vars:
+      devicename: ${devicename}
 
 light:
   - id: !extend ${devicename}_status
