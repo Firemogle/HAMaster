@@ -29,6 +29,13 @@ audio_dac:
     sample_rate: 16000
     i2c_id: audio_i2c
 
+audio_adc:
+  - platform: es7210
+    id: es7210_adc
+    bits_per_sample: 16bit
+    sample_rate: 16000
+    i2c_id: audio_i2c
+
 speaker:
   - platform: i2s_audio
     i2s_audio_id: audio_bus_out
@@ -66,15 +73,6 @@ media_player:
     volume_increment: 0.05
     volume_min: 0.4
     volume_max: 0.85
-
-    
-audio_adc:
-  - platform: es7210
-    id: es7210_adc
-    bits_per_sample: 16bit
-    sample_rate: 16000
-    i2c_id: audio_i2c
-
 
 microphone:
   - platform: i2s_audio
