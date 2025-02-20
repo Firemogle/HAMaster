@@ -1,4 +1,5 @@
-substitutions:
-  devicename: basement_light_00
-
-<<: !include shelf_lights.conf
+packages:
+  sonoff: !include 
+    file: packages/basement_shelf.yaml
+    vars:
+      devicename: basement_light_00
