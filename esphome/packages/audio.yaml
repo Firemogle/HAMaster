@@ -32,7 +32,7 @@ audio_dac:
 speaker:
   - platform: i2s_audio
     i2s_audio_id: audio_bus_out
-    id: ${devicename}_speaker
+    id: primary_speaker
     i2s_dout_pin: GPIO15
     dac_type: external
     sample_rate: 16000
@@ -40,23 +40,33 @@ speaker:
     channel: mono
     audio_dac: es8311_dac
     timeout: 5s
+  - platform: mixer
+    id: mixer_speaker_id
+    output_speaker: primary_speaker
+    source_speakers:
+      - id: announcement_spk_mixer_input
+      - id: media_spk_mixer_input
+  - platform: resampler
+    id: media_spk_resampling_input
+    output_speaker: media_spk_mixer_input
+  - platform: resampler
+    id: announcement_spk_resampling_input
+    output_speaker: announcement_spk_mixer_input
 
 media_player:
-  - platform: nabu
+  - platform: speaker
     name: ${devicename}_media
     id: ${devicename}_media
-    speaker:
+    media_pipeline:
+        speaker: media_spk_resampling_input
+        num_channels: 1
+    announcement_pipeline:
+        speaker: announcement_spk_resampling_input
+        num_channels: 1
     volume_increment: 0.05
     volume_min: 0.4
     volume_max: 0.85
-    on_announcement:
-      - nabu.set_ducking:
-          decibel_reduction: 20
-          duration: 0.0s
-    on_idle:
-    - micro_wake_word.stop:
-    - delay: 2s
-    - micro_wake_word.start:
+
     
 audio_adc:
   - platform: es7210
