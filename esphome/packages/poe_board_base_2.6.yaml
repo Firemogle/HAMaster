@@ -8,6 +8,9 @@ packages:
 esphome:
   name: ${devicename}
   friendly_name: ${devicename}
+  preferences:
+    flash_write_interval: 10min
+  
   
 esp32:
   board: esp32-s3-devkitc-1
