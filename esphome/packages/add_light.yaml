@@ -12,7 +12,6 @@ light:
     rgb_order: ${color_line}
     name: ${name}
     id: ${name}
-    rmt_channel: 0
     effects:
       - addressable_color_wipe:
           name: Chiefs
