@@ -28,11 +28,6 @@ packages:
       start: 10
       end: 19
 
-light:
-  - id: !extend master_headboard
-    rmt_channel: 1
-
-
 sensor:   
   - platform: bmp280_i2c
     temperature:
