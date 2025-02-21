@@ -22,9 +22,9 @@ voice_assistant:
   #on_error:
   # When the voice assistant starts: Play a wake up sound, duck audio.
   on_start:
-    - nabu.set_ducking:
-        decibel_reduction: 20   # Number of dB quieter; higher implies more quiet, 0 implies full volume
-        duration: 0.0s          # The duration of the transition (default is 0)
+    #- nabu.set_ducking:
+     #   decibel_reduction: 20   # Number of dB quieter; higher implies more quiet, 0 implies full volume
+      #  duration: 0.0s          # The duration of the transition (default is 0)
     - light.turn_on:
         id: ${devicename}_status
         brightness: 75%
