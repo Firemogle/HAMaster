@@ -36,8 +36,6 @@ packages:
       end: 79
 
 light:
-  - id: !extend kitchen_cabinet
-    rmt_channel: 1
   - id: !extend cabinet_top
     segments:
       - id: kitchen_cabinet
