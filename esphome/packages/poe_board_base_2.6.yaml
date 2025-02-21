@@ -8,8 +8,6 @@ packages:
 esphome:
   name: ${devicename}
   friendly_name: ${devicename}
-  preferences:
-    flash_write_interval: 10min
   
   
 esp32:
