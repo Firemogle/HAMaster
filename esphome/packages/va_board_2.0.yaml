@@ -1,6 +1,6 @@
 packages:
   string_light: !include 
-    file: add_light.yaml
+    file: voice_light.yaml
     vars:
       pin: GPIO07
       length: 12
