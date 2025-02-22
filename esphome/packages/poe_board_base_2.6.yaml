@@ -1,9 +1,5 @@
 packages:
   eth: !include ethernet.yaml
-  va_board: !include 
-    file: va_board_2.0.yaml
-    vars:
-      devicename: ${devicename}
 
 esphome:
   name: ${devicename}
