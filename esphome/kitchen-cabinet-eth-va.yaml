@@ -7,7 +7,7 @@ packages:
     vars:
       devicename: ${devicename}
   voice_board: !include 
-    file: va_board_2.0.yaml
+    file: packages/va_board_2.0.yaml
     vars:
       devicename: ${devicename}
   headboard: !include 
