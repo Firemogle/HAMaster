@@ -2,8 +2,12 @@ substitutions:
   devicename: master_headboard_eth_va
 
 packages:
-  va_board: !include 
+  base_board: !include 
     file: packages/poe_board_base_2.6.yaml
+    vars:
+      devicename: ${devicename}
+  voice_board: !include 
+    file: va_board_2.0.yaml
     vars:
       devicename: ${devicename}
   headboard: !include 
