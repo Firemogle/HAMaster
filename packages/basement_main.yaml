@@ -87,7 +87,7 @@ automation:
     action:
       - if:
           - condition: template
-            value_template: "{{ trigger.to_state.state == 'On' }}"
+            value_template: "{{ trigger.to_state.state == 'on' }}"
         then:
           - service: light.turn_on
             data:
