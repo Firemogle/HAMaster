@@ -56,6 +56,8 @@ light:
         to: 179
 
 sensor:   
+  - id: sen55
+    i2c_id: i2c_channel
   - platform: bme280_i2c
     temperature:
       name: ${devicename}_ext_temp
