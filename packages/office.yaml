@@ -55,14 +55,10 @@ automation:
     alias: off_occ_on
     initial_state: 'off'
     trigger:
-    - entity_id: binary_sensor.office_eth_va_office_eth_va_office_motion
+    - entity_id: binary_sensor.office_eth_va_office_eth_va_presence
       platform: state
     - platform: time
       at: '11:59:00'
-    conditions:
-      - alias: "Not sleepy time"
-        condition: time
-        after: "08:00:00"
     action:
     - service: climate.set_hvac_mode
       data_template:
