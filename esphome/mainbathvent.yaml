@@ -40,8 +40,12 @@ button:
     name: "mainbathventreboot"
     id: "mainbathventreboot"
   
-bme680_bsec2_i2c:
+bme68x_bsec2_i2c:
   address: 0x77
+  model: bme680
+  operating_age: 28d
+  sample_rate: LP
+  supply_voltage: 3.3V
   
 text_sensor:
   - platform: bme680_bsec
@@ -49,7 +53,7 @@ text_sensor:
       name: "Main Bath Vent Intake IAQ Accuracy"
 
 sensor:
-  - platform: bme680_bsec2
+  - platform: bme68x_bsec2
     temperature:
       name: "Main Bath Vent Temperature"
     pressure:
