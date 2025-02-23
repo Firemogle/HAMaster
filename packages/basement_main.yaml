@@ -76,6 +76,33 @@ automation:
         entity_id: switch.projector
       service: switch.turn_off
       
+  - id: 'basement_hall_sync'
+    alias: basement_hall_sync
+    trigger:
+    - entity_id: light.hallway_light
+      platform: state
+    - entity_id: light.basement_stair_light
+      platform: state
+    condition: []
+    action:
+      - if:
+          - condition: template
+            value_template: "{{ trigger.to_state.state == 'On' }}"
+        then:
+          - service: light.turn_on
+            data:
+              entity_id: light.basement_stair_light
+          - service: light.turn_on
+            data:
+              entity_id: light.hallway_state
+        else:
+          - service: light.turn_off
+            data:
+              entity_id: light.basement_stair_light
+          - service: light.turn_off
+            data:
+              entity_id: light.hallway_state
+    mode: queued
       
 script:
   turn_off_projector:
