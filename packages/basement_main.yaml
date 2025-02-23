@@ -94,14 +94,14 @@ automation:
               entity_id: light.basement_stair_light
           - service: light.turn_on
             data:
-              entity_id: light.hallway_state
+              entity_id: light.hallway_light
         else:
           - service: light.turn_off
             data:
               entity_id: light.basement_stair_light
           - service: light.turn_off
             data:
-              entity_id: light.hallway_state
+              entity_id: light.hallway_light
     mode: queued
       
 script:
