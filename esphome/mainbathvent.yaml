@@ -40,7 +40,7 @@ button:
     name: "mainbathventreboot"
     id: "mainbathventreboot"
   
-bme68x_bsec:
+bme680_bsec:
   address: 0x77
   model: bme680
   operating_age: 28d
