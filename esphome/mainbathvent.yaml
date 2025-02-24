@@ -48,7 +48,7 @@ bme68x_bsec:
   supply_voltage: 3.3V
   
 text_sensor:
-  - platform: bme68x_bsec
+  - platform: bme680_bsec
     iaq_accuracy:
       name: "Main Bath Vent Intake IAQ Accuracy"
 
