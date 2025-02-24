@@ -63,7 +63,7 @@ automation:
     - service: climate.set_hvac_mode
       data_template:
         hvac_mode: >
-            {% if is_state('binary_sensor.office_eth_va_office_eth_va_office_motion', 'off') or (trigger.platform == 'time') %}
+            {% if is_state('binary_sensor.office_eth_va_office_eth_va_presence', 'off') or (trigger.platform == 'time') %}
               off
             {% else %}
               heat
