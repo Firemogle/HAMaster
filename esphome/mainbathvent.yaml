@@ -42,9 +42,6 @@ button:
   
 bme680_bsec:
   address: 0x77
-  model: bme680
-  operating_age: 28d
-  sample_rate: LP
   supply_voltage: 3.3V
   
 text_sensor:
