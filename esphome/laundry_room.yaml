@@ -47,25 +47,26 @@ sensor:
       unit_of_measurement: "%"
     address: 0x76
     update_interval: 300s
-
+    
+switch:
 # Individual outputs
   - platform: restart
     name: "Laundry Board restart"
 
 
-#esp32_camera:
-#  name: 'laundry_room_camera'
-#  external_clock:
-#    pin: GPIO32
-#    frequency: 20MHz
-#  i2c_pins:
-#    sda: GPIO13
-#    scl: GPIO12
-#  data_pins: [GPIO5, GPIO14, GPIO4, GPIO15, GPIO18, GPIO23, GPIO36, GPIO39]
-#  vsync_pin: GPIO27
-#  href_pin: GPIO25
-#  pixel_clock_pin: GPIO19
-#  resolution: 640x480
-#  idle_framerate: 0.01 fps
-#  vertical_flip: false
-#  horizontal_mirror: false
+esp32_camera:
+  name: 'laundry_room_camera'
+  external_clock:
+    pin: GPIO32
+    frequency: 20MHz
+  i2c_pins:
+    sda: GPIO13
+    scl: GPIO12
+  data_pins: [GPIO5, GPIO14, GPIO4, GPIO15, GPIO18, GPIO23, GPIO36, GPIO39]
+  vsync_pin: GPIO27
+  href_pin: GPIO25
+  pixel_clock_pin: GPIO19
+  resolution: 640x480
+  idle_framerate: 0.01 fps
+  vertical_flip: false
+  horizontal_mirror: false
