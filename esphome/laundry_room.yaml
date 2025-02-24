@@ -12,8 +12,8 @@ wifi:
 # Enable logging
 logger:
 
-esp32_ble_tracker:
-bluetooth_proxy:
+#esp32_ble_tracker:
+#bluetooth_proxy:
 
 # Enable Home Assistant API
 api:
@@ -31,105 +31,9 @@ i2c:
 mcp23017:
   - id: 'mcp23017_hub'
     address: 0x20
-    
-ads1115:
-  - id: ads1115_1
-    address: 0x48
   
-binary_sensor:
-  - platform: gpio
-    pin: 
-      mcp23xxx: mcp23017_hub
-      number: 4
-      mode: INPUT
-      inverted: False
-    name: "laundry_motion_1"
-    id: "laundry_motion_1"
-    device_class: motion
-    internal: true
-  - platform: gpio
-    pin:  
-      mcp23xxx: mcp23017_hub
-      number: 5
-      mode: INPUT
-      inverted: False
-    name: "laundry_motion_2"
-    id: "laundry_motion_2"
-    device_class: motion
-    internal: true
-  - platform: gpio
-    pin:  
-      mcp23xxx: mcp23017_hub
-      number: 6
-      mode: INPUT
-      inverted: False
-    name: "laundry_motion_3"
-    id: "laundry_motion_3"
-    device_class: motion
-    internal: true
-  - platform: gpio
-    pin: 33
-    name: "laundry_motion_board"
-    id: "laundry_motion_board"
-    device_class: motion
-    internal: true
-  - platform: template
-    name: "cat_motion_combine"
-    device_class: motion
-    filters:
-      - delayed_off: 900s
-    lambda: |-
-      if (id(laundry_motion_1).state or id(laundry_motion_2).state or id(laundry_motion_3).state or id(laundry_motion_board).state) {
-        // Motion.
-        return true;
-      } else {
-        // Nothing
-        return false;
-      }
-    on_state:
-      then:
-        - switch.turn_off: laundry_room_litter_box
-        - switch.turn_off: laundry_room_litter_box_activate
-  - platform: template
-    name: "laundry_leak_furnace"
-    device_class: moisture
-    lambda: |-
-      if (id(laundry_leak_furnace).state > 1) {
-        // LEAK.
-        return true;
-      } else {
-        // Nominal
-        return false;
-      }
-  - platform: template
-    name: "laundry_leak_sink"
-    device_class: moisture
-    lambda: |-
-      if (id(laundry_leak_sink).state > 1) {
-        // LEAK.
-        return true;
-      } else {
-        // Nominal
-        return false;
-      }
   
 sensor:
-  - platform: ads1115
-    multiplexer: 'A0_GND'
-    ads1115_id: ads1115_1
-    gain: 6.144
-    name: "laundry_leak_furnace"
-    id: "laundry_leak_furnace"
-    internal: true
-    update_interval: 300s
-  - platform: ads1115
-    multiplexer: 'A1_GND'
-    ads1115_id: ads1115_1
-    gain: 6.144
-    name: "laundry_leak_sink"
-    id: "laundry_leak_sink"
-    internal: true
-    update_interval: 300s
   - platform: bme280_i2c
     temperature:
       name: "laundry_temp"
@@ -145,30 +49,6 @@ sensor:
     update_interval: 300s
 
 # Individual outputs
-switch:
-  - platform: gpio
-    name: "Humidifier"
-    pin:
-      mcp23xxx: mcp23017_hub
-      number: 0
-      mode: OUTPUT
-      inverted: False
-  - platform: gpio
-    name: "laundry_room_litter_box"
-    id: laundry_room_litter_box    
-    pin:
-      mcp23xxx: mcp23017_hub
-      number: 1
-      mode: OUTPUT
-      inverted: False
-  - platform: gpio
-    name: "laundry_room_litter_box_activate"
-    id: laundry_room_litter_box_activate
-    pin:
-      mcp23xxx: mcp23017_hub
-      number: 2
-      mode: OUTPUT
-      inverted: False
   - platform: restart
     name: "Laundry Board restart"
 
