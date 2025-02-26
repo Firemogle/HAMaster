@@ -203,52 +203,8 @@ input_number:
     step: 1
     unit_of_measurement: "F"
 
-mqtt:
-  sensor:
-    name: "DTE Energy Bridge Summary"
-    state_topic: "event/metering/summation/minute"
-    unit_of_measurement: 'W'
-    value_template: "{{ value_json.value | round(0) }}" 
-
-sensor:    
-  - platform: integration
-    source: sensor.dte_energy_bridge_summary
-    name: energy_spent
-    unit_prefix: k
-    round: 2
 
 automation:
-  - id: system_update_available
-    alias: system_update_available
-    initial_state: 'off'
-    trigger:
-      platform: state
-      entity_id: updater.updater
-    action:
-      service: notify.brett_notify
-      data:
-        message: 'Update for Home Assistant is available.'
-        
-  - id: send_person_detected
-    alias: send_person_detected
-    initial_state: 'off'
-    mode: single
-    trigger:
-      platform: event
-      event_type: folder_watcher
-      event_data:
-        event_type: modified
-    action:
-      - delay:
-          seconds: 10
-      - service: notify.group_notify
-        data:
-          message: "Homie be up in your yard"
-          data:
-            image: "https://homeassistant.teamcarriger.club/local/snapshot1.jpg"
-      - delay:
-          seconds: 30
-
   - id: 'ha_start'
     alias: ha_start
     trigger:
@@ -263,7 +219,6 @@ automation:
         message: "Rejoice! For now is the blessed time for home assistant has once again booted."
       service: notify.group_notify
       
-
   - id: 'ha_down'
     alias: ha_down
     trigger:
