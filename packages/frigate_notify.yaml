@@ -1,0 +1,23 @@
+automation:
+  - id: 'person_found'
+    alias: person_found
+  - mode: single
+    trigger:
+    - entity_id: image.doorbell_person
+      platform: state
+      not_from:
+        - "unknown"
+        - "unavailable"
+    - entity_id: image.garage_person
+      platform: state
+      not_from:
+        - "unknown"
+        - "unavailable"
+    condition: []
+    action:
+    - data:
+        data: 
+          image: '{{ state_attr("trigger.to_state", "entity_picture") }}'
+        message: Look at this fool man
+      service: notify.group_notify
+    - delay: '00:05:00'
