@@ -4,21 +4,25 @@ automation:
     initial_state: 'off'
   - mode: single
     triggers:
-    - entity_id: image.doorbell_person
-      platform: state
-      not_from:
-        - "unknown"
-        - "unavailable"
-    - entity_id: image.garage_person
-      platform: state
-      not_from:
-        - "unknown"
-        - "unavailable"
+      - trigger: state
+        entity_id: image.doorbell_person
+        not_from:
+          - "unknown"
+          - "unavailable"
+      - trigger: state
+        entity_id: image.garage_person
+        not_from:
+          - "unknown"
+          - "unavailable"
     condition: []
     actions:
-    - data_template:
+    - data:
         message: "Look at this fool man"
         data: 
           image: '{{ state_attr(trigger.entity_id, "entity_picture") }}'
-      service: notify.group_notify
-    - delay: "00:05:00"
+      action: notify.group_notify
+    - delay:
+        hours: 0
+        minutes: 5
+        seconds: 0
+        milliseconds: 0
