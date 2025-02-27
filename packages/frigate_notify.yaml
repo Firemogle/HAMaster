@@ -17,7 +17,7 @@ automation:
     action:
     - data:
         data: 
-          image: '{{ state_attr("trigger.entity_id", "entity_picture") }}'
+          image: '{{ state_attr(trigger.entity_id, "entity_picture") }}'
         message: Look at this fool man {{  trigger.entity_id }}
       service: notify.group_notify
     - delay: '00:05:00'
