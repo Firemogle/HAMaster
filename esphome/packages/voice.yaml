@@ -23,7 +23,7 @@ voice_assistant:
   # When the voice assistant starts: Play a wake up sound, duck audio.
   on_start:
       - mixer_speaker.apply_ducking:
-          id: media_spk_mixer_input
+          id: mixer_speaker_id
           decibel_reduction: 20   # Number of dB quieter; higher implies more quiet, 0 implies full volume
           duration: 0.0s          # The duration of the transition (default is 0)
     - light.turn_on:
@@ -61,7 +61,7 @@ voice_assistant:
     - light.turn_off:
         id: ${devicename}_status
     - mixer_speaker.apply_ducking:
-        id: media_spk_mixer_input
+        id: mixer_speaker_id
         decibel_reduction: 0   # 0 dB means no reduction
         duration: 1.0s
     # Stop the script that would potentially enable the stop word if the response is longer than a second
@@ -69,7 +69,7 @@ voice_assistant:
     # Disable the stop word (If the tiemr is not ringing)
   on_timer_finished:
     - mixer_speaker.apply_ducking:
-        id: media_spk_mixer_input
+        id: mixer_speaker_id
         decibel_reduction: 0
         duration: 1.0s
     - ${devicename}_media.speaker.play_on_device_media_file:
