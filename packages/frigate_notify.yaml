@@ -15,23 +15,4 @@ automation:
           image: "{{ state_attr(\"image.doorbell_person\", \"entity_picture\") }}"
         message: "Man look at this fool"
       service: notify.group_notify
-    - delay: '00:05:00'
-
-  - id: 'person_found_fy'
-    alias: person_found_fy
-  - mode: single
-    trigger:
-    - entity_id: image.garage_person
-      platform: state
-      not_from:
-        - "unknown"
-        - "unavailable"
-    condition: []
-    action:
-    - data:
-        data: 
-          image: "{{ state_attr(\"image.garage_person\", \"entity_picture\") }}"
-        message: "Man look at this fool"
-      service: notify.group_notify
-    - delay: '00:05:00'
-    
+    - delay: '00:05:00'    
