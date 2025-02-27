@@ -72,6 +72,9 @@ voice_assistant:
         id: media_spk_mixer_input
         decibel_reduction: 0
         duration: 1.0s
+    - ${devicename}_media.speaker.play_on_device_media_file:
+      media_file: alarm
+      announcement: true
   on_timer_started:
     - script.execute: control_leds
   on_timer_cancelled:
