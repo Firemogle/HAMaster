@@ -15,9 +15,9 @@ automation:
         - "unavailable"
     condition: []
     action:
-    - data:
-        data: 
-          image: '{{ state_attr(trigger.entity_id, "entity_picture") }}'
-        message: "Look at this fool man"
-      service: notify.group_notify
-    - delay: '00:05:00'
+      - data:
+          data: 
+            image: '{{ state_attr(trigger.entity_id, "entity_picture") }}'
+          message: "Look at this fool man"
+        service: notify.group_notify
+      - delay: '00:05:00'
