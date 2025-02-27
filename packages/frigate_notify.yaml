@@ -1,6 +1,6 @@
 automation:
-  - id: 'person_found'
-    alias: person_found
+  - id: 'frig_person_found'
+    alias: frig_person_found
   - mode: single
     trigger:
     - entity_id: image.doorbell_person
