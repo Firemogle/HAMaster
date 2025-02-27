@@ -1,8 +1,9 @@
 automation:
   - id: 'frig_person_found'
     alias: frig_person_found
+    initial_state: 'off'
   - mode: single
-    trigger:
+    triggers:
     - entity_id: image.doorbell_person
       platform: state
       not_from:
@@ -14,10 +15,10 @@ automation:
         - "unknown"
         - "unavailable"
     condition: []
-    action:
-      - data:
-          data: 
-            image: '{{ state_attr(trigger.entity_id, "entity_picture") }}'
-          message: "Look at this fool man"
-        service: notify.group_notify
-      - delay: '00:05:00'
+    actions:
+    - data:
+        message: "Look at this fool man"
+        data: 
+          image: '{{ state_attr(trigger.entity_id, "entity_picture") }}'
+      service: notify.group_notify
+    - delay: '00:05:00'
