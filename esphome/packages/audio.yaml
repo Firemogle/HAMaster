@@ -75,7 +75,7 @@ media_player:
     volume_max: 0.85
     files:
       id: alarm_sound
-      file: sounds/alarm.mp3
+      file: packages/sounds/alarm.mp3
 
 microphone:
   - platform: i2s_audio
