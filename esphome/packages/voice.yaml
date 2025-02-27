@@ -72,7 +72,7 @@ voice_assistant:
         id: mixer_speaker_id
         decibel_reduction: 0
         duration: 1.0s
-    - ${devicename}_media.speaker.play_on_device_media_file:
+    - mixer_speaker.speaker.play_on_device_media_file:
         media_file: alarm_sound
         announcement: true
   on_timer_started:
