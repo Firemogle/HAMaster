@@ -2,7 +2,7 @@ automation:
   - id: 'frig_person_found'
     alias: frig_person_found
     initial_state: 'off'
-  - mode: single
+    mode: single
     triggers:
       - trigger: state
         entity_id: image.doorbell_person
