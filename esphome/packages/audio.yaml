@@ -46,7 +46,7 @@ speaker:
     bits_per_sample: 16bit
     channel: mono
     audio_dac: es8311_dac
-    timeout: 5s
+    timeout: never
   # Virtual speakers to combine the announcement and media streams together into one output
   - platform: mixer
     id: mixing_speaker
