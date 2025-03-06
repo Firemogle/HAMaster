@@ -87,7 +87,7 @@ voice_assistant:
 micro_wake_word:
   microphone: external_mic
   models:
-    - model: github://esphome/micro-wake-word-models/models/v2/okay_nabu.json
+    - model: okay_nabu
   on_wake_word_detected: 
     - voice_assistant.start:
     - light.turn_on:
