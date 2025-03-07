@@ -49,13 +49,9 @@ speaker:
   - platform: resampler
     id: announcement_resampling_speaker
     output_speaker: announcement_mixing_input
-    sample_rate: 16000
-    bits_per_sample: 16
   - platform: resampler
     id: media_resampling_speaker
     output_speaker: media_mixing_input
-    sample_rate: 16000
-    bits_per_sample: 16
 
 media_player:
   - platform: speaker
