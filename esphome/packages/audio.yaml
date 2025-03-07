@@ -59,10 +59,8 @@ media_player:
     id: ${devicename}_media
     media_pipeline:
       speaker: media_resampling_speaker # FLAC is the least processor intensive codec
-      num_channels: 1
     announcement_pipeline:
       speaker: announcement_resampling_speaker     # FLAC is the least processor intensive codec
-      num_channels: 1  # Stereo audio is unnecessary for announcements
     volume_increment: 0.05
     volume_min: 0.4
     volume_max: 0.85
