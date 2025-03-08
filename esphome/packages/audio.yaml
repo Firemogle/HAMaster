@@ -47,7 +47,7 @@ speaker:
     bits_per_sample: 16bit
     channel: left
     audio_dac: es8311_dac
-    timeout: never
+    timeout: 10s
   # Virtual speakers to combine the announcement and media streams together into one output
   - platform: mixer
     id: mixing_speaker
@@ -55,9 +55,9 @@ speaker:
     num_channels: 1
     source_speakers:
       - id: announcement_mixing_input
-        timeout: never
+        timeout: 10s
       - id: media_mixing_input
-        timeout: never
+        timeout: 10s
 
   # Vritual speakers to resample each pipelines' audio, if necessary, as the mixer speaker requires the same sample rate
   - platform: resampler
