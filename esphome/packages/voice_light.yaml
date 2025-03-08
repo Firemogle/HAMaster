@@ -52,3 +52,27 @@ light:
               gradient: true
           add_led_interval: 50ms
           reverse: False
+      - addressable_color_wipe:
+          name: voice_replying
+          colors:
+            - red: 100%
+              green: 100%
+              blue: 100%
+              num_leds: 3
+              gradient: true
+            - red: 0%
+              green: 9%
+              blue: 90%
+              num_leds: 3
+            - red: 100%
+              green: 100%
+              blue: 100%
+              num_leds: 3
+              gradient: true
+            - red: 0%
+              green: 9%
+              blue: 90%
+              num_leds: 3
+              gradient: true
+          add_led_interval: 50ms
+          reverse: true
