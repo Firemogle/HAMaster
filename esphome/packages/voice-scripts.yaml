@@ -65,11 +65,11 @@ script:
           if (id(init_in_progress)) {
             id(control_leds_init_state).execute();
           } else if (id(voice_assistant_phase) == ${voice_assist_waiting_for_command_phase_id}) {
-            #
+            id(control_leds_voice_assistant_waiting_for_command_phase).execute();
           } else if (id(voice_assistant_phase) == ${voice_assist_listening_for_command_phase_id}) {
-            #
+            id(control_leds_voice_assistant_listening_for_command_phase).execute();
           } else if (id(voice_assistant_phase) == ${voice_assist_thinking_phase_id}) {
-            #
+            id(control_leds_voice_assistant_replying_phase).execute();
           } else if (id(voice_assistant_phase) == ${voice_assist_replying_phase_id}) {
             #
           } else if (id(voice_assistant_phase) == ${voice_assist_error_phase_id}) {
@@ -90,6 +90,29 @@ script:
           brightness: 5%
       - light.turn_off:
           id: ${devicename}_status
+
+
+  - id: control_leds_voice_assistant_waiting_for_command_phase
+    then:
+      - light.turn_on:
+          id: ${devicename}_status
+          brightness: 75%
+          effect: "voice_listen"
+
+  - id: control_leds_voice_assistant_listening_for_command_phase
+    then:
+      - light.turn_on:
+          id: ${devicename}_status
+          brightness: 75%
+          effect: "voice_listen"
+
+  - id: control_leds_voice_assistant_replying_phase
+    then:
+      - light.turn_on:
+          id: ${devicename}_status
+          brightness: 75%
+          effect: "voice_listen"
+
 
 
 
