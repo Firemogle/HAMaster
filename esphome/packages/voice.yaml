@@ -22,30 +22,22 @@ voice_assistant:
   #on_error:
   # When the voice assistant starts: Play a wake up sound, duck audio.
   on_start:
-    #- mixer_speaker.apply_ducking:
-    #    id: media_spk_mixer_input
-    #    decibel_reduction: 20
-    #    duration: 0.0s
-    - light.turn_on:
-        id: ${devicename}_status
-        brightness: 75%
-        effect: "voice_listen"
+    - mixer_speaker.apply_ducking:
+        id: media_mixing_input
+        decibel_reduction: 20  # Number of dB quieter; higher implies more quiet, 0 implies full volume
+        duration: 0.0s         # The duration of the transition (default is no transition)
   on_listening:
-    - light.turn_on:
-        id: ${devicename}_status
-        brightness: 75%
-        effect: "voice_listen"
+    - lambda: id(voice_assistant_phase) = ${voice_assist_waiting_for_command_phase_id};
+    - script.execute: control_leds
   on_stt_vad_start:
-    - light.turn_on:
-        id: ${devicename}_status
-        brightness: 75%
-        effect: "voice_thinking"
-  #on_stt_vad_end:
+    - lambda: id(voice_assistant_phase) = ${voice_assist_listening_for_command_phase_id};
+    - script.execute: control_leds
+  on_stt_vad_end:
+    - lambda: id(voice_assistant_phase) = ${voice_assist_thinking_phase_id};
+    - script.execute: control_leds
   on_tts_start:
-    - light.turn_on:
-        id: ${devicename}_status
-        brightness: 75%
-        effect: "voice_thinking"
+    - lambda: id(voice_assistant_phase) = ${voice_assist_replying_phase_id};
+    - script.execute: control_leds
   on_end:
     - light.turn_on:
         id: ${devicename}_status
