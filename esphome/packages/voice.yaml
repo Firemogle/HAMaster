@@ -53,10 +53,10 @@ voice_assistant:
     - micro_wake_word.stop:
     - delay: 3s
     - micro_wake_word.start:
-    #- mixer_speaker.apply_ducking:
-    #    id: media_spk_mixer_input
-     #   decibel_reduction: 20
-    #    duration: 0.0s
+    - mixer_speaker.apply_ducking:
+        id: media_mixing_input
+        decibel_reduction: 0
+        duration: 1.0s
     # Stop the script that would potentially enable the stop word if the response is longer than a second
     #- script.stop: activate_stop_word_if_tts_step_is_long
     # Disable the stop word (If the tiemr is not ringing)
