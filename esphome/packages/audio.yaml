@@ -31,7 +31,7 @@ speaker:
     dac_type: external
     sample_rate: 16000
     bits_per_sample: 16bit
-    channel: mono
+    channel: left
     audio_dac: es8311_dac
     timeout: never
   # Virtual speakers to combine the announcement and media streams together into one output
