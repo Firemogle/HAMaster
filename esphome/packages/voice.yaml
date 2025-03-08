@@ -56,10 +56,11 @@ voice_assistant:
     - wait_until:
         not:
           voice_assistant.is_running:
-    - delay: 7s
-    - micro_wake_word.start:
     - light.turn_off:
         id: ${devicename}_status
+    - micro_wake_word.stop:
+    - delay: 3s
+    - micro_wake_word.start:
     #- mixer_speaker.apply_ducking:
     #    id: media_spk_mixer_input
      #   decibel_reduction: 20
