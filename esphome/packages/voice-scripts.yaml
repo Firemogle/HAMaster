@@ -111,7 +111,7 @@ script:
       - light.turn_on:
           id: ${devicename}_status
           brightness: 75%
-          effect: "voice_listen"
+          effect: "voice_replying"
 
 
 
