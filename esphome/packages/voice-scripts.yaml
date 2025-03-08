@@ -105,7 +105,14 @@ script:
           id: ${devicename}_status
           brightness: 75%
           effect: "voice_listen"
-
+          
+  - id: control_leds_voice_assistant_thinking_phase
+    then:
+      - light.turn_on:
+          id: ${devicename}_status
+          brightness: 75%
+          effect: "voice_thinking"
+          
   - id: control_leds_voice_assistant_replying_phase
     then:
       - light.turn_on:
