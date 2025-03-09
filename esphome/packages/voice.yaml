@@ -61,13 +61,7 @@ voice_assistant:
     #- script.stop: activate_stop_word_if_tts_step_is_long
     # Disable the stop word (If the tiemr is not ringing)
   on_timer_finished:
-   # - mixer_speaker.apply_ducking:
-   #     id: media_spk_mixer_input
-   #     decibel_reduction: 20
-   #     duration: 0.0s
-    - media_player.speaker.play_on_device_media_file:
-        media_file: alarm_sound
-        announcement: true
+    - switch.turn_on: timer_ringing
   on_timer_started:
     - script.execute: control_leds
   on_timer_cancelled:
