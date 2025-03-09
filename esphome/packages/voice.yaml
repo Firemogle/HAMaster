@@ -4,15 +4,6 @@ packages:
     vars:
       devicename: ${devicename}
 
-external_components:
-  - source:
-      type: git
-      url: https://github.com/esphome/home-assistant-voice-pe
-      ref: dev
-    components:
-      - micro_wake_word
-    refresh: 0s
-
 voice_assistant:
   microphone: external_mic
   media_player: ${devicename}_media
@@ -85,8 +76,6 @@ micro_wake_word:
   models:
     - model: okay_nabu
     - model: https://github.com/kahrendt/microWakeWord/releases/download/stop/stop.json
-      id: stop
-      internal: true
   on_wake_word_detected: 
     - voice_assistant.start:
     - light.turn_on:
