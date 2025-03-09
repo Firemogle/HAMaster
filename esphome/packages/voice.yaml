@@ -4,6 +4,15 @@ packages:
     vars:
       devicename: ${devicename}
 
+external_components:
+  - source:
+      type: git
+      url: https://github.com/esphome/home-assistant-voice-pe
+      ref: dev
+    components:
+      - micro_wake_word
+    refresh: 0s
+
 voice_assistant:
   microphone: external_mic
   media_player: ${devicename}_media
