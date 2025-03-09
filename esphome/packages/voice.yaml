@@ -5,6 +5,7 @@ packages:
       devicename: ${devicename}
 
 voice_assistant:
+  id: va
   microphone: external_mic
   media_player: ${devicename}_media
   use_wake_word: false
