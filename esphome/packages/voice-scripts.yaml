@@ -207,7 +207,7 @@ script:
               .perform();
           }
           if ( (id(${devicename}_media).state != media_player::MediaPlayerState::MEDIA_PLAYER_STATE_ANNOUNCING ) || priority) {
-            id(external_media_player)
+            id(${devicename}_media)
               ->play_file(sound_file, true, false);
           }
 
