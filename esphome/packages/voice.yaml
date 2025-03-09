@@ -76,9 +76,26 @@ micro_wake_word:
   models:
     - model: okay_nabu
     - model: https://github.com/kahrendt/microWakeWord/releases/download/stop/stop.json
+  vad:
   on_wake_word_detected: 
-    - voice_assistant.start:
+    - if:
+        condition:
+          switch.is_on: timer_ringing
+        then:
+          - switch.turn_off: timer_ringing
+        # Start voice assistant, stop current announcement.
+        else:
+          - if:
+              condition:
+                media_player.is_announcing:
+              then:
+                media_player.stop:
+                  announcement: true
+              else:
+                - voice_assistant.start:
+                    wake_word: !lambda return wake_word;
     - light.turn_on:
         id: ${devicename}_status
         brightness: 50%
         transition_length: 0s
+    
