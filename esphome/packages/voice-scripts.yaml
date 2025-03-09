@@ -174,24 +174,24 @@ script:
     then:
       # Turn on the repeat mode and pause for 500 ms between playlist items/repeats
       - lambda: |-
-            id(external_media_player)
+            id(${devicename}_media)
               ->make_call()
               .set_command(media_player::MediaPlayerCommand::MEDIA_PLAYER_COMMAND_REPEAT_ONE)
               .set_announcement(true)
               .perform();
-            id(external_media_player)->set_playlist_delay_ms(speaker::AudioPipelineType::ANNOUNCEMENT, 500);
+            id(${devicename}_media)->set_playlist_delay_ms(speaker::AudioPipelineType::ANNOUNCEMENT, 500);
 
   # Script execute when the timer is done ringing, to disable repeat mode.
   - id: disable_repeat
     then:
       # Turn off the repeat mode and pause for 0 ms between playlist items/repeats
       - lambda: |-
-            id(external_media_player)
+            id(${devicename}_media)
               ->make_call()
               .set_command(media_player::MediaPlayerCommand::MEDIA_PLAYER_COMMAND_REPEAT_OFF)
               .set_announcement(true)
               .perform();
-            id(external_media_player)->set_playlist_delay_ms(speaker::AudioPipelineType::ANNOUNCEMENT, 0);
+            id(${devicename}_media)->set_playlist_delay_ms(speaker::AudioPipelineType::ANNOUNCEMENT, 0);
 
 
 
