@@ -93,6 +93,10 @@ script:
   - id: control_leds
     then:
       - lambda: |
+          id(check_if_timers_active).execute();
+          if (id(is_timer_active)){
+            id(fetch_first_active_timer).execute();
+          }
           if (id(init_in_progress)) {
             id(control_leds_init_state).execute();
           } else if (id(voice_assistant_phase) == ${voice_assist_waiting_for_command_phase_id}) {
@@ -108,7 +112,7 @@ script:
           } else if (id(voice_assistant_phase) == ${voice_assist_not_ready_phase_id}) {
             #
           } else if (id(is_timer_active)) {
-            #
+            id(control_leds_timer_ticking).execute();
           } else if (id(voice_assistant_phase) == ${voice_assist_idle_phase_id}) {
             #
           }
@@ -201,3 +205,47 @@ script:
               ->play_file(sound_file, true, false);
           }
 
+  # Script executed when the timer is ringing, to control the LEDs
+  # The LED ring blinks.
+  - id: control_leds_timer_ringing
+    then:
+      - light.turn_on:
+          brightness: !lambda return min ( max( id(led_ring).current_values.get_brightness() , 0.2f ) + 0.1f , 1.0f );
+          id: ${devicename}_status
+          effect: "Timer Ring"
+
+  # Script executed when the timer is ticking, to control the LEDs
+  # The LEDs shows the remaining time as a fraction of the full ring.
+  - id: control_leds_timer_ticking
+    then:
+      - light.turn_on:
+          brightness: !lambda return max( id(led_ring).current_values.get_brightness() , 0.2f );
+          id: ${devicename}_status
+          effect: timer_tick
+
+  - id: fetch_first_active_timer
+    then:
+      - lambda: |
+          const auto timers = id(va).get_timers();
+          auto output_timer = timers.begin()->second;
+          for (auto &iterable_timer : timers) {
+            if (iterable_timer.second.is_active && iterable_timer.second.seconds_left <= output_timer.seconds_left) {
+              output_timer = iterable_timer.second;
+            }
+          }
+          id(first_active_timer) = output_timer;
+
+  # Script used to check if a timer is active (Stored in global is_timer_active)
+  - id: check_if_timers_active
+    then:
+      - lambda: |
+          const auto timers = id(va).get_timers();
+          bool output = false;
+          if (timers.size() > 0) {
+            for (auto &iterable_timer : timers) {
+              if(iterable_timer.second.is_active) {
+                output = true;
+              }
+            }
+          }
+          id(is_timer_active) = output;
