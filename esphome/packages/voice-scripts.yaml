@@ -210,7 +210,7 @@ script:
   - id: control_leds_timer_ringing
     then:
       - light.turn_on:
-          brightness: !lambda return min ( max( id(led_ring).current_values.get_brightness() , 0.2f ) + 0.1f , 1.0f );
+          brightness: !lambda return min ( max( id(${devicename}_status).current_values.get_brightness() , 0.2f ) + 0.1f , 1.0f );
           id: ${devicename}_status
           effect: timer_ring
 
@@ -219,7 +219,7 @@ script:
   - id: control_leds_timer_ticking
     then:
       - light.turn_on:
-          brightness: !lambda return max( id(led_ring).current_values.get_brightness() , 0.2f );
+          brightness: !lambda return max( id(${devicename}_status).current_values.get_brightness() , 0.2f );
           id: ${devicename}_status
           effect: timer_tick
 
