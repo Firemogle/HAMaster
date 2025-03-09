@@ -192,7 +192,22 @@ script:
               .set_announcement(true)
               .perform();
             id(${devicename}_media)->set_playlist_delay_ms(speaker::AudioPipelineType::ANNOUNCEMENT, 0);
-
-
-
+            
+  - id: play_sound
+    parameters:
+      priority: bool
+      sound_file: "audio::AudioFile*"
+    then:
+      - lambda: |-
+          if (priority) {
+            id(${devicename}_media)
+              ->make_call()
+              .set_command(media_player::MediaPlayerCommand::MEDIA_PLAYER_COMMAND_STOP)
+              .set_announcement(true)
+              .perform();
+          }
+          if ( (id(${devicename}_media).state != media_player::MediaPlayerState::MEDIA_PLAYER_STATE_ANNOUNCING ) || priority) {
+            id(external_media_player)
+              ->play_file(sound_file, true, false);
+          }
 
