@@ -1,0 +1,30 @@
+
+automation:
+  - id: thunderstorm_sounds
+    alias: thunderstorm_sounds
+    triggers:
+      - trigger: conversation
+        command: Play thunderstom sounds
+    conditions: []
+    actions:
+      - action: media_player.play_media
+        target:
+          entity_id: {{ trigger.device_id }}
+        data:
+          media_content_id: media-source://media_source/media/Server/media/Sorted Music/thunder.mp3
+          media_content_type: audio/mpeg
+        metadata:
+          title: thunder.mp3
+          thumbnail: null
+          media_class: music
+          children_media_class: null
+          navigateIds:
+            - {}
+            - media_content_type: app
+              media_content_id: media-source://media_source
+            - media_content_type: ""
+              media_content_id: media-source://media_source/media/Server
+            - media_content_type: ""
+              media_content_id: media-source://media_source/media/Server/media
+            - media_content_type: ""
+              media_content_id: media-source://media_source/media/Server/media/Sorted Music
