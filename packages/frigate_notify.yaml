@@ -6,13 +6,11 @@ automation:
     triggers:
       - trigger: state
         entity_id: image.doorbell_person
-        attribute: entity_picture
         not_from:
           - "unknown"
           - "unavailable"
       - trigger: state
         entity_id: image.garage_person
-        attribute: entity_picture
         not_from:
           - "unknown"
           - "unavailable"
