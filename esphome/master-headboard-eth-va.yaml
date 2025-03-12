@@ -15,7 +15,7 @@ packages:
     vars:
       pin: GPIO48
       length: 20
-      color_line: GRB
+      color_line: RBG
       name: master_headboard
   brett: !include 
     file: packages/partition_light.yaml
