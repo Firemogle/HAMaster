@@ -4,26 +4,6 @@ homeassistant:
       friendly_name: Scarlett Fan
     light.nursery_fan_light:
       friendly_name: Scarlett Light
-      
-
-climate:
-  - platform: generic_thermostat
-    name: Lottie Heater
-    heater: switch.lottie_heater_switch
-    target_sensor: sensor.lottie_room_air_temperature
-    min_temp: 50
-    max_temp: 75
-    ac_mode: false
-    target_temp: 70
-    cold_tolerance: 0
-    hot_tolerance: 0
-    min_cycle_duration:
-      seconds: 5
-    initial_hvac_mode: "off"
-    away_temp: 50
-    sleep_temp: 68
-    comfort_temp: 70
-    precision: 0.1
     
 automation:
   - id: nursery_fan_speed
