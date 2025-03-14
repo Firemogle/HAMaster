@@ -54,7 +54,7 @@ switch:
     restore_mode: ALWAYS_OFF
     on_turn_off:
       # Disable stop wake word
-      - script.execute: disable_repeat
+      #- script.execute: disable_repeat
       # Stop any current annoucement (ie: stop the timer ring mid playback)
       - if:
           condition:
@@ -78,7 +78,7 @@ switch:
       # Enable stop wake word
       #- lambda: id(stop).enable();
       # Ring timer
-      - script.execute: ring_timer
+      #- script.execute: ring_timer
       # Refresh LED
       - script.execute: control_leds
       # If 15 minutes have passed and the timer is still ringing, stop it.
@@ -157,7 +157,7 @@ script:
 
   - id: ring_timer
     then:
-      - script.execute: enable_repeat_one
+      #- script.execute: enable_repeat_one
       - script.execute:
           id: play_sound
           priority: true
@@ -249,3 +249,20 @@ script:
             }
           }
           id(is_timer_active) = output;
+
+          
+interval:
+  - interval: 10s
+    then:
+    - if:
+        condition:
+          lambda: 'return id(timer_ringing).state == 'on';'
+        then:
+          - logger.log: "Ringing!"
+          - script.execute:
+              id: play_sound
+              priority: true
+              sound_file: !lambda return id(timer_finished_sound);
+
+
+    
