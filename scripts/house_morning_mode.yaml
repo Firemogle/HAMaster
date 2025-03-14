@@ -10,3 +10,7 @@ house_morning_mode:
   - service: switch.turn_on
     data:
       entity_id: switch.livingroom_subwoofer
+  - action: vacuum.start
+    data: {}
+    target:
+      entity_id: vacuum.rrroomba
