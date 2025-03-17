@@ -10,6 +10,8 @@ light:
     pin: ${pin}
     num_leds: ${length}
     rgb_order: ${color_line}
+    internal: true 
+    rmt_symbols: 48
     name: ${name}
     id: ${name}
     effects:
