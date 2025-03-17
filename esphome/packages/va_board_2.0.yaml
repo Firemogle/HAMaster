@@ -18,6 +18,7 @@ packages:
 light:
   - id: !extend ${devicename}_status
     internal: true 
+    rmt_symbols: 48
 
 sensor:
   - platform: bme280_i2c
