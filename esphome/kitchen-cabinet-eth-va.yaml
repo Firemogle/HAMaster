@@ -6,10 +6,10 @@ packages:
     file: packages/poe_board_base_2.6.yaml
     vars:
       devicename: ${devicename}
-  voice_board: !include 
-    file: packages/va_board_2.0.yaml
-    vars:
-      devicename: ${devicename}
+  #voice_board: !include 
+  #  file: packages/va_board_2.0.yaml
+  #  vars:
+  #    devicename: ${devicename}
   sen55: !include 
     file: packages/sen55.yaml
     vars:
