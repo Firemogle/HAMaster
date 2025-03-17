@@ -45,10 +45,8 @@ packages:
 
 light:
   - id: !extend kitchen_cabinet
-    segments:
-      - id: kitchen_cabinet
-        rmt_symbols: 336
-        internal: true 
+    rmt_symbols: 336
+    internal: true 
   - id: !extend cabinet_top
     segments:
       - id: kitchen_cabinet
