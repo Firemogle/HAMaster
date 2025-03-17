@@ -17,7 +17,6 @@ packages:
 
 light:
   - id: !extend ${devicename}_status
-    rmt_symbols: 48
     internal: true 
 
 sensor:
