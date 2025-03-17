@@ -53,8 +53,6 @@ switch:
     internal: true
     restore_mode: ALWAYS_OFF
     on_turn_off:
-      # Disable stop wake word
-      #- script.execute: disable_repeat
       # Stop any current annoucement (ie: stop the timer ring mid playback)
       - if:
           condition:
@@ -75,15 +73,24 @@ switch:
           id: media_mixing_input
           decibel_reduction: 20
           duration: 0.0s
-      # Enable stop wake word
-      #- lambda: id(stop).enable();
-      # Ring timer
-      #- script.execute: ring_timer
       # Refresh LED
       - script.execute: control_leds
       # If 15 minutes have passed and the timer is still ringing, stop it.
-      - delay: 5min
-      - switch.turn_off: timer_ringing
+  
+      then:
+      - while:
+          condition:
+            switch.is_on: timer_ringing
+          then:
+            - micro_wake_word.stop:
+            - delay: 2s
+            - script.execute:
+                id: play_sound
+                priority: true
+                sound_file: !lambda return id(timer_finished_sound);
+            - delay: 4s
+            - micro_wake_word.start:
+            - delay: 5s
 
 
 script:
@@ -250,19 +257,7 @@ script:
           }
           id(is_timer_active) = output;
 
-          
-interval:
-  - interval: 10s
-    then:
-    - if:
-        condition:
-          switch.is_on: timer_ringing
-        then:
-          - logger.log: "Ringing!"
-          - script.execute:
-              id: play_sound
-              priority: true
-              sound_file: !lambda return id(timer_finished_sound);
+        
 
 
     
