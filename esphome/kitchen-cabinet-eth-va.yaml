@@ -46,6 +46,8 @@ packages:
 light:
   - id: !extend kitchen_cabinet
     internal: true 
+    use_psram: false
+    
   - id: !extend cabinet_top
     segments:
       - id: kitchen_cabinet
