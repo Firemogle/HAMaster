@@ -41,4 +41,4 @@ sensor:
     acceleration_mode: low
     store_baseline: true
     address: 0x69
-    update_interval: 10s
+    update_interval: 60s
