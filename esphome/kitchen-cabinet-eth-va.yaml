@@ -44,9 +44,6 @@ packages:
       end: 79
 
 light:
-  - id: !extend kitchen_cabinet
-    internal: true
-    
   - id: !extend cabinet_top
     segments:
       - id: kitchen_cabinet
