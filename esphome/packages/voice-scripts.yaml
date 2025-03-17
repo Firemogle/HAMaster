@@ -75,9 +75,7 @@ switch:
           duration: 0.0s
       # Refresh LED
       - script.execute: control_leds
-      # If 15 minutes have passed and the timer is still ringing, stop it.
-  
-      then:
+      
       - while:
           condition:
             switch.is_on: timer_ringing
