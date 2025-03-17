@@ -6,13 +6,6 @@ packages:
     file: packages/poe_board_base_2.6.yaml
     vars:
       devicename: ${devicename}
-  cabinets: !include 
-    file: packages/add_light.yaml
-    vars:
-      pin: GPIO48
-      length: 200
-      color_line: RGB
-      name: kitchen_cabinet
   voice_board: !include 
     file: packages/va_board_2.0.yaml
     vars:
@@ -21,6 +14,13 @@ packages:
     file: packages/sen55.yaml
     vars:
       devicename: ${devicename}
+  cabinet_light: !include 
+    file: packages/add_light.yaml
+    vars:
+      pin: GPIO48
+      length: 200
+      color_line: RGB
+      name: kitchen_cabinet
   stove: !include 
     file: packages/partition_light.yaml
     vars:
