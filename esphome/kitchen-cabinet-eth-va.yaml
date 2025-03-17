@@ -17,7 +17,7 @@ packages:
   cabinet_light: !include 
     file: packages/add_light.yaml
     vars:
-      pin: GPIO48
+      pin: GPIO47
       length: 200
       color_line: RGB
       name: kitchen_cabinet
