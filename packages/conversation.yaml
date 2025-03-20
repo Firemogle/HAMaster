@@ -9,7 +9,7 @@ automation:
     actions:
       - action: media_player.play_media
         target:
-          entity_id: "{{ area_name('trigger.device_id') }} Speaker"
+          entity_id: '{{ area_name("trigger.device_id") }} Speaker'
         data:
           media_content_id: media-source://media_source/media/Server/media/Sorted Music/thunder.mp3
           media_content_type: audio/mpeg
