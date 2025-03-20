@@ -4,7 +4,7 @@ automation:
     alias: thunderstorm_sounds
     triggers:
       - trigger: conversation
-        command: "Play thunderstom sounds"
+        command: "play thunderstom sounds"
     conditions: []
     actions:
       - action: media_player.play_media
