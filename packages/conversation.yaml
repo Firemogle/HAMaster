@@ -32,7 +32,6 @@ automation:
             - media_content_type: ""
               media_content_id: media-source://media_source/media/Server/media/Sorted Music
 
-automation:
   - id: va_stop_goog_speaker
     alias: va_stop_goog_speaker
     triggers:
