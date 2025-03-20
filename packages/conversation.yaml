@@ -1,7 +1,7 @@
 
 automation:
-  - id: thunderstorm_sounds
-    alias: thunderstorm_sounds
+  - id: va_thunderstorm_sounds
+    alias: va_thunderstorm_sounds
     triggers:
       - trigger: conversation
         command: "play thunderstorm sounds"
@@ -31,3 +31,18 @@ automation:
               media_content_id: media-source://media_source/media/Server/media
             - media_content_type: ""
               media_content_id: media-source://media_source/media/Server/media/Sorted Music
+
+automation:
+  - id: va_stop_goog_speaker
+    alias: va_stop_goog_speaker
+    triggers:
+      - trigger: conversation
+        command: "stop sounds"
+    conditions: []
+    actions:
+      - action: media_player.media_stop
+        target:
+          entity_id: 'media_player.{{ area_name(trigger.device_id) }}speaker'
+      - action: media_player.turn_off
+        target:
+          entity_id: 'media_player.{{ area_name(trigger.device_id) }}speaker'
