@@ -45,3 +45,16 @@ automation:
       - action: media_player.turn_off
         target:
           entity_id: 'media_player.{{ area_name(trigger.device_id) }}speaker'
+
+  - id: va_set_vol_goog_speaker
+    alias: va_set_vol_goog_speaker
+    triggers:
+      - platform: state
+        entity_id: media_player.masterbedroomspeaker
+    conditions: []
+    actions:
+      - action: media_player.volume_set
+        target:
+          entity_id: 'media_player.{{ area_name(trigger.device_id) }}speaker'
+        data:
+          volume_level: {{ trigger.to_state.attributes.volume_level }}
