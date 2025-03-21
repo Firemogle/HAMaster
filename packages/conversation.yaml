@@ -56,5 +56,6 @@ automation:
       - action: media_player.volume_set
         target:
           entity_id: 'media_player.{{ area_name(trigger.device_id) }}speaker'
-        data:
-          volume_level: {{ trigger.to_state.attributes.volume_level }}
+        data_template:
+          volume_level: >
+            {{ trigger.to_state.attributes.volume_level | float }}
