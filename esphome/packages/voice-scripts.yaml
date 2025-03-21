@@ -75,20 +75,14 @@ switch:
           duration: 0.0s
       # Refresh LED
       - script.execute: control_leds
-      
-      - while:
-          condition:
-            switch.is_on: timer_ringing
-          then:
-            - micro_wake_word.stop:
-            - delay: 2s
-            - script.execute:
-                id: play_sound
-                priority: true
-                sound_file: !lambda return id(timer_finished_sound);
-            - delay: 4s
-            - micro_wake_word.start:
-            - delay: 5s
+      - delay: 15min
+      - switch.turn_off: timer_ringing
+
+binary_sensor:
+  - platform: template
+    name: ${devicename}_alarm_on
+    condition:
+      switch.is_on: timer_ringing
 
 
 script:
