@@ -58,7 +58,8 @@ automation:
     actions:
       - if:
           - condition: state
-            entity_id: 'binary_sensor.{{ "trigger.entity_id" }}'
+            entity_id: >-
+                'binary_sensor.{{ "trigger.entity_id" }}'
             state: "on"
         then:
           - action: media_player.turn_on
