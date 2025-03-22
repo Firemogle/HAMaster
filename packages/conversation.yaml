@@ -86,11 +86,11 @@ automation:
                         media_content_id: media-source://media_source/media/Server/media
                       - media_content_type: ""
                         media_content_id: media-source://media_source/media/Server/media/Sorted Music
-                    while:
-                      - condition: state
-                        entity_id: >-
-                          'binary_sensor.{{ trigger.entity_id }}'
-                        state: "on"
+             while:
+              - condition: state
+                entity_id: >-
+                  'binary_sensor.{{ trigger.entity_id }}'
+                state: "on"
 
   - id: va_set_vol_goog_speaker
     alias: va_set_vol_goog_speaker
