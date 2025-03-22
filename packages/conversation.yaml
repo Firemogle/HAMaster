@@ -57,10 +57,8 @@ automation:
     conditions: []
     actions:
       - if:
-          - condition: state
-            entity_id: >-
-                'binary_sensor.{{ "trigger.entity_id" }}'
-            state: "on"
+          - condition: template
+            value_template: "{{ trigger.to_state.state == 'On' }}"
         then:
           - action: media_player.turn_on
             target:
@@ -91,7 +89,7 @@ automation:
                     while:
                       - condition: state
                         entity_id: >-
-                          'binary_sensor.{{ "trigger.entity_id" }}'
+                          'binary_sensor.{{ trigger.entity_id }}'
                         state: "on"
 
   - id: va_set_vol_goog_speaker
