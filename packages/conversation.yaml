@@ -53,7 +53,7 @@ automation:
     mode: parallel
     triggers:
       - platform: state
-        entity_id: media_player.masterbedroomspeaker
+        entity_id: binary_sensor.master_headboard_eth_va_master_headboard_eth_va_alarm_on
     conditions: []
     actions:
   - if:
