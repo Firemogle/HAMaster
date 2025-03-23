@@ -69,11 +69,15 @@ switch:
       - script.execute: control_leds
     on_turn_on:
       # Duck audio
-      - mixer_speaker.apply_ducking:
-          id: media_mixing_input
-          decibel_reduction: 20
-          duration: 0.0s
+      #- mixer_speaker.apply_ducking:
+      #    id: media_mixing_input
+      #    decibel_reduction: 20
+      #    duration: 0.0s
       # Refresh LED
+      - script.execute: control_leds
+      - micro_wake_word.stop:
+      - delay: 2s
+      - micro_wake_word.start:
       - script.execute: control_leds
       - delay: 15min
       - switch.turn_off: timer_ringing
