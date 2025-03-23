@@ -71,7 +71,7 @@ automation:
               metadata:
                 title: beep-6-96243.mp3
                 thumbnail: null
-                 media_class: music
+                media_class: music
                 children_media_class: null
                 navigateIds:
                   - {}
