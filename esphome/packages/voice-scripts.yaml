@@ -54,17 +54,17 @@ switch:
     restore_mode: ALWAYS_OFF
     on_turn_off:
       # Stop any current annoucement (ie: stop the timer ring mid playback)
-      - if:
-          condition:
-            media_player.is_announcing:
-          then:
-            media_player.stop:
-              announcement: true
+     # - if:
+     #     condition:
+     #       media_player.is_announcing:
+     #     then:
+     #       media_player.stop:
+     #         announcement: true
       # Set back ducking ratio to zero
-      - mixer_speaker.apply_ducking:
-          id: media_mixing_input
-          decibel_reduction: 0
-          duration: 1.0s
+      #- mixer_speaker.apply_ducking:
+      #    id: media_mixing_input
+      #    decibel_reduction: 0
+      #    duration: 1.0s
       # Refresh the LED ring
       - script.execute: control_leds
     on_turn_on:
