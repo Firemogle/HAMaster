@@ -59,12 +59,12 @@ automation:
     actions:
         - action: media_player.turn_on
           target:
-            entity_id: 'media_player.{{ area_name("trigger.device_id") }}speaker'
+            entity_id: 'media_player.{{ area_name(trigger.device_id) }}speaker'
         - repeat:
             sequence:
               - action: media_player.play_media
                 target:
-                  entity_id: 'media_player.{{ area_name("trigger.device_id") }}speaker'
+                  entity_id: 'media_player.{{ area_name(trigger.device_id) }}speaker'
                 data:
                   media_content_id: media-source://media_source/media/Server/media/Sorted Music/beep-6-96243.mp3
                   media_content_type: audio/mpeg
