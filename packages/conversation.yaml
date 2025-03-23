@@ -57,35 +57,35 @@ automation:
         to: "on"
     conditions: []
     actions:
-        - action: media_player.turn_on
-          target:
-            entity_id: 'media_player.{{ area_name(trigger.device_id) }}speaker'
-        - repeat:
-            sequence:
-              - action: media_player.play_media
-                target:
-                  entity_id: 'media_player.{{ area_name(trigger.device_id) }}speaker'
-                data:
-                  media_content_id: media-source://media_source/media/Server/media/Sorted Music/beep-6-96243.mp3
-                  media_content_type: audio/mpeg
-                metadata:
-                  title: beep-6-96243.mp3
-                  thumbnail: null
-                  media_class: music
-                  children_media_class: null
-                  navigateIds:
-                    - {}
-                    - media_content_type: app
-                      media_content_id: media-source://media_source
-                    - media_content_type: ""
-                      media_content_id: media-source://media_source/media/Server
-                    - media_content_type: ""
-                      media_content_id: media-source://media_source/media/Server/media
-                    - media_content_type: ""
-                      media_content_id: media-source://media_source/media/Server/media/Sorted Music
-            while:
-              - condition: template
-                value_template: "{{ is_state(trigger.entity_id, 'on') }}"
+      - action: media_player.turn_on
+        target:
+          entity_id: 'media_player.{{ area_name(trigger.device_id) }}speaker'
+      - repeat:
+          sequence:
+            - action: media_player.play_media
+              target:
+                 entity_id: 'media_player.{{ area_name(trigger.device_id) }}speaker'
+              data:
+                media_content_id: media-source://media_source/media/Server/media/Sorted Music/beep-6-96243.mp3
+                media_content_type: audio/mpeg
+              metadata:
+                title: beep-6-96243.mp3
+                thumbnail: null
+                 media_class: music
+                children_media_class: null
+                navigateIds:
+                  - {}
+                  - media_content_type: app
+                    media_content_id: media-source://media_source
+                  - media_content_type: ""
+                    media_content_id: media-source://media_source/media/Server
+                  - media_content_type: ""
+                    media_content_id: media-source://media_source/media/Server/media
+                  - media_content_type: ""
+                    media_content_id: media-source://media_source/media/Server/media/Sorted Music
+          while:
+            - condition: template
+              value_template: "{{ is_state(trigger.entity_id, 'on') }}"
 
   - id: va_set_vol_goog_speaker
     alias: va_set_vol_goog_speaker
