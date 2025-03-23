@@ -86,7 +86,7 @@ automation:
             while:
               - condition: state
                 entity_id: >-
-                  {{ trigger.entity_id }}
+                  "{{ trigger.entity_id }}"
                 state: "on"
 
   - id: va_set_vol_goog_speaker
