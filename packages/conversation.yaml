@@ -87,8 +87,10 @@ automation:
                       - media_content_type: ""
                         media_content_id: media-source://media_source/media/Server/media/Sorted Music
               while:
-                - condition: template
-                  value_template: {% if is_state('trigger.entity_id', 'On') %}
+                - condition: state
+                  entity_id: >-
+                    {{ trigger.entity_id }}
+                  state: "on"
 
   - id: va_set_vol_goog_speaker
     alias: va_set_vol_goog_speaker
