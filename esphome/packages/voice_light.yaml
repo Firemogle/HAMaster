@@ -90,7 +90,7 @@ light:
               green: 0%
               blue: 0%
               num_leds: 3
-          add_led_interval: 1ms
+          add_led_interval: 1s
           reverse: true
       - addressable_color_wipe:
           name: timer_ring
