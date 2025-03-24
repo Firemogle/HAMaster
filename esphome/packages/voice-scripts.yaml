@@ -67,6 +67,13 @@ switch:
       #    duration: 1.0s
       # Refresh the LED ring
       - script.execute: control_leds
+      - lambda: |
+          id(is_timer_active) = false;
+      - micro_wake_word.stop:
+      - delay: 5s
+      - micro_wake_word.start:
+      - lambda: |
+          id(is_timer_active) = false;
     on_turn_on:
       # Duck audio
       #- mixer_speaker.apply_ducking:
@@ -252,6 +259,7 @@ script:
             }
           }
           id(is_timer_active) = output;
+      - logger.log: "Hello World"
 
         
 
