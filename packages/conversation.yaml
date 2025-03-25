@@ -101,4 +101,6 @@ automation:
           entity_id: 'media_player.{{ area_name(trigger.device_id) }}speaker'
         data_template:
           volume_level: >
-            {{ trigger.to_state.attributes.volume_level | float }}
+            {{ state_attr(trigger.entity_id, 'volume_level') | float }}
+
+            
