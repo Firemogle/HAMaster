@@ -9,7 +9,7 @@ packages:
   tree_light: !include 
     file: packages/add_light.yaml
     vars:
-      pin: GPIO38
+      pin: GPIO36
       length: 620
       color_line: RGB
       name: tree_string
