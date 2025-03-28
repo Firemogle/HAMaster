@@ -21,6 +21,10 @@ packages:
       start: 0
       end: 427
 
+light:
+  - id: !extend tree_string
+    rmt_symbols: 96
+
 esphome:
   name: rainbrarrel
   friendly_name: rainbarrel
