@@ -60,8 +60,6 @@ uart:
   rx_pin: GPIO44
   tx_pin: GPIO43
   baud_rate: 9600
-  stop_bits: 1
-  data_bits: 8
   id: dist
  
 #esp32_ble_tracker:
