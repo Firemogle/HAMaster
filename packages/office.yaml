@@ -57,13 +57,11 @@ automation:
     trigger:
     - entity_id: binary_sensor.office_eth_va_office_eth_va_presence
       platform: state
-    - platform: time
-      at: '11:59:00'
     action:
     - service: climate.set_hvac_mode
       data_template:
         hvac_mode: >
-            {% if is_state('binary_sensor.office_eth_va_office_eth_va_presence', 'off') or (trigger.platform == 'time') %}
+            {% if is_state('binary_sensor.office_eth_va_office_eth_va_presence', 'off') or is_state('binary_sensor.house_sts_hvac_run', 'off')  %}
               off
             {% else %}
               heat
