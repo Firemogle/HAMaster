@@ -74,6 +74,8 @@ switch:
       - micro_wake_word.start:
       - lambda: |
           id(is_timer_active) = false;
+      - light.turn_off:
+          id: ${devicename}_status
     on_turn_on:
       # Duck audio
       #- mixer_speaker.apply_ducking:
