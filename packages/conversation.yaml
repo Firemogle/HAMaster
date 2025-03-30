@@ -58,6 +58,9 @@ automation:
       - platform: state
         entity_id: binary_sensor.kitchen_cabinet_eth_va_kitchen_cabinet_eth_va_alarm_on
         to: "on"
+      - platform: state
+        entity_id: binary_sensor.binary_sensor.livingroom_eth_va_livingroom_eth_va_alarm_on
+        to: "on"
     conditions: []
     actions:
       - action: media_player.turn_on
