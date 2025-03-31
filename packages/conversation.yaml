@@ -118,15 +118,15 @@ automation:
     condition:
       - condition: template
         value_template: "{{ 'Announce' in trigger.calendar_event.summary }}"
-    action:
-  - action: assist_satellite.announce
-    metadata: {}
-    data:
-      message: "{{ trigger.calendar_event.description }}"
-    target:
-      area_id:
-        - 36a7e54132e84284a4368f292e945bb0
-        - 63db88fe052b434c86e1d37781ce0972
-        - 259e54ef72a347c2b9fa159e5bcd32b7
+    actions:
+      - action: assist_satellite.announce
+        metadata: {}
+        data:
+          message: "{{ trigger.calendar_event.description }}"
+        target:
+          area_id:
+            - 36a7e54132e84284a4368f292e945bb0
+            - 63db88fe052b434c86e1d37781ce0972
+            - 259e54ef72a347c2b9fa159e5bcd32b7
 
             
