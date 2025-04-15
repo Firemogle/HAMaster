@@ -1,4 +1,12 @@
 
+input_text:
+  announce_textbox:
+    name: announce_textbox
+
+input_button:
+  announce_button:
+    name: announce_button
+
 automation:
   - id: va_thunderstorm_sounds
     alias: va_thunderstorm_sounds
@@ -128,5 +136,22 @@ automation:
             - 36a7e54132e84284a4368f292e945bb0
             - 63db88fe052b434c86e1d37781ce0972
             - 259e54ef72a347c2b9fa159e5bcd32b7
+
+  - id: button_announce
+    alias: button_announce
+    triggers:
+      - trigger: state
+        entity_id: input_button.announce_button
+    actions:
+          - action: assist_satellite.announce
+            metadata: {}
+            data:
+              message: "{{ states('input_text.announce_textbox') }}"
+            target:
+              area_id:
+                - 36a7e54132e84284a4368f292e945bb0
+                - 63db88fe052b434c86e1d37781ce0972
+                - 259e54ef72a347c2b9fa159e5bcd32b7
+          
 
             
