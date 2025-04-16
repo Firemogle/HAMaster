@@ -3,10 +3,6 @@ input_text:
   announce_textbox:
     name: announce_textbox
 
-input_button:
-  announce_button:
-    name: announce_button
-
 automation:
   - id: va_thunderstorm_sounds
     alias: va_thunderstorm_sounds
@@ -141,7 +137,7 @@ automation:
     alias: button_announce
     triggers:
       - trigger: state
-        entity_id: input_button.announce_button
+        entity_id: input_text.announce_textbox
     actions:
           - action: assist_satellite.announce
             metadata: {}
