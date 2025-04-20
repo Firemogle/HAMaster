@@ -177,7 +177,7 @@ automation:
     - data:
         entity_id: climate.hvac_local
         fan_mode: >
-          {% if is_state('binary_sensor.house_sts_hum_active_req', 'on') %}
+          {% if is_state('binary_sensor.hvac_running', 'on') %}
             Low
           {% else %} 
             Auto low
