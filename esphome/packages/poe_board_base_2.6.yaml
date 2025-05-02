@@ -8,7 +8,7 @@ esphome:
 preferences:
   # the default of 1min is far too short--flash chip is rated
   # for approx 100k writes.
-  flash_write_interval: "30m" 
+  flash_write_interval: "30min" 
   
 esp32:
   board: esp32-s3-devkitc-1
