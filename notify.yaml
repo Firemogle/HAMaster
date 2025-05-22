@@ -1,6 +1,6 @@
 - name: group_notify
   platform: group
   services:
-    - service: mobile_app_sm_s928u1
+    - service: mobile_app_brett_s24u
     - service: mobile_app_liz_phone
     - service: mobile_app_emi_phone
