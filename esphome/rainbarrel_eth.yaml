@@ -110,6 +110,7 @@ switch:
       inverted: true
   - platform: gpio
     name: "Rainbarrel Sol"
+    id: irr_main_sol
     pin:
       pcf8574: pcf8574_hub
       # Use pin number 0
