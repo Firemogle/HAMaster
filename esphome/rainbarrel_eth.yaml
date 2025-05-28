@@ -60,11 +60,6 @@ api:
 ota:
   platform: esphome
   password: !secret OTA_PW
-uart:
-  rx_pin: GPIO44
-  tx_pin: GPIO43
-  baud_rate: 9600
-  id: dist
  
 #esp32_ble_tracker:
 #bluetooth_proxy:
@@ -78,7 +73,9 @@ pcf8574:
   - id: 'pcf8574_hub'
     address: 0x27
     pcf8575: false
-
+ads1115:
+  - address: 0x48
+  
 # Individual outputs
 switch:
   - platform: gpio
@@ -135,19 +132,12 @@ sensor:
     humidity:
       name: "rainbarrel Humidity"
     address: 0x76
-    update_interval: 60s   
-  - platform: "a02yyuw"
-    name: "Distance"
+    update_interval: 60s 
+  - platform: ads1115
+    multiplexer: 'A0_GND'
+    gain: 4.096
+    name: "Tank probe A2D"
     id: raw_dist
-    uart_id: dist
-    filters:
-      - exponential_moving_average:
-          alpha: 0.1
-          send_every: 15
-      - clamp:
-          min_value: 3
-          max_value: 34
-          ignore_out_of_range: true
   - platform: template
     name: "Tank Volume"
     id: tank_vol
