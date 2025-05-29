@@ -20,7 +20,7 @@ packages:
       parent: rb_string
       start: 0
       end: 427
-  irrigation: !include rain_barrel_irrigation.yaml
+  irrigation: !include packages/rain_barrel_irrigation.yaml
 
 esphome:
   name: rainbrarrel
