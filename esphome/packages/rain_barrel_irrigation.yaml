@@ -2,11 +2,11 @@ packages:
   porchplot: !include 
     file: valve_remote.yaml
     vars:
-      devicename: porch_plot_valve
+      name: porch_plot_valve
   gardenplot: !include 
     file: valve_remote.yaml
     vars:
-      devicename: garden_valve
+      name: garden_valve
 
 
 sprinkler:
