@@ -1,0 +1,40 @@
+esphome:
+  name: irrcntone
+  friendly_name: Irrigation Control One
+  platformio_options:
+    board_build.flash_mode: dio
+    board_build.mcu: esp32s3
+
+esp32:
+  board: esp32-s3-devkitc-1
+  variant: esp32s3
+  framework:
+    type: esp-idf
+
+
+wifi:
+  ssid: !secret AP
+  password: !secret APPW
+  
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: !secret ENC_KEY
+
+ota:
+  platform: esphome
+  password: !secret OTA_PW
+ 
+esp32_ble_tracker:
+bluetooth_proxy:
+
+switch:
+  - platform: gpio
+    name: porch_plot_valve
+    pin: 
+      number: GPIO05
+      inverted: true
