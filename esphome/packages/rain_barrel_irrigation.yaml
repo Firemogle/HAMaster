@@ -1,12 +1,23 @@
+packages:
+  porchplot: !include 
+    file: valve_remote.yaml
+    vars:
+      devicename: porch_plot_valve
+  gardenplot: !include 
+    file: valve_remote.yaml
+    vars:
+      devicename: garden_valve
+
+
 sprinkler:
   - id: back_irr
     main_switch: "Backyard Irrigation"
     auto_advance_switch: "Auto advance BYI"
     multiplier_number: "Backyard Irrigation Multiplier"
     valves:
-      - valve_switch: "Food Garden"
+      - valve_switch: "Garden"
         run_duration: 1800s
-        valve_switch_id: food_garden_valve
+        valve_switch_id: garden_valve
         pump_switch_id: irr_main_sol
       - valve_switch: "Porch Plot"
         run_duration: 900s
