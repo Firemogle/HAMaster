@@ -147,7 +147,7 @@ sensor:
   - platform: template
     name: "Tank Volume"
     id: tank_vol
-    lambda: return 110 * (id(tank_per).state);
+    lambda: return 0.11 * (id(tank_per).state);
     device_class: volume_storage
   - platform: template
     name: "Tank Percentage"
