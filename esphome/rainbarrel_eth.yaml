@@ -139,6 +139,10 @@ sensor:
     gain: 4.096
     name: "Tank probe A2D"
     id: raw_dist
+    update_interval: 4s
+    - sliding_window_moving_average:
+      window_size: 15
+      send_every: 15
   - platform: template
     name: "Tank Volume"
     id: tank_vol
