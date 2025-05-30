@@ -3,3 +3,4 @@ switch:
     name: ${name}
     id: ${name}
     entity_id: switch.${name}
+    internal: true
