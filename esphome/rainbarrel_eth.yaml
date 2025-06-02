@@ -143,7 +143,7 @@ sensor:
     update_interval: 5s
     filters:
       - sliding_window_moving_average:
-          window_size: 120
+          window_size: 600
           send_every: 60
   - platform: template
     name: "Tank Volume"
@@ -152,7 +152,7 @@ sensor:
     device_class: volume_storage
   - platform: template
     name: "Tank Percentage"
-    lambda: return (((id(raw_dist).state) - 3.33) / (-0.33)) * 100;
+    lambda: return (((id(raw_dist).state) - 3.5) / (-0.5)) * 100;
     id: tank_per
     device_class: humidity
               
