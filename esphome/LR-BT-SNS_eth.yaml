@@ -3,7 +3,7 @@ packages:
     file: packages/add_light.yaml
     vars:
       pin: GPIO37
-      length: 200
+      length: 400
       color_line: RGB
       name: fy_string
 
