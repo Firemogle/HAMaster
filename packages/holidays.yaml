@@ -196,6 +196,44 @@ script:
         entity_id: light.rainbrarrel_decklight
         color_name: white
         effect: None
+
+  xmas_light:
+    sequence:
+    - service: light.turn_on
+      data:
+        color_name: blue
+        entity_id: light.front_light1_level_light_color_on_off
+    - service: light.turn_on
+      data:
+        color_name: white
+        entity_id: light.front_light2_level_light_color_on_off
+    - service: light.turn_on
+      data:
+        color_name: red
+        entity_id: light.front_light3_level_light_color_on_off
+    - service: light.turn_on
+      data:
+        color_name: blue
+        entity_id: light.front_garden_level_light_color_on_off
+    - service: light.turn_on
+      data:
+        color_name: red
+        entity_id: light.porch_light
+    - service: light.turn_on
+      data:
+        brightness: 215
+        entity_id: light.rainbrarrel_rb_string
+        color_name: white
+        effect: "Independence Day"
+    - service: light.turn_on
+      data:
+        brightness: 215
+        entity_id: light.lr_bt_sns_fy_string
+        color_name: white
+        effect: "Independence Day"
+    - service: switch.turn_on
+      data:
+        entity_id: switch.garage_wall_switch
         
         
         
