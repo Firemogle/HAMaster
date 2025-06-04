@@ -231,9 +231,6 @@ script:
         entity_id: light.lr_bt_sns_fy_string
         color_name: white
         effect: "Independence Day"
-    - service: switch.turn_on
-      data:
-        entity_id: switch.garage_wall_switch
         
         
         
