@@ -16,7 +16,7 @@ sprinkler:
     multiplier_number: "Backyard Irrigation Multiplier"
     valves:
       - valve_switch: "Garden"
-        run_duration: 3600s
+        run_duration: 1800s
         valve_switch_id: garden_valve
         pump_switch_id: irr_main_sol
       - valve_switch: "Porch Plot"
