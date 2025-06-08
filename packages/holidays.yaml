@@ -196,6 +196,9 @@ script:
         entity_id: light.rainbrarrel_decklight
         color_name: white
         effect: None
+    - service: switch.turn_on
+      data:
+        entity_id: switch.garage_wall_switch
 
   xmas_light:
     sequence:
