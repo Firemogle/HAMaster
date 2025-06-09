@@ -128,6 +128,8 @@
     light.uhall_ban_hall_ban:
       state: on
       brightness: 51
+    switch.garage_wall_switch:
+      state: off
       
 - name: house_wakeup
   entities:
