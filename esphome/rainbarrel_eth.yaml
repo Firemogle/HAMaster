@@ -119,6 +119,7 @@ switch:
       mode:
         output: true
       inverted: true
+    internal: true
       
   
 esp32_ble_tracker:
