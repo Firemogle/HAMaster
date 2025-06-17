@@ -6,13 +6,6 @@ packages:
       length: 689
       color_line: RGB
       name: rb_string
-  tree_light: !include 
-    file: packages/add_light.yaml
-    vars:
-      pin: GPIO36
-      length: 620
-      color_line: RGB
-      name: tree_string
   string_light_part: !include 
     file: packages/partition_light.yaml
     vars:
