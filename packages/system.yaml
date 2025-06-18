@@ -219,6 +219,8 @@ automation:
         message: "Rejoice! For now is the blessed time for home assistant has once again booted."
         data:
           timeout: 300
+          tag: "system"
+          color: "red"
       service: notify.group_notify
       
   - id: 'ha_down'
@@ -232,6 +234,8 @@ automation:
         message: "Home Assistant is now shutting down"
         data:
           timeout: 300
+          tag: "system"
+          color: "red"
       service: notify.group_notify
 
   - id: 'house_sts_occupants'
