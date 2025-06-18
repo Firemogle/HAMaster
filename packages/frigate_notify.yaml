@@ -22,6 +22,7 @@ automation:
           image: '{{ state_attr(trigger.entity_id, "entity_picture") }}'
           timeout: 1200
           channel: "Object Detection"
+          group: "Fool Notice"
       action: notify.group_notify
     - delay:
         hours: 0
