@@ -217,6 +217,8 @@ automation:
       service: script.turn_on
     - data_template:
         message: "Rejoice! For now is the blessed time for home assistant has once again booted."
+        data:
+          timeout: 300
       service: notify.group_notify
       
   - id: 'ha_down'
@@ -228,6 +230,8 @@ automation:
     action:
     - data_template:
         message: "Home Assistant is now shutting down"
+        data:
+          timeout: 300
       service: notify.group_notify
 
   - id: 'house_sts_occupants'
@@ -263,6 +267,9 @@ automation:
     - data_template:
         message: >
           Occupancy mode changed to {{ states('binary_sensor.house_sts_occupants') }}
+        data:
+          timeout: 1200
+          channel: "Occupancy"
       service: notify.group_notify
 
   - id: 'DTE_cheap_switch'
