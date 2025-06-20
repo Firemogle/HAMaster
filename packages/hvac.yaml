@@ -87,6 +87,13 @@ template:
         state: >
           {{ state_attr('climate.hvac_local','hvac_action') == 'heating'
              or state_attr('climate.hvac_local','hvac_action') == 'cooling' }}
+
+  - binary_sensor:
+      - name: hvac_fan_req
+        state: >
+          {{ is_state('binary_sensor.hvac_running', 'on')
+             or is_state('binary_sensor.house_sts_hum_active_req', 'on')
+             or (states('sensor.hvac_on_timer')|int(default=20) >= (60 - now().minute)) }}
              
   - sensor:
       - name: hvac_target_humidity
@@ -98,9 +105,15 @@ template:
             {{ (0.0049*state_attr('weather.karb_daynight', 'temperature')|float(default=0)+0.2668)*100 }}
           {% endif %}
 
-timer:
-  house_hvac_run_time:
-    duration: "01:00:00"
+sensor:
+  - platform: history_stats
+    name: hvac_on_timer
+    entity_id: binary_sensor.hvac_fan_req
+    state: "on"
+    type: time
+    start: "{{ now().replace(minute=0, second=0, microsecond=0) }}"
+    end: "{{ now() }}"
+
 
 automation:
   - id: 'house_hvac_ena'
@@ -148,23 +161,6 @@ automation:
         humidity: >
           {{ states('sensor.hvac_target_humidity')|int(default=20) }}
 
-  - id: 'house_active_hum'
-    alias: house_active_hum
-    initial_state: 'off'
-    trigger:
-    - entity_id: binary_sensor.house_sts_hum_active_req
-      platform: state
-    condition: []
-    action:
-    - data:
-        entity_id: climate.hvac_local
-        fan_mode: >
-          {% if is_state('binary_sensor.house_sts_hum_active_req', 'on') %}
-            Low
-          {% else %} 
-            Auto low
-          {% endif %}
-      service: climate.set_fan_mode
 
   - id: 'house_booster_on'
     alias: house_booster_on
@@ -177,29 +173,14 @@ automation:
     - data:
         entity_id: climate.hvac_local
         fan_mode: >
-          {% if is_state('binary_sensor.hvac_running', 'on') %}
+          {% if is_state('binary_sensor.hvac_fan_req', 'on') %}
             Low
           {% else %} 
             Auto low
           {% endif %}
       service: climate.set_fan_mode
 
-  - id: 'house_min_fan'
-    alias: house_min_fan
-    initial_state: 'off'
-    trigger:
-    - entity_id: binary_sensor.hvac_running
-      platform: state
-    condition: []
-    action:
-    - data:
-        entity_id: timer.house_hvac_run_time
-      service: >
-          {% if is_state('binary_sensor.hvac_running', 'on') %}
-            timer.start
-          {% else %} 
-            timer.pause
-          {% endif %}
+
 
 
 
