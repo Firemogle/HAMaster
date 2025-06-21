@@ -3,7 +3,7 @@ packages:
     file: packages/add_light.yaml
     vars:
       pin: GPIO37
-      length: 791
+      length: 803
       color_line: RGB
       name: rb_string
   string_light_part: !include 
@@ -14,6 +14,13 @@ packages:
       start: 0
       end: 427
   irrigation: !include packages/rain_barrel_irrigation.yaml
+
+light:
+  - id: !extend decklight
+    segments:
+      - id: rb_string
+        from: 782
+        to: 802
 
 esphome:
   name: rainbrarrel
