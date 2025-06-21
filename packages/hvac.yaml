@@ -166,7 +166,7 @@ automation:
     alias: house_booster_on
     initial_state: 'off'
     trigger:
-    - entity_id: binary_sensor.hvac_running
+    - entity_id: binary_sensor.hvac_fan_req
       platform: state
     condition: []
     action:
