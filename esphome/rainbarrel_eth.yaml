@@ -19,7 +19,7 @@ light:
   - id: !extend decklight
     segments:
       - id: rb_string
-        from: 782
+        from: 783
         to: 802
 
 esphome:
