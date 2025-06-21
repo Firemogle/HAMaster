@@ -93,7 +93,8 @@ template:
         state: >
           {{ is_state('binary_sensor.hvac_running', 'on')
              or is_state('binary_sensor.house_sts_hum_active_req', 'on')
-             or ((60 - now().minute)) - (states('sensor.hvac_on_timer')|float)*60  >= 20 }}
+             or ((60 - now().minute)) <= (20-(states('sensor.hvac_on_timer')|float))
+             or now().hour == 19 }}
              
   - sensor:
       - name: hvac_target_humidity
