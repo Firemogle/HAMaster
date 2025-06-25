@@ -15,7 +15,6 @@ sensor:
   - platform: integration
     source: sensor.water_flow_rate
     name: total_water_usage_integrated
-    unit_prefix: None
     round: 2
     method: trapezoidal
     unit_time: min
