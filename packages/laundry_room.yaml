@@ -9,12 +9,3 @@ template:
         device_class: "water"
         state: >
           {{ states('sensor.hub_drop_4_4025c2_total_water_used_today') }}
-
-# Integration sensor configuration
-sensor:
-  - platform: integration
-    source: sensor.water_flow_rate
-    name: total_water_usage_integrated
-    round: 2
-    method: trapezoidal
-    unit_time: min
