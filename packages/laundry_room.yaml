@@ -8,4 +8,14 @@ template:
         state_class: "total_increasing"
         device_class: "water"
         state: >
-          {{ states('sensor.hub_drop_4_4025c2_total_water_used_today') }}
+          {{ states('sensor.daily_water_filtered') }}
+
+          
+sensor:
+  - platform: statistics
+    name: daily_water_filtered
+    entity_id: sensor.hub_drop_4_4025c2_total_water_used_today
+    state_characteristic: value_max
+    max_age:
+      minutes: 2
+    sampling_size: 10
