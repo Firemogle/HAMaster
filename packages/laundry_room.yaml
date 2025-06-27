@@ -10,6 +10,12 @@ template:
         state: >
           {{ states('sensor.daily_water_filtered') }}
 
+  - binary_sensor:
+      - name: leak_detectrd
+        state: >
+          {{ is_state('binary_sensor.laundry_leak_moisture', 'on')
+             or is_state('binary_sensor.kitchen_sink_moisture', 'on') }}
+
           
 sensor:
   - platform: statistics
