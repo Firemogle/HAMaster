@@ -3,7 +3,8 @@ esphome:
   friendly_name: Irrigation Control Two
   
 esp32:
-  board: esp-wrover-kit
+  platform: ESP32
+  board: nodemcu-32s
 
 
 wifi:
