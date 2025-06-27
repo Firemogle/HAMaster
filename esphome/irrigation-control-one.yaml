@@ -1,8 +1,9 @@
 esphome:
   name: irrcntone
   friendly_name: Irrigation Control One
+  
 esp32:
-  board: esp32dev
+  board: nodemcu-32s
 
 
 wifi:
