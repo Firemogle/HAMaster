@@ -3,7 +3,6 @@ esphome:
   friendly_name: Irrigation Control Two
   
 esp32:
-  platform: ESP32
   board: nodemcu-32s
 
 
