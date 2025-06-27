@@ -30,8 +30,8 @@ automation:
   - alias: turn_off_house_water
     initial_state: 'off'
     trigger:
-    - platform: time
-      at: '1:30:00'
+    - entity_id: binary_sensor.leak_detectrd
+      platform: state
     condition: []
     action:
     - data:
