@@ -1,15 +1,9 @@
 esphome:
   name: irrcnttwo
   friendly_name: Irrigation Control Two
-  platformio_options:
-    board_build.flash_mode: dio
-    board_build.mcu: esp32s3
-
+  
 esp32:
-  board: esp32-s3-devkitc-1
-  variant: esp32s3
-  framework:
-    type: esp-idf
+  board: esp32dev
 
 
 wifi:
