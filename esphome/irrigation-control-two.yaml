@@ -3,7 +3,7 @@ esphome:
   friendly_name: Irrigation Control Two
   
 esp32:
-  board: esp32-s3-devkitc-1
+  board: az-delivery-devkit-v4
 
 
 wifi:
