@@ -37,3 +37,17 @@ automation:
     - data:
         entity_id: switch.hub_drop_4_4025c2_water_supply
       service: switch.turn_off
+
+
+alert:
+  water_leak:
+    name: water_leak
+    done_message: "Leak Reaolved"
+    message: "House Leak Detected, water shut off"
+    entity_id: binary_sensor.leak_detectrd
+    state: 'on'
+    repeat: 30
+    can_acknowledge: true
+    skip_first: false
+    notifiers:
+      - group_notify
