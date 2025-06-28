@@ -141,10 +141,10 @@ sensor:
     name: "Tank probe A2D"
     id: raw_dist
     update_interval: 5s
-    #filters:
-    #  - sliding_window_moving_average:
-    #      window_size: 600
-    #      send_every: 60
+    filters:
+      - sliding_window_moving_average:
+          window_size: 12
+          send_every: 12
   - platform: template
     name: "Tank Volume"
     id: tank_vol
@@ -152,7 +152,7 @@ sensor:
     device_class: volume_storage
   - platform: template
     name: "Tank Percentage"
-    lambda: return (((id(raw_dist).state) - 3.5) / (-0.5)) * 100;
+    lambda: return (id(raw_dist).state/2.815);
     id: tank_per
     device_class: humidity
               
