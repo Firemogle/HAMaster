@@ -350,3 +350,14 @@ automation:
           - service: input_boolean.turn_off
             entity_id: input_boolean.house_sts_vacation
     mode: queued
+
+  - id: 'refresh_zwave_lights'
+    alias: refresh_zwave_lights
+    trigger:
+      - platform: time_pattern
+        minutes: "/10"
+    action:
+      - delay: "00:00:{{ range(0, 60)|random }}"
+      - service: zwave_js.refresh_value
+        target:
+          entity_id: light.livingroom_entry
