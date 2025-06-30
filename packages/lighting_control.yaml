@@ -1,0 +1,72 @@
+homeassistant:
+  customize:
+
+
+script:
+  house_home:
+    alias: house_home
+    sequence:
+      - action: light.turn_on
+        metadata: {}
+        data:
+          brightness_pct: 60
+        target:
+          entity_id:
+            - light.kitchen_sink
+            - light.cabinet_top
+      - action: light.turn_on
+        metadata: {}
+        data:
+          brightness_pct: 100
+        target:
+          entity_id:
+            - light.cabinet_bottom
+            - light.stove
+            - light.main_livingroom
+      - action: fan.turn_on
+        metadata: {}
+        data: {}
+        target:
+          entity_id: fan.kitchen_fan
+      - action: switch.turn_on
+        metadata: {}
+        data: {}
+        target:
+          entity_id: switch.livingroom_subwoofer
+      - action: lock.unlock
+        metadata: {}
+        data: {}
+        target:
+          entity_id: lock.front_door
+
+  house_away:
+    alias: house_away
+    sequence:
+      - action: light.turn_off
+        metadata: {}
+        data: {}
+        target:
+          floor_id:
+            - basement
+            - upstairs
+          area_id:
+            - bathroom
+            - 63db88fe052b434c86e1d37781ce0972
+            - 259e54ef72a347c2b9fa159e5bcd32b7
+      - action: fan.turn_off
+        metadata: {}
+        data: {}
+        target:
+          floor_id:
+            - first_floor
+            - upstairs
+      - action: switch.turn_off
+        metadata: {}
+        data: {}
+        target:
+          entity_id: switch.livingroom_subwoofer
+      - action: lock.lock
+        metadata: {}
+        data: {}
+        target:
+          entity_id: lock.front_door
