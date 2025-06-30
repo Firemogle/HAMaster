@@ -70,3 +70,50 @@ script:
         data: {}
         target:
           entity_id: lock.front_door
+
+  house_night:
+    alias: house_night
+    sequence:
+    sequence:
+      - action: light.turn_off
+        metadata: {}
+        data: {}
+        target:
+          floor_id: basement
+          area_id:
+            - 21aee0f09bbf4d90b3f9367d6e75982b
+            - b242500e2dba11eba7ce67962ad1652d
+            - 259e54ef72a347c2b9fa159e5bcd32b7
+            - 3e1959c84fce49969395cd95d025ef2e
+            - 452faf27ea29485da59632cea146740b
+            - upstairs_hallway
+          entity_id:
+            - light.hallway_light
+            - light.kitchen_fan
+            - light.kitchen_sink
+            - light.kitchen_light_switch
+      - action: light.turn_on
+        metadata: {}
+        data:
+          brightness_pct: 25
+          rgb_color:
+            - 255
+            - 255
+            - 255
+          effect: None
+        target:
+          entity_id:
+            - light.cabinet_bottom
+            - light.cabinet_top
+            - light.stove
+      - action: lock.lock
+        metadata: {}
+        data: {}
+        target:
+           floor_id: first_floor
+      - action: switch.turn_off
+        metadata: {}
+        data: {}
+        target:
+          entity_id: switch.garage_wall_switch
+      
