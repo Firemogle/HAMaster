@@ -117,18 +117,6 @@ sensor:
 
 
 automation:
-  - id: 'house_hvac_ena'
-    alias: house_hvac_ena
-    initial_state: 'off'
-    trigger:
-    - entity_id: binary_sensor.house_sts_hvac_run
-      platform: state
-    condition: []
-    action:
-    - data:
-        entity_id: script.hvac_run_stop_uni
-      service: script.turn_on
-
   - id: 'house_hvac_set'
     alias: house_hvac_set
     initial_state: 'off'
@@ -140,6 +128,8 @@ automation:
     - entity_id: binary_sensor.house_sts_vacation
       platform: state
     - entity_id: binary_sensor.house_sts_incoming
+      platform: state
+    - entity_id: binary_sensor.house_sts_hvac_run
       platform: state
     condition: []
     action:
