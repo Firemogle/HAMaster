@@ -1,24 +1,6 @@
 homeassistant:
   customize:    
     
-    
-automation:
-  - alias: backyard_person_detected
-    trigger: 
-      platform: state
-      entity_id: binary_sensor.backyard_person
-      from: 'off'
-      to: 'on'
-    condition:
-      - condition: state
-        entity_id: lock.front_door
-        state: locked
-    action:
-      - service: camera.snapshot
-        data:
-          entity_id: camera.backyard_last_person
-          filename: /config/www/snapshot1.jpg
-
 
 script:
   by_irrigation:
@@ -26,8 +8,25 @@ script:
     sequence:
       - service: switch.turn_on
         data:
-          entity_id: switch.rainbrarrel_rainbarrel_sol
-      - delay: '00:05:00'
-      - service: switch.turn_off
-        data:
-          entity_id: switch.rainbrarrel_rainbarrel_sol
+          entity_id: switch.rainbrarrel_backyard_irrigation
+
+
+
+automation:
+  - id: 'irrigattion'
+    alias: irrigation
+    trigger:
+      - platform: calendar
+        event: start
+        entity_id: calendar.teamcarriger_gmail_com
+    condition:
+      - condition: template
+        value_template: "{{ 'Irrigate' in trigger.calendar_event.summary }}"
+    action:
+      - if:
+          - "{{ trigger.event == 'start' }}"
+        then:
+          - service: switch.turn_on
+            entity_id: switch.rainbrarrel_backyard_irrigation
+    mode: queued
+
