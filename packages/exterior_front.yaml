@@ -39,30 +39,3 @@ plant:
     min_moisture: 20
     min_conductivity: 50
       
-    
-      
-template:
-  - binary_sensor:
-      - name: doorbell_person
-        state: >
-          {{ is_state('binary_sensor.doorbell_person_raw', 'on') }}
-        delay_off:
-          minutes: 5
-    
-
-automation:
-  - alias: doorbell_person_detected
-    trigger: 
-      platform: state
-      entity_id: binary_sensor.doorbell_person
-      from: 'off'
-      to: 'on'
-    condition:
-      - condition: state
-        entity_id: lock.front_door
-        state: locked
-    action:
-      - service: camera.snapshot
-        data:
-          entity_id: camera.doorbell_last_person
-          filename: /config/www/snapshot1.jpg
