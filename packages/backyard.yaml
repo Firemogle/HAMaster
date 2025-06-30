@@ -1,16 +1,5 @@
 homeassistant:
   customize:    
-    
-
-script:
-  by_irrigation:
-    alias: by_irrigation
-    sequence:
-      - service: switch.turn_on
-        data:
-          entity_id: switch.rainbrarrel_backyard_irrigation
-
-
 
 automation:
   - id: 'irrigattion'
