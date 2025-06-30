@@ -95,6 +95,8 @@ template:
              or is_state('binary_sensor.house_sts_hum_active_req', 'on')
              or ((60 - now().minute)) <= (20-(states('sensor.hvac_on_timer')|float*60))
              or now().hour == 19 }}
+        delay_off:
+          minutes: 2
              
   - sensor:
       - name: hvac_target_humidity
