@@ -247,7 +247,7 @@ automation:
     condition: []
     action:
     - data:
-        entity_id: script.hvac_run_setpoint
+        entity_id: script.hvac_run_stop_uni
       service: script.turn_on
     - data:
         entity_id: alarm_control_panel.alarm_panel
