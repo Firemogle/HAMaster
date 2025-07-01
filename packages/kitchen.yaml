@@ -30,6 +30,15 @@ template:
       - name: sliding_glass_door_opened
         state: >
           {{ is_state('binary_sensor.sliding_glass_door', 'on') }}
+
+sensor:
+  - platform: integration
+    source: sensor.shelly1pm_c45bbe6b423f_power
+    name: kitchen_fan_power
+    unit_prefix: k
+    unit_time: h 
+    round: 2  
+    method: left 
   
     
 automation:
