@@ -38,8 +38,8 @@ light:
 
 sensor:
   - platform: integration
-    source: sensor.kids_fan_power
-    name: sensor.shelly1pm_c45bbe6b41e3_power
+    source: sensor.shelly1pm_c45bbe6b41e3_power
+    name: kids_fan_power
     unit_prefix: k
     unit_time: h 
     round: 2  
