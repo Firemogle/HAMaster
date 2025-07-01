@@ -1,0 +1,11 @@
+homeassistant:
+  customize:
+
+sensor:
+  - platform: integration
+    source: sensor.shelly1pm_c45bbe6b427e_power
+    name: shed_light_power
+    unit_prefix: k
+    unit_time: h 
+    round: 2  
+    method: left 
