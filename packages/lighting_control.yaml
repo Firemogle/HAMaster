@@ -6,16 +6,14 @@ script:
   house_home:
     alias: house_home
     sequence:
-      - action: light.turn_on
-        metadata: {}
+      - service: light.turn_on
         data:
           brightness_pct: 60
         target:
           entity_id:
             - light.kitchen_sink
             - light.cabinet_top
-      - action: light.turn_on
-        metadata: {}
+      - service: light.turn_on
         data:
           brightness_pct: 100
         target:
@@ -23,28 +21,20 @@ script:
             - light.cabinet_bottom
             - light.stove
             - light.main_livingroom
-      - action: fan.turn_on
-        metadata: {}
-        data: {}
+      - service: fan.turn_on
         target:
           entity_id: fan.kitchen_fan
-      - action: switch.turn_on
-        metadata: {}
-        data: {}
+      - service: switch.turn_on
         target:
           entity_id: switch.livingroom_subwoofer
-      - action: lock.unlock
-        metadata: {}
-        data: {}
+      - service: lock.unlock
         target:
           entity_id: lock.front_door
 
   house_away:
     alias: house_away
     sequence:
-      - action: light.turn_off
-        metadata: {}
-        data: {}
+      - service: light.turn_off
         target:
           floor_id:
             - basement
@@ -53,30 +43,22 @@ script:
             - bathroom
             - 63db88fe052b434c86e1d37781ce0972
             - 259e54ef72a347c2b9fa159e5bcd32b7
-      - action: fan.turn_off
-        metadata: {}
-        data: {}
+      - service: fan.turn_off
         target:
           floor_id:
             - first_floor
             - upstairs
-      - action: switch.turn_off
-        metadata: {}
-        data: {}
+      - service: switch.turn_off
         target:
           entity_id: switch.livingroom_subwoofer
-      - action: lock.lock
-        metadata: {}
-        data: {}
+      - service: lock.lock
         target:
           entity_id: lock.front_door
 
   house_night:
     alias: house_night
     sequence:
-      - action: light.turn_off
-        metadata: {}
-        data: {}
+      - service: light.turn_off
         target:
           floor_id: basement
           area_id:
@@ -91,42 +73,30 @@ script:
             - light.kitchen_fan
             - light.kitchen_sink
             - light.kitchen_light_switch
-      - action: light.turn_on
-        metadata: {}
+      - service: light.turn_on
         data:
           brightness_pct: 25
-          rgb_color:
-            - 255
-            - 255
-            - 255
-          effect: None
+          rgb_color: [255, 255, 255]
+          effect: none
         target:
           entity_id:
             - light.cabinet_bottom
             - light.cabinet_top
             - light.stove
-      - action: lock.lock
-        metadata: {}
-        data: {}
+      - service: lock.lock
         target:
-           floor_id: first_floor
-      - action: switch.turn_off
-        metadata: {}
-        data: {}
+          floor_id: first_floor
+      - service: switch.turn_off
         target:
           entity_id: switch.garage_wall_switch
 
   house_wakeup:
     alias: house_wakeup
     sequence:
-      - action: light.turn_on
-        metadata: {}
+      - service: light.turn_on
         data:
           brightness_pct: 100
-          rgb_color:
-            - 255
-            - 255
-            - 255
+          rgb_color: [255, 255, 255]
         target:
           entity_id:
             - light.cabinet_bottom
@@ -137,26 +107,18 @@ script:
             - light.front_light3_level_light_color_on_off
             - light.front_garden_level_light_color_on_off
             - light.front_garden_level_light_color_on_of
-      - action: light.turn_on
-        metadata: {}
+      - service: light.turn_on
         data:
           brightness_pct: 55
-          rgb_color:
-            - 255
-            - 255
-            - 255
+          rgb_color: [255, 255, 255]
         target:
           entity_id:
             - light.kitchen_sink
             - light.cabinet_top
-      - action: fan.turn_on
-        metadata: {}
-        data: {}
+      - service: fan.turn_on
         target:
           floor_id: first_floor
-      - action: switch.turn_on
-        metadata: {}
-        data: {}
+      - service: switch.turn_on
         target:
           entity_id:
             - switch.garage_wall_switch
@@ -165,14 +127,10 @@ script:
   house_evening:
     alias: house_evening
     sequence:
-      - action: light.turn_on
-        metadata: {}
+      - service: light.turn_on
         data:
-          effect: None
-          rgb_color:
-            - 255
-            - 255
-            - 255
+          effect: none
+          rgb_color: [255, 255, 255]
           brightness_pct: 80
         target:
           entity_id:
@@ -184,23 +142,17 @@ script:
             - light.landscape
             - light.rainbrarrel_decklight
             - light.porch_light_light
-      - action: switch.turn_on
-        metadata: {}
-        data: {}
+      - service: switch.turn_on
         target:
           entity_id: switch.garage_wall_switch
-      - action: switch.turn_off
-        metadata: {}
-        data: {}
+      - service: switch.turn_off
         target:
           entity_id: switch.livingroom_subwoofer
-          
+
   ext_lights_off:
     alias: ext_lights_off
     sequence:
-      - action: light.turn_off
-        metadata: {}
-        data: {}
+      - service: light.turn_off
         target:
           area_id:
             - 21aee0f09bbf4d90b3f9367d6e75982b
