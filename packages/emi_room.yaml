@@ -35,6 +35,18 @@ light:
       - light.emi_star_1
       - light.emi_star_2
       - light.emi_star_3
+
+    sensor:
+      - platform: integration
+        source: sensor.kids_fan_power
+        name: sensor.shelly1pm_c45bbe6b41e3_power
+        unit_prefix: k
+        unit_time: h 
+        round: 2  
+        method: left 
+
+
+      
     
 media_player:
   - platform: kodi
