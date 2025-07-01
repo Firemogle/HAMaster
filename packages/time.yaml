@@ -91,7 +91,7 @@ automation:
         entity_id: scene.house_wakeup
       service: scene.turn_on
     - data:
-        entity_id: script.hvac_run_setpoint
+        entity_id: script.hvac_run_stop_uni
       service: script.turn_on
     - data_template:
         entity_id: >
