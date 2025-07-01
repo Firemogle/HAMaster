@@ -15,89 +15,61 @@ homeassistant:
     binary_sensor.house_sts_occupants:
       device_class: occupancy
       
-      
 input_boolean:
   house_sts_guest:
-    name: house_sts_guest
     initial: false
   house_sts_dte_cheap:
-    name: house_sts_dte_cheap
     initial: false
   house_sts_vacation:
-    name: house_sts_vacation
     initial: false
   jayhawk_lamp_req:
-    name: jayhawk_lamp_req
     initial: false
 
 template:
   - binary_sensor:
       - name: house_sts_occupants
-        state: >
-          {{ is_state('group.occupants', 'home') }}
-  - binary_sensor:
+        state: "{{ is_state('group.occupants', 'home') }}"
       - name: house_sts_guest
-        state: >
-          {{ is_state('input_boolean.house_sts_guest', 'on') }}
-  - binary_sensor:
+        state: "{{ is_state('input_boolean.house_sts_guest', 'on') }}"
       - name: house_sts_vacation
-        state: >
-          {{ is_state('input_boolean.house_sts_vacation', 'on') }}
-
-  - binary_sensor:
+        state: "{{ is_state('input_boolean.house_sts_vacation', 'on') }}"
       - name: house_sts_away_vacation
         state: >
-          {{ ((states.proximity.brett_home.state)|float(default=0) > 120 and 
-             (states.proximity.liz_home.state)|float(default=0)) > 120 and 
-              is_state('binary_sensor.house_sts_vacation', 'on') }}
-              
-  - binary_sensor:
+          {{ states('proximity.brett_home') | float(0) > 120 and
+             states('proximity.liz_home') | float(0) > 120 and
+             is_state('binary_sensor.house_sts_vacation', 'on') }}
       - name: house_sts_incoming
         state: >
           {{ is_state('device_tracker.google_maps_116842525089175776476', 'homecoming')
              or is_state('device_tracker.google_maps_108379141181739394475', 'homecoming') }}
-
-  - binary_sensor:
       - name: house_sts_dte_cheap
-        state: >
-          {{ is_state('input_boolean.house_sts_dte_cheap', 'on') }}
-
-  - binary_sensor:
+        state: "{{ is_state('input_boolean.house_sts_dte_cheap', 'on') }}"
       - name: house_sts_jayhawks
-        state: >
-          {{ is_state('input_boolean.jayhawk_lamp_req', 'on') }}
-             
-  - binary_sensor:
+        state: "{{ is_state('input_boolean.jayhawk_lamp_req', 'on') }}"
       - name: house_boot_complete
-        state: >
-          {{ states('sensor.uptime')|float(default=0) > 5 }}
-          
-  - binary_sensor:
+        state: "{{ states('sensor.uptime') | float(0) > 5 }}"
       - name: ingress_alarm
         state: >
-          {{ (states('alarm_control_panel.alarm_panel') == 'armed_away'
-             or states('alarm_control_panel.alarm_panel') == 'armed_home')
-             and states('group.security') == 'on' }}
-             
-  - binary_sensor:
+          {{ states('alarm_control_panel.alarm_panel') in ['armed_away', 'armed_home']
+             and is_state('group.security', 'on') }}
       - name: house_armed
-        state: >
-          {{ is_state('alarm_control_panel.alarm_panel','disarmed') }}
-          
+        state: "{{ is_state('alarm_control_panel.alarm_panel', 'disarmed') }}"
+
   - sensor:
       - name: timeday
         state: >
-          {% if is_state('binary_sensor.house_wake_for_work', 'on') or is_state('binary_sensor.house_weekend_wakeup', 'on') or is_state('binary_sensor.morning', 'on')%}
-            {{ "morning" }}
-          {% elif is_state('binary_sensor.afternoon', 'on') %} 
-            {{ "afternoon" }}
+          {% if is_state('binary_sensor.house_wake_for_work', 'on') or
+                is_state('binary_sensor.house_weekend_wakeup', 'on') or
+                is_state('binary_sensor.morning', 'on') %}
+            morning
+          {% elif is_state('binary_sensor.afternoon', 'on') %}
+            afternoon
           {% elif is_state('binary_sensor.evening', 'on') %}
-            {{ "evening" }}
+            evening
           {% else %}
-            {{ "night" }}
+            night
           {% endif %}
-          
-          
+
 alert:
   ingress_alarm:
     name: ingress_alarm
@@ -110,85 +82,33 @@ alert:
     skip_first: true
     notifiers:
       - group_notify
-      
+
 input_number:
-  hvac_home_ac_temp:
+  <<: &temp_slider
     mode: slider
     min: 60
     max: 85
     step: 1
     unit_of_measurement: "F"
-  
-  hvac_home_heat_temp:
-    mode: slider
-    min: 60
-    max: 85
-    step: 1
-    unit_of_measurement: "F"
-  
-  hvac_away_ac_temp:
-    mode: slider
-    min: 60
-    max: 85
-    step: 1
-    unit_of_measurement: "F"
-  
-  hvac_away_heat_temp:
-    mode: slider
-    min: 60
-    max: 85
-    step: 1
-    unit_of_measurement: "F"
-  
-  hvac_overnight_ac_temp:
-    mode: slider
-    min: 60
-    max: 85
-    step: 1
-    unit_of_measurement: "F"
-  
-  hvac_overnight_heat_temp:
-    mode: slider
-    min: 60
-    max: 85
-    step: 1
-    unit_of_measurement: "F"
-  
-  hvac_vacation_ac_temp:
-    mode: slider
-    min: 60
-    max: 85
-    step: 1
-    unit_of_measurement: "F"
-  
-  hvac_vacation_heat_temp:
-    mode: slider
-    min: 60
-    max: 85
-    step: 1
-    unit_of_measurement: "F"
-    
-  hvac_ac_enable_temp:
-    mode: slider
-    min: 60
-    max: 85
-    step: 1
-    unit_of_measurement: "F"
-  
-  hvac_heat_enable_temp:
-    mode: slider
-    min: 60
-    max: 85
-    step: 1
-    unit_of_measurement: "F"
-  
+
+  hvac_home_ac_temp: *temp_slider
+  hvac_home_heat_temp: *temp_slider
+  hvac_away_ac_temp: *temp_slider
+  hvac_away_heat_temp: *temp_slider
+  hvac_overnight_ac_temp: *temp_slider
+  hvac_overnight_heat_temp: *temp_slider
+  hvac_vacation_ac_temp: *temp_slider
+  hvac_vacation_heat_temp: *temp_slider
+  hvac_ac_enable_temp: *temp_slider
+  hvac_heat_enable_temp: *temp_slider
+
   hvac_humidity_max:
     mode: slider
     min: 30
     max: 55
     step: 1
     unit_of_measurement: "%"
-    
+
   main_bath_humidity_thresh:
     mode: slider
     min: 0
@@ -203,81 +123,76 @@ input_number:
     step: 1
     unit_of_measurement: "F"
 
-
 automation:
-  - id: 'ha_start'
-    alias: ha_start
+  - alias: ha_start
+    id: ha_start
     trigger:
-    - event: start
-      platform: homeassistant
-    condition: []
+      - platform: homeassistant
+        event: start
     action:
-    - data:
-        entity_id: script.initialization
-      service: script.turn_on
-    - data_template:
-        message: "Rejoice! For now is the blessed time for home assistant has once again booted."
+      - service: script.turn_on
+        target:
+          entity_id: script.initialization
+      - service: notify.group_notify
         data:
-          timeout: 300
-          tag: "system"
-          color: "red"
-      service: notify.group_notify
-      
-  - id: 'ha_down'
-    alias: ha_down
-    trigger:
-    - event: shutdown
-      platform: homeassistant
-    condition: []
-    action:
-    - data_template:
-        message: "Home Assistant is now shutting down"
-        data:
-          timeout: 300
-          tag: "system"
-          color: "red"
-      service: notify.group_notify
+          message: "Rejoice! For now is the blessed time for home assistant has once again booted."
+          data:
+            timeout: 300
+            tag: "system"
+            color: "red"
 
-  - id: 'house_sts_occupants'
-    alias: house_sts_occupants
-    initial_state: 'off'
+  - alias: ha_down
+    id: ha_down
     trigger:
-    - entity_id: binary_sensor.house_sts_occupants
-      platform: state
-    condition: []
+      - platform: homeassistant
+        event: shutdown
     action:
-    - data:
-        entity_id: script.hvac_run_stop_uni
-      service: script.turn_on
-    - data:
-        entity_id: alarm_control_panel.alarm_panel
-        code: !secret alarmcode
-      service_template: >
-        {% if is_state('binary_sensor.house_sts_occupants', 'off') and is_state('binary_sensor.house_sts_guest', 'off') %}
-          alarm_control_panel.alarm_arm_away
-        {% elif is_state('binary_sensor.house_sts_occupants', 'off') and is_state('house_status', 'vacation') %}
-          alarm_control_panel.alarm_arm_away
-        {% else %}
-          alarm_control_panel.alarm_disarm
-        {% endif %}
-    - data_template:
-        entity_id: >
-             {% if is_state('binary_sensor.house_sts_occupants', 'off') and is_state('binary_sensor.house_sts_guest', 'off') %}
-               scene.house_away
-             {% else %}
-               scene.house_home
-             {% endif %} 
-      service: scene.turn_on
-    - data_template:
-        message: >
-          Occupancy mode changed to {{ states('binary_sensor.house_sts_occupants') }}
+      - service: notify.group_notify
         data:
-          timeout: 1200
-          channel: "Occupancy"
-      service: notify.group_notify
+          message: "Home Assistant is now shutting down"
+          data:
+            timeout: 300
+            tag: "system"
+            color: "red"
 
-  - id: 'DTE_cheap_switch'
-    alias: DTE_cheap_switch
+  - alias: house_sts_occupants
+    id: house_sts_occupants
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.house_sts_occupants
+    action:
+      - service: script.turn_on
+        target:
+          entity_id: script.hvac_run_stop_uni
+      - service: >
+          {% if is_state('binary_sensor.house_sts_occupants', 'off') and is_state('binary_sensor.house_sts_guest', 'off') %}
+            alarm_control_panel.alarm_arm_away
+          {% elif is_state('binary_sensor.house_sts_occupants', 'off') and is_state('binary_sensor.house_sts_vacation', 'on') %}
+            alarm_control_panel.alarm_arm_away
+          {% else %}
+            alarm_control_panel.alarm_disarm
+          {% endif %}
+        data:
+          entity_id: alarm_control_panel.alarm_panel
+          code: !secret alarmcode
+      - service: scene.turn_on
+        target:
+          entity_id: >
+            {% if is_state('binary_sensor.house_sts_occupants', 'off') and is_state('binary_sensor.house_sts_guest', 'off') %}
+              scene.house_away
+            {% else %}
+              scene.house_home
+            {% endif %}
+      - service: notify.group_notify
+        data:
+          message: "Occupancy mode changed to {{ states('binary_sensor.house_sts_occupants') }}"
+          data:
+            timeout: 1200
+            channel: "Occupancy"
+
+  - alias: DTE_cheap_switch
+    id: DTE_cheap_switch
+    mode: queued
     trigger:
       - platform: calendar
         event: start
@@ -289,18 +204,20 @@ automation:
       - condition: template
         value_template: "{{ 'DTE Cheap' in trigger.calendar_event.summary }}"
     action:
-      - if:
-          - "{{ trigger.event == 'start' }}"
-        then:
-          - service: input_boolean.turn_on
-            entity_id: input_boolean.house_sts_dte_cheap
-        else:
+      - choose:
+          - conditions: "{{ trigger.event == 'start' }}"
+            sequence:
+              - service: input_boolean.turn_on
+                target:
+                  entity_id: input_boolean.house_sts_dte_cheap
+        default:
           - service: input_boolean.turn_off
-            entity_id: input_boolean.house_sts_dte_cheap
+            target:
+              entity_id: input_boolean.house_sts_dte_cheap
+
+  - alias: house_guest_switch
+    id: house_guest_switch
     mode: queued
-      
-  - id: 'house_guest_switch'
-    alias: house_guest_switch
     trigger:
       - platform: calendar
         event: start
@@ -309,27 +226,29 @@ automation:
         event: end
         entity_id: calendar.teamcarriger_gmail_com
     condition:
-      condition: or
-      conditions:
-        - condition: template
-          value_template: "{{ 'in town' in trigger.calendar_event.summary }}"
-        - condition: template
-          value_template: "{{ 'Date Night' in trigger.calendar_event.summary }}"
-        - condition: template
-          value_template: "{{ 'Cleaners' in trigger.calendar_event.summary }}"
+      - condition: or
+        conditions:
+          - condition: template
+            value_template: "{{ 'in town' in trigger.calendar_event.summary }}"
+          - condition: template
+            value_template: "{{ 'Date Night' in trigger.calendar_event.summary }}"
+          - condition: template
+            value_template: "{{ 'Cleaners' in trigger.calendar_event.summary }}"
     action:
-      - if:
-          - "{{ trigger.event == 'start' }}"
-        then:
-          - service: input_boolean.turn_on
-            entity_id: input_boolean.house_sts_guest
-        else:
+      - choose:
+          - conditions: "{{ trigger.event == 'start' }}"
+            sequence:
+              - service: input_boolean.turn_on
+                target:
+                  entity_id: input_boolean.house_sts_guest
+        default:
           - service: input_boolean.turn_off
-            entity_id: input_boolean.house_sts_guest
-    mode: queued
+            target:
+              entity_id: input_boolean.house_sts_guest
 
-  - id: 'house_vacation_switch'
-    alias: house_guestacation_switch
+  - alias: house_vacation_switch
+    id: house_vacation_switch
+    mode: queued
     trigger:
       - platform: calendar
         event: start
@@ -341,18 +260,19 @@ automation:
       - condition: template
         value_template: "{{ 'vacation' in trigger.calendar_event.summary }}"
     action:
-      - if:
-          - "{{ trigger.event == 'start' }}"
-        then:
-          - service: input_boolean.turn_on
-            entity_id: input_boolean.house_sts_vacation
-        else:
+      - choose:
+          - conditions: "{{ trigger.event == 'start' }}"
+            sequence:
+              - service: input_boolean.turn_on
+                target:
+                  entity_id: input_boolean.house_sts_vacation
+        default:
           - service: input_boolean.turn_off
-            entity_id: input_boolean.house_sts_vacation
-    mode: queued
+            target:
+              entity_id: input_boolean.house_sts_vacation
 
-  - id: 'refresh_zwave_lights'
-    alias: refresh_zwave_lights
+  - alias: refresh_zwave_lights
+    id: refresh_zwave_lights
     trigger:
       - platform: time_pattern
         minutes: "/10"
