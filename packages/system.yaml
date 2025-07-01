@@ -164,25 +164,35 @@ automation:
       - service: script.turn_on
         target:
           entity_id: script.hvac_run_stop_uni
-      - service: >
-          {% if is_state('binary_sensor.house_sts_occupants', 'off') and is_state('binary_sensor.house_sts_guest', 'off') %}
-            alarm_control_panel.alarm_arm_away
-          {% elif is_state('binary_sensor.house_sts_occupants', 'off') and is_state('binary_sensor.house_sts_vacation', 'on') %}
-            alarm_control_panel.alarm_arm_away
-          {% else %}
-            alarm_control_panel.alarm_disarm
-          {% endif %}
-        data:
-          entity_id: alarm_control_panel.alarm_panel
-          code: !secret alarmcode
-      - service: scene.turn_on
-        target:
-          entity_id: >
-            {% if is_state('binary_sensor.house_sts_occupants', 'off') and is_state('binary_sensor.house_sts_guest', 'off') %}
-              scene.house_away
-            {% else %}
-              scene.house_home
-            {% endif %}
+      - choose:
+          - conditions: >
+              {{ is_state('binary_sensor.house_sts_occupants', 'off') and is_state('binary_sensor.house_sts_guest', 'off') }}
+            sequence:
+              - service: alarm_control_panel.alarm_arm_away
+                data:
+                  entity_id: alarm_control_panel.alarm_panel
+                  code: !secret alarmcode
+              - service: scene.turn_on
+                target:
+                  entity_id: scene.house_away
+          - conditions: >
+              {{ is_state('binary_sensor.house_sts_occupants', 'off') and is_state('binary_sensor.house_sts_vacation', 'on') }}
+            sequence:
+              - service: alarm_control_panel.alarm_arm_away
+                data:
+                  entity_id: alarm_control_panel.alarm_panel
+                  code: !secret alarmcode
+              - service: scene.turn_on
+                target:
+                  entity_id: scene.house_away
+        default:
+          - service: alarm_control_panel.alarm_disarm
+            data:
+              entity_id: alarm_control_panel.alarm_panel
+              code: !secret alarmcode
+          - service: scene.turn_on
+            target:
+              entity_id: scene.house_home
       - service: notify.group_notify
         data:
           message: "Occupancy mode changed to {{ states('binary_sensor.house_sts_occupants') }}"
