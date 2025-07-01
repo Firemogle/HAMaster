@@ -7,7 +7,7 @@ homeassistant:
     sensor.home_security_state:
       hidden: true
     zone.brett_work:
-      radius: 5000
+      radius: 100
     device_tracker.google_maps_108379141181739394475:
       friendly_name: Liz
     device_tracker.google_maps_116842525089175776476:
