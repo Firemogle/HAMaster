@@ -158,4 +158,4 @@ sensor:
   - { power_id: cir13, platform: total_daily_energy,state_class: total_increasing, accuracy_decimals: 0, name: "Circuit 13 Daily Energy" }
   - { power_id: cir14, platform: total_daily_energy,state_class: total_increasing, accuracy_decimals: 0, name: "Circuit 14 Daily Energy" }
   - { power_id: cir15, platform: total_daily_energy,state_class: total_increasing, accuracy_decimals: 0, name: "Circuit 15 Daily Energy" }
-  - { power_id: cir16, platform: total_daily_energy,state_class: total_increasing, accuracy_decimals: 0, name: "Circuit 16 Daily Energy" }```
+  - { power_id: cir16, platform: total_daily_energy,state_class: total_increasing, accuracy_decimals: 0, name: "Circuit 16 Daily Energy" }
