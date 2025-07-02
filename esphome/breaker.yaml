@@ -29,11 +29,11 @@ logger:
   logs:
     sensor: INFO
 
-wifi:
-  ssid: !secret AP
-  password: !secret APPW
-
-captive_portal:
+ethernet:
+  type: RTL8201
+  mdc_pin: GPIO32
+  mdio_pin: GPIO33
+  clk_mode: GPIO0_IN
 
 i2c:
   sda: 5
