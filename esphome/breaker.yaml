@@ -121,19 +121,19 @@ sensor:
       - { phase_id: phase_a, input:  "1", power: { name:  "Solar 1 Power", id:  cir1, filters: [ *moving_avg, *pos ] } }
       - { phase_id: phase_b, input:  "2", power: { name:  "Solar 2 Power", id:  cir2, filters: [ *moving_avg, *pos ] } }
       #- { phase_id: phase_a, input:  "3", power: { name:  "Circuit 3 Power", id:  cir3, filters: [ *moving_avg, *pos ] } }
-      - { phase_id: phase_a, input:  "4", power: { name:  "Pump Power", id:  cir4, filters: [ *moving_avg, *pos ] } }
+      - { phase_id: phase_a, input:  "4", power: { name:  "Pump Power", id:  cir4, filters: [ *moving_avg, *pos, multiply: 2 ] } }
       - { phase_id: phase_a, input:  "5", power: { name:  "Dishwasher Power", id:  cir5, filters: [ *moving_avg, *pos ] } }
       #- { phase_id: phase_a, input:  "6", power: { name:  "Circuit 6 Power", id:  cir6, filters: [ *moving_avg, *pos ] } }
       - { phase_id: phase_a, input:  "7", power: { name:  "Range Power", id:  cir7, filters: [ *moving_avg, *pos ] } }
       - { phase_id: phase_b, input:  "8", power: { name:  "Furnance Power", id:  cir8, filters: [ *moving_avg, *pos ] } }
       #- { phase_id: phase_b, input:  "9", power: { name:  "Circuit 9 Power", id:  cir9, filters: [ *moving_avg, *pos ] } }
-      - { phase_id: phase_a, input: "10", power: { name: "Dryer Power", id: cir10, filters: [ *moving_avg, *pos ] } }
-      - { phase_id: phase_a, input: "11", power: { name: "Garage Power", id: cir11, filters: [ *moving_avg, *pos, multiply: 2 ] } }
+      - { phase_id: phase_b, input: "10", power: { name: "Dryer Power", id: cir10, filters: [ *moving_avg, *pos, multiply: 2 ] } }
+      - { phase_id: phase_b, input: "11", power: { name: "Garage Power", id: cir11, filters: [ *moving_avg, *pos ] } }
       #- { phase_id: phase_b, input: "12", power: { name: "Circuit 12 Power", id: cir12, filters: [ *moving_avg, *pos, multiply: 2 ] } }
-      - { phase_id: phase_a, input: "13", power: { name: "Entertainment Power", id: cir13, filters: [ *moving_avg, *pos ] } }
+      - { phase_id: phase_b, input: "13", power: { name: "Entertainment Power", id: cir13, filters: [ *moving_avg, *pos ] } }
       - { phase_id: phase_b, input: "14", power: { name: "Sump Power", id: cir14, filters: [ *moving_avg, *pos ] } }
       #- { phase_id: phase_a, input: "15", power: { name: "Circuit 15 Power", id: cir15, filters: [ *moving_avg, *pos ] } }
-      - { phase_id: phase_a, input: "16", power: { name: "Kitchen Power", id: cir16, filters: [ *moving_avg, *pos ] } }
+      - { phase_id: phase_a, input: "16", power: { name: "Kitchen1 Power", id: cir16, filters: [ *moving_avg, *pos ] } }
   - platform: template
     name: "Total Power"
     lambda: return id(phase_a_power).state + id(phase_b_power).state;
@@ -159,4 +159,4 @@ sensor:
   - { power_id: cir13, platform: total_daily_energy,state_class: total_increasing, accuracy_decimals: 0, name: "Entertainment Daily Energy" }
   - { power_id: cir14, platform: total_daily_energy,state_class: total_increasing, accuracy_decimals: 0, name: "Sump Daily Energy" }
   #- { power_id: cir15, platform: total_daily_energy,state_class: total_increasing, accuracy_decimals: 0, name: "Circuit 15 Daily Energy" }
-  - { power_id: cir16, platform: total_daily_energy,state_class: total_increasing, accuracy_decimals: 0, name: "Kitchen Daily Energy" }
+  - { power_id: cir16, platform: total_daily_energy,state_class: total_increasing, accuracy_decimals: 0, name: "Kitchen1 Daily Energy" }
