@@ -51,8 +51,8 @@ i2c:
   scl: 18
   scan: false
   #frequency: 150kHz  # recommended range is 50-200kHz but does not work after esphome 2024.10
-  frequency: 400kHz  # IMPORTANT: Handle Failed to read from sensor due to I2C error 3
-  timeout: 1ms # IMPORTANT: Handle Failed to read from sensor due to I2C error 3
+  frequency: 100kHz  # IMPORTANT: Handle Failed to read from sensor due to I2C error 3
+  #timeout: 1ms # IMPORTANT: Handle Failed to read from sensor due to I2C error 3
   id: i2c_a
 
 switch:
