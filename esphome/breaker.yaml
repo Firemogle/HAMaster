@@ -3,8 +3,7 @@ esphome:
   friendly_name: Emporia Home Energy Monitor
 
 external_components:
-#  - source: github://emporia-vue-local/esphome@dev
-  - source: github://digiblur/esphome-vue3@dev
+  - source: github://emporia-vue-local/esphome@vue3
     components:
       - emporia_vue
       
