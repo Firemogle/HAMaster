@@ -12,8 +12,7 @@ esp32:
   board: esp32dev
   framework:
     type: esp-idf
-    version: 4.4.8
-    platform_version: 5.4.0
+    version: 4.4.7
 
 
 preferences:
