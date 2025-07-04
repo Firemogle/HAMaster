@@ -2,10 +2,11 @@ esphome:
   name: "emporiavuehome"
   friendly_name: Emporia Home Energy Monitor
 
-#external_components:
-#  - source: github://emporia-vue-local/esphome@vue3
-#    components:
-#      - emporia_vue
+external_components:
+#  - source: github://emporia-vue-local/esphome@dev
+  - source: github://digiblur/esphome-vue3@dev
+    components:
+      - emporia_vue
       
 esp32:
   board: esp32dev
@@ -47,9 +48,9 @@ light:
 i2c:
   sda: 5
   scl: 18
-#  scan: false
-#  frequency: 400kHz  # IMPORTANT: Handle Failed to read from sensor due to I2C error 3
-#  timeout: 1ms # IMPORTANT: Handle Failed to read from sensor due to I2C error 3
+  scan: false
+  frequency: 400kHz  # IMPORTANT: Handle Failed to read from sensor due to I2C error 3
+  timeout: 1ms # IMPORTANT: Handle Failed to read from sensor due to I2C error 3
   id: i2c_a
 
 switch:
