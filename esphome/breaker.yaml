@@ -100,3 +100,18 @@ sensor:
         voltage:
           name: "Phase B Voltage"
           filters: [*moving_avg, *pos]
+    ct_clamps:
+      - phase_id: phase_a
+        input: "A"  # Verify the CT going to this device input also matches the phase/leg
+        power:
+          name: "Phase A Power"
+          id: phase_a_power
+          device_class: power
+          filters: [*moving_avg, *pos]
+      - phase_id: phase_b
+        input: "B"  # Verify the CT going to this device input also matches the phase/leg
+        power:
+          name: "Phase B Power"
+          id: phase_b_power
+          device_class: power
+          filters: [*moving_avg, *pos]
