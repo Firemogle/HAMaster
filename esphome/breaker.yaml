@@ -115,3 +115,46 @@ sensor:
           id: phase_b_power
           device_class: power
           filters: [*moving_avg, *pos]
+      # Pay close attention to set the phase_id for each breaker by matching it to the phase/leg it connects to in the panel
+      - { phase_id: phase_a, input:  "1", power: { name:  "Solar 1 Power", id:  cir1, filters: [ *moving_avg, *pos ] } }
+      - { phase_id: phase_b, input:  "2", power: { name:  "Solar 2 Power", id:  cir2, filters: [ *moving_avg, *pos ] } }
+      #- { phase_id: phase_a, input:  "3", power: { name:  "Circuit 3 Power", id:  cir3, filters: [ *moving_avg, *pos ] } }
+      - { phase_id: phase_a, input:  "4", power: { name:  "Pump Power", id:  cir4, filters: [ *moving_avg, *pos, multiply: 2 ] } }
+      - { phase_id: phase_a, input:  "5", power: { name:  "Dishwasher Power", id:  cir5, filters: [ *moving_avg, *pos ] } }
+      #- { phase_id: phase_a, input:  "6", power: { name:  "Circuit 6 Power", id:  cir6, filters: [ *moving_avg, *pos ] } }
+      - { phase_id: phase_a, input:  "7", power: { name:  "Range Power", id:  cir7, filters: [ *moving_avg, *pos ] } }
+      - { phase_id: phase_b, input:  "8", power: { name:  "Furnance Power", id:  cir8, filters: [ *moving_avg, *pos ] } }
+      #- { phase_id: phase_b, input:  "9", power: { name:  "Circuit 9 Power", id:  cir9, filters: [ *moving_avg, *pos ] } }
+      - { phase_id: phase_b, input: "10", power: { name: "Dryer Power", id: cir10, filters: [ *moving_avg, *pos, multiply: 2 ] } }
+      - { phase_id: phase_b, input: "11", power: { name: "Garage Power", id: cir11, filters: [ *moving_avg, *pos ] } }
+      #- { phase_id: phase_b, input: "12", power: { name: "Circuit 12 Power", id: cir12, filters: [ *moving_avg, *pos, multiply: 2 ] } }
+      - { phase_id: phase_b, input: "13", power: { name: "Entertainment Power", id: cir13, filters: [ *moving_avg, *pos ] } }
+      - { phase_id: phase_b, input: "14", power: { name: "Sump Power", id: cir14, filters: [ *moving_avg, *pos ] } }
+      #- { phase_id: phase_a, input: "15", power: { name: "Circuit 15 Power", id: cir15, filters: [ *moving_avg, *pos ] } }
+      - { phase_id: phase_a, input: "16", power: { name: "Kitchen1 Power", id: cir16, filters: [ *moving_avg, *pos ] } }
+  - platform: template
+    name: "Total Power"
+    lambda: return id(phase_a_power).state + id(phase_b_power).state;
+    update_interval: 10s
+    id: total_power
+    unit_of_measurement: "W"
+  - platform: total_daily_energy
+    name: "Total Daily Energy"
+    power_id: total_power
+    accuracy_decimals: 0
+  - { power_id:  cir1, platform: total_daily_energy,state_class: total_increasing, accuracy_decimals: 0, name:  "Solar 1 Daily Energy" }
+  - { power_id:  cir2, platform: total_daily_energy,state_class: total_increasing, accuracy_decimals: 0, name:  "Solar 2 Daily Energy" }
+  #- { power_id:  cir3, platform: total_daily_energy,state_class: total_increasing, accuracy_decimals: 0, name:  "Circuit 3 Daily Energy" }
+  - { power_id:  cir4, platform: total_daily_energy,state_class: total_increasing, accuracy_decimals: 0, name:  "Pump Daily Energy" }
+  - { power_id:  cir5, platform: total_daily_energy,state_class: total_increasing, accuracy_decimals: 0, name:  "Dishwasher Daily Energy" }
+  #- { power_id:  cir6, platform: total_daily_energy,state_class: total_increasing, accuracy_decimals: 0, name:  "Circuit 6 Daily Energy" }
+  - { power_id:  cir7, platform: total_daily_energy,state_class: total_increasing, accuracy_decimals: 0, name:  "Range Daily Energy" }
+  - { power_id:  cir8, platform: total_daily_energy,state_class: total_increasing, accuracy_decimals: 0, name:  "Furnace Daily Energy" }
+  #- { power_id:  cir9, platform: total_daily_energy,state_class: total_increasing, accuracy_decimals: 0, name:  "Circuit 9 Daily Energy" }
+  - { power_id: cir10, platform: total_daily_energy,state_class: total_increasing, accuracy_decimals: 0, name: "Dryer Daily Energy" }
+  - { power_id: cir11, platform: total_daily_energy,state_class: total_increasing, accuracy_decimals: 0, name: "Garage Daily Energy" }
+  #- { power_id: cir12, platform: total_daily_energy,state_class: total_increasing, accuracy_decimals: 0, name: "Circuit 12 Daily Energy" }
+  - { power_id: cir13, platform: total_daily_energy,state_class: total_increasing, accuracy_decimals: 0, name: "Entertainment Daily Energy" }
+  - { power_id: cir14, platform: total_daily_energy,state_class: total_increasing, accuracy_decimals: 0, name: "Sump Daily Energy" }
+  #- { power_id: cir15, platform: total_daily_energy,state_class: total_increasing, accuracy_decimals: 0, name: "Circuit 15 Daily Energy" }
+  - { power_id: cir16, platform: total_daily_energy,state_class: total_increasing, accuracy_decimals: 0, name: "Kitchen1 Daily Energy" }
