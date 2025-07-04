@@ -13,7 +13,7 @@ esp32:
   framework:
     type: esp-idf
     version: 4.4.8
-    platform_version: 6.0.1
+    platform_version: 5.4.0
 
 preferences:
   # the default of 1min is far too short--flash chip is rated
