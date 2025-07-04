@@ -50,9 +50,9 @@ light:
 i2c:
   sda: 5
   scl: 18
-  #scan: false
-  #frequency: 400kHz  # IMPORTANT: Handle Failed to read from sensor due to I2C error 3
-  #timeout: 1ms # IMPORTANT: Handle Failed to read from sensor due to I2C error 3
+  scan: false
+  frequency: 400kHz  # IMPORTANT: Handle Failed to read from sensor due to I2C error 3
+  timeout: 1ms # IMPORTANT: Handle Failed to read from sensor due to I2C error 3
   id: i2c_a
 
 switch:
