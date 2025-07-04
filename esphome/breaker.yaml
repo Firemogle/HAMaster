@@ -27,8 +27,7 @@ ota:
   password: !secret OTA_PW
 
 logger:
-  logs:
-    sensor: INFO
+  level: VERY_VERBOSE
 
 ethernet:
   type: RTL8201
