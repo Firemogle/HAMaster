@@ -11,9 +11,9 @@ external_components:
 esp32:
   board: esp32dev
   framework:
-    type: arduino
-    #version: 4.4.7
-    #platform_version: 6.0.1
+    type: esp-idf
+    version: 4.4.8
+    platform_version: 6.0.1
 
 preferences:
   # the default of 1min is far too short--flash chip is rated
