@@ -86,14 +86,14 @@ sensor:
     i2c_id: i2c_a
     phases:
       - id: phase_a  # Verify that this specific phase/leg is connected to correct input wire color on device listed below
-        input: BLACK  # Vue device wire color
+        input: RED  # Vue device wire color
         calibration: 0.0194  # 0.022 is used as the default as starting point but may need adjusted to ensure accuracy
         # To calculate new calibration value use the formula <in-use calibration value> * <accurate voltage> / <reporting voltage>
         voltage:
           name: "Phase A Voltage"
           filters: [*pos, *pos]
       - id: phase_b  # Verify that this specific phase/leg is connected to correct input wire color on device listed below
-        input: RED  # Vue device wire color
+        input: BLACK  # Vue device wire color
         calibration: 0.0194  # 0.022 is used as the default as starting point but may need adjusted to ensure accuracy
         # To calculate new calibration value use the formula <in-use calibration value> * <accurate voltage> / <reporting voltage>
         voltage:
