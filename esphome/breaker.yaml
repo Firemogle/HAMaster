@@ -12,8 +12,6 @@ esp32:
   board: esp32dev
   framework:
     type: esp-idf
-    version: 5.0.1
-    platform_version: 5.4.0
 
 preferences:
   # the default of 1min is far too short--flash chip is rated
@@ -51,8 +49,8 @@ i2c:
   sda: 5
   scl: 18
   scan: false
-  frequency: 400kHz  # IMPORTANT: Handle Failed to read from sensor due to I2C error 3
-  timeout: 1ms # IMPORTANT: Handle Failed to read from sensor due to I2C error 3
+  frequency: 50kHz  # IMPORTANT: Handle Failed to read from sensor due to I2C error 3
+  timeout: 13ms # IMPORTANT: Handle Failed to read from sensor due to I2C error 3
   id: i2c_a
 
 switch:
