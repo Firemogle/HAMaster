@@ -70,9 +70,6 @@ template:
             night
           {% endif %}
 
-sensor:
-  - platform: solaredge_local
-    ip_address: 192.168.2.61
 
 alert:
   ingress_alarm:
