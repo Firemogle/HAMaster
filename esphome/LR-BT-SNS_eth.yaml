@@ -6,6 +6,13 @@ packages:
       length: 436
       color_line: RGB
       name: fy_string
+  string_light_part: !include 
+    file: packages/partition_light.yaml
+    vars:
+      name: front_eave
+      parent: fy_string
+      start: 395
+      end: 435
 
 esphome:
   name: lr-bt-sns
