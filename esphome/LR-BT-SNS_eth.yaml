@@ -3,7 +3,7 @@ packages:
     file: packages/add_light.yaml
     vars:
       pin: GPIO37
-      length: 436
+      length: 476
       color_line: RGB
       name: fy_string
   string_light_part: !include 
@@ -11,8 +11,8 @@ packages:
     vars:
       name: front_eave
       parent: fy_string
-      start: 395
-      end: 435
+      start: 396
+      end: 475
 
 esphome:
   name: lr-bt-sns
