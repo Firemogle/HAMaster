@@ -88,8 +88,8 @@ automation:
     condition: []
     action:
     - data:
-        entity_id: scene.house_wakeup
-      service: scene.turn_on
+        entity_id: script.house_wakeup
+      service: script.turn_on
     - data:
         entity_id: script.hvac_run_stop_uni
       service: script.turn_on
@@ -117,11 +117,11 @@ automation:
     - data_template:
         entity_id: >
             {% if is_state('binary_sensor.house_sts_vacation', 'on') %}
-              scene.house_wakeup
+              script.house_wakeup
             {% else %}
-              scene.house_away
+              script.house_away
             {% endif %}
-      service: scene.turn_on
+      service: script.turn_on
 
   - id: 'house_evening_mode'
     alias: house_evening_mode
@@ -135,11 +135,11 @@ automation:
     - data_template:
         entity_id: >
             {% if is_state('binary_sensor.house_sts_vacation', 'on') %}
-              scene.house_evening_vacation
+              script.house_evening_vacation
             {% else %}
-              scene.house_evening
+              script.house_evening
             {% endif %}
-      service: scene.turn_on
+      service: script.turn_on
     - data:
         entity_id: script.hvac_run_stop_uni
       service: script.turn_on
@@ -166,8 +166,8 @@ automation:
     condition: []
     action:
     - data:
-        entity_id: scene.house_night
-      service: scene.turn_on
+        entity_id: script.house_night
+      service: script.turn_on
     - data:
         entity_id: script.hvac_run_setpoint
       service: script.turn_on
@@ -200,8 +200,8 @@ automation:
     condition: []
     action:
     - data:
-        entity_id: scene.ext_lights_off
-      service: scene.turn_on
+        entity_id: script.ext_lights_off
+      service: script.turn_on
       
   - id: 'vacation_lights_off_morning'
     alias: vacation_lights_off_morning
@@ -214,8 +214,8 @@ automation:
         value_template: "{{ is_state('binary_sensor.house_sts_vacation', 'on') }}"
     action:
     - data:
-        entity_id: scene.ext_lights_off
-      service: scene.turn_on
+        entity_id: script.ext_lights_off
+      service: script.turn_on
       
   - id: 'weekend_ext_light'
     alias: weekend_ext_light
@@ -228,8 +228,8 @@ automation:
         value_template: "{{ is_state('binary_sensor.workday_raw', 'off') }}"
     action:
     - data:
-        entity_id: scene.ext_lights_off
-      service: scene.turn_on
+        entity_id: script.ext_lights_off
+      service: script.turn_on
       
   - id: 'bedroom_wakeup'
     alias: bedroom_wakeup
