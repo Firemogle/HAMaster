@@ -225,9 +225,9 @@ automation:
                 data:
                   entity_id: alarm_control_panel.alarm_panel
                   code: !secret alarmcode
-              - service: scene.turn_on
+              - service: script.turn_on
                 target:
-                  entity_id: scene.house_away
+                  entity_id: script.house_away
           - conditions: >
               {{ is_state('binary_sensor.house_sts_occupants', 'off') and is_state('binary_sensor.house_sts_vacation', 'on') }}
             sequence:
@@ -243,9 +243,9 @@ automation:
             data:
               entity_id: alarm_control_panel.alarm_panel
               code: !secret alarmcode
-          - service: scene.turn_on
+          - service: script.turn_on
             target:
-              entity_id: scene.house_home
+              entity_id: script.house_home
       - service: notify.group_notify
         data:
           message: "Occupancy mode changed to {{ states('binary_sensor.house_sts_occupants') }}"
