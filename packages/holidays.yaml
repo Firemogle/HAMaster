@@ -200,7 +200,7 @@ script:
       data:
         entity_id: switch.garage_wall_switch
 
-  xmas_light:
+  independence_day:
     sequence:
     - service: light.turn_on
       data:
