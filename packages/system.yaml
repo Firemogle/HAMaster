@@ -333,14 +333,3 @@ automation:
           - service: input_boolean.turn_off
             target:
               entity_id: input_boolean.house_sts_vacation
-
-  - alias: refresh_zwave_lights
-    id: refresh_zwave_lights
-    trigger:
-      - platform: time_pattern
-        minutes: "/10"
-    action:
-      - delay: "00:00:{{ range(0, 60)|random }}"
-      - service: zwave_js.refresh_value
-        target:
-          entity_id: light.livingroom_entry
