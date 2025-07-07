@@ -13,14 +13,15 @@ packages:
       parent: rb_string
       start: 0
       end: 427
+  string_light_part: !include 
+    file: packages/partition_light.yaml
+    vars:
+      name: backyard_eave
+      parent: rb_string
+      start: 783
+      end: 802
   irrigation: !include packages/rain_barrel_irrigation.yaml
 
-light:
-  - id: !extend decklight
-    segments:
-      - id: rb_string
-        from: 783
-        to: 802
 
 esphome:
   name: rainbrarrel
