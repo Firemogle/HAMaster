@@ -48,7 +48,7 @@ i2c:
   sda: 5
   scl: 18
   scan: false
-  frequency: 400kHz  # IMPORTANT: Handle Failed to read from sensor due to I2C error 3
+  frequency: 150kHz  # IMPORTANT: Handle Failed to read from sensor due to I2C error 3
   timeout: 13ms # IMPORTANT: Handle Failed to read from sensor due to I2C error 3
   id: i2c_a
 
