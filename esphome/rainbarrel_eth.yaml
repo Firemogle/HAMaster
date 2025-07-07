@@ -13,7 +13,7 @@ packages:
       parent: rb_string
       start: 0
       end: 427
-  string_light_part: !include 
+  string_light_part2: !include 
     file: packages/partition_light.yaml
     vars:
       name: backyard_eave
