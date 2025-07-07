@@ -56,6 +56,10 @@ switch:
   - platform: restart
     name: Restart  
 
+button:
+  - platform: factory_reset
+    name: Restart with Factory Default Settings
+
 time:
   - platform: homeassistant
     id: homeassistant_time
