@@ -29,11 +29,9 @@ ota:
 logger:
   level: VERY_VERBOSE
 
-ethernet:
-  type: RTL8201
-  mdc_pin: GPIO32
-  mdio_pin: GPIO33
-  clk_mode: GPIO0_IN
+wifi:
+  ssid: !secret AP
+  password: !secret APPW
 
 light:
   - platform: status_led
@@ -48,8 +46,8 @@ i2c:
   sda: 5
   scl: 18
   scan: false
-  frequency: 150kHz  # IMPORTANT: Handle Failed to read from sensor due to I2C error 3
-  timeout: 13ms # IMPORTANT: Handle Failed to read from sensor due to I2C error 3
+  frequency: 400kHz  # IMPORTANT: Handle Failed to read from sensor due to I2C error 3
+  timeout: 1ms # IMPORTANT: Handle Failed to read from sensor due to I2C error 3
   id: i2c_a
 
 switch:
