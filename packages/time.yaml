@@ -226,23 +226,5 @@ automation:
         entity_id: script.ext_lights_off
       service: script.turn_on
       
-  - id: 'bedroom_wakeup'
-    alias: bedroom_wakeup
-    initial_state: 'off'
-    trigger:
-    - platform: time
-      at: '7:30:00'
-    condition:  []
-    action:
-    - service: light.turn_on
-      data:
-        entity_id: light.emi_star_lamp
-        brightness: 10
-        kelvin: 2700
-    - delay: '00:00:30'
-    - service: light.turn_on
-      data:
-        entity_id: light.emi_star_lamp
-        brightness: 255
-        transition: 1800
+
 
