@@ -46,8 +46,6 @@ sensor:
     method: left 
 
 
-      
-    
 media_player:
   - platform: kodi
     name: emi_kodi
@@ -90,35 +88,7 @@ automation:
           {% elif (states.sensor.emi_temp.state|float(default=0) <= 74 ) %} 
             25
           {% endif %}
-
-  - id: 'emi_light_stay_off'
-    alias: emi_light_stay_off
-    initial_state: 'off'
-    trigger:
-    - entity_id: light.emi_star_lamp
-      platform: state
-      from: "off"
-      to: "on"
-    condition: []
-    action:
-    - data:
-        entity_id: light.emi_star_lamp
-      service: light.turn_off
-
-  - id: 'emi_light_stay_off_fan'
-    alias: emi_light_stay_off_fan
-    initial_state: 'off'
-    trigger:
-    - entity_id: light.emi_fan_light
-      platform: state
-      from: "off"
-      to: "on"
-    condition: []
-    action:
-    - data:
-        entity_id: light.emi_fan_light
-      service: light.turn_off
-          
+  
   - id: 'emi_tv_off'
     alias: emi_tv_off
     initial_state: 'off'
@@ -160,6 +130,26 @@ automation:
     - data:
         entity_id: switch.emi_tv
       service: switch.turn_off 
+
+  - id: 'girls_bedroom_wakeup'
+    alias: girls_bedroom_wakeup
+    initial_state: 'off'
+    trigger:
+    - platform: time
+      at: '7:30:00'
+    condition:  []
+    action:
+    - service: light.turn_on
+      data:
+        entity_id: light.emi_star_lamp
+        brightness: 10
+        kelvin: 2700
+    - delay: '00:00:30'
+    - service: light.turn_on
+      data:
+        entity_id: light.emi_star_lamp
+        brightness: 255
+        transition: 1800
      
 input_number:
   emi_night_timer:
@@ -244,3 +234,5 @@ script:
               target:
                 entity_id:  switch.shelly1pm_c45bbe6b41e3
             - delay: 5
+
+            
