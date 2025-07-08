@@ -88,10 +88,10 @@ automation:
     condition: []
     action:
     - data:
-        entity_id: script.house_wakeup
+        entity_id: script.hvac_run_stop_uni
       service: script.turn_on
     - data:
-        entity_id: script.hvac_run_stop_uni
+        entity_id: script.house_wakeup
       service: script.turn_on
     - data_template:
         entity_id: >
@@ -103,6 +103,7 @@ automation:
               script.normal_day
             {% endif %}
       service: script.turn_on
+
 
 
   - id: 'house_wakeup_vacation'
@@ -132,6 +133,9 @@ automation:
       to: 'on'
     condition: []
     action:
+    - data:
+        entity_id: script.hvac_run_stop_uni
+      service: script.turn_on
     - data_template:
         entity_id: >
             {% if is_state('binary_sensor.house_sts_vacation', 'on') %}
@@ -139,9 +143,6 @@ automation:
             {% else %}
               script.house_evening
             {% endif %}
-      service: script.turn_on
-    - data:
-        entity_id: script.hvac_run_stop_uni
       service: script.turn_on
     - data_template:
         entity_id: >
@@ -166,9 +167,6 @@ automation:
     condition: []
     action:
     - data:
-        entity_id: script.house_night
-      service: script.turn_on
-    - data:
         entity_id: script.hvac_run_setpoint
       service: script.turn_on
     - data:
@@ -183,12 +181,9 @@ automation:
         {% else %}
           alarm_control_panel.alarm_arm_home
         {% endif %}
-    - service: automation.turn_off
-      data:
-        entity_id: "automation.emi_light_stay_off"
-    - service: automation.turn_off
-      data:
-        entity_id: "automation.emi_light_stay_off_fan"
+    - data:
+        entity_id: script.house_night
+      service: script.turn_on
         
   - id: 'ext_lights_off'
     alias: ext_lights_off
