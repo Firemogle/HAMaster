@@ -156,34 +156,38 @@ automation:
       service: script.turn_on
 
 
-
-  - id: 'house_night_mode'
-    alias: house_night_mode
-    initial_state: 'off'
-    trigger:
-    - entity_id: binary_sensor.night
-      platform: state
+- id: house_night_mode
+  alias: house_night_mode
+  initial_state: 'off'
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.night
       to: 'on'
-    condition: []
-    action:
-    - data:
-        entity_id: script.hvac_run_setpoint
-      service: script.turn_on
-    - data:
+  condition: []
+  action:
+    - service: cover.close_cover
+      target:
         entity_id: cover.garage_door
-      service: cover.close_cover
-    - data:
-        entity_id: alarm_control_panel.alarm_panel
-        code: !secret alarmcode
-      service_template: >
-        {% if is_state('house_status', 'vacation') %}
-          alarm_control_panel.alarm_arm_away
-        {% else %}
-          alarm_control_panel.alarm_arm_home
-        {% endif %}
-    - data:
-        entity_id: script.house_night
-      service: script.turn_on
+    - choose:
+        - conditions:
+            - condition: state
+              entity_id: house_status
+              state: 'vacation'
+          sequence:
+            - service: alarm_control_panel.alarm_arm_away
+              data:
+                entity_id: alarm_control_panel.alarm_panel
+                code: !secret alarmcode
+      default:
+        - service: alarm_control_panel.alarm_arm_home
+          data:
+            entity_id: alarm_control_panel.alarm_panel
+            code: !secret alarmcode
+    - service: script.turn_on
+      target:
+        entity_id:
+          - script.hvac_run_setpoint
+          - script.house_night
         
   - id: 'ext_lights_off'
     alias: ext_lights_off
