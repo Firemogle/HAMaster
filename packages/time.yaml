@@ -30,22 +30,16 @@ binary_sensor:
     after: '23:59'
     before: '05:30'
 
-#template:
-#  - binary_sensor:
-#      - name: house_time_liz_work_exception:
-#        value_template: >-
-#          {{ (as_timestamp(states.calendar.liz_work_exception.attributes.start_time) - 7200) < as_timestamp(now()) + (states('sensor.house_rand_0_100')|float)/100 }}
 template:
   - binary_sensor:
       - name: house_time_workday_combine
         state: >
           {{ is_state('binary_sensor.workday_raw', 'on') }}
-#             or is_state('binary_sensor.house_time_liz_work_exception', 'on') }} 
   - binary_sensor:
       - name: work_wakeup_time
         state: >
           {{ is_state('binary_sensor.early_morning', 'on') }}
-#             or is_state('binary_sensor.house_time_liz_work_exception', 'on')  }}  
+          
   - binary_sensor:
       - name: house_wake_for_work
         state: >
@@ -82,153 +76,163 @@ automation:
     alias: house_wakeup
     initial_state: 'off'
     trigger:
-    - entity_id: binary_sensor.house_wakeup
-      platform: state
-      to: 'on'
-    condition: []
+      - platform: state
+        entity_id: binary_sensor.house_wakeup
+        to: 'on'
     action:
-    - data:
-        entity_id: script.hvac_run_stop_uni
-      service: script.turn_on
-    - data:
-        entity_id: script.house_wakeup
-      service: script.turn_on
-    - data_template:
-        entity_id: >
-            {% if is_state('binary_sensor.house_sts_independence_day', 'on') %}
-              script.normal_day
-            {% elif is_state('binary_sensor.house_sts_xmas_lights', 'on') %}
-              script.xmas_light
-            {% else %}
-              script.normal_day
-            {% endif %}
-      service: script.turn_on
-
-
+      - service: script.turn_on
+        target:
+          entity_id:
+            - script.hvac_run_stop_uni
+            - script.house_wakeup
+      - choose:
+          - conditions:
+              - condition: state
+                entity_id: binary_sensor.house_sts_xmas_lights
+                state: 'on'
+            sequence:
+              - service: script.turn_on
+                target:
+                  entity_id: script.xmas_light
 
   - id: 'house_wakeup_vacation'
     alias: house_wakeup_vacation
     initial_state: 'off'
     trigger:
-    - entity_id: binary_sensor.house_wakeup_vacation_evening
-      platform: state
-      to: 'on'
-    condition: []
+      - platform: state
+        entity_id: binary_sensor.house_wakeup_vacation_evening
+        to: 'on'
     action:
-    - data_template:
-        entity_id: >
-            {% if is_state('binary_sensor.house_sts_vacation', 'on') %}
-              script.house_wakeup
-            {% else %}
-              script.house_away
-            {% endif %}
-      service: script.turn_on
+      - choose:
+          - conditions:
+              - condition: state
+                entity_id: binary_sensor.house_sts_vacation
+                state: 'on'
+            sequence:
+              - service: script.turn_on
+                target:
+                  entity_id: script.house_wakeup
+        default:
+          - service: script.turn_on
+            target:
+              entity_id: script.house_away
 
   - id: 'house_evening_mode'
     alias: house_evening_mode
     initial_state: 'off'
     trigger:
-    - entity_id: binary_sensor.evening
-      platform: state
-      to: 'on'
-    condition: []
+      - platform: state
+        entity_id: binary_sensor.evening
+        to: 'on'
     action:
-    - data:
-        entity_id: script.hvac_run_stop_uni
-      service: script.turn_on
-    - data_template:
-        entity_id: >
-            {% if is_state('binary_sensor.house_sts_vacation', 'on') %}
-              script.house_evening_vacation
-            {% else %}
-              script.house_evening
-            {% endif %}
-      service: script.turn_on
-    - data_template:
-        entity_id: >
-            {% if is_state('binary_sensor.house_sts_independence_day', 'on') %}
-              script.independence_day
-            {% elif is_state('binary_sensor.house_sts_xmas_lights', 'on') %}
-              script.xmas_light
-            {% else %}
-              script.normal_day
-            {% endif %}
-      service: script.turn_on
+      - service: script.turn_on
+        target:
+          entity_id: script.hvac_run_stop_uni
+      - choose:
+          - conditions:
+              - condition: state
+                entity_id: binary_sensor.house_sts_vacation
+                state: 'on'
+            sequence:
+              - service: script.turn_on
+                target:
+                  entity_id: script.house_evening_vacation
+        default:
+          - service: script.turn_on
+            target:
+              entity_id: script.house_evening
+      - choose:
+          - conditions:
+              - condition: state
+                entity_id: binary_sensor.house_sts_independence_day
+                state: 'on'
+            sequence:
+              - service: script.turn_on
+                target:
+                  entity_id: script.independence_day
+          - conditions:
+              - condition: state
+                entity_id: binary_sensor.house_sts_xmas_lights
+                state: 'on'
+            sequence:
+              - service: script.turn_on
+                target:
+                  entity_id: script.xmas_light
 
+  - id: house_night_mode
+    alias: house_night_mode
+    initial_state: 'off'
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.night
+        to: 'on'
+    action:
+      - service: cover.close_cover
+        target:
+          entity_id: cover.garage_door
+      - choose:
+          - conditions:
+              - condition: state
+                entity_id: house_status
+                state: 'vacation'
+            sequence:
+              - service: alarm_control_panel.alarm_arm_away
+                data:
+                  entity_id: alarm_control_panel.alarm_panel
+                  code: !secret alarmcode
+        default:
+          - service: alarm_control_panel.alarm_arm_home
+            data:
+              entity_id: alarm_control_panel.alarm_panel
+              code: !secret alarmcode
+      - service: script.turn_on
+        target:
+          entity_id:
+            - script.hvac_run_setpoint
+            - script.house_night
 
-- id: house_night_mode
-  alias: house_night_mode
-  initial_state: 'off'
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.night
-      to: 'on'
-  condition: []
-  action:
-    - service: cover.close_cover
-      target:
-        entity_id: cover.garage_door
-    - choose:
-        - conditions:
-            - condition: state
-              entity_id: house_status
-              state: 'vacation'
-          sequence:
-            - service: alarm_control_panel.alarm_arm_away
-              data:
-                entity_id: alarm_control_panel.alarm_panel
-                code: !secret alarmcode
-      default:
-        - service: alarm_control_panel.alarm_arm_home
-          data:
-            entity_id: alarm_control_panel.alarm_panel
-            code: !secret alarmcode
-    - service: script.turn_on
-      target:
-        entity_id:
-          - script.hvac_run_setpoint
-          - script.house_night
-        
   - id: 'ext_lights_off'
     alias: ext_lights_off
     initial_state: 'off'
     trigger:
-    - entity_id: binary_sensor.morning
-      platform: state
-      to: 'on'
-    condition: []
+      - platform: state
+        entity_id: binary_sensor.morning
+        to: 'on'
     action:
-    - data:
-        entity_id: script.ext_lights_off
-      service: script.turn_on
-      
+      - service: script.turn_on
+        target:
+          entity_id: script.ext_lights_off
+
   - id: 'vacation_lights_off_morning'
     alias: vacation_lights_off_morning
     initial_state: 'off'
     trigger:
-    - platform: time
-      at: '8:00:00'
-    condition: 
-      - condition: template
-        value_template: "{{ is_state('binary_sensor.house_sts_vacation', 'on') }}"
+      - platform: time
+        at: '08:00:00'
+    condition:
+      - condition: state
+        entity_id: binary_sensor.house_sts_vacation
+        state: 'on'
     action:
-    - data:
-        entity_id: script.ext_lights_off
-      service: script.turn_on
-      
+      - service: script.turn_on
+        target:
+          entity_id: script.ext_lights_off
+
   - id: 'weekend_ext_light'
     alias: weekend_ext_light
     initial_state: 'off'
     trigger:
-    - platform: time
-      at: '8:05:00'
-    condition: 
-      - condition: template
-        value_template: "{{ is_state('binary_sensor.workday_raw', 'off') }}"
+      - platform: time
+        at: '08:05:00'
+    condition:
+      - condition: state
+        entity_id: binary_sensor.workday_raw
+        state: 'off'
     action:
-    - data:
-        entity_id: script.ext_lights_off
-      service: script.turn_on
+      - service: script.turn_on
+        target:
+          entity_id: script.ext_lights_off
+
       
 
 
