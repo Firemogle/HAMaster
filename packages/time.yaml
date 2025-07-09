@@ -95,28 +95,6 @@ automation:
                 target:
                   entity_id: script.xmas_light
 
-  - id: 'house_wakeup_vacation'
-    alias: house_wakeup_vacation
-    initial_state: 'off'
-    trigger:
-      - platform: state
-        entity_id: binary_sensor.house_wakeup_vacation_evening
-        to: 'on'
-    action:
-      - choose:
-          - conditions:
-              - condition: state
-                entity_id: binary_sensor.house_sts_vacation
-                state: 'on'
-            sequence:
-              - service: script.turn_on
-                target:
-                  entity_id: script.house_wakeup
-        default:
-          - service: script.turn_on
-            target:
-              entity_id: script.house_away
-
   - id: 'house_evening_mode'
     alias: house_evening_mode
     initial_state: 'off'
@@ -128,19 +106,7 @@ automation:
       - service: script.turn_on
         target:
           entity_id: script.hvac_run_stop_uni
-      - choose:
-          - conditions:
-              - condition: state
-                entity_id: binary_sensor.house_sts_vacation
-                state: 'on'
-            sequence:
-              - service: script.turn_on
-                target:
-                  entity_id: script.house_evening_vacation
-        default:
-          - service: script.turn_on
-            target:
-              entity_id: script.house_evening
+          entity_id: script.house_evening
       - choose:
           - conditions:
               - condition: state
@@ -202,37 +168,5 @@ automation:
       - service: script.turn_on
         target:
           entity_id: script.ext_lights_off
-
-  - id: 'vacation_lights_off_morning'
-    alias: vacation_lights_off_morning
-    initial_state: 'off'
-    trigger:
-      - platform: time
-        at: '08:00:00'
-    condition:
-      - condition: state
-        entity_id: binary_sensor.house_sts_vacation
-        state: 'on'
-    action:
-      - service: script.turn_on
-        target:
-          entity_id: script.ext_lights_off
-
-  - id: 'weekend_ext_light'
-    alias: weekend_ext_light
-    initial_state: 'off'
-    trigger:
-      - platform: time
-        at: '08:05:00'
-    condition:
-      - condition: state
-        entity_id: binary_sensor.workday_raw
-        state: 'off'
-    action:
-      - service: script.turn_on
-        target:
-          entity_id: script.ext_lights_off
-
-      
 
 
