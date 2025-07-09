@@ -66,20 +66,6 @@ script:
   house_night:
     alias: house_night
     sequence:
-      - service: light.turn_off
-        target:
-          floor_id: basement
-          area_id:
-            - 21aee0f09bbf4d90b3f9367d6e75982b
-            - b242500e2dba11eba7ce67962ad1652d
-            - 259e54ef72a347c2b9fa159e5bcd32b7
-            - 3e1959c84fce49969395cd95d025ef2e
-            - 452faf27ea29485da59632cea146740b
-          entity_id:
-            - light.hallway_light
-            - light.kitchen_fan
-            - light.kitchen_sink
-            - light.kitchen_light_switch
       - service: light.turn_on
         data:
           brightness_pct: 25
@@ -97,6 +83,20 @@ script:
       - service: switch.turn_off
         target:
           entity_id: switch.garage_wall_switch
+      - service: light.turn_off
+        target:
+          floor_id: basement
+          area_id:
+            - 21aee0f09bbf4d90b3f9367d6e75982b
+            - b242500e2dba11eba7ce67962ad1652d
+            - 259e54ef72a347c2b9fa159e5bcd32b7
+            - 3e1959c84fce49969395cd95d025ef2e
+            - 452faf27ea29485da59632cea146740b
+          entity_id:
+            - light.hallway_light
+            - light.kitchen_fan
+            - light.kitchen_sink
+            - light.kitchen_light_switch
 
   house_wakeup:
     alias: house_wakeup
