@@ -137,7 +137,8 @@ automation:
         target:
           entity_id: cover.garage_door
       - choose:
-          - condition: state
+          - conditions:
+              - condition: state
                 entity_id: binary_sensor.house_sts_vacation
                 state: 'on'
             sequence:
