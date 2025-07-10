@@ -16,6 +16,11 @@ template:
       - name: livingroom_door_opened
         state: >
           {{ is_state('binary_sensor.front_door', 'on') }}
+      - name: petbowl_leak
+        state: >
+          {{ is_state('binary_sensor.water_bowl', 'on') }}
+        delay_off:
+          minutes: 5
   
 mqtt:
   light:
@@ -34,10 +39,6 @@ lock:
       service: script.front_door_lock
     unlock:
       service: script.front_door_unlock
-#roomba:
-#  - host: 192.168.2.123
-#    blid: secret! lrr_un
-#    password: secret! lrr_pw
     
 media_player:
   - platform: kodi
@@ -108,4 +109,25 @@ automation:
         {% else %}
           switch.turn_off
         {% endif %}
-        
+
+
+script:
+  front_door_lock:
+    alias: front_door_lock
+    sequence:
+      - condition: state
+        entity_id: binary_sensor.livingroom_door_opened
+        state: 'off'
+      - service: lock.lock
+        data:
+          entity_id: lock.schlage_allegion_be469_touchscreen_deadbolt_locked
+  
+  front_door_unlock:
+    alias: front_door_unlock
+    sequence:
+      - condition: state
+        entity_id: alarm_control_panel.alarm_panel
+        state: 'disarmed'
+      - service: lock.unlock
+        data:
+          entity_id: lock.schlage_allegion_be469_touchscreen_deadbolt_locked
