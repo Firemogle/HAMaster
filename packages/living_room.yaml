@@ -67,7 +67,7 @@ alert:
     name: water_bowl_alarm
     done_message: "Petbowl Leak Resolved"
     message: "The water bowl is leaking bruh"
-    entity_id: binary_sensor.water_bowl
+    entity_id: binary_sensor.petbowl_leak
     state: 'on'
     repeat: 30
     can_acknowledge: true
@@ -76,39 +76,26 @@ alert:
       - group_notify
       
 automation:
-  - id: house_sts_jayhawks_on
-    alias: house_sts_jayhawks_on
-    initial_state: 'off'
-    trigger:
-    - entity_id: binary_sensor.house_sts_jayhawks
-      platform: state
-    condition: []
-    action:
-    - data:
-        entity_id: light.jayhawk_candle
-      service_template: >
-        {% if is_state('binary_sensor.house_sts_jayhawks', 'on') %}
-          light.turn_on
-        {% else %}
-          light.turn_off
-        {% endif %}
-
   - id: petbowl_leak
     alias: petbowl_leak
     initial_state: 'off'
     trigger:
-    - entity_id: binary_sensor.water_bowl
-      platform: state
-    condition: []
+      - platform: state
+        entity_id: binary_sensor.petbowl_leak
     action:
-    - data:
-        entity_id: switch.water_bowl
-      service_template: >
-        {% if is_state('binary_sensor.water_bowl', 'off') %}
-          switch.turn_on
-        {% else %}
-          switch.turn_off
-        {% endif %}
+      - choose:
+          - conditions:
+              - condition: state
+                entity_id: binary_sensor.petbowl_leak
+                state: 'off'
+            sequence:
+              - service: switch.turn_on
+                target:
+                  entity_id: switch.water_bowl
+        default:
+          - service: switch.turn_off
+            target:
+              entity_id: switch.water_bowl
 
 
 script:
