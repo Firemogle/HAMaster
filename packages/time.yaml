@@ -137,10 +137,9 @@ automation:
         target:
           entity_id: cover.garage_door
       - choose:
-          - conditions:
-              - condition: state
-                entity_id: house_status
-                state: 'vacation'
+          - condition: state
+                entity_id: binary_sensor.house_sts_vacation
+                state: 'on'
             sequence:
               - service: alarm_control_panel.alarm_arm_away
                 data:
