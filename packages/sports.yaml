@@ -44,6 +44,9 @@ automation:
               entity_id: light.cabinet_top
               color_name: white
               effect: "Jayhawks"
+          - service: light.turn_on
+            data:
+              entity_id: light.jayhawk_candle
           - data_template:
               message: "Jayhawks be playing."
             service: notify.group_notify
@@ -60,6 +63,9 @@ automation:
               entity_id: light.cabinet_top
               color_name: white
               effect: "None"
+          - service: light.turn_off
+            data:
+              entity_id: light.jayhawk_candle
     mode: queued
   - id: 'chiefs_playing'
     alias: chiefs_playing
