@@ -333,3 +333,91 @@ automation:
           - service: input_boolean.turn_off
             target:
               entity_id: input_boolean.house_sts_vacation
+
+  - id: sync_alarm_states
+    alias: Sync Alarm States Between Abode and Main Panel (No Loops)
+    initial_state: 'on'
+    trigger:
+      - platform: state
+        entity_id: alarm_control_panel.abode_alarm
+      - platform: state
+        entity_id: alarm_control_panel.alarm_panel
+    condition: []
+    action:
+      choose:
+      # When Abode changes
+        - conditions:
+            - condition: trigger
+              id: abode_state_change
+            - condition: template
+              value_template: >
+                {{ trigger.entity_id == 'alarm_control_panel.abode_alarm' and
+                   states('alarm_control_panel.alarm_panel') != trigger.to_state.state }}
+          sequence:
+            - choose:
+                - conditions:
+                    - condition: state
+                      entity_id: alarm_control_panel.abode_alarm
+                      state: 'disarmed'
+                  sequence:
+                    - service: alarm_control_panel.alarm_disarm
+                      target:
+                        entity_id: alarm_control_panel.alarm_panel
+                      data:
+                        code: !secret alarmcode
+                - conditions:
+                    - condition: state
+                      entity_id: alarm_control_panel.abode_alarm
+                      state: 'armed_away'
+                  sequence:
+                    - service: alarm_control_panel.alarm_arm_away
+                      target:
+                        entity_id: alarm_control_panel.alarm_panel
+                      data:
+                        code: !secret alarmcode
+                - conditions:
+                    - condition: state
+                      entity_id: alarm_control_panel.abode_alarm
+                      state: 'armed_home'
+                  sequence:
+                    - service: alarm_control_panel.alarm_arm_home
+                      target:
+                        entity_id: alarm_control_panel.alarm_panel
+                      data:
+                        code: !secret alarmcode
+
+      # When Main Panel changes
+        - conditions:
+            - condition: trigger
+              id: panel_state_change
+            - condition: template
+              value_template: >
+                {{ trigger.entity_id == 'alarm_control_panel.alarm_panel' and
+                   states('alarm_control_panel.abode_alarm') != trigger.to_state.state }}
+          sequence:
+            - choose:
+                - conditions:
+                    - condition: state
+                      entity_id: alarm_control_panel.alarm_panel
+                      state: 'disarmed'
+                  sequence:
+                    - service: alarm_control_panel.alarm_disarm
+                      target:
+                        entity_id: alarm_control_panel.abode_alarm
+                - conditions:
+                    - condition: state
+                      entity_id: alarm_control_panel.alarm_panel
+                      state: 'armed_away'
+                  sequence:
+                    - service: alarm_control_panel.alarm_arm_away
+                      target:
+                        entity_id: alarm_control_panel.abode_alarm
+                - conditions:
+                    - condition: state
+                      entity_id: alarm_control_panel.alarm_panel
+                      state: 'armed_home'
+                  sequence:
+                    - service: alarm_control_panel.alarm_arm_home
+                      target:
+                        entity_id: alarm_control_panel.abode_alarm
+                      
