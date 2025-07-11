@@ -1,0 +1,20 @@
+homeassistant:
+  customize:
+
+
+
+template:
+  - sensor:
+      - name: "Total Power Grid"
+        unit_of_measurement: "Wh"
+        state_class: "total_increasing"
+        device_class: "power"
+        state: >
+          {{ states('sensor.em16_a1_this_month_energy') + states('sensor.em16_a1_this_month_energy') }}
+  - sensor:
+      - name: "Total Power Solar"
+        unit_of_measurement: "Wh"
+        state_class: "total_increasing"
+        device_class: "power"
+        state: >
+          {{ states('sensor.em16_a2_this_month_energy') + states('sensor.em16_b2_this_month_energy') }}
