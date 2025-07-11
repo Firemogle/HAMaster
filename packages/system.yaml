@@ -351,8 +351,7 @@ automation:
               id: abode_state_change
             - condition: template
               value_template: >
-                {{ trigger.entity_id == 'alarm_control_panel.abode_alarm' and
-                   states('alarm_control_panel.alarm_panel') != trigger.to_state.state }}
+                {{ trigger.entity_id == 'alarm_control_panel.abode_alarm' }}
           sequence:
             - choose:
                 - conditions:
@@ -392,8 +391,7 @@ automation:
               id: panel_state_change
             - condition: template
               value_template: >
-                {{ trigger.entity_id == 'alarm_control_panel.alarm_panel' and
-                   states('alarm_control_panel.abode_alarm') != trigger.to_state.state }}
+                {{ trigger.entity_id == 'alarm_control_panel.alarm_panel' }}
           sequence:
             - choose:
                 - conditions:
