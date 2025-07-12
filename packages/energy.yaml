@@ -10,35 +10,35 @@ template:
         state_class: "total_increasing"
         device_class: "energy"
         state: >
-          {{ (states('sensor.em16_a1_this_month_energy')|float(0) + states('sensor.em16_a1_this_month_energy')|float(0)) /1000}}
+          {{ (states('sensor.em16_a1_this_month_energy')|float(0) + states('sensor.em16_a1_this_month_energy')|float(0))}}
   - sensor:
       - name: "Total Power Solar"
         unit_of_measurement: "Wh"
         state_class: "total_increasing"
         device_class: "energy"
         state: >
-          {{ (states('sensor.em16_a2_this_month_energy')|float(0) + states('sensor.em16_b2_this_month_energy')|float(0))/1000 }}
+          {{ (states('sensor.em16_a2_this_month_energy')|float(0) + states('sensor.em16_b2_this_month_energy')|float(0)) }}
   - sensor:
       - name: "Pump Corrected power"
         unit_of_measurement: "Wh"
         state_class: "total_increasing"
         device_class: "energy"
         state: >
-          {{ (states('sensor.pump_acc')|float(0) / 1000 ) * 2 }}
+          {{ (states('sensor.pump_acc')|float(0)) * 2 }}
   - sensor:
       - name: "Stove Corrected power"
         unit_of_measurement: "Wh"
         state_class: "total_increasing"
         device_class: "energy"
         state: >
-          {{ (states('sensor.stove_acc')|float(0) / 1000 ) * 2 }}
+          {{ (states('sensor.stove_acc')|float(0) ) * 2 }}
   - sensor:
       - name: "Dryer Corrected power"
         unit_of_measurement: "Wh"
         state_class: "total_increasing"
         device_class: "energy"
         state: >
-          {{ (states('sensor.dryer_acc')|float(0) / 1000 ) * 2 }}
+          {{ (states('sensor.dryer_acc')|float(0) ) * 2 }}
 
 
 
