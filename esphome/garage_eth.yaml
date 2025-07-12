@@ -117,7 +117,7 @@ binary_sensor:
   - platform: homeassistant
     name: "garage_door"
     id: gd_state
-    entity_id: binary_sensor.garage_door
+    entity_id: binary_sensor.garage_door_tilt
   - platform: homeassistant
     name: "house_armed"
     id: house_armed_state
