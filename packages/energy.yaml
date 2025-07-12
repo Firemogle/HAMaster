@@ -33,7 +33,7 @@ template:
         state: >
           {{ (states('sensor.stove_acc') / 1000 ) * 2 }}
   - sensor:
-      - name: "Stove Corrected power"
+      - name: "Dryer Corrected power"
         unit_of_measurement: "Wh"
         state_class: "total_increasing"
         device_class: "energy"
