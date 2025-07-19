@@ -406,16 +406,17 @@ automation:
       service: alarm_control_panel.alarm_arm_home
       entity_id: alarm_control_panel.abode_alarm
 
-update_all_esphome_devices:
-  alias: "Update All ESPHome Devices"
-  sequence:
-    - alias: "Install updates on all ESPHome devices with updates available"
-      service: update.install
-      target:
-        entity_id: >
-          {% set ids = integration_entities('esphome') %}
-          {% set update_entities = expand(ids) | selectattr('state','eq','on') | map(attribute='entity_id') | list %}
-          {{ update_entities }}
-  mode: single
+script:
+  update_all_esphome_devices:
+    alias: "Update All ESPHome Devices"
+    sequence:
+      - alias: "Install updates on all ESPHome devices with updates available"
+        service: update.install
+        target:
+          entity_id: >
+            {% set ids = integration_entities('esphome') %}
+            {% set update_entities = expand(ids) | selectattr('state','eq','on') | map(attribute='entity_id') | list %}
+            {{ update_entities }}
+    mode: single
 
                       
