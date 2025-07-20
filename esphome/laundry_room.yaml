@@ -27,14 +27,19 @@ ota:
 i2c:
    sda: GPIO21
    scl: GPIO22
-  
+   id: sensor_bus
+   sda: GPIO13
+   scl: GPIO12
+   id: camera_bus
 mcp23017:
   - id: 'mcp23017_hub'
     address: 0x20
+    i2c_id: sensor_bus
   
   
 sensor:
   - platform: bme280_i2c
+    i2c_id: sensor_bus
     temperature:
       name: "laundry_temp"
       oversampling: 16x
@@ -59,9 +64,7 @@ esp32_camera:
   external_clock:
     pin: GPIO32
     frequency: 20MHz
-  i2c_pins:
-    sda: GPIO13
-    scl: GPIO12
+  i2c_id: camera_bus
   data_pins: [GPIO5, GPIO14, GPIO4, GPIO15, GPIO18, GPIO23, GPIO36, GPIO39]
   vsync_pin: GPIO27
   href_pin: GPIO25
