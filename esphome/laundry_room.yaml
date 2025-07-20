@@ -25,12 +25,13 @@ ota:
   password: !secret OTA_PW
 
 i2c:
+ - id: sensor_bus
    sda: GPIO21
-   scl: GPIO22
-   id: sensor_bus
+   scl: GPIO22 
+ - id: camera_bus
    sda: GPIO13
    scl: GPIO12
-   id: camera_bus
+
 mcp23017:
   - id: 'mcp23017_hub'
     address: 0x20
