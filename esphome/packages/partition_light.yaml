@@ -1,3 +1,10 @@
+external_components:
+  - source:
+      type: git
+      url: https://github.com/KaufHA/common
+    components: [ ddp ]
+    refresh: always
+
 packages:
   light_effects: !include 
     file: light_effects.yaml
@@ -12,6 +19,11 @@ light:
         from: ${start}
         to: ${end}
     effects:
+      - addressable_ddp:
+          name: WLED
+          timeout: 10s
+          disable_gamma: true
+          brightness_scaling: none
       - addressable_color_wipe:
           name: Chiefs
           colors:
