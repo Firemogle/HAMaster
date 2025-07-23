@@ -12,6 +12,8 @@ light:
     rgb_order: ${color_line}
     name: ${name}
     id: ${name}
+    max_refresh_rate: 16ms
+    use_dma: true
     effects:
       - addressable_color_wipe:
           name: Chiefs
