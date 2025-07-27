@@ -183,9 +183,33 @@ automation:
       - platform: homeassistant
         event: start
     action:
-      - service: script.turn_on
+      # --- Wait 5 minutes before proceeding ---
+      - delay: "00:05:00"
+
+      # --- Get calendar state & message into variables ---
+      - variables:
+          cal_on: "{{ is_state('calendar.teamcarriger_gmail_com', 'on') }}"
+          cal_msg: "{{ state_attr('calendar.teamcarriger_gmail_com', 'message') | default('') | lower }}"
+
+      # --- Set each input_boolean based on the active event ---
+      - service: input_boolean.turn_{{ 'on' if cal_on and 'dte cheap' in cal_msg else 'off' }}
         target:
-          entity_id: script.initialization
+          entity_id: input_boolean.house_sts_dte_cheap
+
+      - service: input_boolean.turn_{{ 'on' if cal_on and '4th of july lights' in cal_msg else 'off' }}
+        target:
+          entity_id: input_boolean.independence_day
+
+      - service: input_boolean.turn_{{ 'on' if cal_on and 'xmas_lights' in cal_msg else 'off' }}
+        target:
+          entity_id: input_boolean.house_sts_xmas_lights
+
+      # --- Finally, turn on all automations ---
+      - service: automation.turn_on
+        target:
+          entity_id: all
+
+      # --- Send startup notification ---
       - service: notify.group_notify
         data:
           message: "Rejoice! For now is the blessed time for home assistant has once again booted."
@@ -193,6 +217,7 @@ automation:
             timeout: 300
             tag: "system"
             color: "red"
+
 
   - alias: ha_down
     id: ha_down
@@ -420,4 +445,4 @@ script:
               {%- endif -%}
             {%- endfor -%}]
 
-                      
+  
