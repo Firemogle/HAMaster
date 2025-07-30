@@ -54,6 +54,8 @@ light:
       - id: kitchen_cabinet
         from: 100
         to: 179
+  - id: !extend kitchen_cabinet
+    rmt_symbols: 144
 
 sensor:   
   - id: !extend sen55
