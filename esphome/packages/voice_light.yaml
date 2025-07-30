@@ -11,7 +11,7 @@ light:
     num_leds: ${length}
     rgb_order: ${color_line}
     internal: true 
-    rmt_symbols: 48
+    #rmt_symbols: 48
     use_dma: true
     name: ${name}
     id: ${name}
