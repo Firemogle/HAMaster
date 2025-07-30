@@ -14,6 +14,7 @@ light:
     id: ${name}
     max_refresh_rate: 16ms
     use_dma: true
+    rmt_symbols: 96
     effects:
       - addressable_color_wipe:
           name: Chiefs
