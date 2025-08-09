@@ -160,7 +160,7 @@ sensor:
     device_class: volume_storage
   - platform: template
     name: "Tank Percentage"
-    lambda: return (id(raw_dist).state/2.815)*100;
+    lambda: return ((id(raw_dist).state-2.69)/(3.1-2.69))*100;
     id: tank_per
     device_class: humidity
               
