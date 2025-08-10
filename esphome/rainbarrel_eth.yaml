@@ -13,7 +13,7 @@ packages:
       length: 825
       color_line: RGB
       name: rb_string
-  string_light: !include 
+  tree_light: !include 
     file: packages/add_light.yaml
     vars:
       pin: GPIO35
