@@ -156,6 +156,7 @@ script:
             - light.landscape
             - light.backyard_eave
             - light.porch_light_light
+            - light.front_eave
 
   ext_lights_off:
     alias: ext_lights_off
