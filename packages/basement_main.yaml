@@ -20,10 +20,27 @@ light:
     entity_id: switch.basement_stair_light
       
     
-#roomba:
-#  - host: 192.168.2.121
-#    blid: secret! megamaid_un
-#    password: secret! megamaid_pw
+binary_sensor:
+  - platform: template
+    sensors:
+      cat_box_full:
+        friendly_name: "Cat Box Full"
+        value_template: >
+          {{ states('sensor.das_poopinhaus_waste_drawer') | float(0) > 80.0 }}
+
+alert:
+  cat_box_full:
+    name: "Cat Box Waste Drawer Full"
+    entity_id: binary_sensor.cat_box_full
+    state: "on"
+    repeat:
+      - 60
+    skip_first: false
+    notifiers:
+      - group_notify
+    message: "shitters full, clean the cat box"
+    done_message: "shitters emptied"
+
   
 media_player:
   - platform: kodi
