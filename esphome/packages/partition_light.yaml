@@ -12,6 +12,10 @@ light:
         from: ${start}
         to: ${end}
     effects:
+      - addressable_flicker:
+          name: Dithering lights
+          update_interval: 16ms
+          intensity: 40%
       - addressable_color_wipe:
           name: Chiefs
           colors:
