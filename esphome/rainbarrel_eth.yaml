@@ -35,6 +35,13 @@ packages:
       start: 783
       end: 802
   irrigation: !include packages/rain_barrel_irrigation.yaml
+  string_light_part3: !include 
+    file: packages/partition_light.yaml
+    vars:
+      name: ext_back_window
+      parent: rb_string
+      start: 428
+      end: 782
 
 
 esphome:
