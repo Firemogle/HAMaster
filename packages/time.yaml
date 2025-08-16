@@ -105,8 +105,9 @@ automation:
     action:
       - service: script.turn_on
         target:
-          entity_id: script.hvac_run_stop_uni
-          entity_id: script.house_evening
+          entity_id:
+            - script.hvac_run_stop_uni
+            - script.house_evening
       - choose:
           - conditions:
               - condition: state
@@ -124,6 +125,17 @@ automation:
               - service: script.turn_on
                 target:
                   entity_id: script.xmas_light
+          - conditions:
+              - condition: state
+                entity_id: binary_sensor.house_sts_halloween
+                state: 'on'
+            sequence:
+              - service: script.turn_on
+                target:
+                  entity_id: script.halloween_light
+
+
+                  
 
   - id: house_night_mode
     alias: house_night_mode
