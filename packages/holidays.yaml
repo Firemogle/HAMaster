@@ -27,8 +27,12 @@ template:
       - name: house_sts_super_bowl
         state: >
           {{ is_state('input_boolean.super_bowl', 'on') }}
+  - binary_sensor:
+      - name: house_sts_halloween
+        state: >
+          {{ is_state('input_boolean.halloween', 'on') }}
 
-          
+
 automation:
   - id: 'independence_day_on'
     alias: independence_day_on
@@ -52,6 +56,30 @@ automation:
           - service: input_boolean.turn_off
             entity_id: input_boolean.independence_day
     mode: queued
+
+  - id: 'halloween_on'
+    alias: halloween_on
+    trigger:
+      - platform: calendar
+        event: start
+        entity_id: calendar.teamcarriger_gmail_com
+      - platform: calendar
+        event: end
+        entity_id: calendar.teamcarriger_gmail_com
+    condition:
+      - condition: template
+        value_template: "{{ 'Halloween Lights' in trigger.calendar_event.summary }}"
+    action:
+      - if:
+          - "{{ trigger.event == 'start' }}"
+        then:
+          - service: input_boolean.turn_on
+            entity_id: input_boolean.halloween
+        else:
+          - service: input_boolean.turn_off
+            entity_id: input_boolean.halloween
+    mode: queued
+
 
   - id: 'house_sts_xmas_lights'
     alias: house_sts_xmas_lights
@@ -121,13 +149,31 @@ script:
     - service: light.turn_on
       data:
         brightness: 215
-        entity_id: light.rainbrarrel_rb_string
+        entity_id: light.decklight
         color_name: white
         effect: "Blue Sparkle"
     - service: light.turn_on
       data:
         brightness: 215
-        entity_id: light.lr_bt_sns_fy_string
+        entity_id: light.rainbrarrel_ext_back_window
+        color_name: white
+        effect: "Blue Sparkle"
+    - service: light.turn_on
+      data:
+        brightness: 215
+        entity_id: light.backyard_eave
+        color_name: white
+        effect: "Blue Sparkle"
+    - service: light.turn_on
+      data:
+        brightness: 215
+        entity_id: light.lr_bt_sns_front_window
+        color_name: white
+        effect: "Blue Sparkle"
+    - service: light.turn_on
+      data:
+        brightness: 215
+        entity_id: light.front_eave
         color_name: white
         effect: "Blue Sparkle"
     - service: switch.turn_on
@@ -234,6 +280,59 @@ script:
         entity_id: light.lr_bt_sns_fy_string
         color_name: white
         effect: "Independence Day"
+
+  halloween_light:
+    sequence:
+    - service: light.turn_on
+      data:
+        color_name: orange
+        entity_id: light.front_light1_level_light_color_on_off
+    - service: light.turn_on
+      data:
+        color_name: white
+        entity_id: light.front_light2_level_light_color_on_off
+    - service: light.turn_on
+      data:
+        color_name: purple
+        entity_id: light.front_light3_level_light_color_on_off
+    - service: light.turn_on
+      data:
+        color_name: purple
+        entity_id: light.front_garden_level_light_color_on_off
+    - service: light.turn_on
+      data:
+        color_name: purple
+        entity_id: light.porch_light
+    - service: light.turn_on
+      data:
+        brightness: 215
+        entity_id: light.decklight
+        color_name: purple
+        effect: "Dithering Lights"
+    - service: light.turn_on
+      data:
+        brightness: 215
+        entity_id: light.rainbrarrel_ext_back_window
+        color_name: purple
+        effect: "Dithering Lights"
+    - service: light.turn_on
+      data:
+        brightness: 215
+        entity_id: light.backyard_eave
+        color_name: orange
+        effect: "Dithering Lights"
+    - service: light.turn_on
+      data:
+        brightness: 215
+        entity_id: light.lr_bt_sns_front_window
+        color_name: purple
+        effect: "Dithering Lights"
+    - service: light.turn_on
+      data:
+        brightness: 215
+        entity_id: light.front_eave
+        color_name: orange
+        effect: "Dithering Lights"
         
         
         
