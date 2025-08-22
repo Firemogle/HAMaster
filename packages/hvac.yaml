@@ -122,14 +122,14 @@ automation:
   - id: 'house_hvac_set'
     alias: house_hvac_set
     initial_state: 'off'
+  - mode: queued
+    max: 25
     trigger:
     - entity_id: binary_sensor.house_sts_dte_cheap
       platform: state
     - entity_id: binary_sensor.house_sts_guest
       platform: state
     - entity_id: binary_sensor.house_sts_vacation
-      platform: state
-    - entity_id: binary_sensor.house_sts_incoming
       platform: state
     - entity_id: binary_sensor.house_sts_hvac_run
       platform: state
