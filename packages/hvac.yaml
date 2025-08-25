@@ -122,22 +122,22 @@ automation:
   - id: 'house_hvac_set'
     alias: house_hvac_set
     initial_state: 'off'
-  - mode: queued
+    mode: queued
     max: 25
     trigger:
-    - entity_id: binary_sensor.house_sts_dte_cheap
-      platform: state
-    - entity_id: binary_sensor.house_sts_guest
-      platform: state
-    - entity_id: binary_sensor.house_sts_vacation
-      platform: state
-    - entity_id: binary_sensor.house_sts_hvac_run
-      platform: state
-    condition: []
+      - platform: state
+        entity_id: binary_sensor.house_sts_dte_cheap
+      - platform: state
+        entity_id: binary_sensor.house_sts_guest
+      - platform: state
+        entity_id: binary_sensor.house_sts_vacation
+      - platform: state
+        entity_id: binary_sensor.house_sts_hvac_run
     action:
-    - data:
-        entity_id: script.hvac_run_stop_uni
-      service: script.turn_on
+      - service: script.turn_on
+        target:
+          entity_id: script.hvac_run_stop_uni
+
 
   - id: 'house_humid'
     alias: house_humid
