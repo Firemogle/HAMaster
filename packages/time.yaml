@@ -176,6 +176,13 @@ automation:
       - platform: state
         entity_id: binary_sensor.morning
         to: 'on'
+      - platform: state
+        entity_id: binary_sensor.morning
+        to: 'on'
+        for:
+          hours: 1
+          minutes: 30
+          seconds: 0
     action:
       - service: script.turn_on
         target:
