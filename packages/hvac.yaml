@@ -72,7 +72,7 @@ template:
       - name: house_sts_hum_active_req
         state: >
           {{ is_state('binary_sensor.house_sts_hvac_heat_req', 'on')
-             and states('sensor.hvac_humidity')|float(default=0) < states('sensor.hvac_target_humidity')|float-5 }}
+             and states('sensor.hvac_humidity')|float(default=0) < states('sensor.hvac_target_humidity')|float(default=0) -5 }}
         delay_off:
           minutes: 10
 
