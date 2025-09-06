@@ -34,8 +34,8 @@ template:
   - binary_sensor:
       - name: house_time_workday_combine
         state: >
-          {{ is_state('binary_sensor.workday_raw', 'on'
-             and is_state("calendar.us_holidays", "off") }}
+          {{ is_state('binary_sensor.workday_raw', 'on')
+             and is_state('calendar.us_holidays', 'off') }}
   - binary_sensor:
       - name: work_wakeup_time
         state: >
