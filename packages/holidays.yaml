@@ -116,10 +116,15 @@ automation:
     - data:
         entity_id: switch.garage_wall_switch
       service: switch.turn_off
-    - data:
-        entity_id: light.uhall_ban_hall_ban
-        brightness: 255
-      service: light.turn_on
+    - service: light.turn_on
+      data:
+        brightness_pct: 100
+        rgb_color: [255, 255, 255]
+        effect: Rainbow
+        target:
+          entity_id:
+            - light.cabinet_top
+            - light.uhall_ban_hall_ban
     mode: queued
     
 
@@ -176,6 +181,15 @@ script:
         entity_id: light.front_eave
         color_name: white
         effect: "Blue Sparkle"
+    - service: light.turn_on
+      data:
+        brightness_pct: 100
+        rgb_color: [255, 255, 255]
+        effect: Rainbow
+        target:
+          entity_id:
+            - light.cabinet_top
+            - light.uhall_ban_hall_ban
     - service: switch.turn_on
       data:
         entity_id: switch.garage_wall_switch
@@ -333,6 +347,14 @@ script:
         entity_id: light.front_eave
         color_name: orange
         effect: "Dithering Lights"
-        
+    - service: light.turn_on
+      data:
+        brightness_pct: 100
+        color_name: purple
+        effect: "Dithering Lights"
+        target:
+          entity_id:
+            - light.cabinet_top
+            - light.uhall_ban_hall_ban
         
         
