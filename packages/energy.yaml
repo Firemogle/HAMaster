@@ -11,6 +11,26 @@ template:
         device_class: "energy"
         state: >
           {{ (states('sensor.em16_a1_this_month_energy')|float(0) + states('sensor.em16_a1_this_month_energy')|float(0))}}
+      - name: "Total Power Grid In"
+        unit_of_measurement: "Wh"
+        state_class: "total_increasing"
+        device_class: "energy"
+        state: >
+          {% if states('sensor.total_power_grid')|float(0) > 0 %}
+            {{ states('sensor.total_power_grid')|float(0) }}
+          {% else %}
+            0
+          {% endif %}
+      - name: "Total Power Grid Out"
+        unit_of_measurement: "Wh"
+        state_class: "total_increasing"
+        device_class: "energy"
+        state: >
+          {% if states('sensor.total_power_grid')|float(0) < 0 %}
+            {{ states('sensor.total_power_grid')|float(0) }}
+          {% else %}
+            0
+          {% endif %}
   - sensor:
       - name: "Total Power Solar"
         unit_of_measurement: "Wh"
