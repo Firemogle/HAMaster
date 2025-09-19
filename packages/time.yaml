@@ -169,6 +169,7 @@ automation:
           entity_id:
             - script.hvac_run_setpoint
             - script.house_night
+            - script.update_all_esphome_devices
 
   - id: 'ext_lights_off'
     alias: ext_lights_off
