@@ -14,6 +14,11 @@ automation:
         not_from:
           - "unknown"
           - "unavailable"
+      - trigger: state
+        entity_id: image.backyard_person
+        not_from:
+          - "unknown"
+          - "unavailable"
     condition: []
     actions:
     - data:
