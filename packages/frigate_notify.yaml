@@ -1,36 +1,19 @@
 automation:
-  - id: 'frig_person_found'
-    alias: frig_person_found
-    initial_state: 'off'
-    mode: single
-    triggers:
-      - trigger: state
-        entity_id: image.doorbell_person
-        not_from:
-          - "unknown"
-          - "unavailable"
-      - trigger: state
-        entity_id: image.garage_person
-        not_from:
-          - "unknown"
-          - "unavailable"
-      - trigger: state
-        entity_id: image.backyard_person
-        not_from:
-          - "unknown"
-          - "unavailable"
-    condition: []
-    actions:
-    - data:
-        message: "Look at this fool man"
-        data: 
-          image: '{{ state_attr(trigger.entity_id, "entity_picture") }}'
-          timeout: 1200
-          channel: "Object Detection"
-          group: "Fool Notice"
-      action: notify.group_notify
-    - delay:
-        hours: 0
-        minutes: 5
-        seconds: 0
-        milliseconds: 0
+  alias: Frigate Person
+  description: ""
+  use_blueprint:
+    path: SgtBatten/Stable.yaml
+    input:
+      camera:
+        - camera.backyard_2
+        - camera.backyard_shed
+        - camera.doorbell
+      notify_device: 16e48cf04bd912efe3b48f87441a304f
+      notify_group: notify.group_notify
+      base_url: https://homeassistant.teamcarriger.club
+      labels:
+        - person
+      video: >-
+        {{base_url}}/api/frigate{{client_id}}/notifications/{{review_id}}/review_preview.gif?format=ts
+      color: "#6e41ab"
+
