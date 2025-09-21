@@ -8,7 +8,6 @@ automation:
         - camera.backyard_2
         - camera.backyard_shed
         - camera.doorbell
-      mqtt_topic: frigate
       notify_group: notify.group_notify
       base_url: https://homeassistant.teamcarriger.club
       labels:
