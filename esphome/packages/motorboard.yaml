@@ -1,1 +1,45 @@
+pca9685:
+  -id: motor_controller
+  frequency: 500
+  address: 0x40
 
+output:
+  - platform: pca9685
+    id: MOT1EN
+    channel: 0
+  - platform: pca9685
+    id: MOT1DIR
+    channel: 1
+  - platform: pca9685
+    id: MOT2EN
+    channel: 2
+  - platform: pca9685
+    id: MOT2DIR
+    channel: 3
+  - platform: pca9685
+    id: MOT3EN
+    channel: 4
+  - platform: pca9685
+    id: MOT3DIR
+    channel: 5
+  - platform: pca9685
+    id: MOT4EN
+    channel: 6
+  - platform: pca9685
+    id: MOT4DIR
+    channel: 7
+  - platform: pca9685
+    id: sleep
+    channel: 8
+  - platform: pca9685
+    id: out4
+    channel: 12
+  - platform: pca9685
+    id: out3
+    channel: 13
+  - platform: pca9685
+    id: out2
+    channel: 14
+  - platform: pca9685
+    id: out1
+    channel: 15
