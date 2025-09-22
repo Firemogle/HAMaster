@@ -1,5 +1,5 @@
 pca9685:
-  - id: motor_controller_${index}
+  id: motor_controller_${index}
   frequency: 500
   address: 0x4${index}
 
