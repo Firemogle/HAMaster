@@ -1,45 +1,45 @@
 pca9685:
-  -id: motor_controller
+  -id: motor_controller${index}
   frequency: 500
-  address: 0x40
+  address: 0x4${index}
 
 output:
   - platform: pca9685
-    id: MOT1EN
+    id: mot1en${index}
     channel: 0
   - platform: pca9685
-    id: MOT1DIR
+    id: mot1dir{index}
     channel: 1
   - platform: pca9685
-    id: MOT2EN
+    id: mot2en{index}
     channel: 2
   - platform: pca9685
-    id: MOT2DIR
+    id: mot2dir{index}
     channel: 3
   - platform: pca9685
-    id: MOT3EN
+    id: mot3en{index}
     channel: 4
   - platform: pca9685
-    id: MOT3DIR
+    id: mot3dir{index}
     channel: 5
   - platform: pca9685
-    id: MOT4EN
+    id: mot4en{index}
     channel: 6
   - platform: pca9685
-    id: MOT4DIR
+    id: mot4dir{index}
     channel: 7
   - platform: pca9685
-    id: sleep
+    id: sleep{index}
     channel: 8
   - platform: pca9685
-    id: out4
+    id: out4{index}
     channel: 12
   - platform: pca9685
-    id: out3
+    id: out3{index}
     channel: 13
   - platform: pca9685
-    id: out2
+    id: out2{index}
     channel: 14
   - platform: pca9685
-    id: out1
+    id: out1{index}
     channel: 15
