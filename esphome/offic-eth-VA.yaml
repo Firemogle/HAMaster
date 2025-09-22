@@ -25,6 +25,15 @@ pcf8574:
     pcf8575: false
     i2c_id: i2c_channel
 
+switch:
+  - platform: output
+    name: "mot1go"
+    output: 'mot1en_0'
+switch:
+  - platform: output
+    name: "mot1dir"
+    output: 'mot1dir_0'
+
 
 sensor:   
   - platform: bmp280_i2c
