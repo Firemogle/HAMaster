@@ -29,7 +29,6 @@ switch:
   - platform: output
     name: "mot1go"
     output: 'mot1en_0'
-switch:
   - platform: output
     name: "mot1dir"
     output: 'mot1dir_0'
