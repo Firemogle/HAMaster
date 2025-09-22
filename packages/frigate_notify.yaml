@@ -9,6 +9,7 @@ automation:
         - camera.backyard_shed
         - camera.doorbell
       notify_group: notify.group_notify
+      notify_device: 16e48cf04bd912efe3b48f87441a304f
       base_url: https://homeassistant.teamcarriger.club
       labels:
         - person
@@ -24,6 +25,7 @@ automation:
       camera:
         - camera.garage_2
       notify_group: notify.group_notify
+      notify_device: 16e48cf04bd912efe3b48f87441a304f
       base_url: https://homeassistant.teamcarriger.club
       labels:
         - person
