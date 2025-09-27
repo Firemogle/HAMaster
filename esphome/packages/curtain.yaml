@@ -4,12 +4,12 @@ sensor:
     address: 0x29
     update_interval: 1s
     long_range: false
-    enable_pin:
+    enable_pin: out1_0
     i2c_id: i2c_channel
   - platform: vl53l0x
     name: "Sheer Distance"
     address: 0x28
     update_interval: 1s
     long_range: false
-    enable_pin: 
+    enable_pin: out2_0
     i2c_id: i2c_channel    
