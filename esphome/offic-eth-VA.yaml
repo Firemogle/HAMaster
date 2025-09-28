@@ -15,7 +15,7 @@ packages:
     vars:
       devicename: ${devicename}
   motorboarad: !include
-    file: packages/motorboard.yaml
+    file: packages/curtain.yaml
     vars:
       index: 0
 
