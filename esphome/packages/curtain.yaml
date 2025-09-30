@@ -5,9 +5,7 @@ sensor:
     address: 0x3${motor}
     update_interval: 1s
     long_range: false
-    enable_pin: 
-      pca9685:
-        channel: 15
+    enable_pin: sensor_output
     i2c_id: i2c_channel
     internal: false
   - platform: template
