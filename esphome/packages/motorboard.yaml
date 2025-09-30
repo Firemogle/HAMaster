@@ -42,7 +42,7 @@ output:
     id: out2_${index}
     channel: 14
   - platform: pca9685
-    id: out1_${index}
+    id: sensor_output
     channel: 15
 
 switch:
