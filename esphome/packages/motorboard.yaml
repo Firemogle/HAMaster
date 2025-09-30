@@ -44,3 +44,11 @@ output:
   - platform: pca9685
     id: out1_${index}
     channel: 15
+
+switch:
+  - platform: output
+    name: mot1go${index}
+    output: mot1en_${index}
+  - platform: output
+    name: mot1dir${index}
+    output: mot1dir_${index}
