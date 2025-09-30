@@ -5,7 +5,7 @@ sensor:
     address: 0x3${motor}
     update_interval: 1s
     long_range: false
-    enable_pin: out${motor}_${index}
+    enable_pin: 'out${motor}_${index}'
     i2c_id: i2c_channel
     internal: false
   - platform: template
