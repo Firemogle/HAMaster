@@ -1,8 +1,13 @@
 pca9685:
   id: motor_controller_${index}
   frequency: 500
-  address: 0x4${index}
+  address: 0x41
   i2c_id: i2c_channel
+
+max6956:
+  - id: max6956_1
+    address: 0x40
+    i2c_id: i2c_channel  
 
 output:
   - platform: pca9685
