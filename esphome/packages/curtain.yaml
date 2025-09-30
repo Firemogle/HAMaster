@@ -6,8 +6,8 @@ sensor:
     update_interval: 1s
     long_range: false
     enable_pin:
-      pca9685_id: pca9685_${index}
-      number: 0
+      pca9685_id: motor_controller_${index}
+      number: 15
     i2c_id: i2c_channel
     internal: false
   - platform: template
