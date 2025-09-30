@@ -2,22 +2,26 @@ substitutions:
   devicename: office_eth_va
 
 packages:
-  base_board: !include 
+  base_board: !include
     file: packages/poe_board_base_2.6.yaml
     vars:
       devicename: ${devicename}
-  voice_board: !include 
+
+  voice_board: !include
     file: packages/va_board_2.0.yaml
     vars:
       devicename: ${devicename}
-  occupancy: !include 
+
+  occupancy: !include
     file: packages/LD2410.yaml
     vars:
       devicename: ${devicename}
-  motorboarad: !include
+
+  motorboard: !include
     file: packages/motorboard.yaml
     vars:
       index: 0
+
   curtain: !include
     file: packages/curtain.yaml
     vars:
@@ -25,13 +29,12 @@ packages:
       motor: 1
 
 pcf8574:
-  - id: 'pcf8574_hub'
+  - id: pcf8574_hub
     address: 0x20
     pcf8575: false
     i2c_id: i2c_channel
 
-
-sensor:   
+sensor:
   - platform: bmp280_i2c
     temperature:
       name: ${devicename}_ext_temp
@@ -41,7 +44,7 @@ sensor:
     address: 0x76
     i2c_id: i2c_channel
     update_interval: 60s
-    
+
 binary_sensor:
   - platform: gpio
     name: ${devicename}_office_motion
