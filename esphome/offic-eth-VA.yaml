@@ -15,9 +15,14 @@ packages:
     vars:
       devicename: ${devicename}
   motorboarad: !include
+    file: packages/motorboard.yaml
+    vars:
+      index: 0
+  curtain: !include
     file: packages/curtain.yaml
     vars:
       index: 0
+      motor: 1
 
 pcf8574:
   - id: 'pcf8574_hub'
