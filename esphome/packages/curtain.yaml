@@ -6,3 +6,23 @@ sensor:
     long_range: false
     enable_pin: out${motor}_${index}
     i2c_id: i2c_channel 
+
+cover:
+  - platform: feedback
+    name: "Gate"
+
+    open_action:
+      - switch.turn_on: open_cover_switch
+    open_duration: 2.1min
+    open_endstop: open_endstop_binary_sensor
+    open_sensor: open_movement_binary_sensor
+
+    close_action:
+      - switch.turn_on: close_cover_switch
+    close_duration: 2min
+    close_endstop: close_endstop_binary_sensor
+    close_sensor: close_movement_binary_sensor
+
+    stop_action:
+      - switch.turn_off: open_cover_switch
+      - switch.turn_off: close_cover_switch
