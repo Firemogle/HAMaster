@@ -6,6 +6,7 @@ sensor:
     update_interval: 1s
     long_range: false
     enable_pin:
+      max6956: max6956_1
       number: 8
       mode:
         output: true
