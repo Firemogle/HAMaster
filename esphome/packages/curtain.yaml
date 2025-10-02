@@ -16,14 +16,14 @@ sensor:
     name: curtain_${index}_${motor}_percent
     id: curtain_${index}_${motor}_percent
     lambda: |-
-      return curtain_${index}_${motor}_sensor.state / (curtain_${index}_${motor}_max.state - curtain_${index}_${motor}_min.state);
+      return id(curtain_${index}_${motor}_sensor).state / (id(curtain_${index}_${motor}_max).state - id(curtain_${index}_${motor}_min).state);
 
 binary_sensor:
   - platform: template
     name: curtain_${index}_${motor}_closed
     id: curtain_${index}_${motor}_closed
     lambda: |-
-      if (curtain_${index}_${motor}_percent.state > 0.98) {
+      if (id(curtain_${index}_${motor}_percent).state > 0.98) {
         return true;
       } else {
         return false;
@@ -32,7 +32,7 @@ binary_sensor:
     name: curtain_${index}_${motor}_open
     id: curtain_${index}_${motor}_open
     lambda: |-
-      if (curtain_${index}_${motor}_percent.state < 0.02) {
+      if (id(curtain_${index}_${motor}_percent).state < 0.02) {
         return true;
       } else {
         return false;
