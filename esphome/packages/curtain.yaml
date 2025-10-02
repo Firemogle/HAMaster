@@ -45,12 +45,14 @@ number:
     id: curtain_${index}_${motor}_max
     min_value: 0
     max_value: 5000
+    step: 1
     restore_value: true
   - platform: template
     name: curtain_${index}_${motor}_min
     id: curtain_${index}_${motor}_min
     min_value: 0
     max_value: 5000
+    step: 1
     restore_value: true
 
 
