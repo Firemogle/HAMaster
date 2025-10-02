@@ -53,7 +53,9 @@ output:
 switch:
   - platform: output
     name: mot1go${index}
+    id: mot1go${index}
     output: mot1en_${index}
   - platform: output
     name: mot1dir${index}
+    id: mot1dir${index}
     output: mot1dir_${index}
