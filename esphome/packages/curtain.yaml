@@ -59,19 +59,18 @@ number:
 
 
 cover:
-  - platform: feedback
+  - platform: template 
     name: curtain_${index}_${motor}
+    lambda: |-
+      return id(curtain_${index}_${motor}_percent).state;
+    has_position: true
 
     open_action:
       - switch.turn_on: mot${motor}go${index}
-    open_duration: 2.1min
-    open_endstop: curtain_${index}_${motor}_open
 
     close_action:
       - switch.turn_on: mot${motor}dir${index}
       - switch.turn_on: mot${motor}go${index}
-    close_duration: 2min
-    close_endstop: curtain_${index}_${motor}_closed
 
     stop_action:
       - switch.turn_on: mot${motor}dir${index}
