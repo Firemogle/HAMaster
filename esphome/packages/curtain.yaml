@@ -6,8 +6,8 @@ sensor:
     update_interval: 1s
     long_range: false
     enable_pin:
-      pcf8574: pcf8574
-      number: 4
+      pcf8574: 'pcf8574_hub_${index}'
+      number: ${motor}
       mode:
         output: true
     i2c_id: i2c_channel
