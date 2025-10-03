@@ -1,31 +1,45 @@
 
 
 pcf8574:
-  - id: 'pcf8574_hub'
+  - id: 'pcf8574_hub_${index}'
     address: 0x21
     pcf8575: true
     i2c_id: i2c_channel  
 
-output:
-  - platform: pcf8574
-    id: mot1en_${index}
-    channel: 0
-  - platform: pcf8574
-    id: mot1dir_${index}
-    channel: 1
-  - platform: pcf8574
-    id: mot2en_${index}
-    channel: 2
-  - platform: pcf8574
-    id: mot2dir_${index}
-    channel: 3
-
 switch:
-  - platform: output
+- platform: gpio
     name: mot1go${index}
     id: mot1go${index}
-    output: mot1en_${index}
-  - platform: output
+    pin:
+      pcf8574: pcf8574_hub
+      number: 2
+      mode:
+        output: true
+      inverted: false
+  - platform: gpio
     name: mot1dir${index}
     id: mot1dir${index}
-    output: mot1dir_${index}
+    pin:
+      pcf8574: pcf8574_hub
+      number: 3
+      mode:
+        output: true
+      inverted: false
+- platform: gpio
+    name: mot2go${index}
+    id: mot2go${index}
+    pin:
+      pcf8574: pcf8574_hub
+      number: 4
+      mode:
+        output: true
+      inverted: false
+  - platform: gpio
+    name: mot2dir${index}
+    id: mot2dir${index}
+    pin:
+      pcf8574: pcf8574_hub
+      number: 5
+      mode:
+        output: true
+      inverted: false      
