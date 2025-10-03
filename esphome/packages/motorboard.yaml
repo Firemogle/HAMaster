@@ -1,54 +1,24 @@
-pca9685:
-  id: motor_controller_${index}
-  frequency: 500
-  address: 0x41
-  i2c_id: i2c_channel
 
-max6956:
-  - id: max6956_1
-    address: 0x40
+
+pcf8574:
+  - id: 'pcf8574_hub'
+    address: 0x21
+    pcf8575: true
     i2c_id: i2c_channel  
 
 output:
-  - platform: pca9685
+  - platform: pcf8574
     id: mot1en_${index}
     channel: 0
-  - platform: pca9685
+  - platform: pcf8574
     id: mot1dir_${index}
     channel: 1
-  - platform: pca9685
+  - platform: pcf8574
     id: mot2en_${index}
     channel: 2
-  - platform: pca9685
+  - platform: pcf8574
     id: mot2dir_${index}
     channel: 3
-  - platform: pca9685
-    id: mot3en_${index}
-    channel: 4
-  - platform: pca9685
-    id: mot3dir_${index}
-    channel: 5
-  - platform: pca9685
-    id: mot4en_${index}
-    channel: 6
-  - platform: pca9685
-    id: mot4dir_${index}
-    channel: 7
-  - platform: pca9685
-    id: sleep_${index}
-    channel: 8
-  - platform: pca9685
-    id: out4_${index}
-    channel: 12
-  - platform: pca9685
-    id: out3_${index}
-    channel: 13
-  - platform: pca9685
-    id: out2_${index}
-    channel: 14
-  - platform: pca9685
-    id: sensor_output
-    channel: 15
 
 switch:
   - platform: output
