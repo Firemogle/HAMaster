@@ -66,12 +66,24 @@ cover:
     has_position: true
 
     open_action:
+      - switch.turn_off: mot${motor}dir${index}
+      - delay: 0.5s
       - switch.turn_on: mot${motor}go${index}
+      - wait_until:
+          binary_sensor.is_on: id(curtain_${index}_${motor}_closed)
+      - switch.turn_off: mot${motor}go${index}
+      - switch.turn_off: mot${motor}dir${index}
 
     close_action:
       - switch.turn_on: mot${motor}dir${index}
+      - delay: 0.5s
       - switch.turn_on: mot${motor}go${index}
+      - wait_until:
+          binary_sensor.is_on: id(curtain_${index}_${motor}_open)
+      - switch.turn_off: mot${motor}go${index}
+      - switch.turn_off: mot${motor}dir${index}
 
+      
     stop_action:
-      - switch.turn_on: mot${motor}dir${index}
-      - switch.turn_on: mot${motor}go${index}
+      - switch.turn_off: mot${motor}dir${index}
+      - switch.turn_off: mot${motor}go${index}
