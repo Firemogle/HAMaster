@@ -7,7 +7,7 @@ pcf8574:
     i2c_id: i2c_channel  
 
 switch:
-- platform: gpio
+  - platform: gpio
     name: mot1go${index}
     id: mot1go${index}
     pin:
@@ -25,7 +25,7 @@ switch:
       mode:
         output: true
       inverted: false
-- platform: gpio
+  - platform: gpio
     name: mot2go${index}
     id: mot2go${index}
     pin:
