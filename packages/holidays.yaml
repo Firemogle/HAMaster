@@ -12,7 +12,7 @@ input_boolean:
   super_bowl:
     name: house_sts_super_bowl
     initial: false
-  super_bowl:
+  halloween:
     name: halloween
     initial: false
     
