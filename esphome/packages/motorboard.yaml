@@ -3,7 +3,7 @@
 pcf8574:
   - id: 'pcf8574_hub_${index}'
     address: 0x2${index}
-    pcf8575: true
+    pcf8575: false
     i2c_id: i2c_channel  
 
 switch:
