@@ -323,31 +323,31 @@ script:
         entity_id: light.porch_light
     - service: light.turn_on
       data:
-        brightness: 215
+        brightness_pct: 100
         entity_id: light.decklight
         color_name: purple
         effect: "Dithering Lights"
     - service: light.turn_on
       data:
-        brightness: 215
+        brightness_pct: 100
         entity_id: light.rainbrarrel_ext_back_window
         color_name: purple
         effect: "Dithering Lights"
     - service: light.turn_on
       data:
-        brightness: 215
+        brightness_pct: 100
         entity_id: light.backyard_eave
         color_name: orange
         effect: "Dithering Lights"
     - service: light.turn_on
       data:
-        brightness: 215
+        brightness_pct: 100
         entity_id: light.lr_bt_sns_front_window
         color_name: purple
         effect: "Dithering Lights"
     - service: light.turn_on
       data:
-        brightness: 215
+        brightness_pct: 100
         entity_id: light.front_eave
         color_name: orange
         effect: "Dithering Lights"
@@ -360,5 +360,4 @@ script:
           entity_id:
             - light.cabinet_top
             - light.uhall_ban_hall_ban
-        
         
