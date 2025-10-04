@@ -2,7 +2,7 @@
 
 pcf8574:
   - id: 'pcf8574_hub_${index}'
-    address: 0x21
+    address: 0x2${index}
     pcf8575: true
     i2c_id: i2c_channel  
 
@@ -11,7 +11,7 @@ switch:
     name: mot1go${index}
     id: mot1go${index}
     pin:
-      pcf8574: pcf8574_hub
+      pcf8574: pcf8574_hub_${index}
       number: 2
       mode:
         output: true
@@ -20,7 +20,7 @@ switch:
     name: mot1dir${index}
     id: mot1dir${index}
     pin:
-      pcf8574: pcf8574_hub
+      pcf8574: pcf8574_hub_${index}
       number: 3
       mode:
         output: true
@@ -29,7 +29,7 @@ switch:
     name: mot2go${index}
     id: mot2go${index}
     pin:
-      pcf8574: pcf8574_hub
+      pcf8574: pcf8574_hub_${index}
       number: 4
       mode:
         output: true
@@ -38,7 +38,7 @@ switch:
     name: mot2dir${index}
     id: mot2dir${index}
     pin:
-      pcf8574: pcf8574_hub
+      pcf8574: pcf8574_hub_${index}
       number: 5
       mode:
         output: true
