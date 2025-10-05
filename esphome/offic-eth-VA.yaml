@@ -27,12 +27,14 @@ packages:
     vars:
       index: 0
       motor: 1
+      sensorpin: 0
 
   sheercurtain: !include
     file: packages/curtain.yaml
     vars:
       index: 0
       motor: 2
+      sensorpin: 1
 
 pcf8574:
   - id: pcf8574_hub
