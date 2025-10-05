@@ -5,16 +5,12 @@ homeassistant:
 input_boolean:
   independence_day:
     name: independence_day
-    initial: false
   house_sts_xmas_lights:
     name: house_sts_xmas_lights
-    initial: false
   super_bowl:
     name: house_sts_super_bowl
-    initial: false
   halloween:
     name: halloween
-    initial: false
     
 
     
