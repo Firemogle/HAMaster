@@ -64,6 +64,8 @@ cover:
     lambda: |-
       return id(curtain_${index}_${motor}_percent).state;
     has_position: true
+    device_class: curtain
+    
 
     open_action:
       - switch.turn_off: mot${motor}back${index}
