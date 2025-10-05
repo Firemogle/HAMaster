@@ -12,29 +12,6 @@ packages:
     vars:
       devicename: ${devicename}
 
-  occupancy: !include
-    file: packages/LD2410.yaml
-    vars:
-      devicename: ${devicename}
-
-  motorboard: !include
-    file: packages/motorboard.yaml
-    vars:
-      index: 0
-
-  curtain: !include
-    file: packages/curtain.yaml
-    vars:
-      index: 0
-      motor: 1
-      sensorpin: 0
-
-  sheercurtain: !include
-    file: packages/curtain.yaml
-    vars:
-      index: 0
-      motor: 2
-      sensorpin: 1
 
 pcf8574:
   - id: pcf8574_hub
