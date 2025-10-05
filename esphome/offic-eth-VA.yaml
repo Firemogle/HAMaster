@@ -25,17 +25,3 @@ sensor:
     address: 0x76
     i2c_id: i2c_channel
     update_interval: 60s
-
-binary_sensor:
-  - platform: gpio
-    name: ${devicename}_office_motion
-    id: ${devicename}_office_motion
-    device_class: motion
-    pin:
-      pcf8574: pcf8574_hub
-      number: 0
-      mode:
-        input: true
-    filters:
-      - delayed_off: 300s
-      - delayed_on: 5s
