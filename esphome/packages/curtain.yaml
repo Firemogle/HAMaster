@@ -15,6 +15,10 @@ sensor:
   - platform: template
     name: curtain_${index}_${motor}_percent
     id: curtain_${index}_${motor}_percent
+    filters:
+      - clamp:
+          min_value: 0
+          max_value: 100
     lambda: |-
       return (id(curtain_${index}_${motor}_sensor).state - id(curtain_${index}_${motor}_min).state) / (id(curtain_${index}_${motor}_max).state - id(curtain_${index}_${motor}_min).state)*100;
 
