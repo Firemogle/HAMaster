@@ -9,7 +9,26 @@ packages:
   voice_board: !include 
     file: packages/va_board_2.0.yaml
     vars:
+  occupancy: !include
+    file: packages/LD2410.yaml
+    vars:
       devicename: ${devicename}
+  motorboard: !include
+    file: packages/motorboard.yaml
+    vars:
+      index: 0
+  curtain: !include
+    file: packages/curtain.yaml
+    vars:
+      index: 0
+      motor: 1
+      sensorpin: 0
+  sheercurtain: !include
+    file: packages/curtain.yaml
+    vars:
+      index: 0
+      motor: 2
+      sensorpin: 1
 
 sensor:   
   - platform: bmp280_i2c
