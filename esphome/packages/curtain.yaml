@@ -8,11 +8,11 @@ sensor:
     enable_pin:
       pcf8574: pcf8574_hub_${index}
       number: !lambda |-
-      if (${motor} == 1) {
-        return 0;
-      } else {
-        return 1;
-      }
+        if (${motor} == 1) {
+          return 0;
+        } else {
+          return 1;
+        }
       mode:
         output: true
     i2c_id: i2c_channel
