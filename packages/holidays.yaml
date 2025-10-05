@@ -299,61 +299,42 @@ script:
     sequence:
     - service: light.turn_on
       data:
+        brightness_pct: 100
+        color_name: orange
+        effect: "Dithering Lights"
+      target:
+        entity_id:
+          - light.front_eave
+          - light.backyard_eave
+    - service: light.turn_on
+      data:
+        brightness_pct: 100
+        color_name: purple
+        effect: "Dithering Lights"
+      target:
+        entity_id:
+          - light.lr_bt_sns_front_window
+          - light.cabinet_top
+          - light.rainbrarrel_ext_back_window
+          - light.uhall_ban_hall_ban
+          - light.decklight
+    - service: light.turn_on
+      data:
+        brightness_pct: 100
+        color_name: purple
+      target:
+        entity_id:
+          - light.front_light3_level_light_color_on_off
+          - light.front_garden_level_light_color_on_off
+          - light.porch_light
+    - service: light.turn_on
+      data:
         color_name: orange
         entity_id: light.front_light1_level_light_color_on_off
     - service: light.turn_on
       data:
         color_name: white
         entity_id: light.front_light2_level_light_color_on_off
-    - service: light.turn_on
-      data:
-        color_name: purple
-        entity_id: light.front_light3_level_light_color_on_off
-    - service: light.turn_on
-      data:
-        color_name: purple
-        entity_id: light.front_garden_level_light_color_on_off
-    - service: light.turn_on
-      data:
-        color_name: purple
-        entity_id: light.porch_light
-    - service: light.turn_on
-      data:
-        brightness: 215
-        entity_id: light.decklight
-        color_name: purple
-        effect: "Dithering Lights"
-    - service: light.turn_on
-      data:
-        brightness: 215
-        entity_id: light.rainbrarrel_ext_back_window
-        color_name: purple
-        effect: "Dithering Lights"
-    - service: light.turn_on
-      data:
-        brightness: 215
-        entity_id: light.backyard_eave
-        color_name: orange
-        effect: "Dithering Lights"
-    - service: light.turn_on
-      data:
-        brightness: 215
-        entity_id: light.lr_bt_sns_front_window
-        color_name: purple
-        effect: "Dithering Lights"
-    - service: light.turn_on
-      data:
-        brightness: 215
-        entity_id: light.front_eave
-        color_name: orange
-        effect: "Dithering Lights"
-    - service: light.turn_on
-      data:
-        brightness: 215
-        color_name: purple
-        effect: "Dithering Lights"
-        target:
-          entity_id:
-            - light.cabinet_top
-            - light.uhall_ban_hall_ban
+
+
         
