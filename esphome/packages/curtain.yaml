@@ -75,7 +75,7 @@ cover:
       - switch.turn_off: mot${motor}back${index}
 
     close_action:
-      - switch.turn_on: mot${motor}go${index}
+      - switch.turn_off: mot${motor}go${index}
       - delay: 0.5s
       - switch.turn_on: mot${motor}back${index}
       - wait_until:
