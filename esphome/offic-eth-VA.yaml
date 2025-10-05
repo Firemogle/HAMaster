@@ -28,6 +28,12 @@ packages:
       index: 0
       motor: 1
 
+  sheercurtain: !include
+    file: packages/curtain.yaml
+    vars:
+      index: 0
+      motor: 2
+
 pcf8574:
   - id: pcf8574_hub
     address: 0x20
