@@ -16,7 +16,7 @@ sensor:
     name: curtain_${index}_${motor}_percent
     id: curtain_${index}_${motor}_percent
     lambda: |-
-      return (id(curtain_${index}_${motor}_sensor).state*1000 - id(curtain_${index}_${motor}_min).state) / (id(curtain_${index}_${motor}_max).state - id(curtain_${index}_${motor}_min).state);
+      return (id(curtain_${index}_${motor}_sensor).state - id(curtain_${index}_${motor}_min).state) / (id(curtain_${index}_${motor}_max).state - id(curtain_${index}_${motor}_min).state)*100;
 
 binary_sensor:
   - platform: template
