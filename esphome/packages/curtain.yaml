@@ -44,16 +44,16 @@ number:
     name: curtain_${index}_${motor}_max
     id: curtain_${index}_${motor}_max
     min_value: 0
-    max_value: 5000
-    step: 1
+    max_value: 5
+    step: 0.001
     optimistic: true
     restore_value: true
   - platform: template
     name: curtain_${index}_${motor}_min
     id: curtain_${index}_${motor}_min
     min_value: 0
-    max_value: 5000
-    step: 1
+    max_value: 5
+    step: 0.001
     optimistic: true
     restore_value: true
 
@@ -66,24 +66,24 @@ cover:
     has_position: true
 
     open_action:
-      - switch.turn_off: mot${motor}dir${index}
+      - switch.turn_off: mot${motor}back${index}
       - delay: 0.5s
       - switch.turn_on: mot${motor}go${index}
       - wait_until:
           binary_sensor.is_on: curtain_${index}_${motor}_closed
       - switch.turn_off: mot${motor}go${index}
-      - switch.turn_off: mot${motor}dir${index}
+      - switch.turn_off: mot${motor}back${index}
 
     close_action:
-      - switch.turn_on: mot${motor}dir${index}
-      - delay: 0.5s
       - switch.turn_on: mot${motor}go${index}
+      - delay: 0.5s
+      - switch.turn_on: mot${motor}back${index}
       - wait_until:
           binary_sensor.is_on: curtain_${index}_${motor}_open
       - switch.turn_off: mot${motor}go${index}
-      - switch.turn_off: mot${motor}dir${index}
+      - switch.turn_off: mot${motor}back${index}
 
       
     stop_action:
-      - switch.turn_off: mot${motor}dir${index}
+      - switch.turn_off: mot${motor}back${index}
       - switch.turn_off: mot${motor}go${index}
