@@ -17,8 +17,8 @@ switch:
         output: true
       inverted: false
   - platform: gpio
-    name: mot1dir${index}
-    id: mot1dir${index}
+    name: mot1back${index}
+    id: mot1back${index}
     pin:
       pcf8574: pcf8574_hub_${index}
       number: 3
@@ -35,8 +35,8 @@ switch:
         output: true
       inverted: false
   - platform: gpio
-    name: mot2dir${index}
-    id: mot2dir${index}
+    name: mot2back${index}
+    id: mot2dback${index}
     pin:
       pcf8574: pcf8574_hub_${index}
       number: 5
