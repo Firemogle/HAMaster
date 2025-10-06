@@ -18,7 +18,7 @@ sensor:
     filters:
       - clamp:
           min_value: 0
-          max_value: 100
+          max_value: 1
     lambda: |-
       return (id(curtain_${index}_${motor}_sensor).state - id(curtain_${index}_${motor}_min).state) / (id(curtain_${index}_${motor}_max).state - id(curtain_${index}_${motor}_min).state);
 
