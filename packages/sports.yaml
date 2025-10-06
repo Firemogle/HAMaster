@@ -32,6 +32,7 @@ automation:
           - condition: template
             value_template: "{{ trigger.to_state.state == 'IN' }}"
         then:
+          - service: script.save_hall_light_state
           - service: light.turn_on
             data:
               brightness: 255
@@ -51,18 +52,7 @@ automation:
               message: "Jayhawks be playing."
             service: notify.group_notify
         else:
-          - service: light.turn_on
-            data:
-              brightness: 50
-              entity_id: light.uhall_ban_hall_ban
-              color_name: white
-              effect: "None"
-          - service: light.turn_on
-            data:
-              brightness: 255
-              entity_id: light.cabinet_top
-              color_name: white
-              effect: "None"
+          - service: script.restore_hall_light_state
           - service: light.turn_off
             data:
               entity_id: light.jayhawk_candle
@@ -84,6 +74,7 @@ automation:
           - condition: template
             value_template: "{{ trigger.to_state.state == 'IN' }}"
         then:
+          - service: script.save_hall_light_state
           - service: light.turn_on
             data:
               brightness: 255
@@ -100,16 +91,57 @@ automation:
               message: "Chiefs be playing."
             service: notify.group_notify
         else:
-          - service: light.turn_on
-            data:
-              brightness: 50
-              entity_id: light.uhall_ban_hall_ban
-              color_name: white
-              effect: "None"
-          - service: light.turn_on
-            data:
-              brightness: 255
-              entity_id: light.cabinet_top
-              color_name: white
-              effect: "None"
+          - service: script.restore_hall_light_state
     mode: queued
+
+
+input_number:
+  saved_light_brightness:
+    name: Saved Light Brightness
+    min: 0
+    max: 255
+    step: 1
+
+input_text:
+  saved_light_effect:
+    name: Saved Light Effect
+
+script:
+  save_hall_light_state:
+    alias: Save Hall Light State
+    mode: single
+    sequence:
+      - variables:
+          brightness: "{{ state_attr('light.uhall_ban_hall_ban', 'brightness') | int(0) }}"
+          effect: "{{ state_attr('light.uhall_ban_hall_ban', 'effect') | default('') }}"
+      - service: input_number.set_value
+        target:
+          entity_id: input_number.saved_light_brightness
+        data:
+          value: "{{ brightness }}"
+      - service: input_text.set_value
+        target:
+          entity_id: input_text.saved_light_effect
+        data:
+          value: "{{ effect }}"
+          
+  restore_hall_light_state:
+    alias: Restore Hall Light State
+    mode: single
+    sequence:
+      - variables:
+          brightness: "{{ states('input_number.saved_light_brightness') | int(0) }}"
+          effect: "{{ states('input_text.saved_light_effect') }}"
+      - service: light.turn_on
+        target:
+          entity_id:
+            - light.uhall_ban_hall_ban
+            - light.cabinet_top
+        data:
+          brightness: "{{ brightness }}"
+          effect: >
+            {% if effect != '' %}
+              {{ effect }}
+            {% else %}
+              none
+            {% endif %}
