@@ -41,11 +41,6 @@ lock:
       service: script.front_door_unlock
     
 media_player:
-  - platform: kodi
-    name: Livingroom_kodi
-    host: 192.168.3.6
-    username: !secret KODI_USR
-    password: !secret KODI_PW
 
   - platform: androidtv
     name: livingroom_shield
