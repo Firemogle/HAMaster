@@ -14,11 +14,6 @@ homeassistant:
       friendly_name: Master Bedroom Window Temp
       
 media_player:
-  - platform: kodi
-    name: mbed_kodi
-    host: 192.168.3.9
-    username: !secret KODI_USR
-    password: !secret KODI_PW
 
   - platform: androidtv
     name: mbed_shield
