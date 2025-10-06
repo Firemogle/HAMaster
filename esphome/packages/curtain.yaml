@@ -20,7 +20,7 @@ sensor:
           min_value: 0
           max_value: 100
     lambda: |-
-      return (id(curtain_${index}_${motor}_sensor).state - id(curtain_${index}_${motor}_min).state) / (id(curtain_${index}_${motor}_max).state - id(curtain_${index}_${motor}_min).state)*100;
+      return (id(curtain_${index}_${motor}_sensor).state - id(curtain_${index}_${motor}_min).state) / (id(curtain_${index}_${motor}_max).state - id(curtain_${index}_${motor}_min).state)
 
 binary_sensor:
   - platform: template
