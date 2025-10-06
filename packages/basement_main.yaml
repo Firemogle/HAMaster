@@ -43,11 +43,6 @@ alert:
 
   
 media_player:
-  - platform: kodi
-    name: projector_kodi
-    host: 192.168.3.3
-    username: !secret KODI_USR
-    password: !secret KODI_PW
       
   - platform: universal
     name: projector_media
