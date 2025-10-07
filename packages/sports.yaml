@@ -110,65 +110,65 @@ input_text:
     name: Saved Light Color
 
 script:
-save_hall_light_state:
-  alias: Save Hall Light State
-  mode: single
-  sequence:
-    - variables:
-        brightness: "{{ state_attr('light.uhall_ban_hall_ban', 'brightness') | int(0) }}"
-        effect: "{{ state_attr('light.uhall_ban_hall_ban', 'effect') | default('') }}"
-        rgb_color: >
-          {% if state_attr('light.uhall_ban_hall_ban', 'rgb_color') is defined %}
-            {{ state_attr('light.uhall_ban_hall_ban', 'rgb_color') }}
-          {% else %}
-            none
-          {% endif %}
-    - service: input_number.set_value
-      target:
-        entity_id: input_number.saved_light_brightness
-      data:
-        value: "{{ brightness }}"
-    - service: input_text.set_value
-      target:
-        entity_id: input_text.saved_light_effect
-      data:
-        value: "{{ effect }}"
-    - service: input_text.set_value
-      target:
-        entity_id: input_text.saved_light_color
-      data:
-        value: "{{ rgb_color }}"
-          
-restore_hall_light_state:
-  alias: Restore Hall Light State
-  mode: single
-  sequence:
-    - variables:
-        brightness: "{{ states('input_number.saved_light_brightness') | int(0) }}"
-        effect: "{{ states('input_text.saved_light_effect') }}"
-        rgb_color: "{{ states('input_text.saved_light_color') }}"
-        parsed_color: >
-          {% if rgb_color not in ['none', '', 'unknown'] %}
-            {% set color = rgb_color | replace('[','') | replace(']','') | split(',') %}
-            [{{ color[0] | float }}, {{ color[1] | float }}, {{ color[2] | float }}]
-          {% else %}
-            none
-          {% endif %}
-    - service: light.turn_on
-      target:
-        entity_id:
-          - light.uhall_ban_hall_ban
-          - light.cabinet_top
-      data:
-        brightness: "{{ brightness }}"
-        effect: >
-          {% if effect != '' %}
-            {{ effect }}
-          {% else %}
-            none
-          {% endif %}
-        rgb_color: >
-          {% if parsed_color != 'none' %}
-            {{ parsed_color }}
-          {% endif %}
+  save_hall_light_state:
+    alias: Save Hall Light State
+    mode: single
+    sequence:
+      - variables:
+          brightness: "{{ state_attr('light.uhall_ban_hall_ban', 'brightness') | int(0) }}"
+          effect: "{{ state_attr('light.uhall_ban_hall_ban', 'effect') | default('') }}"
+          rgb_color: >
+            {% if state_attr('light.uhall_ban_hall_ban', 'rgb_color') is defined %}
+              {{ state_attr('light.uhall_ban_hall_ban', 'rgb_color') }}
+            {% else %}
+              none
+            {% endif %}
+      - service: input_number.set_value
+        target:
+          entity_id: input_number.saved_light_brightness
+        data:
+          value: "{{ brightness }}"
+      - service: input_text.set_value
+        target:
+          entity_id: input_text.saved_light_effect
+        data:
+          value: "{{ effect }}"
+      - service: input_text.set_value
+        target:
+          entity_id: input_text.saved_light_color
+        data:
+          value: "{{ rgb_color }}"
+            
+  restore_hall_light_state:
+    alias: Restore Hall Light State
+    mode: single
+    sequence:
+      - variables:
+          brightness: "{{ states('input_number.saved_light_brightness') | int(0) }}"
+          effect: "{{ states('input_text.saved_light_effect') }}"
+          rgb_color: "{{ states('input_text.saved_light_color') }}"
+          parsed_color: >
+            {% if rgb_color not in ['none', '', 'unknown'] %}
+              {% set color = rgb_color | replace('[','') | replace(']','') | split(',') %}
+              [{{ color[0] | float }}, {{ color[1] | float }}, {{ color[2] | float }}]
+            {% else %}
+              none
+            {% endif %}
+      - service: light.turn_on
+        target:
+          entity_id:
+            - light.uhall_ban_hall_ban
+            - light.cabinet_top
+        data:
+          brightness: "{{ brightness }}"
+          effect: >
+            {% if effect != '' %}
+              {{ effect }}
+            {% else %}
+              none
+            {% endif %}
+          rgb_color: >
+            {% if parsed_color != 'none' %}
+              {{ parsed_color }}
+            {% endif %}
 
