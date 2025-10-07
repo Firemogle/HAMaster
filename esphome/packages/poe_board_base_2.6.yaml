@@ -40,3 +40,8 @@ i2c:
    - id: audio_i2c
      sda: GPIO08
      scl: GPIO18
+
+button:
+  - platform: restart
+    name: ${devicename}_reboot
+    id: ${devicename}_reboot
