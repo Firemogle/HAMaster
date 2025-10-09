@@ -25,7 +25,7 @@ display:
       } else if ( y >= 8 and y < 16 ) {
         iMatrixOffset = 256
       } else {
-        IMatrixOffset = 512
+        iMatrixOffset = 512
       }
       if (x % 2 == 0) {
         return (x * 8) + (y % 8) + iMatrixOffset;
