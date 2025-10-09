@@ -21,11 +21,11 @@ display:
     pixel_mapper: |-
       int iMatrixOffset = 0;
       if (y < 8) {
-        iMatrixOffset = 0
+        iMatrixOffset = 0;
       } else if ( y >= 8 and y < 16 ) {
-        iMatrixOffset = 256
+        iMatrixOffset = 256;
       } else {
-        iMatrixOffset = 512
+        iMatrixOffset = 512;
       }
       if (x % 2 == 0) {
         return (x * 8) + (y % 8) + iMatrixOffset;
