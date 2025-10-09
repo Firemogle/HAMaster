@@ -29,6 +29,11 @@ packages:
       index: 0
       motor: 2
       sensorpin: 1
+  screen: !include 
+    file: packages/addressable_screen.yaml
+    vars:
+      pin: GPIO48
+
 
 sensor:   
   - platform: bmp280_i2c
