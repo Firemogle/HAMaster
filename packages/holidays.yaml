@@ -299,7 +299,7 @@ script:
     sequence:
     - service: light.turn_on
       data:
-        brightness_pct: 100
+        brightness: 255
         color_name: orange
         effect: "Dithering Lights"
       target:
@@ -308,7 +308,7 @@ script:
           - light.backyard_eave
     - service: light.turn_on
       data:
-        brightness_pct: 100
+        brightness: 255
         color_name: purple
         effect: "Dithering Lights"
       target:
@@ -320,7 +320,7 @@ script:
           - light.decklight
     - service: light.turn_on
       data:
-        brightness_pct: 100
+        brightness: 255
         color_name: purple
       target:
         entity_id:
