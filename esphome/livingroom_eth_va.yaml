@@ -33,7 +33,7 @@ packages:
   screen: !include 
     file: packages/addressable_screen.yaml
     vars:
-      pin: GPIO47
+      pin: GPIO48
 
 
 sensor:   
