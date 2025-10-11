@@ -3,7 +3,7 @@
 
 light:
   - platform: esp32_rmt_led_strip
-    chipset: WS2812
+    chipset: WS2811
     pin: ${pin}
     num_leds: 768
     rgb_order: rgb
