@@ -9,6 +9,7 @@ packages:
   voice_board: !include 
     file: packages/va_board_2.0.yaml
     vars:
+      devicename: ${devicename}
   occupancy: !include
     file: packages/LD2410.yaml
     vars:
