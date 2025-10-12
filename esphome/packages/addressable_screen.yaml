@@ -6,40 +6,40 @@ light:
     chipset: WS2811
     pin: ${pin}
     num_leds: 768
-    rgb_order: rgb
+    rgb_order: grb
     name: screen_led
     id: screen_led
     max_refresh_rate: 16ms
 
 
-#display:
-#  - platform: addressable_light
-#    id: led_matrix_32x16_display
-#    addressable_light_id: screen_led
-#    width: 32
-#    height: 24
-#    pixel_mapper: |-
-#      int iMatrixOffset = 0;
-#      if (y < 8) {
-#        iMatrixOffset = 0;
-#      } else if ( y >= 8 and y < 16 ) {
-#        iMatrixOffset = 256;
-#      } else {
-#        iMatrixOffset = 512;
-#      }
-#      if (x % 2 == 0) {
-#        return (x * 8) + (y % 8) + iMatrixOffset;
-#      }
-#      return (x * 8) + iMatrixOffset + (7 - (y % 8));
-#    rotation: 0°
-#    update_interval: 16ms
-#    lambda: |-
-#      // Aligned on left by default
-#      it.image(0, 0, id(jayhawk));
+display:
+  - platform: addressable_light
+    id: led_matrix_32x16_display
+    addressable_light_id: screen_led
+    width: 32
+    height: 24
+    pixel_mapper: |-
+      int iMatrixOffset = 0;
+      if (y < 8) {
+        iMatrixOffset = 0;
+      } else if ( y >= 8 and y < 16 ) {
+        iMatrixOffset = 256;
+      } else {
+        iMatrixOffset = 512;
+      }
+      if (x % 2 == 0) {
+        return (x * 8) + (y % 8) + iMatrixOffset;
+      }
+      return (x * 8) + iMatrixOffset + (7 - (y % 8));
+    rotation: 0°
+    update_interval: 16ms
+    lambda: |-
+      // Aligned on left by default
+      it.image(0, 0, id(jayhawk));
 
 
-#image:
-#  - file: "jayhawk.png"
-#    type: rgb
-#    id: jayhawk
-#    resize: 24x32
+image:
+  - file: "jayhawk.png"
+    type: rgb
+    id: jayhawk
+    resize: 24x32
