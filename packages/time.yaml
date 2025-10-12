@@ -86,6 +86,9 @@ automation:
           entity_id:
             - script.hvac_run_stop_uni
             - script.house_wakeup
+      - service: vacuum.start
+        target:
+          device_id: 4ae8bbe13f1911ebb6d7f167204f6863
       - choose:
           - conditions:
               - condition: state
