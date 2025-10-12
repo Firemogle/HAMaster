@@ -63,7 +63,7 @@ switch:
       - display.page.show: page2
       - component.update: screen_led
     turn_off_action:
-      - display.page.show_next: page1
+      - display.page.show: page1
       - component.update: screen_led
   - platform: template
     name: "chiefs"
@@ -71,5 +71,5 @@ switch:
       - display.page.show: page3
       - component.update: screen_led
     turn_off_action:
-      - display.page.show_next: page1
+      - display.page.show: page1
       - component.update: screen_led
