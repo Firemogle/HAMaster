@@ -49,7 +49,7 @@ image:
   defaults:
     type: rgb
     transparency: alpha_channel
-    resize: 32x24
+    resize: 24x32
   images:
     - file: "jayhawk.png"
       id: jayhawk
