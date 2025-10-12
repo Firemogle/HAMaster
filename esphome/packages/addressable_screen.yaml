@@ -10,6 +10,7 @@ light:
     name: screen_led
     id: screen_led
     max_refresh_rate: 16ms
+    internal: true
 
 
 display:
@@ -54,3 +55,21 @@ image:
       id: jayhawk
     - file: "chiefs.png"
       id: chiefs
+
+switch:
+  - platform: template
+    name: "jayhawk"
+    turn_on_action:
+      - display.page.show: page2
+      - component.update: screen_led
+    turn_off_action:
+      - display.page.show_next: page1
+      - component.update: screen_led
+  - platform: template
+    name: "chiefs"
+    turn_on_action:
+      - display.page.show: page3
+      - component.update: screen_led
+    turn_off_action:
+      - display.page.show_next: page1
+      - component.update: screen_led
