@@ -37,7 +37,7 @@ display:
     pages:
       - id: page1    
         lambda: |-
-          it.print(0, 0, id(my_font), "");
+          it.fill(COLOR_OFF);
       - id: page2    
         lambda: |-          
           it.image(0, 0, id(jayhawk));
