@@ -40,10 +40,10 @@ display:
           it.fill(COLOR_OFF);
       - id: page2    
         lambda: |-          
-          it.image(0, 0, id(jayhawk));
+          it.image(0, 4, id(jayhawk));
       - id: page3    
         lambda: |-          
-          it.image(0, 0, id(chiefs));
+          it.image(0, 4, id(chiefs));
 
 image:
   defaults:
