@@ -38,8 +38,8 @@ light:
 #      it.image(0, 0, id(jayhawk));
 
 
-image:
-  - file: "jayhawk.png"
-    type: rgb
-    id: jayhawk
-    resize: 24x32
+#image:
+#  - file: "jayhawk.png"
+#    type: rgb
+#    id: jayhawk
+#    resize: 24x32
