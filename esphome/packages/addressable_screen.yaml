@@ -33,6 +33,7 @@ display:
       return (x * 8) + iMatrixOffset + (7 - (y % 8));
     rotation: 270°
     update_interval: 16ms
+    transparency: alpha_channel
     lambda: |-
       // Aligned on left by default
       it.image(0, 0, id(jayhawk));
@@ -42,4 +43,4 @@ image:
   - file: "jayhawk.png"
     type: rgb
     id: jayhawk
-    resize: 24x32
+    resize: 32x24
