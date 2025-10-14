@@ -15,7 +15,7 @@ switch:
       number: 2
       mode:
         output: true
-      inverted: true
+      inverted: false
   - platform: gpio
     name: mot1back${index}
     id: mot1back${index}
@@ -24,7 +24,7 @@ switch:
       number: 3
       mode:
         output: true
-      inverted: true
+      inverted: false
   - platform: gpio
     name: mot2go${index}
     id: mot2go${index}
@@ -33,7 +33,7 @@ switch:
       number: 4
       mode:
         output: true
-      inverted: true
+      inverted: false
   - platform: gpio
     name: mot2back${index}
     id: mot2back${index}
@@ -42,4 +42,22 @@ switch:
       number: 5
       mode:
         output: true
-      inverted: true
+      inverted: false
+  - platform: gpio
+    name: dummy1
+    id: dummy1
+    pin:
+      pcf8574: pcf8574_hub_${index}
+      number: 6
+      mode:
+        output: true
+      inverted: false
+  - platform: gpio
+    name: dummy2
+    id: dummy2
+    pin:
+      pcf8574: pcf8574_hub_${index}
+      number: 7
+      mode:
+        output: true
+      inverted: false      
