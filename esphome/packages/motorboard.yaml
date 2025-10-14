@@ -15,6 +15,7 @@ switch:
       number: 2
       mode:
         output: true
+        pullup: true
       inverted: false
   - platform: gpio
     name: mot1back${index}
@@ -24,6 +25,7 @@ switch:
       number: 3
       mode:
         output: true
+        pullup: true
       inverted: false
   - platform: gpio
     name: mot2go${index}
@@ -33,7 +35,8 @@ switch:
       number: 4
       mode:
         output: true
-      inverted: false
+        pullup: true
+      inverted: true
   - platform: gpio
     name: mot2back${index}
     id: mot2back${index}
@@ -42,4 +45,5 @@ switch:
       number: 5
       mode:
         output: true
-      inverted: false      
+        pullup: true
+      inverted: true
