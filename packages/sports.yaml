@@ -119,7 +119,7 @@ script:
           effect: "{{ state_attr('light.uhall_ban_hall_ban', 'effect') | default('') }}"
           rgb_color: >
             {% if state_attr('light.uhall_ban_hall_ban', 'rgb_color') is defined %}
-              {{ state_attr('light.uhall_ban_hall_ban', 'rgb_color') }}
+              {{ state_attr('light.uhall_ban_hall_ban', 'rgb_color') | to_json }}
             {% else %}
               none
             {% endif %}
@@ -138,6 +138,7 @@ script:
           entity_id: input_text.saved_light_color
         data:
           value: "{{ rgb_color }}"
+
             
   restore_hall_light_state:
     alias: Restore Hall Light State
@@ -146,11 +147,10 @@ script:
       - variables:
           brightness: "{{ states('input_number.saved_light_brightness') | int(0) }}"
           effect: "{{ states('input_text.saved_light_effect') }}"
-          rgb_color: "{{ states('input_text.saved_light_color') }}"
-          parsed_color: >
-            {% if rgb_color not in ['none', '', 'unknown'] %}
-              {% set color = rgb_color | replace('[','') | replace(']','') | split(',') %}
-              [{{ color[0] | float }}, {{ color[1] | float }}, {{ color[2] | float }}]
+          rgb_color_json: "{{ states('input_text.saved_light_color') }}"
+          rgb_color: >
+            {% if rgb_color_json not in ['none', '', 'unknown'] %}
+              {{ rgb_color_json | from_json }}
             {% else %}
               none
             {% endif %}
@@ -168,7 +168,6 @@ script:
               none
             {% endif %}
           rgb_color: >
-            {% if parsed_color != 'none' %}
-              {{ parsed_color }}
+            {% if rgb_color != 'none' %}
+              {{ rgb_color }}
             {% endif %}
-
