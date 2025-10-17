@@ -170,6 +170,4 @@ script:
           rgb_color: >
             {% if rgb_color != 'none' %}
               {{ rgb_color }}
-            {% else %}
-              '(255,255,255)'
             {% endif %}
