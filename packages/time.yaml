@@ -173,6 +173,7 @@ automation:
             - script.hvac_run_setpoint
             - script.house_night
             - script.update_all_esphome_devices
+            - script.ext_lights_off
 
   - id: 'ext_lights_off'
     alias: ext_lights_off
