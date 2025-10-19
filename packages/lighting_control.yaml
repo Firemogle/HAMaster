@@ -128,6 +128,10 @@ script:
             - light.front_light3_level_light_color_on_off
             - light.front_garden_level_light_color_on_off
             - light.front_garden_level_light_color_on_of
+            - light.landscape
+            - light.backyard_eave
+            - light.porch_light_light
+            - light.front_eave
 
   house_evening:
     alias: house_evening
