@@ -17,7 +17,6 @@ homeassistant:
       
 input_boolean:
   house_sts_guest:
-    initial: false
   house_sts_dte_cheap:
     initial: false
   house_sts_vacation:
