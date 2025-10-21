@@ -1,0 +1,97 @@
+mqtt:
+  enabled: true
+  host: 192.168.2.2
+  user: 
+  password: 
+
+detectors:
+  coral:
+    type: edgetpu
+    device: usb
+
+review:
+  alerts:
+    enabled: true
+    labels:
+      - person
+
+  detections:
+    enabled: true
+    labels:
+      - person
+
+ffmpeg:
+  hwaccel_args: auto
+
+objects:
+  track:
+    - person
+    - dog
+    - car
+    - cat
+  filters:
+    person:
+      threshold: 0.8
+
+snapshots:
+  enabled: true
+  retain:
+    default: 10
+
+record:
+  enabled: True
+  retain:
+    days: 3
+    mode: all
+  alerts:
+    retain:
+      days: 30
+      mode: motion
+  detections:
+    retain:
+      days: 30
+      mode: motion
+
+cameras:
+  doorbell:
+    enabled: true
+    ffmpeg:
+      inputs:
+        - path: 
+            rtsp://:@192.168.2.27/cam/realmonitor?channel=1&subtype=0
+          roles:
+            - detect
+
+    motion:
+      mask: 0.423,0.564,0.543,0.561,0.625,0.389,0.542,0,0,0.001,0,0.549
+  garage:
+    enabled: true
+    ffmpeg:
+      inputs:
+        - path: rtsp://:@192.168.2.109:443/videoMain
+          roles:
+            - detect
+
+  backyard:
+    enabled: true
+    ffmpeg:
+      inputs:
+        - path: 
+            rtsp://:@192.168.2.130/cam/realmonitor?channel=1&subtype=0
+          roles:
+            - detect
+
+  backyard_shed:
+    enabled: true
+    ffmpeg:
+      inputs:
+        - path: 
+            rtsp://:@192.168.2.134/cam/realmonitor?channel=1&subtype=0
+          roles:
+            - detect
+
+
+detect:
+  enabled: true
+version: 0.16-0
+
