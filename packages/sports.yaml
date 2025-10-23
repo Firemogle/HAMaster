@@ -117,12 +117,7 @@ script:
       - variables:
           brightness: "{{ state_attr('light.uhall_ban_hall_ban', 'brightness') | int(0) }}"
           effect: "{{ state_attr('light.uhall_ban_hall_ban', 'effect') | default('') }}"
-          rgb_color: >
-            {% if state_attr('light.uhall_ban_hall_ban', 'rgb_color') is defined %}
-              {{ state_attr('light.uhall_ban_hall_ban', 'rgb_color') | to_json }}
-            {% else %}
-              none
-            {% endif %}
+          rgb_color: "{{ state_attr('light.uhall_ban_hall_ban', 'rgb_color') | to_json }}"
       - service: input_number.set_value
         target:
           entity_id: input_number.saved_light_brightness
@@ -132,7 +127,7 @@ script:
         target:
           entity_id: input_text.saved_light_effect
         data:
-          value: "{{ effect }}"
+          value: "{{ state_attr('light.uhall_ban_hall_ban', 'effect') | default('None') }}"
       - service: input_text.set_value
         target:
           entity_id: input_text.saved_light_color
@@ -155,5 +150,5 @@ script:
             - light.cabinet_top
         data:
           brightness: "{{ brightness }}"
-          effect: "{{ effect }}"
+          effect: "{{ states('input_text.saved_light_effect') }}"
           rgb_color:  "{{ rgb_color }}"
