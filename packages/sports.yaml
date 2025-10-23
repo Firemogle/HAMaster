@@ -155,15 +155,5 @@ script:
             - light.cabinet_top
         data:
           brightness: "{{ brightness }}"
-          effect: >
-            {% if effect != '' %}
-              {{ effect }}
-            {% else %}
-              none
-            {% endif %}
-          rgb_color: >
-            {% if rgb_color != 'none' %}
-              - {{ rgb_color[0] | int(255)  }}
-              - {{ rgb_color[1] | int(255) }}
-              - {{ rgb_color[2] | int(255) }}
-            {% endif %}
+          effect: "{{ effect }}"
+          rgb_color:  "{{ rgb_color }}"
