@@ -128,7 +128,7 @@ script:
           entity_id: input_text.saved_light_effect
         data:
           value: >
-            "{{ effect }}"
+            {{ effect }}
       - service: input_text.set_value
         target:
           entity_id: input_text.saved_light_color
@@ -152,5 +152,5 @@ script:
         data:
           brightness: "{{ brightness }}"
           effect: >
-            "{{ effect }}"
+            {{ effect }}
           rgb_color:  "{{ rgb_color }}"
