@@ -147,13 +147,7 @@ script:
       - variables:
           brightness: "{{ states('input_number.saved_light_brightness') | int(0) }}"
           effect: "{{ states('input_text.saved_light_effect') }}"
-          rgb_color_json: "{{ states('input_text.saved_light_color') }}"
-          rgb_color: >
-            {% if rgb_color_json not in ['none', '', 'unknown'] %}
-              {{ rgb_color_json | from_json }}
-            {% else %}
-              none
-            {% endif %}
+          rgb_color: "{{ states('input_text.saved_light_color') | from_json }}"
       - service: light.turn_on
         target:
           entity_id:
@@ -169,7 +163,7 @@ script:
             {% endif %}
           rgb_color: >
             {% if rgb_color != 'none' %}
-              - {{ rgb_color[0] }}
-              - {{ rgb_color[1] }}
-              - {{ rgb_color[2] }}
+              - {{ rgb_color[0] | int(255)  }}
+              - {{ rgb_color[1] | int(255) }}
+              - {{ rgb_color[2] | int(255) }}
             {% endif %}
