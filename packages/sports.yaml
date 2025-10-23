@@ -155,5 +155,5 @@ script:
             - light.cabinet_top
         data:
           brightness: "{{ brightness }}"
-          effect: "{{ effect }}"
-          rgb_color:  "{{ rgb_color }}"
+          effect: {{ effect }}
+          rgb_color:  {{ rgb_color }}
