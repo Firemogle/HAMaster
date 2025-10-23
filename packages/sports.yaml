@@ -127,7 +127,8 @@ script:
         target:
           entity_id: input_text.saved_light_effect
         data:
-          value: "{{ state_attr('light.uhall_ban_hall_ban', 'effect') | default('None') }}"
+          value: >
+            "{{ effect }}"
       - service: input_text.set_value
         target:
           entity_id: input_text.saved_light_color
@@ -150,5 +151,6 @@ script:
             - light.cabinet_top
         data:
           brightness: "{{ brightness }}"
-          effect: "{{ states('input_text.saved_light_effect') }}"
+          effect: >
+            "{{ effect }}"
           rgb_color:  "{{ rgb_color }}"
