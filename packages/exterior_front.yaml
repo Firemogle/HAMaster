@@ -4,13 +4,7 @@ homeassistant:
       friendly_name: Porch Light
     light.garage_ext_2:
       friendly_name: Driveway Light 2
-
-mqtt:
-  - binary_sensor:
-      state_topic: "amcrest2mqtt/Z0502991CE0E5/doorbell"
-      name: "Doorbell"
-      payload_on: "ON"
-
+      
 plant:
   MidFront_Hydrangea:
     sensors:
