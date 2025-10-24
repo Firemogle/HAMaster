@@ -4,7 +4,35 @@ homeassistant:
       friendly_name: Porch Light
     light.garage_ext_2:
       friendly_name: Driveway Light 2
-      
+
+
+
+  - id: doorbell_notify
+    alias: doorbell_notify
+    mode: parallel
+    triggers:
+      - platform: state
+        entity_id: binary_sensor.front_door_doorbell
+        to: "on"
+    conditions: []
+    actions:
+      - action: assist_satellite.announce
+        metadata: {}
+        data:
+          message: "Door bells ringing yall"
+        target:
+          area_id:
+            - 36a7e54132e84284a4368f292e945bb0
+            - 63db88fe052b434c86e1d37781ce0972
+            - 259e54ef72a347c2b9fa159e5bcd32b7
+      - service: notify.group_notify
+        data:
+          message: "Door Bells Ringin' y'all"
+          data:
+            timeout: 300
+            tag: "system"
+            color: "red"
+            
 plant:
   MidFront_Hydrangea:
     sensors:
