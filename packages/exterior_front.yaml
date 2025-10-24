@@ -5,8 +5,7 @@ homeassistant:
     light.garage_ext_2:
       friendly_name: Driveway Light 2
 
-
-
+automation:
   - id: doorbell_notify
     alias: doorbell_notify
     mode: parallel
