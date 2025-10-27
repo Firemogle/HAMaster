@@ -318,6 +318,7 @@ script:
           - light.rainbrarrel_ext_back_window
           - light.uhall_ban_hall_ban
           - light.decklight
+          - light.lr_bt_sns_yard_string
     - service: light.turn_on
       data:
         brightness: 255
@@ -335,6 +336,11 @@ script:
       data:
         color_name: white
         entity_id: light.front_light2_level_light_color_on_off
+    - service: light.turn_on
+      data:
+        color_name: green
+        entity_id: light.lr_bt_sns_yard_string
+        
 
 
         
