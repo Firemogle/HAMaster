@@ -1,4 +1,4 @@
-pautomation:
+automation:
   - id: 'kansas_playing'
     alias: kansas_playing
     trigger:
