@@ -1,4 +1,4 @@
-automation:
+pautomation:
   - id: 'kansas_playing'
     alias: kansas_playing
     trigger:
@@ -142,7 +142,7 @@ script:
     sequence:
       - variables:
           brightness: "{{ states('input_number.saved_light_brightness') | int(0) }}"
-          effect: "{{ states('input_text.saved_light_effect') | replace('"', '') }}"
+          effect: "{{ states('input_text.saved_light_effect') }}"
           rgb_color: "{{ states('input_text.saved_light_color') | from_json }}"
       - service: light.turn_on
         target:
