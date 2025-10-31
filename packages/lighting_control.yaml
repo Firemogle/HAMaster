@@ -75,9 +75,6 @@ script:
             - light.cabinet_top
             - light.stove
             - light.uhall_ban_hall_ban
-      - service: lock.lock
-        target:
-          floor_id: first_floor
       - service: switch.turn_off
         target:
           entity_id: switch.garage_wall_switch
@@ -95,6 +92,9 @@ script:
             - light.kitchen_fan
             - light.kitchen_sink
             - light.kitchen_light_switch
+      - service: lock.lock
+        target:
+          floor_id: first_floor
 
   house_wakeup:
     alias: house_wakeup
