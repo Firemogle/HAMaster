@@ -114,25 +114,21 @@ script:
     alias: Save Hall Light State
     mode: single
     sequence:
-      - variables:
-          brightness: "{{ state_attr('light.uhall_ban_hall_ban', 'brightness') | int(0) }}"
-          effect: "{{ state_attr('light.uhall_ban_hall_ban', 'effect') | default('None') }}"
-          rgb_color: "{{ state_attr('light.uhall_ban_hall_ban', 'rgb_color') | to_json }}"
       - service: input_number.set_value
         target:
           entity_id: input_number.saved_light_brightness
         data:
-          value: "{{ brightness }}"
+          value: "{{ state_attr('light.uhall_ban_hall_ban', 'brightness') | int(0) }}"
       - service: input_text.set_value
         target:
           entity_id: input_text.saved_light_effect
         data:
-          value: "{{ effect }}"
+          value: "{{ state_attr('light.uhall_ban_hall_ban', 'effect') | default('None') }}"
       - service: input_text.set_value
         target:
           entity_id: input_text.saved_light_color
         data:
-          value: "{{ rgb_color }}"
+          value: "{{ state_attr('light.uhall_ban_hall_ban', 'rgb_color') | to_json }}"
 
             
   restore_hall_light_state:
