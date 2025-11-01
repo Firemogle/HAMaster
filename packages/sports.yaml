@@ -136,7 +136,7 @@ script:
         target:
           entity_id: input_text.saved_light_effect
         data:
-          value: "{{ effect }}"
+          value: "{{ state_attr('light.uhall_ban_hall_ban', 'effect') | default('None', true) | string }}"
 
       - service: input_text.set_value
         target:
