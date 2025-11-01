@@ -124,13 +124,17 @@ script:
         target:
           entity_id: input_text.saved_light_effect
         data:
-          value: "{{ state_attr('light.uhall_ban_hall_ban', 'effect') | default('None') }}"
+          value: >
+            {% set eff = state_attr('light.uhall_ban_hall_ban', 'effect') %}
+            {{ eff if eff is not none else 'None' }}
 
       - service: input_text.set_value
         target:
           entity_id: input_text.saved_light_color
         data:
-          value: "{{ state_attr('light.uhall_ban_hall_ban', 'rgb_color') | to_json }}"
+          value: >
+            {% set col = state_attr('light.uhall_ban_hall_ban', 'rgb_color') %}
+            {{ col | to_json if col is not none else '[255,255,255]' }}
 
             
   restore_hall_light_state:
