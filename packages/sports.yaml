@@ -119,11 +119,13 @@ script:
           entity_id: input_number.saved_light_brightness
         data:
           value: "{{ state_attr('light.uhall_ban_hall_ban', 'brightness') | int(0) }}"
+
       - service: input_text.set_value
         target:
           entity_id: input_text.saved_light_effect
         data:
           value: "{{ state_attr('light.uhall_ban_hall_ban', 'effect') | default('None') }}"
+
       - service: input_text.set_value
         target:
           entity_id: input_text.saved_light_color
