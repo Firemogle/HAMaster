@@ -126,7 +126,7 @@ script:
         data:
           value: >
             {% set eff = state_attr('light.uhall_ban_hall_ban', 'effect') %}
-            {{ eff if eff is not none else 'None' }}
+            {{ eff if eff is not none else 'default' }}
 
       - service: input_text.set_value
         target:
