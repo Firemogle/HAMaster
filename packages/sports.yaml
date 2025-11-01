@@ -116,7 +116,7 @@ script:
     sequence:
       - variables:
           brightness: "{{ state_attr('light.uhall_ban_hall_ban', 'brightness') | int(0) }}"
-          effect: "{{ state_attr('light.uhall_ban_hall_ban', 'effect') | default('') }}"
+          effect: "{{ state_attr('light.uhall_ban_hall_ban', 'effect') | default('None') }}"
           rgb_color: "{{ state_attr('light.uhall_ban_hall_ban', 'rgb_color') | to_json }}"
       - service: input_number.set_value
         target:
