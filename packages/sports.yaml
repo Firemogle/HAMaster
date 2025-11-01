@@ -162,5 +162,5 @@ script:
         data:
           brightness: "{{ brightness }}"
           effect: >
-            {{ effect }}
+            "{{ effect }}"
           rgb_color:  "{{ rgb_color }}"
