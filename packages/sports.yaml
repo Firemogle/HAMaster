@@ -152,7 +152,7 @@ script:
     sequence:
       - variables:
           brightness: "{{ states('input_number.saved_light_brightness') | int(0) }}"
-          effect: "{{ states('input_text.saved_light_effect') |  regex_replace(find='[^a-zA-Z0-9\\s]', replace='') }}"
+          effect: "{{ states('input_text.saved_light_effect') |  regex_replace(find='[^a-zA-Z0-9\\s]', replace='') | lower}}"
           rgb_color: "{{ states('input_text.saved_light_color') | from_json }}"
       - service: light.turn_on
         target:
