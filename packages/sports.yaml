@@ -161,6 +161,6 @@ script:
             - light.cabinet_top
         data:
           brightness: "{{ brightness }}"
-          effect: >
-            "{{ effect }}"
+          effect:  >-
+            {{ states('input_text.saved_light_effect') | regex_replace(find='[^a-zA-Z0-9\s]', replace='') | lower}}
           rgb_color:  "{{ rgb_color }}"
