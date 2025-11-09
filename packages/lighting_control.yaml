@@ -57,9 +57,6 @@ script:
       - service: switch.turn_off
         target:
           entity_id: switch.livingroom_subwoofer
-      - service: lock.lock
-        target:
-          entity_id: lock.front_door
 
   house_night:
     alias: house_night
