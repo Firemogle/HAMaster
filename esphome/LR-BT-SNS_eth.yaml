@@ -34,6 +34,14 @@ packages:
       parent: fy_string
       start: 0
       end: 395
+  string_light_yard: !include 
+    file: packages/partition_light.yaml
+    vars:
+      name: garden_lights
+      parent: yard_string
+      start: 0
+      end: 46
+
 
 esphome:
   name: lr-bt-sns
