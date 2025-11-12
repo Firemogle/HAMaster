@@ -47,7 +47,7 @@ packages:
       name: garden_fiber
       parent: yard_string
       start: 48
-      end: 48
+      end: 49
 
 
 esphome:
