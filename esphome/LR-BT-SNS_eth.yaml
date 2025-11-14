@@ -46,47 +46,47 @@ packages:
     vars:
       name: garden_fiber
       parent: yard_string
-      start: 48
-      end: 48
+      start: 49
+      end: 49
   string_tree: !include 
     file: packages/partition_light.yaml
     vars:
       name: tree_string
       parent: yard_string
-      start: 49
-      end: 68
+      start: 50
+      end: 69
   string_tree_meteoe: !include 
     file: packages/partition_light.yaml
     vars:
       name: tree_meteor
       parent: yard_string
-      start: 69
-      end: 78
+      start: 70
+      end: 79
       
 
 light:
   - id: !extend tree_string
     segments:
       - id: yard_string
-        from: 79
-        to: 98
+        from: 80
+        to: 99
       - id: yard_string
-        from: 109
-        to: 128
+        from: 110
+        to: 129
       - id: yard_string
-        from: 139
-        to: 158
+        from: 140
+        to: 159
   - id: !extend tree_meteor
     segments:
       - id: yard_string
-        from: 99
-        to: 108
+        from: 100
+        to: 109
       - id: yard_string
-        from: 129
-        to: 138
+        from: 130
+        to: 139
       - id: yard_string
-        from: 159
-        to: 168
+        from: 160
+        to: 169
 
 
 esphome:
