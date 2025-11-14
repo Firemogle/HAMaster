@@ -70,12 +70,8 @@ light:
       - id: yard_string
         from: 79
         to: 98
-    segments:
-      - id: yard_string
         from: 109
         to: 128
-    segments:
-      - id: yard_string
         from: 139
         to: 158
   - id: !extend tree_meteor
@@ -83,12 +79,8 @@ light:
       - id: yard_string
         from: 99
         to: 108
-    segments:
-      - id: yard_string
         from: 129
         to: 138
-    segments:
-      - id: yard_string
         from: 159
         to: 168
 
