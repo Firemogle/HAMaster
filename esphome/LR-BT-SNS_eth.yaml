@@ -17,7 +17,7 @@ packages:
     file: packages/add_light.yaml
     vars:
       pin: GPIO36
-      length: 360
+      length: 500
       color_line: RBG
       name: yard_string
   string_light_part: !include 
@@ -76,6 +76,30 @@ light:
       - id: yard_string
         from: 140
         to: 159
+      - id: yard_string
+        from: 170
+        to: 189
+      - id: yard_string
+        from: 200
+        to: 219
+      - id: yard_string
+        from: 230
+        to: 249
+      - id: yard_string
+        from: 260
+        to: 279
+      - id: yard_string
+        from: 290
+        to: 309
+      - id: yard_string
+        from: 320
+        to: 339
+      - id: yard_string
+        from: 350
+        to: 369
+      - id: yard_string
+        from: 380
+        to: 399
   - id: !extend tree_meteor
     segments:
       - id: yard_string
@@ -87,6 +111,27 @@ light:
       - id: yard_string
         from: 160
         to: 169
+      - id: yard_string
+        from: 190
+        to: 199
+      - id: yard_string
+        from: 220
+        to: 229
+      - id: yard_string
+        from: 250
+        to: 259
+      - id: yard_string
+        from: 280
+        to: 289
+      - id: yard_string
+        from: 310
+        to: 319
+      - id: yard_string
+        from: 340
+        to: 349
+      - id: yard_string
+        from: 370
+        to: 379
 
 
 esphome:
