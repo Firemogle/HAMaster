@@ -4,6 +4,8 @@ packages:
     vars:
       devicename: ${name}
 
+wled:
+
 light:
   - platform: esp32_rmt_led_strip
     chipset: WS2812
@@ -14,6 +16,11 @@ light:
     id: ${name}
     max_refresh_rate: 16ms
     effects:
+      - addressable_twinkle:
+          name: Twinkle
+          twinkle_probability: 25%
+          progress_interval: 4ms
+      - wled:
       - addressable_flicker:
           name: Dithering lights
           update_interval: 16ms
