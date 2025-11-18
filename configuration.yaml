@@ -42,24 +42,7 @@ alarm_control_panel:
     arming_time: 0
     code: !secret alarmcode
 
-#device_tracker:
-#  - platform: google_maps
-#    username: !secret DEVICE_USER
-#    max_gps_accuracy: 100
-
 api:
-#alexa:
-#  smart_home:
-#    endpoint: https://api.amazonalexa.com/v3/events
-#    filter:
-#      include_entities:
-#        - script.goodnight_emi
-#        - binary_sensor.kitchen_leak
-#      include_domains:
-#        - light
-#        - switch
-#        - fan
-
 
 frontend:
   themes: !include_dir_merge_named themes/
@@ -91,10 +74,9 @@ ffmpeg:
 
 # Items loaded elsewhere
 recorder: !include recorder.yaml
-person: !include_dir_merge_list people/
+#person: !include_dir_merge_list people/
 camera: !include_dir_merge_list cameras/
 group: !include groups.yaml
-#automation: !include_dir_merge_list automations/
 script: !include_dir_merge_named scripts/
 scene: !include_dir_merge_list scenes/
 zone: !include_dir_merge_list zones/
