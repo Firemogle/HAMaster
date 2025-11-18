@@ -10,15 +10,15 @@
   brett:
     name: brett
     entities:
-      - device_tracker.sm_s928u1
+      - person.brett
   liz:
     name: liz
     entities:
-      - device_tracker.liz_phone
+      - person.liz
   emi:
     name: emi
     entities:
-      - device_tracker.emi_phone_2
+      - person.emi
   occupants:
     name: occupants
     entities:
@@ -29,3 +29,4 @@
     entities:
       - binary_sensor.laundry_leak_sensor_water_leak_detected
       - binary_sensor.kitchen_leak
+
