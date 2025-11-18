@@ -7,26 +7,16 @@
       - binary_sensor.garage_door_2
       - binary_sensor.living_room_window
       - binary_sensor.garage_door_tilt
-  brett:
-    name: brett
-    entities:
-      - person.brett
-  liz:
-    name: liz
-    entities:
-      - person.liz
-  emi:
-    name: emi
-    entities:
-      - person.emi
+
   occupants:
     name: occupants
     entities:
-      - group.brett
-      - group.liz
+      - person.brett
+      - person.liz
   leak:
     name: leak_sensor_combined
     entities:
       - binary_sensor.laundry_leak_sensor_water_leak_detected
       - binary_sensor.kitchen_leak
+
 
