@@ -17,7 +17,7 @@ packages:
     file: packages/add_light.yaml
     vars:
       pin: GPIO36
-      length: 500
+      length: 800
       color_line: RBG
       name: yard_string
   string_light_part: !include 
