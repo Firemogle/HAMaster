@@ -100,6 +100,9 @@ light:
       - id: yard_string
         from: 380
         to: 399
+      - id: yard_string
+        from: 400
+        to: 799        
   - id: !extend tree_meteor
     segments:
       - id: yard_string
@@ -132,7 +135,6 @@ light:
       - id: yard_string
         from: 370
         to: 379
-
 
 esphome:
   name: lr-bt-sns
