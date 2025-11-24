@@ -107,6 +107,9 @@ automation:
 script:
   xmas_light:
     sequence:
+    - service: switch.turn_off
+      data:
+        entity_id: switch.front_outlets
     - service: light.turn_on
       data:
         brightness: 255
@@ -155,11 +158,7 @@ script:
     - service: light.turn_on
       data:
         color_name: green
-        entity_id: light.lr_bt_sns_yard_string
-    - service: switch.turn_off
-      data:
-        entity_id: switch.front_outlets
-                  
+        entity_id: light.lr_bt_sns_yard_string     
 
   normal_day:
     sequence:
