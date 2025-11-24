@@ -123,7 +123,7 @@ script:
               entity_id:
                 - light.front_eave
                 - light.backyard_eave
-                - light.lr_bt_sns_yard_string
+                - light.lr_bt_sns_garden_lights
                 - light.lr_bt_sns_tree_meteor
 
           - continue_on_error: true
