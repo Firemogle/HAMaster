@@ -110,7 +110,7 @@ script:
     - service: light.turn_on
       data:
         brightness: 255
-        effect: "Christmas Stripes"
+        effect: "Jayhawks"
       target:
         entity_id:
           - light.front_eave
