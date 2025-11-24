@@ -104,130 +104,60 @@ automation:
             entity_id: input_boolean.house_sts_xmas_lights
     mode: queued
 
-  - id: 'morning_xmas'
-    alias: morning_xmas
-    trigger:
-    - platform: time
-      at: '7:30:00'
-    condition:
-      - condition: template
-        value_template: "{{ is_state('input_boolean.house_sts_xmas_lights', 'on') }}"
-    action:
-    - data:
-        entity_id: switch.garage_wall_switch
-      service: switch.turn_off
-    - service: light.turn_on
-      data:
-        brightness_pct: 100
-        rgb_color: [255, 255, 255]
-        effect: Rainbow
-        target:
-          entity_id:
-            - light.cabinet_top
-            - light.uhall_ban_hall_ban
-    mode: queued
-    
-
 script:
   xmas_light:
     sequence:
     - service: light.turn_on
       data:
-        color_name: blue
+        brightness: 255
+        effect: "Christmas Stripes"
+      target:
+        entity_id:
+          - light.front_eave
+          - light.backyard_eave
+          - light.lr_bt_sns_yard_string
+          - light.lr_bt_sns_tree_meteor
+    - service: light.turn_on
+      data:
+        brightness: 255
+        effect: "Blue Sparkle"
+      target:
+        entity_id:
+          - light.lr_bt_sns_front_window
+          - light.rainbrarrel_ext_back_window
+          - light.decklight
+    - service: light.turn_on
+      data:
+        brightness: 255
+        effect: "Rainbow"
+      target:
+        entity_id:
+          - light.cabinet_top
+          - light.uhall_ban_hall_ban
+          - light.lr_bt_sns_tree_string
+          - light.lr_bt_sns_garden_fiber
+    - service: light.turn_on
+      data:
+        brightness: 255
+        color_name: red
+      target:
+        entity_id:
+          - light.front_light3_level_light_color_on_off
+          - light.porch_light
+    - service: light.turn_on
+      data:
+        color_name: red
         entity_id: light.front_light1_level_light_color_on_off
     - service: light.turn_on
       data:
-        color_name: green
+        color_name: blue
         entity_id: light.front_light2_level_light_color_on_off
     - service: light.turn_on
       data:
-        color_name: red
-        entity_id: light.front_light3_level_light_color_on_off
-    - service: light.turn_on
-      data:
-        color_name: blue
-        entity_id: light.front_garden_level_light_color_on_off
-    - service: light.turn_on
-      data:
-        color_name: red
-        entity_id: light.porch_light
-    - service: light.turn_on
-      data:
-        brightness: 215
-        entity_id: light.decklight
-        color_name: white
-        effect: "Blue Sparkle"
-    - service: light.turn_on
-      data:
-        brightness: 215
-        entity_id: light.rainbrarrel_ext_back_window
-        color_name: white
-        effect: "Blue Sparkle"
-    - service: light.turn_on
-      data:
-        brightness: 215
-        entity_id: light.backyard_eave
-        color_name: white
-        effect: "Blue Sparkle"
-    - service: light.turn_on
-      data:
-        brightness: 215
-        entity_id: light.lr_bt_sns_front_window
-        color_name: white
-        effect: "Blue Sparkle"
-    - service: light.turn_on
-      data:
-        brightness: 215
-        entity_id: light.front_eave
-        color_name: white
-        effect: "Blue Sparkle"
-    - service: light.turn_on
-      data:
-        brightness_pct: 100
-        rgb_color: [255, 255, 255]
-        effect: Rainbow
-        target:
-          entity_id:
-            - light.cabinet_top
-            - light.uhall_ban_hall_ban
-    - service: switch.turn_on
-      data:
-        entity_id: switch.garage_wall_switch
+        color_name: green
+        entity_id: light.lr_bt_sns_yard_string
         
-  super_bowl:
-    sequence:
-    - service: light.turn_on
-      data:
-        brightness: 215
-        entity_id: light.rainbrarrel_rb_string
-        color_name: white
-        effect: "Chiefs"
-    - service: light.turn_on
-      data:
-        brightness: 215
-        entity_id: light.lr_bt_sns_fy_string
-        color_name: white
-        effect: "Chiefs"
-    - service: light.turn_on
-      data:
-        brightness: 215
-        entity_id: light.cabinet_bottom
-        color_name: white
-        effect: "Chiefs"
-    - service: light.turn_on
-      data:
-        brightness: 215
-        entity_id: light.cabinet_top
-        color_name: white
-        effect: "Chiefs"
-    - service: light.turn_on
-      data:
-        brightness: 215
-        entity_id: light.uhall_ban_hall_ban
-        color_name: white
-        effect: "Chiefs"
 
-        
   normal_day:
     sequence:
     - service: light.turn_on
