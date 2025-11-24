@@ -141,6 +141,7 @@ script:
       - service: light.turn_on
         data:
           brightness_pct: 60
+          color_name: white
         target:
           entity_id:
             - light.front_light1_level_light_color_on_off
