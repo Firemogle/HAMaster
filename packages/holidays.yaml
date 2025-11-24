@@ -156,7 +156,10 @@ script:
       data:
         color_name: green
         entity_id: light.lr_bt_sns_yard_string
-        
+    - service: switch.turn_off
+      data:
+        entity_id: switch.front_outlets
+                  
 
   normal_day:
     sequence:
