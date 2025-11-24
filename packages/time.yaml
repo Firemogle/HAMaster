@@ -194,5 +194,14 @@ automation:
       - service: script.turn_on
         target:
           entity_id: script.ext_lights_off
+      - choose:
+          - conditions:
+              - condition: state
+                entity_id: binary_sensor.house_sts_xmas_lights
+                state: 'on'
+            sequence:
+              - service: switch.turn_off
+                target:
+                  entity_id: switch.front_outlets
 
 
