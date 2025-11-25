@@ -182,118 +182,174 @@ script:
      
 
   normal_day:
+    mode: parallel
     sequence:
-    - service: light.turn_on
-      data:
-        color_name: white
-        entity_id: light.front_light1_level_light_color_on_off
-    - service: light.turn_on
-      data:
-        color_name: white
-        entity_id: light.front_light2_level_light_color_on_off
-    - service: light.turn_on
-      data:
-        color_name: white
-        entity_id: light.front_light3_level_light_color_on_off
-    - service: light.turn_on
-      data:
-        color_name: white
-        entity_id: light.front_garden_level_light_color_on_off
-    - service: light.turn_on
-      data:
-        color_name: white
-        entity_id: light.porch_light
-    - service: light.turn_on
-      data:
-        brightness: 215
-        entity_id: light.rainbrarrel_decklight
-        color_name: white
-        effect: None
-    - service: switch.turn_on
-      data:
-        entity_id: switch.garage_wall_switch
+      - parallel:
+          - continue_on_error: true
+            service: light.turn_on
+            data:
+              color_name: white
+            target:
+              entity_id: light.front_light1_level_light_color_on_off
+
+          - continue_on_error: true
+            service: light.turn_on
+            data:
+              color_name: white
+            target:
+              entity_id: light.front_light2_level_light_color_on_off
+
+          - continue_on_error: true
+            service: light.turn_on
+            data:
+              color_name: white
+            target:
+              entity_id: light.front_light3_level_light_color_on_off
+
+          - continue_on_error: true
+            service: light.turn_on
+            data:
+              color_name: white
+            target:
+              entity_id: light.front_garden_level_light_color_on_off
+
+          - continue_on_error: true
+            service: light.turn_on
+            data:
+              color_name: white
+            target:
+              entity_id: light.porch_light
+
+          - continue_on_error: true
+            service: light.turn_on
+            data:
+              brightness: 215
+              color_name: white
+            target:
+              entity_id: light.rainbrarrel_decklight
+
+          - continue_on_error: true
+            service: switch.turn_on
+            data:
+              entity_id: switch.garage_wall_switch
+
 
   independence_day:
+    mode: parallel
     sequence:
-    - service: light.turn_on
-      data:
-        color_name: blue
-        entity_id: light.front_light1_level_light_color_on_off
-    - service: light.turn_on
-      data:
-        color_name: white
-        entity_id: light.front_light2_level_light_color_on_off
-    - service: light.turn_on
-      data:
-        color_name: red
-        entity_id: light.front_light3_level_light_color_on_off
-    - service: light.turn_on
-      data:
-        color_name: blue
-        entity_id: light.front_garden_level_light_color_on_off
-    - service: light.turn_on
-      data:
-        color_name: red
-        entity_id: light.porch_light
-    - service: light.turn_on
-      data:
-        brightness: 215
-        entity_id: light.rainbrarrel_rb_string
-        color_name: white
-        effect: "Independence Day"
-    - service: light.turn_on
-      data:
-        brightness: 215
-        entity_id: light.lr_bt_sns_fy_string
-        color_name: white
-        effect: "Independence Day"
+      - parallel:
+          - continue_on_error: true
+            service: light.turn_on
+            data:
+              color_name: blue
+            target:
+              entity_id: light.front_light1_level_light_color_on_off
+
+          - continue_on_error: true
+            service: light.turn_on
+            data:
+              color_name: white
+            target:
+              entity_id: light.front_light2_level_light_color_on_off
+
+          - continue_on_error: true
+            service: light.turn_on
+            data:
+              color_name: red
+            target:
+              entity_id: light.front_light3_level_light_color_on_off
+
+          - continue_on_error: true
+            service: light.turn_on
+            data:
+              color_name: blue
+            target:
+              entity_id: light.front_garden_level_light_color_on_off
+
+          - continue_on_error: true
+            service: light.turn_on
+            data:
+              color_name: red
+            target:
+              entity_id: light.porch_light
+
+          - continue_on_error: true
+            service: light.turn_on
+            data:
+              brightness: 215
+              color_name: white
+              effect: "Independence Day"
+            target:
+              entity_id: light.rainbrarrel_rb_string
+
+          - continue_on_error: true
+            service: light.turn_on
+            data:
+              brightness: 215
+              color_name: white
+              effect: "Independence Day"
+            target:
+              entity_id: light.lr_bt_sns_fy_string
+
 
   halloween_light:
+    mode: parallel
     sequence:
-    - service: light.turn_on
-      data:
-        brightness: 255
-        color_name: orange
-        effect: "Dithering Lights"
-      target:
-        entity_id:
-          - light.front_eave
-          - light.backyard_eave
-    - service: light.turn_on
-      data:
-        brightness: 255
-        color_name: purple
-        effect: "Dithering Lights"
-      target:
-        entity_id:
-          - light.lr_bt_sns_front_window
-          - light.cabinet_top
-          - light.rainbrarrel_ext_back_window
-          - light.uhall_ban_hall_ban
-          - light.decklight
-          - light.lr_bt_sns_yard_string
-    - service: light.turn_on
-      data:
-        brightness: 255
-        color_name: purple
-      target:
-        entity_id:
-          - light.front_light3_level_light_color_on_off
-          - light.front_garden_level_light_color_on_off
-          - light.porch_light
-    - service: light.turn_on
-      data:
-        color_name: orange
-        entity_id: light.front_light1_level_light_color_on_off
-    - service: light.turn_on
-      data:
-        color_name: white
-        entity_id: light.front_light2_level_light_color_on_off
-    - service: light.turn_on
-      data:
-        color_name: green
-        entity_id: light.lr_bt_sns_yard_string
-        
+      - parallel:
+          - continue_on_error: true
+            service: light.turn_on
+            data:
+              brightness: 255
+              color_name: orange
+              effect: "Dithering Lights"
+            target:
+              entity_id:
+                - light.front_eave
+                - light.backyard_eave
 
+          - continue_on_error: true
+            service: light.turn_on
+            data:
+              brightness: 255
+              color_name: purple
+              effect: "Dithering Lights"
+            target:
+              entity_id:
+                - light.lr_bt_sns_front_window
+                - light.cabinet_top
+                - light.rainbrarrel_ext_back_window
+                - light.uhall_ban_hall_ban
+                - light.decklight
+                - light.lr_bt_sns_yard_string
 
-        
+          - continue_on_error: true
+            service: light.turn_on
+            data:
+              brightness: 255
+              color_name: purple
+            target:
+              entity_id:
+                - light.front_light3_level_light_color_on_off
+                - light.front_garden_level_light_color_on_off
+                - light.porch_light
+
+          - continue_on_error: true
+            service: light.turn_on
+            data:
+              color_name: orange
+            target:
+              entity_id: light.front_light1_level_light_color_on_off
+
+          - continue_on_error: true
+            service: light.turn_on
+            data:
+              color_name: white
+            target:
+              entity_id: light.front_light2_level_light_color_on_off
+
+          - continue_on_error: true
+            service: light.turn_on
+            data:
+              color_name: green
+            target:
+              entity_id: light.lr_bt_sns_yard_string
