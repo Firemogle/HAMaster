@@ -3,161 +3,220 @@ homeassistant:
 
 
 script:
+
   house_home:
     alias: house_home
+    mode: parallel
     sequence:
-      - service: light.turn_on
-        data:
-          brightness_pct: 60
-        target:
-          entity_id:
-            - light.kitchen_sink
-            - light.cabinet_top
-      - service: light.turn_on
-        data:
-          brightness_pct: 100
-        target:
-          entity_id:
-            - light.cabinet_bottom
-            - light.stove
-            - light.main_livingroom
-      - service: fan.turn_on
-        target:
-          entity_id: fan.kitchen_fan
-      - service: switch.turn_on
-        target:
-          entity_id: switch.livingroom_subwoofer
-      - service: lock.unlock
-        target:
-          entity_id: lock.front_door
-      - service: light.turn_on
-        data:
-          brightness_pct: 25
-        target:
-          entity_id:
-            - light.uhall_ban_hall_ban
+      - parallel:
+          - continue_on_error: true
+            service: light.turn_on
+            data:
+              brightness_pct: 60
+            target:
+              entity_id:
+                - light.kitchen_sink
+                - light.cabinet_top
+
+          - continue_on_error: true
+            service: light.turn_on
+            data:
+              brightness_pct: 100
+            target:
+              entity_id:
+                - light.cabinet_bottom
+                - light.stove
+                - light.main_livingroom
+
+          - continue_on_error: true
+            service: fan.turn_on
+            target:
+              entity_id: fan.kitchen_fan
+
+          - continue_on_error: true
+            service: switch.turn_on
+            target:
+              entity_id: switch.livingroom_subwoofer
+
+          - continue_on_error: true
+            service: lock.unlock
+            target:
+              entity_id: lock.front_door
+
+          - continue_on_error: true
+            service: light.turn_on
+            data:
+              brightness_pct: 25
+            target:
+              entity_id:
+                - light.uhall_ban_hall_ban
+
+
 
   house_away:
     alias: house_away
+    mode: parallel
     sequence:
-      - service: light.turn_off
-        target:
-          floor_id:
-            - basement
-            - upstairs
-          area_id:
-            - bathroom
-            - 63db88fe052b434c86e1d37781ce0972
-            - 259e54ef72a347c2b9fa159e5bcd32b7
-      - service: fan.turn_off
-        target:
-          floor_id:
-            - first_floor
-            - upstairs
-      - service: switch.turn_off
-        target:
-          entity_id: switch.livingroom_subwoofer
+      - parallel:
+          - continue_on_error: true
+            service: light.turn_off
+            target:
+              floor_id:
+                - basement
+                - upstairs
+              area_id:
+                - bathroom
+                - 63db88fe052b434c86e1d37781ce0972
+                - 259e54ef72a347c2b9fa159e5bcd32b7
+
+          - continue_on_error: true
+            service: fan.turn_off
+            target:
+              floor_id:
+                - first_floor
+                - upstairs
+
+          - continue_on_error: true
+            service: switch.turn_off
+            target:
+              entity_id: switch.livingroom_subwoofer
+
+
 
   house_night:
     alias: house_night
+    mode: parallel
     sequence:
-      - service: light.turn_on
-        data:
-          brightness_pct: 25
-          rgb_color: [255, 255, 255]
-          effect: none
-        target:
-          entity_id:
-            - light.cabinet_bottom
-            - light.cabinet_top
-            - light.stove
-            - light.uhall_ban_hall_ban
-      - service: switch.turn_off
-        target:
-          entity_id: switch.garage_wall_switch
-      - service: light.turn_off
-        target:
-          floor_id: basement
-          area_id:
-            - 21aee0f09bbf4d90b3f9367d6e75982b
-            - b242500e2dba11eba7ce67962ad1652d
-            - 259e54ef72a347c2b9fa159e5bcd32b7
-            - 3e1959c84fce49969395cd95d025ef2e
-            - 452faf27ea29485da59632cea146740b
-          entity_id:
-            - light.hallway_light
-            - light.kitchen_fan
-            - light.kitchen_sink
-            - light.kitchen_light_switch
-      - service: lock.lock
-        target:
-          floor_id: first_floor
+      - parallel:
+          - continue_on_error: true
+            service: light.turn_on
+            data:
+              brightness_pct: 25
+              rgb_color: [255, 255, 255]
+              effect: none
+            target:
+              entity_id:
+                - light.cabinet_bottom
+                - light.cabinet_top
+                - light.stove
+                - light.uhall_ban_hall_ban
+
+          - continue_on_error: true
+            service: switch.turn_off
+            target:
+              entity_id: switch.garage_wall_switch
+
+          - continue_on_error: true
+            service: light.turn_off
+            target:
+              floor_id: basement
+              area_id:
+                - 21aee0f09bbf4d90b3f9367d6e75982b
+                - b242500e2dba11eba7ce67962ad1652d
+                - 259e54ef72a347c2b9fa159e5bcd32b7
+                - 3e1959c84fce49969395cd95d025ef2e
+                - 452faf27ea29485da59632cea146740b
+              entity_id:
+                - light.hallway_light
+                - light.kitchen_fan
+                - light.kitchen_sink
+                - light.kitchen_light_switch
+
+          - continue_on_error: true
+            service: lock.lock
+            target:
+              floor_id: first_floor
+
+
 
   house_wakeup:
     alias: house_wakeup
+    mode: parallel
     sequence:
-      - service: light.turn_on
-        data:
-          brightness_pct: 55
-          rgb_color: [255, 255, 255]
-        target:
-          entity_id:
-            - light.kitchen_sink
-            - light.cabinet_top
-      - service: fan.turn_on
-        target:
-          floor_id: first_floor
-      - service: switch.turn_on
-        target:
-          entity_id:
-            - switch.garage_wall_switch
-            - switch.livingroom_subwoofer
-      - service: light.turn_on
-        data:
-          brightness_pct: 60
-        target:
-          entity_id:
-            - light.cabinet_bottom
-            - light.stove
-            - light.main_livingroom
-            - light.front_light1_level_light_color_on_off
-            - light.front_light2_level_light_color_on_off
-            - light.front_light3_level_light_color_on_off
-            - light.lr_bt_sns_garden_lights
-            - light.landscape
-            - light.backyard_eave
-            - light.porch_light_light
-            - light.front_eave
+      - parallel:
+          - continue_on_error: true
+            service: light.turn_on
+            data:
+              brightness_pct: 55
+              rgb_color: [255, 255, 255]
+            target:
+              entity_id:
+                - light.kitchen_sink
+                - light.cabinet_top
+
+          - continue_on_error: true
+            service: fan.turn_on
+            target:
+              floor_id: first_floor
+
+          - continue_on_error: true
+            service: switch.turn_on
+            target:
+              entity_id:
+                - switch.garage_wall_switch
+                - switch.livingroom_subwoofer
+
+          - continue_on_error: true
+            service: light.turn_on
+            data:
+              brightness_pct: 60
+            target:
+              entity_id:
+                - light.cabinet_bottom
+                - light.stove
+                - light.main_livingroom
+                - light.front_light1_level_light_color_on_off
+                - light.front_light2_level_light_color_on_off
+                - light.front_light3_level_light_color_on_off
+                - light.lr_bt_sns_garden_lights
+                - light.landscape
+                - light.backyard_eave
+                - light.porch_light_light
+                - light.front_eave
+
+
 
   house_evening:
     alias: house_evening
+    mode: parallel
     sequence:
-      - service: switch.turn_on
-        target:
-          entity_id: switch.garage_wall_switch
-      - service: switch.turn_off
-        target:
-          entity_id: switch.livingroom_subwoofer
-      - service: light.turn_on
-        data:
-          brightness_pct: 60
-          color_name: white
-        target:
-          entity_id:
-            - light.front_light1_level_light_color_on_off
-            - light.front_light2_level_light_color_on_off
-            - light.front_light3_level_light_color_on_off
-            - light.lr_bt_sns_garden_lights
-            - light.landscape
-            - light.backyard_eave
-            - light.porch_light_light
-            - light.front_eave
+      - parallel:
+          - continue_on_error: true
+            service: switch.turn_on
+            target:
+              entity_id: switch.garage_wall_switch
+
+          - continue_on_error: true
+            service: switch.turn_off
+            target:
+              entity_id: switch.livingroom_subwoofer
+
+          - continue_on_error: true
+            service: light.turn_on
+            data:
+              brightness_pct: 60
+              color_name: white
+            target:
+              entity_id:
+                - light.front_light1_level_light_color_on_off
+                - light.front_light2_level_light_color_on_off
+                - light.front_light3_level_light_color_on_off
+                - light.lr_bt_sns_garden_lights
+                - light.landscape
+                - light.backyard_eave
+                - light.porch_light_light
+                - light.front_eave
+
+
 
   ext_lights_off:
     alias: ext_lights_off
+    mode: parallel
     sequence:
-      - service: light.turn_off
-        target:
-          area_id:
-            - 21aee0f09bbf4d90b3f9367d6e75982b
-            - b242500e2dba11eba7ce67962ad1652d
+      - parallel:
+          - continue_on_error: true
+            service: light.turn_off
+            target:
+              area_id:
+                - 21aee0f09bbf4d90b3f9367d6e75982b
+                - b242500e2dba11eba7ce67962ad1652d
