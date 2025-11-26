@@ -3,7 +3,8 @@ esphome:
   
 esp32:
   board: esp-wrover-kit
-
+  framework:
+    type: esp-idf
 wifi:
   ssid: !secret AP
   password: !secret APPW
@@ -58,19 +59,3 @@ switch:
 # Individual outputs
   - platform: restart
     name: "Laundry Board restart"
-
-
-esp32_camera:
-  name: 'laundry_room_camera'
-  external_clock:
-    pin: GPIO32
-    frequency: 20MHz
-  i2c_id: camera_bus
-  data_pins: [GPIO5, GPIO14, GPIO4, GPIO15, GPIO18, GPIO23, GPIO36, GPIO39]
-  vsync_pin: GPIO27
-  href_pin: GPIO25
-  pixel_clock_pin: GPIO19
-  resolution: 640x480
-  idle_framerate: 0.01 fps
-  vertical_flip: false
-  horizontal_mirror: false
