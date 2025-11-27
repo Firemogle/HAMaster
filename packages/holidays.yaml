@@ -179,6 +179,11 @@ script:
               color_name: green
             target:
               entity_id: light.lr_bt_sns_yard_string
+
+          - continue_on_error: true
+            service: switch.turn_on
+            data:
+              entity_id: switch.garage_wall_switch
      
 
   normal_day:
