@@ -109,8 +109,14 @@ script:
     mode: parallel
     sequence:
       - parallel:
+
           - continue_on_error: true
-            service: switch.turn_off
+            service: switch.turn_on
+            data:
+              entity_id: switch.garage_wall_switch
+      
+          - continue_on_error: true
+            service: switch.turn_on
             data:
               entity_id: switch.front_outlets
 
@@ -163,6 +169,7 @@ script:
             service: light.turn_on
             data:
               color_name: red
+              brightness: 255
             target:
               entity_id: light.front_light1_level_light_color_on_off
 
@@ -170,20 +177,9 @@ script:
             service: light.turn_on
             data:
               color_name: blue
+              brightness: 255
             target:
               entity_id: light.front_light2_level_light_color_on_off
-
-          - continue_on_error: true
-            service: light.turn_on
-            data:
-              color_name: green
-            target:
-              entity_id: light.lr_bt_sns_yard_string
-
-          - continue_on_error: true
-            service: switch.turn_on
-            data:
-              entity_id: switch.garage_wall_switch
      
 
   normal_day:
