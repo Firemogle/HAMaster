@@ -107,6 +107,11 @@ script:
               entity_id: switch.garage_wall_switch
 
           - continue_on_error: true
+            service: switch.turn_on
+            data:
+              entity_id: switch.front_outlets              
+
+          - continue_on_error: true
             service: light.turn_off
             target:
               floor_id: basement
