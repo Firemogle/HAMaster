@@ -222,3 +222,7 @@ script:
               area_id:
                 - 21aee0f09bbf4d90b3f9367d6e75982b
                 - b242500e2dba11eba7ce67962ad1652d
+          - continue_on_error: true
+            service: switch.turn_off
+            data:
+              entity_id: switch.front_outlets                
