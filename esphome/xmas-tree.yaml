@@ -65,12 +65,12 @@ packages:
 light:
   - id: !extend tree_body
     segments:
-      - id: xmas_tree
+      - id: xmastree
         from: 90
         to: 129
   - id: !extend tree_body
     segments:
-      - id: fiber_optic_tree
+      - id: xmastree
         from: 70
         to: 89
 
