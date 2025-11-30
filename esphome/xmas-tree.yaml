@@ -50,7 +50,7 @@ packages:
     vars:
       name: tree_star
       parent: xmastree
-      start: 144
+      start: 143
       end: 189
 
   tree_body: !include 
@@ -67,7 +67,7 @@ light:
     segments:
       - id: xmastree
         from: 91
-        to: 143
+        to: 142
   - id: !extend fiber_optic_tree
     segments:
       - id: xmastree
