@@ -674,7 +674,7 @@ text_sensor:
   # Weather symbol, HA weather entity to pull data from
   - platform: homeassistant
     id: weather_symbol
-    entity_id: !secret nspanel_weather_id
+    entity_id: temperature
     on_value:
       then:
         - wait_until:
