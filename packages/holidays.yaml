@@ -142,6 +142,7 @@ script:
                 - light.lr_bt_sns_front_window
                 - light.rainbrarrel_ext_back_window
                 - light.decklight
+                - light.xmas_tree_tree_star
 
           - continue_on_error: true
             service: light.turn_on
@@ -154,6 +155,8 @@ script:
                 - light.uhall_ban_hall_ban
                 - light.lr_bt_sns_tree_string
                 - light.lr_bt_sns_garden_fiber
+                - light.xmas_tree_fiber_optic_tree
+                - light.xmas_tree_tree_body
 
           - continue_on_error: true
             service: light.turn_on
