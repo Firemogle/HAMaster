@@ -515,7 +515,7 @@ sensor:
   # Grab current outdoor temperature from Home Assistant
   - platform: homeassistant
     id: outdoor_temperature
-    entity_id: !secret nspanel_weather_id
+    entity_id: temperature
     internal: true
     attribute: temperature
     on_value:
