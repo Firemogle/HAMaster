@@ -1,7 +1,7 @@
 substitutions:
-  name: sonoff-nspanel1-zolder
-  friendly_name: "NSPanel zolder"
-  location: Zolder
+  name: nspanel-girls-room
+  friendly_name: "nspanel-girls-room"
+  location: girlsroom
 
 esphome:
   name: $name
