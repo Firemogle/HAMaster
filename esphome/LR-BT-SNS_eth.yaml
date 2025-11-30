@@ -1,8 +1,8 @@
 external_components:
-  # New driver for Esphome 2024.12.0 (with esp-idf 5.x)
-  - source: github://pr#7770 # RMT driver, remove rmt_channel when using esp-idf
+  - source: github://esphome/esphome@94befe126bc952785994ddf8dcfd15e9c3c3ff23
     components: [ remote_base, remote_receiver, remote_transmitter, esp32_rmt, esp32_rmt_led_strip ]
-    refresh: 0s
+    refresh: 5min
+
 
 
 packages:
