@@ -12,7 +12,6 @@ light:
     rgb_order: ${color_line}
     name: ${name}
     id: ${name}
-    use_dma: true
     effects:
       - addressable_twinkle:
           name: Twinkle
