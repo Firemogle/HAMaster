@@ -43,14 +43,14 @@ packages:
       name: fiber_optic_tree
       parent: xmastree
       start: 0
-      end: 19
+      end: 20
 
   tree_star: !include 
     file: packages/partition_light.yaml
     vars:
       name: tree_star
       parent: xmastree
-      start: 145
+      start: 143
       end: 189
 
   tree_body: !include 
@@ -58,20 +58,20 @@ packages:
     vars:
       name: tree_body
       parent: xmastree
-      start: 20
-      end: 69
+      start: 21
+      end: 70
       
 
 light:
   - id: !extend tree_body
     segments:
       - id: xmastree
-        from: 90
-        to: 144
+        from: 91
+        to: 142
   - id: !extend fiber_optic_tree
     segments:
       - id: xmastree
-        from: 70
-        to: 89
+        from: 71
+        to: 91
 
       
