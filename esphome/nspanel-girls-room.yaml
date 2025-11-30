@@ -1,6 +1,6 @@
 substitutions:
   # Settings - Editable values
-  device_name: "girls room nspanel"
+  device_name: "girls-room-nspanel"
   friendly_name: "Girls lightswitch"
   wifi_ssid: !secret AP
   wifi_password: !secret APPW
