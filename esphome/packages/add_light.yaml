@@ -12,6 +12,7 @@ light:
     rgb_order: ${color_line}
     name: ${name}
     id: ${name}
+    max_refresh_rate: 16ms
     effects:
       - addressable_twinkle:
           name: Twinkle
