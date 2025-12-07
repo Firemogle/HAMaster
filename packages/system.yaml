@@ -276,6 +276,15 @@ automation:
           data:
             timeout: 1200
             channel: "Occupancy"
+      - choose:
+          - conditions:
+              - condition: state
+                entity_id: binary_sensor.house_sts_xmas_lights
+                state: 'on'
+            sequence:
+              - service: script.turn_on
+                target:
+                  entity_id: script.xmas_light_inside            
 
   - alias: DTE_cheap_switch
     id: DTE_cheap_switch
