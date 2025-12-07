@@ -183,6 +183,41 @@ script:
               brightness: 255
             target:
               entity_id: light.front_light2_level_light_color_on_off
+
+  xmas_light_inside:
+    mode: parallel
+    sequence:
+      - parallel:
+
+          - continue_on_error: true
+            service: light.turn_on
+            data:
+              brightness: 255
+              effect: "Chiefs"
+            target:
+              entity_id:
+                - light.front_eave
+
+          - continue_on_error: true
+            service: light.turn_on
+            data:
+              brightness: 255
+              effect: "Christmas Stripes"
+            target:
+              entity_id:
+                - light.xmas_tree_tree_star
+
+          - continue_on_error: true
+            service: light.turn_on
+            data:
+              brightness: 255
+              effect: "Rainbow"
+            target:
+              entity_id:
+                - light.xmas_tree_tree_body
+                - light.cabinet_top
+                - light.uhall_ban_hall_ban
+
      
 
   normal_day:
