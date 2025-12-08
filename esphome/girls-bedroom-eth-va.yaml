@@ -10,6 +10,13 @@ packages:
     file: packages/va_board_2.0.yaml
     vars:
       devicename: ${devicename}
+  string_light: !include 
+    file: packages/add_light.yaml
+    vars:
+      pin: GPIO37
+      length: 400
+      color_line: RGB
+      name: girls_string      
 
 sensor:   
   - platform: bmp280_i2c
