@@ -19,7 +19,7 @@ packages:
     file: packages/add_light.yaml
     vars:
       pin: GPIO48
-      length: 400
+      length: 405
       color_line: RGB
       name: girls_string      
 
