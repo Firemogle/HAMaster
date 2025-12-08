@@ -21,8 +21,37 @@ packages:
       pin: GPIO48
       length: 405
       color_line: RGB
-      name: girls_string      
+      name: girls_string
+  room: !include 
+    file: packages/partition_light.yaml
+    vars:
+      name: room_light
+      parent: girls_string
+      start: 0
+      end: 300
+  emi_star: !include 
+    file: packages/partition_light.yaml
+    vars:
+      name: emi_star
+      parent: girls_string
+      start: 301
+      end: 303
+  lottie_star: !include 
+    file: packages/partition_light.yaml
+    vars:
+      name: lottie_star
+      parent: girls_string
+      start: 304
+      end: 305
+  lottie_bed: !include 
+    file: packages/partition_light.yaml
+    vars:
+      name: lottie_bed
+      parent: girls_string
+      start: 306
+      end: 405
 
+      
 #sensor:   
 #  - platform: bmp280_i2c
 #    temperature:
