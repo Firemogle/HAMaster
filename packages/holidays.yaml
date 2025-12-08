@@ -196,7 +196,7 @@ script:
               effect: "Chiefs"
             target:
               entity_id:
-                - light.front_eave
+                - light.xmas_tree_fiber_optic_tree
 
           - continue_on_error: true
             service: light.turn_on
