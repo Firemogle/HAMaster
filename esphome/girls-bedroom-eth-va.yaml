@@ -1,6 +1,11 @@
 substitutions:
   devicename: girls_bedroom_eth_va
 
+external_components:
+  - source: github://esphome/esphome@94befe126bc952785994ddf8dcfd15e9c3c3ff23
+    components: [ remote_base, remote_receiver, remote_transmitter, esp32_rmt, esp32_rmt_led_strip ]
+    refresh: 5min  
+
 packages:
   base_board: !include 
     file: packages/poe_board_base_2.6.yaml
