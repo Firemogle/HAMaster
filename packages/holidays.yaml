@@ -130,6 +130,14 @@ script:
                 - light.front_eave
                 - light.backyard_eave
                 - light.lr_bt_sns_garden_lights
+
+          - continue_on_error: true
+            service: light.turn_on
+            data:
+              brightness: 255
+              effect: "Twinkle"
+            target:
+              entity_id:
                 - light.lr_bt_sns_tree_meteor
 
           - continue_on_error: true
@@ -142,7 +150,6 @@ script:
                 - light.lr_bt_sns_front_window
                 - light.rainbrarrel_ext_back_window
                 - light.decklight
-                - light.xmas_tree_tree_star
 
           - continue_on_error: true
             service: light.turn_on
@@ -155,8 +162,6 @@ script:
                 - light.uhall_ban_hall_ban
                 - light.lr_bt_sns_tree_string
                 - light.lr_bt_sns_garden_fiber
-                - light.xmas_tree_fiber_optic_tree
-                - light.xmas_tree_tree_body
 
           - continue_on_error: true
             service: light.turn_on
@@ -184,6 +189,11 @@ script:
             target:
               entity_id: light.front_light2_level_light_color_on_off
 
+          - continue_on_error: true
+            service: script.turn_on
+            target:
+              entity_id: script.xmas_light_inside
+
   xmas_light_inside:
     mode: parallel
     sequence:
@@ -193,7 +203,7 @@ script:
             service: light.turn_on
             data:
               brightness: 255
-              effect: "Chiefs"
+              effect: "Blue Sparkle"
             target:
               entity_id:
                 - light.xmas_tree_fiber_optic_tree
@@ -202,10 +212,11 @@ script:
             service: light.turn_on
             data:
               brightness: 255
-              effect: "Christmas Stripes"
+              effect: "Twinkle"
             target:
               entity_id:
                 - light.xmas_tree_tree_star
+                - light.xmas_tree_tree_body
 
           - continue_on_error: true
             service: light.turn_on
@@ -214,10 +225,14 @@ script:
               effect: "Rainbow"
             target:
               entity_id:
-                - light.xmas_tree_tree_body
                 - light.cabinet_top
                 - light.uhall_ban_hall_ban
 
+          - continue_on_error: true
+            service: light.turn_on
+            target:
+              entity_id:
+                - light.window_lights
      
 
   normal_day:
