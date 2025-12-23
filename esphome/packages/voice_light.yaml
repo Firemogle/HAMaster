@@ -12,7 +12,7 @@ light:
     rgb_order: ${color_line}
     internal: true 
     #rmt_symbols: 48
-    #use_dma: true
+    use_dma: false
     name: ${name}
     id: ${name}
     effects:
