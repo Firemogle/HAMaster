@@ -10,8 +10,6 @@ light:
     pin: ${pin}
     num_leds: ${length}
     rgb_order: ${color_line}
-    #rmt_symbols: 48
-    use_dma: false
     name: ${name}
     id: ${name}
     max_refresh_rate: 16ms
