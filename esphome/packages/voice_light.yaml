@@ -12,6 +12,7 @@ light:
     rgb_order: ${color_line}
     internal: true 
     #rmt_symbols: 48
+    rmt_channel: 3
     use_dma: false
     name: ${name}
     id: ${name}
