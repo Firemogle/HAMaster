@@ -66,7 +66,7 @@ packages:
 
 light:
   - id: !extend yard_string
-    use_dma: false
+    use_dma: true
     use_psram: false
   - id: !extend fy_string
     use_dma: false
