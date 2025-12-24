@@ -13,6 +13,8 @@ light:
     internal: true 
     name: ${name}
     id: ${name}
+    use_dma: true
+    rmt_symbols: 96
     effects:
       - addressable_color_wipe:
           name: voice_listen
