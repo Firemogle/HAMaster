@@ -13,7 +13,7 @@ light:
     internal: true 
     name: ${name}
     id: ${name}
-    use_dma: true
+    use_dma: false
     rmt_symbols: 96
     effects:
       - addressable_color_wipe:
