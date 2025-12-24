@@ -6,7 +6,7 @@ packages:
 
 light:
   - platform: esp32_rmt_led_strip
-    chipset: WS2811
+    chipset: WS2812
     pin: ${pin}
     num_leds: ${length}
     rgb_order: ${color_line}
