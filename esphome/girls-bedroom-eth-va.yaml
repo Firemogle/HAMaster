@@ -54,7 +54,7 @@ packages:
 
 light:
   - id: !extend girls_string
-    max_refresh_rate: 16ms
+    max_refresh_rate: 32ms
       
 #sensor:   
 #  - platform: bmp280_i2c
