@@ -68,7 +68,7 @@ packages:
 light:
 
   - id: !extend yard_string
-    rmt_symbols: 192
+    rmt_symbols: 384
   - id: !extend tree_string
     segments:
       - id: yard_string
