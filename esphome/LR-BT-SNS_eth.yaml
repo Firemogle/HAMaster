@@ -3,13 +3,7 @@
 #    components: [ remote_base, remote_receiver, remote_transmitter, esp32_rmt, esp32_rmt_led_strip ]
 #    refresh: 5min
 
-logger:
-  level: INFO
-  logs:
-    # main: DEBUG
-    wifi: NONE
-    ethernet: NONE
-    esp-idf: NONE
+
 
 
 packages:
@@ -166,6 +160,12 @@ ethernet:
 # Enable logging
 logger:
   hardware_uart: USB_CDC
+    level: NONE
+  logs:
+    # main: DEBUG
+    wifi: NONE
+    ethernet: NONE
+    esp-idf: NONE
 
 # Enable Home Assistant API
 api:
@@ -176,16 +176,6 @@ ota:
   platform: esphome
   password: !secret OTA_PW
  
-time:
-  - platform: homeassistant
-    id: homeassistant_time
-    on_time:
-      - seconds: 0
-        minutes: 0
-        hours: 4
-        then:
-          - button.press: lrbtsnsreboot
-
 button:
   - platform: restart
     name: "lrbtsnsreboot"
@@ -195,8 +185,7 @@ i2c:
    sda: GPIO05
    scl: GPIO04
    id: i2c_channel
-  
-esp32_ble_tracker:
+
 
 sensor:
   - platform: bme280_i2c
@@ -209,48 +198,3 @@ sensor:
       name: "lr-bt-sns Humidity"
     address: 0x76
     update_interval: 60s      
-    
-  - platform: xiaomi_hhccjcy01
-    mac_address: 'C4:7C:8D:63:F7:31'
-    temperature:
-      name: "Hydrangea Temperature"
-    moisture:
-      name: "Hydrangea Moisture"
-    illuminance:
-      name: "Hydrangea Illuminance"
-    conductivity:
-      name: "Hydrangea Soil Conductivity"
-    battery_level:
-      name: "Hydrangea Battery Level"
-  - platform: xiaomi_hhccjcy01
-    mac_address: '5C:85:7E:12:D5:A6'
-    temperature:
-      name: "4 Temperature"
-    moisture:
-      name: "4 Moisture"
-    illuminance:
-      name: "4 Illuminance"
-    conductivity:
-      name: "4 Soil Conductivity"
-  - platform: xiaomi_hhccjcy01
-    mac_address: '5C:85:7E:12:D5:2E'
-    temperature:
-      name: "2 Temperature"
-    moisture:
-      name: "2 Moisture"
-    illuminance:
-      name: "2 Illuminance"
-    conductivity:
-      name: "2 Soil Conductivity"
-  - platform: xiaomi_hhccjcy01
-    mac_address: '5C:85:7E:12:D5:40'
-    temperature:
-      name: "3 Temperature"
-    moisture:
-      name: "3 Moisture"
-    illuminance:
-      name: "3 Illuminance"
-    conductivity:
-      name: "3 Soil Conductivity"
-      
-
