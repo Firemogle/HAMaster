@@ -13,7 +13,7 @@ light:
     name: ${name}
     id: ${name}
     max_refresh_rate: 16ms
-    use_dma: true
+    use_dma: false
     rmt_symbols: 96
     effects:
       - addressable_twinkle:
