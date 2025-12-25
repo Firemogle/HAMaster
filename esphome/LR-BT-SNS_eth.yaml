@@ -160,7 +160,6 @@ ethernet:
 # Enable logging
 logger:
   hardware_uart: USB_CDC
-    level: NONE
   logs:
     # main: DEBUG
     wifi: NONE
