@@ -1,6 +1,6 @@
 substitutions:
-  name: esphome-web-0bac48
-  friendly_name: "Xiaozhi Ball V2"
+  name: main_bath_ball
+  friendly_name: "main_bath_ball"
 
 ## v1.07 26-jul-2025 #############################################################################################################################
 ## changed how to play startup sound to avoid double triggering
@@ -145,8 +145,8 @@ logger:
   hardware_uart: USB_SERIAL_JTAG
 
 wifi:
-  ssid: !secret wifi_ssid
-  password: !secret wifi_password
+  ssid: !secret AP
+  password: !secret APPW
   ap:
     ssid: "Ball v2 Hotspot"
     password: "RZ7D3EzJdPM6"
