@@ -30,6 +30,8 @@ esp32:
 wifi:
   ssid: !secret AP
   password: !secret APPW
+
+wled:  
   
 
 # Enable logging
