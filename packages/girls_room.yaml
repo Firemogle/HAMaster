@@ -113,7 +113,7 @@ automation:
       from: 'off'
     action:
     - data:
-        entity_id: switch.emi_tv
+        entity_id: switch.girls_tv
       service: switch.turn_on     
       
   - id: 'emi_tv_off_idle'
@@ -126,7 +126,7 @@ automation:
       from: 'on'
     action:
     - data:
-        entity_id: switch.emi_tv
+        entity_id: switch.girls_tv
       service: switch.turn_off 
 
   - id: 'girls_bedroom_wakeup'
