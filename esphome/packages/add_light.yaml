@@ -12,7 +12,7 @@ light:
     rgb_order: ${color_line}
     name: ${name}
     id: ${name}
-    use_dma: false
+    use_dma: true
     rmt_symbols: 96
     effects:
       - addressable_twinkle:
