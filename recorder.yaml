@@ -1,5 +1,5 @@
 db_url: !secret DB # Location of offloaded DB
-purge_keep_days: 10 # Test purge days with offloaded DB
+purge_keep_days: 7 # Test purge days with offloaded DB
 auto_purge: true
 auto_repack: true
 exclude: # Configure recorder to not record extrainious data
