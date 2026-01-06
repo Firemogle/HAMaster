@@ -77,7 +77,6 @@ recorder: !include recorder.yaml
 camera: !include_dir_merge_list cameras/
 group: !include groups.yaml
 script: !include_dir_merge_named scripts/
-scene: !include_dir_merge_list scenes/
 zone: !include_dir_merge_list zones/
 notify: !include notify.yaml
 automation: !include automations.yaml
