@@ -74,10 +74,11 @@ ffmpeg:
 
 # Items loaded elsewhere
 recorder: !include recorder.yaml
-#person: !include_dir_merge_list people/
 camera: !include_dir_merge_list cameras/
 group: !include groups.yaml
 script: !include_dir_merge_named scripts/
 scene: !include_dir_merge_list scenes/
 zone: !include_dir_merge_list zones/
 notify: !include notify.yaml
+automation: !include automations.yaml
+scene: !include scenes.yaml
