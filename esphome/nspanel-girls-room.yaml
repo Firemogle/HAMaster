@@ -4,7 +4,7 @@ substitutions:
   friendly_name: "Girls lightswitch"
   wifi_ssid: !secret AP
   wifi_password: !secret APPW
-  nextion_update_url: "http://192.168.2.2:8123/local/nspanel_eu.tft"  # Optional
+  nextion_update_url: "http://192.168.2.2:8123/local/nspanel_us.tft"  # Optional
   boot_sound: false
   # Add-on configuration (if needed)
   ## Upload TFT
