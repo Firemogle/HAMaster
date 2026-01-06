@@ -4,7 +4,7 @@ substitutions:
   friendly_name: "Girls lightswitch"
   wifi_ssid: !secret AP
   wifi_password: !secret APPW
-  nextion_update_url: "http://homeassistant.local:8123/local/nspanel_eu.tft"  # Optional
+  nextion_update_url: "http://192.168.2.2:8123/local/nspanel_eu.tft"  # Optional
   boot_sound: false
   # Add-on configuration (if needed)
   ## Upload TFT
@@ -26,7 +26,7 @@ packages:
       - nspanel_esphome.yaml # Basic package
       # Optional advanced and add-on configurations
       # - esphome/nspanel_esphome_addon_climate_cool.yaml
-      - esphome/nspanel_esphome_addon_climate_heat.yaml
+      #- esphome/nspanel_esphome_addon_climate_heat.yaml
       # - esphome/nspanel_esphome_addon_climate_dual.yaml
       # - esphome/nspanel_esphome_addon_cover.yaml
       # - esphome/nspanel_esphome_addon_display_light.yaml  # Show the display as a light in Home Assistant
