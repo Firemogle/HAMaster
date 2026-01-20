@@ -31,14 +31,15 @@ mqtt:
     payload_off: "0"
     retain: false
     
-lock:
-  - platform: template
-    name: front_door
-    value_template: "{{ states('lock.schlage_allegion_be469_touchscreen_deadbolt_locked') }}"
+template:
+- lock:
+  - name: front_door
     lock:
-      service: script.front_door_lock
+    - action: script.front_door_lock
     unlock:
-      service: script.front_door_unlock
+    - action: script.front_door_unlock
+    optimistic: false
+    state: '{{ states(''lock.schlage_allegion_be469_touchscreen_deadbolt_locked'') }}'
     
 media_player:
 
