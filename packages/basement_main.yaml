@@ -20,13 +20,11 @@ light:
     entity_id: switch.basement_stair_light
       
     
-binary_sensor:
-  - platform: template
-    sensors:
-      cat_box_full:
-        friendly_name: "Cat Box Full"
-        value_template: >
-          {{ states('sensor.das_poopinhaus_waste_drawer') | float(0) > 80.0 }}
+template:
+- binary_sensor:
+  - default_entity_id: binary_sensor.cat_box_full
+    name: Cat Box Full
+    state: '{{ states(''sensor.das_poopinhaus_waste_drawer'') | float(0) > 80.0 }}'
 
 alert:
   cat_box_full:
