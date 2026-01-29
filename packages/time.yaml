@@ -170,7 +170,7 @@ automation:
       - service: script.turn_on
         target:
           entity_id:
-            - script.hvac_run_setpoint
+            - script.hvac_run_stop_uni
             - script.house_night
             - script.ext_lights_off
             - script.front_door_lock
