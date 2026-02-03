@@ -19,7 +19,7 @@ automation:
         target:
           entity_id: 'media_player.{{ area_name(trigger.device_id) }}speaker'
         data:
-          media_content_id: media-source://media_source/media/Server/media/Sorted Music/thunder.mp3
+          media_content_id: media-source://media_source/media/media/media/Sorted Music/thunder.mp3
           media_content_type: audio/mpeg
         metadata:
           title: thunder.mp3
@@ -78,7 +78,7 @@ automation:
               target:
                  entity_id: 'media_player.{{ area_name(trigger.entity_id) }}speaker'
               data:
-                media_content_id: media-source://media_source/media/Server/media/Sorted Music/beep-6-96243.mp3
+                media_content_id: media-source://media_source/media/media/media/Sorted Music/beep-6-96243.mp3
                 media_content_type: audio/mpeg
               metadata:
                 title: beep-6-96243.mp3
