@@ -31,11 +31,12 @@ automation:
             - media_content_type: app
               media_content_id: media-source://media_source
             - media_content_type: ""
-              media_content_id: media-source://media_source/media/Server
+              media_content_id: media-source://media_source/media/media
             - media_content_type: ""
-              media_content_id: media-source://media_source/media/Server/media
+              media_content_id: media-source://media_source/media/media/media
             - media_content_type: ""
-              media_content_id: media-source://media_source/media/Server/media/Sorted Music
+              media_content_id: media-source://media_source/media/media/media/Sorted Music
+
 
   - id: va_stop_goog_speaker
     alias: va_stop_goog_speaker
@@ -89,11 +90,11 @@ automation:
                   - media_content_type: app
                     media_content_id: media-source://media_source
                   - media_content_type: ""
-                    media_content_id: media-source://media_source/media/Server
+                    media_content_id: media-source://media_source/media/media
                   - media_content_type: ""
-                    media_content_id: media-source://media_source/media/Server/media
+                    media_content_id: media-source://media_source/media/media/media
                   - media_content_type: ""
-                    media_content_id: media-source://media_source/media/Server/media/Sorted Music
+                    media_content_id: media-source://media_source/media/media/media/Sorted Music
           while:
             - condition: template
               value_template: "{{ is_state(trigger.entity_id, 'on') }}"
