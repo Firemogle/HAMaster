@@ -16,26 +16,25 @@ automation:
         target:
           entity_id: 'media_player.{{ area_name(trigger.device_id) }}speaker'
       - action: media_player.play_media
-        target:
-          entity_id: 'media_player.{{ area_name(trigger.device_id) }}speaker'
         data:
-          media_content_id: media-source://media_source/media/media/media/Sorted Music/thunder.mp3
-          media_content_type: audio/mpeg
-        metadata:
-          title: thunder.mp3
-          thumbnail: null
-          media_class: music
-          children_media_class: null
-          navigateIds:
-            - {}
-            - media_content_type: app
-              media_content_id: media-source://media_source
-            - media_content_type: ""
-              media_content_id: media-source://media_source/media/media
-            - media_content_type: ""
-              media_content_id: media-source://media_source/media/media/media
-            - media_content_type: ""
-              media_content_id: media-source://media_source/media/media/media/Sorted Music
+          media:
+            media_content_id: media-source://media_source/media/media/media/Sorted Music/thunder.mp3
+            media_content_type: audio/mpeg
+            metadata:
+              title: thunder.mp3
+              thumbnail: null
+              media_class: music
+              children_media_class: null
+              navigateIds:
+                - {}
+                - media_content_type: app
+                  media_content_id: media-source://media_source
+                - media_content_type: ""
+                  media_content_id: media-source://media_source/media/media
+                - media_content_type: ""
+                  media_content_id: media-source://media_source/media/media/media
+                - media_content_type: ""
+                  media_content_id: media-source://media_source/media/media/media/Sorted Music
 
 
   - id: va_stop_goog_speaker
@@ -75,26 +74,25 @@ automation:
           sequence:
             - delay: '00:00:03'
             - action: media_player.play_media
-              target:
-                 entity_id: 'media_player.{{ area_name(trigger.entity_id) }}speaker'
               data:
-                media_content_id: media-source://media_source/media/media/media/Sorted Music/beep-6-96243.mp3
-                media_content_type: audio/mpeg
-              metadata:
-                title: beep-6-96243.mp3
-                thumbnail: null
-                media_class: music
-                children_media_class: null
-                navigateIds:
-                  - {}
-                  - media_content_type: app
-                    media_content_id: media-source://media_source
-                  - media_content_type: ""
-                    media_content_id: media-source://media_source/media/media
-                  - media_content_type: ""
-                    media_content_id: media-source://media_source/media/media/media
-                  - media_content_type: ""
-                    media_content_id: media-source://media_source/media/media/media/Sorted Music
+                media:
+                  media_content_id: media-source://media_source/media/media/media/Sorted Music/beep-6-96243.mp3
+                  media_content_type: audio/mpeg
+                  metadata:
+                    title: beep-6-96243.mp3
+                    thumbnail: null
+                    media_class: music
+                    children_media_class: null
+                    navigateIds:
+                      - {}
+                      - media_content_type: app
+                        media_content_id: media-source://media_source
+                      - media_content_type: ""
+                        media_content_id: media-source://media_source/media/media
+                      - media_content_type: ""
+                        media_content_id: media-source://media_source/media/media/media
+                      - media_content_type: ""
+                        media_content_id: media-source://media_source/media/media/media/Sorted Music
           while:
             - condition: template
               value_template: "{{ is_state(trigger.entity_id, 'on') }}"
