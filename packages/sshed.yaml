@@ -9,13 +9,3 @@ sensor:
     unit_time: h 
     round: 2  
     method: left 
-
-
-command_line:
-- switch:
-      name: File  Server
-      command_on:    '/usr/bin/curl -sk -u root:calvin https://192.168.1.25/redfish/v1/Systems/System.Embedded.1/Actions/ComputerSystem.Reset  -X POST -H "Content-Type: application/json" -d "{\"ResetType\": \"On\"}"'
-      command_off:   '/usr/bin/curl -sk -u root:calvin https://192.168.1.25/redfish/v1/Systems/System.Embedded.1/Actions/ComputerSystem.Reset  -X POST -H "Content-Type: application/json" -d "{\"ResetType\": \"GracefulShutdown\"}"'
-      command_state: '/usr/bin/curl -sk -u root:calvin "https://192.168.1.25/redfish/v1/Systems/System.Embedded.1?\$select=PowerState" | grep -oc "\"PowerState\":\"On\"" ||true'
-      scan_interval: 30
-      value_template: '{{ value == "1" }}'
