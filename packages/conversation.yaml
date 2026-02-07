@@ -37,7 +37,7 @@ automation:
                   media_content_id: media-source://media_source/media/media/media
                 - media_content_type: ""
                   media_content_id: media-source://media_source/media/media/media/Sorted Music
-              browse_entity_id: media_player.kitchen_cabinet_eth_va_kitchen_cabinet_eth_va_media
+            
 
 
   - id: va_stop_goog_speaker
@@ -100,10 +100,9 @@ automation:
                         media_content_id: media-source://media_source/media/media/media
                       - media_content_type: ""
                         media_content_id: media-source://media_source/media/media/media/Sorted Music
-                    browse_entity_id: media_player.kitchen_cabinet_eth_va_kitchen_cabinet_eth_va_media
-                        while:
-                          - condition: template
-                            value_template: "{{ is_state(trigger.entity_id, 'on') }}"
+          while:
+            - condition: template
+              value_template: "{{ is_state(trigger.entity_id, 'on') }}"
 
   - id: va_set_vol_goog_speaker
     alias: va_set_vol_goog_speaker
