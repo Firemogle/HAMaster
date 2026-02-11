@@ -44,8 +44,8 @@ automation:
             
 
 
-  - id: va_stop_goog_speaker
-    alias: va_stop_goog_speaker
+  - id: va_stop_goog_speaker_updated
+    alias: va_stop_goog_speaker_updated
     mode: parallel
     triggers:
       - trigger: conversation
