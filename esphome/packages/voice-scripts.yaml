@@ -235,15 +235,15 @@ script:
           brightness: !lambda return max( id(${devicename}_status).current_values.get_brightness() , 0.2f );
           id: ${devicename}_status
           effect: timer_tick
-
+          
   - id: fetch_first_active_timer
     then:
       - lambda: |
-          const auto timers = id(va).get_timers();
-          auto output_timer = timers.begin()->second;
-          for (auto &iterable_timer : timers) {
-            if (iterable_timer.second.is_active && iterable_timer.second.seconds_left <= output_timer.seconds_left) {
-              output_timer = iterable_timer.second;
+          const auto &timers = id(va).get_timers();
+          auto output_timer = *timers.begin();
+          for (const auto &timer : timers) {
+            if (timer.is_active && timer.seconds_left <= output_timer.seconds_left) {
+              output_timer = timer;
             }
           }
           id(first_active_timer) = output_timer;
