@@ -52,8 +52,8 @@ automation:
         target:
           entity_id: 'media_player.{{ area_name(trigger.device_id) }}speaker'
 
-  - id: va_alarm_goog_speaker
-    alias: va_alarm_goog_speaker
+  - id: va_alarm_goog_speaker_2
+    alias: va_alarm_goog_speaker_2
     mode: parallel
     triggers:
       - platform: state
