@@ -154,8 +154,10 @@ automation:
     mode: single
     triggers:
       - trigger: conversation
-        command: "girls bed time"
-
+        command: "bed time"
+      - trigger: conversation
+        command: "bedtime"
+        
     conditions: []
 
     actions:
