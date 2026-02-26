@@ -149,5 +149,48 @@ automation:
                 - 63db88fe052b434c86e1d37781ce0972
                 - 259e54ef72a347c2b9fa159e5bcd32b7
           
+  - id: girls_bed_time
+    alias: Girls Bed Time
+    mode: single
+    triggers:
+      - trigger: conversation
+        command: "girls bed time"
 
-            
+    conditions: []
+
+    actions:
+      # Turn Emi's fan on
+      - action: fan.turn_on
+        target:
+          entity_id: fan.emi_fan
+
+      # Turn Emi's fan light off
+      - action: light.turn_off
+        target:
+          entity_id: light.emi_fan_light
+
+      # Emi star light - 65%, no effect
+      - action: light.turn_on
+        target:
+          entity_id: light.girls_bedroom_eth_va_emi_star
+        data:
+          brightness_pct: 65
+          effect: "none"
+
+      # Lottie star light - 100%, no effect
+      - action: light.turn_on
+        target:
+          entity_id: light.girls_bedroom_eth_va_lottie_star
+        data:
+          brightness_pct: 100
+          effect: "none"
+
+      # Lottie bed + room light - 100%, Twinkle effect
+      - action: light.turn_on
+        target:
+          entity_id:
+            - light.girls_bedroom_eth_va_lottie_bed
+            - light.girls_bedroom_eth_va_room_light
+        data:
+          brightness_pct: 100
+          effect: "Twinkle"
