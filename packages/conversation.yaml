@@ -185,3 +185,68 @@ automation:
         data:
           brightness_pct: 100
           effect: "Twinkle"
+          
+  - id: girls_night_time
+    alias: Girls Night Time
+    mode: single
+    triggers:
+      # Voice trigger
+      - trigger: conversation
+        command:
+          - "night time"
+          - "nighttime"
+
+      # 9:00 PM trigger
+      - trigger: time
+        at: "21:00:00"
+
+    conditions: []
+
+    actions:
+      - choose:
+
+          ###########################################################
+          # Voice Trigger Actions
+          ###########################################################
+          - conditions:
+              - condition: template
+                value_template: "{{ trigger.platform == 'conversation' }}"
+            sequence:
+              - action: light.turn_off
+                target:
+                  entity_id:
+                    - light.emi_fan_light
+                    - light.girls_bedroom_eth_va_lottie_star
+                    - light.girls_bedroom_eth_va_lottie_bed
+                    - light.girls_bedroom_eth_va_room_light
+
+          ###########################################################
+          # 9PM Flash Sequence (ONLY if Emi star is ON)
+          ###########################################################
+          - conditions:
+              - condition: template
+                value_template: >
+                  {{ trigger.platform == 'time'
+                     and is_state('light.girls_bedroom_eth_va_emi_star', 'on') }}
+            sequence:
+
+              - repeat:
+                  count: 3
+                  sequence:
+
+                    - action: light.turn_on
+                      target:
+                        entity_id: light.girls_bedroom_eth_va_emi_star
+                      data:
+                        brightness_pct: 65
+                        transition: 3
+
+                    - delay: "00:00:03"
+
+                    - action: light.turn_off
+                      target:
+                        entity_id: light.girls_bedroom_eth_va_emi_star
+                      data:
+                        transition: 3
+
+                    - delay: "00:00:03"
