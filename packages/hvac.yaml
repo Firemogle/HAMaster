@@ -190,7 +190,7 @@ script:
                 target:
                   entity_id: climate.hvac_local
                 data:
-                  hvac_mode: off
+                  hvac_mode: 'off'
         default:
           - choose:
               - conditions:
