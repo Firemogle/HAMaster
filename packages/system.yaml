@@ -217,6 +217,22 @@ automation:
             tag: "system"
             color: "red"
 
+  - alias: trash
+    id: trash
+      - trigger: time
+        at: "19:00:00"
+    condition:
+      - condition: template
+        value_template: "{{ states('sensor.96_gallon_toter')[:10] == (now() + timedelta(days=1)).strftime('%Y-%m-%d') }}"
+    action:
+      - service: notify.group_notify
+        data:
+          message: "Trash is due out tomorrow so get to it.  Hyaw, Hyaw"
+          data:
+            tag: "system"
+            color: "red"
+
+
 
   - alias: ha_down
     id: ha_down
