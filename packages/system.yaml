@@ -217,30 +217,37 @@ automation:
             tag: "system"
             color: "red"
 
-  - alias: trash
-    id: trash
-    triggers:
-      - trigger: time
-        at: "19:00:00"
-    condition:
-      - condition: template
-        value_template: "{{ states('sensor.96_gallon_toter')[:10] == (now() + timedelta(days=1)).strftime('%Y-%m-%d') }}"
-    action:
-      - choose:
-          - conditions: "{{ states('sensor.64_gallon_cart_service_recycle_materials')[:10] == (now() + timedelta(days=1)).strftime('%Y-%m-%d') }}"
-      - service: notify.group_notify
-        data:
-          message: "Trash and **recycling** is due out tomorrow so get to it.  Hyaw, Hyaw"
+- alias: trash
+  id: trash
+  trigger:
+    - platform: time
+      at: "19:00:00"
+  condition:
+    - condition: template
+      value_template: >
+        {{ states('sensor.96_gallon_toter')[:10] ==
+           (now() + timedelta(days=1)).strftime('%Y-%m-%d') }}
+  action:
+    - choose:
+        - conditions:
+            - condition: template
+              value_template: >
+                {{ states('sensor.64_gallon_cart_service_recycle_materials')[:10] ==
+                   (now() + timedelta(days=1)).strftime('%Y-%m-%d') }}
+          sequence:
+            - service: notify.group_notify
+              data:
+                message: "Trash and **recycling** is due out tomorrow so get to it. Hyaw, Hyaw"
+                data:
+                  tag: "system"
+                  color: "red"
+      default:
+        - service: notify.group_notify
           data:
-            tag: "system"
-            color: "red"
-        default:
-      - service: notify.group_notify
-        data:
-          message: "Trash is due out tomorrow so get to it.  Hyaw, Hyaw"
-          data:
-            tag: "system"
-            color: "red"
+            message: "Trash is due out tomorrow so get to it. Hyaw, Hyaw"
+            data:
+              tag: "system"
+              color: "red"
 
 
   - alias: ha_down
