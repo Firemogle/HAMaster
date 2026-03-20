@@ -225,15 +225,17 @@ automation:
   condition:
     - condition: template
       value_template: >
-        {{ states('sensor.96_gallon_toter')[:10] ==
-           (now() + timedelta(days=1)).strftime('%Y-%m-%d') }}
+        {% set trash_date = states('sensor.96_gallon_toter') %}
+        {% set tomorrow = (now() + timedelta(days=1)).strftime('%Y-%m-%d') %}
+        {{ trash_date[:10] == tomorrow }}
   action:
     - choose:
         - conditions:
             - condition: template
               value_template: >
-                {{ states('sensor.64_gallon_cart_service_recycle_materials')[:10] ==
-                   (now() + timedelta(days=1)).strftime('%Y-%m-%d') }}
+                {% set recycle_date = states('sensor.64_gallon_cart_service_recycle_materials') %}
+                {% set tomorrow = (now() + timedelta(days=1)).strftime('%Y-%m-%d') %}
+                {{ recycle_date[:10] == tomorrow }}
           sequence:
             - service: notify.group_notify
               data:
@@ -241,13 +243,13 @@ automation:
                 data:
                   tag: "system"
                   color: "red"
-          default:
-            - service: notify.group_notify
-              data:
-                message: "Trash is due out tomorrow so get to it. Hyaw, Hyaw"
-                data:
-                  tag: "system"
-                  color: "red"
+      default:
+        - service: notify.group_notify
+          data:
+            message: "Trash is due out tomorrow so get to it. Hyaw, Hyaw"
+            data:
+              tag: "system"
+              color: "red"
 
 
   - alias: ha_down
