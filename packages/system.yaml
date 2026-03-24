@@ -286,6 +286,9 @@ automation:
               - service: script.turn_on
                 target:
                   entity_id: script.house_away
+              - service: script.turn_on
+                target:
+                  entity_id: script.front_door_lock
           - conditions: >
               {{ is_state('binary_sensor.house_sts_occupants', 'off') and is_state('binary_sensor.house_sts_vacation', 'on') }}
             sequence:
@@ -304,6 +307,9 @@ automation:
           - service: script.turn_on
             target:
               entity_id: script.house_home
+          - service: script.turn_on
+            target:
+              entity_id: script.front_door_unlock
       - service: notify.group_notify
         data:
           message: "Occupancy mode changed to {{ states('binary_sensor.house_sts_occupants') }}"
