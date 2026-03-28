@@ -62,11 +62,8 @@ lovelace:
 #Initial config to move zigbee to main install 
 zha:
   database_path: /config/zigbee.db
-  device_config:
-      00:22:a3:00:00:16:d0:39-1:
-          type: 'light'
-      00:22:a3:00:00:20:d3:9d-1:
-          type: 'light'
+  custom_quirks_path: /config/custom_zha_quirks/
+  
 logger:
   default: warning
 
