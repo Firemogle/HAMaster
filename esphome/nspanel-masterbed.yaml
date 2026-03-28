@@ -1,0 +1,32 @@
+substitutions:
+  # Settings - Editable values
+  device_name: "master-bed-nspanel"
+  friendly_name: "Masterbed lightswitch"
+  wifi_ssid: !secret AP
+  wifi_password: !secret APPW
+  nextion_update_url: "http://192.168.2.2:8123/local/nspanel_us.tft"  # Optional
+  boot_sound: false
+  # Add-on configuration (if needed)
+  ## Upload TFT
+  upload_tft_automatically: true
+  ## Climate add-on
+  # heater_relay: "1"  # Possible values: "1" or "2"
+
+# Customization area
+##### My customization - Start #####
+##### My customization - End #####
+
+# Core and optional configurations
+packages:
+  remote_package:
+    url: https://github.com/Blackymas/NSPanel_HA_Blueprint
+    ref: main
+    refresh: 300s
+    files:
+      - nspanel_esphome.yaml # Basic package
+      # Optional advanced and add-on configurations
+      # - esphome/nspanel_esphome_addon_climate_cool.yaml
+      #- esphome/nspanel_esphome_addon_climate_heat.yaml
+      # - esphome/nspanel_esphome_addon_climate_dual.yaml
+      # - esphome/nspanel_esphome_addon_cover.yaml
+      # - esphome/nspanel_esphome_addon_display_light.yaml  # Show the display as a light in Home Assistant
