@@ -19,3 +19,17 @@ automation:
             entity_id: switch.rainbrarrel_backyard_irrigation
     mode: queued
 
+template:
+  - sensor:
+      - name: "Wind Direction Compass"
+        unique_id: wind_direction_compass
+        state: >
+          {% set deg = states('sensor.weather_station_wind_direction') | float(0) %}
+          {% set dirs = [
+            'N', 'NNE', 'NE', 'ENE',
+            'E', 'ESE', 'SE', 'SSE',
+            'S', 'SSW', 'SW', 'WSW',
+            'W', 'WNW', 'NW', 'NNW'
+          ] %}
+          {% set index = ((deg + 11.25) / 22.5) | int %}
+          {{ dirs[index % 16] }}
