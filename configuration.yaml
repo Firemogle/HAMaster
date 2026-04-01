@@ -62,8 +62,8 @@ lovelace:
 #Initial config to move zigbee to main install 
 zha:
   database_path: /config/zigbee.db
-  enable_quirks: true
-  custom_quirks_path: /config/custom_zha_quirks/
+  #enable_quirks: true
+  #custom_quirks_path: /config/custom_zha_quirks/
   
 logger:
   default: warning
