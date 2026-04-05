@@ -1,5 +1,10 @@
 homeassistant:
-  customize:    
+  customize:  
+
+utility_meter:
+  daily_rain:
+    source: sensor.weather_station_precipitation
+    cycle: daily
 
 automation:
   - id: 'irrigattion'
