@@ -148,7 +148,7 @@ sensor:
     update_interval: 1s
     filters:
       - sliding_window_moving_average:
-          window_size: 10
+          window_size: 45
           send_every: 10
   - platform: template
     name: "Tank Volume"
