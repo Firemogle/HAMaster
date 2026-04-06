@@ -150,6 +150,10 @@ sensor:
       - sliding_window_moving_average:
           window_size: 45
           send_every: 10
+  - platform: ads1115
+    multiplexer: 'A1_GND'
+    gain: 4.096
+    name: "A2D"          
   - platform: template
     name: "Tank Volume"
     id: tank_vol
