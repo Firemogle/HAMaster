@@ -141,8 +141,8 @@ sensor:
     address: 0x76
     update_interval: 60s 
   - platform: ads1115
-    multiplexer: 'A0_GND'
-    gain: 6.144
+    multiplexer: 'A0_A1'
+    gain: 4.096
     name: "Tank probe A2D"
     id: raw_dist
     update_interval: 1s
