@@ -141,19 +141,15 @@ sensor:
     address: 0x76
     update_interval: 60s 
   - platform: ads1115
-    multiplexer: 'A0_GND'
-    gain: 4.096
+    multiplexer: 'A0_A1'
+    gain: 6.144
     name: "Tank probe A2D"
     id: raw_dist
     update_interval: 1s
     filters:
       - sliding_window_moving_average:
           window_size: 45
-          send_every: 10
-  - platform: ads1115
-    multiplexer: 'A1_GND'
-    gain: 4.096
-    name: "A2D"          
+          send_every: 10   
   - platform: template
     name: "Tank Volume"
     id: tank_vol
