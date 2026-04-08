@@ -142,14 +142,14 @@ sensor:
     update_interval: 60s 
   - platform: ads1115
     multiplexer: 'A0_A1'
-    gain: 4.096
+    gain: 2.048
     name: "Tank probe A2D"
     id: raw_dist
     update_interval: 1s
     filters:
       - sliding_window_moving_average:
-          window_size: 45
-          send_every: 10   
+          window_size: 90
+          send_every: 30
   - platform: template
     name: "Tank Volume"
     id: tank_vol
