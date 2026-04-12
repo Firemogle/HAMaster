@@ -5,6 +5,16 @@ homeassistant:
     light.garage_ext_2:
       friendly_name: Driveway Light 2
 
+template:
+  - binary_sensor:
+      - name: house_sts_fountain
+        unique_id: house_sts_fountain
+        state: >
+          {% set now_date = now().date() %}
+          {% set start = strptime(now().year ~ '-04-01', '%Y-%m-%d').date() %}
+          {% set end = strptime(now().year ~ '-09-30', '%Y-%m-%d').date() %}
+          {{ start <= now_date <= end }}
+
 automation:
   - id: doorbell_notify
     alias: doorbell_notify
