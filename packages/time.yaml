@@ -98,6 +98,14 @@ automation:
               - service: script.turn_on
                 target:
                   entity_id: script.xmas_light
+          - conditions:
+              - condition: state
+                entity_id: binary_sensor.house_sts_fountain
+                state: 'on'
+            sequence:
+              - service: switch.turn_on
+                target:
+                  entity_id: switch.front_outlets
 
   - id: 'house_evening_mode'
     alias: house_evening_mode
