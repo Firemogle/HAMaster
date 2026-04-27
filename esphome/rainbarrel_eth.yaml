@@ -150,14 +150,3 @@ sensor:
       - sliding_window_moving_average:
           window_size: 90
           send_every: 30
-  - platform: template
-    name: "Tank Volume"
-    id: tank_vol
-    lambda: return 1.1 * (id(tank_per).state);
-    device_class: volume_storage
-  - platform: template
-    name: "Tank Percentage"
-    lambda: return ((id(raw_dist).state-2.65)/(3.2-2.65))*100;
-    id: tank_per
-    device_class: humidity
-              
