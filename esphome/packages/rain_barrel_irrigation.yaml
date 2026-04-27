@@ -23,3 +23,14 @@ sprinkler:
         run_duration: 900s
         valve_switch_id: porch_plot_valve
         pump_switch_id: irr_main_sol
+
+sensor:
+  - platform: xgzp68xx
+    k_value: 128
+    temperature:
+        name: "Pressure Temp"
+    pressure:
+        name: "Differential Pressure"
+        oversampling: "32768x"
+        filters:
+            - offset: 0
