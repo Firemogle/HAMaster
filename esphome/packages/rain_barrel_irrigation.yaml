@@ -32,12 +32,8 @@ sensor:
       min_pressure: 0
       max_pressure: 5
       transfer_function: "A"
-      unit_of_measurement: psi
     temperature:
         name: "Pressure Temp"
-
-
-            
   - platform: template
     name: "Tank Height"
     id: tank_h        
