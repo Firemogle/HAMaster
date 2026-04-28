@@ -27,13 +27,13 @@ sprinkler:
 sensor:
   - platform: honeywellabp2_i2c
     pressure:
-        name: "Tank Pressure"
-        id: tank_press
+      name: "Tank Pressure"
+      id: "tank_press"  
       min_pressure: 0
       max_pressure: 5
       transfer_function: "A"
     temperature:
-        name: "Pressure Temp"
+      name: "Pressure Temp"
   - platform: template
     name: "Tank Height"
     id: tank_h        
