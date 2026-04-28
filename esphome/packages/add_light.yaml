@@ -14,7 +14,6 @@ light:
     id: ${name}
     use_dma: true
     rmt_symbols: 96
-    max_refresh_rate: 20ms
     effects:
       - addressable_twinkle:
           name: Twinkle
