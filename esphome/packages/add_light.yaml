@@ -16,7 +16,6 @@ light:
     rmt_symbols: 96
     max_refresh_rate: 100ms
     effects:
-      - wled:    
       - addressable_twinkle:
           name: Twinkle
           twinkle_probability: 25%
