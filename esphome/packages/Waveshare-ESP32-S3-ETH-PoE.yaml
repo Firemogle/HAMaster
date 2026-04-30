@@ -29,7 +29,6 @@ ota:
   password: !secret OTA_PW
 
 logger:
-  hardware_uart: USB_CDC
 
 ethernet:
   type: W5500
