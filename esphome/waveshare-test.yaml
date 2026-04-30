@@ -1,0 +1,8 @@
+substitutions:
+  devicename: waveshare-test
+
+packages:
+  base_board: !include 
+    file: packages/Waveshare-ESP32-S3-ETH-PoE.yaml
+    vars:
+      devicename: ${devicename}
