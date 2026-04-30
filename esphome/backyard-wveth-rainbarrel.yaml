@@ -1,0 +1,54 @@
+substitutions:
+  devicename: waveshare-test
+
+packages:
+  base_board: !include 
+    file: packages/Waveshare-ESP32-S3-ETH-PoE.yaml
+    vars:
+      devicename: ${devicename}
+  string_light: !include 
+    file: packages/add_light.yaml
+    vars:
+      pin: GPIO37
+      length: 825
+      color_line: RGB
+      name: rb_string
+  string_light_part: !include 
+    file: packages/partition_light.yaml
+    vars:
+      name: decklight
+      parent: rb_string
+      start: 0
+      end: 427
+  string_light_part2: !include 
+    file: packages/partition_light.yaml
+    vars:
+      name: backyard_eave
+      parent: rb_string
+      start: 783
+      end: 802
+  irrigation: !include packages/rain_barrel_irrigation.yaml
+  string_light_part3: !include 
+    file: packages/partition_light.yaml
+    vars:
+      name: ext_back_window
+      parent: rb_string
+      start: 428
+      end: 782
+  
+i2c:
+   sda: GPIO21
+   scl: GPIO17
+   id: i2c_channel
+
+sensor:
+  - platform: bme280_i2c
+    temperature:
+      name: "rainbarrel Temperature"
+      oversampling: 16x
+    pressure:
+      name: "rainbarrel Pressure"
+    humidity:
+      name: "rainbarrel Humidity"
+    address: 0x76
+    update_interval: 60s 
