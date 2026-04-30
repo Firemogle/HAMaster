@@ -16,6 +16,10 @@ light:
     rmt_symbols: 96
     max_refresh_rate: 100ms
     effects:
+      - wled:
+          # port: 21324
+          blank_on_start: True
+          # sync_group_mask: 0
       - addressable_twinkle:
           name: Twinkle
           twinkle_probability: 25%
