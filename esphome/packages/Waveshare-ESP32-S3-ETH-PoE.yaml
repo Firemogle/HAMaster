@@ -20,6 +20,10 @@ psram:
   mode: octal
   speed: 80MHz
 
+# Enable logging
+logger:
+
+# Enable Home Assistant API
 api:
   encryption:
     key: !secret ENC_KEY
@@ -28,7 +32,7 @@ ota:
   platform: esphome
   password: !secret OTA_PW
 
-logger:
+bluetooth_proxy:
 
 ethernet:
   type: W5500
