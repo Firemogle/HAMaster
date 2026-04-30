@@ -49,4 +49,57 @@ sensor:
     id: tank_per
     device_class: humidity
 
+# Individual outputs
+switch:
+  - platform: gpio
+    name: "rainbarrel relay 1"
+    pin:
+      pcf8574: pcf8574_hub
+      # Use pin number 0
+      number: 4
+      # One of INPUT or OUTPUT
+      mode:
+        output: true
+      inverted: true
+    internal: true
+  - platform: gpio
+    name: "rainbarrel relay 2"
+    pin:
+      pcf8574: pcf8574_hub
+      # Use pin number 0
+      number: 5
+      # One of INPUT or OUTPUT
+      mode:
+        output: true
+      inverted: true
+    internal: true
+  - platform: gpio
+    name: "rainbarrel relay 3"
+    pin:
+      pcf8574: pcf8574_hub
+      # Use pin number 0
+      number: 6
+      # One of INPUT or OUTPUT
+      mode:
+        output: true
+      inverted: true
+    internal: true
+  - platform: gpio
+    name: "Rainbarrel Sol"
+    id: irr_main_sol
+    pin:
+      pcf8574: pcf8574_hub
+      # Use pin number 0
+      number: 7
+      # One of INPUT or OUTPUT
+      mode:
+        output: true
+      inverted: true
+    internal: true
+      
+pcf8574:
+  - id: 'pcf8574_hub'
+    address: 0x27
+    pcf8575: false
+
               
