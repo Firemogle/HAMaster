@@ -18,11 +18,11 @@ sprinkler:
       - valve_switch: "Garden"
         run_duration: 1800s
         valve_switch_id: garden_valve
-        pump_switch_id: irr_main_sol
+        pump_switch_id: irr_main_pump
       - valve_switch: "Porch Plot"
         run_duration: 900s
         valve_switch_id: porch_plot_valve
-        pump_switch_id: irr_main_sol
+        pump_switch_id: irr_main_pump
 
 sensor:
   - platform: honeywellabp2_i2c
@@ -52,7 +52,18 @@ sensor:
 # Individual outputs
 switch:
   - platform: gpio
-    name: "rainbarrel relay 1"
+    name: "Rainbarrel Pump"
+    id: irr_main_pump
+    on_turn_on:
+    lambda: !lambda |-
+      if (id(fert_swi).state) {
+        id(irr_main_sol).turn_on();
+      } else {
+        id(irr_fert_sol).turn_on();
+      }
+    on_turn_off:
+    - switch.turn_off: irr_main_sol
+    - switch.turn_off: irr_fert_sol
     pin:
       pcf8574: pcf8574_hub
       # Use pin number 0
@@ -63,7 +74,8 @@ switch:
       inverted: true
     internal: true
   - platform: gpio
-    name: "rainbarrel relay 2"
+    name: "Rainbarrel Fert Sol"
+    id: irr_fert_sol
     pin:
       pcf8574: pcf8574_hub
       # Use pin number 0
@@ -103,3 +115,7 @@ pcf8574:
     pcf8575: false
 
               
+switch:
+  - platform: template
+    name: "Fertilizer Switch"
+    id: fert_swi
