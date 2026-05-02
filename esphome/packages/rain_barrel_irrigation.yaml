@@ -111,6 +111,7 @@ switch:
   - platform: template
     name: "Fertilizer Switch"
     id: fert_swi
+    optimistic: true
       
 pcf8574:
   - id: 'pcf8574_hub'
