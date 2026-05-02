@@ -55,12 +55,12 @@ switch:
     name: "Rainbarrel Pump"
     id: irr_main_pump
     on_turn_on:
-    lambda: !lambda |-
-      if (id(fert_swi).state) {
-        id(irr_main_sol).turn_on();
-      } else {
-        id(irr_fert_sol).turn_on();
-      }
+    - lambda: !lambda |-
+        if (id(fert_swi).state) {
+          id(irr_main_sol).turn_on();
+        } else {
+          id(irr_fert_sol).turn_on();
+        }
     on_turn_off:
     - switch.turn_off: irr_main_sol
     - switch.turn_off: irr_fert_sol
