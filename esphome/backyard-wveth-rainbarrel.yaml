@@ -41,7 +41,7 @@ i2c:
    scl: GPIO17
 
 sensor:
-  - platform: bme280_i2c
+  - platform: bmp280_i2c
     temperature:
       name: "rainbarrel Temperature"
       oversampling: 16x
