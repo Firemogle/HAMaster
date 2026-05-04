@@ -47,7 +47,5 @@ sensor:
       oversampling: 16x
     pressure:
       name: "rainbarrel Pressure"
-    humidity:
-      name: "rainbarrel Humidity"
     address: 0x76
     update_interval: 60s 
