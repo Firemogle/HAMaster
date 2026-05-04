@@ -37,9 +37,8 @@ packages:
       end: 782
   
 i2c:
-   sda: GPIO17
-   scl: GPIO21
-   id: i2c_channel
+   sda: GPIO21
+   scl: GPIO17
 
 sensor:
   - platform: bme280_i2c
