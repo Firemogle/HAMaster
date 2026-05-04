@@ -25,7 +25,7 @@ packages:
     vars:
       name: backyard_eave
       parent: rb_string
-      start: 783
+      start: 782
       end: 802
   irrigation: !include packages/rain_barrel_irrigation.yaml
   string_light_part3: !include 
@@ -34,7 +34,7 @@ packages:
       name: ext_back_window
       parent: rb_string
       start: 428
-      end: 782
+      end: 781
   
 i2c:
    sda: GPIO21
