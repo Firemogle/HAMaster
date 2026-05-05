@@ -85,7 +85,8 @@ switch:
       inverted: true
     internal: true
   - platform: gpio
-    name: "rainbarrel relay 3"
+    name: "Rainbarrel Hose Fill"
+    id: irr_barrel_fill
     pin:
       pcf8574: pcf8574_hub
       # Use pin number 0
