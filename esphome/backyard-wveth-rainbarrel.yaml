@@ -18,23 +18,23 @@ packages:
     vars:
       name: decklight
       parent: rb_string
-      start: 0
-      end: 427
+      start: 1
+      end: 428
   string_light_part2: !include 
     file: packages/partition_light.yaml
     vars:
       name: backyard_eave
       parent: rb_string
-      start: 782
-      end: 802
+      start: 783
+      end: 803
   irrigation: !include packages/rain_barrel_irrigation.yaml
   string_light_part3: !include 
     file: packages/partition_light.yaml
     vars:
       name: ext_back_window
       parent: rb_string
-      start: 428
-      end: 781
+      start: 429
+      end: 782
   
 i2c:
    sda: GPIO21
