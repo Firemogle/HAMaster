@@ -25,7 +25,6 @@ sprinkler:
         pump_switch_id: irr_main_pump
 
 sensor:
-sensor:
   - platform: hx711
     name: "Tank Pressure"
     id: tank_press
