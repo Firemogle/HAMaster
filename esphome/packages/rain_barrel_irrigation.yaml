@@ -26,12 +26,16 @@ sprinkler:
 
 sensor:
   - platform: hx711
-    name: "Tank Pressure"
-    id: tank_press
+    name: "Tank Pressure Raw"
+    id: tank_press_raw
     dout_pin: GPIO16
     clk_pin: GPIO18
     gain: 128
     update_interval: 5s
+  - platform: template
+    name: "Tank Pressure"
+    id: tank_press
+    lambda: return ((29.5/50) * ( id(tank_press_raw).state / (5 * 16,777,216 - 1) - 22.6));
   - platform: template
     name: "Tank Height"
     id: tank_h        
