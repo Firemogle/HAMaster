@@ -31,7 +31,7 @@ sensor:
     dout_pin: GPIO16
     clk_pin: GPIO18
     gain: 128
-    update_interval: 60s
+    update_interval: 5s
   - platform: template
     name: "Tank Height"
     id: tank_h        
