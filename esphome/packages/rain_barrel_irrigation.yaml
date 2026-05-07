@@ -35,11 +35,11 @@ sensor:
   - platform: template
     name: "Tank Pressure"
     id: tank_press
-    lambda: return ((29.5/50) * ( id(tank_press_raw).state / (5 * 16,777,216 - 1) - 22.6));
+    lambda: return ((29.5/50) * ( id(tank_press_raw).state / (5 * 16,777,216 - 1) - 22.6) - 10100);
   - platform: template
     name: "Tank Height"
     id: tank_h        
-    lambda: return (27.6799 * id(tank_press).state);
+    lambda: return (id(tank_press).state / 249.09);
   - platform: template
     name: "Tank Volume"
     id: tank_vol
