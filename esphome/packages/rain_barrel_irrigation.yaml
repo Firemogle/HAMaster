@@ -35,6 +35,8 @@ sensor:
   - platform: template
     name: "Tank Pressure"
     id: tank_press
+    device_class: "pressure"
+    unit_of_measurement: "Pa"
     lambda: return ((29.5/50) * ( id(tank_press_raw).state / (5 * 16,777,216 - 1) - 22.6) - 10100);
   - platform: template
     name: "Tank Height"
