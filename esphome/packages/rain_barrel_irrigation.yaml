@@ -40,18 +40,21 @@ sensor:
     lambda: return ((29.5/50) * ( id(tank_press_raw).state / (5 * 16,777,216 - 1) - 22.6) - 10100);
   - platform: template
     name: "Tank Height"
-    id: tank_h        
+    id: tank_h
+    device_class: "distance"
+    unit_of_measurement: "in"        
     lambda: return (id(tank_press).state / 249.09);
   - platform: template
     name: "Tank Volume"
     id: tank_vol
+    unit_of_measurement: "gal"
     lambda: return (4 * id(tank_per).state);
     device_class: volume_storage
   - platform: template
     name: "Tank Percentage"
     lambda: return (100 * id(tank_h).state / 40.55);
     id: tank_per
-    device_class: humidity
+    unit_of_measurement: "%"
 
 # Individual outputs
 switch:
