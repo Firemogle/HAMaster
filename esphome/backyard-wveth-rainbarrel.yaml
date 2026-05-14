@@ -1,5 +1,5 @@
 substitutions:
-  devicename: waveshare-test
+  devicename: rainbarrel
 
 packages:
   base_board: !include 
