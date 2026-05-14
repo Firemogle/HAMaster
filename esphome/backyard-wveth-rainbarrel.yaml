@@ -10,7 +10,7 @@ packages:
     file: packages/add_light.yaml
     vars:
       pin: GPIO38
-      length: 825
+      length: 804
       color_line: RGB
       name: rb_string
   string_light_part: !include 
