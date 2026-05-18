@@ -28,8 +28,8 @@ sensor:
   - platform: hx711
     name: "Tank Pressure Raw"
     id: tank_press_raw
-    dout_pin: GPIO18
-    clk_pin: GPIO16
+    dout_pin: GPIO16
+    clk_pin: GPIO18
     gain: 128
     update_interval: 5s
   - platform: template
