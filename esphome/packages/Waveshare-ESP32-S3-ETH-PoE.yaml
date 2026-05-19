@@ -34,6 +34,11 @@ ota:
 
 bluetooth_proxy:
 
+button:
+  - platform: restart
+    name: "reboot"
+    id: "reboot"
+
 ethernet:
   type: W5500
   clk_pin: GPIO13
