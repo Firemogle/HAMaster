@@ -281,7 +281,7 @@ script:
       # Generate text using the Ollama Conversation integration
       - service: conversation.process
         data:
-          agent_id: conversation.ollama
+          agent_id: conversation.ollama_conversation
           text: "{{ wakeup_prompt }}"
         response_variable: ollama_response
 
