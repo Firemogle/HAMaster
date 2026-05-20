@@ -298,6 +298,6 @@ script:
         target:
           entity_id: tts.piper
         data:
-          media_player_entity_id: media_player.girls_bedroom_eth_va_girls_bedroom
+          media_player_entity_id: media_player.girls_bedroom_eth_va_girls_bedroom_eth_va_media
           message: >
             {{ ollama_response.response.speech.plain.speech }}
