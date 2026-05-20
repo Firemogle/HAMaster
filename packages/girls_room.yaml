@@ -262,4 +262,42 @@ script:
                 entity_id:  switch.shelly1pm_c45bbe6b41e3
             - delay: 5
 
-            
+script:
+  emilia_wakeup_ollama:
+    alias: Emilia Wakeup Ollama
+    mode: single
+    sequence:
+      - variables:
+          wakeup_prompt: >
+            Generate a wake up message addressed to Emilia.
+            The message should take approximately 15 minutes to read aloud.
+            Start very gentle, calm, and soothing.
+            Gradually become more encouraging, energetic, and urgent as the message continues.
+            Include reminders about getting ready for the day, waking up slowly,
+            stretching, opening eyes, getting out of bed, and starting the morning.
+            Avoid repeating the same phrases too often.
+            The response should be plain spoken text only with no markdown formatting.
+
+      # Generate text using the Ollama Conversation integration
+      - service: conversation.process
+        data:
+          agent_id: conversation.ollama
+          text: "{{ wakeup_prompt }}"
+        response_variable: ollama_response
+
+      # Optional debug log
+      - service: system_log.write
+        data:
+          level: info
+          message: >
+            Emilia wakeup message generated:
+            {{ ollama_response.response.speech.plain.speech[:500] }}
+
+      # Speak the generated message using Piper TTS
+      - service: tts.speak
+        target:
+          entity_id: tts.piper
+        data:
+          media_player_entity_id: media_player.girls_bedroom_eth_va_girls_bedroom
+          message: >
+            {{ ollama_response.response.speech.plain.speech }}
