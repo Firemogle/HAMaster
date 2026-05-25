@@ -98,7 +98,7 @@ switch:
     pin:
       pcf8574: pcf8574_hub
       # Use pin number 0
-      number: 6
+      number: 7
       # One of INPUT or OUTPUT
       mode:
         output: true
@@ -110,7 +110,7 @@ switch:
     pin:
       pcf8574: pcf8574_hub
       # Use pin number 0
-      number: 7
+      number: 6
       # One of INPUT or OUTPUT
       mode:
         output: true
