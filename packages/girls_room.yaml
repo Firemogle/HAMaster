@@ -270,7 +270,7 @@ script:
       - variables:
           wakeup_prompt: >
             Generate a wake up message addressed to Emilia.
-            The message should take approximately 15 minutes to read aloud.
+            The message should take approximately 30 minutes to read aloud.
             Start very gentle, calm, and soothing.
             Gradually become more encouraging, energetic, and urgent as the message continues.
             Include reminders about getting ready for the day, waking up slowly,
