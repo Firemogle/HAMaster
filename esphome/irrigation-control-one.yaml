@@ -35,5 +35,5 @@ switch:
   - platform: gpio
     name: porch_rail_valve
     pin: 
-      number: GPIO06
+      number: GPIO04
       inverted: true
