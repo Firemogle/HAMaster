@@ -7,8 +7,15 @@ packages:
     file: valve_remote.yaml
     vars:
       name: garden_valve
-
-
+  fenceplot: !include 
+    file: valve_remote.yaml
+    vars:
+      name: fence_valve
+  porchrailplot: !include 
+    file: valve_remote.yaml
+    vars:
+      name: porch_rail_valve
+      
 sprinkler:
   - id: back_irr
     main_switch: "Backyard Irrigation"
@@ -22,6 +29,14 @@ sprinkler:
       - valve_switch: "Porch Plot"
         run_duration: 5min
         valve_switch_id: porch_plot_valve
+        pump_switch_id: irr_main_pump
+      - valve_switch: "Porch Rail"
+        run_duration: 5min
+        valve_switch_id: porch_rail_valve
+        pump_switch_id: irr_main_pump
+      - valve_switch: "Fence Plot"
+        run_duration: 5min
+        valve_switch_id: fence_valve
         pump_switch_id: irr_main_pump
 
 sensor:
