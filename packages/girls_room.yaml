@@ -1,31 +1,15 @@
 homeassistant:
   customize:
-    binary_sensor.emi_window_controller_motion:
-      friendly_name: Emi Room Motion
-    sensor.emi_window_controller_temp:
-      friendly_name: Emi Room Temperature
-    sensor.emi_window_controller_humidity:
-      friendly_name: Emi Room  Humidity
-    sensor.emi_window_controller_pressure:
-      friendly_name: Emi Room Pressure
-    cover.emi_window_controller_blind:
-      friendly_name: Emi Room Blind
-    cover.emi_window_controller_curt1:
-      friendly_name: Emi Room Sheer Curtain
-    cover.emi_window_controller_curt2:
-      friendly_name: Emi Room Curtain
-    sensor.emi_window_controller_lux:
-      friendly_name: Emi Room Light Lux
     fan.emi_fan:
-      friendly_name: Emi Fan
+      friendly_name: Girls Fan
     light.emi_fan_light:
-      friendly_name: Emi Fan Light
+      friendly_name: Girls Fan Light
     binary_sensor.emi_motion:
-      friendly_name: Emi Bedroom Motion
+      friendly_name: Girls Bedroom Motion
     sensor.emi_temp:
-      friendly_name: Emi Bedroom Temperature
+      friendly_name: Girls Bedroom Temperature
     switch.emi_tv:
-      friendly_name: Emi TV Switch
+      friendly_name: Girls TV Switch
   
           
 light:
