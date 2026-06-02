@@ -15,6 +15,7 @@ light:
     use_dma: true
     rmt_symbols: 96
     max_refresh_rate: 100ms
+    restore_mode: RESTORE_DEFAULT_OFF
     effects:
       - addressable_twinkle:
           name: Twinkle
