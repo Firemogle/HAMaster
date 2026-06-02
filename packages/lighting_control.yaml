@@ -82,60 +82,61 @@ script:
               entity_id: switch.livingroom_subwoofer
 
 
-house_night:
-  alias: house_night
-  mode: parallel
-  sequence:
-    - parallel:
-        - continue_on_error: true
-          service: light.turn_on
-          data:
-            brightness_pct: 25
-            rgb_color: [255, 255, 255]
-            effect: none
-          target:
-            entity_id:
-              - light.cabinet_bottom
-              - light.cabinet_top
-              - light.stove
-              - light.uhall_ban_hall_ban
+  house_night:
+    alias: house_night
+    mode: parallel
+    sequence:
+      - parallel:
+          - continue_on_error: true
+            service: light.turn_on
+            data:
+              brightness_pct: 25
+              rgb_color: [255, 255, 255]
+              effect: none
+            target:
+              entity_id:
+                - light.cabinet_bottom
+                - light.cabinet_top
+                - light.stove
+                - light.uhall_ban_hall_ban
 
-        - continue_on_error: true
-          service: switch.turn_off
-          target:
-            entity_id: switch.garage_wall_switch
+          - continue_on_error: true
+            service: switch.turn_off
+            target:
+              entity_id: switch.garage_wall_switch
 
-        - continue_on_error: true
-          service: switch.turn_off
-          target:
-            entity_id: switch.front_outlets
+          - continue_on_error: true
+            service: switch.turn_off
+            data:
+              entity_id: switch.front_outlets              
 
-        - continue_on_error: true
-          service: light.turn_off
-          target:
-            floor_id: basement
-            area_id:
-              - 21aee0f09bbf4d90b3f9367d6e75982b
-              - b242500e2dba11eba7ce67962ad1652d
-              - 259e54ef72a347c2b9fa159e5bcd32b7
-              - 3e1959c84fce49969395cd95d025ef2e
-              - 452faf27ea29485da59632cea146740b
-              - ef4c313bdcc54a1fb0340db4f0bd33ad
-            entity_id:
-              - light.hallway_light
-              - light.kitchen_fan
-              - light.kitchen_sink
-              - light.kitchen_light_switch
+          - continue_on_error: true
+            service: light.turn_off
+            target:
+              floor_id: basement
+              area_id:
+                - 21aee0f09bbf4d90b3f9367d6e75982b
+                - b242500e2dba11eba7ce67962ad1652d
+                - 259e54ef72a347c2b9fa159e5bcd32b7
+                - 3e1959c84fce49969395cd95d025ef2e
+                - 452faf27ea29485da59632cea146740b
+                - ef4c313bdcc54a1fb0340db4f0bd33ad
+              entity_id:
+                - light.hallway_light
+                - light.kitchen_fan
+                - light.kitchen_sink
+                - light.kitchen_light_switch
 
-        - continue_on_error: true
-          service: fan.turn_off
-          target:
-            floor_id: first_floor
+          - continue_on_error: true
+            service: lock.lock
+            target:
+              floor_id: first_floor
 
-        - continue_on_error: true
-          service: lock.lock
-          target:
-            floor_id: first_floor
+          - continue_on_error: true
+            service: fan.turn_off
+            target:
+              floor_id: first_floor
+
 
 
   house_wakeup:
