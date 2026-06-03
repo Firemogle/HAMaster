@@ -15,15 +15,22 @@ template:
           {% set end = strptime(now().year ~ '-09-30', '%Y-%m-%d').date() %}
           {{ start <= now_date <= end }}
 
+amcrest:
+  - host: 192.168.2.27
+    username: admin
+    password: HowNow4040
+
 automation:
   - id: doorbell_notify
     alias: doorbell_notify
     mode: parallel
     triggers:
-      - platform: state
-        entity_id: binary_sensor.front_door_doorbell
-        to: "on"
-    conditions: []
+      - trigger: event
+        event_type: amcrest
+        event_data:
+          event: "CallNoAnswered"
+          payload:
+            action: "Start"
     actions:
       - action: assist_satellite.announce
         metadata: {}
