@@ -39,6 +39,7 @@ packages:
 i2c:
    sda: GPIO21
    scl: GPIO17
+   scan: true
 
 sensor:
   - platform: bmp280_i2c
