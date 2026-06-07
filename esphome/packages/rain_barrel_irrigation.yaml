@@ -48,11 +48,16 @@ sensor:
     gain: 6.144
     name: "Tank Pressure Raw"
     id: tank_press
+    update_interval: 15s
     filters:
       - calibrate_linear:
           - 0.5 -> 0.0
           - 2.5 -> 2.5
           - 4.5 -> 5
+      - median:
+          window_size: 9
+          send_every: 4
+          send_first_at: 3
   - platform: template
     name: "Tank Height"
     id: tank_h
