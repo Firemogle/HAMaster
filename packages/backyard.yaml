@@ -24,6 +24,7 @@ automation:
             entity_id: switch.rainbrarrel_backyard_irrigation
     mode: queued
 
+# (0.408 × Δ × (sensor.weather_station_illuminance / 115) + 0.065 * (900/(sensor.weather_station_temperature+273)) * sensor.weather_station_wind_speed * (es - ea)) / (Δ + 0.065 * (1 + 0.34 * sensor.weather_station_wind_speed))
 template:
   - sensor:
       - name: "Wind Direction Compass"
