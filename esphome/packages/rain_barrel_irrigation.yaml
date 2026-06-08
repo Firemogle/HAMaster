@@ -57,7 +57,7 @@ sensor:
           - 2.5 -> 2.5
           - 4.5 -> 5
       - median:
-          window_size: 9
+          window_size: 17
           send_every: 4
           send_first_at: 3
   - platform: template
