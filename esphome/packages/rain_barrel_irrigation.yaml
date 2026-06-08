@@ -77,6 +77,14 @@ sensor:
     lambda: return (100 * id(tank_h).state / 40.55);
     id: tank_per
     unit_of_measurement: "%"
+  - platform: pulse_counter
+    pin: GPIO18
+    unit_of_measurement: 'gallon/min'
+    name: 'Flow Rate'
+    filters:
+      - multiply:  (1 / (3.785 * 330))
+
+
 
 # Individual outputs
 switch:
