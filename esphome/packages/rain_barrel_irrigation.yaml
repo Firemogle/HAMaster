@@ -48,6 +48,7 @@ sensor:
     unit_of_measurement: "psi"
     multiplexer: 'A0_GND'
     gain: 6.144
+    sample_rate: 16
     name: "Tank Pressure Raw"
     id: tank_press
     update_interval: 15s
