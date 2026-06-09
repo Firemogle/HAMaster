@@ -83,7 +83,7 @@ sensor:
     unit_of_measurement: 'gallon/min'
     name: 'Flow Rate'
     filters:
-      - multiply:  (1 / (3.785 * 330))
+      - lambda: return x * (1.0 / (3.785 * 330.0))
 
 
 
