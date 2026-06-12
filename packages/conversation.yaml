@@ -219,6 +219,7 @@ automation:
                     - light.girls_bedroom_eth_va_lottie_star
                     - light.girls_bedroom_eth_va_lottie_bed
                     - light.girls_bedroom_eth_va_room_light
+                    - light.hallway
 
           ###########################################################
           # 9PM Flash Sequence (ONLY if Emi star is ON)
