@@ -8,7 +8,7 @@ utility_meter:
 
 sensor:
   - platform: integration
-    source: sensor.reference_evapotranspiration_total
+    source: sensor.reference_evapotranspiration
     name: daily_et
     unit_time: d
 
