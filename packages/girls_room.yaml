@@ -12,13 +12,6 @@ homeassistant:
       friendly_name: Girls TV Switch
   
           
-light:
-  - platform: group
-    name: emi_star_lamp
-    entities:
-      - light.emi_star_1
-      - light.emi_star_2
-      - light.emi_star_3
 
 input_boolean:
   emi_wake:
@@ -128,53 +121,26 @@ automation:
     - delay: '00:00:30'
     - service: light.turn_on
       data:
-        entity_id: light.emi_star_lamp
+        entity_id: light.girls_bedroom_eth_va_emi_star
         brightness: 255
         transition: 1800
     - service: script.turn_on
       target:
         entity_id: script.emilia_wakeup_ollama
         
-  - id: emi_wake
-    alias: emi_wake
-    mode: parallel
-    triggers:
-      - platform: state
-        entity_id: input_boolean.emi_wake
-        to: "on"
-    conditions: []
+
+          
+  - id: emi_star_off
+    alias: emi_star_off
+    mode: single    
+    triggers:    
+      - trigger: time
+        at: "21:15:00"
     actions:
-      - action: media_player.turn_on
+      - action: light.turn_off
         target:
-          entity_id: 'media_player.kidsroomspeaker'
-      - repeat:
-          sequence:
-            - delay: '00:00:03'
-            - action: media_player.play_media
-              target:
-                 entity_id: 'media_player.kidsroomspeaker'
-              data:
-                media_content_id: media-source://media_source/media/Server/media/Sorted Music/beep-6-96243.mp3
-                media_content_type: audio/mpeg
-              metadata:
-                title: beep-6-96243.mp3
-                thumbnail: null
-                media_class: music
-                children_media_class: null
-                navigateIds:
-                  - {}
-                  - media_content_type: app
-                    media_content_id: media-source://media_source
-                  - media_content_type: ""
-                    media_content_id: media-source://media_source/media/Server
-                  - media_content_type: ""
-                    media_content_id: media-source://media_source/media/Server/media
-                  - media_content_type: ""
-                    media_content_id: media-source://media_source/media/Server/media/Sorted Music
-          while:
-            - condition: template
-              value_template: "{{ is_state(trigger.entity_id, 'on') }}"
-     
+          entity_id:  light.girls_bedroom_eth_va_emi_star
+        
 input_number:
   emi_night_timer:
     name: "Emi nighttime routine timer"
@@ -185,69 +151,8 @@ input_number:
     step: 1
     unit_of_measurement: "M"
 
-script:
-  goodnight_emi:
-    mode: single
-    sequence:
-      - service:  light.turn_on
-        target:
-          entity_id:  light.emi_star_lamp
-        data:
-          kelvin: 2800
-          brightness_pct: 25
-      - service:  fan.turn_on
-        target:
-          entity_id:  fan.emi_fan
-      - service:  light.turn_on
-        target:
-          entity_id:  light.hallway
-        data:
-          brightness_pct: 25
-      - delay: "{{ states('input_number.emi_night_timer') | multiply(60) | int }}"
-      - service:  light.turn_off
-        data:
-          entity_id:  light.emi_fan_light
-      - service:  light.turn_on
-        target:
-          entity_id:  light.emi_star_lamp
-        data:
-          brightness_pct: 10
-          transition: 900
-      - delay:
-          minutes: 15
-      - service:  light.turn_off
-        target:
-          entity_id:  light.emi_star_lamp
-        data:
-          transition: 300
-      - service:  light.turn_off
-        target:
-          entity_id:  light.hallway
-        data:
-          transistion: 600
-      - delay:
-          minutes: 180
 
-
-  reset_emi_fan:
-    mode: restart
-    sequence:
-      - service:  switch.turn_on
-        target:
-          entity_id:  switch.shelly1pm_c45bbe6b41e3
-      - delay: 5
-      - repeat:
-          count: '5'
-          sequence:
-            - service:  switch.turn_off
-              target:
-                entity_id:  switch.shelly1pm_c45bbe6b41e3
-            - delay: 5
-            - service:  switch.turn_on
-              target:
-                entity_id:  switch.shelly1pm_c45bbe6b41e3
-            - delay: 5
-
+  
 script:
   emilia_wakeup_ollama:
     alias: Emilia Wakeup Ollama
