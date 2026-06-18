@@ -58,12 +58,6 @@ packages:
       
 
 light:
-  - id: !extend fy_string
-    rmt_symbols: !remove
-    use_dma: !remove
-  - id: !extend yard_string
-    rmt_symbols: !remove
-    use_dma: !remove
   - id: !extend tree_string
     segments:
       - id: yard_string
