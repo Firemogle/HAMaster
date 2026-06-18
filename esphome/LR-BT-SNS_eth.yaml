@@ -58,10 +58,6 @@ packages:
       
 
 light:
-  - id: !extend fy_string
-    use_psram: false
-  - id: !extend yard_string
-    use_psram: false
   - id: !extend tree_string
     segments:
       - id: yard_string
@@ -130,6 +126,7 @@ esphome:
   platformio_options:
     board_build.flash_mode: dio
     board_build.mcu: esp32s3
+    CONFIG_RMT_ISR_IRAM_SAFE: "y"
 
 esp32:
   board: esp32-s3-devkitc-1
