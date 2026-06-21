@@ -21,6 +21,9 @@ sprinkler:
     main_switch: "Backyard Irrigation"
     auto_advance_switch: "Auto advance BYI"
     multiplier_number: "Backyard Irrigation Multiplier"
+    pump_start_pump_delay: 1s
+    pump_stop_valve_delay: 1s
+    valve_overlap: 1s
     valves:
       - valve_switch: "Garden"
         run_duration_number: "Garden time"
