@@ -27,13 +27,29 @@ automation:
         entity_id: calendar.teamcarriger_gmail_com
     condition:
       - condition: template
-        value_template: "{{ 'Irrigate' in trigger.calendar_event.summary }}"
+        value_template: >
+          {{ 'Irrigate' in trigger.calendar_event.summary }}
+      - condition: numeric_state
+        entity_id: input_number.irrigation_deficit
+        above: 0.40
+      - condition: numeric_state
+        entity_id: sensor.rainbarrel_tank_height
+        above: 10.0
     action:
-      - if:
-          - "{{ trigger.event == 'start' }}"
-        then:
-          - service: switch.turn_on
-            entity_id: switch.rainbrarrel_backyard_irrigation
+      - service: number.set_value
+        target:
+          entity_id: number.rainbrarrel_backyard_irrigation_multiplier
+        data:
+          value: "{{ states('input_number.irrigation_deficit') | float(0) }}"
+      - service: input_number.set_value
+        target:
+          entity_id: input_number.irrigation_deficit
+        data:
+          value: 0
+      - service: switch.turn_on
+        target:
+          entity_id: switch.rainbrarrel_backyard_irrigation
+
     mode: queued
 
   - alias: irrigation_water_balance
