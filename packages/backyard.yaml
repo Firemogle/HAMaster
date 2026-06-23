@@ -19,7 +19,7 @@ sensor:
     method: trapezoidal
 
 automation:
-  - id: 'irrigattion'
+  - id: 'irrigation'
     alias: irrigation
     trigger:
       - platform: calendar
