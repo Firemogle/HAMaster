@@ -137,7 +137,6 @@ switch:
       mode:
         output: true
       inverted: true
-    internal: true
   - platform: gpio
     name: "Rainbarrel Sol"
     id: irr_main_sol
