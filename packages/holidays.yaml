@@ -345,6 +345,15 @@ script:
             target:
               entity_id: light.lr_bt_sns_fy_string
 
+          - continue_on_error: true
+            service: light.turn_on
+            data:
+              brightness: 215
+              color_name: white
+              effect: "Independence Day"
+            target:
+              entity_id: light.lr_bt_sns_yard_string              
+
 
   halloween_light:
     mode: parallel
