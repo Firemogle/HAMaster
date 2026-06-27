@@ -8,13 +8,6 @@ exclude: # Configure recorder to not record extrainious data
     - automation
     - script
     - camera
-    - assist_satellite
-    - conversation
-    - event
-    - image
-    - notify
-    - scene
-    - update
   entities:
     - sensor.house_rand_0_100
 
