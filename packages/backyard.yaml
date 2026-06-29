@@ -31,7 +31,7 @@ automation:
           {{ 'Irrigate' in trigger.calendar_event.summary }}
       - condition: numeric_state
         entity_id: input_number.irrigation_deficit
-        above: 0.40
+        above: 0.1
       - condition: numeric_state
         entity_id: sensor.rainbarrel_tank_height
         above: 10.0
