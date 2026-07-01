@@ -88,6 +88,7 @@ sensor:
     pin: GPIO18
     unit_of_measurement: 'gallon/min'
     name: 'Flow Rate'
+    update_interval: 15s
     filters:
       - lambda: return x * (1.0 / (3.785 * 330.0));
 
