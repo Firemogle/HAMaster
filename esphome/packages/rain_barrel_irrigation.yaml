@@ -24,6 +24,7 @@ sprinkler:
     pump_start_pump_delay: 1s
     pump_stop_valve_delay: 1s
     valve_overlap: 1s
+    repeat_number: "Loops"
     valves:
       - valve_switch: "Garden"
         run_duration_number: "Garden time"
