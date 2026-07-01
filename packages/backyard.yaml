@@ -68,7 +68,7 @@ automation:
 
             {% set et =
                states('sensor.daily_et')
-               | float(0) * 0.1 %}
+               | float(0) * 0.03937 %}
 
             {% set rain =
                states('sensor.daily_rain')
