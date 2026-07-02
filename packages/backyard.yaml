@@ -48,6 +48,9 @@ automation:
           value: 0
       - service: switch.turn_on
         target:
+          entity_id: switch.rainbrarrel_auto_advance_byi
+      - service: switch.turn_on
+        target:
           entity_id: switch.rainbrarrel_backyard_irrigation
 
     mode: queued
