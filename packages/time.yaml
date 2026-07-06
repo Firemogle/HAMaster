@@ -93,7 +93,7 @@ automation:
         target:
           entity_id: cover.master_shade
         data:
-          position: 0
+          position: 100
   
       - choose:
           - conditions:
