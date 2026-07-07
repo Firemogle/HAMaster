@@ -89,11 +89,7 @@ automation:
       - service: vacuum.start
         target:
           device_id: 4ae8bbe13f1911ebb6d7f167204f6863
-      - action: cover.set_cover_position
-        target:
-          entity_id: cover.master_shade
-        data:
-          position: 100
+
   
       - choose:
           - conditions:
