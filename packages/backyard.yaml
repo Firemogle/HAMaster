@@ -76,7 +76,8 @@ automation:
           entity_id: switch.rainbrarrel_backyard_irrigation
     mode: queued
 
-  - alias: irrigation_water_balance
+  - id: irrigation_water_balance
+    alias: irrigation_water_balance
     trigger:
       - platform: time
         at: "23:59:00"
