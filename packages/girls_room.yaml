@@ -161,14 +161,14 @@ script:
       - variables:
           wakeup_prompt: >
             Generate a wake up message addressed to Emilia.
-            The message should take approximately 45 minutes to read aloud.
+            The message should take approximately 60 minutes to read aloud.
             Start very gentle, calm, and soothing.
             Gradually become more encouraging, energetic, and urgent as the message continues.
             Include reminders about getting ready for the day, waking up slowly,
             stretching, opening eyes, getting out of bed, and starting the morning.
             Avoid repeating the same phrases too often.
             The response should be plain spoken text only with no markdown formatting.
-            Use the phrase ha yaw several times.  The last sentence should use the numbers six and seven frequently.
+            The last sentence should use the numbers six and seven frequently.
 
       # Generate text using the Ollama Conversation integration
       - service: conversation.process
