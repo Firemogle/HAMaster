@@ -219,62 +219,60 @@ automation:
                 target:
                   entity_id: switch.front_outlets
                   
-alias: Shade Schedule
-id: shade_schedule
-mode: single
-
-trigger:
-  - platform: time
-    at: "07:30:00"
-    id: workday
-  - platform: time
-    at: "08:30:00"
-    id: non_workday
-  - platform: time
-    at: "09:00:00"
-    id: morning_close
-action:
-  - choose:
-      # 7:30 AM on workdays - open shade
-      - conditions:
-          - condition: trigger
-            id: workday
-          - condition: state
-            entity_id: binary_sensor.house_time_workday_combine
-            state: "on"
-        sequence:
-          - service: cover.set_cover_position
-            target:
-              entity_id: cover.master_shade
-            data:
-              position: 100
-      # 8:30 AM on non-workdays - open shade
-      - conditions:
-          - condition: trigger
-            id: non_workday
-          - condition: state
-            entity_id: binary_sensor.house_time_workday_combine
-            state: "off"
-        sequence:
-          - service: cover.set_cover_position
-            target:
-              entity_id: cover.master_shade
-            data:
-              position: 100
-      # 9:00 AM - close shade if cooling is requested and window is closed
-      - conditions:
-          - condition: trigger
-            id: morning_close
-          - condition: state
-            entity_id: binary_sensor.house_sts_hvac_cool_req
-            state: "on"
-          - condition: state
-            entity_id: binary_sensor.master_bed_window
-            state: "off"
-        sequence:
-          - service: cover.set_cover_position
-            target:
-              entity_id: cover.master_shade
-            data:
-              position: 0
-
+  - id: shade_schedule
+    alias: Shade Schedule
+    mode: single
+    trigger:
+      - platform: time
+        at: "07:30:00"
+        id: workday
+      - platform: time
+        at: "08:30:00"
+        id: non_workday
+      - platform: time
+        at: "09:00:00"
+        id: morning_close
+    action:
+      - choose:
+          # 7:30 AM on workdays - open shade
+          - conditions:
+              - condition: trigger
+                id: workday
+              - condition: state
+                entity_id: binary_sensor.house_time_workday_combine
+                state: "on"
+            sequence:
+              - service: cover.set_cover_position
+                target:
+                  entity_id: cover.master_shade
+                data:
+                  position: 100
+          # 8:30 AM on non-workdays - open shade
+          - conditions:
+              - condition: trigger
+                id: non_workday
+              - condition: state
+                entity_id: binary_sensor.house_time_workday_combine
+                state: "off"
+            sequence:
+              - service: cover.set_cover_position
+                target:
+                  entity_id: cover.master_shade
+                data:
+                  position: 100
+          # 9:00 AM - close shade if cooling is requested and window is closed
+          - conditions:
+              - condition: trigger
+                id: morning_close
+              - condition: state
+                entity_id: binary_sensor.house_sts_hvac_cool_req
+                state: "on"
+              - condition: state
+                entity_id: binary_sensor.master_bed_window
+                state: "off"
+            sequence:
+              - service: cover.set_cover_position
+                target:
+                  entity_id: cover.master_shade
+                data:
+                  position: 0
