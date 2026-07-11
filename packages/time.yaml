@@ -122,11 +122,16 @@ automation:
           entity_id:
             - script.hvac_run_stop_uni
             - script.house_evening
-      - service: cover.set_cover_position
-        target:
-          entity_id: cover.master_shade
-        data:
-          position: 0            
+      - if:
+          - condition: state
+            entity_id: binary_sensor.master_bed_window
+            state: "off"
+        then:
+          - service: cover.set_cover_position
+            target:
+              entity_id: cover.master_shade
+            data:
+              position: 0       
       - choose:
           - conditions:
               - condition: state
