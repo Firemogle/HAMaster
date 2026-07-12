@@ -12,7 +12,7 @@ light:
     rgb_order: ${color_line}
     name: ${name}
     id: ${name}
-    use_dma: true
+    use_dma: false
     rmt_symbols: 96
     max_refresh_rate: 100ms
     restore_mode: RESTORE_DEFAULT_OFF
