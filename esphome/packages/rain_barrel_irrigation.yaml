@@ -104,6 +104,7 @@ switch:
     - lambda: !lambda |-
         if (id(fert_swi).state) {
           id(irr_fert_sol).turn_on();
+          id(irr_main_sol).turn_on();
         } else {
           id(irr_main_sol).turn_on();
         }
