@@ -59,7 +59,7 @@ packages:
 
 light:
   - id: !extend yard_string
-    use_dma: false
+    use_dma: true
   - id: !extend tree_string
     segments:
       - id: yard_string
