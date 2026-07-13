@@ -18,6 +18,11 @@ sensor:
     round: 3
     method: trapezoidal
 
+input_boolean:
+  irrigate_today:
+    name: Irrigate Today
+    icon: mdi:sprinkler
+
 automation:
   - id: 'irrigation'
     alias: irrigation
@@ -29,54 +34,81 @@ automation:
       - condition: template
         value_template: >
           {{ 'Irrigate' in trigger.calendar_event.summary }}
-      - condition: numeric_state
-        entity_id: input_number.irrigation_deficit
-        above: 0.1
     action:
-      # Fill the rain barrel if needed (up to two attempts)
-      - repeat:
-          count: 2
-          sequence:
-            - if:
-                - condition: template
-                  value_template: >
-                    {{
-                      states('sensor.rainbarrel_tank_height') | float(0)
-                      <
-                      (
-                        states('input_number.irrigation_deficit') | float(0)
-                        * 16.66
-                        * 1.2
-                      )
-                    }}
-              then:
-                - service: switch.turn_on
-                  target:
-                    entity_id: switch.backyard_rainbarrel_rainbarrel_hose_fill
-                - delay: "00:25:00"
-                - service: switch.turn_off
-                  target:
-                    entity_id: switch.backyard_rainbarrel_rainbarrel_hose_fill
-                - delay: "00:25:00"
+      - service: input_boolean.turn_on
+        target:
+          entity_id: input_boolean.irrigate_today
+      - if:
+          - condition: numeric_state
+            entity_id: input_number.irrigation_deficit
+            above: 0.1
+        then:
+          # Fill the rain barrel if needed (up to two attempts)
+          - repeat:
+              count: 2
+              sequence:
+                - if:
+                    - condition: template
+                      value_template: >
+                        {{
+                          states('sensor.rainbarrel_tank_height') | float(0)
+                          <
+                          (
+                            states('input_number.irrigation_deficit') | float(0)
+                            * 16.66
+                            * 1.2
+                          )
+                        }}
+                  then:
+                    - service: switch.turn_on
+                      target:
+                        entity_id: switch.backyard_rainbarrel_rainbarrel_hose_fill
+                    - delay: "00:25:00"
+                    - service: switch.turn_off
+                      target:
+                        entity_id: switch.backyard_rainbarrel_rainbarrel_hose_fill
+                    - delay: "00:25:00"
+          - service: number.set_value
+            target:
+              entity_id: number.rainbrarrel_backyard_irrigation_multiplier
+            data:
+              value: "{{ states('input_number.irrigation_deficit') | float(0) }}"
+          - service: input_number.set_value
+            target:
+              entity_id: input_number.irrigation_deficit
+            data:
+              value: 0
+          - service: switch.turn_on
+            target:
+              entity_id: switch.rainbrarrel_auto_advance_byi
+          - service: switch.turn_on
+            target:
+              entity_id: switch.rainbrarrel_backyard_irrigation
+    mode: queued
+
+  - id: 'irrigation_porch_rail'
+    alias: irrigation_porch_rail
+    trigger:
+      - platform: time
+        at: "11:00:00"
+    condition:
+      - condition: state
+        entity_id: input_boolean.irrigate_today
+        state: "on"
+    action:
+      - service: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.irrigate_today
       - service: number.set_value
         target:
           entity_id: number.rainbrarrel_backyard_irrigation_multiplier
         data:
-          value: "{{ states('input_number.irrigation_deficit') | float(0) }}"
-      - service: input_number.set_value
-        target:
-          entity_id: input_number.irrigation_deficit
-        data:
-          value: 0
+          value: 1
       - service: switch.turn_on
         target:
-          entity_id: switch.rainbrarrel_auto_advance_byi
-      - service: switch.turn_on
-        target:
-          entity_id: switch.rainbrarrel_backyard_irrigation
-    mode: queued
+          entity_id: switch.rainbarrel_porch_rail
+    mode: single
 
-  - id: irrigation_water_balance
     alias: irrigation_water_balance
     trigger:
       - platform: time
