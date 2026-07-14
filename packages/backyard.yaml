@@ -109,6 +109,7 @@ automation:
           entity_id: switch.rainbarrel_porch_rail
     mode: single
 
+  - id: irrigation_water_balance   
     alias: irrigation_water_balance
     trigger:
       - platform: time
