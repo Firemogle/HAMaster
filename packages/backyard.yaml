@@ -57,6 +57,7 @@ automation:
                             states('input_number.irrigation_deficit') | float(0)
                             * 16.66
                             * 1.2
+                            * (states('number.backyard_rainbarrel_loops') | float(0) + 1)
                           )
                         }}
                   then:
