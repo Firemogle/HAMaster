@@ -125,16 +125,11 @@ light:
 esphome:
   name: lr-bt-sns
   friendly_name: lr-bt-sns
-  platformio_options:
-    board_build.flash_mode: dio
-    board_build.mcu: esp32s3
-    CONFIG_RMT_ISR_IRAM_SAFE: "y"
+
 
 esp32:
   board: esp32-s3-devkitc-1
   variant: esp32s3
-  framework:
-    type: esp-idf
 
 ethernet:
   type: W5500
