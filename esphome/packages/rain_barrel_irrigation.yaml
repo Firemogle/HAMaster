@@ -57,17 +57,13 @@ sensor:
     id: tank_press
     update_interval: 5s
     filters:
-      - median:
-          window_size: 21
-          send_every: 9
-          send_first_at: 3
       - calibrate_linear:
           - 0.5 -> 0.0
           - 2.5 -> 2.5
           - 4.5 -> 5
       - sliding_window_moving_average:
-          window_size: 7
-          send_every: 1
+          window_size: 28
+          send_every: 14
   - platform: template
     name: "Tank Height"
     id: tank_h
