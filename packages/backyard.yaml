@@ -22,7 +22,10 @@ input_boolean:
   irrigate_today:
     name: Irrigate Today
     icon: mdi:sprinkler
-
+  fertilizer_needed:
+    name: Fertilizer Needed
+    icon: mdi:leaf
+    
 automation:
   - id: 'irrigation'
     alias: irrigation
@@ -43,32 +46,21 @@ automation:
             entity_id: input_number.irrigation_deficit
             above: 0.1
         then:
-          # Fill the rain barrel if needed (up to two attempts)
-          - repeat:
-              count: 2
-              sequence:
-                - if:
-                    - condition: template
-                      value_template: >
-                        {{
-                          states('sensor.rainbarrel_tank_height') | float(0)
-                          <
-                          (
-                            states('input_number.irrigation_deficit') | float(0)
-                            * 16.66
-                            * 1.2
-                            * (states('number.backyard_rainbarrel_loops') | float(0) + 1)
-                          )
-                        }}
-                  then:
-                    - service: switch.turn_on
-                      target:
-                        entity_id: switch.backyard_rainbarrel_rainbarrel_hose_fill
-                    - delay: "00:25:00"
-                    - service: switch.turn_off
-                      target:
-                        entity_id: switch.backyard_rainbarrel_rainbarrel_hose_fill
-                    - delay: "00:25:00"
+          # Prepare for fertilizer cycle if needed
+          - if:
+              - condition: state
+                entity_id: input_boolean.fertilizer_needed
+                state: "on"
+            then:
+              - service: number.set_value
+                target:
+                  entity_id: number.backyard_rainbarrel_loops
+                data:
+                  value: 1
+              - service: switch.turn_on
+                target:
+                  entity_id: switch.rainbrarrel_fertilizer_switch
+          # Save the irrigation multiplier and clear the deficit
           - service: number.set_value
             target:
               entity_id: number.rainbrarrel_backyard_irrigation_multiplier
@@ -79,13 +71,70 @@ automation:
               entity_id: input_number.irrigation_deficit
             data:
               value: 0
-          - service: switch.turn_on
+          # Run irrigation once normally, twice when fertilizing
+          - repeat:
+              count: >
+                {{ 2 if is_state('input_boolean.fertilizer_needed', 'on') else 1 }}
+              sequence:
+                # Fill the rain barrel if needed (up to two attempts)
+                - repeat:
+                    count: 2
+                    sequence:
+                      - if:
+                          - condition: template
+                            value_template: >
+                              {{
+                                states('sensor.rainbarrel_tank_height') | float(0)
+                                <
+                                (
+                                  states('number.rainbrarrel_backyard_irrigation_multiplier') | float(0)
+                                  * 16.66
+                                  * 1.2
+                                  * (states('number.backyard_rainbarrel_loops') | float(0) + 1)
+                                )
+                              }}
+                        then:
+                          - service: switch.turn_on
+                            target:
+                              entity_id: switch.backyard_rainbarrel_rainbarrel_hose_fill
+                          - delay: "00:25:00"
+                          - service: switch.turn_off
+                            target:
+                              entity_id: switch.backyard_rainbarrel_rainbarrel_hose_fill
+                          - delay: "00:25:00"
+                - service: switch.turn_on
+                  target:
+                    entity_id: switch.rainbrarrel_auto_advance_byi
+                - service: switch.turn_on
+                  target:
+                    entity_id: switch.rainbrarrel_backyard_irrigation
+                # End fertilizer cycle after first loop
+                - if:
+                    - condition: state
+                      entity_id: input_boolean.fertilizer_needed
+                      state: "on"
+                  then:
+                    - service: input_boolean.turn_off
+                      target:
+                        entity_id: input_boolean.fertilizer_needed
+                    - service: number.set_value
+                      target:
+                        entity_id: number.backyard_rainbarrel_loops
+                      data:
+                        value: 0
+                # Wait for irrigation cycle to complete before next loop
+                - wait_for_trigger:
+                    - platform: state
+                      entity_id: switch.rainbrarrel_backyard_irrigation
+                      from: "on"
+                      to: "off"
+          # Restore the default loop count
+          - service: number.set_value
             target:
-              entity_id: switch.rainbrarrel_auto_advance_byi
-          - service: switch.turn_on
-            target:
-              entity_id: switch.rainbrarrel_backyard_irrigation
-    mode: queued
+              entity_id: number.backyard_rainbarrel_loops
+            data:
+              value: 2
+    mode: single
 
   - id: 'irrigation_porch_rail'
     alias: irrigation_porch_rail
@@ -108,6 +157,21 @@ automation:
       - service: switch.turn_on
         target:
           entity_id: switch.rainbarrel_porch_rail
+    mode: single
+
+  - id: 'fertilizer_needed_weekly'
+    alias: fertilizer_needed_weekly
+    trigger:
+      - platform: time
+        at: "00:30:00"
+    condition:
+      - condition: time
+        weekday:
+          - sun
+    action:
+      - service: input_boolean.turn_on
+        target:
+          entity_id: input_boolean.fertilizer_needed
     mode: single
 
   - id: irrigation_water_balance   
