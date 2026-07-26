@@ -9,7 +9,6 @@ utility_meter:
     source: sensor.reference_evapotranspiration_accumulated
     cycle: daily
 
-
 sensor:
   - platform: integration
     source: sensor.reference_evapotranspiration_hourly
@@ -27,177 +26,157 @@ input_boolean:
     icon: mdi:leaf
     
 automation:
-  - id: 'irrigation'
-    alias: irrigation
-    trigger:
-      - platform: calendar
-        event: start
-        entity_id: calendar.teamcarriger_gmail_com
-    condition:
-      - condition: template
-        value_template: >
-          {{ 'Irrigate' in trigger.calendar_event.summary }}
-    action:
-      - service: input_boolean.turn_on
-        target:
-          entity_id: input_boolean.irrigate_today
-      - if:
-          - condition: numeric_state
-            entity_id: input_number.irrigation_deficit
-            above: 0.1
-        then:
-          # Prepare for fertilizer cycle if needed
-          - if:
-              - condition: state
-                entity_id: input_boolean.fertilizer_needed
-                state: "on"
-            then:
-              - service: number.set_value
-                target:
-                  entity_id: number.backyard_rainbarrel_loops
-                data:
-                  value: 1
-              - service: switch.turn_on
-                target:
-                  entity_id: switch.rainbrarrel_fertilizer_switch
-          # Save the irrigation multiplier and clear the deficit
-          - service: number.set_value
-            target:
-              entity_id: number.rainbrarrel_backyard_irrigation_multiplier
-            data:
-              value: "{{ states('input_number.irrigation_deficit') | float(0) }}"
-          - service: input_number.set_value
-            target:
-              entity_id: input_number.irrigation_deficit
-            data:
-              value: 0
-          # Run irrigation once normally, twice when fertilizing
-          - repeat:
-              count: >
-                {{ 2 if is_state('input_boolean.fertilizer_needed', 'on') else 1 }}
-              sequence:
-                # Fill the rain barrel if needed (up to two attempts)
-                - repeat:
-                    count: 2
-                    sequence:
-                      - if:
-                          - condition: template
-                            value_template: >
-                              {{
-                                states('sensor.rainbarrel_tank_height') | float(0)
-                                <
-                                (
-                                  states('number.rainbrarrel_backyard_irrigation_multiplier') | float(0)
-                                  * 16.66
-                                  * 1.2
-                                  * (states('number.backyard_rainbarrel_loops') | float(0) + 1)
-                                )
-                              }}
-                        then:
-                          - service: switch.turn_on
-                            target:
-                              entity_id: switch.backyard_rainbarrel_rainbarrel_hose_fill
-                          - delay: "00:25:00"
-                          - service: switch.turn_off
-                            target:
-                              entity_id: switch.backyard_rainbarrel_rainbarrel_hose_fill
-                          - delay: "00:25:00"
-                - service: switch.turn_on
-                  target:
-                    entity_id: switch.rainbrarrel_auto_advance_byi
-                - service: switch.turn_on
-                  target:
-                    entity_id: switch.rainbrarrel_backyard_irrigation
-                # End fertilizer cycle after first loop
+- id: irrigation
+  alias: irrigation
+  mode: single
+  trigger:
+    - platform: calendar
+      event: start
+      entity_id: calendar.teamcarriger_gmail_com
+      id: calendar
+    - platform: time
+      at: "11:00:00"
+      id: porch
+    - platform: time
+      at: "00:30:00"
+      id: fertilizer
+    - platform: time
+      at: "23:59:00"
+      id: water_balance
+  action:
+    - choose:
+        - conditions:
+            - condition: trigger
+              id: calendar
+            - condition: template
+              value_template: "{{ 'Irrigate' in trigger.calendar_event.summary }}"
+          sequence:
+            - service: input_boolean.turn_on
+              target:
+                entity_id: input_boolean.irrigate_today
+            - if:
+                - condition: numeric_state
+                  entity_id: input_number.irrigation_deficit
+                  above: 0.1
+              then:
                 - if:
                     - condition: state
                       entity_id: input_boolean.fertilizer_needed
                       state: "on"
                   then:
-                    - service: input_boolean.turn_off
-                      target:
-                        entity_id: input_boolean.fertilizer_needed
                     - service: number.set_value
                       target:
                         entity_id: number.backyard_rainbarrel_loops
                       data:
-                        value: 0
-                # Wait for irrigation cycle to complete before next loop
-                - wait_for_trigger:
-                    - platform: state
-                      entity_id: switch.rainbrarrel_backyard_irrigation
-                      from: "on"
-                      to: "off"
-          # Restore the default loop count
-          - service: number.set_value
-            target:
-              entity_id: number.backyard_rainbarrel_loops
-            data:
-              value: 2
-    mode: single
-
-  - id: 'irrigation_porch_rail'
-    alias: irrigation_porch_rail
-    trigger:
-      - platform: time
-        at: "11:00:00"
-    condition:
-      - condition: state
-        entity_id: input_boolean.irrigate_today
-        state: "on"
-    action:
-      - service: input_boolean.turn_off
-        target:
-          entity_id: input_boolean.irrigate_today
-      - service: number.set_value
-        target:
-          entity_id: number.rainbrarrel_backyard_irrigation_multiplier
-        data:
-          value: 1
-      - service: switch.turn_on
-        target:
-          entity_id: switch.rainbarrel_porch_rail
-    mode: single
-
-  - id: 'fertilizer_needed_weekly'
-    alias: fertilizer_needed_weekly
-    trigger:
-      - platform: time
-        at: "00:30:00"
-    condition:
-      - condition: time
-        weekday:
-          - sun
-    action:
-      - service: input_boolean.turn_on
-        target:
-          entity_id: input_boolean.fertilizer_needed
-    mode: single
-
-  - id: irrigation_water_balance   
-    alias: irrigation_water_balance
-    trigger:
-      - platform: time
-        at: "23:59:00"
-    action:
-      - service: input_number.set_value
-        target:
-          entity_id: input_number.irrigation_deficit
-        data:
-          value: >
-            {% set current =
-               states('input_number.irrigation_deficit')
-               | float(0) %}
-
-            {% set et =
-               states('sensor.daily_et')
-               | float(0) * 0.03937 * 1.3 %}
-
-            {% set rain =
-               states('sensor.daily_rain')
-               | float(0) %}
-
-            {{ (current + et - rain) | round(3) }}
+                        value: 1
+                    - service: switch.turn_on
+                      target:
+                        entity_id: switch.rainbrarrel_fertilizer_switch
+                - service: number.set_value
+                  target:
+                    entity_id: number.rainbrarrel_backyard_irrigation_multiplier
+                  data:
+                    value: "{{ states('input_number.irrigation_deficit')|float(0) }}"
+                - service: input_number.set_value
+                  target:
+                    entity_id: input_number.irrigation_deficit
+                  data:
+                    value: 0
+                - repeat:
+                    count: "{{ 2 if is_state('input_boolean.fertilizer_needed','on') else 1 }}"
+                    sequence:
+                      - repeat:
+                          count: 2
+                          sequence:
+                            - if:
+                                - condition: template
+                                  value_template: >
+                                    {{ states('sensor.rainbarrel_tank_height')|float(0) <
+                                    (states('number.rainbrarrel_backyard_irrigation_multiplier')|float(0)
+                                    *16.66*1.2*
+                                    (states('number.backyard_rainbarrel_loops')|float(0)+1)) }}
+                              then:
+                                - service: switch.turn_on
+                                  target:
+                                    entity_id: switch.backyard_rainbarrel_rainbarrel_hose_fill
+                                - delay: "00:25:00"
+                                - service: switch.turn_off
+                                  target:
+                                    entity_id: switch.backyard_rainbarrel_rainbarrel_hose_fill
+                                - delay: "00:25:00"
+                      - service: switch.turn_on
+                        target:
+                          entity_id: switch.rainbrarrel_auto_advance_byi
+                      - service: switch.turn_on
+                        target:
+                          entity_id: switch.rainbrarrel_backyard_irrigation
+                      - if:
+                          - condition: state
+                            entity_id: input_boolean.fertilizer_needed
+                            state: "on"
+                        then:
+                          - service: input_boolean.turn_off
+                            target:
+                              entity_id: input_boolean.fertilizer_needed
+                          - service: number.set_value
+                            target:
+                              entity_id: number.backyard_rainbarrel_loops
+                            data:
+                              value: 0
+                          - service: switch.turn_off
+                            target:
+                              entity_id: switch.rainbrarrel_fertilizer_switch
+                      - wait_for_trigger:
+                          - platform: state
+                            entity_id: switch.rainbrarrel_backyard_irrigation
+                            from: "on"
+                            to: "off"
+                - service: number.set_value
+                  target:
+                    entity_id: number.backyard_rainbarrel_loops
+                  data:
+                    value: 2
+        - conditions:
+            - condition: trigger
+              id: porch
+            - condition: state
+              entity_id: input_boolean.irrigate_today
+              state: "on"
+          sequence:
+            - service: input_boolean.turn_off
+              target:
+                entity_id: input_boolean.irrigate_today
+            - service: number.set_value
+              target:
+                entity_id: number.rainbrarrel_backyard_irrigation_multiplier
+              data:
+                value: 1
+            - service: switch.turn_on
+              target:
+                entity_id: switch.rainbarrel_porch_rail
+        - conditions:
+            - condition: trigger
+              id: fertilizer
+            - condition: time
+              weekday:
+                - sun
+          sequence:
+            - service: input_boolean.turn_on
+              target:
+                entity_id: input_boolean.fertilizer_needed
+        - conditions:
+            - condition: trigger
+              id: water_balance
+          sequence:
+            - service: input_number.set_value
+              target:
+                entity_id: input_number.irrigation_deficit
+              data:
+                value: >
+                  {% set current=states('input_number.irrigation_deficit')|float(0) %}
+                  {% set et=states('sensor.daily_et')|float(0)*0.03937*1.3 %}
+                  {% set rain=states('sensor.daily_rain')|float(0) %}
+                  {{ (current+et-rain)|round(3) }}
  
 template:
   - sensor:
