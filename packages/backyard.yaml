@@ -82,6 +82,7 @@ automation:
                     entity_id: input_number.irrigation_deficit
                   data:
                     value: 0
+                - delay: "00:05:00"
                 - repeat:
                     count: "{{ 2 if is_state('input_boolean.fertilizer_needed','on') else 1 }}"
                     sequence:
