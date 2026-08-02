@@ -82,10 +82,10 @@ automation:
                     entity_id: input_number.irrigation_deficit
                   data:
                     value: 0
-                - delay: "00:05:00"
                 - repeat:
                     count: "{{ 2 if is_state('input_boolean.fertilizer_needed','on') else 1 }}"
                     sequence:
+                      - delay: "00:05:00"
                       - repeat:
                           count: 2
                           sequence:
@@ -111,6 +111,11 @@ automation:
                       - service: switch.turn_on
                         target:
                           entity_id: switch.rainbrarrel_backyard_irrigation
+                      - wait_for_trigger:
+                          - platform: state
+                            entity_id: switch.rainbrarrel_backyard_irrigation
+                            from: "on"
+                            to: "off"                          
                       - if:
                           - condition: state
                             entity_id: input_boolean.fertilizer_needed
@@ -127,11 +132,6 @@ automation:
                           - service: switch.turn_off
                             target:
                               entity_id: switch.rainbrarrel_fertilizer_switch
-                      - wait_for_trigger:
-                          - platform: state
-                            entity_id: switch.rainbrarrel_backyard_irrigation
-                            from: "on"
-                            to: "off"
                 - service: number.set_value
                   target:
                     entity_id: number.backyard_rainbarrel_loops
