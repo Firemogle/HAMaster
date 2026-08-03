@@ -27,7 +27,6 @@ sensor:
 
 
 media_player:
-   
   - platform: universal
     name: emi_media
     children:
@@ -143,7 +142,7 @@ automation:
 
   - id: girls_bedroom_star_light_night_off
     alias: girls_bedroom_star_light_night_off
-    mode: single
+    mode: parallel
     trigger:
       - platform: state
         entity_id: light.girls_bedroom_eth_va_emi_star
