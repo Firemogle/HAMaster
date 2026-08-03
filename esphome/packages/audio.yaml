@@ -63,7 +63,7 @@ speaker:
   # Virtual speakers to combine the announcement and media streams together into one output
   - platform: mixer
     id: mixing_speaker
-    bits_per_sample: "32"
+    bits_per_sample: "16"
     output_speaker: i2s_audio_speaker
     num_channels: 1
     source_speakers:
