@@ -29,7 +29,7 @@ esp_audio_stack:
   # MIC1, MIC3, MIC2, MIC4. The board loops the ES8311 DAC output back into
   # MIC3, which lands on TDM slot 1.
   codec:
-    i2c_id: i2c_bus
+    i2c_id: audio_i2c
     input:
       type: es7210
       address: 0x40
@@ -54,7 +54,7 @@ esp_audio_stack:
 
 speaker:
   - platform: esp_audio_stack
-    id: box_speaker
+    id: i2s_audio_speaker
     esp_audio_stack_id: audio_stack
     sample_rate: 48000
     # audio-stack v2026.7.0 changed the platform default from 500ms to
