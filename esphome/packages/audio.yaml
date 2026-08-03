@@ -100,5 +100,5 @@ media_player:
       
 microphone:
   - platform: esp_audio_stack
-    id: box_mic
+    id: external_mic
     esp_audio_stack_id: audio_stack
