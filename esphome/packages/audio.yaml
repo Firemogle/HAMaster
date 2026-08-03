@@ -43,9 +43,9 @@ esp_audio_stack:
       use_mclk: true
       no_dac_ref: true
   tdm_total_slots: 4
-  tdm_mic_slots: [0,1]       # slot 0 = MIC1 (esp_aec is single-mic)
+  tdm_mic_slots: [0,2]       # slot 0 = MIC1 (esp_aec is single-mic)
   #tdm_ref_slot: 1          # slot 1 = MIC3 = DAC loopback
-  #use_tdm_reference: true
+  use_tdm_reference: false
   buffers_in_psram: true
   audio_task_stack_in_psram: true
   aec_reference: previous_frame   # ignored while use_tdm_reference is set
