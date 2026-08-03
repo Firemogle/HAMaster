@@ -35,17 +35,17 @@ esp_audio_stack:
       address: 0x40
       mic_selected: 0x0F
       gain_db: 24.0        # mic PGA
-      ref_channel: 2       # MIC3 = the DAC loopback channel
-      ref_gain_db: 0.0     # unity PGA — higher gains clip the line-level loopback
+      #ref_channel: 2       # MIC3 = the DAC loopback channel
+      #ref_gain_db: 0.0     # unity PGA — higher gains clip the line-level loopback
     output:
       type: es8311
       address: 0x18
       use_mclk: true
       no_dac_ref: true
   tdm_total_slots: 4
-  tdm_mic_slots: [0]       # slot 0 = MIC1 (esp_aec is single-mic)
-  tdm_ref_slot: 1          # slot 1 = MIC3 = DAC loopback
-  use_tdm_reference: true
+  tdm_mic_slots: [0,1,2,3]       # slot 0 = MIC1 (esp_aec is single-mic)
+  #tdm_ref_slot: 1          # slot 1 = MIC3 = DAC loopback
+  #use_tdm_reference: true
   buffers_in_psram: true
   audio_task_stack_in_psram: true
   aec_reference: previous_frame   # ignored while use_tdm_reference is set
@@ -94,10 +94,10 @@ media_player:
     files:
       id: timer_finished_sound
       file: packages/sounds/alarm.mp3
-    on_idle:
-    - micro_wake_word.stop:
-    - delay: 2s
-    - micro_wake_word.start:
+    #on_idle:
+    #- micro_wake_word.stop:
+    #- delay: 2s
+    #- micro_wake_word.start:
       
 microphone:
   - platform: esp_audio_stack
