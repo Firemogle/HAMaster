@@ -1,3 +1,15 @@
+external_components:
+  # Audio backend (esp_audio_stack + esp_aec) lives in the dedicated
+  # esphome-audio-stack repo since 2026.7.0; v2026.7.0 is validated against
+  # ESPHome 2026.7 (pins esp_codec_dev 1.5.10 — the 2026.6.x line left it
+  # unpinned, which breaks ES8311 init at runtime on 2026.7 builds).
+  - source: github://n-IA-hane/esphome-audio-stack@v2026.7.0
+    components: [esp_audio_stack, esp_aec]
+  # The speaker/media_player fork (pause_releases_pipeline) still ships with
+  # esphome-intercom; v2026.7.1 tracks the ESPHome 2026.7-era core.
+  - source: github://n-IA-hane/esphome-intercom@v2026.7.1
+    components: [speaker]
+
 substitutions:
   devicename: office_eth_va
 
