@@ -140,6 +140,25 @@ automation:
       - action: light.turn_off
         target:
           entity_id:  light.girls_bedroom_eth_va_emi_star
+
+  - id: girls_bedroom_star_light_night_off
+    alias: girls_bedroom_star_light_night_off
+    mode: single
+    trigger:
+      - platform: state
+        entity_id: light.girls_bedroom_eth_va_emi_star
+        to: "on"
+    condition:
+      - condition: or
+        conditions:
+          - condition: time
+            after: "20:30:00"
+          - condition: time
+            before: "01:00:00"
+    action:
+      - service: light.turn_off
+        target:
+          entity_id: light.girls_bedroom_eth_va_emi_star
         
 input_number:
   emi_night_timer:
