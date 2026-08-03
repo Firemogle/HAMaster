@@ -19,7 +19,6 @@ esp_audio_stack:
   sample_rate: 48000
   output_sample_rate: 16000
   slot_bit_width: 16  # 16-bit TDM slots x4
-  bits_per_sample: "16"
   # Do NOT set dma_frame_num here: shrinking the DMA backlog below the auto
   # sizing (~10 ms/descriptor) causes audible TX underruns on this device.
   correct_dc_offset: true
