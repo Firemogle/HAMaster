@@ -62,8 +62,8 @@ sensor:
           - 2.5 -> 2.5
           - 4.5 -> 5
       - sliding_window_moving_average:
-          window_size: 28
-          send_every: 14
+          window_size: 56
+          send_every: 28
   - platform: template
     name: "Tank Height"
     id: tank_h
