@@ -155,6 +155,7 @@ automation:
           - condition: time
             before: "01:00:00"
     action:
+      - delay: "00:00:05"
       - service: light.turn_off
         target:
           entity_id: light.girls_bedroom_eth_va_emi_star
