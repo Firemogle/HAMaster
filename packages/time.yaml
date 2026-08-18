@@ -252,6 +252,11 @@ automation:
                   entity_id: cover.master_shade
                 data:
                   position: 100
+              - service: cover.set_cover_position
+                target:
+                  entity_id: cover.kidsroom_girls_blinds
+                data:
+                  position: 100
           # 8:30 AM on non-workdays - open shade
           - conditions:
               - condition: trigger
@@ -263,6 +268,11 @@ automation:
               - service: cover.set_cover_position
                 target:
                   entity_id: cover.master_shade
+                data:
+                  position: 100
+              - service: cover.set_cover_position
+                target:
+                  entity_id: cover.kidsroom_girls_blinds
                 data:
                   position: 100
           # 9:00 AM - close shade if cooling is requested and window is closed
