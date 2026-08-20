@@ -224,6 +224,7 @@ automation:
                 target:
                   entity_id: switch.front_outlets
                   
+
   - id: shade_schedule
     alias: Shade Schedule
     mode: single
@@ -257,6 +258,7 @@ automation:
                   entity_id: cover.kidsroom_girls_blinds
                 data:
                   position: 100
+
           # 8:30 AM on non-workdays - open shade
           - conditions:
               - condition: trigger
@@ -275,7 +277,8 @@ automation:
                   entity_id: cover.kidsroom_girls_blinds
                 data:
                   position: 100
-          # 9:00 AM - close shade if cooling is requested and window is closed
+
+          # 9:00 AM - close master shade if cooling is requested and window is closed
           - conditions:
               - condition: trigger
                 id: morning_close
@@ -289,5 +292,22 @@ automation:
               - service: cover.set_cover_position
                 target:
                   entity_id: cover.master_shade
+                data:
+                  position: 0
+
+          # 9:00 AM - close girls blinds if window is closed
+          - conditions:
+              - condition: trigger
+                id: morning_close
+              - condition: state
+                entity_id: binary_sensor.house_sts_hvac_cool_req
+                state: "on"                
+              - condition: state
+                entity_id: binary_sensor.girls_window
+                state: "off"
+            sequence:
+              - service: cover.set_cover_position
+                target:
+                  entity_id: cover.kidsroom_girls_blinds
                 data:
                   position: 0
