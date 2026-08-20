@@ -107,7 +107,6 @@ automation:
 
   - id: 'girls_bedroom_wakeup'
     alias: girls_bedroom_wakeup
-    initial_state: 'off'
     trigger:
     - platform: time
       at: 6:15:00'
@@ -120,8 +119,16 @@ automation:
     - delay: '00:00:30'
     - service: light.turn_on
       data:
-        entity_id: light.girls_bedroom_eth_va_emi_star
+        entity_id:
+          - light.girls_bedroom_eth_va_emi_star
+          - light.emi_fan_light
+          - light.hallway
         brightness: 255
+        transition: 60
+    - service: light.turn_on
+      data:
+        entity_id: light.girls_bedroom_eth_va_room_light
+        brightness: 120
         transition: 60
     - service: script.turn_on
       target:
