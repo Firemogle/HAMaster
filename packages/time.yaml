@@ -229,7 +229,7 @@ automation:
     mode: single
     trigger:
       - platform: time
-        at: "07:30:00"
+        at: "06:45:00"
         id: workday
       - platform: time
         at: "08:30:00"
