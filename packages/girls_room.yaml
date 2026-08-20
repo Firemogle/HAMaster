@@ -187,8 +187,7 @@ script:
             stretching, opening eyes, getting out of bed, and starting the morning.
             Avoid repeating the same phrases too often.
             The response should be plain spoken text only with no markdown formatting.
-            The last sentence should use the numbers six and seven frequently.
-
+            
       # Generate text using the Ollama Conversation integration
       - service: conversation.process
         data:
