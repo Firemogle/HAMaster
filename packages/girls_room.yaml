@@ -109,7 +109,7 @@ automation:
     alias: girls_bedroom_wakeup
     trigger:
     - platform: time
-      at: 6:15:00'
+      at: "6:15:00"
     condition:  []
     action:
     - service: light.turn_on
