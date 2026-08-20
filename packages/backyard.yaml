@@ -1,9 +1,10 @@
 homeassistant:
   customize:  
 
+
 utility_meter:
   daily_rain:
-    source: sensor.weather_station_precipitation
+    source: sensor.daily_rain_utility_meter_source
     cycle: daily
   daily_et:
     source: sensor.reference_evapotranspiration_accumulated
@@ -226,6 +227,20 @@ template:
           %}
 
           {{ [eto, 0] | max | round(4) }}
+
+  - sensor:
+      - name: Daily Rain Utility Meter Source
+        unique_id: daily_rain_utility_meter_source
+        unit_of_measurement: in
+        device_class: precipitation
+        state_class: total_increasing
+        state: >
+          {% set rain = states('sensor.weather_station_precipitation') %}
+          {% if rain not in ['unknown', 'unavailable', 'none'] and rain | float(0) > 0 %}
+            {{ rain }}
+          {% else %}
+            {{ this.state }}
+          {% endif %}
 
   - sensor:
       - name: Daily Water Deficit
