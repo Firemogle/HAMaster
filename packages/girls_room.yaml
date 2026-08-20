@@ -110,7 +110,7 @@ automation:
     initial_state: 'off'
     trigger:
     - platform: time
-      at: '9:30:00'
+      at: 6:30:00'
     condition:  []
     action:
     - service: light.turn_on
@@ -122,7 +122,7 @@ automation:
       data:
         entity_id: light.girls_bedroom_eth_va_emi_star
         brightness: 255
-        transition: 1800
+        transition: 60
     - service: script.turn_on
       target:
         entity_id: script.emilia_wakeup_ollama
