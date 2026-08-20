@@ -110,7 +110,7 @@ automation:
     initial_state: 'off'
     trigger:
     - platform: time
-      at: 6:30:00'
+      at: 6:15:00'
     condition:  []
     action:
     - service: light.turn_on
