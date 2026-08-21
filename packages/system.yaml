@@ -328,12 +328,40 @@ automation:
           - service: script.turn_on
             target:
               entity_id: script.front_door_unlock
-      - service: notify.group_notify
+      - service: conversation.process
         data:
-          message: "Occupancy mode changed to {{ states('binary_sensor.house_sts_occupants') }}"
-          data:
-            timeout: 1200
-            channel: "Occupancy"
+          agent_id: conversation.ollama_conversation
+          text: >
+            The home's occupancy status has changed.
+            Current occupancy sensor: {{ states('binary_sensor.house_sts_occupants') }}.
+            Interpret "on" as someone being home and "off" as everyone being away.
+            Write a notification announcing the change.
+            Keep it to 1-2 sentences.
+            Be whimsical, sarcastic, and humorous.
+            Do not mention that you are an AI or that you were given a prompt.
+        response_variable: ollama_response
+      - if:
+          - condition: template
+            value_template: >
+              {{ ollama_response is defined
+                 and ollama_response.response is defined
+                 and ollama_response.response.speech is defined
+                 and ollama_response.response.speech.plain is defined
+                 and ollama_response.response.speech.plain.speech | default('') | trim != '' }}
+        then:
+          - service: notify.group_notify
+            data:
+              message: "{{ ollama_response.response.speech.plain.speech }}"
+              data:
+                timeout: 1200
+                channel: "Occupancy"
+        else:
+          - service: notify.group_notify
+            data:
+              message: "Occupancy mode changed to {{ states('binary_sensor.house_sts_occupants') }}"
+              data:
+                timeout: 1200
+                channel: "Occupancy"
       - choose:
           - conditions:
               - condition: state
