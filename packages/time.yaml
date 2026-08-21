@@ -318,3 +318,27 @@ automation:
                   entity_id: cover.kidsroom_girls_blinds
                 data:
                   position: 0
+
+  - id: school_bus_announcement
+    alias: School Bus Announcement
+    trigger:
+      - platform: time
+        at: "07:00:00"
+    condition:
+      - condition: state
+        entity_id: binary_sensor.house_school_day
+        state: "on"
+    action:
+      - service: conversation.process
+        data:
+          agent_id: conversation.ollama_conversation
+          text: "Tell Emilia that she should be leaving for the bus. Keep it at one to two sentences long"
+        response_variable: ollama_response
+
+      - service: assist_satellite.announce
+        target:
+          entity_id: all
+        data:
+          message: "{{ ollama_response.response.speech.plain.speech }}"
+          preannounce: true
+    mode: single
