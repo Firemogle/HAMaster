@@ -71,6 +71,13 @@ template:
         state: >
           {{ is_state('binary_sensor.evening', 'on') 
              and is_state('binary_sensor.house_sts_vacation', 'on')  }}
+
+  - binary_sensor:
+      - name: School Day
+        unique_id: house_school_day
+        state: >
+          {{ state_attr('calendar.teamcarriger_gmail_com', 'message') == 'School Day' }}
+        icon: mdi:school
   
 automation:
   - id: 'house_wakeup'
