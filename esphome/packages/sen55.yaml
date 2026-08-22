@@ -32,7 +32,7 @@ sensor:
         gating_max_duration_minutes: 180
         std_initial: 50
         gain_factor: 230
-    noc_index:
+    nox_index:
       name: ${devicename}_sen55_nox
     temperature_compensation:
       offset: 0
