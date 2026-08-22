@@ -9,7 +9,7 @@ light:
     chipset: WS2812
     pin: ${pin}
     num_leds: ${length}
-    rgb_order: ${color_line}
+    channel_colors: ${color_line}
     internal: true 
     name: ${name}
     id: ${name}
