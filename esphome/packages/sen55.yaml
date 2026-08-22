@@ -23,7 +23,7 @@ sensor:
     humidity:
       name: ${devicename}_sen55_Humidity
       accuracy_decimals: 0
-    voc:
+    voc_index:
       name: ${devicename}_sen55_VOC
       algorithm_tuning:
         index_offset: 100
@@ -32,7 +32,7 @@ sensor:
         gating_max_duration_minutes: 180
         std_initial: 50
         gain_factor: 230
-    nox:
+    noc_index:
       name: ${devicename}_sen55_nox
     temperature_compensation:
       offset: 0
