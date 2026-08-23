@@ -230,7 +230,6 @@ automation:
               - service: switch.turn_off
                 target:
                   entity_id: switch.front_outlets
-                  
 
   - id: shade_schedule
     alias: Shade Schedule
@@ -265,6 +264,11 @@ automation:
                   entity_id: cover.kidsroom_girls_blinds
                 data:
                   position: 100
+              - service: cover.set_cover_position
+                target:
+                  entity_id: cover.main_bath_main_bath_shade
+                data:
+                  position: 100
 
           # 8:30 AM on non-workdays - open shade
           - conditions:
@@ -282,6 +286,11 @@ automation:
               - service: cover.set_cover_position
                 target:
                   entity_id: cover.kidsroom_girls_blinds
+                data:
+                  position: 100
+              - service: cover.set_cover_position
+                target:
+                  entity_id: cover.main_bath_main_bath_shade
                 data:
                   position: 100
 
@@ -308,7 +317,7 @@ automation:
                 id: morning_close
               - condition: state
                 entity_id: binary_sensor.house_sts_hvac_cool_req
-                state: "on"                
+                state: "on"
               - condition: state
                 entity_id: binary_sensor.girls_window
                 state: "off"
@@ -319,6 +328,23 @@ automation:
                 data:
                   position: 0
 
+          # 9:00 AM - close main bath shade if window is closed
+          - conditions:
+              - condition: trigger
+                id: morning_close
+              - condition: state
+                entity_id: binary_sensor.house_sts_hvac_cool_req
+                state: "on"
+              - condition: state
+                entity_id: binary_sensor.main_bath_main_bath_shade
+                state: "off"
+            sequence:
+              - service: cover.set_cover_position
+                target:
+                  entity_id: cover.main_bath_main_bath_shade
+                data:
+                  position: 0
+                      
   - id: school_bus_announcement
     alias: School Bus Announcement
     trigger:
