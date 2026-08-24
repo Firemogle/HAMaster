@@ -112,7 +112,7 @@ automation:
       at: "6:15:00"
     condition:
       - condition: state
-        entity_id: 'binary_senaor.house_school_day'
+        entity_id: 'binary_sensor.house_school_day'
         state: 'on'
     action:
     - service: light.turn_on
