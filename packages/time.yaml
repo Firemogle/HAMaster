@@ -30,6 +30,11 @@ binary_sensor:
     after: '23:59'
     before: '05:30'
 
+
+input_boolean:
+  school_day:
+    name: school_day
+
 template:
   - binary_sensor:
       - name: house_time_workday_combine
@@ -76,8 +81,9 @@ template:
       - name: School Day
         unique_id: house_school_day
         state: >
-          {{ state_attr('calendar.teamcarriger_gmail_com', 'message') == 'School Day' }}
+          {{ is_state('input_boolean.school_day', 'on') }}
         icon: mdi:school
+          
   
 automation:
   - id: 'house_wakeup'
@@ -96,8 +102,6 @@ automation:
       - service: vacuum.start
         target:
           device_id: 4ae8bbe13f1911ebb6d7f167204f6863
-
-  
       - choose:
           - conditions:
               - condition: state
@@ -164,9 +168,6 @@ automation:
               - service: script.turn_on
                 target:
                   entity_id: script.halloween_light
-
-
-                  
 
   - id: house_night_mode
     alias: house_night_mode
@@ -368,3 +369,26 @@ automation:
           message: "{{ ollama_response.response.speech.plain.speech }}"
           preannounce: true
     mode: single
+
+  - id: 'school_day_on'
+    alias: school_day_on
+    trigger:
+      - platform: calendar
+        event: start
+        entity_id: calendar.teamcarriger_gmail_com
+      - platform: calendar
+        event: end
+        entity_id: calendar.teamcarriger_gmail_com
+    condition:
+      - condition: template
+        value_template: "{{ 'School day' in trigger.calendar_event.summary }}"
+    action:
+      - if:
+          - "{{ trigger.event == 'start' }}"
+        then:
+          - service: input_boolean.turn_on
+            entity_id: input_boolean.school_day
+        else:
+          - service: input_boolean.turn_off
+            entity_id: input_boolean.school_day
+    mode: queued
