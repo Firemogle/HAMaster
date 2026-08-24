@@ -78,7 +78,7 @@ template:
              and is_state('binary_sensor.house_sts_vacation', 'on')  }}
 
   - binary_sensor:
-      - name: School Day
+      - name: house_school_day
         unique_id: house_school_day
         state: >
           {{ is_state('input_boolean.school_day', 'on') }}
