@@ -1,5 +1,5 @@
 substitutions:
-  devicename: uhall
+  devicename: closet
 
 packages:
   base_board: !include 
@@ -12,4 +12,4 @@ packages:
       pin: GPIO38
       length: 804
       color_line: RGB
-      name: rb_string
+      name: closet-strip
