@@ -10,10 +10,13 @@ packages:
     file: packages/add_light.yaml
     vars:
       pin: GPIO38
-      length: 100
+      length: 101
       color_line: RGB
       name: closet-strip
-
-      length: 100
-      color_line: RGB
-      name: hall_ban
+  banister: !include 
+    file: packages/partition_light.yaml
+    vars:
+      name: stove
+      parent: closet-strip
+      start: 1
+      end: 100
