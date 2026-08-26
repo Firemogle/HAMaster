@@ -12,11 +12,11 @@ packages:
       pin: GPIO38
       length: 101
       color_line: RGB
-      name: closet-strip
+      name: closet_strip
   banister: !include 
     file: packages/partition_light.yaml
     vars:
       name: stove
-      parent: closet-strip
+      parent: closet_strip
       start: 1
       end: 100
