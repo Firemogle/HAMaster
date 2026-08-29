@@ -294,57 +294,54 @@ automation:
                   entity_id: cover.main_bath_main_bath_shade
                 data:
                   position: 100
-
-          # 9:00 AM - close master shade if cooling is requested and window is closed
+          # 9:00 AM - close shades when cooling is requested
           - conditions:
               - condition: trigger
                 id: morning_close
               - condition: state
                 entity_id: binary_sensor.house_sts_hvac_cool_req
                 state: "on"
-              - condition: state
-                entity_id: binary_sensor.master_bed_window
-                state: "off"
             sequence:
-              - service: cover.set_cover_position
-                target:
-                  entity_id: cover.master_shade
-                data:
-                  position: 0
-
-          # 9:00 AM - close girls blinds if window is closed
-          - conditions:
-              - condition: trigger
-                id: morning_close
-              - condition: state
-                entity_id: binary_sensor.house_sts_hvac_cool_req
-                state: "on"
-              - condition: state
-                entity_id: binary_sensor.girls_window
-                state: "off"
-            sequence:
-              - service: cover.set_cover_position
-                target:
-                  entity_id: cover.kidsroom_girls_blinds
-                data:
-                  position: 0
-
-          # 9:00 AM - close main bath shade if window is closed
-          - conditions:
-              - condition: trigger
-                id: morning_close
-              - condition: state
-                entity_id: binary_sensor.house_sts_hvac_cool_req
-                state: "on"
-              - condition: state
-                entity_id: binary_sensor.main_bath_main_bath_shade
-                state: "off"
-            sequence:
-              - service: cover.set_cover_position
-                target:
-                  entity_id: cover.main_bath_main_bath_shade
-                data:
-                  position: 0
+              - if:
+                  - condition: state
+                    entity_id: binary_sensor.master_bed_window
+                    state: "off"
+                then:
+                  - service: cover.set_cover_position
+                    target:
+                      entity_id: cover.master_shade
+                    data:
+                      position: 0
+              - if:
+                  - condition: state
+                    entity_id: binary_sensor.girls_window
+                    state: "off"
+                then:
+                  - service: cover.set_cover_position
+                    target:
+                      entity_id: cover.kidsroom_girls_blinds
+                    data:
+                      position: 0
+              - if:
+                  - condition: state
+                    entity_id: binary_sensor.main_bath_main_bath_shade
+                    state: "off"
+                then:
+                  - service: cover.set_cover_position
+                    target:
+                      entity_id: cover.main_bath_main_bath_shade
+                    data:
+                      position: 0
+              - if:
+                  - condition: state
+                    entity_id: binary_sensor.emi_window
+                    state: "off"
+                then:
+                  - service: cover.set_cover_position
+                    target:
+                      entity_id: cover.emi_room_blind
+                    data:
+                      position: 0
                       
   - id: school_bus_announcement
     alias: School Bus Announcement
