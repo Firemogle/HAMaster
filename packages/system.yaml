@@ -539,4 +539,47 @@ script:
               {%- endif -%}
             {%- endfor -%}]
 
-  
+  shades_close:
+    alias: Shades Close
+    mode: single
+    sequence:
+      - if:
+          - condition: state
+            entity_id: binary_sensor.master_bed_window
+            state: "off"
+        then:
+          - service: cover.set_cover_position
+            target:
+              entity_id: cover.master_shade
+            data:
+              position: 0
+      - if:
+          - condition: state
+            entity_id: binary_sensor.girls_window
+            state: "off"
+        then:
+          - service: cover.set_cover_position
+            target:
+              entity_id: cover.kidsroom_girls_blinds
+            data:
+              position: 0
+      - if:
+          - condition: state
+            entity_id: binary_sensor.main_bath_main_bath_shade
+            state: "off"
+        then:
+          - service: cover.set_cover_position
+            target:
+              entity_id: cover.main_bath_main_bath_shade
+            data:
+              position: 0
+      - if:
+          - condition: state
+            entity_id: binary_sensor.emi_window
+            state: "off"
+        then:
+          - service: cover.set_cover_position
+            target:
+              entity_id: cover.emi_room_blind
+            data:
+              position: 0
