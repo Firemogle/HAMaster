@@ -565,7 +565,7 @@ script:
               position: 0
       - if:
           - condition: state
-            entity_id: binary_sensor.main_bath_main_bath_shade
+            entity_id: binary_sensor.main_bath_main_bath_window_sensor
             state: "off"
         then:
           - service: cover.set_cover_position
