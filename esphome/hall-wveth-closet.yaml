@@ -16,7 +16,7 @@ packages:
   banister: !include 
     file: packages/partition_light.yaml
     vars:
-      name: stove
+      name: hall_ban
       parent: closet_strip
       start: 1
       end: 100
