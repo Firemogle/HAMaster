@@ -86,6 +86,7 @@ script:
     alias: house_night
     mode: parallel
     sequence:
+      - parallel:
           - continue_on_error: true
             service: switch.turn_off
             target:
@@ -110,7 +111,6 @@ script:
                 - light.kitchen_fan
                 - light.kitchen_sink
                 - light.kitchen_light_switch
-      - parallel:
           - continue_on_error: true
             service: light.turn_on
             data:
