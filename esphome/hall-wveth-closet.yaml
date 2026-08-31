@@ -1,5 +1,28 @@
 substitutions:
   devicename: closet
+external_components:
+  - source:
+      type: git
+      url: https://github.com/babeinlovexd/ESPHOME-WS2805
+      ref: main
+    components: [ ws2805 ]
+
+light:
+  - platform: ws2805
+    id: ws2805_light
+    name: "WS2805 LED Strip"
+    pin: GPIO4
+    num_leds: 200
+    color_interlock: true # Protects power supply by interlocking RGB and White
+    cold_white_color_temperature: 153 mireds
+    warm_white_color_temperature: 500 mireds
+    cct_transition_speed: 3s
+    dithering: true
+    effects:
+      - addressable_rainbow:
+      - addressable_scan:
+      - addressable_twinkle:
+
 
 packages:
   base_board: !include 
@@ -20,3 +43,11 @@ packages:
       parent: closet_strip
       start: 1
       end: 100
+  closet: !include 
+    file: packages/partition_light.yaml
+    vars:
+      name: hall_ban
+      parent: ws2805_light
+      start: 1
+      end: 100
+      
