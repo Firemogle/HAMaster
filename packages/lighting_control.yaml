@@ -86,30 +86,14 @@ script:
     alias: house_night
     mode: parallel
     sequence:
-      - parallel:
-          - continue_on_error: true
-            service: light.turn_on
-            data:
-              brightness_pct: 25
-              rgb_color: [255, 255, 255]
-              effect: none
-            target:
-              entity_id:
-                - light.cabinet_bottom
-                - light.cabinet_top
-                - light.stove
-                - light.uhall_ban_hall_ban
-
           - continue_on_error: true
             service: switch.turn_off
             target:
               entity_id: switch.garage_wall_switch
-
           - continue_on_error: true
             service: switch.turn_off
             data:
               entity_id: switch.front_outlets              
-
           - continue_on_error: true
             service: light.turn_off
             target:
@@ -126,18 +110,27 @@ script:
                 - light.kitchen_fan
                 - light.kitchen_sink
                 - light.kitchen_light_switch
-
+      - parallel:
+          - continue_on_error: true
+            service: light.turn_on
+            data:
+              brightness_pct: 25
+              rgb_color: [255, 255, 255]
+              effect: none
+            target:
+              entity_id:
+                - light.cabinet_bottom
+                - light.cabinet_top
+                - light.stove
+                - light.uhall_ban_hall_ban
           - continue_on_error: true
             service: lock.lock
             target:
               floor_id: first_floor
-
           - continue_on_error: true
             service: fan.turn_off
             target:
               floor_id: first_floor
-
-
 
   house_wakeup:
     alias: house_wakeup
@@ -180,8 +173,6 @@ script:
                 - light.backyard_eave
                 - light.porch_light_light
                 - light.front_eave
-
-
 
   house_evening:
     alias: house_evening
