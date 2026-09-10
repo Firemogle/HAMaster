@@ -27,7 +27,7 @@ template:
           {{ (states('sensor.bathroom_vent_humidity')|float(default=0) > states('sensor.main_bath_target_humidity')|float(0))
              and is_state('binary_sensor.main_bath_motion','on') }}
         delay_off:
-          minutes: 20
+          minutes: 15
 
   - binary_sensor:
       - name: main_bath_vent_motion
@@ -55,7 +55,6 @@ template:
 automation:
   - id: main_bath_vent_control
     alias: main_bath_vent_control
-    initial_state: 'off'
     trigger:
       - platform: state
         entity_id: binary_sensor.main_bath_vent_needed
@@ -128,7 +127,7 @@ automation:
                 target:
                   entity_id: light.main_bathroom_vanity
                 data:
-                  brightness_pct: 100
+                  brightness_pct: 95
 
           - conditions:
               - condition: trigger
