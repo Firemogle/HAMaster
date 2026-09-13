@@ -34,7 +34,7 @@ template:
         state: >
           {{ is_state('binary_sensor.main_bath_motion','off') }}
         delay_off:
-          minutes: 1
+          minutes: 5
 
   - sensor:
       - name: main_bath_target_humidity
@@ -133,8 +133,6 @@ automation:
               - condition: trigger
                 id: motion_off
             sequence:
-              - delay:
-                  minutes: 4
               - service: light.turn_off
                 target:
                   entity_id:
