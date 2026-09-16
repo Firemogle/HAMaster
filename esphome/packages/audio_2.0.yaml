@@ -1,0 +1,83 @@
+i2s_audio:
+  - id: audio_bus
+    i2s_lrclk_pin: 
+      number: GPIO39
+    i2s_bclk_pin: 
+      number: GPIO17
+    i2s_mclk_pin: 
+      number: GPIO02
+  - id: audio_bus_out
+    i2s_lrclk_pin: 
+      number: GPIO45
+    i2s_bclk_pin: 
+      number: GPIO47
+    i2s_mclk_pin: 
+      number: GPIO48
+      
+audio_dac:
+  - platform: aic3204
+
+audio_adc:
+  - platform: es7210
+    id: es7210_adc
+    bits_per_sample: 16bit
+    sample_rate: 16000
+    i2c_id: audio_i2c
+
+speaker:
+  - platform: i2s_audio
+    i2s_audio_id: audio_bus_out
+    id: i2s_audio_speaker
+    i2s_dout_pin: GPIO01
+    dac_type: external
+    sample_rate: 16000
+    bits_per_sample: 16bit
+    channel: left
+    audio_dac: es8311_dac
+    timeout: 10s
+  # Virtual speakers to combine the announcement and media streams together into one output
+  - platform: mixer
+    id: mixing_speaker
+    output_speaker: i2s_audio_speaker
+    num_channels: 1
+    source_speakers:
+      - id: announcement_mixing_input
+        timeout: 10s
+      - id: media_mixing_input
+        timeout: 10s
+
+  # Vritual speakers to resample each pipelines' audio, if necessary, as the mixer speaker requires the same sample rate
+  - platform: resampler
+    id: announcement_resampling_speaker
+    output_speaker: announcement_mixing_input
+  - platform: resampler
+    id: media_resampling_speaker
+    output_speaker: media_mixing_input
+
+media_player:
+  - platform: speaker
+    name: ${devicename}_media
+    id: ${devicename}_media
+    media_pipeline:
+      speaker: media_resampling_speaker # FLAC is the least processor intensive codec
+    announcement_pipeline:
+      speaker: announcement_resampling_speaker     # FLAC is the least processor intensive codec
+    volume_increment: 0.05
+    volume_min: 0.4
+    volume_max: 0.85
+    files:
+      id: timer_finished_sound
+      file: packages/sounds/alarm.mp3
+    on_idle:
+    - micro_wake_word.stop:
+    - delay: 2s
+    - micro_wake_word.start:
+      
+microphone:
+  - platform: i2s_audio
+    i2s_audio_id: audio_bus
+    id: external_mic
+    adc_type: external
+    pdm: false
+    i2s_din_pin: GPIO42
+    bits_per_sample: 16bit
