@@ -1,0 +1,65 @@
+packages:
+  string_light: !include 
+    file: voice_light.yaml
+    vars:
+      pin: GPIO07
+      length: 13
+      color_line: GRB
+      name: ${devicename}_status
+  va_adf: !include 
+    file: audio.yaml
+    vars:
+      devicename: ${devicename}
+  voice: !include 
+    file: voice.yaml
+    vars:
+      devicename: ${devicename}
+
+
+sensor:
+  - platform: bme280_i2c
+    temperature:
+      name: ${devicename}_Temperature
+      oversampling: 16x
+    pressure:
+      name: ${devicename}_Pressure
+    humidity:
+      name: ${devicename}_Humidity
+    address: 0x77
+    update_interval: 60s
+    i2c_id: i2c_channel 
+  - platform: veml7700
+    address: 0x10
+    update_interval: 60s
+    ambient_light: ${devicename}_Ambient_Light
+    full_spectrum: ${devicename}_Full_Spectrum
+    infrared: ${devicename}_Infrared
+    ambient_light_counts: ${devicename}_AMB_LIGHT_COUNT
+    full_spectrum_counts: ${devicename}_FS_COUNT
+    i2c_id: i2c_channel
+
+pcf8574:
+  - id: 'pcf8574_hub'
+    address: 0x21
+    pcf8575: false
+
+# Individual outputs
+switch:
+  - platform: gpio
+    name: amp_en
+    pin:
+      pcf8574: pcf8574_hub
+      number: 0
+      mode:
+        output: true
+      inverted: false
+
+binary_sensor:
+  - platform: gpio
+    pin:
+      pcf8574: pcf8574_hub
+      number: 1
+      mode:
+        output: false
+      inverted: false
+    name: aux_det_ic
