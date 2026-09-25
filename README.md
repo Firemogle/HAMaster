@@ -9,7 +9,6 @@ Home Assistant configuration for the Carriger home. This repository contains the
 | `configuration.yaml` | Main Home Assistant configuration and includes |
 | `packages/` | Primary modular Home Assistant configuration |
 | `automations/` | Standalone automation configuration |
-| `scripts/` | Reusable Home Assistant scripts |
 | `scenes/` | Home Assistant scenes |
 | `people/` | Person definitions and related configuration |
 | `esphome/` | ESPHome device configurations and packages |
