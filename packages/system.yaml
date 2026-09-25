@@ -50,7 +50,7 @@ template:
           {{
             states('sensor.uptime') not in ['unknown', 'unavailable', 'none']
             and now() - as_datetime(states('sensor.uptime'), default=now()) > timedelta(minutes=5)
-          }}"
+          }}
       - name: ingress_alarm
         state: >
           {{ states('alarm_control_panel.alarm_panel') in ['armed_away', 'armed_home']
