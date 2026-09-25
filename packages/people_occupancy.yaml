@@ -11,7 +11,6 @@ automation:
       platform: state
       from: 'off'
       to: 'on'
-    condition: []
     action:
     - service: device_tracker.see
       data:
@@ -25,7 +24,6 @@ automation:
       platform: state
       from: 'off'
       to: 'on'
-    condition: []
     action:
     - service: device_tracker.see
       data:
