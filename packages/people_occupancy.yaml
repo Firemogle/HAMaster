@@ -6,7 +6,6 @@ homeassistant:
 automation:
   - id: 'brett_home'
     alias: brett_home
-    initial_state: 'off'
     trigger:
     - entity_id: binary_sensor.brett_ble
       platform: state
@@ -21,7 +20,6 @@ automation:
         
   - id: 'liz_home'
     alias: liz_home
-    initial_state: 'off'
     trigger:
     - entity_id: binary_sensor.liz_ble
       platform: state
