@@ -74,7 +74,6 @@ alert:
 automation:
   - id: petbowl_leak
     alias: petbowl_leak
-    initial_state: 'off'
     trigger:
       - platform: state
         entity_id: binary_sensor.petbowl_leak
