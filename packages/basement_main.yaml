@@ -76,7 +76,6 @@ switch:
   
 automation:
   - alias: turn_off_projector
-    initial_state: 'off'
     trigger:
     - platform: time
       at: '1:30:00'
