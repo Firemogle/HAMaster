@@ -203,11 +203,6 @@ automation:
         target:
           entity_id: input_boolean.house_sts_xmas_lights
 
-      # --- Finally, turn on all automations ---
-      - service: automation.turn_on
-        target:
-          entity_id: all
-
       # --- Send startup notification ---
       - service: notify.group_notify
         data:
