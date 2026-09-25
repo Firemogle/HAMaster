@@ -58,7 +58,6 @@ automation:
     trigger:
       - platform: state
         entity_id: binary_sensor.main_bath_vent_needed
-    condition: []
     action:
       - choose:
           - conditions:
