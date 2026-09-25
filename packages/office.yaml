@@ -58,13 +58,14 @@ automation:
       platform: state
     action:
     - service: climate.set_hvac_mode
-      data_template:
+      data:
         hvac_mode: >
             {% if is_state('binary_sensor.office_eth_va_office_eth_va_presence', 'off') or is_state('binary_sensor.house_sts_hvac_heat_req', 'off')  %}
               off
             {% else %}
               heat
             {% endif %}
+      target:
         entity_id: climate.office_climate
 
 
