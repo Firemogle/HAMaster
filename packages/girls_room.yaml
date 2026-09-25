@@ -67,7 +67,6 @@ automation:
     trigger:
     - platform: time
       at: '20:30:00'
-    condition: []
     action:
     - data:
         entity_id: switch.emi_tv
@@ -91,7 +90,6 @@ automation:
       
   - id: 'emi_tv_off_idle'
     alias: emi_tv_off_idle
-    condition: []
     trigger:
       platform: state
       entity_id: media_player.emi_shield
