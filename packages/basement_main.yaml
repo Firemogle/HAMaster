@@ -79,7 +79,6 @@ automation:
     trigger:
     - platform: time
       at: '1:30:00'
-    condition: []
     action:
     - data:
         entity_id: switch.projector
@@ -92,7 +91,6 @@ automation:
       platform: state
     - entity_id: light.basement_stair_light
       platform: state
-    condition: []
     action:
       - if:
           - condition: template
