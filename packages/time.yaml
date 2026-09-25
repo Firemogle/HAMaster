@@ -88,7 +88,10 @@ template:
 automation:
   - id: 'house_wakeup'
     alias: house_wakeup
-    initial_state: 'off'
+    condition:
+      - condition: state
+        entity_id: binary_sensor.house_boot_complete
+        state: 'on'
     trigger:
       - platform: state
         entity_id: binary_sensor.house_wakeup
@@ -122,7 +125,10 @@ automation:
 
   - id: 'house_evening_mode'
     alias: house_evening_mode
-    initial_state: 'off'
+    condition:
+      - condition: state
+        entity_id: binary_sensor.house_boot_complete
+        state: 'on'
     trigger:
       - platform: state
         entity_id: binary_sensor.evening
@@ -162,7 +168,10 @@ automation:
 
   - id: house_night_mode
     alias: house_night_mode
-    initial_state: 'off'
+    condition:
+      - condition: state
+        entity_id: binary_sensor.house_boot_complete
+        state: 'on'
     trigger:
       - platform: state
         entity_id: binary_sensor.night
@@ -197,7 +206,10 @@ automation:
 
   - id: 'ext_lights_off'
     alias: ext_lights_off
-    initial_state: 'off'
+    condition:
+      - condition: state
+        entity_id: binary_sensor.house_boot_complete
+        state: 'on'
     trigger:
       - platform: state
         entity_id: binary_sensor.morning
