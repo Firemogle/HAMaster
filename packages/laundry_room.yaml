@@ -31,7 +31,6 @@ automation:
     trigger:
     - entity_id: binary_sensor.leak_detectrd
       platform: state
-    condition: []
     action:
     - data:
         entity_id: switch.hub_drop_4_4025c2_water_supply
