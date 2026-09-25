@@ -44,7 +44,6 @@ sensor:
 automation:
   - id: kitchen_fan_speed
     alias: kitchen_fan_speed
-    initial_state: 'off'
     trigger:
     - entity_id: sensor.garage_entry_temperature
       platform: state
