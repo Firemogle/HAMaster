@@ -455,7 +455,10 @@ automation:
 
   - id: update_abode_disarmed
     alias: update_abode_disarmed
-    initial_state: 'off'
+    condition:
+      - condition: state
+        entity_id: binary_sensor.house_boot_complete
+        state: 'on'
     trigger:
       platform: state
       entity_id: alarm_control_panel.abode_alarm
@@ -468,7 +471,10 @@ automation:
       
   - id: update_from_abode_disarmed
     alias: update_from_abode_disarmed
-    initial_state: 'off'
+    condition:
+      - condition: state
+        entity_id: binary_sensor.house_boot_complete
+        state: 'on'
     trigger:
       platform: state
       entity_id: alarm_control_panel.alarm_panel
@@ -479,7 +485,10 @@ automation:
       
   - id: update_abode_armed_away
     alias: update_abode_armed_away
-    initial_state: 'off'
+    condition:
+      - condition: state
+        entity_id: binary_sensor.house_boot_complete
+        state: 'on'
     trigger:
       platform: state
       entity_id: alarm_control_panel.abode_alarm
@@ -492,7 +501,10 @@ automation:
       
   - id: update_from_abode_armed_away
     alias: update_from_abode_armed_away
-    initial_state: 'off'
+    condition:
+      - condition: state
+        entity_id: binary_sensor.house_boot_complete
+        state: 'on'
     trigger:
       platform: state
       entity_id: alarm_control_panel.alarm_panel
@@ -503,7 +515,10 @@ automation:
       
   - id: update_abode_armed_home
     alias: update_abode_armed_home
-    initial_state: 'off'
+    condition:
+      - condition: state
+        entity_id: binary_sensor.house_boot_complete
+        state: 'on'
     trigger:
       platform: state
       entity_id: alarm_control_panel.abode_alarm
@@ -516,7 +531,10 @@ automation:
       
   - id: update_from_abode_armed_home
     alias: update_from_abode_armed_home
-    initial_state: 'off'
+    condition:
+      - condition: state
+        entity_id: binary_sensor.house_boot_complete
+        state: 'on'
     trigger:
       platform: state
       entity_id: alarm_control_panel.alarm_panel
