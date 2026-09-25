@@ -1,6 +1,0 @@
-house_occupied_routine:
-  alias: house_occupied_routine
-  sequence:
-  - service: scene.turn_on
-    data:
-      entity_id: scene.house_home
