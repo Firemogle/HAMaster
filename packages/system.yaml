@@ -458,9 +458,11 @@ automation:
       - condition: state
         entity_id: binary_sensor.house_boot_complete
         state: 'on'
-      - condition: state
-        entity_id: alarm_control_panel.alarm_panel
-        state_not: 'disarmed'
+      - condition: not
+        conditions:
+          - condition: state
+            entity_id: alarm_control_panel.alarm_panel
+            state: 'disarmed'
     trigger:
       platform: state
       entity_id: alarm_control_panel.abode_alarm
@@ -477,9 +479,11 @@ automation:
       - condition: state
         entity_id: binary_sensor.house_boot_complete
         state: 'on'
-      - condition: state
-        entity_id: alarm_control_panel.abode_alarm
-        state_not: 'disarmed'
+      - condition: not
+        conditions:
+          - condition: state
+            entity_id: alarm_control_panel.abode_alarm
+            state: 'disarmed'
     trigger:
       platform: state
       entity_id: alarm_control_panel.alarm_panel
@@ -494,9 +498,11 @@ automation:
       - condition: state
         entity_id: binary_sensor.house_boot_complete
         state: 'on'
-      - condition: state
-        entity_id: alarm_control_panel.alarm_panel
-        state_not: 'armed_away'
+      - condition: not
+        conditions:
+          - condition: state
+            entity_id: alarm_control_panel.alarm_panel
+            state: 'armed_away'
     trigger:
       platform: state
       entity_id: alarm_control_panel.abode_alarm
@@ -513,9 +519,11 @@ automation:
       - condition: state
         entity_id: binary_sensor.house_boot_complete
         state: 'on'
-      - condition: state
-        entity_id: alarm_control_panel.abode_alarm
-        state_not: 'armed_away'
+      - condition: not
+        conditions:
+          - condition: state
+            entity_id: alarm_control_panel.abode_alarm
+            state: 'armed_away'
     trigger:
       platform: state
       entity_id: alarm_control_panel.alarm_panel
@@ -530,9 +538,11 @@ automation:
       - condition: state
         entity_id: binary_sensor.house_boot_complete
         state: 'on'
-      - condition: state
-        entity_id: alarm_control_panel.alarm_panel
-        state_not: 'armed_home'
+      - condition: not
+        conditions:
+          - condition: state
+            entity_id: alarm_control_panel.alarm_panel
+            state: 'armed_home'
     trigger:
       platform: state
       entity_id: alarm_control_panel.abode_alarm
@@ -549,9 +559,11 @@ automation:
       - condition: state
         entity_id: binary_sensor.house_boot_complete
         state: 'on'
-      - condition: state
-        entity_id: alarm_control_panel.abode_alarm
-        state_not: 'armed_home'
+      - condition: not
+        conditions:
+          - condition: state
+            entity_id: alarm_control_panel.abode_alarm
+            state: 'armed_home'
     trigger:
       platform: state
       entity_id: alarm_control_panel.alarm_panel
