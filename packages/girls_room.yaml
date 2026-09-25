@@ -37,7 +37,6 @@ media_player:
 automation:
   - id: emi_fan_speed
     alias: emi_fan_speed
-    initial_state: 'off'
     trigger:
     - entity_id: sensor.emi_temp
       platform: state
@@ -65,7 +64,6 @@ automation:
   
   - id: 'emi_tv_off'
     alias: emi_tv_off
-    initial_state: 'off'
     trigger:
     - platform: time
       at: '20:30:00'
@@ -77,7 +75,6 @@ automation:
 
   - id: 'emi_tv_on'
     alias: emi_tv_on
-    initial_state: 'off'
     condition:
       alias: "Emi TV Time"
       condition: time
@@ -94,7 +91,6 @@ automation:
       
   - id: 'emi_tv_off_idle'
     alias: emi_tv_off_idle
-    initial_state: 'off'
     condition: []
     trigger:
       platform: state
