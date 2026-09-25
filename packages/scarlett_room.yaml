@@ -8,7 +8,6 @@ homeassistant:
 automation:
   - id: nursery_fan_speed
     alias: nursery_fan_speed
-    initial_state: 'off'
     trigger:
     - entity_id: sensor.lottie_room_air_temperature
       platform: state
