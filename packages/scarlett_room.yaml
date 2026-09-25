@@ -19,7 +19,7 @@ automation:
         state: 'on'
     action:
     - service: fan.set_percentage
-      data_template:
+      target:
         entity_id: fan.nursery_fan
       data:
         percentage: >
