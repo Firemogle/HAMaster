@@ -53,7 +53,6 @@ climate:
 automation:
   - id: 'off_occ_on'
     alias: off_occ_on
-    initial_state: 'off'
     trigger:
     - entity_id: binary_sensor.office_eth_va_office_eth_va_presence
       platform: state
