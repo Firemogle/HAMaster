@@ -26,7 +26,6 @@ automation:
       to:
         - "IN"
         - "POST"
-    condition: []
     action:
       - if:
           - condition: template
@@ -68,7 +67,6 @@ automation:
       to:
         - "IN"
         - "POST"
-    condition: []
     action:
       - if:
           - condition: template
