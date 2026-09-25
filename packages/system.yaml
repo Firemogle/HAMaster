@@ -46,7 +46,11 @@ template:
       - name: house_sts_jayhawks
         state: "{{ is_state('input_boolean.jayhawk_lamp_req', 'on') }}"
       - name: house_boot_complete
-        state: "{{ states('sensor.uptime') | float(0) > 5 }}"
+        state: >
+          {{
+            states('sensor.uptime') not in ['unknown', 'unavailable', 'none']
+            and now() - as_datetime(states('sensor.uptime'), default=now()) > timedelta(minutes=5)
+          }}"
       - name: ingress_alarm
         state: >
           {{ states('alarm_control_panel.alarm_panel') in ['armed_away', 'armed_home']
