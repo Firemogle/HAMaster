@@ -55,8 +55,9 @@ automation:
         state: 'on'
     action:
     - service: fan.set_percentage
-      data_template:
+      target:
         entity_id: fan.kitchen_fan
+      data:
         percentage: >
           {% if (states.sensor.garage_entry_temperature.state|float(default=0) > 80 ) %}
             100
