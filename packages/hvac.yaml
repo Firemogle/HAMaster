@@ -121,7 +121,10 @@ sensor:
 automation:
   - id: 'house_hvac_set'
     alias: house_hvac_set
-    initial_state: 'off'
+    condition:
+      - condition: state
+        entity_id: binary_sensor.house_boot_complete
+        state: 'on'
     mode: queued
     max: 25
     trigger:
@@ -141,11 +144,13 @@ automation:
 
   - id: 'house_humid'
     alias: house_humid
-    initial_state: 'off'
+    condition:
+      - condition: state
+        entity_id: binary_sensor.house_boot_complete
+        state: 'on'
     trigger:
     - entity_id: sensor.hvac_target_humidity
       platform: state
-    condition: []
     action:
     - service: humidifier.set_humidity
       target:
@@ -157,7 +162,10 @@ automation:
 
   - id: 'house_booster_on'
     alias: house_booster_on
-    initial_state: 'off'
+    condition:
+      - condition: state
+        entity_id: binary_sensor.house_boot_complete
+        state: 'on'
     trigger:
     - entity_id: binary_sensor.hvac_fan_req
       platform: state
