@@ -1,5 +1,5 @@
 substitutions:
-  devicename: eth_va_2.6test
+  devicename: eth_va_26test
 
 packages:
   base_board: !include
