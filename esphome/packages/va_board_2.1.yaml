@@ -60,6 +60,6 @@ binary_sensor:
       pcf8574: pcf8574_hub
       number: 1
       mode:
-        output: false
+        input: true
       inverted: false
     name: aux_det_ic
