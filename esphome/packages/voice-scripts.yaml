@@ -44,7 +44,7 @@ globals:
   - id: is_timer_active
     type: bool
     restore_value: false
-    
+
 switch:
   # Internal switch to track when a timer is ringing on the device.
   - platform: template
@@ -53,18 +53,10 @@ switch:
     internal: true
     restore_mode: ALWAYS_OFF
     on_turn_off:
-      # Stop any current annoucement (ie: stop the timer ring mid playback)
-     # - if:
-     #     condition:
-     #       media_player.is_announcing:
-     #     then:
-     #       media_player.stop:
-     #         announcement: true
-      # Set back ducking ratio to zero
-      #- mixer_speaker.apply_ducking:
-      #    id: media_mixing_input
-      #    decibel_reduction: 0
-      #    duration: 1.0s
+      # Stop the repeating timer sound and any current playback.
+      - script.execute: disable_repeat
+      - media_player.stop:
+          announcement: true
       # Refresh the LED ring
       - script.execute: control_leds
       - lambda: |
@@ -77,11 +69,8 @@ switch:
       - light.turn_off:
           id: ${devicename}_status
     on_turn_on:
-      # Duck audio
-      #- mixer_speaker.apply_ducking:
-      #    id: media_mixing_input
-      #    decibel_reduction: 20
-      #    duration: 0.0s
+      # Start the timer sound as an asynchronous repeating announcement.
+      - script.execute: ring_timer
       # Refresh LED
       - script.execute: control_leds
       - micro_wake_word.stop:
@@ -97,7 +86,6 @@ binary_sensor:
     name: ${devicename}_alarm_on
     condition:
       switch.is_on: timer_ringing
-
 
 script:
   # Master script controlling the LEDs, based on different conditions : initialization in progress, wifi and api connected and voice assistant phase.
@@ -139,7 +127,6 @@ script:
       - light.turn_off:
           id: ${devicename}_status
 
-
   - id: control_leds_voice_assistant_waiting_for_command_phase
     then:
       - light.turn_on:
@@ -153,14 +140,14 @@ script:
           id: ${devicename}_status
           brightness: 75%
           effect: "voice_listen"
-          
+
   - id: control_leds_voice_assistant_thinking_phase
     then:
       - light.turn_on:
           id: ${devicename}_status
           brightness: 75%
           effect: "voice_thinking"
-          
+
   - id: control_leds_voice_assistant_replying_phase
     then:
       - light.turn_on:
@@ -170,7 +157,8 @@ script:
 
   - id: ring_timer
     then:
-      #- script.execute: enable_repeat_one
+      # Repeat the timer sound with one second between completed playback cycles.
+      - script.execute: enable_repeat_one
       - script.execute:
           id: play_sound
           priority: true
@@ -179,27 +167,27 @@ script:
   # Script executed when the timer is ringing, to repeat the timer finished sound.
   - id: enable_repeat_one
     then:
-      # Turn on the repeat mode and pause for 500 ms between playlist items/repeats
+      # Repeat the current announcement with a one second pause between repetitions.
       - lambda: |-
-            id(${devicename}_media)
-              ->make_call()
-              .set_command(media_player::MediaPlayerCommand::MEDIA_PLAYER_COMMAND_REPEAT_ONE)
-              .set_announcement(true)
-              .perform();
-            id(${devicename}_media)->set_playlist_delay_ms(speaker::AudioPipelineType::ANNOUNCEMENT, 500);
+          id(${devicename}_media)
+            ->make_call()
+            .set_command(media_player::MediaPlayerCommand::MEDIA_PLAYER_COMMAND_REPEAT_ONE)
+            .set_announcement(true)
+            .perform();
+          id(${devicename}_media)->set_playlist_delay_ms(speaker::AudioPipelineType::ANNOUNCEMENT, 1000);
 
   # Script execute when the timer is done ringing, to disable repeat mode.
   - id: disable_repeat
     then:
-      # Turn off the repeat mode and pause for 0 ms between playlist items/repeats
+      # Turn off repeat mode and remove the repeat delay.
       - lambda: |-
-            id(${devicename}_media)
-              ->make_call()
-              .set_command(media_player::MediaPlayerCommand::MEDIA_PLAYER_COMMAND_REPEAT_OFF)
-              .set_announcement(true)
-              .perform();
-            id(${devicename}_media)->set_playlist_delay_ms(speaker::AudioPipelineType::ANNOUNCEMENT, 0);
-            
+          id(${devicename}_media)
+            ->make_call()
+            .set_command(media_player::MediaPlayerCommand::MEDIA_PLAYER_COMMAND_REPEAT_OFF)
+            .set_announcement(true)
+            .perform();
+          id(${devicename}_media)->set_playlist_delay_ms(speaker::AudioPipelineType::ANNOUNCEMENT, 0);
+
   - id: play_sound
     parameters:
       priority: bool
@@ -235,7 +223,7 @@ script:
           brightness: !lambda return max( id(${devicename}_status).current_values.get_brightness() , 0.2f );
           id: ${devicename}_status
           effect: timer_tick
-          
+
   - id: fetch_first_active_timer
     then:
       - lambda: |
@@ -260,8 +248,3 @@ script:
             }
           }
           id(is_timer_active) = output;
-
-        
-
-
-    
