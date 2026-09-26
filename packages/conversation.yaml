@@ -6,7 +6,7 @@ input_text:
     name: announce_textbox
 
 automation:
-  alias: calendar_announce
+  - alias: calendar_announce
     trigger:
       - platform: calendar
         event: start
