@@ -46,6 +46,7 @@ pcf8574:
 # Individual outputs
 switch:
   - platform: gpio
+    id: ${devicename}_amp_en
     name: ${devicename}_amp_en
     pin:
       pcf8574: pcf8574_hub
@@ -56,6 +57,7 @@ switch:
 
 binary_sensor:
   - platform: gpio
+    id: ${devicename}_aux_det_ic
     pin:
       pcf8574: pcf8574_hub
       number: 1
@@ -63,3 +65,24 @@ binary_sensor:
         input: true
       inverted: false
     name: ${devicename}_aux_det_ic
+    on_state:
+      then:
+        - if:
+            condition:
+              binary_sensor.is_on: ${devicename}_aux_det_ic
+            then:
+              - switch.turn_off: ${devicename}_amp_en
+            else:
+              - switch.turn_on: ${devicename}_amp_en
+
+esphome:
+  on_boot:
+    priority: -100
+    then:
+      - if:
+          condition:
+            binary_sensor.is_on: ${devicename}_aux_det_ic
+          then:
+            - switch.turn_off: ${devicename}_amp_en
+          else:
+            - switch.turn_on: ${devicename}_amp_en
