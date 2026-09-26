@@ -1,0 +1,39 @@
+# Test-only VA board package using the new esp_audio_stack.
+packages:
+  string_light: !include
+    file: voice_light.yaml
+    vars:
+      pin: GPIO07
+      length: 12
+      color_line: GRB
+      name: ${devicename}_status
+  va_adf: !include
+    file: esp_audio_stack_audio_2.0.yaml
+    vars:
+      devicename: ${devicename}
+  voice: !include
+    file: voice.yaml
+    vars:
+      devicename: ${devicename}
+
+sensor:
+  - platform: bme280_i2c
+    temperature:
+      name: ${devicename}_Temperature
+      oversampling: 16x
+    pressure:
+      name: ${devicename}_Pressure
+    humidity:
+      name: ${devicename}_Humidity
+    address: 0x77
+    update_interval: 60s
+    i2c_id: i2c_channel
+  - platform: veml7700
+    address: 0x10
+    update_interval: 60s
+    ambient_light: ${devicename}_Ambient_Light
+    full_spectrum: ${devicename}_Full_Spectrum
+    infrared: ${devicename}_Infrared
+    ambient_light_counts: ${devicename}_AMB_LIGHT_COUNT
+    full_spectrum_counts: ${devicename}_FS_COUNT
+    i2c_id: i2c_channel
