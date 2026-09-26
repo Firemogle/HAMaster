@@ -31,6 +31,8 @@ sensor:
 number:
   - platform: ld2410
     ld2410_id: ld2410_sensor
+    timeout:
+      id: office_ld2410_timeout
     max_move_distance_gate:
       id: office_ld2410_max_move_distance
     max_still_distance_gate:
