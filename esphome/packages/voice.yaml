@@ -32,6 +32,18 @@ voice_assistant:
   on_stt_vad_start:
     - lambda: id(voice_assistant_phase) = ${voice_assist_listening_for_command_phase_id};
     - script.execute: control_leds
+  on_stt_end:
+    - if:
+        condition:
+          lambda: |-
+            return esphome::str_equals_case_insensitive(x, "play thunderstorm sounds");
+        then:
+          - voice_assistant.stop:
+          - media_player.stop:
+              id: ${devicename}_media
+          - media_player.play_media:
+              id: ${devicename}_media
+              media_url: "http://192.168.2.2:8123/local/thunder.mp3"
   on_stt_vad_end:
     - lambda: id(voice_assistant_phase) = ${voice_assist_thinking_phase_id};
     - script.execute: control_leds
