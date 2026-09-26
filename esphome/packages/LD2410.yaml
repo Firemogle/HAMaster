@@ -7,6 +7,14 @@ uart:
   data_bits: 8
 
 ld2410:
+  id: ld2410_sensor
+
+switch:
+  - platform: ld2410
+    bluetooth:
+      id: ld2410_bluetooth
+      name: ${devicename}_bluetooth
+      restore_mode: ALWAYS_OFF
 
 binary_sensor:
   - platform: ld2410
