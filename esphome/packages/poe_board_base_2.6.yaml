@@ -6,8 +6,8 @@ esphome:
   friendly_name: ${devicename}
 
 preferences:
-  flash_write_interval: "30min" 
-  
+  flash_write_interval: "30min"
+
 esp32:
   board: esp32-s3-devkitc-1
   variant: esp32s3
@@ -16,11 +16,9 @@ psram:
   mode: octal
   speed: 80MHz
 
-
 # Enable logging
 logger:
   hardware_uart: USB_SERIAL_JTAG
-
 
 # Enable Home Assistant API
 api:
@@ -30,14 +28,18 @@ api:
 ota:
   platform: esphome
   password: !secret OTA_PW
-  
+
 i2c:
-   - id: i2c_channel
-     sda: GPIO05
-     scl: GPIO04
-   - id: audio_i2c
-     sda: GPIO08
-     scl: GPIO18
+  - id: i2c_channel
+    sda: GPIO05
+    scl: GPIO04
+    frequency: 100kHz
+    scan: true
+  - id: audio_i2c
+    sda: GPIO08
+    scl: GPIO18
+    frequency: 100kHz
+    scan: true
 
 button:
   - platform: restart
