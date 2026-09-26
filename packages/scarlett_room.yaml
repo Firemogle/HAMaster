@@ -1,9 +1,5 @@
 homeassistant:
   customize:
-    fan.nursery_fan:
-      friendly_name: Scarlett Fan
-    light.nursery_fan_light:
-      friendly_name: Scarlett Light
     
 automation:
   - id: nursery_fan_speed
