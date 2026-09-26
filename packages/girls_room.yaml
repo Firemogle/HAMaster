@@ -10,11 +10,6 @@ homeassistant:
       friendly_name: Girls Bedroom Temperature
     switch.emi_tv:
       friendly_name: Girls TV Switch
-  
-          
-
-input_boolean:
-  emi_wake:
 
 media_player:
   - platform: universal
