@@ -46,3 +46,26 @@ sensor:
     address: 0x76
     i2c_id: i2c_channel
     update_interval: 60s  
+
+
+# LD2410 uses its default 0.75 m gate resolution; gate 8 is approximately 6 m (19.7 ft),
+# which is the sensor's maximum range and matches the roughly 20 ft room depth.
+number:
+  - platform: ld2410
+    ld2410_id: ld2410_sensor
+    max_move_distance_gate:
+      id: livingroom_ld2410_max_move_distance
+    max_still_distance_gate:
+      id: livingroom_ld2410_max_still_distance
+
+esphome:
+  on_boot:
+    priority: -100
+    then:
+      - delay: 2s
+      - number.set:
+          id: livingroom_ld2410_max_move_distance
+          value: 8
+      - number.set:
+          id: livingroom_ld2410_max_still_distance
+          value: 8
