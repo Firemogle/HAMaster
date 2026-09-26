@@ -16,6 +16,8 @@ i2s_audio:
       
 audio_dac:
   - platform: aic3204
+    id: aic3204_dac
+    i2c_id: i2c_channel
 
 audio_adc:
   - platform: es7210
@@ -33,7 +35,7 @@ speaker:
     sample_rate: 16000
     bits_per_sample: 16bit
     channel: left
-    audio_dac: es8311_dac
+    audio_dac: aic3204_dac
     timeout: 10s
   # Virtual speakers to combine the announcement and media streams together into one output
   - platform: mixer
