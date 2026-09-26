@@ -7,7 +7,7 @@ packages:
       color_line: GRB
       name: ${devicename}_status
   va_adf: !include 
-    file: audio.yaml
+    file: audio_2.0.yaml
     vars:
       devicename: ${devicename}
   voice: !include 
