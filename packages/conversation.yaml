@@ -1,4 +1,6 @@
-
+homeassistant:
+  customize:  
+  
 input_text:
   announce_textbox:
     name: announce_textbox
