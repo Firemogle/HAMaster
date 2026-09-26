@@ -6,10 +6,9 @@
 #   ES7210 ADC @ 0x40 on audio_i2c
 #   ES8311 DAC @ 0x18 on audio_i2c
 #
-# The physical bus runs at 48 kHz while the microphone surface is converted
-# to the 16 kHz PCM expected by Voice Assistant and Micro Wake Word.
-# No AEC/AFE is enabled in this first migration so the audio path can be
-# validated independently.
+# The physical bus runs at 48 kHz / 32-bit TDM while the microphone surface
+# is converted to the 16 kHz PCM expected by Voice Assistant and Micro Wake Word.
+# No AEC/AFE is enabled in this migration test.
 
 external_components:
   - source: github://n-IA-hane/esphome-audio-stack@main
@@ -40,7 +39,7 @@ esp_audio_stack:
       use_mclk: true
       no_dac_ref: true
   tdm_total_slots: 4
-  tdm_mic_slots: [0, 2]
+  tdm_mic_slot: 0
 
 microphone:
   - platform: esp_audio_stack
