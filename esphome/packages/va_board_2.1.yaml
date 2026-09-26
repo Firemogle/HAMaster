@@ -1,53 +1,52 @@
 packages:
-  string_light: !include 
+  string_light: !include
     file: voice_light.yaml
     vars:
       pin: GPIO07
       length: 13
       color_line: GRB
       name: ${devicename}_status
-  va_adf: !include 
+  va_adf: !include
     file: audio_2.0.yaml
     vars:
       devicename: ${devicename}
-  voice: !include 
+  voice: !include
     file: voice.yaml
     vars:
       devicename: ${devicename}
 
-
 sensor:
   - platform: bme280_i2c
     temperature:
-      name: ${devicename}_Temperature
+      name: ${devicename}_temperature
       oversampling: 16x
     pressure:
-      name: ${devicename}_Pressure
+      name: ${devicename}_pressure
     humidity:
-      name: ${devicename}_Humidity
+      name: ${devicename}_humidity
     address: 0x77
     update_interval: 60s
-    i2c_id: i2c_channel 
+    i2c_id: i2c_channel
   - platform: veml7700
     address: 0x10
     update_interval: 60s
-    ambient_light: ${devicename}_Ambient_Light
-    full_spectrum: ${devicename}_Full_Spectrum
-    infrared: ${devicename}_Infrared
-    ambient_light_counts: ${devicename}_AMB_LIGHT_COUNT
-    full_spectrum_counts: ${devicename}_FS_COUNT
+    ambient_light: ${devicename}_ambient_light
+    full_spectrum: ${devicename}_full_spectrum
+    infrared: ${devicename}_infrared
+    ambient_light_counts: ${devicename}_ambient_light_count
+    full_spectrum_counts: ${devicename}_full_spectrum_count
     i2c_id: i2c_channel
 
 pcf8574:
-  - id: 'pcf8574_hub'
+  - id: pcf8574_hub
     address: 0x21
     pcf8575: false
-    i2c_id: i2c_channel 
+    i2c_id: i2c_channel
 
 # Individual outputs
 switch:
   - platform: gpio
-    name: amp_en
+    name: ${devicename}_amp_en
     pin:
       pcf8574: pcf8574_hub
       number: 0
@@ -63,4 +62,4 @@ binary_sensor:
       mode:
         input: true
       inverted: false
-    name: aux_det_ic
+    name: ${devicename}_aux_det_ic
