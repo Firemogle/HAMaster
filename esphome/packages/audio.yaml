@@ -78,6 +78,12 @@ speaker:
     sample_rate: 48000
     bits_per_sample: 16
 
+media_source:
+  - platform: audio_http
+    id: http_audio_source
+    buffer_size: 100000
+    task_stack_in_psram: true
+
 media_player:
   - platform: speaker
     name: ${devicename}_media
