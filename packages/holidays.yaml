@@ -1,6 +1,5 @@
 homeassistant:
   customize:
-  
 
 input_boolean:
   independence_day:
@@ -11,9 +10,7 @@ input_boolean:
     name: house_sts_super_bowl
   halloween:
     name: halloween
-    
 
-    
 template:
   - binary_sensor:
       - name: house_sts_independence_day
@@ -31,7 +28,6 @@ template:
       - name: house_sts_halloween
         state: >
           {{ is_state('input_boolean.halloween', 'on') }}
-
 
 automation:
   - id: 'independence_day_on'
@@ -55,6 +51,9 @@ automation:
         else:
           - service: input_boolean.turn_off
             entity_id: input_boolean.independence_day
+          - action: layers.clear
+            data:
+              layer: independence_day
     mode: queued
 
   - id: 'halloween_on'
@@ -78,8 +77,10 @@ automation:
         else:
           - service: input_boolean.turn_off
             entity_id: input_boolean.halloween
+          - action: layers.clear
+            data:
+              layer: halloween
     mode: queued
-
 
   - id: 'house_sts_xmas_lights'
     alias: house_sts_xmas_lights
@@ -102,6 +103,9 @@ automation:
         else:
           - service: input_boolean.turn_off
             entity_id: input_boolean.house_sts_xmas_lights
+          - action: layers.clear
+            data:
+              layer: xmas
     mode: queued
 
 script:
@@ -109,85 +113,104 @@ script:
     mode: parallel
     sequence:
       - parallel:
+          - continue_on_error: true
+            service: switch.turn_on
+            target:
+              entity_id: switch.garage_wall_switch
 
           - continue_on_error: true
             service: switch.turn_on
-            data:
-              entity_id: switch.garage_wall_switch
-      
-          - continue_on_error: true
-            service: switch.turn_on
-            data:
+            target:
               entity_id: switch.front_outlets
 
           - continue_on_error: true
-            service: light.turn_on
-            data:
-              brightness: 255
-              effect: "Jayhawks"
+            action: layers.set
             target:
               entity_id:
                 - light.front_eave
                 - light.backyard_eave
                 - light.lr_bt_sns_garden_lights
+            data:
+              layer: xmas
+              priority: 50
+              state: "on"
+              brightness: 255
+              effect: "Jayhawks"
 
           - continue_on_error: true
-            service: light.turn_on
+            action: layers.set
+            target:
+              entity_id: light.lr_bt_sns_tree_meteor
             data:
+              layer: xmas
+              priority: 50
+              state: "on"
               brightness: 255
               effect: "Twinkle"
-            target:
-              entity_id:
-                - light.lr_bt_sns_tree_meteor
 
           - continue_on_error: true
-            service: light.turn_on
-            data:
-              brightness: 255
-              effect: "Blue Sparkle"
+            action: layers.set
             target:
               entity_id:
                 - light.lr_bt_sns_front_window
                 - light.rainbrarrel_ext_back_window
                 - light.decklight
+            data:
+              layer: xmas
+              priority: 50
+              state: "on"
+              brightness: 255
+              effect: "Blue Sparkle"
 
           - continue_on_error: true
-            service: light.turn_on
-            data:
-              brightness: 255
-              effect: "Rainbow"
+            action: layers.set
             target:
               entity_id:
                 - light.cabinet_top
                 - light.uhall_ban_hall_ban
                 - light.lr_bt_sns_tree_string
                 - light.lr_bt_sns_garden_fiber
+            data:
+              layer: xmas
+              priority: 50
+              state: "on"
+              brightness: 255
+              effect: "Rainbow"
 
           - continue_on_error: true
-            service: light.turn_on
-            data:
-              brightness: 255
-              color_name: red
+            action: layers.set
             target:
               entity_id:
                 - light.front_light3_level_light_color_on_off
                 - light.porch_light
+            data:
+              layer: xmas
+              priority: 50
+              state: "on"
+              brightness: 255
+              color_name: red
 
           - continue_on_error: true
-            service: light.turn_on
-            data:
-              color_name: red
-              brightness: 255
+            action: layers.set
             target:
               entity_id: light.front_light1_level_light_color_on_off
+            data:
+              layer: xmas
+              priority: 50
+              state: "on"
+              brightness: 255
+              color_name: red
 
           - continue_on_error: true
-            service: light.turn_on
-            data:
-              color_name: blue
-              brightness: 255
+            action: layers.set
             target:
               entity_id: light.front_light2_level_light_color_on_off
+            data:
+              layer: xmas
+              priority: 50
+              state: "on"
+              brightness: 255
+              color_name: blue
 
           - continue_on_error: true
             service: script.turn_on
@@ -198,42 +221,51 @@ script:
     mode: parallel
     sequence:
       - parallel:
-
           - continue_on_error: true
-            service: light.turn_on
+            action: layers.set
+            target:
+              entity_id: light.xmas_tree_fiber_optic_tree
             data:
+              layer: xmas
+              priority: 50
+              state: "on"
               brightness: 255
               effect: "Blue Sparkle"
-            target:
-              entity_id:
-                - light.xmas_tree_fiber_optic_tree
 
           - continue_on_error: true
-            service: light.turn_on
-            data:
-              brightness: 255
-              effect: "Twinkle"
+            action: layers.set
             target:
               entity_id:
                 - light.xmas_tree_tree_star
                 - light.xmas_tree_tree_body
+            data:
+              layer: xmas
+              priority: 50
+              state: "on"
+              brightness: 255
+              effect: "Twinkle"
 
           - continue_on_error: true
-            service: light.turn_on
-            data:
-              brightness: 255
-              effect: "Rainbow"
+            action: layers.set
             target:
               entity_id:
                 - light.cabinet_top
                 - light.uhall_ban_hall_ban
+            data:
+              layer: xmas
+              priority: 50
+              state: "on"
+              brightness: 255
+              effect: "Rainbow"
 
           - continue_on_error: true
-            service: light.turn_on
+            action: layers.set
             target:
-              entity_id:
-                - light.window_lights
-     
+              entity_id: light.window_lights
+            data:
+              layer: xmas
+              priority: 50
+              state: "on"
 
   normal_day:
     mode: parallel
@@ -245,35 +277,30 @@ script:
               color_name: white
             target:
               entity_id: light.front_light1_level_light_color_on_off
-
           - continue_on_error: true
             service: light.turn_on
             data:
               color_name: white
             target:
               entity_id: light.front_light2_level_light_color_on_off
-
           - continue_on_error: true
             service: light.turn_on
             data:
               color_name: white
             target:
               entity_id: light.front_light3_level_light_color_on_off
-
           - continue_on_error: true
             service: light.turn_on
             data:
               color_name: white
             target:
               entity_id: light.front_garden_level_light_color_on_off
-
           - continue_on_error: true
             service: light.turn_on
             data:
               color_name: white
             target:
               entity_id: light.porch_light
-
           - continue_on_error: true
             service: light.turn_on
             data:
@@ -281,101 +308,100 @@ script:
               color_name: white
             target:
               entity_id: light.rainbrarrel_decklight
-
           - continue_on_error: true
             service: switch.turn_on
-            data:
+            target:
               entity_id: switch.garage_wall_switch
-
 
   independence_day:
     mode: parallel
     sequence:
       - parallel:
           - continue_on_error: true
-            service: light.turn_on
-            data:
-              color_name: blue
+            action: layers.set
             target:
               entity_id: light.front_light1_level_light_color_on_off
+            data:
+              layer: independence_day
+              priority: 50
+              state: "on"
+              color_name: blue
 
           - continue_on_error: true
-            service: light.turn_on
-            data:
-              color_name: white
+            action: layers.set
             target:
               entity_id: light.front_light2_level_light_color_on_off
+            data:
+              layer: independence_day
+              priority: 50
+              state: "on"
+              color_name: white
 
           - continue_on_error: true
-            service: light.turn_on
-            data:
-              color_name: red
+            action: layers.set
             target:
               entity_id: light.front_light3_level_light_color_on_off
+            data:
+              layer: independence_day
+              priority: 50
+              state: "on"
+              color_name: red
 
           - continue_on_error: true
-            service: light.turn_on
-            data:
-              color_name: blue
+            action: layers.set
             target:
               entity_id: light.front_garden_level_light_color_on_off
+            data:
+              layer: independence_day
+              priority: 50
+              state: "on"
+              color_name: blue
 
           - continue_on_error: true
-            service: light.turn_on
-            data:
-              color_name: red
+            action: layers.set
             target:
               entity_id: light.porch_light
+            data:
+              layer: independence_day
+              priority: 50
+              state: "on"
+              color_name: red
 
           - continue_on_error: true
-            service: light.turn_on
+            action: layers.set
+            target:
+              entity_id:
+                - light.rainbrarrel_rb_string
+                - light.lr_bt_sns_fy_string
+                - light.lr_bt_sns_yard_string
             data:
+              layer: independence_day
+              priority: 50
+              state: "on"
               brightness: 215
               color_name: white
               effect: "Independence Day"
-            target:
-              entity_id: light.rainbrarrel_rb_string
-
-          - continue_on_error: true
-            service: light.turn_on
-            data:
-              brightness: 215
-              color_name: white
-              effect: "Independence Day"
-            target:
-              entity_id: light.lr_bt_sns_fy_string
-
-          - continue_on_error: true
-            service: light.turn_on
-            data:
-              brightness: 215
-              color_name: white
-              effect: "Independence Day"
-            target:
-              entity_id: light.lr_bt_sns_yard_string              
-
 
   halloween_light:
     mode: parallel
     sequence:
       - parallel:
           - continue_on_error: true
-            service: light.turn_on
-            data:
-              brightness: 255
-              color_name: orange
-              effect: "Dithering Lights"
+            action: layers.set
             target:
               entity_id:
                 - light.front_eave
                 - light.backyard_eave
+            data:
+              layer: halloween
+              priority: 50
+              state: "on"
+              brightness: 255
+              color_name: orange
+              effect: "Dithering Lights"
 
           - continue_on_error: true
-            service: light.turn_on
-            data:
-              brightness: 255
-              color_name: purple
-              effect: "Dithering Lights"
+            action: layers.set
             target:
               entity_id:
                 - light.lr_bt_sns_front_window
@@ -384,35 +410,54 @@ script:
                 - light.uhall_ban_hall_ban
                 - light.decklight
                 - light.lr_bt_sns_yard_string
-
-          - continue_on_error: true
-            service: light.turn_on
             data:
+              layer: halloween
+              priority: 50
+              state: "on"
               brightness: 255
               color_name: purple
+              effect: "Dithering Lights"
+
+          - continue_on_error: true
+            action: layers.set
             target:
               entity_id:
                 - light.front_light3_level_light_color_on_off
                 - light.front_garden_level_light_color_on_off
                 - light.porch_light
+            data:
+              layer: halloween
+              priority: 50
+              state: "on"
+              brightness: 255
+              color_name: purple
 
           - continue_on_error: true
-            service: light.turn_on
-            data:
-              color_name: orange
+            action: layers.set
             target:
               entity_id: light.front_light1_level_light_color_on_off
+            data:
+              layer: halloween
+              priority: 50
+              state: "on"
+              color_name: orange
 
           - continue_on_error: true
-            service: light.turn_on
-            data:
-              color_name: white
+            action: layers.set
             target:
               entity_id: light.front_light2_level_light_color_on_off
+            data:
+              layer: halloween
+              priority: 50
+              state: "on"
+              color_name: white
 
           - continue_on_error: true
-            service: light.turn_on
-            data:
-              color_name: green
+            action: layers.set
             target:
               entity_id: light.lr_bt_sns_yard_string
+            data:
+              layer: halloween
+              priority: 50
+              state: "on"
+              color_name: green
