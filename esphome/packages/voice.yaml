@@ -15,7 +15,6 @@ voice_assistant:
   on_client_connected:
     - lambda: id(init_in_progress) = true;
     - script.execute: control_leds
-    - micro_wake_word.start:
     - lambda: id(init_in_progress) = false;
     - lambda: id(voice_assistant_phase) = ${voice_assist_idle_phase_id};
     - script.execute: control_leds
