@@ -76,4 +76,26 @@ sensor:
       name: ${devicename}_ext_pressure
     address: 0x76
     i2c_id: i2c_channel
-    update_interval: 60s  
+    update_interval: 60s
+
+# LD2410 uses its default 0.75 m gate resolution; gate 4 is approximately 3 m
+# (9.8 ft), providing a roughly 10 ft maximum detection depth.
+number:
+  - platform: ld2410
+    ld2410_id: ld2410_sensor
+    max_move_distance_gate:
+      id: kitchen_ld2410_max_move_distance
+    max_still_distance_gate:
+      id: kitchen_ld2410_max_still_distance
+
+esphome:
+  on_boot:
+    priority: -100
+    then:
+      - delay: 2s
+      - number.set:
+          id: kitchen_ld2410_max_move_distance
+          value: 4
+      - number.set:
+          id: kitchen_ld2410_max_still_distance
+          value: 4
