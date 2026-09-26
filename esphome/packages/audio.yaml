@@ -92,7 +92,3 @@ media_player:
     files:
       id: timer_finished_sound
       file: packages/sounds/alarm.mp3
-    on_idle:
-      - micro_wake_word.stop:
-      - delay: 2s
-      - micro_wake_word.start:
