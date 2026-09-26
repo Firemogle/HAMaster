@@ -6,39 +6,6 @@ input_text:
     name: announce_textbox
 
 automation:
-  - id: va_thunderstorm_sounds
-    alias: va_thunderstorm_sounds
-    mode: parallel
-    triggers:
-      - trigger: conversation
-        command: "play thunderstorm sounds"
-    conditions: []
-    actions:
-      - action: media_player.turn_on
-        target:
-          entity_id: 'media_player.{{ area_name(trigger.device_id) }}speaker'
-      - action: media_player.play_media
-        target:
-          entity_id: 'media_player.{{ area_name(trigger.device_id) }}speaker'
-        data:
-          media_content_id: media-source://media_source/media/Server/media/Sorted Music/thunder.mp3
-          media_content_type: audio/mpeg
-        metadata:
-          title: thunder.mp3
-          thumbnail: null
-          media_class: music
-          children_media_class: null
-          navigateIds:
-            - {}
-            - media_content_type: app
-              media_content_id: media-source://media_source
-            - media_content_type: ""
-              media_content_id: media-source://media_source/media/Server
-            - media_content_type: ""
-              media_content_id: media-source://media_source/media/Server/media
-            - media_content_type: ""
-              media_content_id: media-source://media_source/media/Server/media/Sorted Music
-
   alias: calendar_announce
     trigger:
       - platform: calendar
