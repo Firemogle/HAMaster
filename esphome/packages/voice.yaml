@@ -43,12 +43,9 @@ voice_assistant:
     - script.execute: control_leds
     - wait_until:
         not:
-          voice_assistant.is_running:
+          voice_assistant.is_running
     - light.turn_off:
         id: ${devicename}_status
-    - micro_wake_word.stop:
-    - delay: 3s
-    - micro_wake_word.start:
     - mixer_speaker.apply_ducking:
         id: media_mixing_input
         decibel_reduction: 0
