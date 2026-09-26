@@ -1,54 +1,61 @@
-i2s_audio:
-  - id: audio_bus
-    i2s_lrclk_pin: 
-      number: GPIO45
-      ignore_strapping_warning: true
-      allow_other_uses: true
-    i2s_bclk_pin: 
-      number: GPIO17
-      allow_other_uses: true
-    i2s_mclk_pin: 
-      number: GPIO02
-      allow_other_uses: true
-  - id: audio_bus_out
-    i2s_lrclk_pin: 
-      number: GPIO45
-      ignore_strapping_warning: true
-      allow_other_uses: true
-    i2s_bclk_pin: 
-      number: GPIO17
-      allow_other_uses: true
-    i2s_mclk_pin: 
-      number: GPIO02
-      allow_other_uses: true
+# Office VA audio using n-IA-hane/esphome-audio-stack.
+# Hardware preserved from the original office configuration:
+#   I2S: MCLK GPIO02, BCLK GPIO17, LRCLK GPIO45
+#   RX:  GPIO16
+#   TX:  GPIO15
+#   ES7210 ADC @ 0x40 on audio_i2c
+#   ES8311 DAC @ 0x18 on audio_i2c
+#
+# The physical bus runs at 48 kHz while the microphone surface is converted
+# to the 16 kHz PCM expected by Voice Assistant and Micro Wake Word.
+# No AEC/AFE is enabled in this first migration so the audio path can be
+# validated independently.
 
+external_components:
+  - source: github://n-IA-hane/esphome-audio-stack@main
+    components: [esp_audio_stack]
 
-audio_dac:
-  - platform: es8311
-    id: es8311_dac
-    bits_per_sample: 16bit
-    sample_rate: 16000
+esp_audio_stack:
+  id: audio_stack
+  i2s_lrclk_pin: GPIO45
+  i2s_bclk_pin: GPIO17
+  i2s_mclk_pin: GPIO02
+  i2s_din_pin: GPIO16
+  i2s_dout_pin: GPIO15
+  sample_rate: 48000
+  output_sample_rate: 16000
+  bits_per_sample: 32
+  slot_bit_width: 32
+  buffers_in_psram: true
+  codec:
     i2c_id: audio_i2c
+    input:
+      type: es7210
+      address: 0x40
+      mic_selected: 0x0F
+      gain_db: 24.0
+    output:
+      type: es8311
+      address: 0x18
+      use_mclk: true
+      no_dac_ref: true
+  tdm_total_slots: 4
+  tdm_mic_slots: [0, 2]
 
-audio_adc:
-  - platform: es7210
-    id: es7210_adc
-    bits_per_sample: 16bit
-    sample_rate: 16000
-    i2c_id: audio_i2c
+microphone:
+  - platform: esp_audio_stack
+    id: external_mic
+    esp_audio_stack_id: audio_stack
 
 speaker:
-  - platform: i2s_audio
-    i2s_audio_id: audio_bus_out
+  - platform: esp_audio_stack
     id: i2s_audio_speaker
-    i2s_dout_pin: GPIO15
-    dac_type: external
-    sample_rate: 16000
-    bits_per_sample: 16bit
-    channel: left
-    audio_dac: es8311_dac
+    esp_audio_stack_id: audio_stack
+    sample_rate: 48000
+    bits_per_sample: 16
     timeout: 10s
-  # Virtual speakers to combine the announcement and media streams together into one output
+
+  # Virtual speaker used to combine announcements and media into one output.
   - platform: mixer
     id: mixing_speaker
     output_speaker: i2s_audio_speaker
@@ -59,22 +66,27 @@ speaker:
       - id: media_mixing_input
         timeout: 10s
 
-  # Vritual speakers to resample each pipelines' audio, if necessary, as the mixer speaker requires the same sample rate
+  # Resample each pipeline to the 48 kHz hardware speaker rate.
   - platform: resampler
     id: announcement_resampling_speaker
     output_speaker: announcement_mixing_input
+    sample_rate: 48000
+    bits_per_sample: 16
+
   - platform: resampler
     id: media_resampling_speaker
     output_speaker: media_mixing_input
+    sample_rate: 48000
+    bits_per_sample: 16
 
 media_player:
   - platform: speaker
     name: ${devicename}_media
     id: ${devicename}_media
     media_pipeline:
-      speaker: media_resampling_speaker # FLAC is the least processor intensive codec
+      speaker: media_resampling_speaker
     announcement_pipeline:
-      speaker: announcement_resampling_speaker     # FLAC is the least processor intensive codec
+      speaker: announcement_resampling_speaker
     volume_increment: 0.05
     volume_min: 0.4
     volume_max: 0.85
@@ -82,15 +94,6 @@ media_player:
       id: timer_finished_sound
       file: packages/sounds/alarm.mp3
     on_idle:
-    - micro_wake_word.stop:
-    - delay: 2s
-    - micro_wake_word.start:
-      
-microphone:
-  - platform: i2s_audio
-    i2s_audio_id: audio_bus
-    id: external_mic
-    adc_type: external
-    pdm: false
-    i2s_din_pin: GPIO16
-    bits_per_sample: 16bit
+      - micro_wake_word.stop:
+      - delay: 2s
+      - micro_wake_word.start:
