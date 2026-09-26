@@ -1,15 +1,5 @@
 homeassistant:
   customize:
-    sensor.office_computer_power:
-      device_class: power
-    sensor.octoprint_target_bed_temp:
-      device_class: temperature
-    sensor.office_pressure:
-      device_class: pressure
-    sensor.office_temperature:
-      device_class: temperature
-    sensor.office_humidity:
-      device_class: humidity
 
 sensor:
   - platform: integration
@@ -19,19 +9,6 @@ sensor:
     round: 2
     max_sub_interval:
       minutes: 5
-  
-switch:
-  - platform: wake_on_lan
-    name: off_4k_mon
-    mac: "a0:6a:44:23:f6:99"
-    host: 192.168.2.124
-    broadcast_address: 192.168.2.124
-
-  - platform: wake_on_lan
-    name: off_computron3000
-    mac: "40:16:7e:e8:dc:7b"
-    host: 192.168.1.195
-    broadcast_address: 192.168.1.195
     
 climate:
   - platform: generic_thermostat
