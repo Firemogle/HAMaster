@@ -1,5 +1,5 @@
 packages:
-  va_board: !include 
+  va_board: !include
     file: voice-scripts.yaml
     vars:
       devicename: ${devicename}
@@ -21,13 +21,11 @@ voice_assistant:
     - script.execute: control_leds
   on_client_disconnected:
     - voice_assistant.stop:
-  #on_error:
-  # When the voice assistant starts: Play a wake up sound, duck audio.
   on_start:
     - mixer_speaker.apply_ducking:
         id: media_mixing_input
-        decibel_reduction: 20  # Number of dB quieter; higher implies more quiet, 0 implies full volume
-        duration: 0.0s         # The duration of the transition (default is no transition)
+        decibel_reduction: 20
+        duration: 0.0s
   on_listening:
     - lambda: id(voice_assistant_phase) = ${voice_assist_waiting_for_command_phase_id};
     - script.execute: control_leds
@@ -55,9 +53,6 @@ voice_assistant:
         id: media_mixing_input
         decibel_reduction: 0
         duration: 1.0s
-    # Stop the script that would potentially enable the stop word if the response is longer than a second
-    #- script.stop: activate_stop_word_if_tts_step_is_long
-    # Disable the stop word (If the tiemr is not ringing)
   on_timer_finished:
     - switch.turn_on: timer_ringing
   on_timer_started:
@@ -73,15 +68,13 @@ micro_wake_word:
   microphone: external_mic
   models:
     - model: okay_nabu
-    - model: alexa
   vad:
-  on_wake_word_detected: 
+  on_wake_word_detected:
     - if:
         condition:
           switch.is_on: timer_ringing
         then:
           - switch.turn_off: timer_ringing
-        # Start voice assistant, stop current announcement.
         else:
           - if:
               condition:
@@ -96,4 +89,3 @@ micro_wake_word:
         id: ${devicename}_status
         brightness: 50%
         transition_length: 0s
-    
