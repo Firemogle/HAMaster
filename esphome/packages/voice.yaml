@@ -49,20 +49,30 @@ voice_assistant:
   on_tts_start:
     - lambda: id(voice_assistant_phase) = ${voice_assist_replying_phase_id};
     - script.execute: control_leds
-  on_tts_stream_end:
+  on_end:
+    - lambda: id(voice_assistant_phase) = ${voice_assist_idle_phase_id};
+    - script.execute: control_leds
     - if:
         condition:
           lambda: |-
             return id(thunderstorm_pending);
         then:
+          # on_end occurs before the media-player TTS announcement starts.
+          # Wait briefly for that announcement, then wait for it to finish.
+          - wait_until:
+              condition:
+                media_player.is_announcing: ${devicename}_media
+              timeout: 1s
+          - wait_until:
+              condition:
+                not:
+                  media_player.is_announcing: ${devicename}_media
+              timeout: 5min
           - lambda: |-
               id(thunderstorm_pending) = false;
           - media_player.play_media:
               id: ${devicename}_media
               media_url: "http://192.168.2.2:8123/local/thunder.mp3"
-  on_end:
-    - lambda: id(voice_assistant_phase) = ${voice_assist_idle_phase_id};
-    - script.execute: control_leds
     - wait_until:
         not:
           voice_assistant.is_running
