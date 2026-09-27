@@ -94,32 +94,20 @@ script:
   - id: control_leds
     then:
       - lambda: |
-          const auto &timers = id(va).get_timers();
-          bool output = false;
-
-          if (!timers.empty()) {
-            auto output_timer = *timers.begin();
-            for (const auto &timer : timers) {
-              if (timer.is_active && (!output_timer.is_active || timer.seconds_left <= output_timer.seconds_left)) {
-                output_timer = timer;
-              }
-            }
-
-            if (output_timer.is_active) {
-              id(first_active_timer) = output_timer;
-              output = true;
-            }
+          // Keep timer bookkeeping separate from the voice LED state machine.
+          // The timer callbacks update these globals asynchronously; the voice
+          // animation selection itself does not depend on get_timers().
+          id(check_if_timers_active).execute();
+          if (id(is_timer_active)) {
+            id(fetch_first_active_timer).execute();
           }
 
-          id(is_timer_active) = output;
-
-          // Timer state takes priority over voice-assistant animation.
-          if (id(timer_ringing)) {
+          if (id(init_in_progress)) {
+            id(control_leds_init_state).execute();
+          } else if (id(timer_ringing)) {
             id(control_leds_timer_ringing).execute();
           } else if (id(is_timer_active)) {
             id(control_leds_timer_ticking).execute();
-          } else if (id(init_in_progress)) {
-            id(control_leds_init_state).execute();
           } else if (id(voice_assistant_phase) == ${voice_assist_waiting_for_command_phase_id}) {
             id(control_leds_voice_assistant_waiting_for_command_phase).execute();
           } else if (id(voice_assistant_phase) == ${voice_assist_listening_for_command_phase_id}) {
