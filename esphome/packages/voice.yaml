@@ -4,6 +4,12 @@ packages:
     vars:
       devicename: ${devicename}
 
+globals:
+  - id: thunderstorm_pending
+    type: bool
+    restore_value: false
+    initial_value: 'false'
+
 voice_assistant:
   id: va
   microphone: external_mic
@@ -29,27 +35,31 @@ voice_assistant:
   on_listening:
     - lambda: id(voice_assistant_phase) = ${voice_assist_waiting_for_command_phase_id};
     - script.execute: control_leds
-  on_stt_vad_start:
-    - lambda: id(voice_assistant_phase) = ${voice_assist_listening_for_command_phase_id};
-    - script.execute: control_leds
   on_stt_end:
     - if:
         condition:
           lambda: |-
             return esphome::str_equals_case_insensitive(x, "play thunderstorm sounds");
         then:
-          - voice_assistant.stop:
-          - media_player.stop:
-              id: ${devicename}_media
-          - media_player.play_media:
-              id: ${devicename}_media
-              media_url: "http://192.168.2.2:8123/local/thunder.mp3"
+          - lambda: |-
+              id(thunderstorm_pending) = true;
   on_stt_vad_end:
     - lambda: id(voice_assistant_phase) = ${voice_assist_thinking_phase_id};
     - script.execute: control_leds
   on_tts_start:
     - lambda: id(voice_assistant_phase) = ${voice_assist_replying_phase_id};
     - script.execute: control_leds
+  on_tts_stream_end:
+    - if:
+        condition:
+          lambda: |-
+            return id(thunderstorm_pending);
+        then:
+          - lambda: |-
+              id(thunderstorm_pending) = false;
+          - media_player.play_media:
+              id: ${devicename}_media
+              media_url: "http://192.168.2.2:8123/local/thunder.mp3"
   on_end:
     - lambda: id(voice_assistant_phase) = ${voice_assist_idle_phase_id};
     - script.execute: control_leds
