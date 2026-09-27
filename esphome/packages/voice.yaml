@@ -12,9 +12,9 @@ globals:
 
 switch:
   - platform: template
-    name: ${devicename}_thunderstorm_playback
     id: thunderstorm_playback
     optimistic: true
+    internal: true
     restore_mode: ALWAYS_OFF
     on_turn_on:
       - script.execute: play_thunderstorm
