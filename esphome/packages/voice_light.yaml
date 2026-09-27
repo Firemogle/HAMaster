@@ -85,24 +85,26 @@ light:
           lambda: |-
             const auto &timer = id(first_active_timer);
             const uint32_t total_seconds = max(timer.total_seconds, static_cast<uint32_t>(1));
-            const float remaining_leds =
-                static_cast<float>(it.size()) *
+            const float progress = 1.0f - (
                 static_cast<float>(timer.seconds_left) /
-                static_cast<float>(total_seconds);
+                static_cast<float>(total_seconds)
+            );
 
-            // Countdown runs from the last LED toward the first.
-            // Each LED fades from red to white during its one-twelfth
-            // portion of the timer.
-            for (int i = 0; i < it.size(); i++) {
-              const float position = static_cast<float>(it.size() - 1 - i);
-              const float white_progress = min(
-                  max(position - remaining_leds + 1.0f, 0.0f),
+            const int led_count = it.size();
+            const float clamped_progress = clamp(progress, 0.0f, 1.0f);
+
+            // Fill the ring from the last LED toward the first LED.
+            // Each LED spends one portion of the timer fading from red to white.
+            for (int i = 0; i < led_count; i++) {
+              const int led_index = led_count - 1 - i;
+              const float led_progress = clamp(
+                  clamped_progress * led_count - i,
+                  0.0f,
                   1.0f
               );
 
-              const uint8_t green_blue =
-                  static_cast<uint8_t>(255.0f * white_progress);
-              it[i] = Color(255, green_blue, green_blue);
+              const uint8_t green_blue = static_cast<uint8_t>(255.0f * led_progress);
+              it[led_index] = Color(255, green_blue, green_blue);
             }
       - addressable_color_wipe:
           name: timer_ring
