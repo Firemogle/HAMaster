@@ -122,6 +122,8 @@ micro_wake_word:
                 media_player.stop:
                   announcement: true
               else:
+                - lambda: id(voice_assistant_phase) = ${voice_assist_waiting_for_command_phase_id};
+                - script.execute: control_leds
                 - voice_assistant.start:
                     wake_word: !lambda return wake_word;
     # Refresh the LED state after the wake word is detected.
