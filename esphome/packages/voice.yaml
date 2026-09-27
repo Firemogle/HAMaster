@@ -124,10 +124,5 @@ micro_wake_word:
               else:
                 - voice_assistant.start:
                     wake_word: !lambda return wake_word;
-    # Start the listening animation immediately on wake word detection.
-    # The explicit effect prevents this command from falling back to solid white.
-    - light.turn_on:
-        id: ${devicename}_status
-        brightness: 50%
-        effect: "voice_listen"
-        transition_length: 0s
+    # Refresh the LED state after the wake word is detected.
+    - script.execute: control_leds
