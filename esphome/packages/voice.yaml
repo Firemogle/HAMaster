@@ -4,11 +4,21 @@ packages:
     vars:
       devicename: ${devicename}
 
-globals:
-  - id: thunderstorm_pending
-    type: bool
-    restore_value: false
-    initial_value: 'false'
+switch:
+  - platform: template
+    id: thunderstorm_playback
+    optimistic: true
+    internal: true
+    restore_mode: ALWAYS_OFF
+    on_turn_on:
+      - delay: 3s
+      - media_player.stop:
+          id: ${devicename}_media
+      - media_player.play_media:
+          id: ${devicename}_media
+          media_url: "http://192.168.2.2:8123/local/thunder.mp3"
+      - delay: 1s
+      - switch.turn_off: thunderstorm_playback
 
 voice_assistant:
   id: va
@@ -41,8 +51,7 @@ voice_assistant:
           lambda: |-
             return esphome::str_equals_case_insensitive(x, "play thunderstorm sounds");
         then:
-          - lambda: |-
-              id(thunderstorm_pending) = true;
+          - switch.turn_on: thunderstorm_playback
   on_stt_vad_end:
     - lambda: id(voice_assistant_phase) = ${voice_assist_thinking_phase_id};
     - script.execute: control_leds
@@ -52,27 +61,6 @@ voice_assistant:
   on_end:
     - lambda: id(voice_assistant_phase) = ${voice_assist_idle_phase_id};
     - script.execute: control_leds
-    - if:
-        condition:
-          lambda: |-
-            return id(thunderstorm_pending);
-        then:
-          # on_end occurs before the media-player TTS announcement starts.
-          # Wait briefly for that announcement, then wait for it to finish.
-          - wait_until:
-              condition:
-                media_player.is_announcing: ${devicename}_media
-              timeout: 1s
-          - wait_until:
-              condition:
-                not:
-                  media_player.is_announcing: ${devicename}_media
-              timeout: 5min
-          - lambda: |-
-              id(thunderstorm_pending) = false;
-          - media_player.play_media:
-              id: ${devicename}_media
-              media_url: "http://192.168.2.2:8123/local/thunder.mp3"
     - wait_until:
         not:
           voice_assistant.is_running
