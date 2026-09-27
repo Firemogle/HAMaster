@@ -112,6 +112,8 @@ script:
             #
           } else if (id(voice_assistant_phase) == ${voice_assist_not_ready_phase_id}) {
             #
+          } else if (id(timer_ringing)) {
+            id(control_leds_timer_ringing).execute();
           } else if (id(is_timer_active)) {
             id(control_leds_timer_ticking).execute();
           } else if (id(voice_assistant_phase) == ${voice_assist_idle_phase_id}) {
@@ -211,9 +213,12 @@ script:
   - id: control_leds_timer_ringing
     then:
       - light.turn_on:
-          brightness: !lambda return min ( max( id(${devicename}_status).current_values.get_brightness() , 0.2f ) + 0.1f , 1.0f );
+          brightness: !lambda return max( id(${devicename}_status).current_values.get_brightness() , 0.2f );
+          red: 100%
+          green: 100%
+          blue: 100%
           id: ${devicename}_status
-          effect: timer_ring
+          effect: "None"
 
   # Script executed when the timer is ticking, to control the LEDs
   # The LEDs shows the remaining time as a fraction of the full ring.
