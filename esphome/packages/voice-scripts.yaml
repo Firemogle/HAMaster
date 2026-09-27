@@ -94,13 +94,29 @@ script:
   - id: control_leds
     then:
       - lambda: |
-          // Keep timer bookkeeping separate from the voice LED state machine.
-          // The timer callbacks update these globals asynchronously; the voice
-          // animation selection itself does not depend on get_timers().
-          id(check_if_timers_active).execute();
-          if (id(is_timer_active)) {
-            id(fetch_first_active_timer).execute();
+          // Update timer state synchronously before selecting the LED state.
+          // Do not call scripts here: script.execute is asynchronous and would
+          // leave is_timer_active one state behind.
+          const auto &timers = id(va).get_timers();
+          bool timer_active = false;
+
+          if (!timers.empty()) {
+            auto output_timer = *timers.begin();
+            for (const auto &timer : timers) {
+              if (timer.is_active &&
+                  (!output_timer.is_active ||
+                   timer.seconds_left <= output_timer.seconds_left)) {
+                output_timer = timer;
+              }
+            }
+
+            if (output_timer.is_active) {
+              id(first_active_timer) = output_timer;
+              timer_active = true;
+            }
           }
+
+          id(is_timer_active) = timer_active;
 
           if (id(init_in_progress)) {
             id(control_leds_init_state).execute();
