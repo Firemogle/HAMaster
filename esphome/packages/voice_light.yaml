@@ -81,7 +81,7 @@ light:
           reverse: true
       - addressable_lambda:
           name: timer_tick
-          update_interval: 100ms
+          update_interval: 1s
           lambda: |-
             const auto &timer = id(first_active_timer);
             const uint32_t total_seconds = max(timer.total_seconds, static_cast<uint32_t>(1));
