@@ -124,7 +124,6 @@ micro_wake_word:
               else:
                 - voice_assistant.start:
                     wake_word: !lambda return wake_word;
-    - light.turn_on:
-        id: ${devicename}_status
-        brightness: 50%
-        transition_length: 0s
+    # The voice assistant phase callbacks control the LED effect.
+    # Do not issue a second light.turn_on here, because it would clear the
+    # active voice animation and leave the ring in its default solid color.
