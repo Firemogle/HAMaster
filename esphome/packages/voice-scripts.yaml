@@ -188,15 +188,3 @@ script:
               ->play_file(sound_file, true, false);
           }
 
-  # Script used to check if a timer is active (Stored in global is_timer_active)
-  - id: check_if_timers_active
-    then:
-      - lambda: |
-          const auto &timers = id(va).get_timers();
-          bool output = false;
-          for (const auto &timer : timers) {
-            if (timer.is_active) {
-              output = true;
-            }
-          }
-          id(is_timer_active) = output;
