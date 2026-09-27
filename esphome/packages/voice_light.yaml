@@ -83,33 +83,14 @@ light:
           name: timer_tick
           update_interval: 100ms
           lambda: |-
-            // Read the timer directly from the voice assistant on every frame.
-            // This avoids relying on a separately updated global timer copy.
-            const auto &timers = id(va).get_timers();
-            const int led_count = it.size();
-            bool found_timer = false;
-            uint32_t seconds_left = 0;
-            uint32_t total_seconds = 1;
-
-            for (const auto &timer : timers) {
-              if (timer.is_active && (!found_timer || timer.seconds_left < seconds_left)) {
-                found_timer = true;
-                seconds_left = timer.seconds_left;
-                total_seconds = max(timer.total_seconds, static_cast<uint32_t>(1));
-              }
-            }
-
-            if (!found_timer) {
-              for (int i = 0; i < led_count; i++) {
-                it[i] = Color(0, 0, 0);
-              }
-              return;
-            }
-
+            const auto &timer = id(first_active_timer);
+            const uint32_t total_seconds = max(timer.total_seconds, static_cast<uint32_t>(1));
             const float progress = 1.0f - (
-                static_cast<float>(seconds_left) /
+                static_cast<float>(timer.seconds_left) /
                 static_cast<float>(total_seconds)
             );
+
+            const int led_count = it.size();
             const float clamped_progress = min(max(progress, 0.0f), 1.0f);
 
             // Fill the ring from the last LED toward the first LED.
