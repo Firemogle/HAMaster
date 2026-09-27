@@ -113,7 +113,12 @@ script:
 
           id(is_timer_active) = output;
 
-          if (id(init_in_progress)) {
+          // Timer state takes priority over voice-assistant animation.
+          if (id(timer_ringing)) {
+            id(control_leds_timer_ringing).execute();
+          } else if (id(is_timer_active)) {
+            id(control_leds_timer_ticking).execute();
+          } else if (id(init_in_progress)) {
             id(control_leds_init_state).execute();
           } else if (id(voice_assistant_phase) == ${voice_assist_waiting_for_command_phase_id}) {
             id(control_leds_voice_assistant_waiting_for_command_phase).execute();
@@ -122,17 +127,13 @@ script:
           } else if (id(voice_assistant_phase) == ${voice_assist_thinking_phase_id}) {
             id(control_leds_voice_assistant_replying_phase).execute();
           } else if (id(voice_assistant_phase) == ${voice_assist_replying_phase_id}) {
-            # 
+            #
           } else if (id(voice_assistant_phase) == ${voice_assist_error_phase_id}) {
-            # 
+            #
           } else if (id(voice_assistant_phase) == ${voice_assist_not_ready_phase_id}) {
-            # 
-          } else if (id(timer_ringing)) {
-            id(control_leds_timer_ringing).execute();
-          } else if (id(is_timer_active)) {
-            id(control_leds_timer_ticking).execute();
+            #
           } else if (id(voice_assistant_phase) == ${voice_assist_idle_phase_id}) {
-            # 
+            #
           }
 
   - id: control_leds_init_state
