@@ -71,7 +71,7 @@ voice_assistant:
     - lambda: id(voice_assistant_phase) = ${voice_assist_replying_phase_id};
     - script.execute: control_leds
   on_end:
-    - lambda: id(voice_assistant_phase) = ${voice_assistant_idle_phase_id};
+    - lambda: id(voice_assistant_phase) = ${voice_assist_idle_phase_id};
     - script.execute: control_leds
     - wait_until:
         not:
@@ -82,7 +82,7 @@ voice_assistant:
         then:
           - wait_until:
               not:
-                media_player.is_announcing
+                media_player.is_announcing:
           - lambda: id(thunderstorm_pending) = false;
           - script.execute: play_thunderstorm
     - micro_wake_word.start:
