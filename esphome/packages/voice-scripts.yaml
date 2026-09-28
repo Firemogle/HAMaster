@@ -95,6 +95,7 @@ binary_sensor:
 sensor:
   - platform: template
     name: ${devicename}_timer_start_seconds
+    id: ${devicename}_timer_start_seconds
     unit_of_measurement: s
     accuracy_decimals: 0
     update_interval: 1s
@@ -103,6 +104,7 @@ sensor:
 
   - platform: template
     name: ${devicename}_timer_seconds_left
+    id: ${devicename}_timer_seconds_left
     unit_of_measurement: s
     accuracy_decimals: 0
     update_interval: 1s
@@ -117,6 +119,7 @@ sensor:
 
   - platform: template
     name: ${devicename}_timer_fraction_remaining
+    id: ${devicename}_timer_fraction_remaining
     unit_of_measurement: "%"
     accuracy_decimals: 1
     update_interval: 1s
