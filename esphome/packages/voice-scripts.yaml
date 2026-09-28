@@ -44,6 +44,11 @@ globals:
   - id: is_timer_active
     type: bool
     restore_value: false
+  # Global variable storing the initial duration of the active timer, in seconds
+  - id: timer_start_seconds
+    type: int
+    restore_value: false
+    initial_value: '0'
 
 switch:
   # Internal switch to track when a timer is ringing on the device.
