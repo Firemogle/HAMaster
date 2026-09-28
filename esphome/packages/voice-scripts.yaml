@@ -92,6 +92,47 @@ binary_sensor:
     condition:
       switch.is_on: timer_ringing
 
+sensor:
+  - platform: template
+    name: ${devicename}_timer_start_seconds
+    unit_of_measurement: s
+    accuracy_decimals: 0
+    update_interval: 1s
+    lambda: |-
+      return id(timer_start_seconds);
+
+  - platform: template
+    name: ${devicename}_timer_seconds_left
+    unit_of_measurement: s
+    accuracy_decimals: 0
+    update_interval: 1s
+    lambda: |-
+      const auto &timers = id(va).get_timers();
+      for (const auto &timer : timers) {
+        if (timer.is_active) {
+          return timer.seconds_left;
+        }
+      }
+      return 0;
+
+  - platform: template
+    name: ${devicename}_timer_fraction_remaining
+    unit_of_measurement: "%"
+    accuracy_decimals: 1
+    update_interval: 1s
+    lambda: |-
+      if (id(timer_start_seconds) <= 0) {
+        return 0.0f;
+      }
+      const auto &timers = id(va).get_timers();
+      for (const auto &timer : timers) {
+        if (timer.is_active) {
+          return (static_cast<float>(timer.seconds_left) /
+                  static_cast<float>(id(timer_start_seconds))) * 100.0f;
+        }
+      }
+      return 0.0f;
+
 script:
   # Master script controlling the LEDs, based on different conditions : initialization in progress, wifi and api connected and voice assistant phase.
   # For the sake of simplicity and re-usability, the script calls child scripts defined below.
