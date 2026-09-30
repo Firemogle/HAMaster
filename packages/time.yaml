@@ -273,6 +273,11 @@ automation:
                   entity_id: cover.main_bath_main_bath_shade
                 data:
                   position: 100
+              - service: cover.set_cover_position
+                target:
+                  entity_id: cover.emi_room_blind
+                data:
+                  position: 100
 
           # 8:30 AM on non-workdays - open shade
           - conditions:
@@ -295,6 +300,11 @@ automation:
               - service: cover.set_cover_position
                 target:
                   entity_id: cover.main_bath_main_bath_shade
+                data:
+                  position: 100
+              - service: cover.set_cover_position
+                target:
+                  entity_id: cover.emi_room_blind
                 data:
                   position: 100
           - conditions:
