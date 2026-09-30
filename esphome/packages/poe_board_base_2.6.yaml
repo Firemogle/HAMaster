@@ -33,12 +33,10 @@ i2c:
   - id: i2c_channel
     sda: GPIO05
     scl: GPIO04
-    frequency: 100kHz
     scan: true
   - id: audio_i2c
     sda: GPIO08
     scl: GPIO18
-    frequency: 100kHz
     scan: true
 
 button:
