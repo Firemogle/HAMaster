@@ -6,7 +6,6 @@ i2s_audio:
       number: GPIO17
     i2s_mclk_pin:
       number: GPIO02
-    use_apll: true
   - id: audio_bus_out
     i2s_lrclk_pin:
       number: GPIO45
@@ -14,7 +13,6 @@ i2s_audio:
       number: GPIO47
     i2s_mclk_pin:
       number: GPIO48
-    use_apll: true
 
 audio_dac:
   - platform: aic3204
