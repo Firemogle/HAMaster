@@ -135,7 +135,6 @@ script:
               priority: 50
               state: "on"
               brightness: 255
-              effect: "Jayhawks"
 
           - continue_on_error: true
             action: layers.set
@@ -146,7 +145,6 @@ script:
               priority: 50
               state: "on"
               brightness: 255
-              effect: "Twinkle"
 
           - continue_on_error: true
             action: layers.set
@@ -160,7 +158,6 @@ script:
               priority: 50
               state: "on"
               brightness: 255
-              effect: "Blue Sparkle"
 
           - continue_on_error: true
             action: layers.set
@@ -175,7 +172,6 @@ script:
               priority: 50
               state: "on"
               brightness: 255
-              effect: "Rainbow"
 
           - continue_on_error: true
             action: layers.set
@@ -230,7 +226,6 @@ script:
               priority: 50
               state: "on"
               brightness: 255
-              effect: "Blue Sparkle"
 
           - continue_on_error: true
             action: layers.set
@@ -243,7 +238,6 @@ script:
               priority: 50
               state: "on"
               brightness: 255
-              effect: "Twinkle"
 
           - continue_on_error: true
             action: layers.set
@@ -256,7 +250,6 @@ script:
               priority: 50
               state: "on"
               brightness: 255
-              effect: "Rainbow"
 
           - continue_on_error: true
             action: layers.set
@@ -380,7 +373,6 @@ script:
               state: "on"
               brightness: 215
               rgb_color: [255, 255, 255]
-              effect: "Independence Day"
 
   halloween_light:
     mode: parallel
@@ -398,7 +390,6 @@ script:
               state: "on"
               brightness: 255
               rgb_color: [255, 165, 0]
-              effect: "Dithering Lights"
 
           - continue_on_error: true
             action: layers.set
@@ -416,7 +407,6 @@ script:
               state: "on"
               brightness: 255
               rgb_color: [128, 0, 128]
-              effect: "Dithering Lights"
 
           - continue_on_error: true
             action: layers.set
