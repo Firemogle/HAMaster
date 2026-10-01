@@ -47,7 +47,6 @@ automation:
                   state: "on"
                   brightness: 255
                   rgb_color: [255, 255, 255]
-                  effect: "Jayhawks"
 
               - action: layers.set
                 target:
@@ -92,7 +91,6 @@ automation:
                   state: "on"
                   brightness: 255
                   rgb_color: [255, 255, 255]
-                  effect: "Chiefs"
 
               - action: notify.group_notify
                 data:
