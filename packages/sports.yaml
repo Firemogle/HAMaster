@@ -46,7 +46,7 @@ automation:
                   priority: 90
                   state: "on"
                   brightness: 255
-                  color_name: white
+                  rgb_color: [255, 255, 255]
                   effect: "Jayhawks"
 
               - action: layers.set
@@ -91,7 +91,7 @@ automation:
                   priority: 80
                   state: "on"
                   brightness: 255
-                  color_name: white
+                  rgb_color: [255, 255, 255]
                   effect: "Chiefs"
 
               - action: notify.group_notify
