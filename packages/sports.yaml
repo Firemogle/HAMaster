@@ -1,108 +1,166 @@
 automation:
-  - id: sports_lighting
-    alias: Sports Lighting
+  - id: 'kansas_playing'
+    alias: kansas_playing
     trigger:
-      - platform: state
-        entity_id:
-          - sensor.kansas_basketball
-          - sensor.kansas_football
-          - sensor.kansas_volleyball
-        from:
-          - "PRE"
-          - "IN"
-        to:
-          - "IN"
-          - "POST"
-        id: jayhawks
-
-      - platform: state
-        entity_id: sensor.kansas_city_chiefs
-        from:
-          - "PRE"
-          - "IN"
-        to:
-          - "IN"
-          - "POST"
-        id: chiefs
-
+    - entity_id: sensor.kansas_basketball
+      platform: state
+      from:
+        - "PRE"
+        - "IN"
+      to:
+        - "IN"
+        - "POST"
+    - entity_id: sensor.kansas_football
+      platform: state
+      from:
+        - "PRE"
+        - "IN"
+      to:
+        - "IN"
+        - "POST"
+    - entity_id: sensor.kansas_volleyball
+      platform: state
+      from:
+        - "PRE"
+        - "IN"
+      to:
+        - "IN"
+        - "POST"
+    condition: []
     action:
-      - choose:
-          - conditions:
-              - condition: trigger
-                id: jayhawks
-              - condition: template
-                value_template: >
-                  {{ is_state('sensor.kansas_basketball', 'IN')
-                     or is_state('sensor.kansas_football', 'IN')
-                     or is_state('sensor.kansas_volleyball', 'IN') }}
-            sequence:
-              - action: layers.set
-                target:
-                  entity_id:
-                    - light.uhall_ban_hall_ban
-                    - light.cabinet_top
-                data:
-                  layer: jayhawks
-                  priority: 90
-                  state: "on"
-                  brightness: 255
-                  rgb_color: [255, 255, 255]
+      - if:
+          - condition: template
+            value_template: "{{ trigger.to_state.state == 'IN' }}"
+        then:
+          - service: script.save_hall_light_state
+          - service: light.turn_on
+            data:
+              brightness: 255
+              entity_id: light.uhall_ban_hall_ban
+              color_name: white
+              effect: "Jayhawks"
+          - service: light.turn_on
+            data:
+              brightness: 255
+              entity_id: light.cabinet_top
+              color_name: white
+              effect: "Jayhawks"
+          - service: light.turn_on
+            data:
+              entity_id: light.jayhawk_candle
+          - data_template:
+              message: "Jayhawks be playing."
+            service: notify.group_notify
+        else:
+          - service: script.restore_hall_light_state
+          - service: light.turn_off
+            data:
+              entity_id: light.jayhawk_candle
+    mode: queued
+  - id: 'chiefs_playing'
+    alias: chiefs_playing
+    trigger:
+    - entity_id: sensor.kansas_city_chiefs
+      platform: state
+      from:
+        - "PRE"
+        - "IN"
+      to:
+        - "IN"
+        - "POST"
+    condition: []
+    action:
+      - if:
+          - condition: template
+            value_template: "{{ trigger.to_state.state == 'IN' }}"
+        then:
+          - service: script.save_hall_light_state
+          - service: light.turn_on
+            data:
+              brightness: 255
+              entity_id: light.uhall_ban_hall_ban
+              color_name: white
+              effect: "Chiefs"
+          - service: light.turn_on
+            data:
+              brightness: 255
+              entity_id: light.cabinet_top
+              color_name: white
+              effect: "Chiefs"
+          - data_template:
+              message: "Chiefs be playing."
+            service: notify.group_notify
+        else:
+          - service: script.restore_hall_light_state
+    mode: queued
 
-              - action: layers.set
-                target:
-                  entity_id: light.jayhawk_candle
-                data:
-                  layer: jayhawks
-                  priority: 90
-                  state: "on"
 
-              - action: notify.group_notify
-                data:
-                  message: "Jayhawks be playing."
+input_number:
+  saved_light_brightness:
+    name: Saved Light Brightness
+    min: 0
+    max: 255
+    step: 1
 
-          - conditions:
-              - condition: trigger
-                id: jayhawks
-              - condition: template
-                value_template: >
-                  {{ not is_state('sensor.kansas_basketball', 'IN')
-                     and not is_state('sensor.kansas_football', 'IN')
-                     and not is_state('sensor.kansas_volleyball', 'IN') }}
-            sequence:
-              - action: layers.clear
-                data:
-                  layer: jayhawks
+input_text:
+  saved_light_effect:
+    name: Saved Light Effect
 
-          - conditions:
-              - condition: trigger
-                id: chiefs
-              - condition: state
-                entity_id: sensor.kansas_city_chiefs
-                state: "IN"
-            sequence:
-              - action: layers.set
-                target:
-                  entity_id:
-                    - light.uhall_ban_hall_ban
-                    - light.cabinet_top
-                data:
-                  layer: chiefs
-                  priority: 80
-                  state: "on"
-                  brightness: 255
-                  rgb_color: [255, 255, 255]
+  saved_light_color:
+    name: Saved Light Color
 
-              - action: notify.group_notify
-                data:
-                  message: "Chiefs be playing."
+script:
+  save_hall_light_state:
+    alias: Save Hall Light State (Debug)
+    mode: single
+    sequence:
+      - variables:
+          light_entity: light.uhall_ban_hall_ban
+          brightness: "{{ state_attr(light_entity, 'brightness') | int(0) }}"
+          effect: "{{ state_attr(light_entity, 'effect') | default('None', true) | string }}"
+          color: "{{ state_attr(light_entity, 'rgb_color') | to_json | default('[255,255,255]', true) | string }}"
 
-          - conditions:
-              - condition: trigger
-                id: chiefs
-              - condition: state
-                entity_id: sensor.kansas_city_chiefs
-                state: "POST"
-            sequence:
-              - action: layers.clear
-                data:
-                  layer: chiefs
+      - service: system_log.write
+        data:
+          level: info
+          message: >
+            [Save Light Debug] brightness={{ brightness }} | effect={{ effect }} | color={{ color }}
+
+      - service: input_number.set_value
+        target:
+          entity_id: input_number.saved_light_brightness
+        data:
+          value: "{{ brightness }}"
+
+      - service: input_text.set_value
+        target:
+          entity_id: input_text.saved_light_effect
+        data:
+          value: >
+            "{{ state_attr('light.uhall_ban_hall_ban', 'effect') | default('None', true) | string }}"
+
+      - service: input_text.set_value
+        target:
+          entity_id: input_text.saved_light_color
+        data:
+          value: "{{ color }}"
+
+            
+  restore_hall_light_state:
+    alias: Restore Hall Light State
+    mode: single
+    sequence:
+      - variables:
+          brightness: "{{ states('input_number.saved_light_brightness') | int(0) }}"
+          effect: "{{ states('input_text.saved_light_effect') |  regex_replace(find='[^a-zA-Z0-9\\s]', replace='') | lower}}"
+          rgb_color: "{{ states('input_text.saved_light_color') | from_json }}"
+      - service: light.turn_on
+        target:
+          entity_id:
+            - light.uhall_ban_hall_ban
+            - light.cabinet_top
+        data:
+          brightness: "{{ brightness }}"
+          effect:  >-
+            {{ states('input_text.saved_light_effect') | regex_replace(find='[^a-zA-Z0-9\s]', replace='') | lower}}
+          rgb_color:  "{{ rgb_color }}"
