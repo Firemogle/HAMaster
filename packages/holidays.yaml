@@ -188,7 +188,7 @@ script:
               priority: 50
               state: "on"
               brightness: 255
-              color_name: red
+              rgb_color: [255, 0, 0]
 
           - continue_on_error: true
             action: layers.set
@@ -199,7 +199,7 @@ script:
               priority: 50
               state: "on"
               brightness: 255
-              color_name: red
+              rgb_color: [255, 0, 0]
 
           - continue_on_error: true
             action: layers.set
@@ -210,7 +210,7 @@ script:
               priority: 50
               state: "on"
               brightness: 255
-              color_name: blue
+              rgb_color: [0, 0, 255]
 
           - continue_on_error: true
             service: script.turn_on
@@ -274,38 +274,38 @@ script:
           - continue_on_error: true
             service: light.turn_on
             data:
-              color_name: white
+              rgb_color: [255, 255, 255]
             target:
               entity_id: light.front_light1_level_light_color_on_off
           - continue_on_error: true
             service: light.turn_on
             data:
-              color_name: white
+              rgb_color: [255, 255, 255]
             target:
               entity_id: light.front_light2_level_light_color_on_off
           - continue_on_error: true
             service: light.turn_on
             data:
-              color_name: white
+              rgb_color: [255, 255, 255]
             target:
               entity_id: light.front_light3_level_light_color_on_off
           - continue_on_error: true
             service: light.turn_on
             data:
-              color_name: white
+              rgb_color: [255, 255, 255]
             target:
               entity_id: light.front_garden_level_light_color_on_off
           - continue_on_error: true
             service: light.turn_on
             data:
-              color_name: white
+              rgb_color: [255, 255, 255]
             target:
               entity_id: light.porch_light
           - continue_on_error: true
             service: light.turn_on
             data:
               brightness: 215
-              color_name: white
+              rgb_color: [255, 255, 255]
             target:
               entity_id: light.rainbrarrel_decklight
           - continue_on_error: true
@@ -325,7 +325,7 @@ script:
               layer: independence_day
               priority: 50
               state: "on"
-              color_name: blue
+              rgb_color: [0, 0, 255]
 
           - continue_on_error: true
             action: layers.set
@@ -335,7 +335,7 @@ script:
               layer: independence_day
               priority: 50
               state: "on"
-              color_name: white
+              rgb_color: [255, 255, 255]
 
           - continue_on_error: true
             action: layers.set
@@ -345,7 +345,7 @@ script:
               layer: independence_day
               priority: 50
               state: "on"
-              color_name: red
+              rgb_color: [255, 0, 0]
 
           - continue_on_error: true
             action: layers.set
@@ -355,7 +355,7 @@ script:
               layer: independence_day
               priority: 50
               state: "on"
-              color_name: blue
+              rgb_color: [0, 0, 255]
 
           - continue_on_error: true
             action: layers.set
@@ -365,7 +365,7 @@ script:
               layer: independence_day
               priority: 50
               state: "on"
-              color_name: red
+              rgb_color: [255, 0, 0]
 
           - continue_on_error: true
             action: layers.set
@@ -379,7 +379,7 @@ script:
               priority: 50
               state: "on"
               brightness: 215
-              color_name: white
+              rgb_color: [255, 255, 255]
               effect: "Independence Day"
 
   halloween_light:
@@ -397,7 +397,7 @@ script:
               priority: 50
               state: "on"
               brightness: 255
-              color_name: orange
+              rgb_color: [255, 165, 0]
               effect: "Dithering Lights"
 
           - continue_on_error: true
@@ -415,7 +415,7 @@ script:
               priority: 50
               state: "on"
               brightness: 255
-              color_name: purple
+              rgb_color: [128, 0, 128]
               effect: "Dithering Lights"
 
           - continue_on_error: true
@@ -430,7 +430,7 @@ script:
               priority: 50
               state: "on"
               brightness: 255
-              color_name: purple
+              rgb_color: [128, 0, 128]
 
           - continue_on_error: true
             action: layers.set
@@ -440,7 +440,7 @@ script:
               layer: halloween
               priority: 50
               state: "on"
-              color_name: orange
+              rgb_color: [255, 165, 0]
 
           - continue_on_error: true
             action: layers.set
@@ -450,7 +450,7 @@ script:
               layer: halloween
               priority: 50
               state: "on"
-              color_name: white
+              rgb_color: [255, 255, 255]
 
           - continue_on_error: true
             action: layers.set
@@ -460,4 +460,4 @@ script:
               layer: halloween
               priority: 50
               state: "on"
-              color_name: green
+              rgb_color: [0, 128, 0]
