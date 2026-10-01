@@ -61,7 +61,7 @@ voice_assistant:
     - if:
         condition:
           lambda: |-
-            return esphome::str_equals_case_insensitive(x, "play thunderstorm sounds");
+            return esphome::str_equals_case_insensitive(x, "thunderstorm sounds");
         then:
           - lambda: id(thunderstorm_pending) = true;
   on_stt_vad_end:
