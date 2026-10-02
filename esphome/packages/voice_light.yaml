@@ -19,3 +19,7 @@ light:
     id: ${name}
     use_dma: false
     rmt_symbols: 96
+    effects: !include
+      file: voice_light_effects.yaml
+      vars:
+        devicename: ${name}
