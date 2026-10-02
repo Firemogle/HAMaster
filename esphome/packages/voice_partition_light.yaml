@@ -12,3 +12,7 @@ light:
       - id: ${parent}
         from: ${start}
         to: ${end}
+    effects: !include
+      file: voice_light_effects.yaml
+      vars:
+        devicename: ${name}
