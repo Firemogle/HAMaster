@@ -17,7 +17,7 @@ i2s_audio:
 audio_dac:
   - platform: aic3204
     id: aic3204_dac
-    i2c_id: i2c_channel
+    i2c_id: audio_i2c
 
 audio_adc:
   - platform: es7210
