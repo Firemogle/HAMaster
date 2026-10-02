@@ -1,6 +1,3 @@
-light:
-  id: !extend ${name}
-  effects:
     - addressable_color_wipe:
         name: voice_listen
         colors:
