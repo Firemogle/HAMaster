@@ -3,10 +3,6 @@ packages:
     file: light_effects.yaml
     vars:
       devicename: ${name}
-  voice_light_effects: !include
-    file: voice_light_effects.yaml
-    vars:
-      devicename: ${name}
 
 light:
   - platform: esp32_rmt_led_strip
