@@ -1,8 +1,4 @@
 packages:
-  light_effects: !include 
-    file: light_effects.yaml
-    vars:
-      devicename: ${name}
   voice_light_effects: !include
     file: voice_light_effects.yaml
     vars:
