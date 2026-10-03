@@ -12,7 +12,8 @@ script:
           - continue_on_error: true
             service: light.turn_on
             data:
-              brightness_pct: 60
+              brightness_pct: >
+                {{ 100 if (state_attr('light.cabinet_top', 'effect') | default('none', true) | string | lower) != 'none' else 60 }}
             target:
               entity_id:
                 - light.kitchen_sink
@@ -46,7 +47,8 @@ script:
           - continue_on_error: true
             service: light.turn_on
             data:
-              brightness_pct: 25
+              brightness_pct: >
+                {{ 100 if (state_attr('light.uhall_ban_hall_ban', 'effect') | default('none', true) | string | lower) != 'none' else 25 }}
             target:
               entity_id:
                 - light.uhall_ban_hall_ban
