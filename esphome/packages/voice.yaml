@@ -4,34 +4,6 @@ packages:
     vars:
       devicename: ${devicename}
 
-globals:
-  - id: thunderstorm_pending
-    type: bool
-    restore_value: no
-    initial_value: 'false'
-
-switch:
-  - platform: template
-    id: thunderstorm_playback
-    optimistic: true
-    internal: true
-    restore_mode: ALWAYS_OFF
-    on_turn_on:
-      - script.execute: play_thunderstorm
-      - switch.turn_off: thunderstorm_playback
-
-script:
-  - id: play_thunderstorm
-    mode: restart
-    then:
-      - delay: 3s
-      - media_player.stop:
-          id: ${devicename}_media
-      - delay: 250ms
-      - media_player.play_media:
-          id: ${devicename}_media
-          media_url: "http://192.168.2.2:8123/local/thunder.mp3"
-
 voice_assistant:
   id: va
   microphone: external_mic
@@ -57,13 +29,6 @@ voice_assistant:
   on_listening:
     - lambda: id(voice_assistant_phase) = ${voice_assist_waiting_for_command_phase_id};
     - script.execute: control_leds
-  on_stt_end:
-    - if:
-        condition:
-          lambda: |-
-            return esphome::str_equals_case_insensitive(x, "thunderstorm sounds");
-        then:
-          - lambda: id(thunderstorm_pending) = true;
   on_stt_vad_end:
     - lambda: id(voice_assistant_phase) = ${voice_assist_thinking_phase_id};
     - script.execute: control_leds
@@ -76,15 +41,6 @@ voice_assistant:
     - wait_until:
         not:
           voice_assistant.is_running
-    - if:
-        condition:
-          lambda: return id(thunderstorm_pending);
-        then:
-          - wait_until:
-              not:
-                media_player.is_announcing:
-          - lambda: id(thunderstorm_pending) = false;
-          - script.execute: play_thunderstorm
     - micro_wake_word.start:
     - light.turn_off:
         id: ${devicename}_status
