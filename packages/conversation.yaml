@@ -180,7 +180,12 @@ automation:
     triggers:
       - trigger: assist_satellite.idle
         target:
-          entity_id: all
+          area_id:
+            - 36a7e54132e84284a4368f292e945bb0
+            - 63db88fe052b434c86e1d37781ce0972
+            - 259e54ef72a347c2b9fa159e5bcd32b7
+        options:
+          behavior: each
     conditions:
       - condition: template
         value_template: >-
