@@ -4,6 +4,10 @@ homeassistant:
 input_text:
   announce_textbox:
     name: announce_textbox
+  thunderstorm_pending_satellites:
+    name: thunderstorm_pending_satellites
+    max: 255
+    initial: ""
 
 automation:
   - alias: calendar_announce
@@ -144,3 +148,58 @@ automation:
                         transition: 3
 
                     - delay: "00:00:03"
+
+
+  - id: thunderstorm_sounds
+    alias: Thunderstorm Sounds
+    mode: queued
+    max: 10
+    triggers:
+      - trigger: conversation
+        command:
+          - "play thunderstorm sounds"
+          - "play the thunderstorm sounds"
+    conditions:
+      - condition: template
+        value_template: "{{ trigger.satellite_id is not none }}"
+    actions:
+      - action: input_text.set_value
+        target:
+          entity_id: input_text.thunderstorm_pending_satellites
+        data:
+          value: >-
+            {% set pending = states('input_text.thunderstorm_pending_satellites') %}
+            {% set satellites = pending.split(',') if pending else [] %}
+            {{ (satellites + [trigger.satellite_id]) | reject('equalto', '') | unique | join(',') }}
+      - set_conversation_response: "Done"
+
+  - id: thunderstorm_sounds_playback
+    alias: Thunderstorm Sounds Playback
+    mode: parallel
+    max: 10
+    triggers:
+      - trigger: assist_satellite.idle
+        target:
+          entity_id: all
+    conditions:
+      - condition: template
+        value_template: >-
+          {{ trigger.entity_id in
+             states('input_text.thunderstorm_pending_satellites').split(',') }}
+    actions:
+      - action: media_player.play_media
+        target:
+          device_id: "{{ device_id(trigger.entity_id) }}"
+        data:
+          media_content_id: "http://192.168.2.2:8123/local/thunder.mp3"
+          media_content_type: music
+          announce: false
+      - action: input_text.set_value
+        target:
+          entity_id: input_text.thunderstorm_pending_satellites
+        data:
+          value: >-
+            {{ states('input_text.thunderstorm_pending_satellites').split(',')
+               | reject('equalto', trigger.entity_id)
+               | reject('equalto', '')
+               | join(',') }}
