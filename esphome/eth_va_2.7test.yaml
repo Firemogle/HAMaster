@@ -10,14 +10,3 @@ packages:
     file: packages/va_board_2.1.yaml
     vars:
       devicename: ${devicename}
-
-sensor:
-  - platform: bmp280_i2c
-    temperature:
-      name: ${devicename}_external_temperature
-      oversampling: 16x
-    pressure:
-      name: ${devicename}_external_pressure
-    address: 0x76
-    i2c_id: i2c_channel
-    update_interval: 60s
