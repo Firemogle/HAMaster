@@ -11,6 +11,8 @@ i2s_audio:
       number: GPIO45
     i2s_bclk_pin:
       number: GPIO47
+    i2s_mclk_pin:
+      number: GPIO48
 
 audio_dac:
   - platform: aic3204
@@ -36,7 +38,6 @@ speaker:
     bits_per_sample: 32bit
     mclk_multiple: 512
     use_apll: true
-    i2s_mode: secondary
     channel: stereo
     audio_dac: aic3204_dac
     timeout: 10s
