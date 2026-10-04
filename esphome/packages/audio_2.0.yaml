@@ -39,8 +39,6 @@ button:
               ESP_LOGE("aic3204_diag", "Failed to select page 1");
             }
 
-            // Leave the codec on page 0, matching the normal ESPHome AIC3204
-            // driver's steady-state configuration.
             if (!id(aic3204_diag).write_byte(0x00, 0x00)) {
               ESP_LOGE("aic3204_diag", "Failed to restore page 0");
             }
@@ -84,7 +82,7 @@ speaker:
     i2s_dout_pin: GPIO01
     dac_type: external
     sample_rate: 48000
-    bits_per_sample: 16bit
+    bits_per_sample: 32bit
     mclk_multiple: 512
     use_apll: true
     channel: stereo
