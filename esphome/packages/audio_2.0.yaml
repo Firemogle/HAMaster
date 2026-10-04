@@ -1,3 +1,59 @@
+i2c_device:
+  - id: aic3204_diag
+    address: 0x18
+    i2c_id: audio_i2c
+
+button:
+  - platform: template
+    name: ${devicename}_aic3204_diagnostic
+    id: ${devicename}_aic3204_diagnostic
+    entity_category: diagnostic
+    on_press:
+      then:
+        - lambda: |-
+            uint8_t value;
+
+            ESP_LOGI("aic3204_diag", "=== AIC3204 PAGE 0 ===");
+            if (id(aic3204_diag).write_byte(0x00, 0x00)) {
+              const uint8_t page0_regs[] = {
+                0x04, 0x05, 0x06, 0x0B, 0x0C, 0x0E,
+                0x1B, 0x1F, 0x20, 0x38, 0x3C, 0x3F,
+                0x40, 0x41, 0x42
+              };
+              for (uint8_t reg : page0_regs) {
+                if (id(aic3204_diag).read_byte(reg, &value)) {
+                  ESP_LOGI("aic3204_diag", "P0 0x%02X = 0x%02X", reg, value);
+                } else {
+                  ESP_LOGE("aic3204_diag", "P0 0x%02X READ FAILED", reg);
+                }
+              }
+            } else {
+              ESP_LOGE("aic3204_diag", "Failed to select page 0");
+            }
+
+            ESP_LOGI("aic3204_diag", "=== AIC3204 PAGE 1 ===");
+            if (id(aic3204_diag).write_byte(0x00, 0x01)) {
+              const uint8_t page1_regs[] = {
+                0x01, 0x02, 0x03, 0x04, 0x09, 0x0A,
+                0x0C, 0x0D, 0x0E, 0x0F, 0x10, 0x11,
+                0x12, 0x13, 0x14, 0x7B
+              };
+              for (uint8_t reg : page1_regs) {
+                if (id(aic3204_diag).read_byte(reg, &value)) {
+                  ESP_LOGI("aic3204_diag", "P1 0x%02X = 0x%02X", reg, value);
+                } else {
+                  ESP_LOGE("aic3204_diag", "P1 0x%02X READ FAILED", reg);
+                }
+              }
+            } else {
+              ESP_LOGE("aic3204_diag", "Failed to select page 1");
+            }
+
+            // Leave the codec on page 0, matching the normal ESPHome AIC3204
+            // driver's steady-state configuration.
+            id(aic3204_diag).write_byte(0x00, 0x00);
+            ESP_LOGI("aic3204_diag", "=== AIC3204 DIAGNOSTIC COMPLETE ===");
+
 i2s_audio:
   - id: audio_bus
     i2s_lrclk_pin:
