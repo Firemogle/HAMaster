@@ -13,48 +13,26 @@ button:
         - lambda: |-
             uint8_t value;
 
-            ESP_LOGI("aic3204_diag", "=== AIC3204 PAGE 0 ===");
+            ESP_LOGI("aic3204_diag", "=== AIC3204 FULL REGISTER DUMP: PAGE 0 ===");
             if (id(aic3204_diag).write_byte(0x00, 0x00)) {
-              const uint8_t page0_regs[] = {
-                0x04, 0x05, 0x06, 0x0B, 0x0C, 0x0E,
-                0x1B, 0x1F, 0x20, 0x24, 0x25, 0x26,
-                0x27, 0x28, 0x29, 0x2A, 0x2B, 0x2C,
-                0x2D, 0x2E, 0x38, 0x3C, 0x3F, 0x40,
-                0x41, 0x42
-              };
-              for (uint8_t reg : page0_regs) {
+              for (uint8_t reg = 0x00; reg <= 0x7F; reg++) {
                 if (id(aic3204_diag).read_byte(reg, &value)) {
                   ESP_LOGI("aic3204_diag", "P0 0x%02X = 0x%02X", reg, value);
                 } else {
-                  ESP_LOGE("aic3204_diag", "P0 0x%02X READ FAILED", reg);
+                  ESP_LOGW("aic3204_diag", "P0 0x%02X READ FAILED", reg);
                 }
               }
             } else {
               ESP_LOGE("aic3204_diag", "Failed to select page 0");
             }
 
-            ESP_LOGI("aic3204_diag", "=== AIC3204 CLOCK/STATUS ===");
-            if (id(aic3204_diag).write_byte(0x00, 0x00)) {
-              const uint8_t status_regs[] = {0x2A, 0x2B, 0x2C, 0x2D, 0x2E};
-              for (uint8_t reg : status_regs) {
-                if (id(aic3204_diag).read_byte(reg, &value)) {
-                  ESP_LOGI("aic3204_diag", "STATUS P0 0x%02X = 0x%02X", reg, value);
-                }
-              }
-            }
-
-            ESP_LOGI("aic3204_diag", "=== AIC3204 PAGE 1 ===");
+            ESP_LOGI("aic3204_diag", "=== AIC3204 FULL REGISTER DUMP: PAGE 1 ===");
             if (id(aic3204_diag).write_byte(0x00, 0x01)) {
-              const uint8_t page1_regs[] = {
-                0x01, 0x02, 0x03, 0x04, 0x09, 0x0A,
-                0x0C, 0x0D, 0x0E, 0x0F, 0x10, 0x11,
-                0x12, 0x13, 0x14, 0x7B
-              };
-              for (uint8_t reg : page1_regs) {
+              for (uint8_t reg = 0x00; reg <= 0x7F; reg++) {
                 if (id(aic3204_diag).read_byte(reg, &value)) {
                   ESP_LOGI("aic3204_diag", "P1 0x%02X = 0x%02X", reg, value);
                 } else {
-                  ESP_LOGE("aic3204_diag", "P1 0x%02X READ FAILED", reg);
+                  ESP_LOGW("aic3204_diag", "P1 0x%02X READ FAILED", reg);
                 }
               }
             } else {
@@ -63,8 +41,11 @@ button:
 
             // Leave the codec on page 0, matching the normal ESPHome AIC3204
             // driver's steady-state configuration.
-            id(aic3204_diag).write_byte(0x00, 0x00);
-            ESP_LOGI("aic3204_diag", "=== AIC3204 DIAGNOSTIC COMPLETE ===");
+            if (!id(aic3204_diag).write_byte(0x00, 0x00)) {
+              ESP_LOGE("aic3204_diag", "Failed to restore page 0");
+            }
+
+            ESP_LOGI("aic3204_diag", "=== AIC3204 FULL REGISTER DUMP COMPLETE ===");
 
 i2s_audio:
   - id: audio_bus
