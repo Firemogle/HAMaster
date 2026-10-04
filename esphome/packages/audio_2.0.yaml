@@ -11,8 +11,6 @@ i2s_audio:
       number: GPIO45
     i2s_bclk_pin:
       number: GPIO47
-    i2s_mclk_pin:
-      number: GPIO48
 
 audio_dac:
   - platform: aic3204
