@@ -36,7 +36,7 @@ speaker:
     dac_type: external
     sample_rate: 48000
     bits_per_sample: 32bit
-    mclk_multiple: 512
+    mclk_multiple: 256
     use_apll: true
     channel: stereo
     audio_dac: aic3204_dac
