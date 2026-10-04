@@ -37,7 +37,7 @@ speaker:
     sample_rate: 48000
     bits_per_sample: 32bit
     mclk_multiple: 512
-    use_apll: false
+    use_apll: true
     channel: stereo
     audio_dac: aic3204_dac
     timeout: 10s
