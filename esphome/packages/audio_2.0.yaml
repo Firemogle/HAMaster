@@ -60,17 +60,17 @@ button:
             id(i2s_audio_speaker).set_volume(1.0f);
             id(i2s_audio_speaker).set_mute_state(false);
             id(i2s_audio_speaker).start();
-            ESP_LOGI("aic3204_test", "Starting direct 48kHz/32-bit/stereo I2S test tone");
+            ESP_LOGI("aic3204_test", "Starting direct 48kHz/32-bit/stereo standard-I2S test tone for ~20 seconds");
         - delay: 100ms
         - repeat:
-            count: 25
+            count: 190
             then:
               - speaker.play:
                   id: i2s_audio_speaker
                   data: !lambda |-
                     std::vector<uint8_t> data;
-                    constexpr uint32_t sample_count = 960;  // 20 ms at 48 kHz
-                    constexpr uint32_t period = 48;        // 1 kHz square wave
+                    constexpr uint32_t sample_count = 4800;  // 100 ms at 48 kHz
+                    constexpr uint32_t period = 48;         // 1 kHz square wave
                     constexpr int32_t amplitude = 0x20000000;
 
                     data.reserve(sample_count * 2 * sizeof(int32_t));
@@ -136,6 +136,7 @@ speaker:
     bits_per_sample: 32bit
     mclk_multiple: 512
     use_apll: true
+    i2s_comm_fmt: stand_i2s
     channel: stereo
     audio_dac: aic3204_dac
     timeout: 10s
