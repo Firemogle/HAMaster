@@ -58,37 +58,37 @@ button:
             // The AIC3204 beep generator lives in PRB_P25 and bypasses the
             // incoming I2S data stream. Use it to isolate the codec's DAC /
             // headphone output path from ESP32 audio framing.
-            auto &codec = id(aic3204_diag);
-            codec.write_byte(0x00, 0x00);  // Page 0
-            codec.write_byte(0x25, 0x00);  // Power down DAC channels
+            auto *codec = id(aic3204_diag);
+            codec->write_byte(0x00, 0x00);  // Page 0
+            codec->write_byte(0x25, 0x00);  // Power down DAC channels
             delay(20);
-            codec.write_byte(0x3C, 0x19);  // Select PRB_P25
-            codec.write_byte(0x25, 0xD4);  // Power DAC L/R
+            codec->write_byte(0x3C, 0x19);  // Select PRB_P25
+            codec->write_byte(0x25, 0xD4);  // Power DAC L/R
             delay(100);
-            codec.write_byte(0x40, 0x00);  // DAC unmute
+            codec->write_byte(0x40, 0x00);  // DAC unmute
             // 5-second 1 kHz beep at 48 kHz. TI's default coefficients
             // correspond to approximately 1 kHz at 48 kHz.
-            codec.write_byte(0x47, 0x00);  // Left beep volume = 0 dB, disabled
-            codec.write_byte(0x48, 0x00);  // Right beep volume = 0 dB
-            codec.write_byte(0x49, 0x03);  // length MSB: 240000 samples
-            codec.write_byte(0x4A, 0xA9);  // length middle
-            codec.write_byte(0x4B, 0x80);  // length LSB
-            codec.write_byte(0x4C, 0x10);  // sin coefficient MSB
-            codec.write_byte(0x4D, 0xD8);  // sin coefficient LSB
-            codec.write_byte(0x4E, 0x7E);  // cos coefficient MSB
-            codec.write_byte(0x4F, 0xE3);  // cos coefficient LSB
-            codec.write_byte(0x47, 0x80);  // Enable beep generator
+            codec->write_byte(0x47, 0x00);  // Left beep volume = 0 dB, disabled
+            codec->write_byte(0x48, 0x00);  // Right beep volume = 0 dB
+            codec->write_byte(0x49, 0x03);  // length MSB: 240000 samples
+            codec->write_byte(0x4A, 0xA9);  // length middle
+            codec->write_byte(0x4B, 0x80);  // length LSB
+            codec->write_byte(0x4C, 0x10);  // sin coefficient MSB
+            codec->write_byte(0x4D, 0xD8);  // sin coefficient LSB
+            codec->write_byte(0x4E, 0x7E);  // cos coefficient MSB
+            codec->write_byte(0x4F, 0xE3);  // cos coefficient LSB
+            codec->write_byte(0x47, 0x80);  // Enable beep generator
             ESP_LOGI("aic3204_test", "Starting AIC3204 internal 1 kHz DAC beep for 5 seconds");
         - delay: 6s
         - lambda: |-
-            auto &codec = id(aic3204_diag);
-            codec.write_byte(0x00, 0x00);  // Page 0
-            codec.write_byte(0x47, 0x00);  // Stop beep if still active
-            codec.write_byte(0x25, 0x00);  // Power down DAC before PRB change
+            auto *codec = id(aic3204_diag);
+            codec->write_byte(0x00, 0x00);  // Page 0
+            codec->write_byte(0x47, 0x00);  // Stop beep if still active
+            codec->write_byte(0x25, 0x00);  // Power down DAC before PRB change
             delay(20);
-            codec.write_byte(0x3C, 0x01);  // Restore ESPHome PRB_P1
-            codec.write_byte(0x25, 0xD4);  // Restore DAC power
-            codec.write_byte(0x40, 0x00);  // Restore DAC unmute
+            codec->write_byte(0x3C, 0x01);  // Restore ESPHome PRB_P1
+            codec->write_byte(0x25, 0xD4);  // Restore DAC power
+            codec->write_byte(0x40, 0x00);  // Restore DAC unmute
             ESP_LOGI("aic3204_test", "AIC3204 internal beep test complete; PRB_P1 restored");
         - delay: 1s
         - micro_wake_word.start:
