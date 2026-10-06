@@ -59,16 +59,31 @@ button:
             // incoming I2S data stream. Use it to isolate the codec's DAC /
             // headphone output path from ESP32 audio framing.
             auto *codec = id(aic3204_diag);
+
+            // Explicitly configure the analog headphone path. ESPHome 2026.9.0
+            // programs P1/R16-R17 as 0x3E for its intended -2 dB setting, but
+            // TI documents 0x3E-0x3F as reserved for these registers. Use the
+            // documented 0x00 = unmuted, 0 dB setting for this diagnostic.
+            codec->write_byte(0x00, 0x01);  // Page 1
+            codec->write_byte(0x14, 0x25);  // Headphone soft-start
+            codec->write_byte(0x0C, 0x08);  // LDAC -> HPL
+            codec->write_byte(0x0D, 0x08);  // RDAC -> HPR
+            codec->write_byte(0x10, 0x00);  // HPL unmute, 0 dB
+            codec->write_byte(0x11, 0x00);  // HPR unmute, 0 dB
+            codec->write_byte(0x09, 0x30);  // Power HPL/HPR
+            delay(100);
+
             codec->write_byte(0x00, 0x00);  // Page 0
             codec->write_byte(0x25, 0x00);  // Power down DAC channels
             delay(20);
             codec->write_byte(0x3C, 0x19);  // Select PRB_P25
-            codec->write_byte(0x25, 0xD4);  // Power DAC L/R
-            delay(100);
+            codec->write_byte(0x3F, 0xD4);  // Power DAC L/R
             codec->write_byte(0x40, 0x00);  // DAC unmute
-            // 5-second 1 kHz beep at 48 kHz. TI's default coefficients
-            // correspond to approximately 1 kHz at 48 kHz.
-            codec->write_byte(0x47, 0x00);  // Left beep volume = 0 dB, disabled
+            codec->write_byte(0x41, 0x00);  // Left DAC digital volume = 0 dB
+            codec->write_byte(0x42, 0x00);  // Right DAC digital volume = 0 dB
+
+            // 5-second 1 kHz beep at 48 kHz.
+            codec->write_byte(0x47, 0x00);  // Beep disabled while programming
             codec->write_byte(0x48, 0x00);  // Right beep volume = 0 dB
             codec->write_byte(0x49, 0x03);  // length MSB: 240000 samples
             codec->write_byte(0x4A, 0xA9);  // length middle
@@ -87,8 +102,12 @@ button:
             codec->write_byte(0x25, 0x00);  // Power down DAC before PRB change
             delay(20);
             codec->write_byte(0x3C, 0x01);  // Restore ESPHome PRB_P1
-            codec->write_byte(0x25, 0xD4);  // Restore DAC power
+            codec->write_byte(0x3F, 0xD4);  // Restore DAC power
             codec->write_byte(0x40, 0x00);  // Restore DAC unmute
+            codec->write_byte(0x00, 0x01);  // Page 1
+            codec->write_byte(0x10, 0x3E);  // Restore ESPHome HPL setting
+            codec->write_byte(0x11, 0x3E);  // Restore ESPHome HPR setting
+            codec->write_byte(0x00, 0x00);  // Page 0
             ESP_LOGI("aic3204_test", "AIC3204 internal beep test complete; PRB_P1 restored");
         - delay: 1s
         - micro_wake_word.start:
