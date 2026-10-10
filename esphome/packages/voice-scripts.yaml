@@ -96,36 +96,45 @@ sensor:
   - platform: template
     name: ${devicename}_timer_start_seconds
     id: ${devicename}_timer_start_seconds
+    internal: true
     unit_of_measurement: s
     accuracy_decimals: 0
     update_interval: 1s
     lambda: |-
+      if (!id(is_timer_active)) {
+        return {};
+      }
       return id(timer_start_seconds);
 
   - platform: template
     name: ${devicename}_timer_seconds_left
     id: ${devicename}_timer_seconds_left
+    internal: true
     unit_of_measurement: s
     accuracy_decimals: 0
     update_interval: 1s
     lambda: |-
+      if (!id(is_timer_active)) {
+        return {};
+      }
       const auto &timers = id(va).get_timers();
       for (const auto &timer : timers) {
         if (timer.is_active) {
           return timer.seconds_left;
         }
       }
-      return 0;
+      return {};
 
   - platform: template
     name: ${devicename}_timer_fraction_remaining
     id: ${devicename}_timer_fraction_remaining
+    internal: true
     unit_of_measurement: "%"
     accuracy_decimals: 1
     update_interval: 1s
     lambda: |-
-      if (id(timer_start_seconds) <= 0) {
-        return 0.0f;
+      if (!id(is_timer_active) || id(timer_start_seconds) <= 0) {
+        return {};
       }
       const auto &timers = id(va).get_timers();
       for (const auto &timer : timers) {
@@ -134,7 +143,7 @@ sensor:
                   static_cast<float>(id(timer_start_seconds))) * 100.0f;
         }
       }
-      return 0.0f;
+      return {};
 
 script:
   # Master script controlling the LEDs, based on different conditions : initialization in progress, wifi and api connected and voice assistant phase.
