@@ -55,61 +55,156 @@ button:
         - media_player.stop: ${devicename}_media
         - delay: 100ms
         - lambda: |-
-            // The AIC3204 beep generator lives in PRB_P25 and bypasses the
-            // incoming I2S data stream. Use it to isolate the codec's DAC /
-            // headphone output path from ESP32 audio framing.
             auto *codec = id(aic3204_diag);
+            uint8_t value = 0;
+            bool writes_ok = true;
 
-            // Explicitly configure the analog headphone path. ESPHome 2026.9.0
-            // programs P1/R16-R17 as 0x3E for its intended -2 dB setting, but
-            // TI documents 0x3E-0x3F as reserved for these registers. Use the
-            // documented 0x00 = unmuted, 0 dB setting for this diagnostic.
-            codec->write_byte(0x00, 0x01);  // Page 1
-            codec->write_byte(0x14, 0x25);  // Headphone soft-start
-            codec->write_byte(0x0C, 0x08);  // LDAC -> HPL
-            codec->write_byte(0x0D, 0x08);  // RDAC -> HPR
-            codec->write_byte(0x10, 0x00);  // HPL unmute, 0 dB
-            codec->write_byte(0x11, 0x00);  // HPR unmute, 0 dB
-            codec->write_byte(0x09, 0x30);  // Power HPL/HPR
+            auto write = [&](uint8_t reg, uint8_t data) {
+              if (!codec->write_byte(reg, data)) {
+                ESP_LOGE("aic3204_test",
+                         "I2C WRITE FAILED P0 R%02X <- %02X",
+                         reg, data);
+                writes_ok = false;
+              }
+            };
+
+            auto dump = [&](const char *stage) {
+              if (!codec->write_byte(0x00, 0x00)) {
+                ESP_LOGE("aic3204_test", "%s: page 0 select failed", stage);
+                return;
+              }
+              const uint8_t regs[] = {
+                0x25, 0x3C, 0x3F, 0x40, 0x41, 0x42,
+                0x47, 0x48, 0x49, 0x4A, 0x4B,
+                0x4C, 0x4D, 0x4E, 0x4F
+              };
+              ESP_LOGI("aic3204_test", "=== %s ===", stage);
+              for (uint8_t reg : regs) {
+                if (codec->read_byte(reg, &value)) {
+                  ESP_LOGI("aic3204_test", "P0 R%02X = %02X",
+                           reg, value);
+                } else {
+                  ESP_LOGE("aic3204_test", "P0 R%02X READ FAILED", reg);
+                }
+              }
+              if (!codec->write_byte(0x00, 0x01)) {
+                ESP_LOGE("aic3204_test", "%s: page 1 select failed", stage);
+                return;
+              }
+              const uint8_t hp_regs[] = {0x09, 0x0C, 0x0D, 0x10, 0x11};
+              for (uint8_t reg : hp_regs) {
+                if (codec->read_byte(reg, &value)) {
+                  ESP_LOGI("aic3204_test", "P1 R%02X = %02X",
+                           reg, value);
+                } else {
+                  ESP_LOGE("aic3204_test", "P1 R%02X READ FAILED", reg);
+                }
+              }
+              if (!codec->write_byte(0x00, 0x00)) {
+                ESP_LOGE("aic3204_test", "%s: page 0 restore failed", stage);
+              }
+            };
+
+            dump("BEEP BEFORE CONFIGURATION");
+
+            if (codec->write_byte(0x00, 0x01)) {
+              auto hp_write = [&](uint8_t reg, uint8_t data) {
+                if (!codec->write_byte(reg, data)) {
+                  ESP_LOGE("aic3204_test",
+                           "I2C WRITE FAILED P1 R%02X <- %02X",
+                           reg, data);
+                  writes_ok = false;
+                }
+              };
+              hp_write(0x14, 0x25);
+              hp_write(0x0C, 0x08);
+              hp_write(0x0D, 0x08);
+              hp_write(0x10, 0x00);
+              hp_write(0x11, 0x00);
+              hp_write(0x09, 0x30);
+            } else {
+              ESP_LOGE("aic3204_test", "Failed to select page 1");
+              writes_ok = false;
+            }
             delay(100);
 
-            codec->write_byte(0x00, 0x00);  // Page 0
-            codec->write_byte(0x25, 0x00);  // Power down DAC channels
-            delay(20);
-            codec->write_byte(0x3C, 0x19);  // Select PRB_P25
-            codec->write_byte(0x3F, 0xD4);  // Power DAC L/R
-            codec->write_byte(0x40, 0x00);  // DAC unmute
-            codec->write_byte(0x41, 0x00);  // Left DAC digital volume = 0 dB
-            codec->write_byte(0x42, 0x00);  // Right DAC digital volume = 0 dB
+            if (codec->write_byte(0x00, 0x00)) {
+              write(0x25, 0x00);
+              delay(20);
+              write(0x3C, 0x19);
+              write(0x3F, 0xD4);
+              write(0x40, 0x00);
+              write(0x41, 0x00);
+              write(0x42, 0x00);
+              write(0x47, 0x00);
+              write(0x48, 0x00);
+              write(0x49, 0x03);
+              write(0x4A, 0xA9);
+              write(0x4B, 0x80);
+              write(0x4C, 0x10);
+              write(0x4D, 0xD8);
+              write(0x4E, 0x7E);
+              write(0x4F, 0xE3);
+              write(0x47, 0x80);
+            } else {
+              ESP_LOGE("aic3204_test", "Failed to select page 0");
+              writes_ok = false;
+            }
 
-            // 5-second 1 kHz beep at 48 kHz.
-            codec->write_byte(0x47, 0x00);  // Beep disabled while programming
-            codec->write_byte(0x48, 0x00);  // Right beep volume = 0 dB
-            codec->write_byte(0x49, 0x03);  // length MSB: 240000 samples
-            codec->write_byte(0x4A, 0xA9);  // length middle
-            codec->write_byte(0x4B, 0x80);  // length LSB
-            codec->write_byte(0x4C, 0x10);  // sin coefficient MSB
-            codec->write_byte(0x4D, 0xD8);  // sin coefficient LSB
-            codec->write_byte(0x4E, 0x7E);  // cos coefficient MSB
-            codec->write_byte(0x4F, 0xE3);  // cos coefficient LSB
-            codec->write_byte(0x47, 0x80);  // Enable beep generator
-            ESP_LOGI("aic3204_test", "Starting AIC3204 internal 1 kHz DAC beep for 5 seconds");
-        - delay: 6s
+            ESP_LOGI("aic3204_test", "Beep setup writes %s",
+                     writes_ok ? "succeeded" : "HAD ERRORS");
+            dump("BEEP IMMEDIATE READBACK");
+
+        - delay: 1s
         - lambda: |-
             auto *codec = id(aic3204_diag);
-            codec->write_byte(0x00, 0x00);  // Page 0
-            codec->write_byte(0x47, 0x00);  // Stop beep if still active
-            codec->write_byte(0x25, 0x00);  // Power down DAC before PRB change
+            uint8_t value = 0;
+            if (!codec->write_byte(0x00, 0x00)) {
+              ESP_LOGE("aic3204_test", "1-second readback: page 0 select failed");
+              return;
+            }
+            ESP_LOGI("aic3204_test", "=== BEEP READBACK AFTER 1 SECOND ===");
+            const uint8_t regs[] = {
+              0x25, 0x3C, 0x3F, 0x40, 0x41, 0x42,
+              0x47, 0x48, 0x49, 0x4A, 0x4B,
+              0x4C, 0x4D, 0x4E, 0x4F
+            };
+            for (uint8_t reg : regs) {
+              if (codec->read_byte(reg, &value)) {
+                ESP_LOGI("aic3204_test", "P0 R%02X = %02X", reg, value);
+              } else {
+                ESP_LOGE("aic3204_test", "P0 R%02X READ FAILED", reg);
+              }
+            }
+            if (codec->write_byte(0x00, 0x01)) {
+              const uint8_t hp_regs[] = {0x09, 0x0C, 0x0D, 0x10, 0x11};
+              for (uint8_t reg : hp_regs) {
+                if (codec->read_byte(reg, &value)) {
+                  ESP_LOGI("aic3204_test", "P1 R%02X = %02X", reg, value);
+                } else {
+                  ESP_LOGE("aic3204_test", "P1 R%02X READ FAILED", reg);
+                }
+              }
+              codec->write_byte(0x00, 0x00);
+            } else {
+              ESP_LOGE("aic3204_test", "1-second readback: page 1 select failed");
+            }
+
+        - delay: 5s
+        - lambda: |-
+            auto *codec = id(aic3204_diag);
+            codec->write_byte(0x00, 0x00);
+            codec->write_byte(0x47, 0x00);
+            codec->write_byte(0x25, 0x00);
             delay(20);
-            codec->write_byte(0x3C, 0x01);  // Restore ESPHome PRB_P1
-            codec->write_byte(0x3F, 0xD4);  // Restore DAC power
-            codec->write_byte(0x40, 0x00);  // Restore DAC unmute
-            codec->write_byte(0x00, 0x01);  // Page 1
-            codec->write_byte(0x00, 0x01);  // Page 1
-            codec->write_byte(0x10, 0x00);  // Leave HPL unmuted at documented 0 dB
-            codec->write_byte(0x11, 0x00);  // Leave HPR unmuted at documented 0 dB
-            codec->write_byte(0x00, 0x00);  // Page 0
-            ESP_LOGI("aic3204_test", "AIC3204 internal beep test complete; PRB_P1 restored with HPL/HPR at 0 dB");
+            codec->write_byte(0x3C, 0x01);
+            codec->write_byte(0x3F, 0xD4);
+            codec->write_byte(0x40, 0x00);
+            codec->write_byte(0x00, 0x01);
+            codec->write_byte(0x10, 0x00);
+            codec->write_byte(0x11, 0x00);
+            codec->write_byte(0x00, 0x00);
+            ESP_LOGI("aic3204_test", "Beep test complete; restored PRB_P1");
         - delay: 1s
         - micro_wake_word.start:
 
