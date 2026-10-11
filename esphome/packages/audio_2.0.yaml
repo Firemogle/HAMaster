@@ -46,6 +46,141 @@ button:
             ESP_LOGI("aic3204_diag", "=== AIC3204 FULL REGISTER DUMP COMPLETE ===");
 
   - platform: template
+    name: ${devicename}_aic3204_internal_beep_preserve_output
+    id: ${devicename}_aic3204_internal_beep_preserve_output
+    entity_category: diagnostic
+    on_press:
+      then:
+        - micro_wake_word.stop:
+        - media_player.stop: ${devicename}_media
+        - delay: 100ms
+        - lambda: |-
+            auto *codec = id(aic3204_diag);
+            uint8_t value = 0;
+            bool ok = true;
+
+            // Save the existing output configuration; do not alter driver power,
+            // headphone gains, or output routing for this test.
+            uint8_t saved_p1[6] = {};
+            const uint8_t p1_regs[] = {0x09, 0x0C, 0x0D, 0x10, 0x11, 0x14};
+            if (!codec->write_byte(0x00, 0x01)) {
+              ESP_LOGE("aic3204_test", "Preserve-output test: select page 1 failed");
+              return;
+            }
+            for (size_t i = 0; i < sizeof(p1_regs); i++) {
+              if (!codec->read_byte(p1_regs[i], &saved_p1[i])) {
+                ESP_LOGE("aic3204_test", "Cannot read P1 R%02X; aborting",
+                         p1_regs[i]);
+                ok = false;
+              }
+            }
+            ESP_LOGI("aic3204_test",
+                     "Saved output config: P1 R09=%02X R0C=%02X R0D=%02X R10=%02X R11=%02X R14=%02X",
+                     saved_p1[0], saved_p1[1], saved_p1[2],
+                     saved_p1[3], saved_p1[4], saved_p1[5]);
+            if (!ok) {
+              codec->write_byte(0x00, 0x00);
+              return;
+            }
+
+            // Log the DAC/output state immediately before the test.
+            if (!codec->write_byte(0x00, 0x00)) {
+              ESP_LOGE("aic3204_test", "Cannot select page 0; aborting");
+              return;
+            }
+            const uint8_t p0_regs[] = {0x0B, 0x0C, 0x0E, 0x11, 0x12, 0x13,
+                                       0x1B, 0x3C, 0x3F, 0x40, 0x41, 0x42,
+                                       0x47, 0x48, 0x49, 0x4A, 0x4B, 0x4C,
+                                       0x4D, 0x4E, 0x4F};
+            for (uint8_t reg : p0_regs) {
+              if (codec->read_byte(reg, &value))
+                ESP_LOGI("aic3204_test", "PRE P0 R%02X=%02X", reg, value);
+              else
+                ESP_LOGW("aic3204_test", "PRE P0 R%02X read failed", reg);
+            }
+
+            // Keep the existing clocking/DAC setup and configure only the same
+            // internal-beep source used by the original test. In particular,
+            // do NOT write P1/R09 or P1/R10-R11 here.
+            auto write_p0 = [&](uint8_t reg, uint8_t data) {
+              if (!codec->write_byte(reg, data)) {
+                ESP_LOGE("aic3204_test", "I2C write failed P0 R%02X <- %02X",
+                         reg, data);
+                ok = false;
+              }
+            };
+            write_p0(0x3F, 0x14);
+            delay(20);
+            write_p0(0x3C, 0x19);
+            write_p0(0x3F, 0xD4);
+            write_p0(0x40, 0x00);
+            write_p0(0x41, 0x00);
+            write_p0(0x42, 0x00);
+            write_p0(0x47, 0x00);
+            write_p0(0x48, 0x00);
+            write_p0(0x49, 0x03);
+            write_p0(0x4A, 0xA9);
+            write_p0(0x4B, 0x80);
+            write_p0(0x4C, 0x10);
+            write_p0(0x4D, 0xD8);
+            write_p0(0x4E, 0x7E);
+            write_p0(0x4F, 0xE3);
+            write_p0(0x47, 0x80);
+
+            ESP_LOGI("aic3204_test",
+                     "Preserve-output beep configured; writes %s. Listen for ~5 seconds.",
+                     ok ? "succeeded" : "had errors");
+            for (uint8_t reg : p0_regs) {
+              if (codec->read_byte(reg, &value))
+                ESP_LOGI("aic3204_test", "TEST P0 R%02X=%02X", reg, value);
+              else
+                ESP_LOGW("aic3204_test", "TEST P0 R%02X read failed", reg);
+            }
+            if (codec->write_byte(0x00, 0x01)) {
+              for (size_t i = 0; i < sizeof(p1_regs); i++) {
+                if (codec->read_byte(p1_regs[i], &value))
+                  ESP_LOGI("aic3204_test", "TEST P1 R%02X=%02X",
+                           p1_regs[i], value);
+              }
+            }
+            codec->write_byte(0x00, 0x00);
+        - delay: 5s
+        - lambda: |-
+            auto *codec = id(aic3204_diag);
+            bool restore_ok = true;
+            uint8_t value = 0;
+            const uint8_t p0_restore_regs[] = {0x3C, 0x3F, 0x40, 0x41, 0x42,
+                                               0x47, 0x48, 0x49, 0x4A, 0x4B,
+                                               0x4C, 0x4D, 0x4E, 0x4F};
+            // The original routine's writes are retained for compatibility, then
+            // return the touched page-0 registers to the normal codec values.
+            // Values are read from the established idle baseline before testing.
+            // (The short test logs make it easy to compare these values.)
+            codec->write_byte(0x00, 0x00);
+            codec->write_byte(0x47, 0x00);
+            codec->write_byte(0x3F, 0x14);
+            delay(20);
+            codec->write_byte(0x3C, 0x01);
+            codec->write_byte(0x3F, 0xD4);
+            codec->write_byte(0x40, 0x00);
+            codec->write_byte(0x00, 0x01);
+            const uint8_t p1_regs[] = {0x09, 0x0C, 0x0D, 0x10, 0x11, 0x14};
+            const uint8_t p1_values[] = {0x3C, 0x08, 0x08, 0x3E, 0x3E, 0x25};
+            for (size_t i = 0; i < sizeof(p1_regs); i++) {
+              if (!codec->write_byte(p1_regs[i], p1_values[i])) {
+                ESP_LOGE("aic3204_test", "Restore P1 R%02X failed",
+                         p1_regs[i]);
+                restore_ok = false;
+              }
+            }
+            codec->write_byte(0x00, 0x00);
+            ESP_LOGI("aic3204_test",
+                     "Preserve-output beep test complete; output config restore %s",
+                     restore_ok ? "succeeded" : "had errors");
+        - delay: 1s
+        - micro_wake_word.start:
+
+  - platform: template
     name: ${devicename}_aic3204_internal_beep
     id: ${devicename}_aic3204_internal_beep
     entity_category: diagnostic
