@@ -69,39 +69,31 @@ button:
             };
 
             auto dump = [&](const char *stage) {
-              if (!codec->write_byte(0x00, 0x00)) {
-                ESP_LOGE("aic3204_test", "%s: page 0 select failed", stage);
-                return;
-              }
-              const uint8_t regs[] = {
-                0x25, 0x3C, 0x3F, 0x40, 0x41, 0x42,
-                0x47, 0x48, 0x49, 0x4A, 0x4B,
-                0x4C, 0x4D, 0x4E, 0x4F
-              };
-              ESP_LOGI("aic3204_test", "=== %s ===", stage);
-              for (uint8_t reg : regs) {
-                if (codec->read_byte(reg, &value)) {
-                  ESP_LOGI("aic3204_test", "P0 R%02X = %02X",
-                           reg, value);
-                } else {
-                  ESP_LOGE("aic3204_test", "P0 R%02X READ FAILED", reg);
+              ESP_LOGI("aic3204_test", "========== %s ==========", stage);
+
+              for (uint8_t page = 0; page <= 1; page++) {
+                if (!codec->write_byte(0x00, page)) {
+                  ESP_LOGE("aic3204_test", "%s: page %u select failed",
+                           stage, page);
+                  continue;
+                }
+
+                ESP_LOGI("aic3204_test", "----- PAGE %u -----", page);
+
+                // Read all register addresses on pages 0 and 1.
+                for (uint8_t reg = 1; reg <= 0x7F; reg++) {
+                  if (codec->read_byte(reg, &value)) {
+                    ESP_LOGI("aic3204_test", "P%u R%02X = %02X",
+                             page, reg, value);
+                  } else {
+                    ESP_LOGE("aic3204_test", "P%u R%02X READ FAILED",
+                             page, reg);
+                  }
                 }
               }
-              if (!codec->write_byte(0x00, 0x01)) {
-                ESP_LOGE("aic3204_test", "%s: page 1 select failed", stage);
-                return;
-              }
-              const uint8_t hp_regs[] = {0x09, 0x0C, 0x0D, 0x10, 0x11};
-              for (uint8_t reg : hp_regs) {
-                if (codec->read_byte(reg, &value)) {
-                  ESP_LOGI("aic3204_test", "P1 R%02X = %02X",
-                           reg, value);
-                } else {
-                  ESP_LOGE("aic3204_test", "P1 R%02X READ FAILED", reg);
-                }
-              }
+
               if (!codec->write_byte(0x00, 0x00)) {
-                ESP_LOGE("aic3204_test", "%s: page 0 restore failed", stage);
+                ESP_LOGE("aic3204_test", "%s: failed to restore page 0", stage);
               }
             };
 
@@ -162,37 +154,30 @@ button:
         - lambda: |-
             auto *codec = id(aic3204_diag);
             uint8_t value = 0;
-            if (!codec->write_byte(0x00, 0x00)) {
-              ESP_LOGE("aic3204_test", "1-second readback: page 0 select failed");
-              return;
-            }
-            ESP_LOGI("aic3204_test", "=== BEEP READBACK AFTER 1 SECOND ===");
-            const uint8_t regs[] = {
-              0x25, 0x3C, 0x3F, 0x40, 0x41, 0x42,
-              0x47, 0x48, 0x49, 0x4A, 0x4B,
-              0x4C, 0x4D, 0x4E, 0x4F
-            };
-            for (uint8_t reg : regs) {
-              if (codec->read_byte(reg, &value)) {
-                ESP_LOGI("aic3204_test", "P0 R%02X = %02X", reg, value);
-              } else {
-                ESP_LOGE("aic3204_test", "P0 R%02X READ FAILED", reg);
+
+            ESP_LOGI("aic3204_test", "========== BEEP READBACK AFTER 1 SECOND ==========");
+            for (uint8_t page = 0; page <= 1; page++) {
+              if (!codec->write_byte(0x00, page)) {
+                ESP_LOGE("aic3204_test", "1-second readback: page %u select failed",
+                         page);
+                continue;
               }
-            }
-            if (codec->write_byte(0x00, 0x01)) {
-              const uint8_t hp_regs[] = {0x09, 0x0C, 0x0D, 0x10, 0x11};
-              for (uint8_t reg : hp_regs) {
+
+              ESP_LOGI("aic3204_test", "----- PAGE %u -----", page);
+              for (uint8_t reg = 1; reg <= 0x7F; reg++) {
                 if (codec->read_byte(reg, &value)) {
-                  ESP_LOGI("aic3204_test", "P1 R%02X = %02X", reg, value);
+                  ESP_LOGI("aic3204_test", "P%u R%02X = %02X",
+                           page, reg, value);
                 } else {
-                  ESP_LOGE("aic3204_test", "P1 R%02X READ FAILED", reg);
+                  ESP_LOGE("aic3204_test", "P%u R%02X READ FAILED",
+                           page, reg);
                 }
               }
-              codec->write_byte(0x00, 0x00);
-            } else {
-              ESP_LOGE("aic3204_test", "1-second readback: page 1 select failed");
             }
 
+            if (!codec->write_byte(0x00, 0x00)) {
+              ESP_LOGE("aic3204_test", "1-second readback: page 0 restore failed");
+            }
         - delay: 5s
         - lambda: |-
             auto *codec = id(aic3204_diag);
