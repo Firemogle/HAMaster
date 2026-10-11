@@ -129,7 +129,10 @@ button:
             delay(100);
 
             if (codec->write_byte(0x00, 0x00)) {
-              write(0x25, 0x00);
+              // P0/R25 is a read-only DAC flag register, not a power control.
+              // Power down both DAC channels through P0/R63 (0x3F), preserving
+              // the non-power bits from the normal 0xD4 setup value.
+              write(0x3F, 0x14);
               delay(20);
               write(0x3C, 0x19);
               write(0x3F, 0xD4);
@@ -195,7 +198,8 @@ button:
             auto *codec = id(aic3204_diag);
             codec->write_byte(0x00, 0x00);
             codec->write_byte(0x47, 0x00);
-            codec->write_byte(0x25, 0x00);
+            // P0/R25 is read-only (DAC Flag Register 1). Power down via P0/R63.
+            codec->write_byte(0x3F, 0x14);
             delay(20);
             codec->write_byte(0x3C, 0x01);
             codec->write_byte(0x3F, 0xD4);
