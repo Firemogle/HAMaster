@@ -204,8 +204,39 @@ button:
     on_press:
       then:
         - lambda: |-
+            auto *codec = id(aic3204_diag);
+            uint8_t saved_l = 0, saved_r = 0;
+            if (!codec->write_byte(0x00, 0x01) ||
+                !codec->read_byte(0x10, &saved_l) ||
+                !codec->read_byte(0x11, &saved_r)) {
+              ESP_LOGE("aic3204_test", "Cannot read headphone gain; aborting tone");
+              codec->write_byte(0x00, 0x00);
+              return;
+            }
+
+            // Fixed +6 dB gain for a repeatable playback test.
+            if (!codec->write_byte(0x10, 0x0C) ||
+                !codec->write_byte(0x11, 0x0C)) {
+              ESP_LOGE("aic3204_test", "Cannot set fixed +6 dB headphone gain");
+              codec->write_byte(0x10, saved_l);
+              codec->write_byte(0x11, saved_r);
+              codec->write_byte(0x00, 0x00);
+              return;
+            }
+
+            uint8_t check_l = 0, check_r = 0;
+            const bool readback =
+                codec->read_byte(0x10, &check_l) &&
+                codec->read_byte(0x11, &check_r);
             ESP_LOGI("aic3204_test",
-                     "Starting 1 kHz, 48 kHz stereo playback test");
+                     "Fixed-tone test: gain +6 dB; HPL=%02X HPR=%02X; readback=%s",
+                     check_l, check_r, readback ? "OK" : "FAILED");
+
+            // Return to page 0 before starting I2S playback.
+            codec->write_byte(0x00, 0x00);
+            id(hp_saved_l) = saved_l;
+            id(hp_saved_r) = saved_r;
+
             id(aic3204_speaker).set_audio_stream_info(
                 esphome::audio::AudioStreamInfo(32, 2, 48000));
             id(aic3204_speaker).set_volume(1.0f);
@@ -214,24 +245,22 @@ button:
 
         - delay: 250ms
 
+        # Queue 5 seconds of 1 kHz square-wave PCM without artificial gaps.
         - repeat:
             count: 50
             then:
               - lambda: |-
                   std::vector<uint8_t> data;
-                  constexpr uint32_t sample_count = 4800;
-                  constexpr uint32_t period = 48;
+                  constexpr uint32_t sample_count = 4800;  // 100 ms at 48 kHz
+                  constexpr uint32_t period = 48;          // 1 kHz
                   constexpr int32_t amplitude = 0x10000000;
-
                   data.reserve(sample_count * 2 * sizeof(int32_t));
 
                   for (uint32_t i = 0; i < sample_count; i++) {
                     const int32_t sample =
                         ((i % period) < (period / 2))
                             ? amplitude : -amplitude;
-                    const uint32_t raw =
-                        static_cast<uint32_t>(sample);
-
+                    const uint32_t raw = static_cast<uint32_t>(sample);
                     for (uint8_t channel = 0; channel < 2; channel++) {
                       data.push_back(raw & 0xFF);
                       data.push_back((raw >> 8) & 0xFF);
@@ -242,21 +271,26 @@ button:
 
                   const size_t expected = data.size();
                   const size_t written = id(aic3204_speaker).play(
-                      data.data(), data.size(), pdMS_TO_TICKS(100));
+                      data.data(), data.size(), pdMS_TO_TICKS(150));
 
                   if (written != expected) {
-                    ESP_LOGW("aic3204_test",
-                             "Short I2S write: %u/%u bytes",
+                    ESP_LOGW("aic3204_test", "Short I2S write: %u/%u bytes",
                              static_cast<unsigned>(written),
                              static_cast<unsigned>(expected));
                   }
 
-              - delay: 100ms
-
         - speaker.finish:
             id: aic3204_speaker
 
-        - logger.log: "AIC3204 test tone finished"
+        - lambda: |-
+            auto *codec = id(aic3204_diag);
+            const bool restored =
+                codec->write_byte(0x00, 0x01) &&
+                codec->write_byte(0x10, id(hp_saved_l)) &&
+                codec->write_byte(0x11, id(hp_saved_r)) &&
+                codec->write_byte(0x00, 0x00);
+            ESP_LOGI("aic3204_test", "Tone playback finished; gain restore %s",
+                     restored ? "succeeded" : "FAILED");
 
 
   - platform: template
