@@ -92,6 +92,111 @@ i2c_device:
     address: 0x18
     i2c_id: audio_i2c
 
+
+globals:
+  - id: hp_saved_l
+    type: uint8_t
+    initial_value: '0'
+  - id: hp_saved_r
+    type: uint8_t
+    initial_value: '0'
+  - id: hp_sweep_gain
+    type: int
+    initial_value: '-6'
+  - id: hp_sweep_failed
+    type: bool
+    initial_value: 'false'
+
+script:
+  - id: hp_sweep_script
+    mode: single
+    then:
+      - repeat:
+          count: 36
+          then:
+            - if:
+                condition:
+                  lambda: 'return !id(hp_sweep_failed);'
+                then:
+                  - lambda: |-
+                      auto *codec = id(aic3204_diag);
+                      const uint8_t gain =
+                          static_cast<uint8_t>(id(hp_sweep_gain) + 6);
+
+                      if (!codec->write_byte(0x00, 0x01) ||
+                          !codec->write_byte(0x10, gain) ||
+                          !codec->write_byte(0x11, gain)) {
+                        ESP_LOGE("hp_sweep", "Gain write failed at %+d dB",
+                                 id(hp_sweep_gain));
+                        id(hp_sweep_failed) = true;
+                        return;
+                      }
+
+                      uint8_t check_l = 0, check_r = 0;
+                      if (!codec->read_byte(0x10, &check_l) ||
+                          !codec->read_byte(0x11, &check_r)) {
+                        ESP_LOGE("hp_sweep", "Gain readback failed at %+d dB",
+                                 id(hp_sweep_gain));
+                        id(hp_sweep_failed) = true;
+                        return;
+                      }
+
+                      ESP_LOGI("hp_sweep", "STEP gain=%+d dB HPL=%02X HPR=%02X",
+                               id(hp_sweep_gain), check_l, check_r);
+                  - repeat:
+                      count: 100
+                      then:
+                        - if:
+                            condition:
+                              lambda: 'return !id(hp_sweep_failed);'
+                            then:
+                              - lambda: |-
+                                  // One 1 kHz cycle = 48 stereo 32-bit frames
+                                  // (384 bytes). Small writes avoid large blocking
+                                  // writes into the speaker queue.
+                                  std::vector<uint8_t> data;
+                                  constexpr int32_t amplitude = 0x01000000;
+                                  data.reserve(48 * 2 * sizeof(int32_t));
+
+                                  for (uint32_t i = 0; i < 48; i++) {
+                                    const int32_t sample = (i < 24)
+                                        ? amplitude : -amplitude;
+                                    const uint32_t raw =
+                                        static_cast<uint32_t>(sample);
+                                    for (uint8_t ch = 0; ch < 2; ch++) {
+                                      data.push_back(raw & 0xFF);
+                                      data.push_back((raw >> 8) & 0xFF);
+                                      data.push_back((raw >> 16) & 0xFF);
+                                      data.push_back((raw >> 24) & 0xFF);
+                                    }
+                                  }
+
+                                  const size_t written = id(aic3204_speaker).play(
+                                      data.data(), data.size(), 0);
+                                  if (written != data.size()) {
+                                    ESP_LOGW("hp_sweep",
+                                             "Short chunk at %+d dB: %u/%u bytes",
+                                             id(hp_sweep_gain),
+                                             static_cast<unsigned>(written),
+                                             static_cast<unsigned>(data.size()));
+                                  }
+                              - delay: 1ms
+                  - delay: 800ms
+                  - lambda: |-
+                      id(hp_sweep_gain)++;
+      - speaker.finish:
+          id: aic3204_speaker
+      - lambda: |-
+          auto *codec = id(aic3204_diag);
+          const bool restored =
+              codec->write_byte(0x00, 0x01) &&
+              codec->write_byte(0x10, id(hp_saved_l)) &&
+              codec->write_byte(0x11, id(hp_saved_r)) &&
+              codec->write_byte(0x00, 0x00);
+          ESP_LOGI("hp_sweep", "Sweep %s; gain restore %s",
+                   id(hp_sweep_failed) ? "stopped on error" : "complete",
+                   restored ? "succeeded" : "FAILED");
+
 button:
   - platform: template
     name: ${devicename}_play_test_tone
@@ -163,89 +268,27 @@ button:
       then:
         - lambda: |-
             auto *codec = id(aic3204_diag);
-            uint8_t saved_l = 0, saved_r = 0;
-
             if (!codec->write_byte(0x00, 0x01) ||
-                !codec->read_byte(0x10, &saved_l) ||
-                !codec->read_byte(0x11, &saved_r)) {
-              ESP_LOGE("hp_sweep", "Cannot read original headphone gains; aborting");
+                !codec->read_byte(0x10, &id(hp_saved_l)) ||
+                !codec->read_byte(0x11, &id(hp_saved_r))) {
+              ESP_LOGE("hp_sweep", "Cannot read original gains; aborting");
               codec->write_byte(0x00, 0x00);
+              id(hp_sweep_failed) = true;
               return;
             }
 
-            ESP_LOGI("hp_sweep",
-                     "Original gain registers: HPL=%02X HPR=%02X",
-                     saved_l, saved_r);
+            id(hp_sweep_failed) = false;
+            id(hp_sweep_gain) = -6;
+            ESP_LOGI("hp_sweep", "Saved gains HPL=%02X HPR=%02X",
+                     id(hp_saved_l), id(hp_saved_r));
 
             id(aic3204_speaker).set_audio_stream_info(
                 esphome::audio::AudioStreamInfo(32, 2, 48000));
             id(aic3204_speaker).set_volume(1.0f);
             id(aic3204_speaker).set_mute_state(false);
             id(aic3204_speaker).start();
-
-            bool ok = true;
-            for (int db = -6; db <= 29; db++) {
-              // P1/R10 and P1/R11: D6:D0 encode gain; D7 is output mute.
-              const uint8_t gain = static_cast<uint8_t>(db + 6);
-
-              if (!codec->write_byte(0x00, 0x01) ||
-                  !codec->write_byte(0x10, gain) ||
-                  !codec->write_byte(0x11, gain)) {
-                ESP_LOGE("hp_sweep", "Gain write failed at %d dB", db);
-                ok = false;
-                break;
-              }
-
-              uint8_t check_l = 0, check_r = 0;
-              if (!codec->read_byte(0x10, &check_l) ||
-                  !codec->read_byte(0x11, &check_r)) {
-                ESP_LOGE("hp_sweep", "Gain readback failed at %d dB", db);
-                ok = false;
-                break;
-              }
-
-              ESP_LOGI("hp_sweep",
-                       "STEP gain=%+d dB HPL=%02X HPR=%02X",
-                       db, check_l, check_r);
-
-              std::vector<uint8_t> data;
-              constexpr uint32_t samples = 4800;
-              constexpr uint32_t period = 48;
-              // Low digital amplitude: 1/256 full scale.
-              constexpr int32_t amplitude = 0x01000000;
-              data.reserve(samples * 2 * sizeof(int32_t));
-
-              for (uint32_t i = 0; i < samples; i++) {
-                const int32_t sample =
-                    ((i % period) < (period / 2))
-                        ? amplitude : -amplitude;
-                const uint32_t raw = static_cast<uint32_t>(sample);
-
-                for (uint8_t ch = 0; ch < 2; ch++) {
-                  data.push_back(raw & 0xFF);
-                  data.push_back((raw >> 8) & 0xFF);
-                  data.push_back((raw >> 16) & 0xFF);
-                  data.push_back((raw >> 24) & 0xFF);
-                }
-              }
-
-              const size_t written = id(aic3204_speaker).play(
-                  data.data(), data.size(), pdMS_TO_TICKS(100));
-              if (written != data.size()) {
-                ESP_LOGW("hp_sweep", "Short I2S write at %d dB", db);
-              }
-              delay(900);
-            }
-
-            id(aic3204_speaker).finish();
-
-            bool restored = codec->write_byte(0x00, 0x01) &&
-                            codec->write_byte(0x10, saved_l) &&
-                            codec->write_byte(0x11, saved_r) &&
-                            codec->write_byte(0x00, 0x00);
-
-            ESP_LOGI("hp_sweep",
-                     "Sweep %s; gain restore %s",
-                     ok ? "complete" : "stopped on error",
-                     restored ? "succeeded" : "FAILED");
-
+        - if:
+            condition:
+              lambda: 'return !id(hp_sweep_failed);'
+            then:
+              - script.execute: hp_sweep_script
