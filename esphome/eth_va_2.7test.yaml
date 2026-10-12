@@ -154,7 +154,6 @@ i2c_device:
     address: 0x18
     i2c_id: audio_i2c
 
-button:
   - platform: template
     name: ${devicename}_headphone_gain_sweep
     id: aic3204_headphone_gain_sweep
