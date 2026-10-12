@@ -106,13 +106,17 @@ globals:
   - id: hp_sweep_failed
     type: bool
     initial_value: 'false'
+  - id: hp_sweep_chunk
+    type: int
+    initial_value: '0'
 
 script:
   - id: hp_sweep_script
     mode: single
     then:
       - repeat:
-          count: 36
+          # 36 gain settings, 100 small tone chunks per setting.
+          count: 3600
           then:
             - if:
                 condition:
@@ -120,70 +124,65 @@ script:
                 then:
                   - lambda: |-
                       auto *codec = id(aic3204_diag);
-                      const uint8_t gain =
-                          static_cast<uint8_t>(id(hp_sweep_gain) + 6);
 
-                      if (!codec->write_byte(0x00, 0x01) ||
-                          !codec->write_byte(0x10, gain) ||
-                          !codec->write_byte(0x11, gain)) {
-                        ESP_LOGE("hp_sweep", "Gain write failed at %+d dB",
-                                 id(hp_sweep_gain));
-                        id(hp_sweep_failed) = true;
-                        return;
+                      if (id(hp_sweep_chunk) == 0) {
+                        const uint8_t gain =
+                            static_cast<uint8_t>(id(hp_sweep_gain) + 6);
+                        if (!codec->write_byte(0x00, 0x01) ||
+                            !codec->write_byte(0x10, gain) ||
+                            !codec->write_byte(0x11, gain)) {
+                          ESP_LOGE("hp_sweep", "Gain write failed at %+d dB",
+                                   id(hp_sweep_gain));
+                          id(hp_sweep_failed) = true;
+                          return;
+                        }
+
+                        uint8_t check_l = 0, check_r = 0;
+                        if (!codec->read_byte(0x10, &check_l) ||
+                            !codec->read_byte(0x11, &check_r)) {
+                          ESP_LOGE("hp_sweep", "Gain readback failed at %+d dB",
+                                   id(hp_sweep_gain));
+                          id(hp_sweep_failed) = true;
+                          return;
+                        }
+
+                        ESP_LOGI("hp_sweep", "STEP gain=%+d dB HPL=%02X HPR=%02X",
+                                 id(hp_sweep_gain), check_l, check_r);
                       }
 
-                      uint8_t check_l = 0, check_r = 0;
-                      if (!codec->read_byte(0x10, &check_l) ||
-                          !codec->read_byte(0x11, &check_r)) {
-                        ESP_LOGE("hp_sweep", "Gain readback failed at %+d dB",
-                                 id(hp_sweep_gain));
-                        id(hp_sweep_failed) = true;
-                        return;
+                      // Emit one 1 ms, 1 kHz stereo tone chunk per automation
+                      // iteration; the delay below gives ESPHome time to run.
+                      std::vector<uint8_t> data;
+                      constexpr int32_t amplitude = 0x01000000;
+                      data.reserve(48 * 2 * sizeof(int32_t));
+
+                      for (uint32_t i = 0; i < 48; i++) {
+                        const int32_t sample = (i < 24)
+                            ? amplitude : -amplitude;
+                        const uint32_t raw = static_cast<uint32_t>(sample);
+                        for (uint8_t ch = 0; ch < 2; ch++) {
+                          data.push_back(raw & 0xFF);
+                          data.push_back((raw >> 8) & 0xFF);
+                          data.push_back((raw >> 16) & 0xFF);
+                          data.push_back((raw >> 24) & 0xFF);
+                        }
                       }
 
-                      ESP_LOGI("hp_sweep", "STEP gain=%+d dB HPL=%02X HPR=%02X",
-                               id(hp_sweep_gain), check_l, check_r);
-                  - repeat:
-                      count: 100
-                      then:
-                        - if:
-                            condition:
-                              lambda: 'return !id(hp_sweep_failed);'
-                            then:
-                              - lambda: |-
-                                  // One 1 kHz cycle = 48 stereo 32-bit frames
-                                  // (384 bytes). Small writes avoid large blocking
-                                  // writes into the speaker queue.
-                                  std::vector<uint8_t> data;
-                                  constexpr int32_t amplitude = 0x01000000;
-                                  data.reserve(48 * 2 * sizeof(int32_t));
+                      const size_t written = id(aic3204_speaker).play(
+                          data.data(), data.size(), pdMS_TO_TICKS(10));
+                      if (written != data.size()) {
+                        ESP_LOGW("hp_sweep", "Short chunk at %+d dB: %u/%u bytes",
+                                 id(hp_sweep_gain),
+                                 static_cast<unsigned>(written),
+                                 static_cast<unsigned>(data.size()));
+                      }
 
-                                  for (uint32_t i = 0; i < 48; i++) {
-                                    const int32_t sample = (i < 24)
-                                        ? amplitude : -amplitude;
-                                    const uint32_t raw =
-                                        static_cast<uint32_t>(sample);
-                                    for (uint8_t ch = 0; ch < 2; ch++) {
-                                      data.push_back(raw & 0xFF);
-                                      data.push_back((raw >> 8) & 0xFF);
-                                      data.push_back((raw >> 16) & 0xFF);
-                                      data.push_back((raw >> 24) & 0xFF);
-                                    }
-                                  }
-
-                                  const size_t written = id(aic3204_speaker).play(
-                                      data.data(), data.size(), pdMS_TO_TICKS(10));
-                                  if (written != data.size()) {
-                                    ESP_LOGW("hp_sweep",
-                                             "Short chunk at %+d dB: %u/%u bytes",
-                                             id(hp_sweep_gain),
-                                             static_cast<unsigned>(written),
-                                             static_cast<unsigned>(data.size()));
-                                  }
-                              - delay: 1ms
-                  - delay: 800ms
-                  - lambda: |-
-                      id(hp_sweep_gain)++;
+                      id(hp_sweep_chunk)++;
+                      if (id(hp_sweep_chunk) >= 100) {
+                        id(hp_sweep_chunk) = 0;
+                        id(hp_sweep_gain)++;
+                      }
+            - delay: 1ms
       - speaker.finish:
           id: aic3204_speaker
       - lambda: |-
@@ -279,6 +278,7 @@ button:
 
             id(hp_sweep_failed) = false;
             id(hp_sweep_gain) = -6;
+            id(hp_sweep_chunk) = 0;
             ESP_LOGI("hp_sweep", "Saved gains HPL=%02X HPR=%02X",
                      id(hp_saved_l), id(hp_saved_r));
 
