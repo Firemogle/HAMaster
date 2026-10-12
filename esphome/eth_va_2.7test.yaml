@@ -172,7 +172,7 @@ script:
                                   }
 
                                   const size_t written = id(aic3204_speaker).play(
-                                      data.data(), data.size(), 0);
+                                      data.data(), data.size(), pdMS_TO_TICKS(10));
                                   if (written != data.size()) {
                                     ESP_LOGW("hp_sweep",
                                              "Short chunk at %+d dB: %u/%u bytes",
