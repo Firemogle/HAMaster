@@ -86,12 +86,11 @@ esphome:
           else:
             - switch.turn_on: ${devicename}_amp_en
 
-# Temporary headphone gain sweep. Test with headphones disconnected first.
+# Temporary AIC3204 register diagnostics.
 i2c_device:
   - id: aic3204_diag
     address: 0x18
     i2c_id: audio_i2c
-
 
 globals:
   - id: hp_saved_l
@@ -115,7 +114,6 @@ script:
     mode: single
     then:
       - repeat:
-          # 36 gain settings, 100 small tone chunks per setting.
           count: 3600
           then:
             - if:
@@ -150,8 +148,6 @@ script:
                                  id(hp_sweep_gain), check_l, check_r);
                       }
 
-                      // Emit one 1 ms, 1 kHz stereo tone chunk per automation
-                      // iteration; the delay below gives ESPHome time to run.
                       std::vector<uint8_t> data;
                       constexpr int32_t amplitude = 0x01000000;
                       data.reserve(48 * 2 * sizeof(int32_t));
@@ -214,7 +210,6 @@ button:
               return;
             }
 
-            // Fixed +6 dB gain for a repeatable playback test.
             if (!codec->write_byte(0x10, 0x0C) ||
                 !codec->write_byte(0x11, 0x0C)) {
               ESP_LOGE("aic3204_test", "Cannot set fixed +6 dB headphone gain");
@@ -232,7 +227,6 @@ button:
                      "Fixed-tone test: gain +6 dB; HPL=%02X HPR=%02X; readback=%s",
                      check_l, check_r, readback ? "OK" : "FAILED");
 
-            // Return to page 0 before starting I2S playback.
             codec->write_byte(0x00, 0x00);
             id(hp_saved_l) = saved_l;
             id(hp_saved_r) = saved_r;
@@ -244,17 +238,14 @@ button:
             id(aic3204_speaker).start();
 
         - delay: 250ms
-
-        # Reuse one prebuilt 100 ms PCM buffer to avoid repeated heap allocation.
-        # A short scheduler yield between writes prevents starving the idle task.
         - repeat:
             count: 50
             then:
               - lambda: |-
                   static const std::vector<uint8_t> data = []() {
                     std::vector<uint8_t> samples;
-                    constexpr uint32_t sample_count = 4800;  // 100 ms at 48 kHz
-                    constexpr uint32_t period = 48;          // 1 kHz
+                    constexpr uint32_t sample_count = 4800;
+                    constexpr uint32_t period = 48;
                     constexpr int32_t amplitude = 0x08000000;
                     samples.reserve(sample_count * 2 * sizeof(int32_t));
 
@@ -296,7 +287,6 @@ button:
             ESP_LOGI("aic3204_test", "Tone playback finished; gain restore %s",
                      restored ? "succeeded" : "FAILED");
 
-
   - platform: template
     name: ${devicename}_headphone_gain_sweep
     id: aic3204_headphone_gain_sweep
@@ -330,3 +320,47 @@ button:
               lambda: 'return !id(hp_sweep_failed);'
             then:
               - script.execute: hp_sweep_script
+
+  - platform: template
+    name: ${devicename}_read_codec_path_registers
+    id: aic3204_read_path_registers
+    entity_category: diagnostic
+    on_press:
+      then:
+        - lambda: |-
+            auto *codec = id(aic3204_diag);
+            uint8_t value = 0;
+            bool ok = true;
+
+            // Page 1: headphone driver power/routing and startup controls.
+            if (!codec->write_byte(0x00, 0x01)) {
+              ESP_LOGE("aic3204_diag", "Cannot select page 1");
+              return;
+            }
+            const uint8_t page1_regs[] = {0x09, 0x0C, 0x0D, 0x10, 0x11, 0x14};
+            for (const uint8_t reg : page1_regs) {
+              if (codec->read_byte(reg, &value)) {
+                ESP_LOGI("aic3204_diag", "P1 R%02X = %02X", reg, value);
+              } else {
+                ESP_LOGE("aic3204_diag", "Read failed P1 R%02X", reg);
+                ok = false;
+              }
+            }
+
+            // Page 0: DAC setup and channel power/configuration.
+            if (!codec->write_byte(0x00, 0x00)) {
+              ESP_LOGE("aic3204_diag", "Cannot select page 0");
+              return;
+            }
+            const uint8_t page0_regs[] = {0x3F, 0x40, 0x41, 0x42, 0x47, 0x48};
+            for (const uint8_t reg : page0_regs) {
+              if (codec->read_byte(reg, &value)) {
+                ESP_LOGI("aic3204_diag", "P0 R%02X = %02X", reg, value);
+              } else {
+                ESP_LOGE("aic3204_diag", "Read failed P0 R%02X", reg);
+                ok = false;
+              }
+            }
+
+            ESP_LOGI("aic3204_diag", "Codec path register dump %s",
+                     ok ? "complete" : "had read errors");
