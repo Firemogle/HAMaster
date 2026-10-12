@@ -6,7 +6,144 @@ packages:
     file: packages/poe_board_base_2.6.yaml
     vars:
       devicename: ${devicename}
-  voice_board: !include
-    file: packages/va_board_2.1.yaml
-    vars:
-      devicename: ${devicename}
+
+# TEMPORARY AIC3204 playback test.
+# Replaces the voice/audio package for this test; remove this block and restore
+# the voice_board include after testing.
+i2s_audio:
+  - id: aic3204_i2s
+    i2s_lrclk_pin: GPIO45
+    i2s_bclk_pin: GPIO47
+    i2s_mclk_pin: GPIO48
+
+audio_dac:
+  - platform: aic3204
+    id: aic3204_dac
+    i2c_id: audio_i2c
+
+speaker:
+  - platform: i2s_audio
+    id: aic3204_speaker
+    i2s_audio_id: aic3204_i2s
+    i2s_dout_pin: GPIO01
+    dac_type: external
+    audio_dac: aic3204_dac
+    sample_rate: 48000
+    bits_per_sample: 32bit
+    mclk_multiple: 512
+    use_apll: true
+    i2s_comm_fmt: stand_i2s
+    channel: stereo
+    timeout: 5s
+
+pcf8574:
+  - id: pcf8574_hub
+    address: 0x20
+    pcf8575: false
+    i2c_id: i2c_channel
+
+switch:
+  - platform: gpio
+    id: ${devicename}_amp_en
+    name: ${devicename}_amp_en
+    pin:
+      pcf8574: pcf8574_hub
+      number: 0
+      mode:
+        output: true
+      inverted: false
+
+binary_sensor:
+  - platform: gpio
+    id: ${devicename}_aux_det_ic
+    name: ${devicename}_aux_det_ic
+    pin:
+      pcf8574: pcf8574_hub
+      number: 1
+      mode:
+        input: true
+      inverted: false
+    on_state:
+      then:
+        - if:
+            condition:
+              binary_sensor.is_on: ${devicename}_aux_det_ic
+            then:
+              - switch.turn_off: ${devicename}_amp_en
+            else:
+              - switch.turn_on: ${devicename}_amp_en
+
+esphome:
+  on_boot:
+    priority: -100
+    then:
+      - delay: 2s
+      - if:
+          condition:
+            binary_sensor.is_on: ${devicename}_aux_det_ic
+          then:
+            - switch.turn_off: ${devicename}_amp_en
+          else:
+            - switch.turn_on: ${devicename}_amp_en
+
+button:
+  - platform: template
+    name: ${devicename}_play_test_tone
+    id: aic3204_play_test_tone
+    entity_category: diagnostic
+    on_press:
+      then:
+        - lambda: |-
+            ESP_LOGI("aic3204_test",
+                     "Starting 1 kHz, 48 kHz stereo playback test");
+            id(aic3204_speaker).set_audio_stream_info(
+                esphome::audio::AudioStreamInfo(32, 2, 48000));
+            id(aic3204_speaker).set_volume(1.0f);
+            id(aic3204_speaker).set_mute_state(false);
+            id(aic3204_speaker).start();
+
+        - delay: 250ms
+
+        - repeat:
+            count: 50
+            then:
+              - lambda: |-
+                  std::vector<uint8_t> data;
+                  constexpr uint32_t sample_count = 4800;
+                  constexpr uint32_t period = 48;
+                  constexpr int32_t amplitude = 0x10000000;
+
+                  data.reserve(sample_count * 2 * sizeof(int32_t));
+
+                  for (uint32_t i = 0; i < sample_count; i++) {
+                    const int32_t sample =
+                        ((i % period) < (period / 2))
+                            ? amplitude : -amplitude;
+                    const uint32_t raw =
+                        static_cast<uint32_t>(sample);
+
+                    for (uint8_t channel = 0; channel < 2; channel++) {
+                      data.push_back(raw & 0xFF);
+                      data.push_back((raw >> 8) & 0xFF);
+                      data.push_back((raw >> 16) & 0xFF);
+                      data.push_back((raw >> 24) & 0xFF);
+                    }
+                  }
+
+                  const size_t expected = data.size();
+                  const size_t written = id(aic3204_speaker).play(
+                      data.data(), data.size(), pdMS_TO_TICKS(100));
+
+                  if (written != expected) {
+                    ESP_LOGW("aic3204_test",
+                             "Short I2S write: %u/%u bytes",
+                             static_cast<unsigned>(written),
+                             static_cast<unsigned>(expected));
+                  }
+
+              - delay: 100ms
+
+        - speaker.finish:
+            id: aic3204_speaker
+
+        - logger.log: "AIC3204 test tone finished"
