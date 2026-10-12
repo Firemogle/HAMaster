@@ -364,3 +364,152 @@ button:
 
             ESP_LOGI("aic3204_diag", "Codec path register dump %s",
                      ok ? "complete" : "had read errors");
+
+  - platform: template
+    name: ${devicename}_run_full_codec_diagnostic
+    id: aic3204_full_diagnostic
+    entity_category: diagnostic
+    on_press:
+      then:
+        - lambda: |-
+            ESP_LOGI("aic3204_cycle", "========== FULL CODEC DIAGNOSTIC: START ==========");
+            auto *codec = id(aic3204_diag);
+            uint8_t value = 0;
+            bool ok = true;
+            if (!codec->write_byte(0x00, 0x01)) {
+              ESP_LOGE("aic3204_cycle", "Cannot select page 1");
+              return;
+            }
+            const uint8_t regs[] = {0x09, 0x0C, 0x0D, 0x10, 0x11, 0x14, 0x3F};
+            for (const uint8_t reg : regs) {
+              if (codec->read_byte(reg, &value))
+                ESP_LOGI("aic3204_cycle", "BEFORE P1 R%02X = %02X", reg, value);
+              else { ESP_LOGE("aic3204_cycle", "Read failed P1 R%02X", reg); ok = false; }
+            }
+            if (!ok) {
+              codec->write_byte(0x00, 0x00);
+              ESP_LOGE("aic3204_cycle", "Aborting: initial Page 1 reads failed");
+              return;
+            }
+        - delay: 100ms
+        - lambda: |-
+            auto *codec = id(aic3204_diag);
+            uint8_t value = 0;
+            bool ok = true;
+            if (!codec->write_byte(0x00, 0x00)) {
+              ESP_LOGE("aic3204_cycle", "Cannot select page 0");
+              return;
+            }
+            const uint8_t regs[] = {0x04, 0x05, 0x06, 0x1B, 0x1C, 0x1D, 0x1E, 0x1F,
+                                    0x25, 0x26, 0x3F, 0x40, 0x41, 0x42};
+            for (const uint8_t reg : regs) {
+              if (codec->read_byte(reg, &value))
+                ESP_LOGI("aic3204_cycle", "BEFORE P0 R%02X = %02X", reg, value);
+              else { ESP_LOGE("aic3204_cycle", "Read failed P0 R%02X", reg); ok = false; }
+            }
+            if (!ok) ESP_LOGE("aic3204_cycle", "Some initial Page 0 reads failed; continuing");
+        - delay: 100ms
+        - lambda: |-
+            auto *codec = id(aic3204_diag);
+            uint8_t saved_l = 0, saved_r = 0;
+            if (!codec->write_byte(0x00, 0x01) ||
+                !codec->read_byte(0x10, &saved_l) ||
+                !codec->read_byte(0x11, &saved_r)) {
+              ESP_LOGE("aic3204_cycle", "Cannot read headphone gains; aborting playback");
+              codec->write_byte(0x00, 0x00);
+              return;
+            }
+            if (!codec->write_byte(0x10, 0x0C) || !codec->write_byte(0x11, 0x0C)) {
+              ESP_LOGE("aic3204_cycle", "Cannot set test gain; aborting playback");
+              codec->write_byte(0x10, saved_l);
+              codec->write_byte(0x11, saved_r);
+              codec->write_byte(0x00, 0x00);
+              return;
+            }
+            uint8_t check_l = 0, check_r = 0;
+            const bool readback = codec->read_byte(0x10, &check_l) &&
+                                  codec->read_byte(0x11, &check_r);
+            ESP_LOGI("aic3204_cycle", "PLAYBACK: temporary HPL=%02X HPR=%02X readback=%s",
+                     check_l, check_r, readback ? "OK" : "FAILED");
+            codec->write_byte(0x00, 0x00);
+            id(hp_saved_l) = saved_l;
+            id(hp_saved_r) = saved_r;
+            id(aic3204_speaker).set_audio_stream_info(
+                esphome::audio::AudioStreamInfo(32, 2, 48000));
+            id(aic3204_speaker).set_volume(1.0f);
+            id(aic3204_speaker).set_mute_state(false);
+            id(aic3204_speaker).start();
+        - delay: 250ms
+        - repeat:
+            count: 50
+            then:
+              - lambda: |-
+                  static const std::vector<uint8_t> data = []() {
+                    std::vector<uint8_t> samples;
+                    constexpr uint32_t sample_count = 4800;
+                    constexpr uint32_t period = 48;
+                    constexpr int32_t amplitude = 0x08000000;
+                    samples.reserve(sample_count * 2 * sizeof(int32_t));
+                    for (uint32_t i = 0; i < sample_count; i++) {
+                      const int32_t sample = ((i % period) < (period / 2))
+                          ? amplitude : -amplitude;
+                      const uint32_t raw = static_cast<uint32_t>(sample);
+                      for (uint8_t channel = 0; channel < 2; channel++) {
+                        samples.push_back(raw & 0xFF);
+                        samples.push_back((raw >> 8) & 0xFF);
+                        samples.push_back((raw >> 16) & 0xFF);
+                        samples.push_back((raw >> 24) & 0xFF);
+                      }
+                    }
+                    return samples;
+                  }();
+                  const size_t written = id(aic3204_speaker).play(
+                      data.data(), data.size(), pdMS_TO_TICKS(100));
+                  if (written != data.size())
+                    ESP_LOGW("aic3204_cycle", "Short I2S write: %u/%u bytes",
+                             static_cast<unsigned>(written), static_cast<unsigned>(data.size()));
+              - delay: 10ms
+        - speaker.finish:
+            id: aic3204_speaker
+        - lambda: |-
+            auto *codec = id(aic3204_diag);
+            const bool restored = codec->write_byte(0x00, 0x01) &&
+                codec->write_byte(0x10, id(hp_saved_l)) &&
+                codec->write_byte(0x11, id(hp_saved_r)) &&
+                codec->write_byte(0x00, 0x00);
+            ESP_LOGI("aic3204_cycle", "Playback finished; headphone gain restore %s",
+                     restored ? "succeeded" : "FAILED");
+        - delay: 100ms
+        - lambda: |-
+            auto *codec = id(aic3204_diag);
+            uint8_t value = 0;
+            bool ok = true;
+            if (!codec->write_byte(0x00, 0x00)) {
+              ESP_LOGE("aic3204_cycle", "Cannot select page 0 for final snapshot");
+              return;
+            }
+            const uint8_t regs[] = {0x1B, 0x1C, 0x1D, 0x1E, 0x1F, 0x25, 0x26,
+                                    0x3F, 0x40, 0x41, 0x42};
+            for (const uint8_t reg : regs) {
+              if (codec->read_byte(reg, &value))
+                ESP_LOGI("aic3204_cycle", "AFTER P0 R%02X = %02X", reg, value);
+              else { ESP_LOGE("aic3204_cycle", "Read failed P0 R%02X", reg); ok = false; }
+            }
+        - delay: 100ms
+        - lambda: |-
+            auto *codec = id(aic3204_diag);
+            uint8_t value = 0;
+            bool ok = true;
+            if (!codec->write_byte(0x00, 0x01)) {
+              ESP_LOGE("aic3204_cycle", "Cannot select page 1 for final snapshot");
+              return;
+            }
+            const uint8_t regs[] = {0x09, 0x0C, 0x0D, 0x10, 0x11, 0x14, 0x3F};
+            for (const uint8_t reg : regs) {
+              if (codec->read_byte(reg, &value))
+                ESP_LOGI("aic3204_cycle", "AFTER P1 R%02X = %02X", reg, value);
+              else { ESP_LOGE("aic3204_cycle", "Read failed P1 R%02X", reg); ok = false; }
+            }
+            codec->write_byte(0x00, 0x00);
+            ESP_LOGI("aic3204_cycle", "========== FULL CODEC DIAGNOSTIC: %s ==========",
+                     ok ? "COMPLETE" : "COMPLETED WITH READ ERRORS");
