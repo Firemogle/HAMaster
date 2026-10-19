@@ -83,27 +83,30 @@ light:
               update_interval: 500ms
               lambda: |-
                 const float fraction = id(${devicename}_timer_fraction_remaining).state;
-                const float segment = 100.0f / 9.0f;
+                const float segment = 100.0f / 12.0f;
       
-                // Start with all 9 LEDs fully red.
-                for (int i = 0; i < 9; i++) {
+                // Clamp the remaining percentage to the 0-100 range.
+                const float remaining = fmaxf(0.0f, fminf(100.0f, fraction));
+      
+                // Start with all 12 LEDs fully red.
+                for (int i = 0; i < 12; i++) {
                   it[i] = Color(255, 0, 0);
                 }
       
-                // Number of complete 11.11% segments remaining.
+                // Number of complete 8.33% segments remaining.
                 const int full_segments =
-                    static_cast<int>(fraction / segment);
+                    static_cast<int>(remaining / segment);
       
                 // Set completed segments to full white,
                 // starting at the lowest LED.
-                for (int i = 0; i < full_segments && i < 9; i++) {
+                for (int i = 0; i < full_segments && i < 12; i++) {
                   it[i] = Color(255, 255, 255);
                 }
       
                 // Use the remainder for the next LED.
-                if (full_segments < 9) {
+                if (full_segments < 12) {
                   const float remainder =
-                      fmodf(fraction, segment) / segment;
+                      fmodf(remaining, segment) / segment;
       
                   // Remainder 0 = full red.
                   // Remainder 1 = full white.
