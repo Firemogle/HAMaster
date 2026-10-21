@@ -95,6 +95,7 @@ media_player:
     volume_increment: 0.05
     volume_min: 0.4
     volume_max: 0.85
+    format: NONE
     files:
       id: timer_finished_sound
       file: packages/sounds/alarm.mp3
