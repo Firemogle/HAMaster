@@ -219,8 +219,21 @@ button:
                 // Read all register addresses on pages 0 and 1.
                 for (uint8_t reg = 1; reg <= 0x7F; reg++) {
                   if (codec->read_byte(reg, &value)) {
-                    ESP_LOGI("aic3204_test", "P%u R%02X = %02X",
-                             page, reg, value);
+                    if (page == 0 && reg == 0x25) {
+                      // P0/R25 is read-only DAC Flag Register 1.
+                      ESP_LOGI("aic3204_test",
+                               "P0 R25 DAC status=%02X: LDAC=%s LOL=%s HPL=%s RDAC=%s LOR=%s HPR=%s",
+                               value,
+                               (value & 0x80) ? "ON" : "OFF",
+                               (value & 0x40) ? "ON" : "OFF",
+                               (value & 0x20) ? "ON" : "OFF",
+                               (value & 0x08) ? "ON" : "OFF",
+                               (value & 0x04) ? "ON" : "OFF",
+                               (value & 0x02) ? "ON" : "OFF");
+                    } else {
+                      ESP_LOGI("aic3204_test", "P%u R%02X = %02X",
+                               page, reg, value);
+                    }
                   } else {
                     ESP_LOGE("aic3204_test", "P%u R%02X READ FAILED",
                              page, reg);
@@ -302,8 +315,20 @@ button:
               ESP_LOGI("aic3204_test", "----- PAGE %u -----", page);
               for (uint8_t reg = 1; reg <= 0x7F; reg++) {
                 if (codec->read_byte(reg, &value)) {
-                  ESP_LOGI("aic3204_test", "P%u R%02X = %02X",
-                           page, reg, value);
+                  if (page == 0 && reg == 0x25) {
+                    ESP_LOGI("aic3204_test",
+                             "P0 R25 DAC status=%02X: LDAC=%s LOL=%s HPL=%s RDAC=%s LOR=%s HPR=%s",
+                             value,
+                             (value & 0x80) ? "ON" : "OFF",
+                             (value & 0x40) ? "ON" : "OFF",
+                             (value & 0x20) ? "ON" : "OFF",
+                             (value & 0x08) ? "ON" : "OFF",
+                             (value & 0x04) ? "ON" : "OFF",
+                             (value & 0x02) ? "ON" : "OFF");
+                  } else {
+                    ESP_LOGI("aic3204_test", "P%u R%02X = %02X",
+                             page, reg, value);
+                  }
                 } else {
                   ESP_LOGE("aic3204_test", "P%u R%02X READ FAILED",
                            page, reg);
