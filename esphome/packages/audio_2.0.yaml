@@ -46,6 +46,40 @@ button:
             ESP_LOGI("aic3204_diag", "=== AIC3204 FULL REGISTER DUMP COMPLETE ===");
 
   - platform: template
+    name: ${devicename}_aic3204_forum_fix_check
+    id: ${devicename}_aic3204_forum_fix_check
+    entity_category: diagnostic
+    on_press:
+      then:
+        - lambda: |-
+            auto *codec = id(aic3204_diag);
+            uint8_t value = 0;
+
+            ESP_LOGI("aic3204_diag",
+                     "=== TI E2E FORUM FIX CHECK: P1 REGISTER 0x0A ===");
+            if (!codec->write_byte(0x00, 0x01)) {
+              ESP_LOGE("aic3204_diag", "Failed to select page 1");
+              codec->write_byte(0x00, 0x00);
+              return;
+            }
+
+            if (codec->read_byte(0x0A, &value)) {
+              ESP_LOGI("aic3204_diag",
+                       "P1 R0A = 0x%02X; D1=%u; D1 %s",
+                       value, (value >> 1) & 0x01,
+                       (value & 0x02) ? "SET (forum says clear)" :
+                                        "CLEAR (matches forum suggestion)");
+            } else {
+              ESP_LOGE("aic3204_diag", "Read failed for P1 R0A");
+            }
+
+            if (!codec->write_byte(0x00, 0x00)) {
+              ESP_LOGE("aic3204_diag", "Failed to restore page 0");
+            }
+            ESP_LOGI("aic3204_diag",
+                     "Read-only check complete; no codec settings changed");
+
+  - platform: template
     name: ${devicename}_aic3204_internal_beep_preserve_output
     id: ${devicename}_aic3204_internal_beep_preserve_output
     entity_category: diagnostic
