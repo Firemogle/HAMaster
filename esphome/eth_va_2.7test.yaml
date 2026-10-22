@@ -205,6 +205,7 @@ script:
           ESP_LOGI("hp_sweep", "Sweep %s; gain restore %s",
                    id(hp_sweep_failed) ? "stopped on error" : "complete",
                    restored ? "succeeded" : "FAILED");
+button:
   - platform: template
     name: ${devicename}_aic3204_internal_beep_forum_sequence
     id: ${devicename}_aic3204_internal_beep_forum_sequence
@@ -296,7 +297,6 @@ script:
             ESP_LOGI("aic3204_forum_beep", "Non-blocking TI E2E beep test complete; restore=%s",
                      restore_ok ? "OK" : "ERROR");
         - delay: 1s
-button:
   - platform: template
     name: ${devicename}_play_test_tone
     id: aic3204_play_test_tone
