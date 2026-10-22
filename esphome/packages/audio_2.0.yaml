@@ -221,7 +221,6 @@ button:
     entity_category: diagnostic
     on_press:
       then:
-        - micro_wake_word.stop:
         - media_player.stop: ${devicename}_media
         - delay: 100ms
         - lambda: |-
@@ -323,7 +322,6 @@ button:
                      beep_done ? "yes" : "timeout",
                      restore_ok ? "OK" : "ERROR");
         - delay: 1s
-        - micro_wake_word.start:
 
   - platform: template
     name: ${devicename}_aic3204_internal_beep
