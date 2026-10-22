@@ -270,12 +270,12 @@ button:
             write_p0(0x48, 0x28);
 
             // Mute DACs, then wait up to 500 ms for mute flags in P0/R26:
-            // forum mask xxx1xxx1 corresponds to bits 3 and 0.
+            // Forum mask xxx1xxx1 corresponds to bits 4 and 0 (0x11).
             write_p0(0x40, 0x0C);
             uint32_t start = millis();
             bool muted = false;
             while (millis() - start < 500) {
-              if (read_p0(0x26, &value) && (value & 0x09) == 0x09) {
+              if (read_p0(0x26, &value) && (value & 0x11) == 0x11) {
                 muted = true;
                 break;
               }
