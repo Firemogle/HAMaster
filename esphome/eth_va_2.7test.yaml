@@ -129,6 +129,7 @@ globals:
     restore_value: no
     initial_value: 'false'
 
+# Headphone sweep runner is a script component.
 script:
   - id: hp_sweep_script
     mode: single
