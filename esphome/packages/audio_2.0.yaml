@@ -3,6 +3,28 @@ i2c_device:
     address: 0x18
     i2c_id: audio_i2c
 
+globals:
+  - id: aic3204_forum_saved_ndac
+    type: uint8_t
+    restore_value: no
+    initial_value: '0x82'
+  - id: aic3204_forum_saved_mute
+    type: uint8_t
+    restore_value: no
+    initial_value: '0x00'
+  - id: aic3204_forum_saved_r47
+    type: uint8_t
+    restore_value: no
+    initial_value: '0x00'
+  - id: aic3204_forum_saved_r48
+    type: uint8_t
+    restore_value: no
+    initial_value: '0x00'
+  - id: aic3204_forum_snapshot_ok
+    type: bool
+    restore_value: no
+    initial_value: 'false'
+
 button:
   - platform: template
     name: ${devicename}_aic3204_diagnostic
@@ -223,103 +245,87 @@ button:
       then:
         - media_player.stop: ${devicename}_media
         - delay: 100ms
+        # Phase 1: snapshot and configure. No polling loops in lambdas.
         - lambda: |-
             auto *codec = id(aic3204_diag);
-            bool ok = true;
-            bool restore_ok = true;
             uint8_t value = 0;
-
-            // Save every register this test changes so normal 48 kHz playback
-            // configuration can be restored even if the forum sequence times out.
-            const uint8_t p0_regs[] = {0x0B, 0x40, 0x47, 0x48};
-            uint8_t saved[sizeof(p0_regs)] = {};
-            if (!codec->write_byte(0x00, 0x00)) {
-              ESP_LOGE("aic3204_forum_beep", "Cannot select page 0; aborting");
-              return;
-            }
-            for (size_t i = 0; i < sizeof(p0_regs); i++) {
-              if (!codec->read_byte(p0_regs[i], &saved[i])) {
-                ESP_LOGE("aic3204_forum_beep", "Snapshot failed P0 R%02X", p0_regs[i]);
-                ok = false;
-              }
-            }
+            bool ok = codec->write_byte(0x00, 0x00);
+            ok = codec->read_byte(0x0B, &id(aic3204_forum_saved_ndac)) && ok;
+            ok = codec->read_byte(0x40, &id(aic3204_forum_saved_mute)) && ok;
+            ok = codec->read_byte(0x47, &id(aic3204_forum_saved_r47)) && ok;
+            ok = codec->read_byte(0x48, &id(aic3204_forum_saved_r48)) && ok;
+            id(aic3204_forum_snapshot_ok) = ok;
             if (!ok) {
-              codec->write_byte(0x00, 0x00);
-              ESP_LOGE("aic3204_forum_beep", "Snapshot incomplete; test aborted safely");
+              ESP_LOGE("aic3204_forum_beep", "Register snapshot failed; aborting before changes");
               return;
             }
-
-            auto write_p0 = [&](uint8_t reg, uint8_t data) {
-              if (!codec->write_byte(reg, data)) {
-                ESP_LOGE("aic3204_forum_beep", "Write failed P0 R%02X <- %02X", reg, data);
-                ok = false;
-              }
-            };
-            auto read_p0 = [&](uint8_t reg, uint8_t *out) -> bool {
-              if (!codec->write_byte(0x00, 0x00)) return false;
-              return codec->read_byte(reg, out);
-            };
-
             ESP_LOGI("aic3204_forum_beep",
-                     "Starting TI E2E beep sequence; saved NDAC=%02X DAC_MUTE=%02X R47=%02X R48=%02X",
-                     saved[0], saved[1], saved[2], saved[3]);
-
-            // Forum setup: beep gain -40 dB. Keep this separate from the trigger write.
-            write_p0(0x47, 0x28);
-            write_p0(0x48, 0x28);
-
-            // Mute DACs, then wait up to 500 ms for mute flags in P0/R26:
-            // Forum mask xxx1xxx1 corresponds to bits 4 and 0 (0x11).
-            write_p0(0x40, 0x0C);
-            uint32_t start = millis();
-            bool muted = false;
-            while (millis() - start < 500) {
-              if (read_p0(0x26, &value) && (value & 0x11) == 0x11) {
-                muted = true;
-                break;
-              }
-              delay(5);
+                     "Starting non-blocking TI E2E sequence; saved NDAC=%02X MUTE=%02X R47=%02X R48=%02X",
+                     id(aic3204_forum_saved_ndac), id(aic3204_forum_saved_mute),
+                     id(aic3204_forum_saved_r47), id(aic3204_forum_saved_r48));
+            if (!codec->write_byte(0x47, 0x28) ||
+                !codec->write_byte(0x48, 0x28) ||
+                !codec->write_byte(0x40, 0x0C)) {
+              ESP_LOGE("aic3204_forum_beep", "Initial beep setup write failed");
             }
-            ESP_LOGI("aic3204_forum_beep", "DAC mute flags P0/R26=%02X; confirmed=%s",
-                     value, muted ? "yes" : "NO (continuing with bounded test)");
-
-            // TI forum sequence: disable NDAC, trigger beep, restore NDAC, unmute.
-            write_p0(0x0B, 0x02);
-            delay(5);
-            write_p0(0x47, 0x8C);
-            delay(5);
-            write_p0(0x0B, 0x82);
-            write_p0(0x40, 0x00);
-
-            // Wait for beep-in-progress bit (R47 bit 7) to clear, max 5 seconds.
-            start = millis();
-            bool beep_done = false;
-            while (millis() - start < 5000) {
-              if (read_p0(0x47, &value) && (value & 0x80) == 0) {
-                beep_done = true;
-                break;
-              }
-              delay(10);
+        - delay: 20ms
+        # Phase 2: inspect mute status once, then advance without a busy wait.
+        - lambda: |-
+            if (!id(aic3204_forum_snapshot_ok)) return;
+            auto *codec = id(aic3204_diag);
+            uint8_t value = 0;
+            if (codec->write_byte(0x00, 0x00) && codec->read_byte(0x26, &value)) {
+              ESP_LOGI("aic3204_forum_beep",
+                       "DAC mute flags P0/R26=%02X; expected mask 0x11=%s",
+                       value, (value & 0x11) == 0x11 ? "present" : "not present");
+            } else {
+              ESP_LOGE("aic3204_forum_beep", "Could not read DAC mute flags");
             }
-            ESP_LOGI("aic3204_forum_beep",
-                     "Beep wait ended: P0/R47=%02X; completion flag cleared=%s",
-                     value, beep_done ? "yes" : "NO (timeout)");
-
-            // Restore in a safe order: stop beep, restore NDAC, restore mute state,
-            // then restore beep registers to their pre-test values.
-            if (!codec->write_byte(0x00, 0x00)) restore_ok = false;
-            if (!codec->write_byte(0x47, 0x00)) restore_ok = false;
-            if (!codec->write_byte(0x0B, saved[0])) restore_ok = false;
-            if (!codec->write_byte(0x40, saved[1])) restore_ok = false;
-            if (!codec->write_byte(0x47, saved[2])) restore_ok = false;
-            if (!codec->write_byte(0x48, saved[3])) restore_ok = false;
-            if (!codec->write_byte(0x00, 0x00)) restore_ok = false;
-
-            ESP_LOGI("aic3204_forum_beep",
-                     "TI E2E beep test complete; setup=%s mute_confirmed=%s beep_completed=%s restore=%s",
-                     ok ? "OK" : "WRITE ERRORS",
-                     muted ? "yes" : "no",
-                     beep_done ? "yes" : "timeout",
+            if (!codec->write_byte(0x0B, 0x02)) {
+              ESP_LOGE("aic3204_forum_beep", "Failed to disable NDAC");
+            }
+        - delay: 5ms
+        # Phase 3: trigger beep and restore the DAC clock.
+        - lambda: |-
+            if (!id(aic3204_forum_snapshot_ok)) return;
+            auto *codec = id(aic3204_diag);
+            if (!codec->write_byte(0x00, 0x00) ||
+                !codec->write_byte(0x47, 0x8C)) {
+              ESP_LOGE("aic3204_forum_beep", "Beep trigger write failed");
+            }
+        - delay: 5ms
+        - lambda: |-
+            if (!id(aic3204_forum_snapshot_ok)) return;
+            auto *codec = id(aic3204_diag);
+            if (!codec->write_byte(0x00, 0x00) ||
+                !codec->write_byte(0x0B, 0x82) ||
+                !codec->write_byte(0x40, 0x00)) {
+              ESP_LOGE("aic3204_forum_beep", "NDAC restore/unmute write failed");
+            }
+        - delay: 250ms
+        # Phase 4: read status once and restore saved register values.
+        - lambda: |-
+            if (!id(aic3204_forum_snapshot_ok)) {
+              ESP_LOGW("aic3204_forum_beep", "No register snapshot; nothing to restore");
+              return;
+            }
+            auto *codec = id(aic3204_diag);
+            uint8_t value = 0;
+            bool restore_ok = codec->write_byte(0x00, 0x00);
+            if (codec->read_byte(0x47, &value)) {
+              ESP_LOGI("aic3204_forum_beep", "Post-beep P0/R47=%02X (bit7 %s)",
+                       value, (value & 0x80) ? "set" : "clear");
+            } else {
+              ESP_LOGW("aic3204_forum_beep", "Post-beep R47 read failed");
+            }
+            restore_ok = codec->write_byte(0x47, 0x00) && restore_ok;
+            restore_ok = codec->write_byte(0x0B, id(aic3204_forum_saved_ndac)) && restore_ok;
+            restore_ok = codec->write_byte(0x40, id(aic3204_forum_saved_mute)) && restore_ok;
+            restore_ok = codec->write_byte(0x47, id(aic3204_forum_saved_r47)) && restore_ok;
+            restore_ok = codec->write_byte(0x48, id(aic3204_forum_saved_r48)) && restore_ok;
+            restore_ok = codec->write_byte(0x00, 0x00) && restore_ok;
+            id(aic3204_forum_snapshot_ok) = false;
+            ESP_LOGI("aic3204_forum_beep", "Non-blocking TI E2E beep test complete; restore=%s",
                      restore_ok ? "OK" : "ERROR");
         - delay: 1s
 
