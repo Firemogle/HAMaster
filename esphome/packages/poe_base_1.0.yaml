@@ -31,8 +31,8 @@ api:
     key: !secret ENC_KEY
 
 ota:
-  platform: esphome
-  password: !secret OTA_PW
+  - platform: esphome
+    encryption:
  
 
 i2c:
