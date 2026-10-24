@@ -1,5 +1,5 @@
 # Master-side desired valve states and direct UDP communications.
-# The irrigation package continues to use the same four internal switch IDs.
+# Retain the existing valve IDs and add desired-state controls for the new manifolds.
 switch:
   - platform: template
     name: porch_plot_valve
@@ -150,22 +150,16 @@ binary_sensor:
     provider: irrigation-manifold-deck
     remote_id: tx_porch_plot_state
     id: rx_porch_plot_state
-    optimistic: true
-    restore_mode: ALWAYS_OFF
     internal: true
   - platform: packet_transport
     provider: irrigation-manifold-deck
     remote_id: tx_porch_rail_state
     id: rx_porch_rail_state
-    optimistic: true
-    restore_mode: ALWAYS_OFF
     internal: true
   - platform: packet_transport
     provider: irrigation-manifold-fence
     remote_id: tx_garden_state
     id: rx_garden_state
-    optimistic: true
-    restore_mode: ALWAYS_OFF
     internal: true
   - platform: packet_transport
     provider: irrigation-manifold-fence
