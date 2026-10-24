@@ -1,20 +1,5 @@
 packages:
-  porchplot: !include 
-    file: valve_remote.yaml
-    vars:
-      name: porch_plot_valve
-  gardenplot: !include 
-    file: valve_remote.yaml
-    vars:
-      name: garden_valve
-  fenceplot: !include 
-    file: valve_remote.yaml
-    vars:
-      name: fence_valve
-  porchrailplot: !include 
-    file: valve_remote.yaml
-    vars:
-      name: porch_rail_valve
+  valve_remote_master: !include valve_remote_master.yaml
       
 sprinkler:
   - id: back_irr
