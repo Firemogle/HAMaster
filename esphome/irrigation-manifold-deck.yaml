@@ -38,7 +38,7 @@ packet_transport:
     - tx_porch_plot_state
     - tx_porch_rail_state
   providers:
-    - name: irrigation-master
+    - name: rainbarrel
       encryption: !secret ENC_KEY
 
 switch:
@@ -60,7 +60,7 @@ switch:
 binary_sensor:
   # Command inputs from the master. Any communication loss forces outputs off.
   - platform: packet_transport
-    provider: irrigation-master
+    provider: rainbarrel
     remote_id: cmd_porch_plot
     id: rx_cmd_porch_plot
     on_press:
@@ -71,7 +71,7 @@ binary_sensor:
         - switch.turn_off: porch_plot_valve
 
   - platform: packet_transport
-    provider: irrigation-master
+    provider: rainbarrel
     remote_id: cmd_porch_rail
     id: rx_cmd_porch_rail
     on_press:
@@ -83,7 +83,7 @@ binary_sensor:
 
   - platform: packet_transport
     type: status
-    provider: irrigation-master
+    provider: rainbarrel
     name: "Deck Manifold Master Link"
     id: master_link_status
     on_release:
