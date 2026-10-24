@@ -1,0 +1,142 @@
+esphome:
+  name: irrigation-manifold-garden
+  friendly_name: Irrigation Manifold Garden
+
+esp32:
+  board: esp32dev
+  framework:
+    type: esp-idf
+
+wifi:
+  ssid: !secret AP
+  password: !secret APPW
+
+logger:
+
+api:
+  encryption:
+    key: !secret ENC_KEY
+
+ota:
+  platform: esphome
+  password: !secret OTA_PW
+
+bluetooth_proxy:
+
+udp:
+
+packet_transport:
+  platform: udp
+  update_interval: 1s
+  encryption: !secret ENC_KEY
+  rolling_code_enable: true
+  ping_pong_enable: true
+  ping_pong_recycle_time: 5s
+  binary_sensors:
+    - tx_tomatoes_state
+    - tx_cucumbers_state
+    - tx_general_state
+    - tx_three_sisters_state
+  providers:
+    - name: rainbarrel
+      encryption: !secret ENC_KEY
+
+switch:
+  - platform: gpio
+    name: tomatoes_valve
+    id: tomatoes_valve
+    pin:
+      number: GPIO05
+      inverted: false
+    restore_mode: ALWAYS_OFF
+  - platform: gpio
+    name: cucumbers_valve
+    id: cucumbers_valve
+    pin:
+      number: GPIO04
+      inverted: false
+    restore_mode: ALWAYS_OFF
+  - platform: gpio
+    name: general_valve
+    id: general_valve
+    pin:
+      number: GPIO16
+      inverted: false
+    restore_mode: ALWAYS_OFF
+  - platform: gpio
+    name: three_sisters_valve
+    id: three_sisters_valve
+    pin:
+      number: GPIO17
+      inverted: false
+    restore_mode: ALWAYS_OFF
+
+binary_sensor:
+  - platform: packet_transport
+    provider: rainbarrel
+    remote_id: cmd_tomatoes
+    id: rx_cmd_tomatoes
+    on_press:
+      then:
+        - switch.turn_on: tomatoes_valve
+    on_release:
+      then:
+        - switch.turn_off: tomatoes_valve
+
+  - platform: packet_transport
+    provider: rainbarrel
+    remote_id: cmd_cucumbers
+    id: rx_cmd_cucumbers
+    on_press:
+      then:
+        - switch.turn_on: cucumbers_valve
+    on_release:
+      then:
+        - switch.turn_off: cucumbers_valve
+
+  - platform: packet_transport
+    provider: rainbarrel
+    remote_id: cmd_general
+    id: rx_cmd_general
+    on_press:
+      then:
+        - switch.turn_on: general_valve
+    on_release:
+      then:
+        - switch.turn_off: general_valve
+
+  - platform: packet_transport
+    provider: rainbarrel
+    remote_id: cmd_three_sisters
+    id: rx_cmd_three_sisters
+    on_press:
+      then:
+        - switch.turn_on: three_sisters_valve
+    on_release:
+      then:
+        - switch.turn_off: three_sisters_valve
+
+  - platform: packet_transport
+    type: status
+    provider: rainbarrel
+    name: "Garden Manifold Master Link"
+    id: master_link_status
+    on_release:
+      then:
+        - switch.turn_off: tomatoes_valve
+        - switch.turn_off: cucumbers_valve
+        - switch.turn_off: general_valve
+        - switch.turn_off: three_sisters_valve
+
+  - platform: template
+    id: tx_tomatoes_state
+    lambda: return id(tomatoes_valve).state;
+  - platform: template
+    id: tx_cucumbers_state
+    lambda: return id(cucumbers_valve).state;
+  - platform: template
+    id: tx_general_state
+    lambda: return id(general_valve).state;
+  - platform: template
+    id: tx_three_sisters_state
+    lambda: return id(three_sisters_valve).state;

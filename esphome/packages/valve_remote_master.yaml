@@ -1,5 +1,5 @@
 # Master-side desired valve states and direct UDP communications.
-# The irrigation package continues to use the same four internal switch IDs.
+# Retain the existing valve IDs and add desired-state controls for the new manifolds.
 switch:
   - platform: template
     name: porch_plot_valve
@@ -25,6 +25,60 @@ switch:
     optimistic: true
     restore_mode: ALWAYS_OFF
     internal: true
+  - platform: template
+    name: tomatoes_valve
+    id: tomatoes_valve
+    optimistic: true
+    restore_mode: ALWAYS_OFF
+    internal: true
+  - platform: template
+    name: cucumbers_valve
+    id: cucumbers_valve
+    optimistic: true
+    restore_mode: ALWAYS_OFF
+    internal: true
+  - platform: template
+    name: general_valve
+    id: general_valve
+    optimistic: true
+    restore_mode: ALWAYS_OFF
+    internal: true
+  - platform: template
+    name: three_sisters_valve
+    id: three_sisters_valve
+    optimistic: true
+    restore_mode: ALWAYS_OFF
+    internal: true
+  - platform: template
+    name: zone1_valve
+    id: zone1_valve
+    optimistic: true
+    restore_mode: ALWAYS_OFF
+    internal: true
+  - platform: template
+    name: zone2_valve
+    id: zone2_valve
+    optimistic: true
+    restore_mode: ALWAYS_OFF
+    internal: true
+  - platform: template
+    name: zone3_valve
+    id: zone3_valve
+    optimistic: true
+    restore_mode: ALWAYS_OFF
+    internal: true
+  - platform: template
+    name: fountain_valve
+    id: fountain_valve
+    optimistic: true
+    restore_mode: ALWAYS_OFF
+    internal: false
+  - platform: template
+    name: birdbath_valve
+    id: birdbath_valve
+    optimistic: true
+    restore_mode: ALWAYS_OFF
+    internal: false
 
 # Template binary sensors transmit the desired states to the two controllers.
 binary_sensor:
@@ -40,6 +94,33 @@ binary_sensor:
   - platform: template
     id: cmd_fence
     lambda: return id(fence_valve).state;
+  - platform: template
+    id: cmd_tomatoes
+    lambda: return id(tomatoes_valve).state;
+  - platform: template
+    id: cmd_cucumbers
+    lambda: return id(cucumbers_valve).state;
+  - platform: template
+    id: cmd_general
+    lambda: return id(general_valve).state;
+  - platform: template
+    id: cmd_three_sisters
+    lambda: return id(three_sisters_valve).state;
+  - platform: template
+    id: cmd_zone1
+    lambda: return id(zone1_valve).state;
+  - platform: template
+    id: cmd_zone2
+    lambda: return id(zone2_valve).state;
+  - platform: template
+    id: cmd_zone3
+    lambda: return id(zone3_valve).state;
+  - platform: template
+    id: cmd_fountain
+    lambda: return id(fountain_valve).state;
+  - platform: template
+    id: cmd_birdbath
+    lambda: return id(birdbath_valve).state;
 
   # Link status is used to mark return states unknown if a controller is offline.
   - platform: packet_transport
@@ -52,6 +133,16 @@ binary_sensor:
     provider: irrigation-manifold-fence
     name: "Fence Manifold Link"
     id: fence_link_status
+  - platform: packet_transport
+    type: status
+    provider: irrigation-manifold-garden
+    name: "Garden Manifold Link"
+    id: garden_manifold_link_status
+  - platform: packet_transport
+    type: status
+    provider: irrigation-manifold-front
+    name: "Front Manifold Link"
+    id: front_manifold_link_status
 
   # Remote state sensors are kept internal; named template sensors below
   # expose them as unknown whenever the corresponding link is down.
@@ -59,29 +150,66 @@ binary_sensor:
     provider: irrigation-manifold-deck
     remote_id: tx_porch_plot_state
     id: rx_porch_plot_state
-    optimistic: true
-    restore_mode: ALWAYS_OFF
     internal: true
   - platform: packet_transport
     provider: irrigation-manifold-deck
     remote_id: tx_porch_rail_state
     id: rx_porch_rail_state
-    optimistic: true
-    restore_mode: ALWAYS_OFF
     internal: true
   - platform: packet_transport
     provider: irrigation-manifold-fence
     remote_id: tx_garden_state
     id: rx_garden_state
-    optimistic: true
-    restore_mode: ALWAYS_OFF
     internal: true
   - platform: packet_transport
     provider: irrigation-manifold-fence
     remote_id: tx_fence_state
     id: rx_fence_state
-    optimistic: true
-    restore_mode: ALWAYS_OFF
+    internal: true
+  - platform: packet_transport
+    provider: irrigation-manifold-garden
+    remote_id: tx_tomatoes_state
+    id: rx_tomatoes_state
+    internal: true
+  - platform: packet_transport
+    provider: irrigation-manifold-garden
+    remote_id: tx_cucumbers_state
+    id: rx_cucumbers_state
+    internal: true
+  - platform: packet_transport
+    provider: irrigation-manifold-garden
+    remote_id: tx_general_state
+    id: rx_general_state
+    internal: true
+  - platform: packet_transport
+    provider: irrigation-manifold-garden
+    remote_id: tx_three_sisters_state
+    id: rx_three_sisters_state
+    internal: true
+  - platform: packet_transport
+    provider: irrigation-manifold-front
+    remote_id: tx_zone1_state
+    id: rx_zone1_state
+    internal: true
+  - platform: packet_transport
+    provider: irrigation-manifold-front
+    remote_id: tx_zone2_state
+    id: rx_zone2_state
+    internal: true
+  - platform: packet_transport
+    provider: irrigation-manifold-front
+    remote_id: tx_zone3_state
+    id: rx_zone3_state
+    internal: true
+  - platform: packet_transport
+    provider: irrigation-manifold-front
+    remote_id: tx_fountain_state
+    id: rx_fountain_state
+    internal: true
+  - platform: packet_transport
+    provider: irrigation-manifold-front
+    remote_id: tx_birdbath_state
+    id: rx_birdbath_state
     internal: true
 
   - platform: template
@@ -104,6 +232,51 @@ binary_sensor:
     lambda: |-
       if (!id(fence_link_status).state) return {};
       return id(rx_fence_state).state;
+  - platform: template
+    name: "Tomatoes Valve Actual State"
+    lambda: |-
+      if (!id(garden_manifold_link_status).state) return {};
+      return id(rx_tomatoes_state).state;
+  - platform: template
+    name: "Cucumbers Valve Actual State"
+    lambda: |-
+      if (!id(garden_manifold_link_status).state) return {};
+      return id(rx_cucumbers_state).state;
+  - platform: template
+    name: "General Valve Actual State"
+    lambda: |-
+      if (!id(garden_manifold_link_status).state) return {};
+      return id(rx_general_state).state;
+  - platform: template
+    name: "Three Sisters Valve Actual State"
+    lambda: |-
+      if (!id(garden_manifold_link_status).state) return {};
+      return id(rx_three_sisters_state).state;
+  - platform: template
+    name: "Zone 1 Valve Actual State"
+    lambda: |-
+      if (!id(front_manifold_link_status).state) return {};
+      return id(rx_zone1_state).state;
+  - platform: template
+    name: "Zone 2 Valve Actual State"
+    lambda: |-
+      if (!id(front_manifold_link_status).state) return {};
+      return id(rx_zone2_state).state;
+  - platform: template
+    name: "Zone 3 Valve Actual State"
+    lambda: |-
+      if (!id(front_manifold_link_status).state) return {};
+      return id(rx_zone3_state).state;
+  - platform: template
+    name: "Fountain Valve Actual State"
+    lambda: |-
+      if (!id(front_manifold_link_status).state) return {};
+      return id(rx_fountain_state).state;
+  - platform: template
+    name: "Birdbath Valve Actual State"
+    lambda: |-
+      if (!id(front_manifold_link_status).state) return {};
+      return id(rx_birdbath_state).state;
 
 udp:
 
@@ -119,8 +292,21 @@ packet_transport:
     - cmd_porch_rail
     - cmd_garden
     - cmd_fence
+    - cmd_tomatoes
+    - cmd_cucumbers
+    - cmd_general
+    - cmd_three_sisters
+    - cmd_zone1
+    - cmd_zone2
+    - cmd_zone3
+    - cmd_fountain
+    - cmd_birdbath
   providers:
     - name: irrigation-manifold-deck
       encryption: !secret ENC_KEY
     - name: irrigation-manifold-fence
+      encryption: !secret ENC_KEY
+    - name: irrigation-manifold-garden
+      encryption: !secret ENC_KEY
+    - name: irrigation-manifold-front
       encryption: !secret ENC_KEY

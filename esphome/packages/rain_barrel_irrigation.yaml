@@ -27,6 +27,34 @@ sprinkler:
         run_duration_number: "Fence plot time"
         valve_switch_id: fence_valve
         pump_switch_id: irr_main_pump
+      - valve_switch: "Tomatoes"
+        run_duration_number: "Tomatoes time"
+        valve_switch_id: tomatoes_valve
+        pump_switch_id: irr_main_pump
+      - valve_switch: "Cucumbers"
+        run_duration_number: "Cucumbers time"
+        valve_switch_id: cucumbers_valve
+        pump_switch_id: irr_main_pump
+      - valve_switch: "General"
+        run_duration_number: "General time"
+        valve_switch_id: general_valve
+        pump_switch_id: irr_main_pump
+      - valve_switch: "Three Sisters"
+        run_duration_number: "Three Sisters time"
+        valve_switch_id: three_sisters_valve
+        pump_switch_id: irr_main_pump
+      - valve_switch: "Zone 1"
+        run_duration_number: "Zone 1 time"
+        valve_switch_id: zone1_valve
+        pump_switch_id: irr_main_pump
+      - valve_switch: "Zone 2"
+        run_duration_number: "Zone 2 time"
+        valve_switch_id: zone2_valve
+        pump_switch_id: irr_main_pump
+      - valve_switch: "Zone 3"
+        run_duration_number: "Zone 3 time"
+        valve_switch_id: zone3_valve
+        pump_switch_id: irr_main_pump
 
 
 ads1115:
