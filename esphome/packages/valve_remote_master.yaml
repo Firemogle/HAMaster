@@ -1,25 +1,29 @@
 # Master-side Home Assistant mirrors and direct UDP valve communications.
 # The irrigation package continues to use the same four internal switch IDs.
 switch:
-  - platform: homeassistant
+  - platform: template
     name: porch_plot_valve
     id: porch_plot_valve
-    entity_id: switch.porch_plot_valve
+    optimistic: true
+    restore_mode: ALWAYS_OFF
     internal: true
-  - platform: homeassistant
+  - platform: template
     name: garden_valve
     id: garden_valve
-    entity_id: switch.garden_valve
+    optimistic: true
+    restore_mode: ALWAYS_OFF
     internal: true
-  - platform: homeassistant
+  - platform: template
     name: fence_valve
     id: fence_valve
-    entity_id: switch.fence_valve
+    optimistic: true
+    restore_mode: ALWAYS_OFF
     internal: true
-  - platform: homeassistant
+  - platform: template
     name: porch_rail_valve
     id: porch_rail_valve
-    entity_id: switch.porch_rail_valve
+    optimistic: true
+    restore_mode: ALWAYS_OFF
     internal: true
 
 # Template binary sensors transmit the desired states from the existing
@@ -56,21 +60,29 @@ binary_sensor:
     provider: irrigation-manifold-deck
     remote_id: tx_porch_plot_state
     id: rx_porch_plot_state
+    optimistic: true
+    restore_mode: ALWAYS_OFF
     internal: true
   - platform: packet_transport
     provider: irrigation-manifold-deck
     remote_id: tx_porch_rail_state
     id: rx_porch_rail_state
+    optimistic: true
+    restore_mode: ALWAYS_OFF
     internal: true
   - platform: packet_transport
     provider: irrigation-manifold-fence
     remote_id: tx_garden_state
     id: rx_garden_state
+    optimistic: true
+    restore_mode: ALWAYS_OFF
     internal: true
   - platform: packet_transport
     provider: irrigation-manifold-fence
     remote_id: tx_fence_state
     id: rx_fence_state
+    optimistic: true
+    restore_mode: ALWAYS_OFF
     internal: true
 
   - platform: template
