@@ -1,0 +1,126 @@
+# Master-side desired valve states and direct UDP communications.
+# The irrigation package continues to use the same four internal switch IDs.
+switch:
+  - platform: template
+    name: porch_plot_valve
+    id: porch_plot_valve
+    optimistic: true
+    restore_mode: ALWAYS_OFF
+    internal: true
+  - platform: template
+    name: garden_valve
+    id: garden_valve
+    optimistic: true
+    restore_mode: ALWAYS_OFF
+    internal: true
+  - platform: template
+    name: fence_valve
+    id: fence_valve
+    optimistic: true
+    restore_mode: ALWAYS_OFF
+    internal: true
+  - platform: template
+    name: porch_rail_valve
+    id: porch_rail_valve
+    optimistic: true
+    restore_mode: ALWAYS_OFF
+    internal: true
+
+# Template binary sensors transmit the desired states to the two controllers.
+binary_sensor:
+  - platform: template
+    id: cmd_porch_plot
+    lambda: return id(porch_plot_valve).state;
+  - platform: template
+    id: cmd_porch_rail
+    lambda: return id(porch_rail_valve).state;
+  - platform: template
+    id: cmd_garden
+    lambda: return id(garden_valve).state;
+  - platform: template
+    id: cmd_fence
+    lambda: return id(fence_valve).state;
+
+  # Link status is used to mark return states unknown if a controller is offline.
+  - platform: packet_transport
+    type: status
+    provider: irrigation-manifold-deck
+    name: "Deck Manifold Link"
+    id: deck_link_status
+  - platform: packet_transport
+    type: status
+    provider: irrigation-manifold-fence
+    name: "Fence Manifold Link"
+    id: fence_link_status
+
+  # Remote state sensors are kept internal; named template sensors below
+  # expose them as unknown whenever the corresponding link is down.
+  - platform: packet_transport
+    provider: irrigation-manifold-deck
+    remote_id: tx_porch_plot_state
+    id: rx_porch_plot_state
+    optimistic: true
+    restore_mode: ALWAYS_OFF
+    internal: true
+  - platform: packet_transport
+    provider: irrigation-manifold-deck
+    remote_id: tx_porch_rail_state
+    id: rx_porch_rail_state
+    optimistic: true
+    restore_mode: ALWAYS_OFF
+    internal: true
+  - platform: packet_transport
+    provider: irrigation-manifold-fence
+    remote_id: tx_garden_state
+    id: rx_garden_state
+    optimistic: true
+    restore_mode: ALWAYS_OFF
+    internal: true
+  - platform: packet_transport
+    provider: irrigation-manifold-fence
+    remote_id: tx_fence_state
+    id: rx_fence_state
+    optimistic: true
+    restore_mode: ALWAYS_OFF
+    internal: true
+
+  - platform: template
+    name: "Porch Plot Valve Actual State"
+    lambda: |-
+      if (!id(deck_link_status).state) return {};
+      return id(rx_porch_plot_state).state;
+  - platform: template
+    name: "Porch Rail Valve Actual State"
+    lambda: |-
+      if (!id(deck_link_status).state) return {};
+      return id(rx_porch_rail_state).state;
+  - platform: template
+    name: "Garden Valve Actual State"
+    lambda: |-
+      if (!id(fence_link_status).state) return {};
+      return id(rx_garden_state).state;
+  - platform: template
+    name: "Fence Valve Actual State"
+    lambda: |-
+      if (!id(fence_link_status).state) return {};
+      return id(rx_fence_state).state;
+
+udp:
+
+packet_transport:
+  platform: udp
+  update_interval: 1s
+  encryption: !secret ENC_KEY
+  rolling_code_enable: true
+  ping_pong_enable: true
+  ping_pong_recycle_time: 5s
+  binary_sensors:
+    - cmd_porch_plot
+    - cmd_porch_rail
+    - cmd_garden
+    - cmd_fence
+  providers:
+    - name: irrigation-manifold-deck
+      encryption: !secret ENC_KEY
+    - name: irrigation-manifold-fence
+      encryption: !secret ENC_KEY

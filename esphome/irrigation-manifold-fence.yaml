@@ -1,0 +1,98 @@
+esphome:
+  name: irrigation-manifold-fence
+  friendly_name: Irrigation Manifold Fence
+
+esp32:
+  board: esp32dev
+  framework:
+    type: esp-idf
+
+wifi:
+  ssid: !secret AP
+  password: !secret APPW
+
+logger:
+
+api:
+  encryption:
+    key: !secret ENC_KEY
+
+ota:
+  platform: esphome
+  password: !secret OTA_PW
+
+bluetooth_proxy:
+
+# Send desired valve states and receive the physical output states.
+# Broadcasts repeat every second; encrypted ping-pong detects stale links.
+udp:
+
+packet_transport:
+  platform: udp
+  update_interval: 1s
+  encryption: !secret ENC_KEY
+  rolling_code_enable: true
+  ping_pong_enable: true
+  ping_pong_recycle_time: 5s
+  binary_sensors:
+    - tx_garden_state
+    - tx_fence_state
+  providers:
+    - name: rainbarrel
+      encryption: !secret ENC_KEY
+
+switch:
+  - platform: gpio
+    name: garden_valve
+    id: garden_valve
+    pin:
+      number: GPIO05
+      inverted: false
+    restore_mode: ALWAYS_OFF
+  - platform: gpio
+    name: fence_valve
+    id: fence_valve
+    pin:
+      number: GPIO04
+      inverted: false
+    restore_mode: ALWAYS_OFF
+
+binary_sensor:
+  - platform: packet_transport
+    provider: rainbarrel
+    remote_id: cmd_garden
+    id: rx_cmd_garden
+    on_press:
+      then:
+        - switch.turn_on: garden_valve
+    on_release:
+      then:
+        - switch.turn_off: garden_valve
+
+  - platform: packet_transport
+    provider: rainbarrel
+    remote_id: cmd_fence
+    id: rx_cmd_fence
+    on_press:
+      then:
+        - switch.turn_on: fence_valve
+    on_release:
+      then:
+        - switch.turn_off: fence_valve
+
+  - platform: packet_transport
+    type: status
+    provider: rainbarrel
+    name: "Fence Manifold Master Link"
+    id: master_link_status
+    on_release:
+      then:
+        - switch.turn_off: garden_valve
+        - switch.turn_off: fence_valve
+
+  - platform: template
+    id: tx_garden_state
+    lambda: return id(garden_valve).state;
+  - platform: template
+    id: tx_fence_state
+    lambda: return id(fence_valve).state;

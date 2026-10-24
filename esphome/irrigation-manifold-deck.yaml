@@ -1,0 +1,100 @@
+esphome:
+  name: irrigation-manifold-deck
+  friendly_name: Irrigation Manifold Deck
+
+esp32:
+  board: esp32dev
+  framework:
+    type: esp-idf
+
+wifi:
+  ssid: !secret AP
+  password: !secret APPW
+
+logger:
+
+api:
+  encryption:
+    key: !secret ENC_KEY
+
+ota:
+  platform: esphome
+  password: !secret OTA_PW
+
+bluetooth_proxy:
+
+# Send desired valve states and receive the physical output states.
+# Broadcasts repeat every second; encrypted ping-pong detects stale links.
+udp:
+
+packet_transport:
+  platform: udp
+  update_interval: 1s
+  encryption: !secret ENC_KEY
+  rolling_code_enable: true
+  ping_pong_enable: true
+  ping_pong_recycle_time: 5s
+  binary_sensors:
+    - tx_porch_plot_state
+    - tx_porch_rail_state
+  providers:
+    - name: rainbarrel
+      encryption: !secret ENC_KEY
+
+switch:
+  - platform: gpio
+    name: porch_plot_valve
+    id: porch_plot_valve
+    pin:
+      number: GPIO05
+      inverted: false
+    restore_mode: ALWAYS_OFF
+  - platform: gpio
+    name: porch_rail_valve
+    id: porch_rail_valve
+    pin:
+      number: GPIO04
+      inverted: false
+    restore_mode: ALWAYS_OFF
+
+binary_sensor:
+  # Command inputs from the master. Any communication loss forces outputs off.
+  - platform: packet_transport
+    provider: rainbarrel
+    remote_id: cmd_porch_plot
+    id: rx_cmd_porch_plot
+    on_press:
+      then:
+        - switch.turn_on: porch_plot_valve
+    on_release:
+      then:
+        - switch.turn_off: porch_plot_valve
+
+  - platform: packet_transport
+    provider: rainbarrel
+    remote_id: cmd_porch_rail
+    id: rx_cmd_porch_rail
+    on_press:
+      then:
+        - switch.turn_on: porch_rail_valve
+    on_release:
+      then:
+        - switch.turn_off: porch_rail_valve
+
+  - platform: packet_transport
+    type: status
+    provider: rainbarrel
+    name: "Deck Manifold Master Link"
+    id: master_link_status
+    on_release:
+      then:
+        - switch.turn_off: porch_plot_valve
+        - switch.turn_off: porch_rail_valve
+
+  # Publish the actual local switch states back to the master.
+  - platform: template
+    id: tx_porch_plot_state
+    lambda: return id(porch_plot_valve).state;
+  - platform: template
+    id: tx_porch_rail_state
+    lambda: return id(porch_rail_valve).state;
