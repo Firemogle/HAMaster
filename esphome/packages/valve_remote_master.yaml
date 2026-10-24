@@ -1,4 +1,4 @@
-# Master-side Home Assistant mirrors and direct UDP valve communications.
+# Master-side desired valve states and direct UDP communications.
 # The irrigation package continues to use the same four internal switch IDs.
 switch:
   - platform: template
@@ -26,8 +26,7 @@ switch:
     restore_mode: ALWAYS_OFF
     internal: true
 
-# Template binary sensors transmit the desired states from the existing
-# Home Assistant mirror switches to the two manifold controllers.
+# Template binary sensors transmit the desired states to the two controllers.
 binary_sensor:
   - platform: template
     id: cmd_porch_plot
