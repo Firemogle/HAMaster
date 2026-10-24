@@ -27,9 +27,9 @@ ota:
 #bluetooth_proxy:
   
 i2c:
-  sda: GPIO05
-  scl: GPIO04
-  id: i2c_channel
+   sda: GPIO05
+   scl: GPIO04
+   id: i2c_channel
 
 
 ethernet:
@@ -65,6 +65,7 @@ sensor:
       name: "Garage Pressure"
     address: 0x77
     update_interval: 60s  
+
 
 
 switch:
