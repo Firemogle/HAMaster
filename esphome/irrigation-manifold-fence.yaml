@@ -38,7 +38,7 @@ packet_transport:
     - tx_garden_state
     - tx_fence_state
   providers:
-    - name: irrigation-master
+    - name: rainbarrel
       encryption: !secret ENC_KEY
 
 switch:
@@ -59,7 +59,7 @@ switch:
 
 binary_sensor:
   - platform: packet_transport
-    provider: irrigation-master
+    provider: rainbarrel
     remote_id: cmd_garden
     id: rx_cmd_garden
     on_press:
@@ -70,7 +70,7 @@ binary_sensor:
         - switch.turn_off: garden_valve
 
   - platform: packet_transport
-    provider: irrigation-master
+    provider: rainbarrel
     remote_id: cmd_fence
     id: rx_cmd_fence
     on_press:
@@ -82,7 +82,7 @@ binary_sensor:
 
   - platform: packet_transport
     type: status
-    provider: irrigation-master
+    provider: rainbarrel
     name: "Fence Manifold Master Link"
     id: master_link_status
     on_release:
