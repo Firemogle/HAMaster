@@ -1,6 +1,6 @@
 packages:
   valve_remote_master: !include valve_remote_master.yaml
-      
+
 sprinkler:
   - id: back_irr
     main_switch: "Backyard Irrigation"
