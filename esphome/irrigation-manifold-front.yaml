@@ -44,21 +44,21 @@ packet_transport:
 
 switch:
   - platform: gpio
-    name: zone1_valve
+    name: "Front Zone 1 Valve"
     id: zone1_valve
     pin:
       number: GPIO05
       inverted: false
     restore_mode: ALWAYS_OFF
   - platform: gpio
-    name: zone2_valve
+    name: "Front Zone 2 Valve"
     id: zone2_valve
     pin:
       number: GPIO04
       inverted: false
     restore_mode: ALWAYS_OFF
   - platform: gpio
-    name: zone3_valve
+    name: "Front Zone 3 Valve"
     id: zone3_valve
     pin:
       number: GPIO16
