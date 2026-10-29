@@ -249,7 +249,7 @@ script:
   - id: play_sound
     parameters:
       priority: bool
-      sound_file: "audio::AudioFile*"
+      sound_file: "const audio::AudioFile*"
     then:
       - lambda: |-
           if (priority) {
