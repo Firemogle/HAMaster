@@ -234,17 +234,17 @@ binary_sensor:
       if (!id(garden_manifold_link_status).state) return {};
       return id(rx_three_sisters_state).state;
   - platform: template
-    name: "Zone 1 Valve Actual State"
+    name: "Front Zone 1 Valve Actual State"
     lambda: |-
       if (!id(front_manifold_link_status).state) return {};
       return id(rx_zone1_state).state;
   - platform: template
-    name: "Zone 2 Valve Actual State"
+    name: "Front Zone 2 Valve Actual State"
     lambda: |-
       if (!id(front_manifold_link_status).state) return {};
       return id(rx_zone2_state).state;
   - platform: template
-    name: "Zone 3 Valve Actual State"
+    name: "Front Zone 3 Valve Actual State"
     lambda: |-
       if (!id(front_manifold_link_status).state) return {};
       return id(rx_zone3_state).state;
