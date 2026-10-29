@@ -159,7 +159,7 @@ light:
             uint16_t hue = time - (1529 * repetitions);
             
             for (int i = 0; i < it.size(); i++) {
-              if (hue >= 0 && hue < 255) {
+              if (hue < 255) {
                 uint8_t green = hue;
                 it[i] = Color(255, green, 0);
               } else if (hue >= 255 && hue < 510) {
