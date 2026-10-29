@@ -455,7 +455,7 @@ micro_wake_word:
           - script.execute:
               id: play_sound
               priority: true
-              sound_file: !lambda return id(wake_word_triggered_sound);
+              sound_file: !lambda return const_cast<audio::AudioFile*>(id(wake_word_triggered_sound));
           - delay: 300ms
     - voice_assistant.start:
         wake_word: !lambda return wake_word;
