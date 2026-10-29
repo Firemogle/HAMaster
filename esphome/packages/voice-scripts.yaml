@@ -220,7 +220,7 @@ script:
       - script.execute:
           id: play_sound
           priority: true
-          sound_file: !lambda return id(timer_finished_sound);
+          sound_file: !lambda return const_cast<audio::AudioFile*>(id(timer_finished_sound));
 
   # Script executed when the timer is ringing, to repeat the timer finished sound.
   - id: enable_repeat_one
@@ -249,7 +249,7 @@ script:
   - id: play_sound
     parameters:
       priority: bool
-      sound_file: "const audio::AudioFile*"
+      sound_file: "audio::AudioFile*"
     then:
       - lambda: |-
           if (priority) {
