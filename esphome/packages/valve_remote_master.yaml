@@ -8,12 +8,6 @@ switch:
     restore_mode: ALWAYS_OFF
     internal: true
   - platform: template
-    name: garden_valve
-    id: garden_valve
-    optimistic: true
-    restore_mode: ALWAYS_OFF
-    internal: true
-  - platform: template
     name: fence_valve
     id: fence_valve
     optimistic: true
@@ -89,9 +83,6 @@ binary_sensor:
     id: cmd_porch_rail
     lambda: return id(porch_rail_valve).state;
   - platform: template
-    id: cmd_garden
-    lambda: return id(garden_valve).state;
-  - platform: template
     id: cmd_fence
     lambda: return id(fence_valve).state;
   - platform: template
@@ -158,11 +149,6 @@ binary_sensor:
     internal: true
   - platform: packet_transport
     provider: irrigation-manifold-fence
-    remote_id: tx_garden_state
-    id: rx_garden_state
-    internal: true
-  - platform: packet_transport
-    provider: irrigation-manifold-fence
     remote_id: tx_fence_state
     id: rx_fence_state
     internal: true
@@ -222,11 +208,6 @@ binary_sensor:
     lambda: |-
       if (!id(deck_link_status).state) return {};
       return id(rx_porch_rail_state).state;
-  - platform: template
-    name: "Garden Valve Actual State"
-    lambda: |-
-      if (!id(fence_link_status).state) return {};
-      return id(rx_garden_state).state;
   - platform: template
     name: "Fence Valve Actual State"
     lambda: |-
@@ -290,7 +271,6 @@ packet_transport:
   binary_sensors:
     - cmd_porch_plot
     - cmd_porch_rail
-    - cmd_garden
     - cmd_fence
     - cmd_tomatoes
     - cmd_cucumbers
