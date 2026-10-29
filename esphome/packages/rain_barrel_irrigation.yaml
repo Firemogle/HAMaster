@@ -39,16 +39,16 @@ sprinkler:
         run_duration_number: "Three Sisters time"
         valve_switch_id: three_sisters_valve
         pump_switch_id: irr_main_pump
-      - valve_switch: "Zone 1"
-        run_duration_number: "Zone 1 time"
+      - valve_switch: "Front Zone 1"
+        run_duration_number: "Front Zone 1 time"
         valve_switch_id: zone1_valve
         pump_switch_id: irr_main_pump
-      - valve_switch: "Zone 2"
-        run_duration_number: "Zone 2 time"
+      - valve_switch: "Front Zone 2"
+        run_duration_number: "Front Zone 2 time"
         valve_switch_id: zone2_valve
         pump_switch_id: irr_main_pump
-      - valve_switch: "Zone 3"
-        run_duration_number: "Zone 3 time"
+      - valve_switch: "Front Zone 3"
+        run_duration_number: "Front Zone 3 time"
         valve_switch_id: zone3_valve
         pump_switch_id: irr_main_pump
 
