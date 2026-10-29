@@ -23,6 +23,7 @@ api:
 # Remove allow_plaintext_upload after the recovery firmware is installed.
 ota:
   - platform: esphome
+    password: !secret OTA_PW
     encryption:
       allow_plaintext_upload: true
 
