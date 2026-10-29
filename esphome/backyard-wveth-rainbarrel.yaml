@@ -2,25 +2,25 @@ substitutions:
   devicename: rainbarrel
 
 packages:
-  base_board: !include 
-    file: packages/Waveshare-ESP32-S3-ETH-PoE.yaml
+  base_board: !include
+    file: packages/Waveshare-ESP32-S3-ETH-PoE-rainbarrel-recovery.yaml
     vars:
       devicename: ${devicename}
-  string_light: !include 
+  string_light: !include
     file: packages/add_light.yaml
     vars:
       pin: GPIO38
       length: 804
       color_line: RGB
       name: rb_string
-  string_light_part: !include 
+  string_light_part: !include
     file: packages/partition_light.yaml
     vars:
       name: decklight
       parent: rb_string
       start: 1
       end: 428
-  string_light_part2: !include 
+  string_light_part2: !include
     file: packages/partition_light.yaml
     vars:
       name: backyard_eave
@@ -28,18 +28,18 @@ packages:
       start: 783
       end: 803
   irrigation: !include packages/rain_barrel_irrigation.yaml
-  string_light_part3: !include 
+  string_light_part3: !include
     file: packages/partition_light.yaml
     vars:
       name: ext_back_window
       parent: rb_string
       start: 429
       end: 782
-  
+
 i2c:
-   sda: GPIO21
-   scl: GPIO17
-   scan: true
+  sda: GPIO21
+  scl: GPIO17
+  scan: true
 
 sensor:
   - platform: bmp280_i2c
@@ -49,4 +49,4 @@ sensor:
     pressure:
       name: "rainbarrel Pressure"
     address: 0x76
-    update_interval: 120s 
+    update_interval: 120s
