@@ -19,13 +19,8 @@ api:
   encryption:
     key: !secret ENC_KEY
 
-# TEMPORARY: one-time OTA compatibility upload for rainbarrel.
-# Remove allow_plaintext_upload after the recovery firmware is installed.
 ota:
   - platform: esphome
-    password: !secret OTA_PW
-    encryption:
-      allow_plaintext_upload: true
 
 bluetooth_proxy:
 
