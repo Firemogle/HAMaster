@@ -61,6 +61,7 @@ switch:
       # Stop the repeating timer sound and any current playback.
       - script.execute: disable_repeat
       - media_player.stop:
+          id: ${devicename}_media
           announcement: true
       # Refresh the LED ring
       - script.execute: control_leds
@@ -213,6 +214,7 @@ script:
           brightness: 75%
           effect: "voice_replying"
 
+  # Script executed when the timer is ringing, to repeat the timer sound.
   - id: ring_timer
     then:
       # Repeat the timer sound with one second between completed playback cycles.
@@ -221,48 +223,6 @@ script:
           id: play_sound
           priority: true
           sound_file: !lambda return const_cast<audio::AudioFile*>(id(timer_finished_sound));
-
-  # Script executed when the timer is ringing, to repeat the timer finished sound.
-  - id: enable_repeat_one
-    then:
-      # Repeat the current announcement with a one second pause between repetitions.
-      - lambda: |-
-          id(${devicename}_media)
-            ->make_call()
-            .set_command(media_player::MediaPlayerCommand::MEDIA_PLAYER_COMMAND_REPEAT_ONE)
-            .set_announcement(true)
-            .perform();
-          id(${devicename}_media)->set_playlist_delay_ms(speaker::AudioPipelineType::ANNOUNCEMENT, 1000);
-
-  # Script execute when the timer is done ringing, to disable repeat mode.
-  - id: disable_repeat
-    then:
-      # Turn off repeat mode and remove the repeat delay.
-      - lambda: |-
-          id(${devicename}_media)
-            ->make_call()
-            .set_command(media_player::MediaPlayerCommand::MEDIA_PLAYER_COMMAND_REPEAT_OFF)
-            .set_announcement(true)
-            .perform();
-          id(${devicename}_media)->set_playlist_delay_ms(speaker::AudioPipelineType::ANNOUNCEMENT, 0);
-
-  - id: play_sound
-    parameters:
-      priority: bool
-      sound_file: "audio::AudioFile*"
-    then:
-      - lambda: |-
-          if (priority) {
-            id(${devicename}_media)
-              ->make_call()
-              .set_command(media_player::MediaPlayerCommand::MEDIA_PLAYER_COMMAND_STOP)
-              .set_announcement(true)
-              .perform();
-          }
-          if ( (id(${devicename}_media).state != media_player::MediaPlayerState::MEDIA_PLAYER_STATE_ANNOUNCING ) || priority) {
-            id(${devicename}_media)
-              ->play_file(sound_file, true, false);
-          }
 
   # Script executed when the timer is ringing, to control the LEDs
   # The LED ring blinks.
