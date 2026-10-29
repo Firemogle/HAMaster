@@ -13,6 +13,7 @@
 external_components:
   - source: github://n-IA-hane/esphome-audio-stack@main
     components: [esp_audio_stack]
+    refresh: 1min
 
 esp_audio_stack:
   id: audio_stack
