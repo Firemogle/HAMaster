@@ -82,9 +82,11 @@ micro_wake_word:
           - if:
               condition:
                 media_player.is_announcing:
+                  id: ${devicename}_media
               then:
-                media_player.stop:
-                  announcement: true
+                - media_player.stop:
+                    id: ${devicename}_media
+                    announcement: true
               else:
                 - voice_assistant.start:
                     wake_word: !lambda return wake_word;
