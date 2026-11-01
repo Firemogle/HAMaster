@@ -44,6 +44,12 @@ switch:
     restore_mode: ALWAYS_OFF
     internal: true
   - platform: template
+    name: potatoes_valve
+    id: potatoes_valve
+    optimistic: true
+    restore_mode: ALWAYS_OFF
+    internal: true
+  - platform: template
     name: zone1_valve
     id: zone1_valve
     optimistic: true
@@ -97,6 +103,9 @@ binary_sensor:
   - platform: template
     id: cmd_three_sisters
     lambda: return id(three_sisters_valve).state;
+  - platform: template
+    id: cmd_potatoes
+    lambda: return id(potatoes_valve).state;
   - platform: template
     id: cmd_zone1
     lambda: return id(zone1_valve).state;
@@ -173,6 +182,11 @@ binary_sensor:
     id: rx_three_sisters_state
     internal: true
   - platform: packet_transport
+    provider: irrigation-manifold-garden
+    remote_id: tx_potatoes_state
+    id: rx_potatoes_state
+    internal: true
+  - platform: packet_transport
     provider: irrigation-manifold-front
     remote_id: tx_zone1_state
     id: rx_zone1_state
@@ -234,6 +248,11 @@ binary_sensor:
       if (!id(garden_manifold_link_status).state) return {};
       return id(rx_three_sisters_state).state;
   - platform: template
+    name: "Potatoes Valve Actual State"
+    lambda: |-
+      if (!id(garden_manifold_link_status).state) return {};
+      return id(rx_potatoes_state).state;
+  - platform: template
     name: "Front Zone 1 Valve Actual State"
     lambda: |-
       if (!id(front_manifold_link_status).state) return {};
@@ -276,6 +295,7 @@ packet_transport:
     - cmd_cucumbers
     - cmd_general
     - cmd_three_sisters
+    - cmd_potatoes
     - cmd_zone1
     - cmd_zone2
     - cmd_zone3
