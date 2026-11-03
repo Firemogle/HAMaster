@@ -189,23 +189,9 @@ automation:
       # --- Wait 5 minutes before proceeding ---
       - delay: "00:05:00"
 
-      # --- Get calendar state & message into variables ---
-      - variables:
-          cal_on: "{{ is_state('calendar.teamcarriger_gmail_com', 'on') }}"
-          cal_msg: "{{ state_attr('calendar.teamcarriger_gmail_com', 'message') | default('') | lower }}"
-
-      # --- Set each input_boolean based on the active event ---
-      - service: input_boolean.turn_{{ 'on' if cal_on and 'dte cheap' in cal_msg else 'off' }}
-        target:
-          entity_id: input_boolean.house_sts_dte_cheap
-
-      - service: input_boolean.turn_{{ 'on' if cal_on and '4th of july lights' in cal_msg else 'off' }}
-        target:
-          entity_id: input_boolean.independence_day
-
-      - service: input_boolean.turn_{{ 'on' if cal_on and 'xmas_lights' in cal_msg else 'off' }}
-        target:
-          entity_id: input_boolean.house_sts_xmas_lights
+      # --- Reconcile all calendar-driven modes ---
+      - service: script.calendar_sync_modes
+        continue_on_error: true
 
       # --- Send startup notification ---
       - service: notify.group_notify
@@ -370,87 +356,6 @@ automation:
               - service: script.turn_on
                 target:
                   entity_id: script.xmas_light_inside            
-
-  - alias: DTE_cheap_switch
-    id: DTE_cheap_switch
-    mode: queued
-    trigger:
-      - platform: calendar
-        event: start
-        entity_id: calendar.teamcarriger_gmail_com
-      - platform: calendar
-        event: end
-        entity_id: calendar.teamcarriger_gmail_com
-    condition:
-      - condition: template
-        value_template: "{{ 'DTE Cheap' in trigger.calendar_event.summary }}"
-    action:
-      - choose:
-          - conditions: "{{ trigger.event == 'start' }}"
-            sequence:
-              - service: input_boolean.turn_on
-                target:
-                  entity_id: input_boolean.house_sts_dte_cheap
-        default:
-          - service: input_boolean.turn_off
-            target:
-              entity_id: input_boolean.house_sts_dte_cheap
-
-  - alias: house_guest_switch
-    id: house_guest_switch
-    mode: queued
-    trigger:
-      - platform: calendar
-        event: start
-        entity_id: calendar.teamcarriger_gmail_com
-      - platform: calendar
-        event: end
-        entity_id: calendar.teamcarriger_gmail_com
-    condition:
-      - condition: or
-        conditions:
-          - condition: template
-            value_template: "{{ 'in town' in trigger.calendar_event.summary }}"
-          - condition: template
-            value_template: "{{ 'Date Night' in trigger.calendar_event.summary }}"
-          - condition: template
-            value_template: "{{ 'Cleaners' in trigger.calendar_event.summary }}"
-    action:
-      - choose:
-          - conditions: "{{ trigger.event == 'start' }}"
-            sequence:
-              - service: input_boolean.turn_on
-                target:
-                  entity_id: input_boolean.house_sts_guest
-        default:
-          - service: input_boolean.turn_off
-            target:
-              entity_id: input_boolean.house_sts_guest
-
-  - alias: house_vacation_switch
-    id: house_vacation_switch
-    mode: queued
-    trigger:
-      - platform: calendar
-        event: start
-        entity_id: calendar.teamcarriger_gmail_com
-      - platform: calendar
-        event: end
-        entity_id: calendar.teamcarriger_gmail_com
-    condition:
-      - condition: template
-        value_template: "{{ 'vacation' in trigger.calendar_event.summary }}"
-    action:
-      - choose:
-          - conditions: "{{ trigger.event == 'start' }}"
-            sequence:
-              - service: input_boolean.turn_on
-                target:
-                  entity_id: input_boolean.house_sts_vacation
-        default:
-          - service: input_boolean.turn_off
-            target:
-              entity_id: input_boolean.house_sts_vacation
 
   - id: update_abode_disarmed
     alias: update_abode_disarmed
