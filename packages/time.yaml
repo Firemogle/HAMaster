@@ -343,6 +343,22 @@ automation:
           preannounce: true
     mode: single
 
+  - id: calendar_mode_sync
+    alias: Calendar Mode Sync
+    mode: queued
+    max: 10
+    trigger:
+      - platform: calendar
+        event: start
+        entity_id: calendar.teamcarriger_gmail_com
+      - platform: calendar
+        event: end
+        entity_id: calendar.teamcarriger_gmail_com
+      - platform: time_pattern
+        minutes: "/5"
+    action:
+      - service: script.calendar_sync_modes
+
   - id: 'school_day_on'
     alias: school_day_on
     trigger:
@@ -365,3 +381,53 @@ automation:
           - service: input_boolean.turn_off
             entity_id: input_boolean.school_day
     mode: queued
+
+script:
+  calendar_sync_modes:
+    alias: Calendar Mode Reconciliation
+    mode: queued
+    max: 10
+    sequence:
+      - condition: template
+        value_template: >
+          {{ states('calendar.teamcarriger_gmail_com') not in
+             ['unknown', 'unavailable', 'none'] }}
+      - service: calendar.get_events
+        target:
+          entity_id: calendar.teamcarriger_gmail_com
+        data:
+          start_date_time: "{{ now().isoformat() }}"
+          end_date_time: "{{ (now() + timedelta(seconds=1)).isoformat() }}"
+        response_variable: calendar_data
+      - variables:
+          calendar_events: "{{ calendar_data.get('calendar.teamcarriger_gmail_com', {}).get('events', []) }}"
+          active_dte_cheap: >-
+            {% set ns = namespace(active=false) %}{% for event in calendar_events %}{% if 'dte cheap' in (event.summary | default('', true) | lower) %}{% set ns.active = true %}{% endif %}{% endfor %}{{ ns.active }}
+          active_independence_day: >-
+            {% set ns = namespace(active=false) %}{% for event in calendar_events %}{% if '4th of july lights' in (event.summary | default('', true) | lower) %}{% set ns.active = true %}{% endif %}{% endfor %}{{ ns.active }}
+          active_xmas_lights: >-
+            {% set ns = namespace(active=false) %}{% for event in calendar_events %}{% if 'xmas_lights' in (event.summary | default('', true) | lower) %}{% set ns.active = true %}{% endif %}{% endfor %}{{ ns.active }}
+          active_halloween: >-
+            {% set ns = namespace(active=false) %}{% for event in calendar_events %}{% if 'halloween lights' in (event.summary | default('', true) | lower) %}{% set ns.active = true %}{% endif %}{% endfor %}{{ ns.active }}
+          active_vacation: >-
+            {% set ns = namespace(active=false) %}{% for event in calendar_events %}{% if 'vacation' in (event.summary | default('', true) | lower) %}{% set ns.active = true %}{% endif %}{% endfor %}{{ ns.active }}
+          active_guest: >-
+            {% set ns = namespace(active=false) %}{% for event in calendar_events %}{% set summary = event.summary | default('', true) | lower %}{% if 'in town' in summary or 'date night' in summary or 'cleaners' in summary %}{% set ns.active = true %}{% endif %}{% endfor %}{{ ns.active }}
+      - service: "input_boolean.turn_{{ 'on' if active_dte_cheap else 'off' }}"
+        target:
+          entity_id: input_boolean.house_sts_dte_cheap
+      - service: "input_boolean.turn_{{ 'on' if active_independence_day else 'off' }}"
+        target:
+          entity_id: input_boolean.independence_day
+      - service: "input_boolean.turn_{{ 'on' if active_xmas_lights else 'off' }}"
+        target:
+          entity_id: input_boolean.house_sts_xmas_lights
+      - service: "input_boolean.turn_{{ 'on' if active_halloween else 'off' }}"
+        target:
+          entity_id: input_boolean.halloween
+      - service: "input_boolean.turn_{{ 'on' if active_vacation else 'off' }}"
+        target:
+          entity_id: input_boolean.house_sts_vacation
+      - service: "input_boolean.turn_{{ 'on' if active_guest else 'off' }}"
+        target:
+          entity_id: input_boolean.house_sts_guest
