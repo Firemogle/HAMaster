@@ -257,6 +257,9 @@ automation:
               - condition: state
                 entity_id: binary_sensor.house_time_workday_combine
                 state: "on"
+              - condition: state
+                entity_id: binary_sensor.morning
+                state: "on"
             sequence:
               - service: cover.set_cover_position
                 target:
@@ -286,6 +289,9 @@ automation:
               - condition: state
                 entity_id: binary_sensor.house_time_workday_combine
                 state: "off"
+              - condition: state
+                entity_id: binary_sensor.morning
+                state: "on"
             sequence:
               - service: cover.set_cover_position
                 target:
