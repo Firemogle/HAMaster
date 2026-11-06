@@ -6,7 +6,6 @@
     light.cabinet_bottom:
       state: on
       brightness: 255
-    light.cabinet_top:
       state: on
       brightness: 150
     light.stove:
@@ -32,7 +31,6 @@
       state: off
     light.cabinet_bottom:
       state: off
-    light.cabinet_top:
       state: off
     light.stove:
       state: off
@@ -81,7 +79,6 @@
     light.cabinet_bottom:
       state: on
       brightness: 100
-    light.cabinet_top:
       state: on
       brightness: 50
     light.stove:
@@ -125,7 +122,6 @@
       state: off
     switch.shelly1pm_c45bbe6b427e:
       state: off
-    light.uhall_ban_hall_ban:
       state: on
       brightness: 51
     switch.garage_wall_switch:
@@ -151,7 +147,6 @@
     light.cabinet_bottom:
       state: on
       brightness: 255
-    light.cabinet_top:
       state: on
       brightness: 150
     light.stove:
@@ -176,7 +171,6 @@
     light.cabinet_bottom:
       state: on
       brightness: 255
-    light.cabinet_top:
       state: on
       brightness: 150
     light.stove:
