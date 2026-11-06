@@ -8,16 +8,21 @@ script:
     alias: house_home
     mode: parallel
     sequence:
+      - service: input_select.select_option
+        target:
+          entity_id: input_select.shared_lighting_base_profile
+        data:
+          option: home
+      - service: script.turn_on
+        target:
+          entity_id: script.shared_lighting_update
       - parallel:
           - continue_on_error: true
             service: light.turn_on
-            data:
-              brightness_pct: >
-                {{ 100 if (state_attr('light.cabinet_top', 'effect') | default('none', true) | string | lower) != 'none' else 60 }}
             target:
-              entity_id:
-                - light.kitchen_sink
-                - light.cabinet_top
+              entity_id: light.kitchen_sink
+            data:
+              brightness_pct: 60
 
           - continue_on_error: true
             service: light.turn_on
@@ -44,14 +49,6 @@ script:
             target:
               entity_id: lock.front_door
 
-          - continue_on_error: true
-            service: light.turn_on
-            data:
-              brightness_pct: >
-                {{ 100 if (state_attr('light.uhall_ban_hall_ban', 'effect') | default('none', true) | string | lower) != 'none' else 25 }}
-            target:
-              entity_id:
-                - light.uhall_ban_hall_ban
 
 
 
@@ -70,6 +67,10 @@ script:
                 - bathroom
                 - 63db88fe052b434c86e1d37781ce0972
                 - 259e54ef72a347c2b9fa159e5bcd32b7
+              exclude:
+                entity_id:
+                  - light.cabinet_top
+                  - light.uhall_ban_hall_ban
 
           - continue_on_error: true
             service: fan.turn_off
@@ -88,6 +89,14 @@ script:
     alias: house_night
     mode: parallel
     sequence:
+      - service: input_select.select_option
+        target:
+          entity_id: input_select.shared_lighting_base_profile
+        data:
+          option: night
+      - service: script.turn_on
+        target:
+          entity_id: script.shared_lighting_update
       - parallel:
           - continue_on_error: true
             service: switch.turn_off
@@ -113,6 +122,7 @@ script:
                 entity_id:
                   - light.cabinet_bottom
                   - light.cabinet_top
+                  - light.uhall_ban_hall_ban
                   - light.stove
                   - light.kitchen_cabinet_eth_va_kitchen_cabinet
                   - light.kitchen_diffuser_nightlight
@@ -125,9 +135,7 @@ script:
             target:
               entity_id:
                 - light.cabinet_bottom
-                - light.cabinet_top
                 - light.stove
-                - light.uhall_ban_hall_ban
           - continue_on_error: true
             service: lock.lock
             target:
@@ -153,6 +161,8 @@ script:
                 - 259e54ef72a347c2b9fa159e5bcd32b7
               exclude:
                 entity_id:
+                  - light.cabinet_top
+                  - light.uhall_ban_hall_ban
                   - light.kitchen_cabinet_eth_va_kitchen_cabinet
                   - light.kitchen_diffuser_nightlight
                   - light.hallway_light
