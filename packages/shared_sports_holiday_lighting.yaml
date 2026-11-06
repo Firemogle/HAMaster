@@ -4,6 +4,7 @@ input_select:
     options:
       - home
       - night
+      - away
     initial: home
 
 script:
@@ -62,6 +63,16 @@ script:
     mode: restart
     sequence:
       - choose:
+          - conditions:
+              - condition: state
+                entity_id: input_select.shared_lighting_base_profile
+                state: away
+            sequence:
+              - service: light.turn_off
+                target:
+                  entity_id:
+                    - light.cabinet_top
+                    - light.uhall_ban_hall_ban
           - conditions:
               - condition: state
                 entity_id: input_select.shared_lighting_base_profile
