@@ -5,7 +5,6 @@ input_select:
       - home
       - night
       - away
-    initial: home
 
 script:
   shared_lighting_update:
