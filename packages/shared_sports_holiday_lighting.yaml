@@ -67,35 +67,49 @@ script:
                 entity_id: input_select.shared_lighting_base_profile
                 state: away
             sequence:
-              - service: light.turn_off
-                target:
-                  entity_id:
-                    - light.cabinet_top
-                    - light.uhall_ban_hall_ban
+              - parallel:
+                  - continue_on_error: true
+                    service: light.turn_off
+                    target:
+                      entity_id: light.cabinet_top
+                  - continue_on_error: true
+                    service: light.turn_off
+                    target:
+                      entity_id: light.uhall_ban_hall_ban
           - conditions:
               - condition: state
                 entity_id: input_select.shared_lighting_base_profile
                 state: night
             sequence:
-              - service: light.turn_on
-                target:
-                  entity_id:
-                    - light.cabinet_top
-                    - light.uhall_ban_hall_ban
-                data:
-                  brightness_pct: 25
-                  rgb_color: [255, 255, 255]
-                  effect: none
+              - parallel:
+                  - continue_on_error: true
+                    service: light.turn_on
+                    target:
+                      entity_id: light.cabinet_top
+                    data:
+                      brightness_pct: 25
+                      rgb_color: [255, 255, 255]
+                      effect: none
+                  - continue_on_error: true
+                    service: light.turn_on
+                    target:
+                      entity_id: light.uhall_ban_hall_ban
+                    data:
+                      brightness_pct: 25
+                      rgb_color: [255, 255, 255]
+                      effect: none
         default:
           - parallel:
-              - service: light.turn_on
+              - continue_on_error: true
+                service: light.turn_on
                 target:
                   entity_id: light.cabinet_top
                 data:
                   brightness_pct: 60
                   color_name: white
                   effect: none
-              - service: light.turn_on
+              - continue_on_error: true
+                service: light.turn_on
                 target:
                   entity_id: light.uhall_ban_hall_ban
                 data:
@@ -107,56 +121,87 @@ script:
     alias: Shared Lighting Jayhawks
     mode: restart
     sequence:
-      - service: light.turn_on
-        target:
-          entity_id:
-            - light.cabinet_top
-            - light.uhall_ban_hall_ban
-        data:
-          brightness: 255
-          color_name: white
-          effect: "Jayhawks"
+      - parallel:
+          - continue_on_error: true
+            service: light.turn_on
+            target:
+              entity_id: light.cabinet_top
+            data:
+              brightness: 255
+              color_name: white
+              effect: "Jayhawks"
+          - continue_on_error: true
+            service: light.turn_on
+            target:
+              entity_id: light.uhall_ban_hall_ban
+            data:
+              brightness: 255
+              color_name: white
+              effect: "Jayhawks"
 
   shared_lighting_chiefs:
     alias: Shared Lighting Chiefs
     mode: restart
     sequence:
-      - service: light.turn_on
-        target:
-          entity_id:
-            - light.cabinet_top
-            - light.uhall_ban_hall_ban
-        data:
-          brightness: 255
-          color_name: white
-          effect: "Chiefs"
+      - parallel:
+          - continue_on_error: true
+            service: light.turn_on
+            target:
+              entity_id: light.cabinet_top
+            data:
+              brightness: 255
+              color_name: white
+              effect: "Chiefs"
+          - continue_on_error: true
+            service: light.turn_on
+            target:
+              entity_id: light.uhall_ban_hall_ban
+            data:
+              brightness: 255
+              color_name: white
+              effect: "Chiefs"
 
   shared_lighting_christmas:
     alias: Shared Lighting Christmas
     mode: restart
     sequence:
-      - service: light.turn_on
-        target:
-          entity_id:
-            - light.cabinet_top
-            - light.uhall_ban_hall_ban
-        data:
-          brightness: 255
-          effect: "Rainbow"
+      - parallel:
+          - continue_on_error: true
+            service: light.turn_on
+            target:
+              entity_id: light.cabinet_top
+            data:
+              brightness: 255
+              effect: "Rainbow"
+          - continue_on_error: true
+            service: light.turn_on
+            target:
+              entity_id: light.uhall_ban_hall_ban
+            data:
+              brightness: 255
+              effect: "Rainbow"
 
   shared_lighting_halloween:
     alias: Shared Lighting Halloween
     mode: restart
     sequence:
-      - service: light.turn_on
-        target:
-          entity_id:
-            - light.cabinet_top
-            - light.uhall_ban_hall_ban
-        data:
-          brightness: 255
-          color_name: purple
-          effect: "Dithering Lights"
+      - parallel:
+          - continue_on_error: true
+            service: light.turn_on
+            target:
+              entity_id: light.cabinet_top
+            data:
+              brightness: 255
+              color_name: purple
+              effect: "Dithering Lights"
+          - continue_on_error: true
+            service: light.turn_on
+            target:
+              entity_id: light.uhall_ban_hall_ban
+            data:
+              brightness: 255
+              color_name: purple
+              effect: "Dithering Lights"
 
 automation:
   - id: shared_lighting_priority_update
