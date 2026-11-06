@@ -108,11 +108,14 @@ script:
                 - 3e1959c84fce49969395cd95d025ef2e
                 - 452faf27ea29485da59632cea146740b
                 - ef4c313bdcc54a1fb0340db4f0bd33ad
-              entity_id:
-                - light.hallway_light
-                - light.kitchen_fan
-                - light.kitchen_sink
-                - light.kitchen_light_switch
+                - 63db88fe052b434c86e1d37781ce0972
+              exclude:
+                entity_id:
+                  - light.cabinet_bottom
+                  - light.cabinet_top
+                  - light.stove
+                  - light.kitchen_cabinet_eth_va_kitchen_cabinet
+                  - light.kitchen_diffuser_nightlight
           - continue_on_error: true
             service: light.turn_on
             data:
@@ -145,12 +148,21 @@ script:
               brightness_pct: 100
               color_name: white
             target:
-              entity_id:
-                - light.kitchen_sink
-                - light.cabinet_top
-                - light.cabinet_bottom
-                - light.stove
-                - light.main_livingroom                
+              area_id:
+                - 63db88fe052b434c86e1d37781ce0972
+                - 259e54ef72a347c2b9fa159e5bcd32b7
+              exclude:
+                entity_id:
+                  - light.kitchen_cabinet_eth_va_kitchen_cabinet
+                  - light.kitchen_diffuser_nightlight
+                  - light.hallway_light
+                  - light.kitchen_fan
+                  - light.kitchen_light_switch
+                  - light.xmas_tree_fiber_optic_tree
+                  - light.xmas_tree_tree_body
+                  - light.xmas_tree_tree_star
+                  - light.xmas_tree_xmastree
+                  - light.livingroom_entry
           - continue_on_error: true
             service: fan.turn_on
             target:
