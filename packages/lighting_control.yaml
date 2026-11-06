@@ -42,16 +42,12 @@ script:
             service: lock.unlock
             target:
               entity_id: lock.front_door
-
-          - continue_on_error: true
-            service: light.turn_on
-            data:
-              brightness_pct: >
-                {{ 100 if (state_attr('light.uhall_ban_hall_ban', 'effect') | default('none', true) | string | lower) != 'none' else 25 }}
-            target:
-              entity_id:
-                - light.uhall_ban_hall_ban
-
+      - service: input_select.select_option
+        target:
+          entity_id: input_select.shared_lighting_base_profile
+        data:
+          option: home
+      - service: script.shared_lighting_update
 
 
   house_away:
@@ -138,6 +134,12 @@ script:
             service: fan.turn_off
             target:
               floor_id: first_floor
+      - service: input_select.select_option
+        target:
+          entity_id: input_select.shared_lighting_base_profile
+        data:
+          option: night
+      - service: script.shared_lighting_update
 
   house_wakeup:
     alias: house_wakeup
