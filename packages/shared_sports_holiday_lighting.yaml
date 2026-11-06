@@ -92,14 +92,16 @@ script:
                 target:
                   entity_id: light.cabinet_top
                 data:
-                  brightness_pct: >
-                    {{ 100 if (state_attr('light.cabinet_top', 'effect') | default('none', true) | string | lower) != 'none' else 60 }}
+                  brightness_pct: 60
+                  color_name: white
+                  effect: none
               - service: light.turn_on
                 target:
                   entity_id: light.uhall_ban_hall_ban
                 data:
-                  brightness_pct: >
-                    {{ 100 if (state_attr('light.uhall_ban_hall_ban', 'effect') | default('none', true) | string | lower) != 'none' else 25 }}
+                  brightness_pct: 25
+                  color_name: white
+                  effect: none
 
   shared_lighting_jayhawks:
     alias: Shared Lighting Jayhawks
