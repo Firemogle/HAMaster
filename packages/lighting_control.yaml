@@ -23,7 +23,12 @@ script:
               entity_id: light.kitchen_sink
             data:
               brightness_pct: >
-                {{ 100 if (state_attr('light.cabinet_top', 'effect') | default('none', true) | string | lower) != 'none' else 60 }}
+                {{ 100 if
+                   is_state('input_boolean.jayhawk_lamp_req', 'on') or
+                   is_state('input_boolean.chiefs_lamp_req', 'on') or
+                   is_state('input_boolean.house_sts_xmas_lights', 'on') or
+                   is_state('input_boolean.halloween', 'on')
+                   else 60 }}
 
           - continue_on_error: true
             service: light.turn_on
