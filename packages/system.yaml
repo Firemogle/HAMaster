@@ -193,6 +193,10 @@ automation:
       - service: script.calendar_sync_modes
         continue_on_error: true
 
+      # --- Reconcile shared sports/holiday lighting ---
+      - service: script.shared_lighting_update
+        continue_on_error: true
+
       # --- Send startup notification ---
       - service: notify.group_notify
         data:
