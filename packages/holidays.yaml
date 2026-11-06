@@ -148,15 +148,6 @@ script:
 
           - continue_on_error: true
             service: light.turn_on
-            data:
-              brightness: 255
-              effect: "Rainbow"
-            target:
-              entity_id:
-                - light.window_lights
-
-          - continue_on_error: true
-            service: light.turn_on
             target:
               entity_id:
                 - light.window_lights
