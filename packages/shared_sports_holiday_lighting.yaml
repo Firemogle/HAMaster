@@ -1,0 +1,167 @@
+input_select:
+  shared_lighting_base_profile:
+    name: Shared Lighting Base Profile
+    options:
+      - home
+      - night
+    initial: home
+
+script:
+  shared_lighting_update:
+    alias: Shared Lighting Priority Controller
+    mode: restart
+    sequence:
+      - choose:
+          - conditions:
+              - condition: state
+                entity_id: input_boolean.jayhawk_lamp_req
+                state: "on"
+            sequence:
+              - service: script.turn_on
+                target:
+                  entity_id: script.shared_lighting_jayhawks
+          - conditions:
+              - condition: state
+                entity_id: input_boolean.chiefs_lamp_req
+                state: "on"
+            sequence:
+              - service: script.turn_on
+                target:
+                  entity_id: script.shared_lighting_chiefs
+          - conditions:
+              - condition: state
+                entity_id: input_boolean.house_sts_xmas_lights
+                state: "on"
+            sequence:
+              - service: script.turn_on
+                target:
+                  entity_id: script.shared_lighting_christmas
+          - conditions:
+              - condition: state
+                entity_id: input_boolean.halloween
+                state: "on"
+            sequence:
+              - service: script.turn_on
+                target:
+                  entity_id: script.shared_lighting_halloween
+        default:
+          - choose:
+              - conditions:
+                  - condition: state
+                    entity_id: input_select.shared_lighting_base_profile
+                    state: home
+                sequence:
+                  - service: script.turn_on
+                    target:
+                      entity_id: script.shared_lighting_home_base
+            default:
+              - service: script.turn_on
+                target:
+                  entity_id: script.shared_lighting_night_base
+
+  shared_lighting_home_base:
+    alias: Shared Lighting Home Base
+    mode: single
+    sequence:
+      - service: light.turn_on
+        target:
+          entity_id: light.cabinet_top
+        data:
+          effect: none
+          color_name: white
+          brightness_pct: 60
+      - service: light.turn_on
+        target:
+          entity_id: light.uhall_ban_hall_ban
+        data:
+          effect: none
+          color_name: white
+          brightness_pct: 25
+
+  shared_lighting_night_base:
+    alias: Shared Lighting Night Base
+    mode: single
+    sequence:
+      - service: light.turn_on
+        target:
+          entity_id:
+            - light.cabinet_top
+            - light.uhall_ban_hall_ban
+        data:
+          effect: none
+          color_name: white
+          brightness_pct: 25
+
+  shared_lighting_jayhawks:
+    alias: Shared Lighting Jayhawks
+    mode: single
+    sequence:
+      - service: light.turn_on
+        target:
+          entity_id:
+            - light.cabinet_top
+            - light.uhall_ban_hall_ban
+        data:
+          brightness: 255
+          color_name: white
+          effect: "Jayhawks"
+
+  shared_lighting_chiefs:
+    alias: Shared Lighting Chiefs
+    mode: single
+    sequence:
+      - service: light.turn_on
+        target:
+          entity_id:
+            - light.cabinet_top
+            - light.uhall_ban_hall_ban
+        data:
+          brightness: 255
+          color_name: white
+          effect: "Chiefs"
+
+  shared_lighting_christmas:
+    alias: Shared Lighting Christmas
+    mode: single
+    sequence:
+      - service: light.turn_on
+        target:
+          entity_id:
+            - light.cabinet_top
+            - light.uhall_ban_hall_ban
+        data:
+          brightness: 255
+          effect: "Rainbow"
+
+  shared_lighting_halloween:
+    alias: Shared Lighting Halloween
+    mode: single
+    sequence:
+      - service: light.turn_on
+        target:
+          entity_id:
+            - light.cabinet_top
+            - light.uhall_ban_hall_ban
+        data:
+          brightness: 255
+          color_name: purple
+          effect: "Dithering Lights"
+
+automation:
+  - id: shared_lighting_priority_update
+    alias: Shared Lighting Priority Update
+    mode: restart
+    trigger:
+      - platform: homeassistant
+        event: start
+      - platform: state
+        entity_id:
+          - input_boolean.jayhawk_lamp_req
+          - input_boolean.chiefs_lamp_req
+          - input_boolean.house_sts_xmas_lights
+          - input_boolean.halloween
+          - input_select.shared_lighting_base_profile
+    action:
+      - service: script.turn_on
+        target:
+          entity_id: script.shared_lighting_update
