@@ -22,7 +22,8 @@ script:
             target:
               entity_id: light.kitchen_sink
             data:
-              brightness_pct: 60
+              brightness_pct: >
+                {{ 100 if (state_attr('light.cabinet_top', 'effect') | default('none', true) | string | lower) != 'none' else 60 }}
 
           - continue_on_error: true
             service: light.turn_on
