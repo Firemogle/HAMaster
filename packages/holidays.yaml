@@ -88,8 +88,6 @@ script:
               effect: "Rainbow"
             target:
               entity_id:
-                - light.cabinet_top
-                - light.uhall_ban_hall_ban
                 - light.lr_bt_sns_tree_string
                 - light.lr_bt_sns_garden_fiber
 
@@ -155,8 +153,7 @@ script:
               effect: "Rainbow"
             target:
               entity_id:
-                - light.cabinet_top
-                - light.uhall_ban_hall_ban
+                - light.window_lights
 
           - continue_on_error: true
             service: light.turn_on
@@ -309,9 +306,7 @@ script:
             target:
               entity_id:
                 - light.lr_bt_sns_front_window
-                - light.cabinet_top
                 - light.rainbrarrel_ext_back_window
-                - light.uhall_ban_hall_ban
                 - light.decklight
                 - light.lr_bt_sns_yard_string
 
