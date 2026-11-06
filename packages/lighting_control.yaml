@@ -17,7 +17,6 @@ script:
             target:
               entity_id:
                 - light.kitchen_sink
-                - light.cabinet_top
 
           - continue_on_error: true
             service: light.turn_on
@@ -70,6 +69,10 @@ script:
                 - bathroom
                 - 63db88fe052b434c86e1d37781ce0972
                 - 259e54ef72a347c2b9fa159e5bcd32b7
+              exclude:
+                entity_id:
+                  - light.cabinet_top
+                  - light.uhall_ban_hall_ban
 
           - continue_on_error: true
             service: fan.turn_off
@@ -116,6 +119,7 @@ script:
                   - light.stove
                   - light.kitchen_cabinet_eth_va_kitchen_cabinet
                   - light.kitchen_diffuser_nightlight
+                  - light.uhall_ban_hall_ban
           - continue_on_error: true
             service: light.turn_on
             data:
@@ -125,9 +129,7 @@ script:
             target:
               entity_id:
                 - light.cabinet_bottom
-                - light.cabinet_top
                 - light.stove
-                - light.uhall_ban_hall_ban
           - continue_on_error: true
             service: lock.lock
             target:
@@ -163,6 +165,8 @@ script:
                   - light.xmas_tree_tree_star
                   - light.xmas_tree_xmastree
                   - light.livingroom_entry
+                  - light.cabinet_top
+                  - light.uhall_ban_hall_ban
           - continue_on_error: true
             service: fan.turn_on
             target:
