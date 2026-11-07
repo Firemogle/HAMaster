@@ -193,6 +193,10 @@ automation:
       - service: script.calendar_sync_modes
         continue_on_error: true
 
+      # --- Reconcile shared sports/holiday lighting ---
+      - service: script.shared_lighting_update
+        continue_on_error: true
+
       # --- Send startup notification ---
       - service: notify.group_notify
         data:
@@ -299,6 +303,13 @@ automation:
                 data:
                   entity_id: alarm_control_panel.alarm_panel
                   code: !secret alarmcode
+              - service: input_select.select_option
+                target:
+                  entity_id: input_select.shared_lighting_base_profile
+                data:
+                  option: away
+              - service: script.shared_lighting_update
+                continue_on_error: true
               - service: scene.turn_on
                 target:
                   entity_id: scene.house_away
