@@ -39,6 +39,10 @@ sprinkler:
         run_duration_number: "Three Sisters time"
         valve_switch_id: three_sisters_valve
         pump_switch_id: irr_main_pump
+      - valve_switch: "Potatoes"
+        run_duration_number: "Potatoes time"
+        valve_switch_id: potatoes_valve
+        pump_switch_id: irr_main_pump
       - valve_switch: "Front Zone 1"
         run_duration_number: "Front Zone 1 time"
         valve_switch_id: zone1_valve
