@@ -1,0 +1,76 @@
+# USB Audio output for the ESP32-S3 USB-OTG host.
+# The onboard ES7210 remains the microphone ADC; only playback moves to USB.
+usb_audio:
+  id: usb_audio_hub
+
+i2s_audio:
+  - id: audio_bus
+    i2s_lrclk_pin:
+      number: GPIO39
+    i2s_bclk_pin:
+      number: GPIO17
+    i2s_mclk_pin:
+      number: GPIO02
+
+audio_adc:
+  - platform: es7210
+    id: es7210_adc
+    address: 0x40
+    bits_per_sample: 16bit
+    sample_rate: 16000
+    mic_gain: 24dB
+    i2c_id: audio_i2c
+
+speaker:
+  - platform: usb_audio
+    id: usb_audio_speaker
+    usb_audio_id: usb_audio_hub
+    sample_rate: 48000
+    bits_per_sample: 16bit
+    num_channels: 2
+
+  - platform: mixer
+    id: mixing_speaker
+    output_speaker: usb_audio_speaker
+    num_channels: 2
+    source_speakers:
+      - id: announcement_mixing_input
+        timeout: 10s
+      - id: media_mixing_input
+        timeout: 10s
+
+  - platform: resampler
+    id: announcement_resampling_speaker
+    output_speaker: announcement_mixing_input
+
+  - platform: resampler
+    id: media_resampling_speaker
+    output_speaker: media_mixing_input
+
+media_player:
+  - platform: speaker
+    name: ${devicename}_media
+    id: ${devicename}_media
+    media_pipeline:
+      speaker: media_resampling_speaker
+    announcement_pipeline:
+      speaker: announcement_resampling_speaker
+    volume_increment: 0.05
+    volume_min: 0.4
+    volume_max: 0.85
+    files:
+      id: timer_finished_sound
+      file: packages/sounds/alarm.mp3
+    on_idle:
+      - micro_wake_word.stop:
+      - delay: 2s
+      - micro_wake_word.start:
+
+microphone:
+  - platform: i2s_audio
+    i2s_audio_id: audio_bus
+    id: external_mic
+    adc_type: external
+    pdm: false
+    i2s_din_pin: GPIO42
+    bits_per_sample: 16bit
