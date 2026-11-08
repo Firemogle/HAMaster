@@ -7,6 +7,12 @@ packages:
     vars:
       devicename: ${devicename}
   voice_board: !include
-    file: packages/va_board_2.1.yaml
+    file: packages/va_board_2.7.yaml
     vars:
       devicename: ${devicename}
+
+# USB-OTG host and USB-Serial/JTAG share the ESP32-S3 USB PHY.
+# Keep runtime logging off that PHY so USB Audio can own it.
+logger:
+  hardware_uart: UART0
+  baud_rate: 0
