@@ -1,6 +1,3 @@
-homeassistant:
-  customize:
-
 sensor:
   - platform: integration
     source: sensor.shelly1pm_c45bbe6b427e_power
