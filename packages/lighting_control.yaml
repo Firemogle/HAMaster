@@ -1,7 +1,3 @@
-homeassistant:
-  customize:
-
-
 script:
 
   house_home:
