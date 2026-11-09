@@ -31,29 +31,22 @@ mqtt:
     payload_off: "0"
     retain: false
     
-template:
-- lock:
-  - name: front_door
-    lock:
-    - action: script.front_door_lock
-    unlock:
-    - action: script.front_door_unlock
-    optimistic: false
-    state: '{{ states(''lock.schlage_allegion_be469_touchscreen_deadbolt_locked'') }}'
+  - lock:
+      - name: front_door
+        lock:
+          - action: script.front_door_lock
+        unlock:
+          - action: script.front_door_unlock
+        optimistic: false
+        availability: "{{ states('lock.schlage_allegion_be469_touchscreen_deadbolt_locked') in ['locked', 'unlocked'] }}"
+        state: "{{ states('lock.schlage_allegion_be469_touchscreen_deadbolt_locked') if states('lock.schlage_allegion_be469_touchscreen_deadbolt_locked') in ['locked', 'unlocked'] else 'locked' }}"
     
 media_player:
-
-  - platform: androidtv
-    name: livingroom_shield
-    host: 192.168.3.6
-    adb_server_ip: 127.0.0.1
-    adb_server_port: 5037
 
   - platform: universal
     name: livingroom_media
     children:
       - media_player.Livingroom_kodi
-      - media_player.livingroom_shield
       - media_player.living_room_un55ju6400
       - media_player.living_room_tv
 
