@@ -29,7 +29,7 @@ template:
   - sensor:
       - name: "Total Power Solar"
         unit_of_measurement: "Wh"
-        state_class: "total_increasing"
+        state_class: "measurement"
         device_class: "energy"
         state: >
           {{ (states('sensor.em16_a2_this_month_energy')|float(0) + states('sensor.em16_b2_this_month_energy')|float(0)) }}
