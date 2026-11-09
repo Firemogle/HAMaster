@@ -32,7 +32,7 @@ template:
         availability: "{{ states('lock.schlage_allegion_be469_touchscreen_deadbolt_locked') in ['locked', 'unlocked'] }}"
         state: "{{ states('lock.schlage_allegion_be469_touchscreen_deadbolt_locked') if states('lock.schlage_allegion_be469_touchscreen_deadbolt_locked') in ['locked', 'unlocked'] else 'unlocked' }}"
 
-  mqtt:
+mqtt:
   light:
     name: "Jayhawk Candle"
     state_topic: "/Jayhawk_Candle/relay/switch"
