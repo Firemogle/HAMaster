@@ -48,7 +48,7 @@ sensor:
       unit_of_measurement: "°C"
     pressure:
       name: "laundry_pressure"
-      unit_of_measurement: "P"
+      unit_of_measurement: "Pa"
     humidity:
       name: "laundry_humidity"
       unit_of_measurement: "%"
