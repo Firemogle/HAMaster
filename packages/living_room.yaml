@@ -21,8 +21,18 @@ template:
           {{ is_state('binary_sensor.water_bowl', 'on') }}
         delay_off:
           minutes: 5
-  
-mqtt:
+
+  - lock:
+      - name: front_door
+        lock:
+          - action: script.front_door_lock
+        unlock:
+          - action: script.front_door_unlock
+        optimistic: false
+        availability: "{{ states('lock.schlage_allegion_be469_touchscreen_deadbolt_locked') in ['locked', 'unlocked'] }}"
+        state: "{{ states('lock.schlage_allegion_be469_touchscreen_deadbolt_locked') if states('lock.schlage_allegion_be469_touchscreen_deadbolt_locked') in ['locked', 'unlocked'] else 'unlocked' }}"
+
+  mqtt:
   light:
     name: "Jayhawk Candle"
     state_topic: "/Jayhawk_Candle/relay/switch"
@@ -31,24 +41,9 @@ mqtt:
     payload_off: "0"
     retain: false
     
-template:
-- lock:
-  - name: front_door
-    lock:
-    - action: script.front_door_lock
-    unlock:
-    - action: script.front_door_unlock
-    optimistic: false
-    state: '{{ states(''lock.schlage_allegion_be469_touchscreen_deadbolt_locked'') }}'
-    
 media_player:
 
-  - platform: androidtv
-    name: livingroom_shield
-    host: 192.168.3.6
-    adb_server_ip: 127.0.0.1
-    adb_server_port: 5037
-
+  # Add the Shield through Settings > Devices & Services using the Android TV Remote integration.
   - platform: universal
     name: livingroom_media
     children:
