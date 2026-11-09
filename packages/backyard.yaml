@@ -1,7 +1,3 @@
-homeassistant:
-  customize:  
-
-
 utility_meter:
   daily_rain:
     source: sensor.daily_rain_utility_meter_source
