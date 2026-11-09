@@ -1,14 +1,11 @@
-homeassistant:
-  customize:
-          
 template:
   - sensor:
       - name: "Total Water Usage"
         unit_of_measurement: "gal"
         state_class: "total_increasing"
         device_class: "water"
-        state: >
-          {{ states('sensor.daily_water_filtered') }}
+        availability: "{{ is_number(states('sensor.daily_water_filtered')) }}"
+        state: "{{ states('sensor.daily_water_filtered') | float }}"
 
   - binary_sensor:
       - name: leak_detectrd
