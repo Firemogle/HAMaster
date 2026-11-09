@@ -1,6 +1,3 @@
-homeassistant:
-  customize:
-          
 template:
   - sensor:
       - name: "Total Water Usage"
