@@ -2,9 +2,6 @@
 # fan.nursery_fan → fan.emi_room_fan
 # sensor.lottie_room_air_temperature → sensor.emi_room_air_temperature
 
-homeassistant:
-  customize:
-
 automation:
   - id: emi_room_fan_speed
     alias: emi_room_fan_speed
