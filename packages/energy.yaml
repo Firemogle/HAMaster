@@ -22,7 +22,7 @@ template:
         device_class: "energy"
         state: >
           {% if states('sensor.total_power_grid')|float(0) < 0 %}
-            {{ states('sensor.total_power_grid')|float(0) }}
+            {{ states('sensor.total_power_grid')|float(0) | abs }}
           {% else %}
             0
           {% endif %}
