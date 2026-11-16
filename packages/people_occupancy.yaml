@@ -1,8 +1,4 @@
   
-homeassistant:
-  customize:
-    
-  
 automation:
   - id: 'brett_home'
     alias: brett_home

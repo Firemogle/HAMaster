@@ -1,6 +1,3 @@
-homeassistant:
-  customize:
-
 sensor:
   - platform: integration
     source: sensor.computron_w

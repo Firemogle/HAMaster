@@ -1,6 +1,3 @@
-homeassistant:
-  customize:
-  
 binary_sensor:
 #Define times of day for the house, early, morning, afternoon, evening and night
   - platform: tod

@@ -169,7 +169,6 @@ automation:
     trigger:
     - entity_id: binary_sensor.hvac_fan_req
       platform: state
-    condition: []
     action:
     - data:
         entity_id: climate.hvac_local

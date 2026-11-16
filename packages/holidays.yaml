@@ -1,7 +1,3 @@
-homeassistant:
-  customize:
-  
-
 input_boolean:
   independence_day:
     name: independence_day
