@@ -1,15 +1,15 @@
 homeassistant:
   customize:
     light.livingroom_entry:
-      friendly_name: "Livingroom Entry"
+      friendly_name: "Living Room Entry"
     light.main_livingroom:
-      friendly_name: "Main Livingroom"
+      friendly_name: "Main Living Room"
     switch.livingroom_subwoofer:
-      friendly_name: "Livingroom Subwoofer"
+      friendly_name: "Living Room Subwoofer"
       icon: mdi:speaker
     binary_sensor.livingroom_door_opened:
       device_class: door
-      friendly_name: Livingroom Door
+      friendly_name: Living Room Door
   
 template:
   - binary_sensor:
