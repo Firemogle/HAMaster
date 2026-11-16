@@ -15,9 +15,9 @@ homeassistant:
       friendly_name: Garage Entry
     binary_sensor.sliding_glass_door_opened:
       device_class: door
-      friendly_name: Sliding glass door
+      friendly_name: "Sliding Glass Door"
     binary_sensor.sliding_glass_door_opened_2:
-      friendly_name: sliding_glass_door
+      friendly_name: "Sliding Glass Door"
     binary_sensor.kitchen_motion:
       device_class: motion
     fan.kitchen_fan:
