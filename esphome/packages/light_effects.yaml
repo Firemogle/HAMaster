@@ -1,10 +1,6 @@
-# UDP Realtime Control listener used by the WLED light effect.
-wled:
-
 light:
     id: !extend ${name}
     effects:
-      - wled:
       - addressable_color_wipe:
           name: Chiefs
           colors:
