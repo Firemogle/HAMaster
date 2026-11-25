@@ -1,15 +1,15 @@
 homeassistant:
   customize:
     fan.emi_fan:
-      friendly_name: Girls Fan
+      friendly_name: "Scarlett's Room Fan"
     light.emi_fan_light:
-      friendly_name: Girls Fan Light
+      friendly_name: "Scarlett's Room Fan Light"
     binary_sensor.emi_motion:
-      friendly_name: Girls Bedroom Motion
+      friendly_name: "Scarlett's Room Motion"
     sensor.emi_temp:
-      friendly_name: Girls Bedroom Temperature
+      friendly_name: "Scarlett's Room Temperature"
     switch.emi_tv:
-      friendly_name: Girls TV Switch
+      friendly_name: "Scarlett's Room TV Switch"
 
 media_player:
   - platform: universal

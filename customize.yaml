@@ -1,10 +1,26 @@
-
-
-
-
-
-
-
-
-
-
+binary_sensor.livingroom_eth_va_livingroom_eth_va_alarm_on:
+  friendly_name: Living Room Alarm On
+binary_sensor.master_headboard_eth_va_master_headboard_eth_va_alarm_on:
+  friendly_name: Master Bedroom Alarm On
+light.main_livingroom:
+  friendly_name: Main Living Room
+switch.girls_tv:
+  friendly_name: "Scarlett's Room TV"
+cover.emi_room_blind:
+  friendly_name: "Emi's Room Blind"
+fan.emi_room_fan:
+  friendly_name: "Emi's Room Fan"
+light.emi_room_fan_light:
+  friendly_name: "Emi's Room Fan Light"
+sensor.emi_room_air_temperature:
+  friendly_name: "Emi's Room Temperature Sensor"
+binary_sensor.emi_room_motion_detection:
+  friendly_name: "Emi's Room Motion Detection"
+automation.girls_bed_time:
+  friendly_name: "Scarlett's Room Bed Time"
+automation.girls_night_time:
+  friendly_name: "Scarlett's Room Night Time"
+automation.nursery_fan_speed:
+  friendly_name: "Emi's Room Fan Speed"
+sensor.lottie_room_humidity:
+  friendly_name: "Emi's Room Humidity"
