@@ -1,16 +1,19 @@
-# USB Audio output for the ESP32-S3 USB-OTG host.
-# The onboard ES7210 remains the microphone ADC; only playback moves to USB.
-usb_audio:
-  id: usb_audio_hub
-
 i2s_audio:
   - id: audio_bus
     i2s_lrclk_pin:
       number: GPIO39
-    i2s_bclk_pin:
-      number: GPIO17
-    i2s_mclk_pin:
-      number: GPIO02
+    i2s_bclk_pin: GPIO17
+    i2s_mclk_pin: GPIO02
+  - id: audio_bus_out
+    i2s_lrclk_pin:
+      number: GPIO45
+    i2s_bclk_pin: GPIO47
+    i2s_mclk_pin: GPIO48
+
+audio_dac:
+  - platform: aic3204
+    id: aic3204_dac
+    i2c_id: audio_i2c
 
 audio_adc:
   - platform: es7210
@@ -22,27 +25,31 @@ audio_adc:
     i2c_id: audio_i2c
 
 speaker:
-  - platform: usb_audio
-    id: usb_audio_speaker
-    usb_audio_id: usb_audio_hub
+  - platform: i2s_audio
+    i2s_audio_id: audio_bus_out
+    id: i2s_audio_speaker
+    i2s_dout_pin: GPIO01
+    dac_type: external
     sample_rate: 48000
-    bits_per_sample: 16bit
-    num_channels: 2
-
+    bits_per_sample: 32bit
+    mclk_multiple: 512
+    use_apll: true
+    i2s_comm_fmt: stand_i2s
+    channel: stereo
+    audio_dac: aic3204_dac
+    timeout: 10s
   - platform: mixer
     id: mixing_speaker
-    output_speaker: usb_audio_speaker
+    output_speaker: i2s_audio_speaker
     num_channels: 2
     source_speakers:
       - id: announcement_mixing_input
         timeout: 10s
       - id: media_mixing_input
         timeout: 10s
-
   - platform: resampler
     id: announcement_resampling_speaker
     output_speaker: announcement_mixing_input
-
   - platform: resampler
     id: media_resampling_speaker
     output_speaker: media_mixing_input
